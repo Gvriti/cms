@@ -1,0 +1,57 @@
+# Project #
+###################
+/vendor
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
+/bower_components
+public/files/*
+!public/files/test.txt
+*sftp-config.json
+# Ignore directories and files in main dir, starting with "!" symbol
+\!*
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+# exuberant-ctags
+tags
+ctags
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and Databases #
+######################
+*.log
+*.sqlite
+*.sql
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Document files #
+######################
+*.doc
+*.docx
+*.xlsx

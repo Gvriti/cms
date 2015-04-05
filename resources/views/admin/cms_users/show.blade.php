@@ -1,0 +1,68 @@
+@extends('admin.app')
+@section('content')
+<div class="page-title">
+    <div class="title-env">
+        <h1 class="title">
+            <i class="fa fa-user-secret"></i>
+            Profile
+        </h1>
+        <p class="description">Profile of the cms user</p>
+    </div>
+    <div class="breadcrumb-env">
+        <ol class="breadcrumb bc-1">
+            <li>
+                <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
+            </li>
+            <li>
+                <a href="{{ cms_route('cmsUsers.index') }}"><i class="fa fa-user-secret"></i>CMS Users</a>
+            </li>
+            <li class="active">
+                <strong>{{$firstname}} {{$lastname}}</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<section class="profile-env">
+    <div class="row">
+        <div class="col-sm-3">
+            <!-- User Info Sidebar -->
+            <div class="user-info-sidebar">
+                <div class="user-img">
+                    <img src="{{$photo}}" alt="user-img" class="img-cirlce img-responsive img-thumbnail" />
+                </div>
+                <div class="user-name">
+                    {{$firstname}} {{$lastname}}
+                    <span class="user-status is-online"></span>
+                </div>
+                <span class="btn-block text-center">
+                    <strong>{{user_roles($role)}}</strong>
+                </span>
+            @if (AuthCms::get()->isAdmin() || AuthCms::id() == $id)
+                <a href="{{cms_route('cmsUsers.edit', [$id])}}" class="btn-block text-center">{{trans('general.edit')}}</a>
+            @endif
+                <hr />
+                <ul class="list-unstyled user-info-list">
+                    <li>
+                        <i class="fa fa-envelope"></i>
+                        {{$email}}
+                    </li>
+                    <li>
+                        <i class="fa fa-phone-square"></i>
+                        {{$phone}}
+                    </li>
+                    <li>
+                        <i class="fa fa-building"></i>
+                        {{$address}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <section class="user-timeline-stories">
+                <!-- Timeline Story Type: Status -->
+                <article class="timeline-story">...</article>
+            </section>
+        </div>
+    </div>
+</section>
+@endsection

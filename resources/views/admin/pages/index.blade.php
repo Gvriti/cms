@@ -1,0 +1,152 @@
+@extends('admin.app')
+@section('content')
+<div class="page-title">
+    <div class="title-env">
+        <h1 class="title">
+            <i class="{{icon_type('pages')}}"></i>
+            {{$title}}
+        </h1>
+        <p class="description">{{ $description }}</p>
+    </div>
+    <div class="breadcrumb-env">
+        <ol class="breadcrumb bc-1">
+            <li>
+                <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
+            </li>
+            <li>
+                <a href="{{ cms_route('menus.index') }}"><i class="{{icon_type('menus')}}"></i>Menus</a>
+            </li>
+            <li class="active">
+                <i class="{{icon_type('pages')}}"></i>
+                <strong>{{$title}}</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">List of all pages</h3>
+        <div class="panel-options">
+            <a href="{{cms_route('menus.edit', [$id])}}">
+                <i class="fa fa-gear"></i>
+            </a>
+            <a href="#" data-toggle="panel">
+                <span class="collapse-icon">&ndash;</span>
+                <span class="expand-icon">+</span>
+            </a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <a href="{{ cms_route('pages.create', [$id]) }}" class="btn btn-secondary btn-icon-standalone">
+            <i class="{{icon_type('pages')}}"></i>
+            <span>{{ trans('general.create') }}</span>
+        </a>
+        <button id="save-tree" class="btn btn-secondary btn-icon-standalone dn" disabled>
+            <i><b class="icon-var fa-save"></b></i>
+            <span>{{ trans('general.save') }}</span>
+        </button>
+        <div id="items">
+            <ul id="nestable-list" class="uk-nestable" data-uk-nestable>
+            @foreach ($items as $item)
+                <li id="item{{ $item->id }}" data-id="{{ $item->id }}" data-pos="{{ $item->position }}"{!!$item->collapse ? ' class="uk-collapsed"' : ''!!}>
+                    <div class="uk-nestable-item">
+                        <div class="uk-nestable-handle"></div>
+                        <div data-nestable-action="toggle"></div>
+                        <div class="list-label"><a href="{{ cms_route('pages.edit', [$id, $item->id]) }}">{{ $item->short_title }}</a></div>
+                        <div class="btn-section pull-right">
+                            <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
+                            <div class="btn-action pull-right">
+                                <a href="{{$newUrl = $url . '/' . $item->slug}}" class="link btn btn-white" title="Site link" data-slug="{{$item->slug}}" target="_blank">
+                                    <span class="fa fa-link"></span>
+                                </a>
+                                <a href="#" class="movable btn btn-white" title="Move to menu" data-id="{{$item->id}}">
+                                    <span class="{{icon_type('menus')}}"></span>
+                                </a>
+                                {!! Form::open(['method' => 'post', 'url' => cms_route('pages.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
+                                    <button type="submit" class="btn btn-{{$item->visible ? 'white' : 'gray'}}" title="{{trans('general.visibility')}}">
+                                        <span class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></span>
+                                    </button>
+                                {!! Form::close() !!}
+                                <a href="{{ cms_route('files.index', ['pages', $item->id]) }}" class="btn btn-{{$item->files_id ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
+                                    <span class="{{icon_type('files')}}"></span>
+                                </a>
+                                <a href="{{$item->collection_id ? cms_route($item->collection_type . '.index', [$item->collection_id]) : '#' }}" class="btn btn-{{$item->collection_id ? 'info' : 'white disabled'}}" title="{{$item->collection_title ?: trans('general.collections')}}">
+                                    <span class="{{icon_type($item->collection_type ?: 'collections')}}"></span>
+                                </a>
+                                <a href="{{ cms_route('pages.create', [$id, 'id' => $item->id]) }}" class="btn btn-secondary" title="{{trans('general.create')}}">
+                                    <span class="fa fa-plus"></span>
+                                </a>
+                                <a href="{{ cms_route('pages.edit', [$id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
+                                    <span class="fa fa-edit"></span>
+                                </a>
+                                {!! Form::open(['method' => 'delete', 'url' => cms_route('pages.destroy', [$id, $item->id]), 'class' => 'form-delete']) !!}
+                                    <button type="submit" class="btn btn-danger" data-id="{{ $item->id }}" title="{{trans('general.delete')}}"{{$item->sub || $item->files_id ? ' disabled' : ''}}>
+                                        <span class="fa fa-trash"></span>
+                                    </button>
+                                {!! Form::close() !!}
+                            </div>
+                            <a href="#" class="btn btn-primary btn-toggle pull-right visible-xs">
+                                <span class="fa fa-toggle-left"></span>
+                            </a>
+                        </div>
+                    </div>
+                    @if (! empty($item->sub))
+                        @include('admin.pages.pages_tree', ['url' => $newUrl])
+                    @endif
+                </li>
+            @endforeach
+            </ul>
+        </div>
+    </div>
+</div>
+@include('admin.scripts.move', ['route' => 'pages', 'list' => $menus, 'id' => $id, 'column' => 'menu_id', 'recursive' => true])
+<script type="text/javascript">
+$(function() {
+    @include('admin.scripts.destroy', ['subTree' => true])
+
+    positionable('{{ cms_route('pages.updatePosition') }}');
+
+    // Update pages URL recursively, after position update
+    $('#save-tree').on('positionSaved', function() {
+        function updateSlug(target, url) {
+            var prevUrl = url;
+
+            target.each(function() {
+                var item = $(this).find('a.link');
+
+                url = prevUrl + '/' + item.data('slug');
+
+                item.attr('href', url);
+
+                if ($(this).hasClass('uk-parent')) {
+                    updateSlug($('> ul', this).children('li'), url);
+                }
+            });
+        }
+
+        updateSlug($('#nestable-list > li'), '{{$url}}');
+    });
+
+    // Collapse parent pages
+    $('#items').on('click', '[data-nestable-action]', function() {
+        var id = $(this).closest('li').data('id');
+
+        var input = {'id':id, '_method':'put', '_token':csrf_token()};
+        $.post("{{cms_route('pages.collapse')}}", input, function(data) {}, 'json')
+        .fail(function(xhr) {
+            alert(xhr.responseText);
+        });
+    });
+
+    // Toggle page action buttons
+    $('.btn-section').on('click', '.btn-toggle', function(e) {
+        e.preventDefault();
+
+        $(this).siblings('.btn-action').toggle(300);
+    });
+});
+</script>
+<!-- Imported scripts on this page -->
+<script src="{{ asset('assets/js/uikit/js/uikit.min.js') }}"></script>
+<script src="{{ asset('assets/js/uikit/js/addons/nestable.min.js') }}"></script>
+@endsection
