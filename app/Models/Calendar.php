@@ -84,7 +84,7 @@ class Calendar extends Model
      *
      * @param  string  $start
      * @param  string  $end
-     * @return \Illuminate\Support\Collection|static[]
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function getActive($start = null, $end = null)
     {
@@ -106,7 +106,7 @@ class Calendar extends Model
     /**
      * Get inactive calendar events.
      *
-     * @return \Illuminate\Support\Collection|static[]
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function getInactive()
     {

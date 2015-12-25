@@ -11,7 +11,7 @@ abstract class AbstractHasCollection extends Model
      * Get the Collection instance.
      *
      * @param  int  $id
-     * @return \Illuminate\Support\Collection|
+     * @return \Models\Collection|
      *         \Illuminate\Database\Eloquent\Builder
      */
     public function collection($id = null)

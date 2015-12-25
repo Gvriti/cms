@@ -70,7 +70,7 @@ class Page extends Model
      * Get the Menu instance.
      *
      * @param  int  $id
-     * @return \Illuminate\Database\Eloquent\Menu|
+     * @return \Models\Menu|
      *         \Illuminate\Database\Eloquent\Builder
      */
     public function menu($id = null)
@@ -84,7 +84,7 @@ class Page extends Model
      * Get the Collection instance.
      *
      * @param  int  $id
-     * @return \Illuminate\Support\Collection|
+     * @return \Models\Collection|
      *         \Illuminate\Database\Eloquent\Builder
      */
     public function collection($id = null)
@@ -92,42 +92,6 @@ class Page extends Model
         $model = new Collection;
 
         return is_null($id) ? $model : $model->where('id', $id);
-    }
-
-    /**
-     * Get all sub pages.
-     *
-     * @param  mixed  $page
-     * @return \Illuminate\Support\Collection|static[]
-     */
-    public function getSubPages($page)
-    {
-        if (! $page instanceof self) {
-            $page = $this->findOrNew($page);
-        }
-
-        $pages = $this->forSite()->parentId((int) $page->id)->get();
-
-        $slug = $page->slug;
-
-        return $pages->isEmpty() ? $pages : $pages->each(function ($item) use ($slug) {
-            $item->original_slug = $item->slug;
-
-            $item->slug = $slug . '/' . $item->slug;
-
-            return $item;
-        });
-    }
-
-    /**
-     * Determine if the model has the sub page.
-     *
-     * @param  int  $id
-     * @return bool
-     */
-    public function hasSubPage($id)
-    {
-        return $this->parentId($id)->exists();
     }
 
     /**
@@ -157,6 +121,74 @@ class Page extends Model
         $query = ! is_null($id) ? $this->menuId($id) : $this;
 
         return $query->joinLanguages()->visible()->currentLanguage();
+    }
+
+    /**
+     * Get all sub pages.
+     *
+     * @param  int|null  $id
+     * @return \Illuminate\Support\Collection|static[]
+     */
+    public function getSubPages($id = null)
+    {
+        $pages = $this->forSite()->parentId($id ?: $this->id)->get();
+
+        $slug = $this->slug;
+
+        return $pages->each(function ($item) use ($slug) {
+            $item->original_slug = $item->slug;
+
+            $item->slug = $slug . '/' . $item->slug;
+        });
+    }
+
+    /**
+     * Determine if the model has a sub page.
+     *
+     * @param  int|null  $id
+     * @return bool
+     */
+    public function hasSubPage($id = null)
+    {
+        return $this->parentId($id ?: $this->id)->exists();
+    }
+
+    /**
+     * Get all sibling pages if the model has a parent page.
+     *
+     * @param  int|null  $id
+     * @return \Illuminate\Support\Collection|static[]
+     */
+    public function getSiblingPages($id = null)
+    {
+        if (((int) $id = $id ?: $this->parent_id) == 0) {
+            return $this->newCollection();
+        }
+
+        $pages = $this->forSite()->parentId($id)->get();
+
+        $slug = $this->slug;
+
+        return $pages->each(function ($item) use ($slug) {
+            $item->original_slug = $item->slug;
+
+            $item->slug = $slug . '/' . $item->slug;
+        });
+    }
+
+    /**
+     * Determine if the model has a parent and sibling page.
+     *
+     * @param  int|null  $id
+     * @return bool
+     */
+    public function hasSiblingPage($id = null)
+    {
+        if (((int) $id = $id ?: $this->parent_id) == 0) {
+            return false;
+        }
+
+        return $this->parentId($id)->exists();
     }
 
     /**

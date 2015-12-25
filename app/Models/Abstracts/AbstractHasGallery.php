@@ -11,7 +11,7 @@ abstract class AbstractHasGallery extends Model
      * Get the Gallery instance.
      *
      * @param  int  $id
-     * @return \Illuminate\Database\Eloquent\Gallery|
+     * @return \Models\Gallery|
      *         \Illuminate\Database\Eloquent\Builder
      */
     public function gallery($id = null)

@@ -127,7 +127,7 @@ trait LanguageTrait
      * Save a new model with its related Language model and return the instance.
      *
      * @param  array  $attributes
-     * @return \Illuminate\Support\Collection|array
+     * @return array
      */
     protected function createLanguage(array $attributes = [])
     {

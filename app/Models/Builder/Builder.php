@@ -61,7 +61,7 @@ class Builder extends EloquentBuilder
      * Execute the query as a "select" statement or throw an exception.
      *
      * @param  array $columns
-     * @return \Illuminate\Support\Collection|static[]
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */

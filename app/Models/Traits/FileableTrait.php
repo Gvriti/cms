@@ -20,7 +20,7 @@ trait FileableTrait
     /**
      * Get the model files.
      * 
-     * @return \Illuminate\Support\Collection|static[]
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function getFiles($id)
     {
@@ -69,7 +69,7 @@ trait FileableTrait
         return $this->leftJoin($fileTable, function ($join) use ($table, $keyName, $fileTable) {
             $join->on("{$table}.{$keyName}", '=', "route_id")
                  ->where("{$fileTable}.route_name", '=', $table);
-        })->groupBy($table . '.' . $keyName)->addSelect(["{$fileTable}.id as {$fileTable}_id"]);
+        })->groupBy("{$table}.{$keyName}")->addSelect(["{$fileTable}.id as {$fileTable}_id"]);
     }
 
     /**
