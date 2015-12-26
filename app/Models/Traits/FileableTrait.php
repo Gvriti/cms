@@ -19,15 +19,16 @@ trait FileableTrait
 
     /**
      * Get the model files.
-     * 
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     *
+     * @param  int  $id
+     * @return \Illuminate\Support\Collection|static[]
      */
-    public function getFiles($id)
+    public function getFiles($id = null)
     {
         $imageExt = ['png', 'jpg', 'jpeg', 'gif', 'bmp'];
 
         $files = $this->file()->joinLanguages()
-                              ->byRoute($id, $this->getTable())
+                              ->byRoute($id ?: $this->id, $this->getTable())
                               ->visible()
                               ->currentLanguage()
                               ->positionDesc()
