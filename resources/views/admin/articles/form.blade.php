@@ -1,6 +1,6 @@
 {!! Form::hidden('close', false, ['class' => 'form-close']) !!}
 <div class="form-group required{{$errors->has('title') ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label" for="title{{$lang}}">Title:</label>
+    <label class="col-sm-2 control-label">Title:</label>
     <div class="col-sm-10">
         {!! Form::text('title', null, [
             'id' => 'title' . $lang,
@@ -15,7 +15,7 @@
 <div class="form-group-separator"></div>
 
 <div class="form-group{{$errors->has('short_title') ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label" for="short_title{{$lang}}">Short title:</label>
+    <label class="col-sm-2 control-label">Short title:</label>
     <div class="col-sm-10">
         {!! Form::text('short_title', null, [
             'id' => 'short_title' . $lang,
@@ -30,7 +30,7 @@
 <div class="form-group-separator"></div>
 
 <div class="form-group{{$errors->has('slug') ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label" for="slug{{$lang}}">Slug:</label>
+    <label class="col-sm-2 control-label">Slug:</label>
     <div class="col-sm-10">
         {!! Form::text('slug', null, [
             'id' => 'slug' . $lang,
@@ -59,7 +59,7 @@
 <div class="form-group-separator"></div>
 
 <div class="form-group">
-    <label class="col-sm-2 control-label" for="description{{$lang}}">Description:</label>
+    <label class="col-sm-2 control-label">Description:</label>
     <div class="col-sm-10">
         {!! Form::textarea('description', null, [
             'id' => 'description' . $lang,
@@ -72,7 +72,7 @@
 <div class="form-group-separator"></div>
 
 <div class="form-group">
-    <label class="col-sm-2 control-label" for="content{{$lang}}">Content:</label>
+    <label class="col-sm-2 control-label">Content:</label>
     <div class="col-sm-10">
         {!! Form::textarea('content', null, [
             'id' => 'content' . $lang,
@@ -85,7 +85,7 @@
 <div class="form-group-separator"></div>
 
 <div class="form-group{{$errors->has('meta_desc') ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label" for="meta_desc{{$lang}}">Meta description:</label>
+    <label class="col-sm-2 control-label">Meta description:</label>
     <div class="col-sm-10">
         {!! Form::text('meta_desc', null, [
             'id' => 'meta_desc' . $lang,
@@ -101,7 +101,7 @@
 <div class="form-group-separator"></div>
 
 <div class="form-group">
-    <label class="col-sm-2 control-label" for="image{{$lang}}">Image:</label>
+    <label class="col-sm-2 control-label">Image:</label>
     <div class="col-lg-6 col-sm-10">
         <div class="input-group">
             {!! Form::text('image', null, [

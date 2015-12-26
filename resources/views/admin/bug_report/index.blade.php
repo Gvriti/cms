@@ -30,7 +30,7 @@
     ]) !!}
         <div class="panel-body">
             <div class="form-group{{$errors->has('title') ? ' validate-has-error' : '' }}">
-                <label for="title" class="col-sm-3 control-label">Title:</label>
+                <label class="col-sm-3 control-label">Title:</label>
                 <div class="col-sm-5">
                     @if ($errors->has('title'))
                     <span class="text-danger">{{$errors->first('title')}}</span>
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="form-group{{$errors->has('description') ? ' validate-has-error' : '' }}">
-                <label for="description" class="col-sm-3 control-label">Description:</label>
+                <label class="col-sm-3 control-label">Description:</label>
                 <div class="col-sm-5">
                     @if ($errors->has('description'))
                     <span class="text-danger">{{$errors->first('description')}}</span>

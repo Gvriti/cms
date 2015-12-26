@@ -29,7 +29,7 @@
                 <ul class="album-options list-unstyled list-inline">
                     <li>
                         <input type="checkbox" class="cbr" id="select-all" />
-                        <label for="select-all">Select all</label>
+                        <label>Select all</label>
                     </li>
                     <li>
                         <a href="#" data-modal="add">

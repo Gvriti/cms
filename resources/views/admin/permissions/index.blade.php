@@ -65,7 +65,7 @@
         @foreach ($route as $name)
             @if (! in_array($name, $namesDisallowed))
             <div class="panel-body col-xs-6 col-sm-4 col-md-3">
-                <label for="{{$name}}"><strong>{{ucfirst(implode(' ', explode('.', substr($name, strpos($name, '.') + 1))))}}</strong></label>
+                <label><strong>{{ucfirst(implode(' ', explode('.', substr($name, strpos($name, '.') + 1))))}}</strong></label>
                 <input type="checkbox" name="permissions[][{{$group}}]" value="{{$name}}"{{in_array($name, $item) ? ' checked' : ''}} class="{{$group}} icheck" id="{{$name}}">
             </div>
             @endif

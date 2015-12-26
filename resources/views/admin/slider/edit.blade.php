@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="title" class="control-label">Title:</label>
+                                        <label class="control-label">Title:</label>
                                         {!! Form::text('title', null, [
                                             'id' => 'title_' . $item->language,
                                             'class' => 'title form-control',
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="description" class="control-label">Short description:</label>
+                                        <label class="control-label">Short description:</label>
                                         {!! Form::textarea('description', null, [
                                             'id' => 'description_' . $item->language,
                                             'class' => 'form-control',
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="file_{{$item->language}}" class="control-label">Image:</label>
+                                        <label class="control-label">Image:</label>
                                         <div class="input-group">
                                             {!! Form::text('file', null, [
                                                 'id' => 'file_' . $item->language,
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="visible" class="control-label">Visible:</label>
+                                        <label class="control-label">Visible:</label>
                                         {!! Form::checkbox('visible', null, true, [
                                             'id' => 'visible_' . $item->language,
                                             'class' => 'visible iswitch iswitch-secondary',

@@ -63,13 +63,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="title" class="control-label">Title:</label>
+                            <label class="control-label">Title:</label>
                             <input type="text" name="title" id="title" class="form-control" value="">
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label for="description" class="control-label">Description:</label>
+                            <label class="control-label">Description:</label>
                             <textarea name="description" id="description" rows="8" class="form-control"></textarea>
                         </div>
                     </div>

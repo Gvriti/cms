@@ -29,7 +29,7 @@
 </div>
 <div class="member-form-inputs">
     <div class="form-group required{{$errors->has('email') ? ' validate-has-error' : '' }}">
-        <label class="col-sm-2 control-label text-left" for="email">Email:</label>
+        <label class="col-sm-2 control-label text-left">Email:</label>
         <div class="col-sm-10">
             {!! Form::text('email', null, [
                 'id' => 'email',
@@ -44,7 +44,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group required{{$errors->has('firstname') ? ' validate-has-error' : '' }}">
-                <label class="col-sm-4 control-label text-left" for="firstname">Firstname:</label>
+                <label class="col-sm-4 control-label text-left">Firstname:</label>
                 <div class="col-sm-8">
                     {!! Form::text('firstname', null, [
                         'id' => 'firstname',
@@ -58,7 +58,7 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group required{{$errors->has('lastname') ? ' validate-has-error' : '' }}">
-                <label class="col-sm-4 control-label text-left" for="lastname">Lastname:</label>
+                <label class="col-sm-4 control-label text-left">Lastname:</label>
                 <div class="col-sm-8">
                     {!! Form::text('lastname', null, [
                         'id' => 'lastname',
@@ -75,7 +75,7 @@
     <div class="form-group-separator"></div>
 
     <div class="form-group{{$errors->has('phone') ? ' validate-has-error' : '' }}">
-        <label class="col-sm-2 control-label text-left" for="phone">Phone:</label>
+        <label class="col-sm-2 control-label text-left">Phone:</label>
         <div class="col-sm-10">
             {!! Form::text('phone', null, [
                 'id' => 'phone',
@@ -90,7 +90,7 @@
     <div class="form-group-separator"></div>
 
     <div class="form-group">
-        <label class="col-sm-2 control-label text-left" for="address">Address:</label>
+        <label class="col-sm-2 control-label text-left">Address:</label>
         <div class="col-sm-10">
             {!! Form::text('address', null, [
                 'id' => 'address',
@@ -133,7 +133,7 @@
     <div class="form-group-separator"></div>
 
     <div class="form-group">
-        <label class="col-sm-2 control-label text-left" for="photo">Photo:</label>
+        <label class="col-sm-2 control-label text-left">Photo:</label>
         <div class="col-sm-6">
             <div class="input-group">
                 {!! Form::text('photo', null, [
@@ -152,7 +152,7 @@
     <div id="change-password" class="form-group{{ ! $item->id ? '' : ' collapse' . ($errors->has('password') ? ' in' : '')}}">
         <div class="col-sm-6">
             <div class="form-group{{$errors->has('password') ? ' validate-has-error' : '' }}">
-                <label class="col-sm-4 control-label text-left" for="password">Password:</label>
+                <label class="col-sm-4 control-label text-left">Password:</label>
                 <div class="col-sm-8">
                     {!! Form::password('password', [
                         'id' => 'password',
@@ -166,7 +166,7 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="col-sm-4 control-label text-left" for="password_confirmation">Repeat Password:</label>
+                <label class="col-sm-4 control-label text-left">Repeat Password:</label>
                 <div class="col-sm-8">
                     <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
                 </div>

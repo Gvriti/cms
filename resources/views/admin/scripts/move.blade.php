@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="title" class="control-label">Move to:</label>
+                            <label class="control-label">Move to:</label>
                             <select name="column_value" id="column_value" class="form-control">
                             @foreach ($list as $item)
                                 <option value="{{$item->id}}">{{$item->title}}</option>

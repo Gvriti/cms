@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="title" class="control-label">Title:</label>
+                                <label class="control-label">Title:</label>
                                 {!! Form::text('title', null, [
                                     'id' => 'title',
                                     'class' => 'form-control',
@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="file" class="control-label">Image:</label>
+                                <label class="control-label">Image:</label>
                                 <div class="input-group">
                                     {!! Form::text('file', null, [
                                         'id' => 'file',
@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="visible" class="control-label">Visible:</label>
+                                <label class="control-label">Visible:</label>
                                 {!! Form::checkbox('visible', null, true, [
                                     'id' => 'visible',
                                     'class' => 'visible iswitch iswitch-secondary'

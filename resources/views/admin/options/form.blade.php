@@ -1,6 +1,6 @@
 {!! Form::hidden('close', false, ['class' => 'form-close']) !!}
 <div class="form-group required{{$errors->has('title') ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label" for="title{{$lang}}">Title:</label>
+    <label class="col-sm-2 control-label">Title:</label>
     <div class="col-sm-6">
         {!! Form::text('title', null, [
             'id' => 'title' . $lang,
