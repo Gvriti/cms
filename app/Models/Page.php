@@ -165,15 +165,9 @@ class Page extends Model
             return $this->newCollection();
         }
 
-        $pages = $this->forSite()->parentId($id)->get();
-
-        $slug = $this->slug;
-
-        return $pages->each(function ($item) use ($slug) {
-            $item->original_slug = $item->slug;
-
-            $item->slug = $slug . '/' . $item->slug;
-        });
+        return $this->forSite()->where('id', '<>', (int) $this->id)
+                               ->parentId($id)
+                               ->get();
     }
 
     /**
@@ -188,7 +182,7 @@ class Page extends Model
             return false;
         }
 
-        return $this->parentId($id)->exists();
+        return $this->parentId($id)->where('id', '<>', (int) $this->id)->exists();
     }
 
     /**

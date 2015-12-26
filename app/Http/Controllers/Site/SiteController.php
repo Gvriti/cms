@@ -110,15 +110,17 @@ class SiteController extends Controller
                 break;
             }
 
-            $this->pages[] = $page;
-
-            $this->pages[$i]->original_slug = $this->pages[$i]->slug;
+            $page->original_slug = $page->slug;
 
             if ($i > 0) {
-                $this->pages[$i]->slug = $this->pages[$i - 1]->slug . '/' . $this->pages[$i]->slug;
+                $page->parent_slug = $this->pages[$i - 1]->slug;
+
+                $page->slug = $page->parent_slug . '/' . $page->slug;
             }
 
-            $parentId = $this->pages[$i]->id;
+            $parentId = $page->id;
+
+            $this->pages[$i] = $page;
         }
 
         return $this->view($this->detectController());
