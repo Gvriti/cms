@@ -138,6 +138,10 @@ function cms_route($name, $parameters = [], $language = null, $absolute = true, 
  */
 function cms_url($path = null, $parameters = [], $language = null, $secure = null)
 {
+    if (is_array($path)) {
+        $path = implode('/', array_filter($path));
+    }
+
     $query = $parameters ? '?' . http_build_query((array) $parameters) : '';
 
     return url(cms_slug($language) . '/' . $path, [], $secure) . $query;
@@ -178,7 +182,7 @@ function site_route($name, $parameters = [], $language = null, $absolute = true,
 function site_url($path = null, $parameters = [], $language = null, $secure = null)
 {
     if (is_array($path)) {
-        $path = implode('/', $path);
+        $path = implode('/', array_filter($path));
     }
 
     if (is_string($language)) {
