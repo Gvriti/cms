@@ -45,9 +45,11 @@
         @foreach($items as $item)
             <tr id="item{{$item->id}}">
                 <td class="user-image hidden-xs hidden-sm">
+                @if ($items->photo)
                     <a href="{{cms_route('cmsUsers.edit', [$item->id])}}">
                         <img src="{{$item->photo}}" width="40" height="40" class="img-circle" alt="{{$item->firstname}} {{$item->lastname}}" />
                     </a>
+                @endif
                 </td>
                 <td class="user-name">
                     <a href="{{cms_route('cmsUsers.edit', [$item->id])}}" class="name{{AuthCms::id() == $item->id ? ' active' : ''}}">{{$item->firstname}} {{$item->lastname}}</a>

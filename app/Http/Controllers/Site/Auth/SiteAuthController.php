@@ -46,7 +46,7 @@ class SiteAuthController extends Controller
      *
      * @return string
      */
-    protected $registerView = 'site.auth.login';
+    protected $registerView = 'site.auth.register';
 
     /**
      * The path to the login view for ajax response.
