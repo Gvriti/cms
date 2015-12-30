@@ -53,7 +53,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->cmsWillLoad = $config->get('cms_will_load');
 
-        $this->segmentsCount = $config->get('route_segments_count');
+        $this->segmentsCount = $config->get('url_segments_count');
 
         parent::boot($router);
     }

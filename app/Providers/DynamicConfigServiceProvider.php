@@ -19,12 +19,12 @@ class DynamicConfigServiceProvider extends ServiceProvider
 
         $segmentsCount = count($segments = $request->segments());
 
-        $language = $request->segment(1);
+        $firstSegment = $request->segment(1);
 
         $languagesCount = count($languages = $config->get('app.languages'));
 
-        if ($languagesCount > 1 && array_key_exists($language, $languages)) {
-            $config->set(['app.language' => $language]);
+        if ($languagesCount > 1 && array_key_exists($firstSegment, $languages)) {
+            $config->set(['app.language' => $firstSegment]);
             $config->set(['language_isset' => true]);
 
             $segmentsCount--;
@@ -34,7 +34,7 @@ class DynamicConfigServiceProvider extends ServiceProvider
             $config->set(['language_isset' => false]);
         }
 
-        $config->set(['route_segments_count' => $segmentsCount]);
+        $config->set(['url_segments_count' => $segmentsCount]);
 
         $cmsWillLoad = current($segments) == $config->get('cms.slug');
 
