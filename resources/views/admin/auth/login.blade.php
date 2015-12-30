@@ -51,7 +51,7 @@
                         <ul class="icheck-list">
                             <li>
                                 <input tabindex="3" type="checkbox" name="remember" class="icheck" id="remember">
-                                <label>{{trans('auth.remember_me')}}</label>
+                                <label for="remember">{{trans('auth.remember_me')}}</label>
                             </li>
                         </ul>
                     </div>

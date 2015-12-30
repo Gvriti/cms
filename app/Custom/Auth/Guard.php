@@ -52,8 +52,6 @@ class Guard extends BaseGuard
     protected function clearUserDataFromStorage()
     {
         parent::clearUserDataFromStorage();
-
-        $this->get()->unlockScreen();
     }
 
     /**

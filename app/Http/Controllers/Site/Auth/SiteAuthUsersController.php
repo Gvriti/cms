@@ -32,6 +32,8 @@ class SiteAuthUsersController extends Controller
      */
     public function __construct(Auth $auth, Request $request)
     {
+        $this->middleware('siteGuest', ['except' => ['getLogout']]);
+
         $this->auth = $auth->user();
 
         $this->request = $request;
@@ -63,7 +65,7 @@ class SiteAuthUsersController extends Controller
             'email', 'firstname', 'lastname', 'password'
         ]);
 
-        return app(User::class)->create([
+        return (new User)->create([
             'email'     => $data['email'],
             'firstname' => $data['firstname'],
             'lastname'  => $data['lastname'],

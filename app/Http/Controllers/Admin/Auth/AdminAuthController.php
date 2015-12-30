@@ -56,6 +56,18 @@ class AdminAuthController extends Controller
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getLogout()
+    {
+        if ($this->auth->check()) {
+            $this->auth->get()->unlockScreen();
+        }
+
+        return parent::getLogout();
+    }
+
+    /**
      * Get the lockscreen response.
      *
      * @return \Illuminate\Http\Response
@@ -127,6 +139,10 @@ class AdminAuthController extends Controller
      */
     protected function url($path = null)
     {
+        if (is_null($path) || $path = '/') {
+            return cms_url();
+        }
+
         return cms_route($path);
     }
 }
