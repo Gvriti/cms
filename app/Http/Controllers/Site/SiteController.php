@@ -177,25 +177,23 @@ class SiteController extends Controller
                 'slug' => $slug
             ], 'show');
         }
-        return $this->getDoubleCollectionTypeController($collection->type, $slug);
+        return $this->getDoubleCollectionTypeController($collection, $slug);
     }
 
     /**
-     * Get a controller by the double collection type.
+     * Get a controller by the double collection.
      *
-     * @param  string  $type
+     * @param  \Models\Collection  $collection
      * @param  string  $slug
      * @return \Illuminate\Routing\Controller
      */
-    protected function getDoubleCollectionTypeController($type, $slug)
+    protected function getDoubleCollectionTypeController(Collection $collection, $slug)
     {
-        $modelName = $this->getModelName($type);
+        $modelName = $this->getModelName($collection->type);
 
-        $model = $this->app[$modelName]->bySlug($slug)->firstOrFail();
+        $model = (new $modelName)->bySlug($slug, $collection->id)->firstOrFail();
 
-        $controller = $this->getControllerName($model->type);
-
-        return $this->callController($collection->type, [
+        return $this->callController($model->type, [
             str_singular($model->getTable()) => $model
         ], 'index');
     }

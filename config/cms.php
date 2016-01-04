@@ -63,8 +63,7 @@ return [
                         'controller' => 'AdminPhotosController'
                     ],
                     'videos' => [
-                        'controller' => 'AdminVideosController',
-                        'slug'       => 'videos'
+                        'controller' => 'AdminVideosController'
                     ]
                 ]
             ]

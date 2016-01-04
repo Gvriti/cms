@@ -13,7 +13,9 @@
     </header>
     <!-- .heading -->
     <div id="items">
-
+<?php foreach ($items as $item): ?>
+        {{$item->title}}
+<?php endforeach ?>
     </div>
     <!-- #items -->
 @if ($items->lastPage() > 1)

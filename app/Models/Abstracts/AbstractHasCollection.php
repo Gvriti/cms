@@ -61,7 +61,7 @@ abstract class AbstractHasCollection extends Model
     {
         $query = ! is_null($id) ? $this->collectionId($id) : $this;
 
-        return $this->joinLanguages()->currentLanguage();
+        return $query->joinLanguages()->currentLanguage();
     }
 
     /**
@@ -79,11 +79,12 @@ abstract class AbstractHasCollection extends Model
      * Build query based on slug.
      *
      * @param  string  $slug
+     * @param  int     $id
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function bySlug($slug)
+    public function bySlug($slug, $id = null)
     {
-        return $this->where('slug', $slug)->forSite();
+        return $this->where('slug', $slug)->forSite($id);
     }
 
     /**
