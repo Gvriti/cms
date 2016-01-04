@@ -140,9 +140,7 @@ class SiteController extends Controller
         $pagesCount = count($this->pages);
 
         if ($pagesCount == $this->segmentsCount && $page->type != 'collection') {
-            $controller = $this->getControllerName($page->type);
-
-            return $this->app->call([$this->app[$controller], 'show'], ['page' => $page]);
+            return $this->callController($page->type, ['page' => $page], 'show');
         }
 
         $this->segments = array_slice($this->segments, $pagesCount);
@@ -164,22 +162,20 @@ class SiteController extends Controller
     {
         $collection = (new Collection)->findOrFail($page->collection_id);
 
-        $controller = $this->getControllerName($collection->type);
-
         if (! $this->segmentsCount) {
-            return $this->app->call([$this->app[$controller], 'index'], [
+            return $this->callController($collection->type, [
                 'page' => $page,
                 'collection' => $collection
-            ]);
+            ], 'index');
         }
 
         $slug = current($this->segments);
 
         if (! in_array($collection->type, double_collection())) {
-            return $this->app->call([$this->app[$controller], 'show'], [
+            return $this->callController($collection->type, [
                 'page' => $page,
                 'slug' => $slug
-            ]);
+            ], 'show');
         }
         return $this->getDoubleCollectionTypeController($collection->type, $slug);
     }
@@ -199,9 +195,28 @@ class SiteController extends Controller
 
         $controller = $this->getControllerName($model->type);
 
-        return $this->app->call([$this->app[$controller], 'index'], [
+        return $this->callController($collection->type, [
             str_singular($model->getTable()) => $model
-        ]);
+        ], 'index');
+    }
+
+    /**
+     * Get the controller instance.
+     *
+     * @param  string  $name
+     * @param  array   $parameters
+     * @param  string|null  $defaultMethod
+     * @return \App\Http\Controllers\Controller
+     */
+    protected function callController($name, array $parameters = [], $defaultMethod = null)
+    {
+        $segments = explode('@', $name);
+
+        $method = count($segments) == 2 ? $segments[1] : $defaultMethod;
+
+        $controller = __NAMESPACE__ . '\Site' . studly_case($segments[0]) . 'Controller';
+
+        return $this->app->call([$this->app[$controller], $method], $parameters);
     }
 
     /**
@@ -236,16 +251,5 @@ class SiteController extends Controller
     protected function createBreadcrumb($items)
     {
         $this->app->instance('breadcrumb', new Collect($items));
-    }
-
-    /**
-     * Get the controller name.
-     *
-     * @param  string  $name
-     * @return string
-     */
-    protected function getControllerName($name)
-    {
-        return __NAMESPACE__ . '\Site' . studly_case($name) . 'Controller';
     }
 }
