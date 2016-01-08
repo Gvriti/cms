@@ -9,8 +9,8 @@ Homestead.json
 public/files/*
 !public/files/test.txt
 *sftp-config.json
-# Ignore directories and files in main dir, starting with "!" symbol
-\!*
+# Ignore directories and files starting with "!" symbol
+/\!*
 
 # Compiled source #
 ###################
@@ -20,9 +20,7 @@ public/files/*
 *.exe
 *.o
 *.so
-# exuberant-ctags
-tags
-ctags
+/.tags*
 
 # Packages #
 ############

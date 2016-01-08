@@ -208,11 +208,27 @@ class SiteController extends Controller
      */
     protected function callController($name, array $parameters = [], $defaultMethod = null)
     {
+        $controller = __NAMESPACE__;
+
         $segments = explode('@', $name);
 
-        $method = count($segments) == 2 ? $segments[1] : $defaultMethod;
+        $namespace = explode('.', $segments[0]);
 
-        $controller = __NAMESPACE__ . '\Site' . studly_case($segments[0]) . 'Controller';
+        if (($dirsCount = count($namespace)) > 1) {
+            for ($i = 0; $i < $dirsCount; $i++) {
+                if (($i + 1) == $dirsCount) {
+                    $controller .= '\Site' . studly_case($namespace[$i]);
+                } else {
+                    $controller .= '\\' . studly_case($namespace[$i]);
+                }
+            }
+        } else {
+            $controller .= '\Site' . studly_case($segments[0]);
+        }
+
+        $controller .= 'Controller';
+
+        $method = count($segments) == 2 ? $segments[1] : $defaultMethod;
 
         return $this->app->call([$this->app[$controller], $method], $parameters);
     }

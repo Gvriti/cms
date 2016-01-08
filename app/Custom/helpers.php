@@ -380,14 +380,13 @@ function msg_result($result, $message = null, $translate = true)
  */
 function msg_db_error($key, $render = false, $translate = true)
 {
-    $type = 'error';
-    $message = 'database.error.'.$key;
+    $message = 'database.error.' . $key;
 
     if ($render) {
-        return msg_render($type, $message, null, $translate);
+        return msg_render('error', $message, null, $translate);
     }
 
-    return msg_result($type, $message, $translate);
+    return msg_result('error', $message, $translate);
 }
 
 /**
