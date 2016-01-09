@@ -38,7 +38,7 @@ function language_isset()
 /**
  * Get the available multi-auth instance.
  *
- * @param  string  $method
+ * @param  string|null  $method
  * @return \Custom\Auth\Auth
  */
 function multi_auth($method = null)
@@ -144,6 +144,8 @@ function cms_url($path = null, $parameters = [], $language = null, $secure = nul
 
     $query = $parameters ? '?' . http_build_query((array) $parameters) : '';
 
+    $path = trim($path, '/');
+
     return url(cms_slug($language) . '/' . $path, [], $secure) . $query;
 }
 
@@ -184,6 +186,8 @@ function site_url($path = null, $parameters = [], $language = null, $secure = nu
     if (is_array($path)) {
         $path = implode('/', array_filter($path));
     }
+
+    $path = trim($path, '/');
 
     if (is_string($language)) {
         $path = $language . '/' . $path;

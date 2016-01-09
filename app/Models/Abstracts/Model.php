@@ -152,10 +152,10 @@ abstract class Model extends BaseModel
         $parameters = isset($parameters[1]) ? ['name' => $parameters[1]] : [];
 
         if (request()->ajax()) {
-            $response = response()->json(msg_db_error($e->errorInfo[1], $parameters));
+            $response = response()->json(fill_db_data($e->errorInfo[1], $parameters));
         } else {
             $response = redirect()->back()
-                                  ->with('alert', msg_db_error($e->errorInfo[1], $parameters))
+                                  ->with('alert', fill_db_data($e->errorInfo[1], $parameters))
                                   ->withInput();
         }
 

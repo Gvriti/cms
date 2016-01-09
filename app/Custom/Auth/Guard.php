@@ -32,7 +32,7 @@ class Guard extends BaseGuard
     /**
      * Get the currently authenticated user.
      *
-     * @param  string  $attribute
+     * @param  string|null  $attribute
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function get($attribute = null)
