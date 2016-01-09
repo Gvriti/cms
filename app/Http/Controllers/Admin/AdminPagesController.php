@@ -99,11 +99,11 @@ class AdminPagesController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('pages.index', [$menuId]))
-                        ->with('alert', msg_result('success', 'general.created'));
+                        ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('pages.edit', [$menuId, $newModel->id]))
-                ->with('alert', msg_result('success', 'general.created'));
+                ->with('alert', fill_data('success', trans('general.created')));
     }
 
     /**
@@ -154,15 +154,17 @@ class AdminPagesController extends Controller
         $this->model->findOrFail($id)->update($input);
 
         if ($request->ajax()) {
-            return msg_render('success', 'general.updated', $input);
+            return response()->json(fill_data(
+                'success', trans('general.updated'), $input
+            ));
         }
 
         if ($request->has('close')) {
             return redirect(cms_route('pages.index', [$menuId]))
-                    ->with('alert', msg_result('success', 'general.updated'));
+                    ->with('alert', fill_data('success', trans('general.updated')));
         }
 
-        return redirect()->back()->with('alert', msg_result('success', 'general.updated'));
+        return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
     }
 
     /**
@@ -197,9 +199,9 @@ class AdminPagesController extends Controller
 
             $result = $model->update(['collapse' => $model->collapse ? 0 : 1]);
 
-            if ($result) return response()->json(msg_result($result));
+            if ($result) return response()->json(fill_data($result));
         }
 
-        return response()->json(msg_result(false, 'general.invalid_input'));
+        return response()->json(fill_data(false, trans('general.invalid_input')));
     }
 }

@@ -138,7 +138,7 @@ abstract class AuthController extends Controller
         }
 
         if ($this->request->ajax()) {
-            return response()->json(msg_result(false, trans($this->authFailMessage), false));
+            return response()->json(fill_data(false, trans($this->authFailMessage), false));
         }
 
         return redirect($this->loginPath())
@@ -271,10 +271,12 @@ abstract class AuthController extends Controller
     {
         $session = $this->request->getSession();
 
-        $message = ! is_null($errors = $session->get('errors')) ? $errors->first() : $errors;
+        if (! is_null($errors = $session->get('errors'))) {
+            $errors = $errors->first();
+        }
 
         $session->forget('errors');
 
-        return response()->json(msg_result(false, $message));
+        return response()->json(fill_data(false, $errors));
     }
 }

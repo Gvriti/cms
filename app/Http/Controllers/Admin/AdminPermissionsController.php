@@ -143,7 +143,7 @@ class AdminPermissionsController extends Controller
         });
 
         return redirect(cms_route('permissions.index', [$id]))
-                ->with('alert', msg_result('success', 'general.saved'));
+                ->with('alert', fill_data('success', trans('general.saved')));
     }
 
     /**

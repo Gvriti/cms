@@ -37,10 +37,12 @@ trait MovableTrait
         }
 
         if ($this->request->ajax()) {
-            return msg_render('success', 'general.updated', $input);
+            return response()->json(fill_data(
+                'success', trans('general.updated'), $input
+            ));
         }
 
-        return redirect()->back()->with('alert', msg_result('success', 'general.updated'));
+        return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
     }
 
     /**

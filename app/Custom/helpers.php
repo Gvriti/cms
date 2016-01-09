@@ -316,7 +316,7 @@ function make_tree($items, $slug = false, $parentId = 0, $parentKey = 'parent_id
 }
 
 /**
- * Get the application instance.
+ * Get the instance from the container.
  *
  * @param  string  $instance
  * @param  mixed   $default
@@ -334,70 +334,33 @@ function app_instance($instance, $default = null)
 }
 
 /**
- * Render view for session flash messages.
- *
- * @param  string  $type
- * @param  string  $message
- * @param  mixed   $result
- * @param  bool    $translate
- * @return \Illuminate\Http\Response;
- */
-function msg_render($type, $message, $result = null, $translate = true)
-{
-    session()->flash('alert', msg_result($type, $message, $translate));
-
-    $view = view()->make('admin.alerts')->render();
-
-    return response()->json(['result' => $result, 'view' => $view]);
-}
-
-/**
- * Fill array for result message.
+ * Fill array with data.
  *
  * @param  string  $result
  * @param  string  $message
- * @param  bool    $translate
+ * @param  mixed   $input
  * @return array
  */
-function msg_result($result, $message = null, $translate = true)
+function fill_data($result, $message = null, $input = null)
 {
-    if ($translate) {
-        $message = trans($message);
-    }
-
     return [
-        'result' => $result,
-        'message' => $message
+        'result'  => $result,
+        'message' => $message,
+        'input'   => $input
     ];
 }
 
 /**
- * Get a database error messages.
+ * Fill a database error message.
  *
- * @param  string  $result
- * @param  bool    $translate
+ * @param  string  $key
+ * @param  array   $parameters
+ * @param  bool    $render
  * @return array
  */
-function msg_db_error($key, $render = false, $translate = true)
+function fill_db_data($key, array $parameters = [])
 {
-    $message = 'database.error.' . $key;
-
-    if ($render) {
-        return msg_render('error', $message, null, $translate);
-    }
-
-    return msg_result('error', $message, $translate);
-}
-
-/**
- * Determine a checkbox condition.
- *
- * @param  mixed  $value
- * @return bool
- */
-function make_checkbox($value)
-{
-    return empty($value) ? false : true;
+    return fill_data('error', trans('database.error.' . $key, $parameters));
 }
 
 /**
@@ -445,11 +408,7 @@ function collection_types($type = null)
     }
 
     if (! is_null($type)) {
-        if (! isset($types[$type])) {
-            return null;
-        }
-
-        return $types[$type];
+        return isset($types[$type]) ? $types[$type] : null;
     }
 
     return $types;

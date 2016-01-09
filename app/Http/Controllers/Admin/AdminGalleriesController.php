@@ -91,11 +91,11 @@ class AdminGalleriesController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('galleries.index', [$collectionId]))
-                        ->with('alert', msg_result('success', 'general.created'));
+                        ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('galleries.edit', [$collectionId, $newModel->id]))
-                ->with('alert', msg_result('success', 'general.created'));
+                ->with('alert', fill_data('success', trans('general.created')));
     }
 
     /**
@@ -138,15 +138,17 @@ class AdminGalleriesController extends Controller
         $this->model->findOrFail($id)->update($input);
 
         if ($request->ajax()) {
-            return msg_render('success', 'general.updated', $input);
+            return response()->json(fill_data(
+                'success', trans('general.updated'), $input
+            ));
         }
 
         if ($request->has('close')) {
             return redirect(cms_route('galleries.index', [$collectionId]))
-                    ->with('alert', msg_result('success', 'general.updated'));
+                    ->with('alert', fill_data('success', trans('general.updated')));
         }
 
-        return redirect()->back()->with('alert', msg_result('success', 'general.updated'));
+        return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
     }
 
     /**

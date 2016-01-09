@@ -121,14 +121,14 @@ class AdminAuthController extends Controller
             $this->auth->get()->unlockScreen();
 
             if ($this->request->ajax()) {
-                return response()->json(msg_result(true));
+                return response()->json(fill_data(true));
             }
 
             return redirect()->intended(cms_route('dashboard'));
         }
 
         if ($this->request->ajax()) {
-            return response()->json(msg_result(false, trans('auth.invalid.password')));
+            return response()->json(fill_data(false, trans('auth.invalid.password')));
         }
 
         return redirect()->back()->withErrors(trans('auth.invalid.password'));

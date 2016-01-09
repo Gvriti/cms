@@ -147,11 +147,15 @@ abstract class Model extends BaseModel
      */
     protected function queryExceptionResponse(QueryException $e)
     {
+        $parameters = explode('\'', $e->previous->getMessage());
+
+        $parameters = isset($parameters[1]) ? ['name' => $parameters[1]] : [];
+
         if (request()->ajax()) {
-            $response = msg_db_error($e->errorInfo[1], true);
+            $response = response()->json(msg_db_error($e->errorInfo[1], $parameters));
         } else {
             $response = redirect()->back()
-                                  ->with('alert', msg_db_error($e->errorInfo[1]))
+                                  ->with('alert', msg_db_error($e->errorInfo[1], $parameters))
                                   ->withInput();
         }
 

@@ -45,6 +45,6 @@ class AdminSiteSettingsController extends Controller
         DB::table('site_settings')->update($attributes);
 
         return redirect(cms_route('siteSettings.index'))
-                    ->with('alert', msg_result('success', 'general.updated'));
+                    ->with('alert', fill_data('success', trans('general.updated')));
     }
 }

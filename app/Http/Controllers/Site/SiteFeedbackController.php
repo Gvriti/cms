@@ -68,9 +68,9 @@ class SiteFeedbackController extends Controller
                   ->subject($subject);
             });
 
-            $message = msg_result(true, 'message_success');
+            $message = fill_data(true, trans('message_success'));
         } catch (Exception $e) {
-            $message = msg_result(false, 'message_failed');
+            $message = fill_data(false, trans('message_failed'));
         }
 
         return redirect()->back()->with('alert', $message);

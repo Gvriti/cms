@@ -115,6 +115,27 @@ $(function() {
     // Initialize stacktable
     $('.table').stacktable();
 
+    // toast notification options
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "positionClass": "toast-{{$settings->get('alert_position')}}",
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "4000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+@if (session()->has('alert'))
+
+    toastr["{{session()->pull('alert.result')}}"]("{{session()->pull('alert.message')}}");
+{{session()->forget('alert')}}
+@endif
+
 @if (! session()->has('includeLockscreen') && $settings->get('lockscreen'))
     lockscreen({{$settings->get('lockscreen')}}, '{{cms_route('lockscreen')}}');
 @endif

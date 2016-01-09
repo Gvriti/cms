@@ -104,11 +104,11 @@ class AdminCmsUsersController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('cmsUsers.index'))
-                        ->with('alert', msg_result('success', 'general.created'));
+                        ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('cmsUsers.edit', [$newModel->id]))
-                ->with('alert', msg_result('success', 'general.created'));
+                ->with('alert', fill_data('success', trans('general.created')));
     }
 
     /**
@@ -157,15 +157,17 @@ class AdminCmsUsersController extends Controller
         $this->model->findOrFail($id)->update($input);
 
         if ($request->ajax()) {
-            return msg_render('success', 'general.updated', $input);
+            return response()->json(fill_data(
+                'success', trans('general.updated'), $input
+            ));
         }
 
         if ($request->has('close')) {
             return redirect(cms_route('cmsUsers.index'))
-                    ->with('alert', msg_result('success', 'general.updated'));
+                    ->with('alert', fill_data('success', trans('general.updated')));
         }
 
-        return redirect()->back()->with('alert', msg_result('success', 'general.updated'));
+        return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
     }
 
     /**

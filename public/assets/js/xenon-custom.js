@@ -1858,7 +1858,7 @@ $(document).on('submit', ajaxFormSelector, function(e) {
     var url   = form.attr('action');
     var input = form.serialize();
 
-    var lang  = form.data('lang');
+    var lang = form.data('lang');
     lang = lang === undefined ? '' : '_' + lang;
 
     $('.form-group', form).find('.text-danger').remove();
@@ -1869,9 +1869,11 @@ $(document).on('submit', ajaxFormSelector, function(e) {
         dataType: 'json',
         data: input,
         success: function(data, status, xhr) {
-            $('body').append(data.view);
-            if (data.result && typeof data.result === 'object') {
-                $.each(data.result, function(index, element) {
+            // alert toastr message
+            toastr[data.result](data.message);
+            // fill form inputs
+            if (data.input && typeof data.input === 'object') {
+                $.each(data.input, function(index, element) {
                     var item = $('#' + index + lang, form);
                     if (item.val() != element) {
                         item.val(element);
@@ -1894,7 +1896,7 @@ $(document).on('submit', ajaxFormSelector, function(e) {
                         });
                     }
                 });
-                form.trigger('ajaxFormSuccess', [data.result]);
+                form.trigger('ajaxFormSuccess', [data.input]);
             }
             $('.form-group', form).removeClass('validate-has-error');
             $('#form-changes', form).val(1);

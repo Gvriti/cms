@@ -85,7 +85,9 @@ class AdminCalendarController extends Controller
         }
 
         if ($this->request->ajax()) {
-            return msg_render('success', 'general.saved', $result->getAttributes());
+            return response()->json(fill_data(
+                'success', trans('general.saved'), $result->getAttributes()
+            ));
         }
 
         return redirect()->back();

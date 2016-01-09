@@ -155,7 +155,9 @@ class AdminVideosController extends Controller
         if ($request->ajax()) {
             $input += ['youtube' => getYoutubeEmbed($request->get('file'))];
 
-            return msg_render('success', 'general.updated', $input);
+            return response()->json(fill_data(
+                'success', trans('general.updated'), $input
+            ));
         }
 
         return redirect(cms_route('videos.index', [$galleryId]));

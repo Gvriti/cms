@@ -46,9 +46,9 @@ class AdminBugReportController extends Controller
                   ->subject($host . ' - bug report');
             });
 
-            $message = msg_result('success', 'mail.message_sent');
+            $message = fill_data('success', trans('mail.message_sent'));
         } catch (Exception $e) {
-            $message = msg_result('error', 'mail.message_not_sent');
+            $message = fill_data('error', trans('mail.message_not_sent'));
         }
 
         return redirect(cms_route('bugReport.index'))->with('alert', $message);

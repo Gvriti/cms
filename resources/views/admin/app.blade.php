@@ -18,8 +18,6 @@
                 @include('admin.partials.user')
             @endif
                 @yield('content')
-
-                @include('admin.alerts')
                 @include('admin.partials.footer')
             </div>
         </div>

@@ -19,7 +19,7 @@ class AdminRedirectIfAuthenticated
 
         if ($auth->check() && ! $auth->get()->hasLockScreen()) {
             if ($request->ajax()) {
-                return response()->json(msg_result(true));
+                return response()->json(fill_data(true));
             }
 
             return redirect(cms_route('dashboard'));

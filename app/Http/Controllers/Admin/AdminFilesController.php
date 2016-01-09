@@ -153,7 +153,9 @@ class AdminFilesController extends Controller
         $this->model->findOrFail($id)->update($input);
 
         if ($request->ajax()) {
-            return msg_render('success', 'general.updated', $input);
+            return response()->json(fill_data(
+                'success', trans('general.updated'), $input
+            ));
         }
 
         return redirect(cms_route('files.index', [$routeName, $routeId]));

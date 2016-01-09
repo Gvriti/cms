@@ -86,6 +86,6 @@ class AdminSettingsController extends Controller
         DB::table('cms_settings')->update($attributes);
 
         return redirect(cms_route('settings.index', ['tab' => $request->get('tab', 1)]))
-                    ->with('alert', msg_result('success', 'general.updated'));
+                    ->with('alert', fill_data('success', trans('general.updated')));
     }
 }
