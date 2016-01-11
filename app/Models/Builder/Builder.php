@@ -166,7 +166,12 @@ class Builder extends EloquentBuilder
      */
     public function __call($method, $parameters)
     {
-        if (method_exists($this->model, $method)) {
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5);
+
+        $isLoop = isset($backtrace[1]['function']) && isset($backtrace[4]['function'])
+                  && $backtrace[1]['function'] == $backtrace[4]['function'];
+
+        if (method_exists($this->model, $method) && ! $isLoop) {
             $this->model->setBuilder($this);
 
             return call_user_func_array([$this->model, $method], $parameters);
