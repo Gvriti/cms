@@ -85,14 +85,20 @@ class Handler extends ExceptionHandler
 
         $status = $response->getStatusCode();
 
+        $debug = config('app.debug');
+
         if ($this->request->ajax()) {
+            if ($debug) {
+                return response()->make(
+                    $e->getMessage() . ' in ' . $e->getFile() . ' line ' . $e->getLine(), $status
+                );
+            }
+
             return response()->make(trans('http.' . $status), $status);
         }
 
-        if (! config('app.debug') && ! $viewChecked) {
-            if ($view = $this->getExceptionView($status, $e)) {
-                return $view;
-            }
+        if (! $debug && ! $viewChecked && ($view = $this->getExceptionView($status, $e))) {
+            return $view;
         }
 
         return $response;

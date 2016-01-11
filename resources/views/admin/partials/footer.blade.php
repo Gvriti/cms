@@ -132,11 +132,10 @@ $(function() {
     };
 @if (session()->has('alert'))
 
-    toastr["{{session()->pull('alert.result')}}"]("{{session()->pull('alert.message')}}");
-{{session()->forget('alert')}}
+    toastr["{{session('alert.result')}}"]("{{session('alert.message')}}");
 @endif
-
 @if (! session()->has('includeLockscreen') && $settings->get('lockscreen'))
+
     lockscreen({{$settings->get('lockscreen')}}, '{{cms_route('lockscreen')}}');
 @endif
 });

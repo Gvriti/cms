@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use Models\Page;
 use Models\Collection;
+use Models\Abstracts\Model;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
@@ -241,7 +242,9 @@ class SiteController extends Controller
      */
     protected function view(View $view)
     {
-        if (! $view->current instanceof Page && $this->pages) {
+        if ($view->current instanceof Model
+            && ! $view->current instanceof Page
+            && $this->pages) {
             $lastSlug = end($this->pages)->slug;
 
             $view->current->original_slug = $view->current->slug;

@@ -24,11 +24,23 @@ class SiteCurrentPageEventListener
                 'image'     => asset('assets/site/images/logo.png'),
                 'meta_desc' => $trans->get('meta_desc') ?: $title,
             ];
-        } elseif (empty($current->meta_desc)) {
-            if (! empty($current->description)) {
-                $current->meta_desc = text_limit($current->description);
-            } else {
-                $current->meta_desc = text_limit($current->title);
+        } else {
+            if (empty($current->slug)) {
+                if (strpos($path = request()->getPathInfo(), $language = language()) === 1) {
+                    $path = substr($path, strlen($language) + 2);
+                }
+
+                $current->slug = $path;
+            }
+
+            if (empty($current->meta_desc)) {
+                if (! empty($current->description)) {
+                    $current->meta_desc = text_limit($current->description);
+                } elseif (! empty($current->content)) {
+                    $current->meta_desc = text_limit($current->content);
+                } else {
+                    $current->meta_desc = text_limit($current->title);
+                }
             }
 
             if (empty($current->image)) {
@@ -50,7 +62,6 @@ class SiteCurrentPageEventListener
         $events->listen([
                 'composing: site.partials.head',
                 'composing: site.partials.pages',
-                'composing: site.home',
             ],
             'App\Listeners\Site\SiteCurrentPageEventListener@onCurrentPageComposer'
         );
