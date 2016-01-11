@@ -142,9 +142,12 @@ class Builder extends EloquentBuilder
                             }
                         }
                     } elseif (isset($value['column']) && strpos($value['column'], '.') === false) {
-                        if ($value['column'] == 'id'
-                            || in_array($value['column'], $this->model->getFillable())
-                        ) {
+                        $columns = array_merge(
+                            array_values($this->model->getFillable()),
+                            array_values($this->model->getDates())
+                        );
+
+                        if ($value['column'] == 'id' || in_array($value['column'], $columns)) {
                             $table = $query->from . '.';
                         } else {
                             $table = null;
