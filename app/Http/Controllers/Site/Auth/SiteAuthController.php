@@ -28,13 +28,6 @@ class SiteAuthController extends Controller
     protected $request;
 
     /**
-     * The path to the login route.
-     *
-     * @return string
-     */
-    protected $loginPath = '/';
-
-    /**
      * The path to the login view.
      *
      * @return string

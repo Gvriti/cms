@@ -28,7 +28,7 @@ abstract class AuthController extends Controller
      *
      * @return string
      */
-    protected $loginPath = 'login';
+    protected $loginPath;
 
     /**
      * The path to the login view.
@@ -63,7 +63,7 @@ abstract class AuthController extends Controller
      *
      * @return string
      */
-    protected $authenticatedPath = '/';
+    protected $authenticatedPath;
 
     /**
      * Get the failed login message translation.
@@ -138,11 +138,12 @@ abstract class AuthController extends Controller
         }
 
         if ($this->request->ajax()) {
-            return response()->json(fill_data(false, trans($this->authFailMessage), false));
+            return response()->json(fill_data(false, trans($this->authFailMessage)));
         }
 
-        return redirect($this->loginPath())
-                        ->withInput($this->request->only($this->loginUsername(), 'remember'))
+        $redirect = is_null($this->loginPath) ? redirect()->back() : redirect($this->loginPath());
+
+        return $redirect->withInput($this->request->only($this->loginUsername(), 'remember'))
                         ->withErrors([$this->loginUsername() => trans($this->authFailMessage)]);
     }
 
@@ -210,6 +211,10 @@ abstract class AuthController extends Controller
 
         if ($this->request->ajax()) {
             return $this->ajaxViewResponse($this->ajaxLoginViewResponse);
+        }
+
+        if (is_null($this->authenticatedPath)) {
+            return redirect()->back();
         }
 
         return redirect()->intended($this->url($this->authenticatedPath));
