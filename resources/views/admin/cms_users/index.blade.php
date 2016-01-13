@@ -30,13 +30,19 @@
     </li>
 @endforeach
 </ul>
-<div class="tab-content">
+<div class="tab-content clearfix">
+    <div class="pull-left">
+        <a href="{{ cms_route('cmsUsers.create') }}" class="btn btn-secondary btn-icon-standalone">
+            <i class="fa fa-user-plus"></i>
+            <span>{{ trans('general.create') }}</span>
+        </a>
+    </div>
     <table class="table table-hover members-table middle-align">
         <thead>
             <tr>
-                <th class="hidden-xs hidden-sm"></th>
+                <th></th>
                 <th>Name and Role</th>
-                <th class="hidden-xs hidden-sm">E-Mail</th>
+                <th>E-Mail</th>
                 <th>ID</th>
                 <th>Settings</th>
             </tr>
@@ -44,8 +50,8 @@
         <tbody>
         @foreach($items as $item)
             <tr id="item{{$item->id}}">
-                <td class="user-image hidden-xs hidden-sm">
-                @if ($items->photo)
+                <td class="user-image">
+                @if ($item->photo)
                     <a href="{{cms_route('cmsUsers.edit', [$item->id])}}">
                         <img src="{{$item->photo}}" width="40" height="40" class="img-circle" alt="{{$item->firstname}} {{$item->lastname}}" />
                     </a>
@@ -55,7 +61,7 @@
                     <a href="{{cms_route('cmsUsers.edit', [$item->id])}}" class="name{{AuthCms::id() == $item->id ? ' active' : ''}}">{{$item->firstname}} {{$item->lastname}}</a>
                     <span>{{$item->role_text}}</span>
                 </td>
-                <td class="hidden-xs hidden-sm">
+                <td>
                     <span class="email">{{$item->email}}</span>
                 </td>
                 <td class="user-id">
@@ -89,16 +95,14 @@
         @endforeach
         </tbody>
     </table>
-    <div class="row">
-        <div class="col-sm-6 text-center-sm">
-            <a href="{{ cms_route('cmsUsers.create') }}" class="btn btn-secondary btn-icon-standalone">
-                <i class="fa fa-user-plus"></i>
-                <span>{{ trans('general.create') }}</span>
-            </a>
-        </div>
-        <div class="col-sm-6 text-right text-center-sm">
-            {!! $items->appends(['role' => request('role')])->render() !!}
-        </div>
+    <div class="pull-left">
+        <a href="{{ cms_route('cmsUsers.create') }}" class="btn btn-secondary btn-icon-standalone">
+            <i class="fa fa-user-plus"></i>
+            <span>{{ trans('general.create') }}</span>
+        </a>
+    </div>
+    <div class="pull-right">
+        {!! $items->appends(['role' => request('role')])->render() !!}
     </div>
 </div>
 <script type="text/javascript">

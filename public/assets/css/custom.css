@@ -10,6 +10,8 @@ iframe {border:0;}
 .dn {display:none;}
 .dib {display:inline-block;}
 .vat {vertical-align:top;}
+.padr {padding-right:15px;}
+.padl {padding-left:15px;}
 
 .pointer {cursor:pointer;}
 
@@ -47,6 +49,9 @@ form select.type {text-transform:capitalize;}
 @media screen and (max-width:768px) { /* xs */
     #select-home {float:none;padding-top:15px;}
 }
+
+/* filter parameters list */
+#params-list .param {padding-right:15px;}
 
 
 /*** OVERRIDE BOOTSTRAP ***/
