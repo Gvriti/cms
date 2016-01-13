@@ -19,7 +19,7 @@ class CreateCmsUsersTable extends Migration
             $table->string('lastname');
             $table->string('phone', 32)->nullable();
             $table->string('address')->nullable();
-            $table->string('role', 16);
+            $table->string('role', 32);
             $table->boolean('active')->default(1);
             $table->string('photo')->nullable();
             $table->string('password', 128);

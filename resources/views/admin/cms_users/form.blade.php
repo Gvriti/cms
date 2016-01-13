@@ -1,16 +1,15 @@
 <div class="member-form-add-header">
+@if ($item->id)
     <div class="row">
         <div class="col-md-2 col-sm-4 pull-right-sm">
             <div class="action-buttons">
-            @if ($item->id)
                 <div class="profile">
-                    <a href="{{cms_route('cmsUsers.show', [$item->id])}}" class="btn btn-block btn-turquoise">{{trans('general.profile')}}</a>
+                    <a href="{{$routeShow = cms_route('cmsUsers.show', [$item->id])}}" class="btn btn-block btn-turquoise">{{trans('general.profile')}}</a>
                 </div>
             @if (AuthCms::get()->isAdmin())
                 <div class="permissions{{$item->role == 'admin' ? ' hidden' : ''}}">
                     <a href="{{cms_route('permissions.index', [$item->id])}}" class="btn btn-block btn-orange">Permissions</a>
                 </div>
-            @endif
             @endif
             </div>
         </div>
@@ -18,23 +17,25 @@
             <div class="user-img">
                 <img src="{{$item->photo}}" width="128" class="img-circle" alt="Photo" />
             </div>
-        @if ($item->id)
             <div class="user-name">
-                <a href="{{cms_route('cmsUsers.show', [$item->id])}}">{{$item->firstname}} {{$item->lastname}}</a>
+                <a href="{{$routeShow}}">{{$item->firstname}} {{$item->lastname}}</a>
                 <span>{{$item->role_text}}</span>
             </div>
-        @endif
         </div>
     </div>
+@endif
 </div>
 <div class="member-form-inputs">
     <div class="form-group required{{$errors->has('email') ? ' validate-has-error' : '' }}">
         <label class="col-sm-2 control-label text-left">Email:</label>
         <div class="col-sm-10">
-            {!! Form::text('email', null, [
-                'id' => 'email',
-                'class' => 'form-control',
-            ]) !!}
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                {!! Form::text('email', null, [
+                    'id' => 'email',
+                    'class' => 'form-control',
+                ]) !!}
+            </div>
             @if ($errors->has('email'))
             <span>{{$errors->first('email')}}</span>
             @endif
