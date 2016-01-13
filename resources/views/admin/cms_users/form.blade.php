@@ -1,30 +1,3 @@
-<div class="member-form-add-header">
-@if ($item->id)
-    <div class="row">
-        <div class="col-md-2 col-sm-4 pull-right-sm">
-            <div class="action-buttons">
-                <div class="profile">
-                    <a href="{{$routeShow = cms_route('cmsUsers.show', [$item->id])}}" class="btn btn-block btn-turquoise">{{trans('general.profile')}}</a>
-                </div>
-            @if (AuthCms::get()->isAdmin())
-                <div class="permissions{{$item->role == 'admin' ? ' hidden' : ''}}">
-                    <a href="{{cms_route('permissions.index', [$item->id])}}" class="btn btn-block btn-orange">Permissions</a>
-                </div>
-            @endif
-            </div>
-        </div>
-        <div class="col-md-10 col-sm-8">
-            <div class="user-img">
-                <img src="{{$item->photo}}" width="128" class="img-circle" alt="Photo" />
-            </div>
-            <div class="user-name">
-                <a href="{{$routeShow}}">{{$item->firstname}} {{$item->lastname}}</a>
-                <span>{{$item->role_text}}</span>
-            </div>
-        </div>
-    </div>
-@endif
-</div>
 <div class="member-form-inputs">
     <div class="form-group required{{$errors->has('email') ? ' validate-has-error' : '' }}">
         <label class="col-sm-2 control-label text-left">Email:</label>
@@ -37,7 +10,7 @@
                 ]) !!}
             </div>
             @if ($errors->has('email'))
-            <span>{{$errors->first('email')}}</span>
+            <span class="text-danger">{{$errors->first('email')}}</span>
             @endif
         </div>
     </div>

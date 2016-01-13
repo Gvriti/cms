@@ -143,15 +143,12 @@ return [
 
     'files' => [
         'pages' => [
-            'table'       => 'pages',
             'foreign_key' => 'menu_id'
         ],
         'catalog' => [
-            'table'       => 'catalog',
             'foreign_key' => 'collection_id'
         ],
         'articles' => [
-            'table'       => 'articles',
             'foreign_key' => 'collection_id'
         ]
     ],

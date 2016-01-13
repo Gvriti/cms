@@ -62,10 +62,6 @@ class PageRequest extends Request
             $input['collection_id'] = 0;
         }
 
-        if (! $this->has('meta_desc')) {
-            $input['meta_desc'] = text_limit($this->get('description') ?: $this->get('content'));
-        }
-
         $input['visible'] = $this->has('visible') ? 1 : 0;
 
         return $input;

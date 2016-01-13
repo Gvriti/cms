@@ -52,9 +52,7 @@
             <tr id="item{{$item->id}}">
                 <td class="user-image">
                 @if ($item->photo)
-                    <a href="{{cms_route('cmsUsers.edit', [$item->id])}}">
-                        <img src="{{$item->photo}}" width="40" height="40" class="img-circle" alt="{{$item->firstname}} {{$item->lastname}}" />
-                    </a>
+                    <img src="{{$item->photo}}" width="40" height="40" class="img-circle" alt="{{$item->firstname}} {{$item->lastname}}" />
                 @endif
                 </td>
                 <td class="user-name">
