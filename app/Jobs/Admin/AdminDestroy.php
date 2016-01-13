@@ -59,7 +59,7 @@ class AdminDestroy extends Job implements SelfHandling
             return $this->response('error', trans('database.error.1451'));
         }
 
-        return $this->response('success', trans('database.deleted'), true);
+        return $this->response('success', trans('database.deleted'));
     }
 
     /**
@@ -104,13 +104,12 @@ class AdminDestroy extends Job implements SelfHandling
      *
      * @param  string  $type
      * @param  string  $message
-     * @param  bool    $result
      * @return Response
      */
-    protected function response($type, $message, $result = false)
+    protected function response($type, $message)
     {
         if (request()->ajax()) {
-            return response()->json(fill_data($type, $message, $result));
+            return response()->json(fill_data($type, $message));
         }
 
         return redirect()->back()->with('alert', fill_data($type, $message));

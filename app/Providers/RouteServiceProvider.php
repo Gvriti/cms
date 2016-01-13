@@ -111,7 +111,7 @@ class RouteServiceProvider extends ServiceProvider
         }
 
         $router->get($segments, [
-            'as' => 'current', 'uses' => $this->namespace . '\Site\SiteController@run'
+            'as' => 'current', 'uses' => $this->namespace . '\Site\SiteController@build'
         ]);
     }
 

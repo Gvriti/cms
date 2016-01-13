@@ -68,21 +68,7 @@ class File extends Model
      *
      * @var \Models\Abstracts\Model
      */
-    protected $routeModel;
-
-    /**
-     * The route name of the Eloquent model.
-     *
-     * @var string
-     */
-    public $route_name;
-
-    /**
-     * The route id of the Eloquent model.
-     *
-     * @var int
-     */
-    public $route_id;
+    protected $foreignModel;
 
     /**
      * Create a new Eloquent model instance.
@@ -97,9 +83,9 @@ class File extends Model
         $this->language($this);
 
         if (! is_null($route = request()->route())) {
-            $this->route_name = $route->parameter('routeName');
+            $this->setAttribute('route_name', $route->parameter('routeName'));
 
-            $this->route_id = $route->parameter('routeId');
+            $this->setAttribute('route_id', $route->parameter('routeId'));
         }
     }
 
@@ -109,10 +95,10 @@ class File extends Model
      *
      * @return \Models\Abstracts\Model
      */
-    public function makeRoute()
+    public function makeForeign()
     {
-        if (! is_null($this->routeModel)) {
-            return $this->routeModel;
+        if (! is_null($this->foreignModel)) {
+            return $this->foreignModel;
         }
 
         $model = __NAMESPACE__ . '\\' . str_singular(ucfirst($this->route_name));
@@ -121,16 +107,23 @@ class File extends Model
             abort(404);
         }
 
-        $this->routeModel = new $model;
+        $this->foreignModel = new $model;
 
-        $this->routeModel = $this->routeModel->joinLanguages()
-                                             ->currentLanguage()
-                                             ->findOrFail($this->route_id);
+        $this->foreignModel = $this->foreignModel->joinLanguages()
+                                                 ->currentLanguage()
+                                                 ->findOrFail($this->route_id);
 
-        $this->routeModel['routeName'] = $this->route_name;
-        $this->routeModel['foreignKey'] = $this->routeModel->{$type['foreign_key']};
+        $this->foreignModel['routeName'] = $this->route_name;
 
-        return $this->routeModel;
+        if (isset($type['foreign_key'])) {
+            $routeParams[] = $this->foreignModel->{$type['foreign_key']};
+        }
+
+        $routeParams[] = $this->foreignModel->id;
+
+        $this->foreignModel['routeParams'] = $routeParams;
+
+        return $this->foreignModel;
     }
 
     /**

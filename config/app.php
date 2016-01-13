@@ -172,7 +172,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\DynamicConfigServiceProvider::class,
+        App\Providers\LanguageServiceProvider::class,
 
         Custom\Auth\AuthServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
@@ -181,14 +181,13 @@ return [
         App\Providers\SettingsServiceProvider::class,
         App\Providers\Admin\ElfinderServiceProvider::class,
 
-        App\Providers\RouteServiceProvider::class,
-        // Composers
-        App\Providers\LanguageComposerServiceProvider::class,
-        // Model service providers
+        // Eloquent model service providers
         App\Providers\Models\MenuServiceProvider::class,
         App\Providers\Models\PageServiceProvider::class,
         App\Providers\Models\LocalizationServiceProvider::class,
         App\Providers\Models\CalendarServiceProvider::class,
+
+        App\Providers\RouteServiceProvider::class,
 
     ],
 

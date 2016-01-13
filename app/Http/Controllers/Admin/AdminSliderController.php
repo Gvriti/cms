@@ -88,7 +88,10 @@ class AdminSliderController extends Controller
                 'modelInput' => $input
             ])->render();
 
-            return response()->json(['result' => true, 'view' => preg_replace('/\s+/', ' ', trim($view))]);
+            return response()->json(
+                fill_data('success', trans('general.created'))
+                + ['view' => preg_replace('/\s+/', ' ', trim($view))]
+            );
         }
 
         return redirect(cms_route('slider.index'));

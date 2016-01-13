@@ -59,27 +59,6 @@
 <div class="form-group-separator"></div>
 
 <div class="form-group">
-    <label class="col-sm-2 control-label">Price:</label>
-    <div class="col-sm-5 col-md-4 col-lg-3">
-        <div class="input-group spinner" data-step="1">
-            <span class="input-group-btn">
-                <button class="btn btn-gray" data-type="decrement">-</button>
-            </span>
-            {!! Form::text('price', null, [
-                'id' => 'price' . $lang,
-                'class' => 'price form-control',
-                'data-type' => 'general',
-            ]) !!}
-            <span class="input-group-btn">
-                <button class="btn btn-gray" data-type="increment">+</button>
-            </span>
-        </div>
-    </div>
-</div>
-
-<div class="form-group-separator"></div>
-
-<div class="form-group">
     <label class="col-sm-2 control-label">Description:</label>
     <div class="col-sm-10">
         {!! Form::textarea('description', null, [

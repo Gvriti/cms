@@ -177,8 +177,10 @@ $(document).ready(function($) {
             var input = {'ids':ids, '_method':'delete', '_token':csrf_token()};
 
             $.post("{{cms_route('slider.index')}}/" + ids, input, function(data) {
-                $('body').append(data.view);
-                if (data.result) {
+                // alert toastr message
+                toastr[data.result](data.message);
+
+                if (data.result == 'success') {
                     $.each(ids, function(i, e) {
                         $('#item'+e, galleryEnv).remove();
                     });

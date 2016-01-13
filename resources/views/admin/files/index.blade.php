@@ -14,7 +14,7 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li>
-                <a href="{{ cms_route($routeName . '.edit', [$foreignKey, $id]) }}"><i class="{{icon_type($routeName)}}"></i>{{$title}}</a>
+                <a href="{{ cms_route($routeName . '.edit', $routeParams) }}"><i class="{{icon_type($routeName)}}"></i>{{$title}}</a>
             </li>
             <li class="active">
                 <i class="{{icon_type('files')}}"></i>
@@ -28,7 +28,7 @@
 @if (count(languages()) > 1)
     @foreach (languages() as $key => $value)
         <li>
-            <a href="{{ cms_route($routeName . '.edit', [$foreignKey, $id], $key) }}">
+            <a href="{{ cms_route($routeName . '.edit', $routeParams, $key) }}">
                 <span class="visible-xs">{{$key}}</span>
                 <span class="hidden-xs">{{language($key)}}</span>
             </a>
@@ -36,7 +36,7 @@
     @endforeach
 @else
         <li>
-            <a href="{{ cms_route($routeName . '.edit', [$foreignKey, $id]) }}">
+            <a href="{{ cms_route($routeName . '.edit', $routeParams) }}">
                 <span class="visible-xs"><i class="fa fa-home"></i></span>
                 <span class="hidden-xs">
                     <i class="fa fa-home"></i> General
@@ -219,8 +219,10 @@ $(document).ready(function($) {
             var input = {'ids':ids, '_method':'delete', '_token':csrf_token()};
 
             $.post("{{cms_route('files.index', [$routeName, $id])}}/" + ids, input, function(data) {
-                $('body').append(data.view);
-                if (data.result) {
+                // alert toastr message
+                toastr[data.result](data.message);
+
+                if (data.result == 'success') {
                     $.each(ids, function(i, e) {
                         $('#item'+e, galleryEnv).remove();
                     });

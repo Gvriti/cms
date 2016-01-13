@@ -49,7 +49,7 @@ class AdminFilesController extends Controller
      */
     public function index($routeName, $routeId)
     {
-        $data = $this->model->makeRoute();
+        $data = $this->model->makeForeign();
 
         $data['items'] = $this->model->getByRoute();
 
@@ -99,7 +99,10 @@ class AdminFilesController extends Controller
                 'modelInput' => $input
             ])->render();
 
-            return response()->json(['result' => true, 'view' => preg_replace('/\s+/', ' ', trim($view))]);
+            return response()->json(
+                fill_data('success', trans('general.created'))
+                + ['view' => preg_replace('/\s+/', ' ', trim($view))]
+            );
         }
 
         return redirect(cms_route('files.index', [$routeName, $routeId]));

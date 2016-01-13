@@ -17,8 +17,10 @@ $('.form-delete button[type="submit"], .form-delete input[type="submit"]').on('c
         data: input,
         success: function(data, status, xhr) {
             if (data) {
-                $('body').append(data.view);
-                if (data.result) {
+                // alert toastr message
+                toastr[data.result](data.message);
+
+                if (data.result == 'success') {
                     $('#item' + itemId).fadeOut(600, function() {
                     @if(isset($subTree))
                         $(this).closest('.uk-parent').removeClass('uk-parent');

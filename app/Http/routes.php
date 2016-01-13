@@ -36,8 +36,8 @@ $router->group(['prefix' => cms_slug(), 'namespace' => 'Admin', 'middleware' => 
     ]);
 
     // pages
-    $router->post('pages/visibility/{id}', ['as' => cms_prefix('pages.visibility'), 'uses' => 'AdminPagesController@visibility']);
     $router->post('pages/position', ['as' => cms_prefix('pages.updatePosition'), 'uses' => 'AdminPagesController@updatePosition']);
+    $router->post('pages/visibility/{id}', ['as' => cms_prefix('pages.visibility'), 'uses' => 'AdminPagesController@visibility']);
     $router->put('pages/move/{menuId}', ['as' => cms_prefix('pages.move'), 'uses' => 'AdminPagesController@move']);
     $router->put('pages/collapse', ['as' => cms_prefix('pages.collapse'), 'uses' => 'AdminPagesController@collapse']);
     $router->resource('menus.pages', 'AdminPagesController', ['names' => cms_prefix('pages', true),
@@ -84,15 +84,15 @@ $router->group(['prefix' => cms_slug(), 'namespace' => 'Admin', 'middleware' => 
     }
 
     // attached files
-    $router->post('files/visibility/{id}', ['as' => cms_prefix('files.visibility'), 'uses' => 'AdminFilesController@visibility']);
     $router->post('files/position', ['as' => cms_prefix('files.updatePosition'), 'uses' => 'AdminFilesController@updatePosition']);
+    $router->post('files/visibility/{id}', ['as' => cms_prefix('files.visibility'), 'uses' => 'AdminFilesController@visibility']);
     $router->resource('{routeName}/{routeId}/files', 'AdminFilesController', ['names' => cms_prefix('files', true),
         'except' => ['show']
     ]);
 
     // slider
-    $router->post('slider/visibility/{id}', ['as' => cms_prefix('slider.visibility'), 'uses' => 'AdminSliderController@visibility']);
     $router->post('slider/position', ['as' => cms_prefix('slider.updatePosition'), 'uses' => 'AdminSliderController@updatePosition']);
+    $router->post('slider/visibility/{id}', ['as' => cms_prefix('slider.visibility'), 'uses' => 'AdminSliderController@visibility']);
     $router->resource('slider', 'AdminSliderController', ['names' => cms_prefix('slider', true),
         'except' => ['show']
     ]);

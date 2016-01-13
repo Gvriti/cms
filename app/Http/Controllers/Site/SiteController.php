@@ -72,11 +72,11 @@ class SiteController extends Controller
     }
 
     /**
-     * Run the site controller.
+     * Build a new controller instance from route URIs.
      *
      * @return \Illuminate\Routing\Controller
      */
-    public function run()
+    public function build()
     {
         $this->segments = func_get_args();
 
@@ -235,28 +235,30 @@ class SiteController extends Controller
     }
 
     /**
-     * Get the evaluated view contents.
+     * Modify the evaluated view contents.
      *
-     * @param  \Illuminate\Contracts\View\View  $view
-     * @return \Illuminate\Contracts\View\View
+     * @param  mixed  $response
+     * @return Response
      */
-    protected function view(View $view)
+    protected function view($response)
     {
-        if ($view->current instanceof Model
-            && ! $view->current instanceof Page
-            && $this->pages) {
-            $lastSlug = end($this->pages)->slug;
+        if ($response instanceof View) {
+            if ($response->current instanceof Model
+                && ! $response->current instanceof Page
+                && $this->pages) {
+                $lastSlug = end($this->pages)->slug;
 
-            $view->current->original_slug = $view->current->slug;
+                $response->current->original_slug = $response->current->slug;
 
-            $view->current->slug = $lastSlug . '/' . $view->current->slug;
+                $response->current->slug = $lastSlug . '/' . $response->current->slug;
 
-            $this->pages[] = $view->current;
+                $this->pages[] = $response->current;
+            }
+
+            $this->createBreadcrumb($this->pages);
         }
 
-        $this->createBreadcrumb($this->pages);
-
-        return $view;
+        return $response;
     }
 
     /**

@@ -70,7 +70,7 @@ return array(
             'image/png', 'image/jpeg', 'image/gif', 'image/x-icon',
             // application
             'application/zip', 'application/x-rar', 'application/x-gzip', 'application/x-bzip2', 'application/x-tar',
-            'application/x-7z-compressed', 'aplication/pdf', 'application/xml',
+            'application/x-7z-compressed', 'application/pdf', 'application/xml',
             'application/excel', 'application/mspowerpoint', 'application/msword',
             // docx
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',

@@ -70,8 +70,11 @@
         form = $(this);
         $('.form-group', form).find('.text-danger').remove();
         var url = form.attr('action');
-        var data = form.serialize();
-        $.post(url, data, function(data) {
+        var input = form.serialize();
+        $.post(url, input, function(data) {
+            // alert toastr message
+            toastr[data.result](data.message);
+
             var imageContainer = '.gallery-env .album-images';
             var insert = $(imageContainer).data('insert');
             insert = Function("$('"+imageContainer+"')."+insert+"('"+data.view+"');");
