@@ -50,32 +50,4 @@ class Localization extends Model
      * @var array
      */
     protected $languageNotUpdatable = ['language'];
-
-    /**
-     * Create a new Eloquent model instance.
-     *
-     * @param  array  $attributes
-     * @return void
-     */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->language($this);
-    }
-
-    /**
-     * Save a new model and get the instance.
-     *
-     * @param  array  $attributes
-     * @return $this
-     */
-    public static function create(array $attributes = [])
-    {
-        $model = parent::create($attributes);
-
-        $model->createLanguage($attributes);
-
-        return $model;
-    }
 }

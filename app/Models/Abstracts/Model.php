@@ -17,6 +17,19 @@ abstract class Model extends BaseModel
     private $builder;
 
     /**
+     * {@inheritdoc}
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        // Set language model if it's exists in this model.
+        if (method_exists(get_called_class(), 'language')) {
+            $this->language($this);
+        }
+    }
+
+    /**
      * Get the updatable attributes for the model.
      *
      * @param  array   $attributes
@@ -63,6 +76,21 @@ abstract class Model extends BaseModel
         $this->builder = $builder;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function create(array $attributes = [])
+    {
+        $model = parent::create($attributes);
+
+        // Create language model if it's exists in this model.
+        if (method_exists(get_called_class(), 'createLanguage')) {
+            $model->createLanguage($attributes);
+        }
+
+        return $model;
     }
 
     /**

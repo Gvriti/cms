@@ -70,17 +70,4 @@ class Photo extends AbstractHasGallery
     {
         return $value ?: asset('assets/images/album-img-1.png');
     }
-
-    /**
-     * Create a new Eloquent model instance.
-     *
-     * @param  array  $attributes
-     * @return void
-     */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->language($this);
-    }
 }

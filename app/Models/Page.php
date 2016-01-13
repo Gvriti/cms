@@ -54,19 +54,6 @@ class Page extends Model
     protected $languageNotUpdatable = ['language'];
 
     /**
-     * Create a new Eloquent model instance.
-     *
-     * @param  array  $attributes
-     * @return void
-     */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->language($this);
-    }
-
-    /**
      * Get the Menu instance.
      *
      * @param  int  $id
@@ -307,10 +294,6 @@ class Page extends Model
             $attributes['position'] = (int) parent::max('position') + 1;
         }
 
-        $model = parent::create($attributes);
-
-        $model->createLanguage($attributes);
-
-        return $model;
+        return parent::create($attributes);
     }
 }

@@ -64,19 +64,6 @@ class Slider extends Model
     }
 
     /**
-     * Create a new Eloquent model instance.
-     *
-     * @param  array  $attributes
-     * @return void
-     */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->language($this);
-    }
-
-    /**
      * Build query for admin.
      *
      * @return \Illuminate\Database\Eloquent\Builder
@@ -110,10 +97,6 @@ class Slider extends Model
     {
         $attributes['position'] = (int) parent::max('position') + 1;
 
-        $model = parent::create($attributes);
-
-        $model->createLanguage($attributes);
-
-        return $model;
+        return parent::create($attributes);
     }
 }

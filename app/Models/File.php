@@ -80,8 +80,6 @@ class File extends Model
     {
         parent::__construct($attributes);
 
-        $this->language($this);
-
         if (! is_null($route = request()->route())) {
             $this->setAttribute('route_name', $route->parameter('routeName'));
 
@@ -172,10 +170,6 @@ class File extends Model
     {
         $attributes['position'] = (int) parent::byRoute()->max('position') + 1;
 
-        $model = parent::create($attributes);
-
-        $model->createLanguage($attributes);
-
-        return $model;
+        return parent::create($attributes);
     }
 }
