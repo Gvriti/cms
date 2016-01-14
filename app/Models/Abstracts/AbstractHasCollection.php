@@ -54,7 +54,7 @@ abstract class AbstractHasCollection extends Model
     /**
      * Add a appropriate query for the cms.
      *
-     * @param  int  $id
+     * @param  int|null  $id
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function forAdmin($id = null)
@@ -67,7 +67,7 @@ abstract class AbstractHasCollection extends Model
     /**
      * Add the appropriate query for the site.
      *
-     * @param  int  $id
+     * @param  int|null  $id
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function forSite($id = null)
@@ -78,8 +78,8 @@ abstract class AbstractHasCollection extends Model
     /**
      * Build query based on slug.
      *
-     * @param  string  $slug
-     * @param  int     $id
+     * @param  string    $slug
+     * @param  int|null  $id
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function bySlug($slug, $id = null)
@@ -95,22 +95,25 @@ abstract class AbstractHasCollection extends Model
      */
     public function fullSlug($id = null)
     {
-        if (is_null($id)) {
-            $this->model->slug = $this->model->page_slug . '/' . $this->model->slug;
+        if (is_null($id) && ! is_null($this->page_slug)) {
+            $this->slug = $this->page_slug . '/' . $this->slug;
 
-            if (! (int) $this->model->parent_id) return $this;
+            if (! (int) $this->parent_id) return $this;
 
-            $id = $this->model->parent_id;
+            $id = $this->parent_id;
+
+            $page = (new Page)->find($id, ['slug', 'parent_id']);
+        } else {
+            $page = (new Page)->collectionId($this->collection_id)
+                              ->first(['slug', 'parent_id']);
         }
-
-        $page = (new Page)->find($id, ['slug', 'parent_id']);
 
         if (is_null($page)) return $this;
 
         $page->fullSlug();
 
-        $this->model->page_slug = $page->slug . '/' . $this->model->page_slug;
-        $this->model->slug = $page->slug . '/' . $this->model->slug;
+        $this->page_slug = trim($page->slug . '/' . $this->page_slug, '/');
+        $this->slug = $page->slug . '/' . $this->slug;
 
         return $this;
     }
