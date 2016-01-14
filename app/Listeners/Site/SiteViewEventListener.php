@@ -28,7 +28,9 @@ class SiteViewEventListener
      */
     public function getData()
     {
-        return;
+        $data = [];
+
+        return $data;
     }
 
     /**

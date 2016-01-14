@@ -122,10 +122,6 @@ abstract class AbstractHasGallery extends Model
             $attributes['position'] = (int) parent::max('position') + 1;
         }
 
-        $model = parent::create($attributes);
-
-        $model->createLanguage($attributes);
-
-        return $model;
+        return parent::create($attributes);
     }
 }
