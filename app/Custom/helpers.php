@@ -449,13 +449,13 @@ function collection_order($order = null)
 }
 
 /**
- * Get the double collection list.
+ * Get the inner collection list.
  *
  * @return array
  */
-function double_collection()
+function inner_collection()
 {
-    return config('cms.double_collection');
+    return config('cms.inner_collection');
 }
 
 /**

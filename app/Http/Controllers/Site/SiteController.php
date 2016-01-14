@@ -172,23 +172,24 @@ class SiteController extends Controller
 
         $slug = current($this->segments);
 
-        if (! in_array($collection->type, double_collection())) {
+        if (! in_array($collection->type, inner_collection())) {
             return $this->callController($collection->type, [
                 'page' => $page,
                 'slug' => $slug
             ], 'show');
         }
-        return $this->getDoubleCollectionTypeController($collection, $slug);
+
+        return $this->getInnerCollectionTypeController($collection, $slug);
     }
 
     /**
-     * Get a controller by the double collection.
+     * Get a controller by the inner collection.
      *
      * @param  \Models\Collection  $collection
      * @param  string  $slug
      * @return \Illuminate\Routing\Controller
      */
-    protected function getDoubleCollectionTypeController(Collection $collection, $slug)
+    protected function getInnerCollectionTypeController(Collection $collection, $slug)
     {
         $modelName = $this->getModelName($collection->type);
 

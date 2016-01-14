@@ -77,8 +77,8 @@ class AdminPagesController extends Controller
         $data['types'] = page_types();
 
         $data['collections'] = $model->collection()->get()
-                                                  ->lists('title', 'id')
-                                                  ->toArray();
+                                                   ->lists('title', 'id')
+                                                   ->toArray();
 
         return view('admin.pages.create', $data);
     }
@@ -99,7 +99,7 @@ class AdminPagesController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('pages.index', [$menuId]))
-                        ->with('alert', fill_data('success', trans('general.created')));
+                    ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('pages.edit', [$menuId, $newModel->id]))
@@ -133,8 +133,8 @@ class AdminPagesController extends Controller
         $data['types'] = page_types();
 
         $data['collections'] = $model->collection()->get()
-                                                  ->lists('title', 'id')
-                                                  ->toArray();
+                                                   ->lists('title', 'id')
+                                                   ->toArray();
 
         return view('admin.pages.edit', $data);
     }

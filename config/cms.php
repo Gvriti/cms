@@ -80,14 +80,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Double collection types
+    | Inner collection types
     |--------------------------------------------------------------------------
     |
     | The array of the collection types that has a parent collection.
     |
     */
 
-    'double_collection' => ['galleries'],
+    'inner_collection' => ['galleries'],
 
     /*
     |--------------------------------------------------------------------------
