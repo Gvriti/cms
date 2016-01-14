@@ -1,5 +1,5 @@
 <div class="member-form-inputs">
-    <div class="form-group required{{$errors->has('email') ? ' validate-has-error' : '' }}">
+    <div class="form-group required{{($error = $errors->first('email')) ? ' validate-has-error' : '' }}">
         <label class="col-sm-2 control-label text-left">Email:</label>
         <div class="col-sm-10">
             <div class="input-group">
@@ -9,37 +9,37 @@
                     'class' => 'form-control',
                 ]) !!}
             </div>
-            @if ($errors->has('email'))
-            <span class="text-danger">{{$errors->first('email')}}</span>
+            @if ($error)
+            <span class="text-danger">{{$error}}</span>
             @endif
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-6">
-            <div class="form-group required{{$errors->has('firstname') ? ' validate-has-error' : '' }}">
+            <div class="form-group required{{($error = $errors->first('firstname')) ? ' validate-has-error' : '' }}">
                 <label class="col-sm-4 control-label text-left">Firstname:</label>
                 <div class="col-sm-8">
                     {!! Form::text('firstname', null, [
                         'id' => 'firstname',
                         'class' => 'form-control',
                     ]) !!}
-                    @if ($errors->has('firstname'))
-                    <span>{{$errors->first('firstname')}}</span>
+                    @if ($error)
+                    <span>{{$error}}</span>
                     @endif
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="form-group required{{$errors->has('lastname') ? ' validate-has-error' : '' }}">
+            <div class="form-group required{{($error = $errors->first('lastname')) ? ' validate-has-error' : '' }}">
                 <label class="col-sm-4 control-label text-left">Lastname:</label>
                 <div class="col-sm-8">
                     {!! Form::text('lastname', null, [
                         'id' => 'lastname',
                         'class' => 'form-control',
                     ]) !!}
-                    @if ($errors->has('lastname'))
-                    <span>{{$errors->first('lastname')}}</span>
+                    @if ($error)
+                    <span>{{$error}}</span>
                     @endif
                 </div>
             </div>
@@ -48,15 +48,15 @@
 
     <div class="form-group-separator"></div>
 
-    <div class="form-group{{$errors->has('phone') ? ' validate-has-error' : '' }}">
+    <div class="form-group{{($error = $errors->first('phone')) ? ' validate-has-error' : '' }}">
         <label class="col-sm-2 control-label text-left">Phone:</label>
         <div class="col-sm-10">
             {!! Form::text('phone', null, [
                 'id' => 'phone',
                 'class' => 'form-control',
             ]) !!}
-            @if ($errors->has('phone'))
-            <span>{{$errors->first('phone')}}</span>
+            @if ($error)
+            <span>{{$error}}</span>
             @endif
         </div>
     </div>
@@ -76,15 +76,15 @@
 @if (AuthCms::get()->isAdmin() && AuthCms::id() != $item->id)
     <div class="form-group-separator"></div>
 
-    <div class="form-group required{{$errors->has('role') ? ' validate-has-error' : '' }}">
+    <div class="form-group required{{($error = $errors->first('role')) ? ' validate-has-error' : '' }}">
         <label class="col-sm-2 control-label text-left">Role:</label>
         <div class="col-sm-10">
             {!! Form::select('role', $roles, null, [
                 'id' => 'role',
                 'class' => 'form-control',
             ]) !!}
-            @if ($errors->has('role'))
-            <span>{{$errors->first('role')}}</span>
+            @if ($error)
+            <span>{{$error}}</span>
             @endif
         </div>
     </div>
@@ -125,15 +125,15 @@
 
     <div id="change-password" class="form-group{{ ! $item->id ? '' : ' collapse' . ($errors->has('password') ? ' in' : '')}}">
         <div class="col-sm-6">
-            <div class="form-group{{$errors->has('password') ? ' validate-has-error' : '' }}">
+            <div class="form-group{{($error = $errors->first('password')) ? ' validate-has-error' : '' }}">
                 <label class="col-sm-4 control-label text-left">Password:</label>
                 <div class="col-sm-8">
                     {!! Form::password('password', [
                         'id' => 'password',
                         'class' => 'form-control'
                     ]) !!}
-                    @if ($errors->has('password'))
-                    <span>{{$errors->first('password')}}</span>
+                    @if ($error)
+                    <span>{{$error}}</span>
                     @endif
                 </div>
             </div>

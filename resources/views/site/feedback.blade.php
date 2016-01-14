@@ -35,8 +35,8 @@
                                 'class' => 'form-control',
                                 'placeholder' => $app['trans']->get('name')
                             ]) !!}
-                            @if ($errors->has('name'))
-                            <div class="text-danger">{{$errors->first('name')}}</div>
+                            @if ($error = $errors->first('name'))
+                            <div class="text-danger">{{$error}}</div>
                             @endif
                         </div>
                         <!-- .form-group -->
@@ -45,8 +45,8 @@
                                 'class' => 'form-control',
                                 'placeholder' => $app['trans']->get('email')
                             ]) !!}
-                            @if ($errors->has('email'))
-                            <div class="text-danger">{{$errors->first('email')}}</div>
+                            @if ($error = $errors->first('email'))
+                            <div class="text-danger">{{$error}}</div>
                             @endif
                         </div>
                         <!-- .form-group -->
@@ -55,8 +55,8 @@
                                 'class' => 'form-control',
                                 'placeholder' => $app['trans']->get('phone')
                             ]) !!}
-                            @if ($errors->has('phone'))
-                            <div class="text-danger">{{$errors->first('phone')}}</div>
+                            @if ($error = $errors->first('phone'))
+                            <div class="text-danger">{{$error}}</div>
                             @endif
                         </div>
                         <!-- .form-group -->
@@ -68,8 +68,8 @@
                                     <img src="{{asset('assets/site/images/reload.png')}}" width="20" height="20" alt="reload">
                                 </a>
                             </div>
-                            @if ($errors->has('captcha'))
-                            <span class="text-danger">{{$errors->first('captcha')}}</span>
+                            @if ($error = $errors->first('captcha'))
+                            <span class="text-danger">{{$error}}</span>
                             @endif
                         </div>
                         <!-- .form-group -->
@@ -81,8 +81,8 @@
                                 'class' => 'form-control',
                                 'placeholder' => $app['trans']->get('text')
                             ]) !!}
-                            @if ($errors->has('text'))
-                            <span class="text-danger">{{$errors->first('text')}}</span>
+                            @if ($error = $errors->first('text'))
+                            <span class="text-danger">{{$error}}</span>
                             @endif
                         </div>
                         <!-- .form-group -->

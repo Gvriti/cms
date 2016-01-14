@@ -1,5 +1,5 @@
 {!! Form::hidden('close', false, ['class' => 'form-close']) !!}
-<div class="form-group required{{$errors->has('name') ? ' validate-has-error' : '' }}">
+<div class="form-group required{{($error = $errors->first('name')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Name:</label>
     <div class="col-sm-6">
         {!! Form::text('name', null, [
@@ -7,8 +7,8 @@
             'class' => 'name form-control',
             'data-type' => 'general'
         ]) !!}
-        @if ($errors->has('name'))
-        <span>{{$errors->first('name')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
         <span class="description">name is the identifier for the value (it's not changeable after creation!)</span>
     </div>
@@ -16,7 +16,7 @@
 
 <div class="form-group-separator"></div>
 
-<div class="form-group required{{$errors->has('title') ? ' validate-has-error' : '' }}">
+<div class="form-group required{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Title:</label>
     <div class="col-sm-6">
         {!! Form::text('title', null, [
@@ -24,8 +24,8 @@
             'class' => 'title form-control',
             'data-type' => 'general'
         ]) !!}
-        @if ($errors->has('title'))
-        <span>{{$errors->first('title')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
         <span class="description">Title is a short description of the "value", visible only for CMS Users</span>
     </div>
@@ -33,15 +33,15 @@
 
 <div class="form-group-separator"></div>
 
-<div class="form-group required{{$errors->has('value') ? ' validate-has-error' : '' }}">
+<div class="form-group required{{($error = $errors->first('value')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Value:</label>
     <div class="col-sm-6">
         {!! Form::text('value', null, [
             'id' => 'value' . $lang,
             'class' => 'form-control',
         ]) !!}
-        @if ($errors->has('value'))
-        <span>{{$errors->first('value')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
         <span class="description">Value contains the translated text that will be displayed on the site</span>
     </div>

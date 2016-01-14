@@ -2,37 +2,37 @@
 {!! Form::hidden('type', null) !!}
 @endif
 {!! Form::hidden('close', false, ['class' => 'form-close']) !!}
-<div class="form-group required{{$errors->has('title') ? ' validate-has-error' : '' }}">
+<div class="form-group required{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Title:</label>
     <div class="col-sm-10">
         {!! Form::text('title', null, [
             'id' => 'title' . $lang,
             'class' => 'form-control',
         ]) !!}
-        @if ($errors->has('title'))
-        <span>{{$errors->first('title')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
     </div>
 </div>
 
 <div class="form-group-separator"></div>
 
-<div class="form-group{{$errors->has('short_title') ? ' validate-has-error' : '' }}">
+<div class="form-group{{($error = $errors->first('short_title')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Short title:</label>
     <div class="col-sm-10">
         {!! Form::text('short_title', null, [
             'id' => 'short_title' . $lang,
             'class' => 'form-control',
         ]) !!}
-        @if ($errors->has('short_title'))
-        <span>{{$errors->first('short_title')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
     </div>
 </div>
 
 <div class="form-group-separator"></div>
 
-<div class="form-group{{$errors->has('slug') ? ' validate-has-error' : '' }}">
+<div class="form-group{{($error = $errors->first('slug')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Slug:</label>
     <div class="col-sm-10">
         {!! Form::text('slug', null, [
@@ -40,23 +40,23 @@
             'class' => 'slug form-control',
             'data-type' => 'general',
         ]) !!}
-        @if ($errors->has('slug'))
-        <span>{{$errors->first('slug')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
     </div>
 </div>
 
 <div class="form-group-separator"></div>
 
-<div class="form-group required{{$errors->has('type') ? ' validate-has-error' : '' }}">
+<div class="form-group required{{($error = $errors->first('type')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Type:</label>
     <div class="col-sm-10">
         {!! Form::select('type', gallery_types(), null, [
             'id' => 'type' . $lang,
             'class' => 'form-control select',
         ] + $type_disabled) !!}
-        @if ($errors->has('type'))
-        <span>{{$errors->first('type')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
     </div>
 </div>
@@ -65,30 +65,30 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <div class="form-group required{{$errors->has('admin_order_by') ? ' validate-has-error' : '' }}">
+        <div class="form-group required{{($error = $errors->first('admin_order_by')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label">Admin order by:</label>
             <div class="col-sm-8">
                 {!! Form::select('admin_order_by', gallery_order(), null, [
                     'id' => 'admin_order_by',
                     'class' => 'form-control select',
                 ]) !!}
-                @if ($errors->has('admin_order_by'))
-                <span>{{$errors->first('admin_order_by')}}</span>
+                @if ($error)
+                <span>{{$error}}</span>
                 @endif
             </div>
         </div>
     </div>
 
     <div class="col-sm-6">
-        <div class="form-group required{{$errors->has('site_order_by') ? ' validate-has-error' : '' }}">
+        <div class="form-group required{{($error = $errors->first('site_order_by')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label">Site order by:</label>
             <div class="col-sm-8">
                 {!! Form::select('site_order_by', gallery_order(), null, [
                     'id' => 'site_order_by',
                     'class' => 'form-control select',
                 ]) !!}
-                @if ($errors->has('site_order_by'))
-                <span>{{$errors->first('site_order_by')}}</span>
+                @if ($error)
+                <span>{{$error}}</span>
                 @endif
             </div>
         </div>
@@ -99,7 +99,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <div class="form-group required{{$errors->has('admin_sort') ? ' validate-has-error' : '' }}">
+        <div class="form-group required{{($error = $errors->first('admin_sort')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label">Admin sort:</label>
             <div class="col-sm-8">
                 {!! Form::select('admin_sort', gallery_sorts(), null, [
@@ -107,15 +107,15 @@
                     'class' => 'admin_sort form-control select',
                     'data-type' => 'general'
                 ]) !!}
-                @if ($errors->has('admin_sort'))
-                <span>{{$errors->first('admin_sort')}}</span>
+                @if ($error)
+                <span>{{$error}}</span>
                 @endif
             </div>
         </div>
     </div>
 
     <div class="col-sm-6">
-        <div class="form-group required{{$errors->has('site_sort') ? ' validate-has-error' : '' }}">
+        <div class="form-group required{{($error = $errors->first('site_sort')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label">Site sort:</label>
             <div class="col-sm-8">
                 {!! Form::select('site_sort', gallery_sorts(), null, [
@@ -123,8 +123,8 @@
                     'class' => 'site_sort form-control select',
                     'data-type' => 'general'
                 ]) !!}
-                @if ($errors->has('site_sort'))
-                <span>{{$errors->first('site_sort')}}</span>
+                @if ($error)
+                <span>{{$error}}</span>
                 @endif
             </div>
         </div>
@@ -135,7 +135,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <div class="form-group required{{$errors->has('admin_per_page') ? ' validate-has-error' : '' }}">
+        <div class="form-group required{{($error = $errors->first('admin_per_page')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label">Admin per page:</label>
             <div class="col-sm-8">
                 <div id="admin_per_page{{$lang}}" class="input-group spinner" data-type="general" data-step="1" data-min="2" data-max="50">
@@ -150,15 +150,15 @@
                         <span class="btn btn-info" data-type="increment">+</span>
                     </div>
                 </div>
-                @if ($errors->has('admin_per_page'))
-                <span class="text-danger">{{$errors->first('admin_per_page')}}</span>
+                @if ($error)
+                <span class="text-danger">{{$error}}</span>
                 @endif
             </div>
         </div>
     </div>
 
     <div class="col-sm-6">
-        <div class="form-group required{{$errors->has('site_per_page') ? ' validate-has-error' : '' }}">
+        <div class="form-group required{{($error = $errors->first('site_per_page')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label">Site per page:</label>
             <div class="col-sm-8">
                 <div id="site_per_page{{$lang}}" class="input-group spinner" data-type="general" data-step="1" data-min="2" data-max="50">
@@ -173,8 +173,8 @@
                         <span class="btn btn-info" data-type="increment">+</span>
                     </div>
                 </div>
-                @if ($errors->has('site_per_page'))
-                <span class="text-danger">{{$errors->first('site_per_page')}}</span>
+                @if ($error)
+                <span class="text-danger">{{$error}}</span>
                 @endif
             </div>
         </div>
@@ -196,15 +196,15 @@
 
 <div class="form-group-separator"></div>
 
-<div class="form-group{{$errors->has('meta_desc') ? ' validate-has-error' : '' }}">
+<div class="form-group{{($error = $errors->first('meta_desc')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Meta description:</label>
     <div class="col-sm-10">
         {!! Form::text('meta_desc', null, [
             'id' => 'meta_desc' . $lang,
             'class' => 'form-control',
         ]) !!}
-        @if ($errors->has('meta_desc'))
-        <span>{{$errors->first('meta_desc')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
         <span class="description">Description for search engines. It is best to keep meta descriptions less then 150 or 160 characters.</span>
     </div>

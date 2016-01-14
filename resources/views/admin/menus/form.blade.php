@@ -1,13 +1,13 @@
 {!! Form::hidden('close', false, ['class' => 'form-close']) !!}
-<div class="form-group required{{$errors->has('title') ? ' validate-has-error' : '' }}">
+<div class="form-group required{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Title:</label>
     <div class="col-lg-6 col-sm-10">
         {!! Form::text('title', null, [
             'id' => 'title',
             'class' => 'form-control',
         ]) !!}
-        @if ($errors->has('title'))
-        <span>{{$errors->first('title')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
     </div>
 </div>

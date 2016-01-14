@@ -25,9 +25,9 @@
     <div class="login-container">
         <div class="row">
             <div class="col-sm-6">
-            @if ($errors->has())
+            @if ($error = $errors->first('email'))
                 <div class="errors-container">
-                    <span class="text-danger">{{$errors->first('email')}}</span>
+                    <span class="text-danger">{{$error}}</span>
                 </div>
             @endif
                 <form action="{{cms_route('login')}}" method="post" role="form" id="login" class="login-form fade-in-effect">

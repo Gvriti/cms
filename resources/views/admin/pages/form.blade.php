@@ -1,35 +1,35 @@
 {!! Form::hidden('close', false, ['class' => 'form-close']) !!}
-<div class="form-group required{{$errors->has('title') ? ' validate-has-error' : '' }}">
+<div class="form-group required{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Title:</label>
     <div class="col-sm-10">
         {!! Form::text('title', null, [
             'id' => 'title' . $lang,
             'class' => 'form-control',
         ]) !!}
-        @if ($errors->has('title'))
-        <span>{{$errors->first('title')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
     </div>
 </div>
 
 <div class="form-group-separator"></div>
 
-<div class="form-group{{$errors->has('short_title') ? ' validate-has-error' : '' }}">
+<div class="form-group{{($error = $errors->first('short_title')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Short title:</label>
     <div class="col-sm-10">
         {!! Form::text('short_title', null, [
             'id' => 'short_title' . $lang,
             'class' => 'form-control',
         ]) !!}
-        @if ($errors->has('short_title'))
-        <span>{{$errors->first('short_title')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
     </div>
 </div>
 
 <div class="form-group-separator"></div>
 
-<div class="form-group{{$errors->has('slug') ? ' validate-has-error' : '' }}">
+<div class="form-group{{($error = $errors->first('slug')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Slug:</label>
     <div class="col-sm-10">
         {!! Form::text('slug', null, [
@@ -37,8 +37,8 @@
             'class' => 'slug form-control',
             'data-type' => 'general'
         ]) !!}
-        @if ($errors->has('slug'))
-        <span>{{$errors->first('slug')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
     </div>
 </div>
@@ -47,7 +47,7 @@
 
 <div class="row">
     <div class="col-lg-4">
-        <div class="form-group required{{$errors->has('type') ? ' validate-has-error' : '' }}">
+        <div class="form-group required{{($error = $errors->first('type')) ? ' validate-has-error' : '' }}">
             <label class="col-lg-6 col-sm-2 control-label">Type:</label>
             <div class="col-lg-6 col-sm-10">
                 {!! Form::select('type', $types, null, [
@@ -55,14 +55,14 @@
                     'class' => 'type form-control select',
                     'data-type' => 'general'
                 ]) !!}
-                @if ($errors->has('type'))
-                <span>{{$errors->first('type')}}</span>
+                @if ($error)
+                <span>{{$error}}</span>
                 @endif
             </div>
         </div>
     </div>
     <div class="col-lg-8 collection{{$collection_id || $errors->has('collection_id') ? '' : ' hidden'}}">
-        <div class="form-group required{{$errors->has('collection_id') ? ' validate-has-error' : '' }}">
+        <div class="form-group required{{($error = $errors->first('collection_id')) ? ' validate-has-error' : '' }}">
             <label class="col-lg-4 col-sm-2 control-label">Collection:</label>
             <div class="col-lg-6 col-sm-10">
                 {!! Form::select('collection_id', ['' => ''] + $collections, null, [
@@ -70,8 +70,8 @@
                     'class' => 'collection_id form-control select',
                     'data-type' => 'general'
                 ]) !!}
-                @if ($errors->has('collection_id'))
-                <span>{{$errors->first('collection_id')}}</span>
+                @if ($error)
+                <span>{{$error}}</span>
                 @endif
             </div>
         </div>
@@ -119,15 +119,15 @@
 
 <div class="form-group-separator"></div>
 
-<div class="form-group{{$errors->has('meta_desc') ? ' validate-has-error' : '' }}">
+<div class="form-group{{($error = $errors->first('meta_desc')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Meta description:</label>
     <div class="col-sm-10">
         {!! Form::text('meta_desc', null, [
             'id' => 'meta_desc' . $lang,
             'class' => 'form-control',
         ]) !!}
-        @if ($errors->has('meta_desc'))
-        <span>{{$errors->first('meta_desc')}}</span>
+        @if ($error)
+        <span>{{$error}}</span>
         @endif
         <span class="description">Description for search engines. It is best to keep meta descriptions less then 150 or 160 characters.</span>
     </div>

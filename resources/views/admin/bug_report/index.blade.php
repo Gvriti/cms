@@ -29,11 +29,11 @@
         'class'  => 'form-horizontal'
     ]) !!}
         <div class="panel-body">
-            <div class="form-group{{$errors->has('title') ? ' validate-has-error' : '' }}">
+            <div class="form-group{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
                 <label class="col-sm-3 control-label">Title:</label>
                 <div class="col-sm-5">
-                    @if ($errors->has('title'))
-                    <span class="text-danger">{{$errors->first('title')}}</span>
+                    @if ($error)
+                    <span class="text-danger">{{$error}}</span>
                     @endif
                     {!! Form::text('title', null, [
                         'class' => 'form-control',
@@ -41,11 +41,11 @@
                     <div class="desc">A title of a bug should describe the issue clearly and a reader can tell what the bug is by just the title alone; this helps with triaging the bug.</div>
                 </div>
             </div>
-            <div class="form-group{{$errors->has('description') ? ' validate-has-error' : '' }}">
+            <div class="form-group{{($error = $errors->first('description')) ? ' validate-has-error' : '' }}">
                 <label class="col-sm-3 control-label">Description:</label>
                 <div class="col-sm-5">
-                    @if ($errors->has('description'))
-                    <span class="text-danger">{{$errors->first('description')}}</span>
+                    @if ($error)
+                    <span class="text-danger">{{$error}}</span>
                     @endif
                     {!! Form::textarea('description', null, [
                         'class' => 'form-control',
