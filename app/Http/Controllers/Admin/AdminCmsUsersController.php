@@ -79,7 +79,7 @@ class AdminCmsUsersController extends Controller
             throw new AccessDeniedHttpException;
         }
 
-        $data['item'] = $this->model;
+        $data['current'] = $this->model;
 
         $data['roles'] = user_roles();
 
@@ -119,7 +119,7 @@ class AdminCmsUsersController extends Controller
      */
     public function show($id)
     {
-        $data = $this->model->findOrFail($id);
+        $data['current'] = $this->model->findOrFail($id);
 
         return view('admin.cms_users.show', $data);
     }
@@ -136,7 +136,7 @@ class AdminCmsUsersController extends Controller
             return redirect()->back();
         }
 
-        $data['item'] = $this->model->findOrFail($id);
+        $data['current'] = $this->model->findOrFail($id);
 
         $data['roles'] = user_roles();
 

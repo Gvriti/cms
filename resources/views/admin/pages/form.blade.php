@@ -61,7 +61,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-8 collection{{$collection_id || $errors->has('collection_id') ? '' : ' hidden'}}">
+    <div class="col-lg-8 collection{{$current->collection_id || $errors->has('collection_id') ? '' : ' hidden'}}">
         <div class="form-group required{{($error = $errors->first('collection_id')) ? ' validate-has-error' : '' }}">
             <label class="col-lg-4 col-sm-2 control-label">Collection:</label>
             <div class="col-lg-6 col-sm-10">
@@ -158,7 +158,7 @@
         <button type="submit" class="btn btn-secondary" title="{{ $submit }}">
             <i class="fa fa-{{ $icon }}"></i>
         </button>
-        <a href="{{ cms_route('pages.index', [$menuId]) }}" class="btn btn-blue" title="{{ trans('general.back') }}">
+        <a href="{{ cms_route('pages.index', [$current->menu_id]) }}" class="btn btn-blue" title="{{ trans('general.back') }}">
             <i class="fa fa-arrow-left"></i>
         </a>
     </div>

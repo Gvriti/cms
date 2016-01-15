@@ -28,13 +28,12 @@
         <h3 class="panel-title">Create an album</h3>
     </div>
     <div class="panel-body">
-        {!! Form::model($item, [
+        {!! Form::model($current, [
             'method' => 'post',
-            'url'    => cms_route('galleries.index', [$item['collection_id']]),
+            'url'    => cms_route('galleries.index', [$current->collection_id]),
             'class'  => 'form-horizontal'
         ]) !!}
             @include('admin.galleries.form', [
-                'type_disabled' => [],
                 'lang'          => null,
                 'submit'        => trans('general.create'),
                 'submitAndBack' => trans('general.create_n_close'),

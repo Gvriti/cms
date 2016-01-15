@@ -31,13 +31,13 @@
         </div>
     </div>
     <div class="panel-body">
-        {!! Form::model($item, [
+        {!! Form::model($current, [
             'method' => 'put',
-            'url'  => cms_route('collections.update', [$item->id]),
+            'url'  => cms_route('collections.update', [$current->id]),
             'class'  => 'form-horizontal '.$settings->get('ajax_form')
         ]) !!}
+            {!! Form::hidden('type', null) !!}
             @include('admin.collections.form', [
-                'type_disabled' => ['disabled' => 'disabled'],
                 'submit'        => trans('general.update'),
                 'submitAndBack' => trans('general.update_n_back'),
                 'icon'          => 'save'

@@ -22,9 +22,9 @@
 </div>
 <div class="panel panel-headerless">
     <div class="panel-body">
-        {!! Form::model($item, [
+        {!! Form::model($current, [
             'method' => 'put',
-            'url'    => cms_route('cmsUsers.update', [$item->id]),
+            'url'    => cms_route('cmsUsers.update', [$current->id]),
             'class'  => 'form-horizontal '.$settings->get('ajax_form')
         ]) !!}
             <div class="member-form-add-header">
@@ -32,22 +32,22 @@
                     <div class="col-md-2 col-sm-4 pull-right-sm">
                         <div class="action-buttons">
                             <div class="profile">
-                                <a href="{{$routeShow = cms_route('cmsUsers.show', [$item->id])}}" class="btn btn-block btn-turquoise">{{trans('general.profile')}}</a>
+                                <a href="{{$routeShow = cms_route('cmsUsers.show', [$current->id])}}" class="btn btn-block btn-turquoise">{{trans('general.profile')}}</a>
                             </div>
                         @if (AuthCms::get()->isAdmin())
-                            <div class="permissions{{$item->role == 'admin' ? ' hidden' : ''}}">
-                                <a href="{{cms_route('permissions.index', [$item->id])}}" class="btn btn-block btn-orange">Permissions</a>
+                            <div class="permissions{{$current->role == 'admin' ? ' hidden' : ''}}">
+                                <a href="{{cms_route('permissions.index', [$current->id])}}" class="btn btn-block btn-orange">Permissions</a>
                             </div>
                         @endif
                         </div>
                     </div>
                     <div class="col-md-10 col-sm-8">
                         <div class="user-img">
-                            <img src="{{$item->photo}}" width="128" class="img-circle" alt="Photo" />
+                            <img src="{{$current->photo}}" width="128" class="img-circle" alt="Photo" />
                         </div>
                         <div class="user-name">
-                            <a href="{{$routeShow}}">{{$item->firstname}} {{$item->lastname}}</a>
-                            <span>{{$item->role_text}}</span>
+                            <a href="{{$routeShow}}">{{$current->firstname}} {{$current->lastname}}</a>
+                            <span>{{$current->role_text}}</span>
                         </div>
                     </div>
                 </div>

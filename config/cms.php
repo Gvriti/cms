@@ -52,7 +52,7 @@ return [
     */
 
     'routes' => [
-        'collection' => [
+        'collections' => [
             'catalog'   => 'AdminCatalogController',
             'articles'  => 'AdminArticlesController',
             'galleries' => 'AdminGalleriesController'

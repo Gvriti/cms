@@ -73,7 +73,7 @@
         </div>
     </div>
 
-@if (AuthCms::get()->isAdmin() && AuthCms::id() != $item->id)
+@if (AuthCms::get()->isAdmin() && AuthCms::id() != $current->id)
     <div class="form-group-separator"></div>
 
     <div class="form-group required{{($error = $errors->first('role')) ? ' validate-has-error' : '' }}">
@@ -123,7 +123,7 @@
 
     <div class="form-group-separator"></div>
 
-    <div id="change-password" class="form-group{{ ! $item->id ? '' : ' collapse' . ($errors->has('password') ? ' in' : '')}}">
+    <div id="change-password" class="form-group{{ ! $current->id ? '' : ' collapse' . ($errors->has('password') ? ' in' : '')}}">
         <div class="col-sm-6">
             <div class="form-group{{($error = $errors->first('password')) ? ' validate-has-error' : '' }}">
                 <label class="col-sm-4 control-label text-left">Password:</label>
@@ -150,11 +150,11 @@
 
     <button type="submit" class="btn btn-secondary">{{$submit}}</button>
     <a href="{{ cms_route('cmsUsers.index') }}" class="btn btn-blue">{{ trans('general.back') }}</a>
-@if ($item->id)
+@if ($current->id)
     <div class="btn btn-info pull-right" data-toggle="collapse" data-target="#change-password">პაროლის შეცვლა</div>
 @endif
 </div>
-@if ($item->id)
+@if ($current->id)
 <script type="text/javascript">
 $(function() {
     $('.ajax-form').on('ajaxFormSuccess', function() {

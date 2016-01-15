@@ -1,11 +1,11 @@
-@if (! empty($item))
+@if (! empty($current))
 <div class="modal fade" id="form-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-gallery-image">
-                <img src="{{$item->file ?: $item->file_default}}" class="img-responsive" />
+                <img src="{{$current->file ?: $current->file_default}}" class="img-responsive" />
             </div>
-            {!! Form::model($item, [
+            {!! Form::model($current, [
                 'url'   => cms_route('slider.store'),
                 'class' => 'form-create form-horizontal'
             ]) !!}

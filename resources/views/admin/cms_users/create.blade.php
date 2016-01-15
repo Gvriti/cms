@@ -22,7 +22,7 @@
 </div>
 <div class="panel panel-headerless">
     <div class="panel-body">
-        {!! Form::model($item, [
+        {!! Form::model($current, [
             'method' => 'post',
             'url'    => cms_route('cmsUsers.store'),
             'class'  => 'form-horizontal'

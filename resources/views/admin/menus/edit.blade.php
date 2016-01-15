@@ -31,13 +31,13 @@
         </div>
     </div>
     <div class="panel-body">
-        {!! Form::model($item, [
+        {!! Form::model($current, [
             'method' => 'put',
-            'url'    => cms_route('menus.update', [$item->id]),
+            'url'    => cms_route('menus.update', [$current->id]),
             'class'  => 'form-horizontal '.$settings->get('ajax_form')
         ]) !!}
             @include('admin.menus.form', [
-                'id'            => $item->id,
+                'id'            => $current->id,
                 'submit'        => trans('general.update'),
                 'submitAndBack' => trans('general.update_n_back'),
                 'icon'          => 'save'

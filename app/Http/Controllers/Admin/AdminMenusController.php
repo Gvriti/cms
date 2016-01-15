@@ -77,7 +77,7 @@ class AdminMenusController extends Controller
      */
     public function edit($id)
     {
-        $data['item'] = $this->model->findOrFail($id);
+        $data['current'] = $this->model->findOrFail($id);
 
         return view('admin.menus.edit', $data);
     }

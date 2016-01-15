@@ -67,12 +67,9 @@ class AdminPagesController extends Controller
      */
     public function create($menuId)
     {
-        $model = $this->model;
-
-        $data = [
-            'menuId' => $menuId,
-            'parentId' => $this->request->get('id')
-        ];
+        $data['current'] = $model = $this->model;
+        $data['current']->menu_id = $menuId;
+        $data['current']->parent_id = (int) $this->request->get('id');
 
         $data['types'] = page_types();
 

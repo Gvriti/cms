@@ -17,7 +17,7 @@
                 <a href="{{ cms_route('cmsUsers.index') }}"><i class="fa fa-user-secret"></i>CMS Users</a>
             </li>
             <li class="active">
-                <strong>{{$firstname}} {{$lastname}}</strong>
+                <strong>{{$current->firstname}} {{$current->lastname}}</strong>
             </li>
         </ol>
     </div>
@@ -28,31 +28,31 @@
             <!-- User Info Sidebar -->
             <div class="user-info-sidebar">
                 <div class="user-img">
-                    <img src="{{$photo}}" alt="user-img" class="img-cirlce img-responsive img-thumbnail" />
+                    <img src="{{$current->photo}}" alt="user-img" class="img-cirlce img-responsive img-thumbnail" />
                 </div>
                 <div class="user-name">
-                    {{$firstname}} {{$lastname}}
+                    {{$current->firstname}} {{$current->lastname}}
                     <span class="user-status is-online"></span>
                 </div>
                 <span class="btn-block text-center">
-                    <strong>{{user_roles($role)}}</strong>
+                    <strong>{{user_roles($current->role)}}</strong>
                 </span>
-            @if (AuthCms::get()->isAdmin() || AuthCms::id() == $id)
-                <a href="{{cms_route('cmsUsers.edit', [$id])}}" class="btn-block text-center">{{trans('general.edit')}}</a>
+            @if (AuthCms::get()->isAdmin() || AuthCms::id() == $current->id)
+                <a href="{{cms_route('cmsUsers.edit', [$current->id])}}" class="btn-block text-center">{{trans('general.edit')}}</a>
             @endif
                 <hr />
                 <ul class="list-unstyled user-info-list">
                     <li>
                         <i class="fa fa-envelope"></i>
-                        {{$email}}
+                        {{$current->email}}
                     </li>
                     <li>
                         <i class="fa fa-phone-square"></i>
-                        {{$phone}}
+                        {{$current->phone}}
                     </li>
                     <li>
                         <i class="fa fa-building"></i>
-                        {{$address}}
+                        {{$current->address}}
                     </li>
                 </ul>
             </div>

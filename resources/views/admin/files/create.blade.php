@@ -1,12 +1,12 @@
-@if (! empty($item))
+@if (! empty($current))
 <div class="modal fade" id="form-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-gallery-image">
-                <img src="{{$item->file ?: $item->file_default}}" class="img-responsive" />
+                <img src="{{$current->file ?: $current->file_default}}" class="img-responsive" />
             </div>
-            {!! Form::model($item, [
-                'url'   => cms_route('files.store', [$item->route_name, $item->route_id]),
+            {!! Form::model($current, [
+                'url'   => cms_route('files.store', [$current->route_name, $current->route_id]),
                 'class' => 'form-create form-horizontal'
             ]) !!}
                 <div class="col-md-12">
@@ -72,7 +72,7 @@
             cbr_replace();
 
             if (currentPage != creationPage) {
-                window.location.href = '{{cms_route('files.index', [$item->route_name, $item->route_id])}}?page=' + creationPage;
+                window.location.href = '{{cms_route('files.index', [$current->route_name, $current->route_id])}}?page=' + creationPage;
             } else {
                 $('#form-modal [data-dismiss]').trigger('click');
             }

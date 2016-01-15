@@ -66,7 +66,7 @@ class AdminFilesController extends Controller
     public function create($routeName, $routeId)
     {
         if ($this->request->ajax()) {
-            $data['item'] = $this->model;
+            $data['current'] = $this->model;
 
             $view = view()->make('admin.files.create', $data)->render();
 

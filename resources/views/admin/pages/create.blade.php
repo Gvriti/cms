@@ -28,14 +28,13 @@
         <h3 class="panel-title">Create a page</h3>
     </div>
     <div class="panel-body">
-        {!! Form::open([
+        {!! Form::model($current, [
             'method' => 'post',
-            'url'    => cms_route('pages.index', [$menuId]),
+            'url'    => cms_route('pages.index', [$current->menu_id]),
             'class'  => 'form-horizontal'
         ]) !!}
-            {!! Form::hidden('parent_id', $parentId) !!}
+            {!! Form::hidden('parent_id', null) !!}
             @include('admin.pages.form', [
-                'collection_id' => 0,
                 'lang'          => null,
                 'submit'        => trans('general.create'),
                 'submitAndBack' => trans('general.create_n_close'),

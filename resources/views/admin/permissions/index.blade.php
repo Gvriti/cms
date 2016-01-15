@@ -23,7 +23,7 @@
         </ol>
     </div>
 </div>
-{!! Form::model($item, [
+{!! Form::model($current, [
     'url' => cms_route('permissions.store', [$user->id])
 ]) !!}
     <div class="panel panel-headerless">
@@ -31,11 +31,11 @@
             <div class="member-form-add-header">
                 <div class="row">
                     <div class="col-md-2 col-sm-4 pull-right-sm">
+                        <div class="permissions">
+                            <a href="{{cms_route('cmsUsers.edit', [$user->id])}}" class="btn btn-block btn-turquoise">{{ trans('general.back') }}</a>
+                        </div>
                         <div class="action-buttons">
                             <button type="submit" class="btn btn-block btn-secondary">{{ trans('general.update') }}</button>
-                        </div>
-                        <div class="permissions">
-                            <a href="{{cms_route('cmsUsers.edit', [$user->id])}}" class="btn btn-block btn-info">{{ trans('general.back') }}</a>
                         </div>
                     </div>
                     <div class="col-md-10 col-sm-8">
@@ -66,7 +66,7 @@
             @if (! in_array($name, $namesDisallowed))
             <div class="panel-body col-xs-6 col-sm-4 col-md-3">
                 <label><strong>{{ucfirst(implode(' ', explode('.', substr($name, strpos($name, '.') + 1))))}}</strong></label>
-                <input type="checkbox" name="permissions[][{{$group}}]" value="{{$name}}"{{in_array($name, $item) ? ' checked' : ''}} class="{{$group}} icheck" id="{{$name}}">
+                <input type="checkbox" name="permissions[][{{$group}}]" value="{{$name}}"{{in_array($name, $current) ? ' checked' : ''}} class="{{$group}} icheck" id="{{$name}}">
             </div>
             @endif
         @endforeach

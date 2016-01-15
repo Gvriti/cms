@@ -1,12 +1,12 @@
-@if (! empty($item))
+@if (! empty($current))
 <div class="modal fade" id="form-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-gallery-image embed-responsive embed-responsive-16by9">
                 <iframe width="600" height="315" src="" frameborder="0" allowfullscreen class="embed-responsive-item"></iframe>
             </div>
-            {!! Form::model($item, [
-                'url'   => cms_route('videos.store', [$item->gallery_id]),
+            {!! Form::model($current, [
+                'url'   => cms_route('videos.store', [$current->gallery_id]),
                 'class' => 'form-create form-horizontal'
             ]) !!}
                 <div class="modal-body">
@@ -71,7 +71,7 @@
             cbr_replace();
 
             if (currentPage != creationPage) {
-                window.location.href = '{{cms_route('videos.index', [$item->gallery_id])}}?page=' + creationPage;
+                window.location.href = '{{cms_route('videos.index', [$current->gallery_id])}}?page=' + creationPage;
             } else {
                 $('#form-modal [data-dismiss]').trigger('click');
             }

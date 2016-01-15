@@ -25,13 +25,12 @@
         <h3 class="panel-title">Create a collection</h3>
     </div>
     <div class="panel-body">
-        {!! Form::model($item, [
+        {!! Form::model($current, [
             'method' => 'post',
             'url'    => cms_route('collections.index'),
             'class'  => 'form-horizontal'
         ]) !!}
             @include('admin.collections.form', [
-                'type_disabled' => [],
                 'submit'        => trans('general.create'),
                 'submitAndBack' => trans('general.create_n_close'),
                 'icon'          => 'save'

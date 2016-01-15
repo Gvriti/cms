@@ -68,8 +68,8 @@ class AdminVideosController extends Controller
     public function create($galleryId)
     {
         if ($this->request->ajax()) {
-            $data['item'] = $this->model;
-            $data['item']['gallery_id'] = $galleryId;
+            $data['current'] = $this->model;
+            $data['current']['gallery_id'] = $galleryId;
 
             $view = view()->make('admin.videos.create', $data)->render();
 

@@ -18,7 +18,7 @@ class CreateCollectionsTable extends Migration
             $table->string('type', 32);
             $table->string('admin_order_by', 32)->default('id');
             $table->string('admin_sort', 16)->default('desc');
-            $table->boolean('admin_per_page')->default(30);
+            $table->boolean('admin_per_page')->default(20);
             $table->string('site_order_by', 32)->default('id');
             $table->string('site_sort', 16)->default('desc');
             $table->boolean('site_per_page')->default(10);

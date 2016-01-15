@@ -60,7 +60,7 @@ class AdminSliderController extends Controller
     public function create()
     {
         if ($this->request->ajax()) {
-            $data['item'] = $this->model;
+            $data['current'] = $this->model;
 
             $view = view()->make('admin.slider.create', $data)->render();
 

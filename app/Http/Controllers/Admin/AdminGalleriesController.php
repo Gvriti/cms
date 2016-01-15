@@ -67,10 +67,11 @@ class AdminGalleriesController extends Controller
      */
     public function create($collectionId)
     {
-        $data['item']['collection_id']  = $collectionId;
-        $data['item']['type']           = $this->request->get('type');
-        $data['item']['admin_per_page'] = 20;
-        $data['item']['site_per_page']  = 10;
+        $data['current'] = $this->model;
+        $data['current']->collection_id = $collectionId;
+        $data['current']->type = $this->request->get('type');
+        $data['current']->admin_per_page = 20;
+        $data['current']->site_per_page = 10;
 
         return view('admin.galleries.create', $data);
     }

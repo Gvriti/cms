@@ -1,6 +1,3 @@
-@if ($type_disabled)
-{!! Form::hidden('type', null) !!}
-@endif
 {!! Form::hidden('close', false, ['class' => 'form-close']) !!}
 <div class="form-group required{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Title:</label>
@@ -23,7 +20,7 @@
         {!! Form::select('type', collection_types(), null, [
             'id' => 'type',
             'class' => 'form-control select',
-        ] + $type_disabled) !!}
+        ] + ($current->id ? ['disabled' => 'disabled'] : [])) !!}
         @if ($error)
         <span>{{$error}}</span>
         @endif
@@ -165,9 +162,9 @@
         <button type="submit" class="btn btn-secondary" title="{{ $submit }}">
             <i class="fa fa-{{ $icon }}"></i>
         </button>
-    @if ($type_disabled)
-        <a href="{{ cms_route($item->type . '.index', [$item->id]) }}" class="btn btn-info" title="{{ trans('general.'.$item['type']) }}">
-            <span class="{{icon_type($item['type'])}}"></span>
+    @if ($current->id)
+        <a href="{{ cms_route($current->type . '.index', [$current->id]) }}" class="btn btn-info" title="{{ trans('general.'.$current->type) }}">
+            <span class="{{icon_type($current->type)}}"></span>
         </a>
     @endif
         <a href="{{ cms_route('collections.index') }}" class="btn btn-blue" title="{{ trans('general.back') }}">

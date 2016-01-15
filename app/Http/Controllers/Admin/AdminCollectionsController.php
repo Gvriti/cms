@@ -58,9 +58,10 @@ class AdminCollectionsController extends Controller
      */
     public function create()
     {
-        $data['item']['type'] = $this->request->get('type');
-        $data['item']['admin_per_page'] = 20;
-        $data['item']['site_per_page'] = 10;
+        $data['current'] = $this->model;
+        $data['current']->type = $this->request->get('type');
+        $data['current']->admin_per_page = 20;
+        $data['current']->site_per_page = 10;
 
         return view('admin.collections.create', $data);
     }
@@ -105,7 +106,7 @@ class AdminCollectionsController extends Controller
      */
     public function edit($id)
     {
-        $data['item'] = $this->model->findOrFail($id);
+        $data['current'] = $this->model->findOrFail($id);
 
         return view('admin.collections.edit', $data);
     }
