@@ -48,38 +48,24 @@ $router->group(['prefix' => cms_slug(), 'namespace' => 'Admin', 'middleware' => 
     $router->resource('collections', 'AdminCollectionsController', ['names' => cms_prefix('collections', true),
         'except' => ['show']
     ]);
-    // collection types
-    foreach ($this->app['config']->get('cms.collection.types') as $key => $value)  {
-        $router->post($key . '/position', [
-            'as' => cms_prefix($key . '.updatePosition'),
-            'uses' => $value['controller'] . '@updatePosition'
-        ]);
-        $router->post($key . '/visibility/{id}', [
-            'as' => cms_prefix($key . '.visibility'),
-            'uses' => $value['controller'] . '@visibility'
-        ]);
-        $router->put($key . '/move/{id}', [
-            'as' => cms_prefix($key . '.move'),
-            'uses' => $value['controller'] . '@move'
-        ]);
-        $router->resource('collections.' . $key, $value['controller'], ['names' => cms_prefix($key, true),
-            'except' => ['show']
-        ]);
-        // nested collection types
-        if (isset($value['nested'])) {
-            foreach ($value['nested'] as $nestKey => $nestValue)  {
-                $router->post($nestKey . '/position', [
-                    'as' => cms_prefix($nestKey . '.updatePosition'),
-                    'uses' => $nestValue['controller'] . '@updatePosition'
-                ]);
-                $router->post($nestKey . '/visibility/{id}', [
-                    'as' => cms_prefix($nestKey . '.visibility'),
-                    'uses' => $nestValue['controller'] . '@visibility'
-                ]);
-                $router->resource($key . '.' . $nestKey, $nestValue['controller'], ['names' => cms_prefix($nestKey, true),
-                    'except' => ['show']
-                ]);
-            }
+    // routes from config
+    foreach ($this->app['config']->get('cms.routes') as $prefix => $routes) {
+        foreach ($routes as $route => $controller) {
+            $router->post($route . '/position', [
+                'as' => cms_prefix($route . '.updatePosition'),
+                'uses' => $controller . '@updatePosition'
+            ]);
+            $router->post($route . '/visibility/{id}', [
+                'as' => cms_prefix($route . '.visibility'),
+                'uses' => $controller . '@visibility'
+            ]);
+            $router->put($route . '/move/{id}', [
+                'as' => cms_prefix($route . '.move'),
+                'uses' => $controller . '@move'
+            ]);
+            $router->resource($prefix . '.' . $route, $controller, ['names' => cms_prefix($route, true),
+                'except' => ['show']
+            ]);
         }
     }
 

@@ -26,103 +26,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | CMS User roles
-    |--------------------------------------------------------------------------
-    |
-    | This array used to define CMS user roles.
-    |
-    */
-
-    'user_roles' => [
-        'admin'  => 'Administrator',
-        'member' => 'Member'
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Collection types
-    |--------------------------------------------------------------------------
-    |
-    | This array used to define types, controllers, slugs and
-    | route names for the collection types.
-    |
-    */
-
-    'collection' => [
-        'types' => [
-            'catalog' => [
-                'controller' => 'AdminCatalogController'
-            ],
-            'articles' => [
-                'controller' => 'AdminArticlesController'
-            ],
-            'galleries' => [
-                'controller' => 'AdminGalleriesController',
-                'nested'     => [
-                    'photos' => [
-                        'controller' => 'AdminPhotosController'
-                    ],
-                    'videos' => [
-                        'controller' => 'AdminVideosController'
-                    ]
-                ]
-            ]
-        ],
-        'order_by' => [
-            'position'   => 'Position',
-            'created_at' => 'Creation date'
-        ],
-        'sort' => [
-            'desc' => 'Descending',
-            'asc'  => 'Ascending'
-        ]
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Inner collection types
-    |--------------------------------------------------------------------------
-    |
-    | The array of the collection types that has a parent collection.
-    |
-    */
-
-    'inner_collection' => ['galleries'],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Gallery settings
-    |--------------------------------------------------------------------------
-    |
-    | This array used to define gallery types and sort order..
-    |
-    */
-
-    'gallery' => [
-        'types' => [
-            'photos' => 'Photos',
-            'videos' => 'Videos'
-        ],
-        'order_by' => [
-            'position'   => 'Position',
-            'created_at' => 'Creation date'
-        ],
-        'sort' => [
-            'desc' => 'Descending',
-            'asc'  => 'Ascending'
-        ]
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Page types
+    | Pages
     |--------------------------------------------------------------------------
     |
     | This array used to define types of the page.
     |
     */
 
-    'page' => [
+    'pages' => [
         'types' => [
             'text'       => 'Text',
             'collection' => 'Collection',
@@ -133,7 +44,79 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | File route names
+    | CMS Routes
+    |--------------------------------------------------------------------------
+    |
+    | Here you can define a specific routes, which will also obtain additional.
+    |
+    */
+
+    'routes' => [
+        'collection' => [
+            'catalog'   => 'AdminCatalogController',
+            'articles'  => 'AdminArticlesController',
+            'galleries' => 'AdminGalleriesController'
+        ],
+        'galleries' => [
+            'photos' => 'AdminPhotosController',
+            'videos' => 'AdminVideosController'
+        ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Collections
+    |--------------------------------------------------------------------------
+    |
+    | This array used to define collection settings.
+    |
+    */
+
+    'collections' => [
+        'types' => [
+            'catalog'   => 'Catalog',
+            'articles'  => 'Articles',
+            'galleries' => 'Galleries'
+        ],
+        'order_by' => [
+            'position'   => 'Position',
+            'created_at' => 'Creation date'
+        ],
+        'sort' => [
+            'desc' => 'Descending',
+            'asc'  => 'Ascending'
+        ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Inner collections
+    |--------------------------------------------------------------------------
+    |
+    | The array of the collection types that has a parent collection.
+    |
+    */
+
+    'inner_collections' => [
+        'galleries' => [
+            'types' => [
+                'photos' => 'Photos',
+                'videos' => 'Videos'
+            ],
+            'order_by' => [
+                'position'   => 'Position',
+                'created_at' => 'Creation date'
+            ],
+            'sort' => [
+                'desc' => 'Descending',
+                'asc'  => 'Ascending'
+            ]
+        ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | File routes
     |--------------------------------------------------------------------------
     |
     | The array of file route names, that has an access to the attached files.
@@ -151,6 +134,20 @@ return [
         'articles' => [
             'foreign_key' => 'collection_id'
         ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | CMS User roles
+    |--------------------------------------------------------------------------
+    |
+    | This array used to define CMS user roles.
+    |
+    */
+
+    'user_roles' => [
+        'admin'  => 'Administrator',
+        'member' => 'Member'
     ],
 
     /*

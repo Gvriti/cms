@@ -172,7 +172,7 @@ class SiteController extends Controller
 
         $slug = current($this->segments);
 
-        if (! in_array($collection->type, inner_collection())) {
+        if (! array_key_exists($collection->type, inner_collection())) {
             return $this->callController($collection->type, [
                 'page' => $page,
                 'slug' => $slug

@@ -36,10 +36,6 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .gallery-env .album-images .album-image .name {float:none;width:auto;}
 .gallery-env .album-images .album-image .image-options {float:none;width:auto;text-align:left;}
 
-/* form select types */
-form select.type {text-transform:capitalize;}
-.select2-result-label, .select2-chosen {text-transform:capitalize;}
-
 /* item id button in nestable list */
 .uk-nestable .item-id {margin-right:10px;}
 
