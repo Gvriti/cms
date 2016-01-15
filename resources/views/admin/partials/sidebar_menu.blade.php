@@ -79,23 +79,9 @@
           </li>
           <li>
             <a href="{{ cms_route('cmsUsers.index') }}">
-              <i class="fa fa-users" title="Users"></i>
-              <span class="title">Users</span>
+              <i class="fa fa-user-secret" title="CMS Users"></i>
+              <span class="title">CMS Users</span>
             </a>
-            <ul>
-              <li>
-                <a href="{{ cms_route('cmsUsers.index') }}">
-                  <i class="fa fa-user-secret" title="CMS Users"></i>
-                  <span class="title">CMS Users</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa fa-user" title="Site Users"></i>
-                  <span class="title">Site Users</span>
-                </a>
-              </li>
-            </ul>
           </li>
           <li>
             <a href="{{ cms_route('notes.index') }}">
