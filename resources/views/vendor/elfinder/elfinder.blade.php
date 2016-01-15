@@ -11,18 +11,24 @@
     <link rel="stylesheet" type="text/css" href="{{ asset($dir.'/css/theme.css') }}">
 
     <script src="{{ asset($dir.'/js/elfinder.min.js') }}"></script>
-
-    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript">
         // Documentation for client options:
         // https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
         $().ready(function() {
+            // Initialize elFinder
             $('#elfinder').elfinder({
-                // set your elFinder options here
                 customData: {
                     _token: '{{ csrf_token() }}'
                 },
-                url : '{{ cms_route("filemanager.connector") }}',  // connector URL
-                height: 600
+                url: '{{ cms_route("filemanager.connector") }}',  // connector URL
+                height: 600,
+                getFileCallback: function(file, instance) {
+                    if (file.mime.indexOf('image/')) {
+                        instance.exec('open');
+                    } else {
+                        instance.exec('quicklook');
+                    }
+                },
             });
         });
     </script>
@@ -39,8 +45,6 @@
     </style>
 </head>
 <body>
-
 <div id="elfinder"></div>
-
 </body>
 </html>
