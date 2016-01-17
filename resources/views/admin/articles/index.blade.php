@@ -4,9 +4,9 @@
     <div class="title-env">
         <h1 class="title">
             <i class="{{icon_type('articles')}}"></i>
-            {{ $type }}
+            {{ $collection->type }}
         </h1>
-        <p class="description">{{ $description }}</p>
+        <p class="description">{{ $collection->description }}</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
@@ -18,7 +18,7 @@
             </li>
             <li class="active">
                 <i class="{{icon_type('articles')}}"></i>
-                <strong>{{ $title }}</strong>
+                <strong>{{ $collection->title }}</strong>
             </li>
         </ol>
     </div>
@@ -26,9 +26,9 @@
 <div class="row">
     <div class="panel panel-default has-sidebar col-md-9 pull-right">
         <div class="panel-heading">
-            <h3 class="panel-title ttc">{{ $title }}</h3>
+            <h3 class="panel-title ttc">{{ $collection->title }}</h3>
             <div class="panel-options">
-                <a href="{{cms_route('collections.edit', [$id])}}">
+                <a href="{{cms_route('collections.edit', [$collection->id])}}">
                     <i class="fa fa-gear"></i>
                 </a>
                 <a href="#" data-toggle="panel">
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="panel-body">
-            <a href="{{ cms_route('articles.create', [$id]) }}" class="btn btn-secondary btn-icon-standalone">
+            <a href="{{ cms_route('articles.create', [$collection->id]) }}" class="btn btn-secondary btn-icon-standalone">
                 <i class="{{icon_type('articles')}}"></i>
                 <span>{{ trans('general.create') }}</span>
             </a>
@@ -49,13 +49,13 @@
             <div id="items">
                 <ul id="nestable-list" class="uk-nestable" data-uk-nestable="{maxDepth:1}">
                 @foreach ($items as $item)
-                    <li id="item{{ $item->id }}" data-id="{{ $item->id }}" data-pos="{{$item->position}}">
-                        <div class="uk-nestable-item">
-                        @if ($admin_order_by == 'position')
+                    <li id="item{{ $item->id }}" class="item" data-id="{{ $item->id }}" data-pos="{{$item->position}}">
+                        <div class="uk-nestable-item clearfix">
+                        @if ($collection->admin_order_by == 'position')
                             <div class="uk-nestable-handle"></div>
                         @endif
-                            <div class="list-label"><a href="{{ cms_route('articles.edit', [$id, $item->id]) }}">{{ $item->title }}</a></div>
-                            <div class="btn-action pull-right">
+                            <div class="list-label"><a href="{{ cms_route('articles.edit', [$collection->id, $item->id]) }}">{{ $item->title }}</a></div>
+                            <div class="btn-action togglable pull-right">
                                 <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
                                 <a href="#" class="movable btn btn-white" title="Move to collection" data-id="{{$item->id}}">
                                     <span class="{{icon_type('collections')}}"></span>
@@ -68,15 +68,18 @@
                                 <a href="{{ cms_route('files.index', ['articles', $item->id]) }}" class="btn btn-{{$item->files_id ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
                                     <span class="{{icon_type('files')}}"></span>
                                 </a>
-                                <a href="{{ cms_route('articles.edit', [$id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
+                                <a href="{{ cms_route('articles.edit', [$collection->id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                                     <span class="fa fa-edit"></span>
                                 </a>
-                                {!! Form::open(['method' => 'delete', 'url' => cms_route('articles.destroy', [$id, $item->id]), 'class' => 'form-delete']) !!}
+                                {!! Form::open(['method' => 'delete', 'url' => cms_route('articles.destroy', [$collection->id, $item->id]), 'class' => 'form-delete']) !!}
                                     <button type="submit" class="btn btn-danger" data-id="{{ $item->id }}" title="{{trans('general.delete')}}">
                                         <span class="fa fa-trash"></span>
                                     </button>
                                 {!! Form::close() !!}
                             </div>
+                            <a href="#" class="btn btn-primary btn-toggle pull-right visible-xs">
+                                <span class="fa fa-toggle-left"></span>
+                            </a>
                         </div>
                     </li>
                 @endforeach
@@ -86,15 +89,15 @@
         </div>
     </div>
     <div class="col-md-3 content-sidebar pull-left">
-        <a href="{{cms_route('collections.create', ['type' => $type])}}" class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
+        <a href="{{cms_route('collections.create', ['type' => $collection->type])}}" class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
             <i class="{{icon_type('collections')}}"></i>
             <span>კოლექციის დამატება</span>
         </a>
         <ul class="list-unstyled bg">
         @foreach ($similarTypes as $item)
-            <li{!!$item->id != $id ? '' : ' class="active"'!!}>
+            <li{!!$item->id != $collection->id ? '' : ' class="active"'!!}>
                 <a href="{{ cms_route($item->type . '.index', [$item->id]) }}">
-                    <i class="fa fa-folder{{$item->id != $id ? '' : '-open'}}-o"></i>
+                    <i class="fa fa-folder{{$item->id != $collection->id ? '' : '-open'}}-o"></i>
                     <span>{{$item->title}}</span>
                 </a>
             </li>
@@ -102,13 +105,13 @@
         </ul>
     </div>
 </div>
-@include('admin.scripts.move', ['route' => 'articles', 'list' => $similarTypes, 'id' => $id, 'column' => 'collection_id'])
+@include('admin.scripts.move', ['route' => 'articles', 'list' => $similarTypes, 'id' => $collection->id, 'column' => 'collection_id'])
 <script type="text/javascript">
 $(function() {
     @include('admin.scripts.destroy')
 
-@if ($admin_order_by == 'position')
-    positionable('{{ cms_route('articles.updatePosition') }}', '{{$admin_sort}}');
+@if ($collection->admin_order_by == 'position')
+    positionable('{{ cms_route('articles.updatePosition') }}', '{{$collection->admin_sort}}');
 @endif
 });
 </script>

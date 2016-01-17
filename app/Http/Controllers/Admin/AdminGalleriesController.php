@@ -50,9 +50,9 @@ class AdminGalleriesController extends Controller
     {
         $model = $this->model;
 
-        $data = $model->collection()->findOrFail($collectionId);
+        $data['collection'] = $model->collection()->findOrFail($collectionId);
 
-        $data['items'] = $model->getAdminCollection($data);
+        $data['items'] = $model->getAdminCollection($data['collection']);
 
         $data['similarTypes'] = $model->byType()->get();
 

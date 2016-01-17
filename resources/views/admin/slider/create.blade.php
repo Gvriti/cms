@@ -95,10 +95,6 @@
             } else {
                 alert(xhr.responseText);
             }
-
-            setTimeout(function() {
-                $('input[type="submit"], button[type="submit"]', form).prop('disabled', false);
-            }, 800);
         });
     });
 

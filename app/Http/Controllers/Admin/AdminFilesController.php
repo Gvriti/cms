@@ -49,7 +49,7 @@ class AdminFilesController extends Controller
      */
     public function index($routeName, $routeId)
     {
-        $data = $this->model->makeForeign();
+        $data['parent'] = $this->model->makeForeign();
 
         $data['items'] = $this->model->getByRoute();
 

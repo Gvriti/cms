@@ -26,7 +26,7 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .main-content .content-sidebar ul li a {display:block;padding:5px 15px;}
 .main-content .content-sidebar ul li a:hover {color:#575858;}
 .main-content .content-sidebar ul li.active a {color:#2c2e2f;font-weight:700;}
-@media screen and (max-width:992px) { /* md */
+@media screen and (max-width:992px) {
     .main-content .content-sidebar, .main-content .has-sidebar {float:none!important}
 }
 
@@ -37,12 +37,12 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .gallery-env .album-images .album-image .image-options {float:none;width:auto;text-align:left;}
 
 /* item id button in nestable list */
-.uk-nestable .item-id {margin-right:10px;}
+.uk-nestable .item-id {margin-right:5px;}
 
 /* home page select */
 #select-home {float:right;position:relative;top:-15px;}
 #select-home .item {display:inline-block;}
-@media screen and (max-width:768px) { /* xs */
+@media screen and (max-width:768px) {
     #select-home {float:none;padding-top:15px;}
 }
 
@@ -53,17 +53,18 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 /*** OVERRIDE BOOTSTRAP ***/
 
 /* buttons */
-.btn-section {position:relative;}
+#items .item {position:relative;}
+#items .item .btn {width:40px;margin-left:2px;margin-right:2px;}
+#items .item .btn-action.togglable {text-align:right;}
+#items .item .btn-toggle {display:none;margin-bottom:0;}
 .btn-action form {display:inline-block;}
-.btn-action form button {margin-left:5px;margin-right:5px;}
-/* button section */
-.btn-section .btn-toggle {display:none;}
-.btn-section .btn-action {display:block;}
-@media screen and (max-width:768px) { /* xs */
-    .btn-section .btn-action {display:none;width:375px;position:absolute;top:0;right:36px;z-index:1;}
+.btn-action .btn {margin-bottom:0;}
+@media screen and (max-width:768px) {
+    .btn-action.togglable {display:none;position:absolute;top:0;right:47px;z-index:1;}
+    .btn-action.togglable .btn {margin-bottom:5px;}
 }
-@media screen and (min-width:768px) { /* xs */
-    .btn-section .btn-action {display:block !important;}
+@media screen and (min-width:768px) {
+    .btn-action.togglable {display:block !important;}
 }
 
 /* forms */
@@ -77,7 +78,7 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .sidebar-menu .logo-env {padding:26px 45px;}
 
 /* user navbar */
-@media screen and (max-width:768px) { /* xs */
+@media screen and (max-width:768px) {
     .page-container .main-content .navbar.user-info-navbar,
     .navbar.horizontal-menu .navbar-inner>.nav.nav-userinfo
     {display:block;}
@@ -121,6 +122,14 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .members-table tbody tr td .name.active {color:#006600;}
 .member-form-inputs .control-label {line-height:1.42857143;}
 .member-form-inputs .multi-check {font-size:12px;display:inline-block;}
+.member-form-add-header .user-name.create {width:100%;}
+@media screen and (min-width:1200px) {
+    .member-form-add-header .user-name.create {width:500px;}
+}
+@media screen and (max-width:768px) {
+    .member-form-add-header .user-name.create {padding-left:0;}
+}
+.member-form-add-header .user-name.create a {font-size:14px;}
 
 /* user navbar dropdown icon colors */
 .user-info-navbar .user-info-menu>li .dropdown-menu.notifications .dropdown-menu-list>li>a>i.icon-color-red, .navbar.horizontal-menu .navbar-inner>.nav>li .dropdown-menu.notifications .dropdown-menu-list>li>a>i.icon-color-red {background-color:red;}
@@ -144,7 +153,6 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .yadcf-filter {height:30px;background:#fff;border:1px solid #e4e4e4;}
 
 /* uk-nestable */
-#nestable-list .btn {margin-bottom:0;}
 .uk-nestable-item {clear:both;}
 
 /* toastr add more positions */

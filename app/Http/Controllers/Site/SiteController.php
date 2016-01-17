@@ -121,7 +121,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Get specific controller by URL segments.
+     * Get the specific controller by URL segments.
      *
      * @return \Illuminate\Routing\Controller
      *
@@ -165,7 +165,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Detect controller by URL segments.
+     * Detect the controller by URL segments.
      *
      * @return \Illuminate\Routing\Controller
      *
@@ -193,7 +193,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Get the attached type of controller.
+     * Get the controller by the attached type.
      *
      * @param  \Models\Page  $page
      * @return \Illuminate\Routing\Controller
@@ -229,7 +229,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Get a controller by the inner attached type.
+     * Get the controller by the inner attached type.
      *
      * @param  int     $id
      * @param  string  $type

@@ -50,7 +50,7 @@ class AdminPagesController extends Controller
     {
         $model = $this->model;
 
-        $data = $model->menu()->findOrFail($menuId);
+        $data['menu'] = $model->menu()->findOrFail($menuId);
 
         $data['items'] = make_tree($model->forAdmin($menuId)->get());
 

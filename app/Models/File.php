@@ -29,7 +29,7 @@ class File extends Model
      *
      * @var array
      */
-    protected $notUpdatable = ['route_name', 'route_id', 'position'];
+    protected $notUpdatable = ['route_name', 'route_id'];
 
     /**
      * Related database table name used by the Language model.

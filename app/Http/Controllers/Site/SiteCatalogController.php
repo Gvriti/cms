@@ -52,7 +52,7 @@ class SiteCatalogController extends Controller
      */
     public function show(Page $page, $slug)
     {
-        $data['prevPage'] = $page;
+        $data['parent'] = $page;
 
         $data['current'] = $model = $this->model->bySlug($slug)->firstOrFail();
 

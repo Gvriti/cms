@@ -51,9 +51,9 @@ class AdminArticlesController extends Controller
     {
         $model = $this->model;
 
-        $data = $model->collection()->findOrFail($collectionId);
+        $data['collection'] = $model->collection()->findOrFail($collectionId);
 
-        $data['items'] = $model->joinFileId()->getAdminCollection($data);
+        $data['items'] = $model->joinFileId()->getAdminCollection($data['collection']);
 
         $data['similarTypes'] = $model->byType()->get();
 

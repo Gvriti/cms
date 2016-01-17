@@ -38,7 +38,7 @@
             <i class="{{icon_type('menus')}}"></i>
             <span>{{ trans('general.create') }}</span>
         </a>
-        <table class="table table-small-font table-bordered table-striped" id="items">
+        <table id="items" class="table table-small-font table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Main</th>
@@ -50,7 +50,7 @@
             </thead>
             <tbody>
             @foreach ($menus as $item)
-                <tr id="item{{$item->id}}">
+                <tr id="item{{$item->id}}" class="item">
                     <td>
                         <input type="radio" name="main" data-id="{{$item->id}}" class="cbr cbr-success"{{$item->main ? ' checked' : ''}}>
                     </td>

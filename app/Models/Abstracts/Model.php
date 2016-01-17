@@ -23,7 +23,7 @@ abstract class Model extends BaseModel
     {
         parent::__construct($attributes);
 
-        // Set language model if it's exists in this model.
+        // Set language model if it's used in this model.
         if (method_exists(get_called_class(), 'language')) {
             $this->language($this);
         }

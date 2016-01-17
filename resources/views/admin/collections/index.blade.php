@@ -38,7 +38,7 @@
             <i class="{{icon_type('collections')}}"></i>
             <span>{{ trans('general.create') }}</span>
         </a>
-        <table class="table table-striped table-bordered" id="items">
+        <table id="items" class="table table-striped table-bordered">
             <thead>
                 <tr class="replace-inputs">
                     <th>Name</th>
@@ -50,7 +50,7 @@
             </thead>
             <tbody>
             @foreach ($items as $item)
-                <tr id="item{{$item->id}}">
+                <tr id="item{{$item->id}}" class="item">
                     <td>{{ $item->title }}</td>
                     <td>{{ $item->description }}</td>
                     <td>{{ $item->type }}</td>

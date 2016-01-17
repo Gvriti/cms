@@ -50,9 +50,9 @@ class AdminVideosController extends Controller
     {
         $model = $this->model;
 
-        $data = $model->gallery()->findOrFail($galleryId);
+        $data['collection'] = $model->gallery()->findOrFail($galleryId);
 
-        $data['items'] = $model->getAdminGallery($data);
+        $data['items'] = $model->getAdminGallery($data['collection']);
 
         $data['similarTypes'] = $model->byType()->get();
 

@@ -40,8 +40,9 @@
 <!-- toast notifications -->
 <script src="{{ asset('assets/js/toastr/toastr.min.js') }}"></script>
 
-<!-- JavaScripts initializations and stuff -->
+<!-- custom scripts -->
 <script src="{{ asset('assets/js/xenon-custom.js') }}"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
 <script type="text/javascript">
 $(function() {
     // Initialize tinymce
