@@ -28,7 +28,7 @@ class SiteArticlesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the article.
      *
      * @param  \Models\Page  $page
      * @param  \Models\Collection  $collection
@@ -44,7 +44,7 @@ class SiteArticlesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified article.
      *
      * @param  \Models\Page  $page
      * @param  string  $slug

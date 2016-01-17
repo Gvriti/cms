@@ -38,7 +38,7 @@ class SiteGlideServerController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified image.
      *
      * @param  \Illuminate\Config\Repository  $config
      * @param  string  $path

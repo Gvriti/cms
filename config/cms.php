@@ -29,16 +29,25 @@ return [
     | Pages
     |--------------------------------------------------------------------------
     |
-    | This array used to define types of the page.
+    | This array used to specify types of the page.
     |
     */
 
     'pages' => [
         'types' => [
-            'text'       => 'Text',
-            'collection' => 'Collection',
-            'feedback'   => 'Feedback',
-            'search'     => 'Search',
+            'text'        => 'Text',
+            'collections' => 'Collections',
+            'feedback'    => 'Feedback',
+            'search'      => 'Search',
+        ],
+        'attached' => [
+            'collections'
+        ],
+        'implicit' => [
+            'collections',
+            'galleries'
+        ],
+        'noshow' => [
         ]
     ],
 
@@ -47,7 +56,8 @@ return [
     | CMS Routes
     |--------------------------------------------------------------------------
     |
-    | Here you can define a specific routes, which will also obtain additional.
+    | Here you can specify routes, which will also obtain additional routes.
+    | See routes.php file for additional routes.
     |
     */
 
@@ -68,7 +78,7 @@ return [
     | Collections
     |--------------------------------------------------------------------------
     |
-    | This array used to define collection settings.
+    | This array used to specify collection types and its settings.
     |
     */
 
@@ -116,6 +126,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Modules
+    |--------------------------------------------------------------------------
+    |
+    | This array used to specify modules.
+    |
+    */
+
+    'modules' => [
+        'projects'
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | File routes
     |--------------------------------------------------------------------------
     |
@@ -141,7 +164,7 @@ return [
     | CMS User roles
     |--------------------------------------------------------------------------
     |
-    | This array used to define CMS user roles.
+    | This array used to specify CMS user roles.
     |
     */
 
@@ -162,13 +185,14 @@ return [
     'icons' => [
         'menus'       => 'fa fa-list',
         'pages'       => 'fa fa-indent',
+
         'collections' => 'fa fa-list-alt',
-        'galleries'   => 'fa fa-th-large',
         'catalog'     => 'fa fa-briefcase',
         'articles'    => 'fa fa-newspaper-o',
+        'galleries'   => 'fa fa-th',
         'photos'      => 'fa fa-photo',
         'videos'      => 'fa fa-video-camera',
-        'options'     => 'fa fa-list-ol',
+
         'files'       => 'el el-paper-clip'
     ],
 

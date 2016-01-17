@@ -31,7 +31,7 @@ class PageRequest extends Request
             'short_title'   => 'required|min:2',
             'slug'          => 'required|min:2|unique:pages,slug,'.$id,
             'type'          => 'required',
-            'collection_id' => 'required_if:type,collection|integer'
+            'collection_id' => 'required_if:type,collections|integer'
         ];
     }
 
@@ -58,7 +58,7 @@ class PageRequest extends Request
             $input['type'] = null;
         }
 
-        if ($input['type'] != 'collection') {
+        if ($input['type'] != 'collections') {
             $input['collection_id'] = 0;
         }
 

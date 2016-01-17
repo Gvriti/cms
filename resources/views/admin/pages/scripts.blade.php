@@ -1,7 +1,7 @@
 <script type="text/javascript">
 $(function() {
     $('.select').select2({
-        placeholder: 'Select collection',
+        placeholder: 'Select a collection',
         allowClear: true
     }).on('select2-open', function() {
         // Adding Custom Scrollbar
@@ -9,10 +9,10 @@ $(function() {
     });
 
     $('.panel form .type.select').on('click', function(){
-        if ($(this).val() != 'collection') {
-            $('.collection').addClass('hidden');
+        if ($(this).val() != 'collections') {
+            $('.panel form .collections').addClass('hidden');
         } else {
-            $('.collection').removeClass('hidden');
+            $('.panel form .collections').removeClass('hidden');
         }
     });
 });

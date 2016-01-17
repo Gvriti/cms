@@ -27,12 +27,12 @@ class SiteTextController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified page.
      *
      * @param  \Models\Page  $page
      * @return Response
      */
-    public function show(Page $page)
+    public function index(Page $page)
     {
         $data['current'] = $page;
 

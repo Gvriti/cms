@@ -28,7 +28,7 @@ class SiteCatalogController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the catalog.
      *
      * @param  \Models\Page  $page
      * @param  \Models\Collection  $collection
@@ -44,7 +44,7 @@ class SiteCatalogController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified catalog.
      *
      * @param  \Models\Page  $page
      * @param  string  $slug

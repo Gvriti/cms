@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Site;
 
 use Models\Page;
-use Models\Collection;
 use Models\Abstracts\Model;
-use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Collection as Collect;
 use Illuminate\Contracts\Foundation\Application;
 
 class SiteController extends Controller
@@ -21,11 +19,11 @@ class SiteController extends Controller
     protected $app;
 
     /**
-     * The Request instance.
+     * The config repository instance.
      *
-     * @var \Illuminate\Http\Request
+     * @var \Illuminate\Config\Repository
      */
-    protected $request;
+    protected $config;
 
     /**
      * The list of URL segments.
@@ -42,45 +40,82 @@ class SiteController extends Controller
     protected $segmentsCount = 0;
 
     /**
-     * The Page instance.
-     *
-     * @var \Models\Page
-     */
-    protected $page;
-
-    /**
-     * The Page instances.
+     * The array of the Page instances.
      *
      * @var array
      */
     protected $pages = [];
 
     /**
+     * The array of the not showable types of the Page.
+     *
+     * @var array
+     */
+    protected $notShowableTypes = [];
+
+    /**
+     * The array of the attached types of the Page.
+     *
+     * @var array
+     */
+    protected $attachedTypes = [];
+
+    /**
+     * The array of the implicit types of the Page.
+     *
+     * @var array
+     */
+    protected $implicitTypes = [];
+
+    /**
+     * The array of the modules type of the Page.
+     *
+     * @var array
+     */
+    protected $moduleTypes = [];
+
+    /**
      * Create a new controller instance.
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    public function __construct(Application $app, Request $request)
+    public function __construct(Application $app)
     {
         $this->app = $app;
 
-        $this->request = $request;
-
-        $this->page = new Page;
+        $this->config = $app['config'];
     }
 
     /**
-     * Build a new controller instance from route URIs.
+     * Initialize site controller properties.
+     *
+     * @param  array  $segments
+     * @return void
+     */
+    protected function init($segments)
+    {
+        $this->segments = $segments;
+
+        $this->segmentsCount = count($this->segments);
+
+        $this->notShowableTypes = (array) $this->config['cms.pages.noshow'];
+
+        $this->attachedTypes = (array) $this->config['cms.pages.attached'];
+
+        $this->implicitTypes = (array) $this->config['cms.pages.implicit'];
+
+        $this->moduleTypes = (array) $this->config['cms.modules'];
+    }
+
+    /**
+     * Build a new site controller instance.
      *
      * @return \Illuminate\Routing\Controller
      */
     public function build()
     {
-        $this->segments = func_get_args();
-
-        $this->segmentsCount = count($this->segments);
+        $this->init(func_get_args());
 
         return $this->getController();
     }
@@ -101,10 +136,12 @@ class SiteController extends Controller
         $parentId = 0;
 
         for ($i = 0; $i < $this->segmentsCount; $i++) {
-            $page = $this->page->route($this->segments[$i], $parentId)->first();
+            $page = (new Page)->route($this->segments[$i], $parentId)->first();
 
             if (is_null($page)) {
-                if (count($this->pages) < 1 || $this->pages[$i - 1]->type != 'collection') {
+                if (count($this->pages) < 1
+                    || ! in_array($this->pages[$i - 1]->type, $this->attachedTypes)
+                ) {
                     $this->app->abort(404);
                 }
 
@@ -140,64 +177,101 @@ class SiteController extends Controller
 
         $pagesCount = count($this->pages);
 
-        if ($pagesCount == $this->segmentsCount && $page->type != 'collection') {
-            return $this->callController($page->type, ['page' => $page], 'show');
+        if (($pagesCount == $this->segmentsCount)
+            && ! in_array($page->type, $this->implicitTypes)
+        ) {
+            return $this->callController($page->type, ['page' => $page], 'index');
         }
 
         $this->segments = array_slice($this->segments, $pagesCount);
 
-        if (($this->segmentsCount = count($this->segments)) > 1) {
-            $this->app->abort(404);
+        if (($this->segmentsCount = count($this->segments)) < 2) {
+            return $this->getAttachedTypeController($page);
         }
 
-        return $this->getCollectionTypeController($page);
+        $this->app->abort(404);
     }
 
     /**
-     * Get a controller by the collection type.
+     * Get the attached type of controller.
      *
      * @param  \Models\Page  $page
      * @return \Illuminate\Routing\Controller
      */
-    protected function getCollectionTypeController(Page $page)
+    protected function getAttachedTypeController(Page $page)
     {
-        $collection = (new Collection)->findOrFail($page->collection_id);
+        $slug = current($this->segments);
+
+        if (in_array($page->type, $this->moduleTypes)) {
+            return $this->getShowableController($page, $page->type, $slug);
+        }
+
+        $implicitModel = $this->getModelName($page->type);
+
+        $implicitKey = str_singular($page->type);
+
+        $implicitModel = (new $implicitModel)->findOrFail($page->{$implicitKey . '_id'});
 
         if (! $this->segmentsCount) {
-            return $this->callController($collection->type, [
+            return $this->callController($implicitModel->type, [
                 'page' => $page,
-                'collection' => $collection
+                $implicitKey => $implicitModel
             ], 'index');
         }
 
-        $slug = current($this->segments);
-
-        if (! array_key_exists($collection->type, inner_collection())) {
-            return $this->callController($collection->type, [
-                'page' => $page,
-                'slug' => $slug
-            ], 'show');
+        if (! in_array($implicitModel->type, $this->implicitTypes)) {
+            return $this->getShowableController($page, $implicitModel->type, $slug);
         }
 
-        return $this->getInnerCollectionTypeController($collection, $slug);
+        return $this->getInnerAttachedTypeController(
+            $implicitModel->id, $implicitModel->type, $slug
+        );
     }
 
     /**
-     * Get a controller by the inner collection.
+     * Get a controller by the inner attached type.
      *
-     * @param  \Models\Collection  $collection
+     * @param  int     $id
+     * @param  string  $type
      * @param  string  $slug
      * @return \Illuminate\Routing\Controller
      */
-    protected function getInnerCollectionTypeController(Collection $collection, $slug)
+    protected function getInnerAttachedTypeController($id, $type, $slug)
     {
-        $modelName = $this->getModelName($collection->type);
+        $model = $this->getModelName($type);
 
-        $model = (new $modelName)->bySlug($slug, $collection->id)->firstOrFail();
+        $model = (new $model);
+
+        if (method_exists($model, 'bySlug')) {
+            $model = $model->bySlug($slug, $id)->firstOrFail();
+        } else {
+            $model = $model->findOrFail($id);
+        }
 
         return $this->callController($model->type, [
             str_singular($model->getTable()) => $model
         ], 'index');
+    }
+
+    /**
+     * Get the showable controller.
+     *
+     * @param  Page    $page
+     * @param  string  $type
+     * @param  string  $slug
+     * @return \App\Http\Controllers\Controller
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    protected function getShowableController(Page $page, $type, $slug)
+    {
+        if (in_array($type, $this->notShowableTypes)) {
+            $this->app->abort(404);
+        }
+
+        return $this->callController($type, [
+            'page' => $page,'slug' => $slug
+        ], 'show');
     }
 
     /**
@@ -246,7 +320,8 @@ class SiteController extends Controller
         if ($response instanceof View) {
             if ($response->current instanceof Model
                 && ! $response->current instanceof Page
-                && $this->pages) {
+                && $this->pages
+            ) {
                 $lastSlug = end($this->pages)->slug;
 
                 $response->current->original_slug = $response->current->slug;
@@ -270,6 +345,6 @@ class SiteController extends Controller
      */
     protected function createBreadcrumb($items)
     {
-        $this->app->instance('breadcrumb', new Collect($items));
+        $this->app->instance('breadcrumb', new Collection($items));
     }
 }
