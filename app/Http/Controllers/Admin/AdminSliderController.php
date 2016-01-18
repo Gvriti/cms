@@ -117,9 +117,8 @@ class AdminSliderController extends Controller
     public function edit($id)
     {
         if ($this->request->ajax()) {
-            $model = $this->model;
-
-            $data['items'] = $model->joinLanguages()->where('id', $id)->getOrFail();
+            $data['items'] = $this->model->joinLanguages()->where('id', $id)
+                                                          ->getOrFail();
 
             $view = view()->make('admin.slider.edit', $data)->render();
 

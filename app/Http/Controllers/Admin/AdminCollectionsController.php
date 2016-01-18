@@ -80,7 +80,7 @@ class AdminCollectionsController extends Controller
 
         if ($request->has('close')) {
             return redirect()->route(cms_route('collections.index'))
-                                ->with('alert', fill_data('success', trans('general.created')));
+                    ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('collections.edit', [$newModel->id]))

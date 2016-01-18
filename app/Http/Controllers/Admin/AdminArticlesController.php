@@ -90,7 +90,7 @@ class AdminArticlesController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('articles.index', [$collectionId]))
-                        ->with('alert', fill_data('success', trans('general.created')));
+                    ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('articles.edit', [$collectionId, $newModel->id]))
@@ -118,9 +118,8 @@ class AdminArticlesController extends Controller
      */
     public function edit(Page $page, $collectionId, $id)
     {
-        $model = $this->model;
-
-        $data['items'] = $model->joinLanguages()->where('id', $id)->getOrFail();
+        $data['items'] = $this->model->joinLanguages()->where('id', $id)
+                                                      ->getOrFail();
 
         return view('admin.articles.edit', $data);
     }

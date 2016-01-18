@@ -88,7 +88,7 @@ class AdminCatalogController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('catalog.index', [$collectionId]))
-                        ->with('alert', fill_data('success', trans('general.created')));
+                    ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('catalog.edit', [$collectionId, $newModel->id]))
@@ -115,9 +115,8 @@ class AdminCatalogController extends Controller
      */
     public function edit($collectionId, $id)
     {
-        $model = $this->model;
-
-        $data['items'] = $model->joinLanguages()->where('id', $id)->getOrFail();
+        $data['items'] = $this->model->joinLanguages()->where('id', $id)
+                                                      ->getOrFail();
 
         return view('admin.catalog.edit', $data);
     }

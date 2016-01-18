@@ -92,7 +92,7 @@ class AdminGalleriesController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('galleries.index', [$collectionId]))
-                        ->with('alert', fill_data('success', trans('general.created')));
+                    ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('galleries.edit', [$collectionId, $newModel->id]))

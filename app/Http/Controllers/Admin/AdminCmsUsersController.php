@@ -104,7 +104,7 @@ class AdminCmsUsersController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('cmsUsers.index'))
-                        ->with('alert', fill_data('success', trans('general.created')));
+                    ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('cmsUsers.edit', [$newModel->id]))

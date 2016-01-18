@@ -54,9 +54,9 @@ class SiteArticlesController extends Controller
     {
         $data['parent'] = $page;
 
-        $data['current'] = $model = $this->model->bySlug($slug)->firstOrFail();
+        $data['current'] = $this->model->bySlug($slug)->firstOrFail();
 
-        $data['files'] = $model->getFiles($model->id);
+        $data['files'] = $this->model->getFiles($data['current']->id);
 
         return view('site.article', $data);
     }

@@ -67,15 +67,15 @@ class AdminPagesController extends Controller
      */
     public function create($menuId)
     {
-        $data['current'] = $model = $this->model;
+        $data['current'] = $this->model;
         $data['current']->menu_id = $menuId;
         $data['current']->parent_id = (int) $this->request->get('id');
 
         $data['types'] = cms_pages('types');
 
-        $data['collections'] = $model->collection()->get()
-                                                   ->lists('title', 'id')
-                                                   ->toArray();
+        $data['collections'] = $this->model->collection()->get()
+                                                         ->lists('title', 'id')
+                                                         ->toArray();
 
         return view('admin.pages.create', $data);
     }

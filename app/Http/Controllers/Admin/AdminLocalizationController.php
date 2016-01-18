@@ -62,7 +62,7 @@ class AdminLocalizationController extends Controller
 
         if ($request->has('close')) {
             return redirect()->route(cms_route('localization.index'))
-                                ->with('alert', fill_data('success', trans('general.created')));
+                             ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('localization.edit', [$newModel->id]))
@@ -77,9 +77,8 @@ class AdminLocalizationController extends Controller
      */
     public function edit($id)
     {
-        $model = $this->model;
-
-        $data['items'] = $model->joinLanguages()->where('id', $id)->getOrFail();
+        $data['items'] = $this->model->joinLanguages()->where('id', $id)
+                                                      ->getOrFail();
 
         return view('admin.localization.edit', $data);
     }
