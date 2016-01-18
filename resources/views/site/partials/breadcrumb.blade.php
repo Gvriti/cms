@@ -4,7 +4,7 @@
 	@if ($breadcrumb = app_instance('breadcrumb'))
 	    @foreach ($breadcrumb as $item)
 	    <li{!! $breadcrumb->last()->id == $item->id ? ' class="active"' : '' !!}>
-            <a href="{{$url . '/' . $item->slug}}">{{$item->short_title}}</a>
+            <a href="{{$url . '/' . $item->slug}}">{{$item->short_title :? $item->title}}</a>
         </li>
 	    @endforeach
 	@endif
