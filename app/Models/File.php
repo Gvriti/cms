@@ -101,7 +101,7 @@ class File extends Model
 
         $model = __NAMESPACE__ . '\\' . str_singular(ucfirst($this->route_name));
 
-        if (is_null($type = file_types($this->route_name)) || ! class_exists($model)) {
+        if (is_null($type = cms_files($this->route_name)) || ! class_exists($model)) {
             abort(404);
         }
 

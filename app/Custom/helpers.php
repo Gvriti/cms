@@ -383,67 +383,37 @@ function user_roles($key = null)
 }
 
 /**
- * Get the page type(s).
+ * Get the pages config.
  *
  * @param  string  $key
  * @return string|array
  */
-function page_types($key = null)
+function cms_pages($key = null)
 {
     if (! is_null($key)) {
-        return config('cms.pages.types.' . $key);
+        return config('cms.pages.' . $key);
     }
 
-    return config('cms.pages.types');
+    return config('cms.pages');
 }
 
 /**
- * Get the collection type(s).
+ * Get the collections config.
  *
  * @param  string  $key
  * @return string|array
  */
-function collection_types($key = null)
+function cms_collections($key = null)
 {
     if (! is_null($key)) {
-        return config('cms.collections.types.' . $key);
+        return config('cms.collections.' . $key);
     }
 
-    return config('cms.collections.types');
+    return config('cms.collections');
 }
 
 /**
- * Get the collection sort(s).
- *
- * @param  string  $key
- * @return string|array
- */
-function collection_sorts($key = null)
-{
-    if (! is_null($key)) {
-        return config('cms.collections.sort.' . $key);
-    }
-
-    return config('cms.collections.sort');
-}
-
-/**
- * Get the collection order column name.
- *
- * @param  string  $key
- * @return string|array
- */
-function collection_order($key = null)
-{
-    if (! is_null($key)) {
-        return config('cms.collections.order_by.' . $key);
-    }
-
-    return config('cms.collections.order_by');
-}
-
-/**
- * Get the inner collection list.
+ * Get the inner collection config.
  *
  * @param  string  $key
  * @return array
@@ -458,57 +428,12 @@ function inner_collection($key = null)
 }
 
 /**
- * Get the gallery type(s).
+ * Get the files config.
  *
  * @param  string  $key
  * @return string|array
  */
-function gallery_types($key = null)
-{
-    if (! is_null($key)) {
-        return inner_collection('galleries.types.' . $key);
-    }
-
-    return inner_collection('galleries.types');
-}
-
-/**
- * Get the gallery order column name.
- *
- * @param  string  $key
- * @return string|array
- */
-function gallery_order($key = null)
-{
-    if (! is_null($key)) {
-        return inner_collection('galleries.order_by.' . $key);
-    }
-
-    return inner_collection('galleries.order_by');
-}
-
-/**
- * Get the gallery sort(s).
- *
- * @param  string  $key
- * @return string|array
- */
-function gallery_sorts($key = null)
-{
-    if (! is_null($key)) {
-        return inner_collection('galleries.sort.' . $key);
-    }
-
-    return inner_collection('galleries.sort');
-}
-
-/**
- * Get the file type(s).
- *
- * @param  string  $key
- * @return string|array
- */
-function file_types($key = null)
+function cms_files($key = null)
 {
     if (! is_null($key)) {
         return config('cms.files.' . $key);

@@ -54,7 +54,7 @@ class PageRequest extends Request
             $input['slug'] = (new Slugify)->slugify($this->get('title'));
         }
 
-        if (! array_key_exists($this->get('type'), page_types())) {
+        if (! array_key_exists($this->get('type'), cms_pages('types'))) {
             $input['type'] = null;
         }
 

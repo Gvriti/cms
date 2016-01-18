@@ -71,7 +71,7 @@ class AdminPagesController extends Controller
         $data['current']->menu_id = $menuId;
         $data['current']->parent_id = (int) $this->request->get('id');
 
-        $data['types'] = page_types();
+        $data['types'] = cms_pages('types');
 
         $data['collections'] = $model->collection()->get()
                                                    ->lists('title', 'id')
@@ -127,7 +127,7 @@ class AdminPagesController extends Controller
 
         $data['items'] = $model->joinLanguages()->where('id', $id)->getOrFail();
 
-        $data['types'] = page_types();
+        $data['types'] = cms_pages('types');
 
         $data['collections'] = $model->collection()->get()
                                                    ->lists('title', 'id')

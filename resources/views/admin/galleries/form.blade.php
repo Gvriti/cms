@@ -48,7 +48,7 @@
 <div class="form-group required{{($error = $errors->first('type')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Type:</label>
     <div class="col-sm-10">
-        {!! Form::select('type', gallery_types(), null, [
+        {!! Form::select('type', inner_collection('galleries.types'), null, [
             'id' => 'type' . $lang,
             'class' => 'form-control select',
         ] + ($current->id ? ['disabled' => 'disabled'] : [])) !!}
@@ -65,7 +65,7 @@
         <div class="form-group required{{($error = $errors->first('admin_order_by')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label">Admin order by:</label>
             <div class="col-sm-8">
-                {!! Form::select('admin_order_by', gallery_order(), null, [
+                {!! Form::select('admin_order_by', inner_collection('galleries.order_by'), null, [
                     'id' => 'admin_order_by',
                     'class' => 'form-control select',
                 ]) !!}
@@ -80,7 +80,7 @@
         <div class="form-group required{{($error = $errors->first('site_order_by')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label">Site order by:</label>
             <div class="col-sm-8">
-                {!! Form::select('site_order_by', gallery_order(), null, [
+                {!! Form::select('site_order_by', inner_collection('galleries.order_by'), null, [
                     'id' => 'site_order_by',
                     'class' => 'form-control select',
                 ]) !!}
@@ -99,7 +99,7 @@
         <div class="form-group required{{($error = $errors->first('admin_sort')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label">Admin sort:</label>
             <div class="col-sm-8">
-                {!! Form::select('admin_sort', gallery_sorts(), null, [
+                {!! Form::select('admin_sort', inner_collection('galleries.sort'), null, [
                     'id' => 'admin_sort' . $lang,
                     'class' => 'admin_sort form-control select',
                     'data-type' => 'general'
@@ -115,7 +115,7 @@
         <div class="form-group required{{($error = $errors->first('site_sort')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label">Site sort:</label>
             <div class="col-sm-8">
-                {!! Form::select('site_sort', gallery_sorts(), null, [
+                {!! Form::select('site_sort', inner_collection('galleries.sort'), null, [
                     'id' => 'site_sort' . $lang,
                     'class' => 'site_sort form-control select',
                     'data-type' => 'general'

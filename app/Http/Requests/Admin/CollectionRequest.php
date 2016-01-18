@@ -46,11 +46,11 @@ class CollectionRequest extends Request
 
         $request = $this->request;
 
-        if (! array_key_exists($this->get('type'), collection_types())) {
+        if (! array_key_exists($this->get('type'), cms_collections('types'))) {
             $input['type'] = null;
         }
 
-        $orderList = collection_order();
+        $orderList = cms_collections('order_by');
 
         if (! array_key_exists($this->get('admin_order_by'), $orderList)) {
             $input['admin_order_by'] = null;
@@ -60,7 +60,7 @@ class CollectionRequest extends Request
             $input['site_order_by'] = null;
         }
 
-        $sortList = collection_sorts();
+        $sortList = cms_collections('sort');
 
         if (! array_key_exists($this->get('admin_sort'), $sortList)) {
             $input['admin_sort'] = null;
