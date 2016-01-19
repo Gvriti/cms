@@ -68,11 +68,11 @@ class RouteServiceProvider extends ServiceProvider
     public function map(Router $router, $cached = false)
     {
         $router->group(['namespace' => $this->namespace], function ($router) use ($cached) {
+            require app_path('Http/siteRoutes.php');
+
             if (! $cached && ($this->app->runningInConsole() || $this->cmsWillLoad)) {
                 require app_path('Http/routes.php');
             }
-
-            require app_path('Http/siteRoutes.php');
         });
 
         $this->setDynamicRoutes($router);

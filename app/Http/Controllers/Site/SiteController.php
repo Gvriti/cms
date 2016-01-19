@@ -97,7 +97,7 @@ class SiteController extends Controller
     {
         $this->segments = $segments;
 
-        $this->segmentsCount = count($this->segments);
+        $this->segmentsCount = count($segments);
 
         $this->notShowableTypes = (array) $this->config['cms.pages.noshow'];
 

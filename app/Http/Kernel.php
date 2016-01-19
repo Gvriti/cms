@@ -29,8 +29,8 @@ class Kernel extends HttpKernel
         'CmsAuth' => \App\Http\Middleware\Admin\AdminAuthenticate::class,
         'CmsGuest' => \App\Http\Middleware\Admin\AdminRedirectIfAuthenticated::class,
 
-        'siteAuth' => \App\Http\Middleware\Site\SiteAuthenticate::class,
-        'siteGuest' => \App\Http\Middleware\Site\SiteRedirectIfAuthenticated::class,
+        'SiteAuth' => \App\Http\Middleware\Site\SiteAuthenticate::class,
+        'SiteGuest' => \App\Http\Middleware\Site\SiteRedirectIfAuthenticated::class,
 
         // 'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
     ];

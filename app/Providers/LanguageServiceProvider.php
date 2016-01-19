@@ -38,7 +38,7 @@ class LanguageServiceProvider extends ServiceProvider
      * @param  \Illuminate\Config\Repository  $config
      * @return void
      */
-    public function setLanguageConfig(Request $request, Repository $config)
+    protected function setLanguageConfig(Request $request, Repository $config)
     {
         $segmentsCount = count($segments = $request->segments());
 
@@ -46,6 +46,7 @@ class LanguageServiceProvider extends ServiceProvider
 
         $languagesCount = count($languages = $config->get('app.languages'));
 
+        // Set current application language dynamically
         if ($languagesCount > 1 && array_key_exists($firstSegment, $languages)) {
             $config->set(['app.language' => $firstSegment]);
             $config->set(['language_isset' => true]);
@@ -57,6 +58,8 @@ class LanguageServiceProvider extends ServiceProvider
             $config->set(['language_isset' => false]);
         }
 
+        // Set URL segments and its count, without language segment
+        $config->set(['url_segments' => $segments]);
         $config->set(['url_segments_count' => $segmentsCount]);
 
         $cmsWillLoad = current($segments) == $config->get('cms.slug');
@@ -75,7 +78,7 @@ class LanguageServiceProvider extends ServiceProvider
      * @param  \Illuminate\Config\Repository  $config
      * @return array
      */
-    private function makeLanguageUrls(Request $request, Repository $config)
+    protected function makeLanguageUrls(Request $request, Repository $config)
     {
         $languageList = [];
 
