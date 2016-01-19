@@ -64,7 +64,7 @@ class SiteAuthController extends Controller
      */
     public function __construct(Auth $auth, Request $request)
     {
-        $this->middleware('siteGuest', ['except' => ['getLogout']]);
+        $this->middleware('SiteGuest', ['except' => ['getLogout']]);
 
         $this->auth = $auth;
 
