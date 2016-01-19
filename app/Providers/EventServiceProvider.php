@@ -21,6 +21,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $subscribe = [
         'App\Listeners\Site\SiteViewEventListener',
+        'App\Listeners\Site\SiteBreadcrumbEventListener',
         'App\Listeners\Site\SiteCurrentPageEventListener',
     ];
 

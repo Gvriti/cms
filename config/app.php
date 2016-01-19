@@ -188,6 +188,7 @@ return [
         App\Providers\Models\CalendarServiceProvider::class,
 
         App\Providers\RouteServiceProvider::class,
+        App\Providers\Site\DynamicRouteServiceProvider::class,
 
     ],
 

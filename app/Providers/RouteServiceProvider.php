@@ -31,13 +31,6 @@ class RouteServiceProvider extends ServiceProvider
     protected $cmsWillLoad = true;
 
     /**
-     * Total count of the routable segments.
-     *
-     * @var int
-     */
-    protected $segmentsCount = 0;
-
-    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @param  \Illuminate\Routing\Router  $router
@@ -52,8 +45,6 @@ class RouteServiceProvider extends ServiceProvider
         }
 
         $this->cmsWillLoad = $config->get('cms_will_load');
-
-        $this->segmentsCount = $config->get('url_segments_count');
 
         parent::boot($router);
     }
@@ -75,8 +66,6 @@ class RouteServiceProvider extends ServiceProvider
             }
         });
 
-        $this->setDynamicRoutes($router);
-
         $this->filterRoutes($router);
     }
 
@@ -92,27 +81,6 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->map($app['router'], true);
         });
-    }
-
-    /**
-     * Set dynamic routes for the application.
-     *
-     * @param  \Illuminate\Routing\Router  $router
-     * @return void
-     */
-    protected function setDynamicRoutes(Router $router)
-    {
-        $segments = '/';
-
-        if ($this->segmentsCount && ! $this->cmsWillLoad) {
-            for ($i = 1; $i <= $this->segmentsCount; $i++) { 
-                $segments .= '{slug'.$i.'}/';
-            }
-        }
-
-        $router->get($segments, [
-            'as' => 'current', 'uses' => $this->namespace . '\Site\SiteController@build'
-        ]);
     }
 
     /**
