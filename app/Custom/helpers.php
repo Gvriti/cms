@@ -61,6 +61,17 @@ function cms_will_load()
 }
 
 /**
+ * Get the Eloquent model name.
+ *
+ * @param  string  $name
+ * @return string
+ */
+function get_model_name($name)
+{
+    return 'Models\\' . ucfirst(str_singular($name));
+}
+
+/**
  * Get a cms slug
  *
  * @param  bool|string  $language

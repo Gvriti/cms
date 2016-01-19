@@ -206,11 +206,13 @@ class SiteController extends Controller
             return $this->getShowableController($page, $page->type, $slug);
         }
 
-        $implicitModel = $this->getModelName($page->type);
+        $implicitModel = get_model_name($page->type);
 
         $implicitKey = str_singular($page->type);
 
-        $implicitModel = (new $implicitModel)->findOrFail($page->{$implicitKey . '_id'});
+        $implicitModel = (new $implicitModel)->findOrFail(
+            $page->{$implicitKey . '_id'}
+        );
 
         if (! $this->segmentsCount) {
             return $this->callController($implicitModel->type, [
@@ -238,7 +240,7 @@ class SiteController extends Controller
      */
     protected function getInnerAttachedTypeController($id, $type, $slug)
     {
-        $model = $this->getModelName($type);
+        $model = get_model_name($type);
 
         $model = (new $model);
 
