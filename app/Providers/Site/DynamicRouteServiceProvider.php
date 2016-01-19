@@ -12,7 +12,7 @@ use Illuminate\Config\Repository as Config;
 class DynamicRouteServiceProvider extends ServiceProvider
 {
     /**
-     * The controller namespace for the dynamic site routes.
+     * The controller namespace for the dynamic routes.
      *
      * @var string
      */
@@ -33,11 +33,11 @@ class DynamicRouteServiceProvider extends ServiceProvider
     protected $config;
 
     /**
-     * The current language of the application.
+     * The prefix of the routes URI.
      *
      * @var string
      */
-    protected $language;
+    protected $uriPrefix;
 
     /**
      * The list of URL segments.
@@ -82,7 +82,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
     protected $moduleTypes = [];
 
     /**
-     * Define dynamic site routes.
+     * Define a dynamic routes.
      *
      * @param  \Illuminate\Routing\Router  $router
      * @param  \Illuminate\Config\Repository  $config
@@ -97,7 +97,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
         $routes = $router->getRoutes()->getRoutes();
 
         if (language_isset()) {
-            $this->language = language() . '/';
+            $this->uriPrefix = language() . '/';
         }
 
         try {
@@ -114,7 +114,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Initialize site route properties.
+     * Initialize routes properties.
      *
      * @return void
      */
@@ -132,7 +132,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Build a new site router.
+     * Build a new routes.
      *
      * @param  \Illuminate\Config\Repository  $config
      * @return void
@@ -156,7 +156,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
     protected function setRoutes()
     {
         if (! $this->segmentsCount) {
-            $this->router->get($this->language, [
+            $this->router->get($this->uriPrefix, [
                 'uses' => 'SiteHomeController@index'
             ]);
 
@@ -195,7 +195,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Detect routes by URL segments.
+     * Detect the route by URL segments.
      *
      * @return void
      *
@@ -227,7 +227,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Set route by the attached type.
+     * Set the route by the attached type.
      *
      * @param  \Models\Page  $page
      * @param  array  $segments
@@ -292,7 +292,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Set the routes.
+     * Set the current route.
      *
      * @param  string  $type
      * @param  array   $parameters
@@ -333,7 +333,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $this->app->instance('breadcrumb', new Collection($this->pages));
 
-        $this->router->get($this->language . $segments, [
+        $this->router->get($this->uriPrefix . $segments, [
             'as' => 'current', 'uses' => $controller . '@' . $method]
         );
     }
@@ -341,14 +341,14 @@ class DynamicRouteServiceProvider extends ServiceProvider
     /**
      * Get the controller path.
      *
-     * @param  string  $type
+     * @param  string  $path
      * @return string
      */
-    protected function getControllerPath($type)
+    protected function getControllerPath($path)
     {
         $namespace = '';
 
-        $path = explode('.', $type);
+        $path = explode('.', $path);
 
         if (($pathCount = count($path)) > 1) {
             for ($i = 0; $i < $pathCount; $i++) {
@@ -359,7 +359,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
                 }
             }
         } else {
-            $namespace .= 'Site' . studly_case($type);
+            $namespace .= 'Site' . studly_case($path[0]);
         }
 
         return $namespace .= 'Controller';
