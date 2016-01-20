@@ -30,7 +30,7 @@ class Catalog extends AbstractHasCollection
      *
      * @var array
      */
-    protected $fillable = ['collection_id', 'slug', 'position', 'visible', 'price', 'image'];
+    protected $fillable = ['collection_id', 'slug', 'position', 'visible', 'image'];
 
     /**
      * The attributes that are not updatable.
