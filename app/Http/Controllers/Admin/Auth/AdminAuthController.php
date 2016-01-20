@@ -139,7 +139,7 @@ class AdminAuthController extends Controller
      */
     protected function url($path = null)
     {
-        if (is_null($path) || $path = '/') {
+        if (is_null($path) || $path == '/') {
             return cms_url();
         }
 

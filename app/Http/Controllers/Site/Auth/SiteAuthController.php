@@ -86,7 +86,8 @@ class SiteAuthController extends Controller
             return response()->json(['result' => true, 'view' => $html]);
         }
 
-        return redirect($this->loginPath());
+        return is_null($this->loginPath) ? redirect()->back()
+                                         : redirect($this->loginPath());
     }
 
     /**
