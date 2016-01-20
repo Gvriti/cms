@@ -63,7 +63,7 @@ abstract class AuthController extends Controller
      *
      * @return string
      */
-    protected $authenticatedPath;
+    protected $authenticatedPath = '/';
 
     /**
      * Get the failed login message translation.
@@ -178,7 +178,7 @@ abstract class AuthController extends Controller
             return $this->ajaxViewResponse($this->ajaxLoginViewResponse);
         }
 
-        return redirect($this->authenticatedPath);
+        return redirect((string) $this->authenticatedPath);
     }
 
     /**
