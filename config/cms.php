@@ -46,6 +46,8 @@ return [
         'implicit' => [
             'collections',
             'galleries'
+        ],
+        'allow_post' => [
         ]
     ],
 

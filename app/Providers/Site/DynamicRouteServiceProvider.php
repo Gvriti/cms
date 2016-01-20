@@ -4,6 +4,7 @@ namespace App\Providers\Site;
 
 use Exception;
 use Models\Page;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
@@ -17,6 +18,13 @@ class DynamicRouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers\Site';
+
+    /**
+     * The Request instance.
+     *
+     * @var \Illuminate\Http\Request
+     */
+    protected $request;
 
     /**
      * The router instance.
@@ -84,12 +92,15 @@ class DynamicRouteServiceProvider extends ServiceProvider
     /**
      * Define a dynamic routes.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Routing\Router  $router
      * @param  \Illuminate\Config\Repository  $config
      * @return void
      */
-    public function boot(Router $router, Config $config)
+    public function boot(Request $request, Router $router, Config $config)
     {
+        $this->request = $request;
+
         $this->router = $router;
 
         $this->config = $config;
@@ -101,7 +112,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
         }
 
         try {
-            $router->getRoutes()->match($this->app['request']);
+            $router->getRoutes()->match($this->request);
 
             $hasStaticRoute = true;
         } catch (Exception $e) {
@@ -120,15 +131,15 @@ class DynamicRouteServiceProvider extends ServiceProvider
      */
     protected function init()
     {
-        $this->segments = $this->config['url_segments'];
+        $this->segments = $this->config->get('url_segments', []);
 
-        $this->segmentsCount = $this->config['url_segments_count'];
+        $this->segmentsCount = $this->config->get('url_segments_count', 0);
 
-        $this->attachedTypes = (array) $this->config['cms.pages.attached'];
+        $this->attachedTypes = $this->config->get('cms.pages.attached', []);
 
-        $this->implicitTypes = (array) $this->config['cms.pages.implicit'];
+        $this->implicitTypes = $this->config->get('cms.pages.implicit', []);
 
-        $this->moduleTypes = (array) $this->config['cms.modules'];
+        $this->moduleTypes = $this->config->get('cms.modules', []);
     }
 
     /**
@@ -301,11 +312,11 @@ class DynamicRouteServiceProvider extends ServiceProvider
      */
     protected function setCurrentRoute($type, array $parameters = [], $defaultMethod = null)
     {
-        $type = explode('@', $type);
+        $typeParts = explode('@', $type);
 
-        $controller = $this->getControllerPath($type[0]);
+        $controller = $this->getControllerPath($typeParts[0]);
 
-        $method = count($type) == 2 ? $type[1] : $defaultMethod;
+        $method = count($typeParts) == 2 ? $typeParts[1] : $defaultMethod;
 
         $segments = '';
 
@@ -333,7 +344,19 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $this->app->instance('breadcrumb', new Collection($this->pages));
 
-        $this->router->get($this->uriPrefix . $segments, [
+        if ($this->request->method() == 'POST'
+            && array_key_exists(
+                $type, $types = $this->config->get('cms.pages.allow_post', [])
+            )
+        ) {
+            $route = 'post';
+
+            $method = $types[$type];
+        } else {
+            $route = 'get';
+        }
+
+        $this->router->{$route}($this->uriPrefix . $segments, [
             'as' => 'current', 'uses' => $controller . '@' . $method]
         );
     }

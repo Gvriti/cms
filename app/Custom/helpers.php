@@ -382,75 +382,80 @@ function fill_db_data($key, array $parameters = [])
  * Get the CMS User role(s).
  *
  * @param  string  $key
+ * @param  mixed   $default
  * @return string|array
  */
-function user_roles($key = null)
+function user_roles($key = null, $default = [])
 {
     if (! is_null($key)) {
-        return config('cms.user_roles.' . $key);
+        return config('cms.user_roles.' . $key) ?: $default;
     }
 
-    return config('cms.user_roles');
+    return config('cms.user_roles') ?: $default;
 }
 
 /**
  * Get the pages config.
  *
  * @param  string  $key
+ * @param  mixed   $default
  * @return string|array
  */
-function cms_pages($key = null)
+function cms_pages($key = null, $default = [])
 {
     if (! is_null($key)) {
-        return config('cms.pages.' . $key);
+        return config('cms.pages.' . $key) ?: $default;
     }
 
-    return config('cms.pages');
+    return config('cms.pages') ?: $default;
 }
 
 /**
  * Get the collections config.
  *
  * @param  string  $key
+ * @param  mixed   $default
  * @return string|array
  */
-function cms_collections($key = null)
+function cms_collections($key = null, $default = [])
 {
     if (! is_null($key)) {
-        return config('cms.collections.' . $key);
+        return config('cms.collections.' . $key) ?: $default;
     }
 
-    return config('cms.collections');
+    return config('cms.collections') ?: $default;
 }
 
 /**
  * Get the inner collection config.
  *
  * @param  string  $key
+ * @param  mixed   $default
  * @return array
  */
-function inner_collection($key = null)
+function inner_collection($key = null, $default = [])
 {
     if (! is_null($key)) {
-        return config('cms.inner_collections.' . $key);
+        return config('cms.inner_collections.' . $key) ?: $default;
     }
 
-    return config('cms.inner_collections');
+    return config('cms.inner_collections') ?: $default;
 }
 
 /**
  * Get the files config.
  *
  * @param  string  $key
+ * @param  mixed   $default
  * @return string|array
  */
-function cms_files($key = null)
+function cms_files($key = null, $default = [])
 {
     if (! is_null($key)) {
-        return config('cms.files.' . $key);
+        return config('cms.files.' . $key) ?: $default;
     }
 
-    return config('cms.files');
+    return config('cms.files') ?: $default;
 }
 
 /**
