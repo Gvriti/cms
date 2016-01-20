@@ -117,8 +117,9 @@ $(function() {
         var data = {'id':id, '_method':'delete', '_token':csrf_token()};
 
         $.post("{{cms_route('cmsUsers.index')}}/" + id, data, function(data) {
-            $('body').append(data.view);
-            if (data.result) {
+            toastr[data.result](data.message);
+
+            if (data.result == 'success') {
                 item.closest('tr').remove();
             }
         }, 'json').fail(function(xhr) {
