@@ -5,6 +5,7 @@ namespace Models;
 use Models\Abstracts\Model;
 use Models\Traits\LanguageTrait;
 use Models\Traits\PositionableTrait;
+use Illuminate\Filesystem\Filesystem;
 
 class File extends Model
 {
@@ -99,10 +100,25 @@ class File extends Model
             return $this->foreignModel;
         }
 
-        $model = __NAMESPACE__ . '\\' . str_singular(ucfirst($this->route_name));
+        $namespace = __NAMESPACE__ . '\\';
+        $model = $namespace . ($name = str_singular(ucfirst($this->route_name)));
 
-        if (is_null($type = cms_files($this->route_name)) || ! class_exists($model)) {
-            abort(404);
+        if (! @class_exists($model)) {
+            $modelExists = false;
+
+            if (! empty($dirs = (new Filesystem)->directories(app_path('Models')))) {
+                foreach ($dirs as $dir) {
+                    $model = $namespace . basename($dir) . '\\' . $name;
+
+                    if (@class_exists($model)) {
+                        $modelExists = true;
+
+                        break;
+                    }
+                }
+            }
+
+            if (! $modelExists) abort(404);
         }
 
         $this->foreignModel = new $model;
@@ -112,6 +128,8 @@ class File extends Model
                                                  ->findOrFail($this->route_id);
 
         $this->foreignModel['routeName'] = $this->route_name;
+
+        $type = (array) cms_files($this->route_name);
 
         if (isset($type['foreign_key'])) {
             $routeParams[] = $this->foreignModel->{$type['foreign_key']};
