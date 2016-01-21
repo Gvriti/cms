@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\Page;
 use Models\Article;
 use Illuminate\Http\Request;
 use App\Jobs\Admin\AdminDestroy;
@@ -63,11 +62,10 @@ class AdminArticlesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param  \Models\Page  $page
      * @param  int  $collectionId
      * @return Response
      */
-    public function create(Page $page, $collectionId)
+    public function create($collectionId)
     {
         $data['collectionId'] = $collectionId;
 
@@ -111,12 +109,11 @@ class AdminArticlesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Models\Page  $page
      * @param  int  $collectionId
      * @param  int  $id
      * @return Response
      */
-    public function edit(Page $page, $collectionId, $id)
+    public function edit($collectionId, $id)
     {
         $data['items'] = $this->model->joinLanguages()->where('id', $id)
                                                       ->getOrFail();
