@@ -9,25 +9,25 @@
     "packages": [
         {
             "name": "barryvdh/elfinder-flysystem-driver",
-            "version": "v0.1.2",
+            "version": "v0.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/elfinder-flysystem-driver.git",
-                "reference": "c1c099b249147b64c2a269ed3c571fedaba5dc57"
+                "reference": "d6acb4b4c3dff53ade5928052543ab0456159bc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/elfinder-flysystem-driver/zipball/c1c099b249147b64c2a269ed3c571fedaba5dc57",
-                "reference": "c1c099b249147b64c2a269ed3c571fedaba5dc57",
+                "url": "https://api.github.com/repos/barryvdh/elfinder-flysystem-driver/zipball/d6acb4b4c3dff53ade5928052543ab0456159bc7",
+                "reference": "d6acb4b4c3dff53ade5928052543ab0456159bc7",
                 "shasum": ""
             },
             "require": {
                 "intervention/image": "~2.0",
                 "league/flysystem": "~1.0",
-                "php": ">=5.4"
+                "php": ">=5.4",
+                "studio-42/elfinder": "2.1.x"
             },
             "suggest": {
-                "barryvdh/elfinder-builds": "~2.1",
                 "league/glide": "~0.3"
             },
             "type": "library",
@@ -60,7 +60,7 @@
                 "elfinder",
                 "filesystem"
             ],
-            "time": "2015-11-14 20:15:15"
+            "time": "2016-01-13 15:49:41"
         },
         {
             "name": "barryvdh/laravel-elfinder",

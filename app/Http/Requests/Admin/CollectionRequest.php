@@ -44,8 +44,6 @@ class CollectionRequest extends Request
     {
         $input = parent::all();
 
-        $request = $this->request;
-
         if (! array_key_exists($this->get('type'), cms_collections('types'))) {
             $input['type'] = null;
         }

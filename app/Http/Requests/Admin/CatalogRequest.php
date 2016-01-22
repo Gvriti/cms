@@ -42,8 +42,6 @@ class CatalogRequest extends Request
     {
         $input = parent::all();
 
-        $request = $this->request;
-
         if (! $this->has('short_title')) {
             $input['short_title'] = $this->get('title');
         }

@@ -24,67 +24,69 @@
     </div>
 </div>
 <div class="row">
-    <div class="panel panel-default has-sidebar col-md-9 pull-right">
-        <div class="panel-heading">
-            <h3 class="panel-title ttc">Albums</h3>
-            <div class="panel-options">
-                <a href="{{cms_route('collections.edit', [$collection->id])}}">
-                    <i class="fa fa-gear"></i>
-                </a>
-                <a href="#" data-toggle="panel">
-                    <span class="collapse-icon">&ndash;</span>
-                    <span class="expand-icon">+</span>
-                </a>
+    <div class="col-md-9 pull-right has-sidebar">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title ttc">Albums</h3>
+                <div class="panel-options">
+                    <a href="{{cms_route('collections.edit', [$collection->id])}}">
+                        <i class="fa fa-gear"></i>
+                    </a>
+                    <a href="#" data-toggle="panel">
+                        <span class="collapse-icon">&ndash;</span>
+                        <span class="expand-icon">+</span>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="panel-body">
-            <a href="{{ cms_route('galleries.create', [$collection->id]) }}" class="btn btn-secondary btn-icon-standalone">
-                <i class="{{icon_type('galleries')}}"></i>
-                <span>{{ trans('general.create') }}</span>
-            </a>
-            <button id="save-tree" class="btn btn-secondary btn-icon-standalone dn" disabled>
-                <i><b class="icon-var fa-save"></b></i>
-                <span>{{ trans('general.save') }}</span>
-            </button>
-            <div id="items">
-                <ul id="nestable-list" class="uk-nestable" data-uk-nestable="{maxDepth:1}">
-                @foreach ($items as $item)
-                    <li id="item{{ $item->id }}" class="item" data-id="{{ $item->id }}" data-pos="{{$item->position}}">
-                        <div class="uk-nestable-item clearfix">
-                        @if ($collection->admin_order_by == 'position')
-                            <div class="uk-nestable-handle"></div>
-                        @endif
-                            <div class="list-label"><a href="{{ cms_route('galleries.edit', [$collection->id, $item->id]) }}">{{ $item->title }}</a></div>
-                            <div class="btn-action togglable pull-right">
-                                <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
-                                <a href="#" class="movable btn btn-white" title="Move to collection" data-id="{{$item->id}}">
-                                    <span class="{{icon_type('collections')}}"></span>
+            <div class="panel-body">
+                <a href="{{ cms_route('galleries.create', [$collection->id]) }}" class="btn btn-secondary btn-icon-standalone">
+                    <i class="{{icon_type('galleries')}}"></i>
+                    <span>{{ trans('general.create') }}</span>
+                </a>
+                <button id="save-tree" class="btn btn-secondary btn-icon-standalone dn" disabled>
+                    <i><b class="icon-var fa-save"></b></i>
+                    <span>{{ trans('general.save') }}</span>
+                </button>
+                <div id="items">
+                    <ul id="nestable-list" class="uk-nestable" data-uk-nestable="{maxDepth:1}">
+                    @foreach ($items as $item)
+                        <li id="item{{ $item->id }}" class="item" data-id="{{ $item->id }}" data-pos="{{$item->position}}">
+                            <div class="uk-nestable-item clearfix">
+                            @if ($collection->admin_order_by == 'position')
+                                <div class="uk-nestable-handle"></div>
+                            @endif
+                                <div class="list-label"><a href="{{ cms_route('galleries.edit', [$collection->id, $item->id]) }}">{{ $item->title }}</a></div>
+                                <div class="btn-action togglable pull-right">
+                                    <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
+                                    <a href="#" class="movable btn btn-white" title="Move to collection" data-id="{{$item->id}}">
+                                        <span class="{{icon_type('collections')}}"></span>
+                                    </a>
+                                    {!! Form::open(['method' => 'post', 'url' => cms_route('galleries.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
+                                        <button type="submit" class="btn btn-{{$item->visible ? 'white' : 'gray'}}" title="{{trans('general.visibility')}}">
+                                            <span class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></span>
+                                        </button>
+                                    {!! Form::close() !!}
+                                    <a href="{{ cms_route($item->type . '.index', [$item->id]) }}" class="btn btn-info" title="{{trans('general.gallery')}}">
+                                        <span class="{{icon_type($item->type)}}"></span>
+                                    </a>
+                                    <a href="{{ cms_route('galleries.edit', [$collection->id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
+                                        <span class="fa fa-edit"></span>
+                                    </a>
+                                    {!! Form::open(['method' => 'delete', 'url' => cms_route('galleries.destroy', [$collection->id, $item->id]), 'class' => 'form-delete']) !!}
+                                        <button type="submit" class="btn btn-danger" data-id="{{ $item->id }}" title="{{trans('general.delete')}}">
+                                            <span class="fa fa-trash"></span>
+                                        </button>
+                                    {!! Form::close() !!}
+                                </div>
+                                <a href="#" class="btn btn-primary btn-toggle pull-right visible-xs">
+                                    <span class="fa fa-toggle-left"></span>
                                 </a>
-                                {!! Form::open(['method' => 'post', 'url' => cms_route('galleries.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
-                                    <button type="submit" class="btn btn-{{$item->visible ? 'white' : 'gray'}}" title="{{trans('general.visibility')}}">
-                                        <span class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></span>
-                                    </button>
-                                {!! Form::close() !!}
-                                <a href="{{ cms_route($item->type . '.index', [$item->id]) }}" class="btn btn-info" title="{{trans('general.gallery')}}">
-                                    <span class="{{icon_type($item->type)}}"></span>
-                                </a>
-                                <a href="{{ cms_route('galleries.edit', [$collection->id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
-                                    <span class="fa fa-edit"></span>
-                                </a>
-                                {!! Form::open(['method' => 'delete', 'url' => cms_route('galleries.destroy', [$collection->id, $item->id]), 'class' => 'form-delete']) !!}
-                                    <button type="submit" class="btn btn-danger" data-id="{{ $item->id }}" title="{{trans('general.delete')}}">
-                                        <span class="fa fa-trash"></span>
-                                    </button>
-                                {!! Form::close() !!}
                             </div>
-                            <a href="#" class="btn btn-primary btn-toggle pull-right visible-xs">
-                                <span class="fa fa-toggle-left"></span>
-                            </a>
-                        </div>
-                    </li>
-                @endforeach
-                </ul>
-                {!! $items->render() !!}
+                        </li>
+                    @endforeach
+                    </ul>
+                    {!! $items->render() !!}
+                </div>
             </div>
         </div>
     </div>
