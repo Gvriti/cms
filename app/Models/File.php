@@ -82,9 +82,13 @@ class File extends Model
         parent::__construct($attributes);
 
         if (! is_null($route = request()->route())) {
-            $this->setAttribute('route_name', $route->parameter('routeName'));
+            if (! is_null($routeName = $route->parameter('routeName'))) {
+                $this->setAttribute('route_name', $routeName);
+            }
 
-            $this->setAttribute('route_id', $route->parameter('routeId'));
+            if (! is_null($routeId = $route->parameter('routeId'))) {
+                $this->setAttribute('route_id', $routeId);
+            }
         }
     }
 
@@ -157,8 +161,8 @@ class File extends Model
     /**
      * Add a where `route_id, route_name` clause to the query.
      *
-     * @param  int|null     $routeId
-     * @param  string|null  $routeName
+     * @param  null|int     $routeId
+     * @param  null|string  $routeName
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function byRoute($routeId = null, $routeName = null)
