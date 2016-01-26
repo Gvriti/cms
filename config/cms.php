@@ -46,8 +46,6 @@ return [
         'implicit' => [
             'collections',
             'galleries'
-        ],
-        'allow_posts' => [
         ]
     ],
 
@@ -146,6 +144,19 @@ return [
     */
 
     'tabs' => [
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Postable methods
+    |--------------------------------------------------------------------------
+    |
+    | This array used to specify types with methods, that will allow to
+    | send a POST request.
+    |
+    */
+
+    'post_methods' => [
     ],
 
     /*

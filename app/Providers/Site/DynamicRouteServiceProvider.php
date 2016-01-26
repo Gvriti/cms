@@ -366,12 +366,13 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         if ($this->request->method() == 'POST'
             && array_key_exists(
-                $type, $types = $this->config->get('cms.pages.allow_posts', [])
+                $type = "{$typeParts[0]}@{$method}",
+                $postTypes = $this->config->get('cms.post_methods', [])
             )
         ) {
             $route = 'post';
 
-            $method = $types[$type];
+            $method = $postTypes[$type];
         } else {
             $route = 'get';
         }
