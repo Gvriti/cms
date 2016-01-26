@@ -67,7 +67,8 @@ class AdminArticlesController extends Controller
      */
     public function create($collectionId)
     {
-        $data['collectionId'] = $collectionId;
+        $data['current'] = $this->model;
+        $data['current']->collection_id = $collectionId;
 
         return view('admin.articles.create', $data);
     }

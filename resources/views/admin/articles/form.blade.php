@@ -123,7 +123,7 @@
         <button type="submit" class="btn btn-secondary" title="{{ $submit }}">
             <i class="fa fa-{{ $icon }}"></i>
         </button>
-        <a href="{{ cms_route('articles.index', [$collectionId]) }}" class="btn btn-blue" title="{{ trans('general.back') }}">
+        <a href="{{ cms_route('articles.index', [$current->collection_id]) }}" class="btn btn-blue" title="{{ trans('general.back') }}">
             <i class="fa fa-arrow-left"></i>
         </a>
     </div>

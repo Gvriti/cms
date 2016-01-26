@@ -30,7 +30,7 @@
     <div class="panel-body">
         {!! Form::open([
             'method' => 'post',
-            'url'  => cms_route('articles.index', [$collectionId]),
+            'url'  => cms_route('articles.index', [$current->collection_id]),
             'class'  => 'form-horizontal'
         ]) !!}
             @include('admin.articles.form', [

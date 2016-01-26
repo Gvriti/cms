@@ -52,14 +52,14 @@ class DynamicRouteServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $segments = [];
+    protected $segments = [], $segmentsLeft = [];
 
     /**
      * Get the count of the total URL segments.
      *
      * @var int
      */
-    protected $segmentsCount = 0;
+    protected $segmentsCount = 0, $segmentsLeftCount = 0;
 
     /**
      * The array of the Page instances.
@@ -88,6 +88,13 @@ class DynamicRouteServiceProvider extends ServiceProvider
      * @var array
      */
     protected $moduleTypes = [];
+
+    /**
+     * The array of the types with an additional URIs.
+     *
+     * @var array
+     */
+    protected $tabs = [];
 
     /**
      * Define a dynamic routes.
@@ -140,6 +147,8 @@ class DynamicRouteServiceProvider extends ServiceProvider
         $this->implicitTypes = $this->config->get('cms.pages.implicit', []);
 
         $this->moduleTypes = $this->config->get('cms.modules', []);
+
+        $this->tabs = $this->config->get('cms.tabs', []);
     }
 
     /**
@@ -216,9 +225,9 @@ class DynamicRouteServiceProvider extends ServiceProvider
     {
         $page = end($this->pages) or $this->app->abort(404);
 
-        $pagesCount = count($this->pages);
+        $this->pagesCount = count($this->pages);
 
-        if (($pagesCount == $this->segmentsCount)
+        if (($this->pagesCount == $this->segmentsCount)
             && ! in_array($page->type, $this->implicitTypes)
         ) {
             $this->setCurrentRoute($page->type, [$page], 'index');
@@ -226,27 +235,24 @@ class DynamicRouteServiceProvider extends ServiceProvider
             return;
         }
 
-        $segmentsLeft = array_slice($this->segments, $pagesCount);
+        $this->segmentsLeft = array_slice($this->segments, $this->pagesCount);
 
-        if (count($segmentsLeft) < 2) {
-            $this->setAttachedTypeRoute($page, $segmentsLeft);
-
-            return;
+        if (($this->segmentsLeftCount = count($this->segmentsLeft)) > 2) {
+            $this->app->abort(404);
         }
 
-        $this->app->abort(404);
+        $this->setAttachedTypeRoute($page);
     }
 
     /**
      * Set the route by the attached type.
      *
      * @param  \Models\Page  $page
-     * @param  array  $segments
      * @return void
      */
-    protected function setAttachedTypeRoute(Page $page, array $segments)
+    protected function setAttachedTypeRoute(Page $page)
     {
-        $slug = current($segments);
+        $slug = current($this->segmentsLeft);
 
         if (in_array($page->type, $this->moduleTypes)) {
             $this->setCurrentRoute($page->type, [$page, $slug], 'show');
@@ -260,7 +266,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
             $page->{str_singular($page->type) . '_id'}
         );
 
-        if (! count($segments)) {
+        if (! $slug) {
             $this->setCurrentRoute($implicitModel->type, [
                 $page, $implicitModel
             ], 'index');
@@ -312,6 +318,20 @@ class DynamicRouteServiceProvider extends ServiceProvider
      */
     protected function setCurrentRoute($type, array $parameters = [], $defaultMethod = null)
     {
+        if ($this->segmentsLeftCount == 2) {
+            if (array_key_exists($type, $this->tabs)
+                && array_key_exists(
+                    $tab = end($this->segmentsLeft), (array) $this->tabs[$type]
+                )
+            ) {
+                $defaultMethod = $this->tabs[$type][$tab];
+
+                $parameters[] = $tab;
+            } else {
+                $this->app->abort(404);
+            }
+        }
+
         $typeParts = explode('@', $type);
 
         $controller = $this->getControllerPath($typeParts[0]);
@@ -346,7 +366,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         if ($this->request->method() == 'POST'
             && array_key_exists(
-                $type, $types = $this->config->get('cms.pages.allow_post', [])
+                $type, $types = $this->config->get('cms.pages.allow_posts', [])
             )
         ) {
             $route = 'post';

@@ -25,12 +25,18 @@ class SiteCurrentPageEventListener
                 'meta_desc' => $trans->get('meta_desc') ?: $title,
             ];
         } else {
+            if (! is_null($current->tab_title)) {
+                $current->title .= ' - ' . $current->tab_title;
+            }
+
             if (empty($current->slug)) {
                 if (strpos($path = request()->getPathInfo(), $language = language()) === 1) {
                     $path = substr($path, strlen($language) + 2);
                 }
 
                 $current->slug = $path;
+            } elseif (! is_null($current->tab_slug)) {
+                $current->slug .= '/' . $current->tab_slug;
             }
 
             if (empty($current->meta_desc)) {
@@ -60,8 +66,7 @@ class SiteCurrentPageEventListener
     public function subscribe($events)
     {
         $events->listen([
-                'composing: site.partials.head',
-                'composing: site.partials.pages',
+                'composing: site.app',
             ],
             'App\Listeners\Site\SiteCurrentPageEventListener@onCurrentPageComposer'
         );

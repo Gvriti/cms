@@ -26,18 +26,18 @@
 <div class="clearfix">
     <ul class="nav nav-tabs col-xs-8">
 @if ($isMultiLang = count(languages()) > 1)
-    @foreach ($items as $item)
-        <li{!!language() != $item->language ? '' : ' class="active"'!!}>
-            <a href="#item-{{$item->language}}" data-toggle="tab">
-                <span class="visible-xs">{{$item->language}}</span>
-                <span class="hidden-xs">{{language($item->language)}}</span>
+    @foreach ($items as $current)
+        <li{!!language() != $current->language ? '' : ' class="active"'!!}>
+            <a href="#item-{{$current->language}}" data-toggle="tab">
+                <span class="visible-xs">{{$current->language}}</span>
+                <span class="hidden-xs">{{language($current->language)}}</span>
             </a>
         </li>
     @endforeach
 @else
-    @foreach ($items as $item)
+    @foreach ($items as $current)
         <li class="active">
-            <a href="#item-{{$item->language}}" data-toggle="tab">
+            <a href="#item-{{$current->language}}" data-toggle="tab">
                 <span class="visible-xs"><i class="fa fa-home"></i></span>
                 <span class="hidden-xs">
                     <i class="fa fa-home"></i> General
@@ -49,7 +49,7 @@
     </ul>
     <ul class="nav nav-tabs col-xs-4 right-aligned">
         <li>
-            <a href="{{cms_route('files.index', ['catalog', $item->id])}}">
+            <a href="{{cms_route('files.index', ['catalog', $current->id])}}">
                 <span class="visible-xs"><i class="fa fa-files-o"></i></span>
                 <div class="hidden-xs btn-icon-standalone">
                     <i class="fa fa-files-o"></i> {{trans('general.files')}}
@@ -69,18 +69,18 @@
         </div>
     </div>
     <div class="tab-content">
-    @foreach ($items as $item)
-        <div class="tab-pane{{language() != $item->language ? '' : ' active'}}" id="item-{{$item->language}}">
+    @foreach ($items as $current)
+        <div class="tab-pane{{language() != $current->language ? '' : ' active'}}" id="item-{{$current->language}}">
             <div class="panel-body">
-                {!! Form::model($item, [
+                {!! Form::model($current, [
                     'method'    => 'put',
-                    'url'       => cms_route('catalog.update', [$item->collection_id, $item->id], $isMultiLang ? $item->language : null),
+                    'url'       => cms_route('catalog.update', [$current->collection_id, $current->id], $isMultiLang ? $current->language : null),
                     'class'     => 'form-horizontal '.$settings->get('ajax_form'),
-                    'data-lang' => $item->language
+                    'data-lang' => $current->language
                 ]) !!}
                     @include('admin.catalog.form', [
-                        'collectionId'  => $item->collection_id,
-                        'lang'          => '_' . $item->language,
+                        'collectionId'  => $current->collection_id,
+                        'lang'          => '_' . $current->language,
                         'submit'        => trans('general.update'),
                         'submitAndBack' => trans('general.update_n_back'),
                         'icon'          => 'save'

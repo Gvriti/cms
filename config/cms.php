@@ -47,7 +47,7 @@ return [
             'collections',
             'galleries'
         ],
-        'allow_post' => [
+        'allow_posts' => [
         ]
     ],
 
@@ -134,7 +134,18 @@ return [
     */
 
     'modules' => [
-        'projects'
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tabs
+    |--------------------------------------------------------------------------
+    |
+    | This array used to specify types, that will allow additional tab URIs.
+    |
+    */
+
+    'tabs' => [
     ],
 
     /*

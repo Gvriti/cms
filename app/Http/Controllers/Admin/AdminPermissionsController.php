@@ -72,7 +72,9 @@ class AdminPermissionsController extends Controller
 
         $this->request = $request;
 
-        $this->auth = $request->user()->cms()->get();
+        if (! is_null($request->user())) {
+            $this->auth = $request->user()->cms()->get();
+        }
     }
 
     /**
