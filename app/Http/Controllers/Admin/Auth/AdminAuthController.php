@@ -62,6 +62,8 @@ class AdminAuthController extends Controller
     {
         if ($this->auth->check()) {
             $this->auth->get()->unlockScreen();
+
+            $this->auth->logout();
         }
 
         return parent::getLogout();

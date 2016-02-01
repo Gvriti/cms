@@ -24,11 +24,18 @@ abstract class AuthController extends Controller
     protected $loginUsernameRules = 'required|email';
 
     /**
-     * The path to the login route.
+     * The path to the login route / url.
      *
      * @return string
      */
     protected $loginPath;
+
+    /**
+     * The path to the logout route / url.
+     *
+     * @return string
+     */
+    protected $logoutPath = '/';
 
     /**
      * The path to the login view.
@@ -186,15 +193,18 @@ abstract class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getLogout()
+    protected function getLogout()
     {
-        $this->auth->logout();
-
         if ($this->request->ajax()) {
-            return $this->ajaxViewResponse($this->ajaxLogoutViewResponse);
+            if (! is_null($html = $this->ajaxLogoutViewResponse)) {
+                $html = view()->make($this->ajaxLogoutViewResponse)->render();
+            }
+
+            return response()->json(['result' => true, 'view' => $html]);
         }
 
-        return redirect($this->loginPath());
+        return is_null($this->logoutPath) ? redirect()->back()
+                                          : redirect($this->logoutPath());
     }
 
     /**
@@ -236,13 +246,23 @@ abstract class AuthController extends Controller
     }
 
     /**
-     * Get the path to the login route.
+     * Get the path to the login route / url.
      *
      * @return string
      */
     public function loginPath()
     {
         return $this->url($this->loginPath);
+    }
+
+    /**
+     * Get the path to the logout route / url.
+     *
+     * @return string
+     */
+    public function logoutPath()
+    {
+        return $this->url($this->logoutPath);
     }
 
     /**

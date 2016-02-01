@@ -41,7 +41,7 @@ class Guard extends BaseGuard
             return $this->user();
         }
 
-        return $this->user()->$attribute;
+        return $this->user()->{$attribute};
     }
 
     /**

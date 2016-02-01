@@ -137,14 +137,14 @@ trait LanguageTrait
 
         $currentLanguage = language();
 
-        $title = $attributes['title'];
+        $title = isset($attributes['title']) ? $attributes['title'] : null;
 
         $attributes[$this->getForeignKey()] = $this->id;
 
         foreach($languages as $key => $value) {
             $attributes['language'] = $key;
 
-            if ($key != $currentLanguage) {
+            if (! is_null($title) && $key != $currentLanguage) {
                 $attributes['title'] = $title.' ('.strtoupper($key).')';
             } else {
                 $attributes['title'] = $title;

@@ -5,6 +5,7 @@ namespace App\Jobs\Admin;
 use Models\File;
 use App\Jobs\Job;
 use Models\Abstracts\Model;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Database\QueryException;
 use Illuminate\Contracts\Bus\SelfHandling;
 
@@ -32,20 +33,30 @@ class AdminDestroy extends Job implements SelfHandling
     protected $isFileable;
 
     /**
+     * Recursively deletable directory.
+     *
+     * @var string
+     */
+    protected $deleteDir;
+
+    /**
      * Create a new job instance.
      *
      * @param  Models\Model  $model
-     * @param  int    $id
-     * @param  bool   $isFileable
+     * @param  int   $id
+     * @param  bool  $isFileable
+     * @param  null|string  $deleteDir
      * @return void
      */
-    public function __construct($model, $id, $isFileable = true)
+    public function __construct($model, $id, $isFileable = true, $deleteDir = null)
     {
         $this->model = $model;
 
         $this->id = $id;
 
         $this->isFileable = $isFileable;
+
+        $this->deleteDir = $deleteDir;
     }
 
     /**
@@ -57,6 +68,10 @@ class AdminDestroy extends Job implements SelfHandling
     {
         if (! $this->isDeletable() || ! $this->performDelete()) {
             return $this->response('error', trans('database.error.1451'));
+        }
+
+        if (! is_null($this->deleteDir)) {
+            (new Filesystem)->deleteDirectory($this->deleteDir);
         }
 
         return $this->response('success', trans('database.deleted'));

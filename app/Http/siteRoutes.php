@@ -11,7 +11,7 @@
 |
 */
 
-$router->group(['namespace' => 'Site'], function($router) {
+$router->group(['namespace' => 'Site'], function ($router) {
     // feedback
     $router->post('!feedback', ['as' => 'feedback', 'uses' => 'SiteFeedbackController@send']);
 

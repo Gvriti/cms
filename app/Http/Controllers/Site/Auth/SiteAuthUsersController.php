@@ -51,7 +51,7 @@ class SiteAuthUsersController extends Controller
             'firstname' => 'required|min:2|max:255',
             'lastname'  => 'required|min:2|max:255',
             'password'  => 'required|confirmed|min:6',
-        ]);
+        ], [], trans('attributes', []));
     }
 
     /**
@@ -61,15 +61,12 @@ class SiteAuthUsersController extends Controller
      */
     protected function create()
     {
-        $data = $this->request->only([
+        $input = $this->request->only([
             'email', 'firstname', 'lastname', 'password'
         ]);
 
-        return (new User)->create([
-            'email'     => $data['email'],
-            'firstname' => $data['firstname'],
-            'lastname'  => $data['lastname'],
-            'password'  => bcrypt($data['password']),
-        ]);
+        $input['password'] = bcrypt($input['password']);
+
+        return (new User)->create($input);
     }
 }

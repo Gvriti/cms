@@ -12,7 +12,7 @@
 */
 
 // authentication
-$router->group(['prefix' => cms_slug(), 'namespace' => 'Admin\Auth'], function($router) {
+$router->group(['prefix' => cms_slug(), 'namespace' => 'Admin\Auth'], function ($router) {
     // login
     $router->get('login', ['as' => cms_prefix('login'), 'uses' => 'AdminAuthController@getLogin']);
     $router->post('login', ['as' => cms_prefix('login'), 'uses' => 'AdminAuthController@postLogin']);
@@ -25,7 +25,7 @@ $router->group(['prefix' => cms_slug(), 'namespace' => 'Admin\Auth'], function($
 });
 
 // CMS
-$router->group(['prefix' => cms_slug(), 'namespace' => 'Admin', 'middleware' => 'CmsAuth'], function($router) {
+$router->group(['prefix' => cms_slug(), 'namespace' => 'Admin', 'middleware' => 'CmsAuth'], function ($router) {
     // dashboard
     $router->get('/', ['as' => cms_prefix('dashboard'), 'uses' => 'AdminDashboardController@index']);
 
