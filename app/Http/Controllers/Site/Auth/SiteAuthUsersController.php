@@ -51,7 +51,7 @@ class SiteAuthUsersController extends Controller
             'firstname' => 'required|min:2|max:255',
             'lastname'  => 'required|min:2|max:255',
             'password'  => 'required|confirmed|min:6',
-        ], [], trans('attributes', []));
+        ], [], (array) trans('attributes'));
     }
 
     /**

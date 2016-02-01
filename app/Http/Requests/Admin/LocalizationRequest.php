@@ -39,6 +39,6 @@ class LocalizationRequest extends Request
      */
     public function attributes()
     {
-        return trans('attributes');
+        return (array) trans('attributes');
     }
 }

@@ -22,17 +22,17 @@ function language($value = null)
  */
 function languages()
 {
-    return config('app.languages');
+    return config('app.languages', []);
 }
 
 /**
  * Determine if the language is set in the URL.
  *
- * @return array
+ * @return bool
  */
 function language_isset()
 {
-    return config('language_isset');
+    return config('language_isset', false);
 }
 
 /**
@@ -57,7 +57,7 @@ function multi_auth($method = null)
  */
 function cms_will_load()
 {
-    return config('cms_will_load');
+    return config('cms_will_load', false);
 }
 
 /**
@@ -388,10 +388,10 @@ function fill_db_data($key, array $parameters = [])
 function user_roles($key = null, $default = [])
 {
     if (! is_null($key)) {
-        return config('cms.user_roles.' . $key) ?: $default;
+        return config('cms.user_roles.' . $key, $default);
     }
 
-    return config('cms.user_roles') ?: $default;
+    return config('cms.user_roles', $default);
 }
 
 /**
@@ -404,10 +404,10 @@ function user_roles($key = null, $default = [])
 function cms_pages($key = null, $default = [])
 {
     if (! is_null($key)) {
-        return config('cms.pages.' . $key) ?: $default;
+        return config('cms.pages.' . $key, $default);
     }
 
-    return config('cms.pages') ?: $default;
+    return config('cms.pages', $default);
 }
 
 /**
@@ -420,10 +420,10 @@ function cms_pages($key = null, $default = [])
 function cms_collections($key = null, $default = [])
 {
     if (! is_null($key)) {
-        return config('cms.collections.' . $key) ?: $default;
+        return config('cms.collections.' . $key, $default);
     }
 
-    return config('cms.collections') ?: $default;
+    return config('cms.collections', $default);
 }
 
 /**
@@ -436,10 +436,10 @@ function cms_collections($key = null, $default = [])
 function inner_collection($key = null, $default = [])
 {
     if (! is_null($key)) {
-        return config('cms.inner_collections.' . $key) ?: $default;
+        return config('cms.inner_collections.' . $key, $default);
     }
 
-    return config('cms.inner_collections') ?: $default;
+    return config('cms.inner_collections', $default);
 }
 
 /**
@@ -452,10 +452,10 @@ function inner_collection($key = null, $default = [])
 function cms_files($key = null, $default = [])
 {
     if (! is_null($key)) {
-        return config('cms.files.' . $key) ?: $default;
+        return config('cms.files.' . $key, $default);
     }
 
-    return config('cms.files') ?: $default;
+    return config('cms.files', $default);
 }
 
 /**
