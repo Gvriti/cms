@@ -17,7 +17,10 @@ abstract class Model extends BaseModel
     private $builder;
 
     /**
-     * {@inheritdoc}
+     * Create a new Eloquent model instance.
+     *
+     * @param  array  $attributes
+     * @return void
      */
     public function __construct(array $attributes = [])
     {
@@ -76,6 +79,21 @@ abstract class Model extends BaseModel
         $this->builder = $builder;
 
         return $this;
+    }
+
+    /**
+     * Find a model by its query or return new static.
+     *
+     * @param  array  $columns
+     * @return \Illuminate\Support\Collection|static
+     */
+    public function firstNew($columns = ['*'])
+    {
+        if (! is_null($model = $this->first($columns))) {
+            return $model;
+        }
+
+        return new static;
     }
 
     /**
@@ -138,7 +156,11 @@ abstract class Model extends BaseModel
     {
         try {
             if (! is_null($id)) {
-                $this->findOrFail($id)->delete();
+                if (! is_null($model = $this->find($id))) {
+                    return $model->delete();
+                }
+
+                return;
             }
 
             return parent::delete();
