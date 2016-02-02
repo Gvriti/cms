@@ -26,7 +26,7 @@
         </div>
     @endif
         <div id="feedback">
-            <form action="{{site_route('feedback')}}" method="POST">
+            <form action="{{site_url($current->slug)}}" method="POST">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="row">
                     <div class="col-md-6">

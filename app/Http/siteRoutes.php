@@ -12,9 +12,6 @@
 */
 
 $router->group(['namespace' => 'Site'], function ($router) {
-    // feedback
-    $router->post('!feedback', ['as' => 'feedback', 'uses' => 'SiteFeedbackController@send']);
-
     // glide server
     $router->get($this->app['config']->get('site.glide_base_url') . '/{path}', [
         'as' => 'glide', 'uses' => 'SiteGlideServerController@show'

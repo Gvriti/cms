@@ -7,16 +7,6 @@ use App\Http\Controllers\Controller;
 class SiteHomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
      * Display a home page.
      *
      * @return Response
