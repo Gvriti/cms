@@ -38,6 +38,7 @@ $router->group(['prefix' => cms_slug(), 'namespace' => 'Admin', 'middleware' => 
     // pages
     $router->post('pages/visibility/{id}', ['as' => cms_prefix('pages.visibility'), 'uses' => 'AdminPagesController@visibility']);
     $router->post('pages/position', ['as' => cms_prefix('pages.updatePosition'), 'uses' => 'AdminPagesController@updatePosition']);
+    $router->post('pages/templates', ['as' => cms_prefix('pages.templates'), 'uses' => 'AdminPagesController@getTemplates']);
     $router->put('pages/move/{menuId}', ['as' => cms_prefix('pages.move'), 'uses' => 'AdminPagesController@move']);
     $router->put('pages/collapse', ['as' => cms_prefix('pages.collapse'), 'uses' => 'AdminPagesController@collapse']);
     $router->resource('menus.pages', 'AdminPagesController', ['names' => cms_prefix('pages', true),

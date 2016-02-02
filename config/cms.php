@@ -40,6 +40,7 @@ return [
             'feedback'    => 'Feedback',
             'search'      => 'Search',
         ],
+        'templates' => [],
         'attached' => [
             'collections'
         ],

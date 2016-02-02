@@ -61,7 +61,19 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-8 collections{{$current->collection_id || $errors->has('collection_id') ? '' : ' hidden'}}">
+    <div class="col-lg-8 template{{($templates = cms_pages('templates.' . $current->type, [])) ? '' : ' hidden'}}">
+        <div class="form-group">
+            <label class="col-lg-4 col-sm-2 control-label">Template:</label>
+            <div class="col-lg-6 col-sm-10">
+                {!! Form::select('template', ['' => ''] + $templates, null, [
+                    'id' => 'template' . $lang,
+                    'class' => 'template form-control select',
+                    'data-type' => 'general'
+                ]) !!}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 collection{{$current->collection_id || $errors->has('collection_id') ? '' : ' hidden'}}">
         <div class="form-group required{{($error = $errors->first('collection_id')) ? ' validate-has-error' : '' }}">
             <label class="col-lg-4 col-sm-2 control-label">Collection:</label>
             <div class="col-lg-6 col-sm-10">

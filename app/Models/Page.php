@@ -23,7 +23,7 @@ class Page extends Model
      *
      * @var array
      */
-    protected $fillable = ['parent_id', 'menu_id', 'collection_id', 'type', 'slug', 'position', 'visible', 'collapse', 'image'];
+    protected $fillable = ['parent_id', 'menu_id', 'collection_id', 'type', 'template', 'slug', 'position', 'visible', 'collapse', 'image'];
 
     /**
      * The attributes that are not updatable.
