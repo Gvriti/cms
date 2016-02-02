@@ -1,16 +1,21 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
-    | Upload dir
+    | Public dir
     |--------------------------------------------------------------------------
     |
-    | The dir where to store the images (relative from public)
+    | The public dir with extra options.
     |
     */
-    'dir' => ['files'],
+
+    'public' => [
+        'files' => [
+            'alias' => 'Public files',
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -25,8 +30,37 @@ return array(
     |        'alias' => 'Local storage',
     |    ]
     */
-    'disks' => [
 
+    'disks' => [],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Global roots options
+    |--------------------------------------------------------------------------
+    |
+    | Roots global extra options for all of the Filesystem disks.
+    |
+    */
+
+    'roots_options' => [
+        'uploadAllow' => [
+            // image
+            'image/png', 'image/jpeg', 'image/gif', 'image/x-icon',
+            // application
+            'application/zip', 'application/x-rar', 'application/x-gzip', 'application/x-bzip2', 'application/x-tar',
+            'application/x-7z-compressed', 'application/pdf', 'application/xml',
+            'application/excel', 'application/mspowerpoint', 'application/msword',
+            // docx
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            // text
+            'text/plain', 'text/html',
+            // video
+            'video/mp4', 'video/mpeg', 'video/x-msvideo',
+            // audio
+            'audio/mpeg'
+        ],
+        'uploadDeny'  => ['all'],
+        'uploadOrder' => 'deny, allow'
     ],
 
     /*
@@ -64,26 +98,7 @@ return array(
     |
     */
 
-    'roots' => [
-        'uploadAllow' => [
-            // image
-            'image/png', 'image/jpeg', 'image/gif', 'image/x-icon',
-            // application
-            'application/zip', 'application/x-rar', 'application/x-gzip', 'application/x-bzip2', 'application/x-tar',
-            'application/x-7z-compressed', 'application/pdf', 'application/xml',
-            'application/excel', 'application/mspowerpoint', 'application/msword',
-            // docx
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            // text
-            'text/plain', 'text/html',
-            // video
-            'video/mp4', 'video/mpeg', 'video/x-msvideo',
-            // audio
-            'audio/mpeg'
-        ],
-        'uploadDeny'  => ['all'],
-        'uploadOrder' => 'deny, allow'
-    ],
+    'roots' => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -97,4 +112,4 @@ return array(
 
     'options' => [],
 
-);
+];

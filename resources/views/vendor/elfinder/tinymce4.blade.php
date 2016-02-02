@@ -31,7 +31,7 @@
                 customData: {
                     _token: '{{ csrf_token() }}'
                 },
-                url: '{{ cms_route("filemanager.connector") }}',  // connector URL
+                url: '{{ cms_route('filemanager.connector', ['hide_disks' => 1]) }}',  // connector URL
                 getFileCallback: function(file) { // editor callback
                     FileBrowserDialogue.mySubmit(file.url); // pass selected file path to TinyMCE
                 },
