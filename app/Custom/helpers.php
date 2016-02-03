@@ -44,10 +44,10 @@ function language_isset()
 function multi_auth($method = null)
 {
     if (is_null($method)) {
-        return app('Digital\Auth\Auth');
+        return app('Custom\Auth\Auth');
     }
 
-    return app('Digital\Auth\Auth')->$method();
+    return app('Custom\Auth\Auth')->$method();
 }
 
 /**

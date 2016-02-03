@@ -76,7 +76,7 @@ abstract class AbstractHasCollection extends Model
     }
 
     /**
-     * Build query based on slug.
+     * Build a query based on the slug.
      *
      * @param  string    $slug
      * @param  int|null  $id

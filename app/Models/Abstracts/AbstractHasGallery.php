@@ -52,7 +52,7 @@ abstract class AbstractHasGallery extends Model
     }
 
     /**
-     * Build query based on gallery.
+     * Build a query based on the gallery.
      *
      * @param  int  $id
      * @return \Illuminate\Database\Eloquent\Builder
