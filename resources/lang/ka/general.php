@@ -12,7 +12,7 @@ return [
     */
 
     // common
-    "profile" => "პროფაილი",
+    "profile" => "პროფილი",
     "info"    => "ინფორმაცია",
 
     // actions
