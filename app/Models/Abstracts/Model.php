@@ -26,7 +26,7 @@ abstract class Model extends BaseModel
     {
         parent::__construct($attributes);
 
-        // Set language model if it's used in this model.
+        // Set language model if it's used into the called model.
         if (method_exists(get_called_class(), 'language')) {
             $this->language($this);
         }
@@ -230,5 +230,13 @@ abstract class Model extends BaseModel
     public function orderDesc()
     {
         return $this->orderBy($this->getKeyName(), 'desc');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __get($key)
+    {
+        return $this->getAttributeValue($key);
     }
 }
