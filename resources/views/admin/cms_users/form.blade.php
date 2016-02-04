@@ -1,6 +1,6 @@
 <div class="member-form-inputs">
-    <div class="form-group required{{($error = $errors->first('email')) ? ' validate-has-error' : '' }}">
-        <label class="col-sm-2 control-label text-left">Email:</label>
+    <div class="form-group{{($error = $errors->first('email')) ? ' validate-has-error' : '' }}">
+        <label class="col-sm-2 control-label text-left required">Email:</label>
         <div class="col-sm-10">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
@@ -17,8 +17,8 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <div class="form-group required{{($error = $errors->first('firstname')) ? ' validate-has-error' : '' }}">
-                <label class="col-sm-4 control-label text-left">Firstname:</label>
+            <div class="form-group{{($error = $errors->first('firstname')) ? ' validate-has-error' : '' }}">
+                <label class="col-sm-4 control-label text-left required">Firstname:</label>
                 <div class="col-sm-8">
                     {!! Form::text('firstname', null, [
                         'id' => 'firstname',
@@ -31,8 +31,8 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="form-group required{{($error = $errors->first('lastname')) ? ' validate-has-error' : '' }}">
-                <label class="col-sm-4 control-label text-left">Lastname:</label>
+            <div class="form-group{{($error = $errors->first('lastname')) ? ' validate-has-error' : '' }}">
+                <label class="col-sm-4 control-label text-left required">Lastname:</label>
                 <div class="col-sm-8">
                     {!! Form::text('lastname', null, [
                         'id' => 'lastname',
@@ -76,8 +76,8 @@
 @if (AuthCms::get()->isAdmin() && AuthCms::id() != $current->id)
     <div class="form-group-separator"></div>
 
-    <div class="form-group required{{($error = $errors->first('role')) ? ' validate-has-error' : '' }}">
-        <label class="col-sm-2 control-label text-left">Role:</label>
+    <div class="form-group{{($error = $errors->first('role')) ? ' validate-has-error' : '' }}">
+        <label class="col-sm-2 control-label text-left required">Role:</label>
         <div class="col-sm-10">
             {!! Form::select('role', $roles, null, [
                 'id' => 'role',

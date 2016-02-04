@@ -1,6 +1,6 @@
 {!! Form::hidden('close', false, ['class' => 'form-close']) !!}
-<div class="form-group required{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label">Title:</label>
+<div class="form-group{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
+    <label class="col-sm-2 control-label required">Title:</label>
     <div class="col-lg-6 col-sm-10">
         {!! Form::text('title', null, [
             'id' => 'title',

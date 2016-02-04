@@ -69,8 +69,7 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 
 /* forms */
 .form-horizontal .control-label.text-left{text-align:left;}
-.form-group.required .control-label:after {content:" *";color:red;}
-.control-label.required:after {content:" *";color:red;}
+.required:after {content:" *";color:red;}
 
 
 /*** OVERRIDE XENON ***/

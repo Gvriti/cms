@@ -1,6 +1,6 @@
 {!! Form::hidden('close', false, ['class' => 'form-close']) !!}
-<div class="form-group required{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label">Title:</label>
+<div class="form-group{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
+    <label class="col-sm-2 control-label required">Title:</label>
     <div class="col-sm-10">
         {!! Form::text('title', null, [
             'id' => 'title' . $lang,
@@ -45,8 +45,8 @@
 
 <div class="form-group-separator"></div>
 
-<div class="form-group required{{($error = $errors->first('type')) ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label">Type:</label>
+<div class="form-group{{($error = $errors->first('type')) ? ' validate-has-error' : '' }}">
+    <label class="col-sm-2 control-label required">Type:</label>
     <div class="col-sm-10">
         {!! Form::select('type', inner_collection('galleries.types'), null, [
             'id' => 'type' . $lang,
@@ -62,8 +62,8 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <div class="form-group required{{($error = $errors->first('admin_order_by')) ? ' validate-has-error' : '' }}">
-            <label class="col-sm-4 control-label">Admin order by:</label>
+        <div class="form-group{{($error = $errors->first('admin_order_by')) ? ' validate-has-error' : '' }}">
+            <label class="col-sm-4 control-label required">Admin order by:</label>
             <div class="col-sm-8">
                 {!! Form::select('admin_order_by', inner_collection('galleries.order_by'), null, [
                     'id' => 'admin_order_by',
@@ -77,8 +77,8 @@
     </div>
 
     <div class="col-sm-6">
-        <div class="form-group required{{($error = $errors->first('site_order_by')) ? ' validate-has-error' : '' }}">
-            <label class="col-sm-4 control-label">Site order by:</label>
+        <div class="form-group{{($error = $errors->first('site_order_by')) ? ' validate-has-error' : '' }}">
+            <label class="col-sm-4 control-label required">Site order by:</label>
             <div class="col-sm-8">
                 {!! Form::select('site_order_by', inner_collection('galleries.order_by'), null, [
                     'id' => 'site_order_by',
@@ -96,8 +96,8 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <div class="form-group required{{($error = $errors->first('admin_sort')) ? ' validate-has-error' : '' }}">
-            <label class="col-sm-4 control-label">Admin sort:</label>
+        <div class="form-group{{($error = $errors->first('admin_sort')) ? ' validate-has-error' : '' }}">
+            <label class="col-sm-4 control-label required">Admin sort:</label>
             <div class="col-sm-8">
                 {!! Form::select('admin_sort', inner_collection('galleries.sort'), null, [
                     'id' => 'admin_sort' . $lang,
@@ -112,8 +112,8 @@
     </div>
 
     <div class="col-sm-6">
-        <div class="form-group required{{($error = $errors->first('site_sort')) ? ' validate-has-error' : '' }}">
-            <label class="col-sm-4 control-label">Site sort:</label>
+        <div class="form-group{{($error = $errors->first('site_sort')) ? ' validate-has-error' : '' }}">
+            <label class="col-sm-4 control-label required">Site sort:</label>
             <div class="col-sm-8">
                 {!! Form::select('site_sort', inner_collection('galleries.sort'), null, [
                     'id' => 'site_sort' . $lang,
@@ -132,8 +132,8 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <div class="form-group required{{($error = $errors->first('admin_per_page')) ? ' validate-has-error' : '' }}">
-            <label class="col-sm-4 control-label">Admin per page:</label>
+        <div class="form-group{{($error = $errors->first('admin_per_page')) ? ' validate-has-error' : '' }}">
+            <label class="col-sm-4 control-label required">Admin per page:</label>
             <div class="col-sm-8">
                 <div id="admin_per_page{{$lang}}" class="input-group spinner" data-type="general" data-step="1" data-min="2" data-max="50">
                     <div class="input-group-btn">
@@ -155,8 +155,8 @@
     </div>
 
     <div class="col-sm-6">
-        <div class="form-group required{{($error = $errors->first('site_per_page')) ? ' validate-has-error' : '' }}">
-            <label class="col-sm-4 control-label">Site per page:</label>
+        <div class="form-group{{($error = $errors->first('site_per_page')) ? ' validate-has-error' : '' }}">
+            <label class="col-sm-4 control-label required">Site per page:</label>
             <div class="col-sm-8">
                 <div id="site_per_page{{$lang}}" class="input-group spinner" data-type="general" data-step="1" data-min="2" data-max="50">
                     <div class="input-group-btn">

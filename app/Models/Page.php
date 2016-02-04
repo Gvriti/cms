@@ -219,17 +219,6 @@ class Page extends Model
     }
 
     /**
-     * Add a where `type` clause to the query.
-     *
-     * @param  string  $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function type($type)
-    {
-        return $this->where('type', $type);
-    }
-
-    /**
      * Add a where `visible` clause to the query.
      *
      * @param  int  $visible

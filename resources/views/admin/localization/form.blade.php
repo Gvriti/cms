@@ -1,6 +1,6 @@
 {!! Form::hidden('close', false, ['class' => 'form-close']) !!}
-<div class="form-group required{{($error = $errors->first('name')) ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label">Name:</label>
+<div class="form-group{{($error = $errors->first('name')) ? ' validate-has-error' : '' }}">
+    <label class="col-sm-2 control-label required">Name:</label>
     <div class="col-sm-6">
         {!! Form::text('name', null, [
             'id' => 'name' . $lang,
@@ -16,8 +16,8 @@
 
 <div class="form-group-separator"></div>
 
-<div class="form-group required{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label">Title:</label>
+<div class="form-group{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
+    <label class="col-sm-2 control-label required">Title:</label>
     <div class="col-sm-6">
         {!! Form::text('title', null, [
             'id' => 'title' . $lang,
@@ -33,8 +33,8 @@
 
 <div class="form-group-separator"></div>
 
-<div class="form-group required{{($error = $errors->first('value')) ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label">Value:</label>
+<div class="form-group{{($error = $errors->first('value')) ? ' validate-has-error' : '' }}">
+    <label class="col-sm-2 control-label required">Value:</label>
     <div class="col-sm-6">
         {!! Form::text('value', null, [
             'id' => 'value' . $lang,
