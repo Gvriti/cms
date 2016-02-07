@@ -80,9 +80,10 @@ trait LanguageTrait
     /**
      * Add a "_languages" left join to the query.
      *
+     * @param  bool|string  $language
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function joinLanguages()
+    public function joinLanguages($language = false)
     {
         $table = $this->getTable();
         $languageTable = $this->getLanguageTable();
@@ -90,9 +91,16 @@ trait LanguageTrait
 
         $columns = ["{$languageTable}.*", "{$languageTable}.id as {$languageTable}_id", "{$table}.*"];
 
-        return $this->leftJoin(
-            $languageTable, 'id', '=', $foreignKey
-        )->addSelect($columns);
+        $query = $this->leftJoin($languageTable, 'id', '=', $foreignKey)
+                      ->addSelect($columns);
+
+        if ($language === true) {
+            return $query->currentLanguage();
+        } elseif (is_string($language)) {
+            return $query->where("{$languageTable}.language", $language);
+        }
+
+        return $query;
     }
 
     /**

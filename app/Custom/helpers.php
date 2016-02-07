@@ -585,11 +585,11 @@ function getAge($dob)
 }
 
 /**
- * Register a database query listener and log a query.
+ * Register a database query listener and log the queries.
  *
  * @return void
  */
-function get_executed_sql_queries()
+function log_executed_sql_queries()
 {
     $filename = storage_path('logs/queries.log');
     $separator = '--------------------------------------------------------' . PHP_EOL;

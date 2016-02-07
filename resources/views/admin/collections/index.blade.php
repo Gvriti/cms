@@ -80,8 +80,11 @@
 $(function() {
     @include('admin.scripts.destroy')
 
-    var table = $("#items");
-    table.dataTable().yadcf([
+    var table = $('#items');
+    table.dataTable({
+        pageLength: 50,
+        // 'order': [0, 'desc']
+    }).yadcf([
         {column_number : 0, filter_type: 'text', filter_default_label : 'Type a name'},
         {column_number : 1, filter_type: 'text', filter_default_label : 'Type a description'},
         {column_number : 2, filter_default_label : 'All types'},

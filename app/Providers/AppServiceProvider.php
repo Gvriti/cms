@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app['config']->get('app.debug')) {
-            get_executed_sql_queries();
+            log_executed_sql_queries();
         }
     }
 

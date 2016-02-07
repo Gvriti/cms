@@ -25,7 +25,6 @@
 <section class="profile-env">
     <div class="row">
         <div class="col-sm-3">
-            <!-- User Info Sidebar -->
             <div class="user-info-sidebar">
                 <div class="user-img">
                     <img src="{{$current->photo}}" alt="user-img" class="img-cirlce img-responsive img-thumbnail" />
@@ -59,7 +58,6 @@
         </div>
         <div class="col-sm-9">
             <section class="user-timeline-stories">
-                <!-- Timeline Story Type: Status -->
                 <article class="timeline-story">...</article>
             </section>
         </div>
