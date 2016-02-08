@@ -93,7 +93,6 @@ class Page extends Model
 
         return $query->joinLanguages()->joinCollectionType()
                                       ->joinFileId()
-                                      ->currentLanguage()
                                       ->positionAsc();
     }
 
@@ -107,7 +106,7 @@ class Page extends Model
     {
         $query = ! is_null($id) ? $this->menuId($id) : $this;
 
-        return $query->joinLanguages()->visible()->currentLanguage();
+        return $query->joinLanguages()->visible();
     }
 
     /**

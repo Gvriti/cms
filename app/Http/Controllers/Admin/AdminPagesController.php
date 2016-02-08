@@ -125,7 +125,8 @@ class AdminPagesController extends Controller
     {
         $model = $this->model;
 
-        $data['items'] = $model->joinLanguages()->where('id', $id)->getOrFail();
+        $data['items'] = $model->joinLanguages(false)->where('id', $id)
+                                                     ->getOrFail();
 
         $data['types'] = cms_pages('types');
 

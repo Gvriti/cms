@@ -59,7 +59,7 @@ abstract class AbstractHasGallery extends Model
      */
     public function byGallery($id)
     {
-        return $this->joinLanguages()->galleryId($id)->currentLanguage();
+        return $this->joinLanguages()->galleryId($id);
     }
 
     /**
@@ -70,7 +70,7 @@ abstract class AbstractHasGallery extends Model
      */
     public function byType($type = null)
     {
-        return $this->gallery()->currentLanguage()->where(
+        return $this->gallery()->where(
             'type', is_null($type) ? static::TYPE : $type
         );
     }

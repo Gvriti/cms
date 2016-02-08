@@ -119,7 +119,9 @@ class AdminGalleriesController extends Controller
      */
     public function edit($collectionId, $id)
     {
-        $data['items'] = $this->model->joinLanguages()->where('id', $id)->get();
+        $data['items'] = $this->model->joinLanguages(false)
+                                     ->where('id', $id)
+                                     ->get();
 
         return view('admin.galleries.edit', $data);
     }

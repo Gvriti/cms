@@ -60,7 +60,7 @@ class Builder extends EloquentBuilder
     /**
      * Execute the query as a "select" statement or throw an exception.
      *
-     * @param  array $columns
+     * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
@@ -158,6 +158,26 @@ class Builder extends EloquentBuilder
                 }
             }
         }
+    }
+
+    /**
+     * Add an "order by" primary key asc clause to the query.
+     *
+     * @return \Models\Builder\Builder
+     */
+    public function orderAsc()
+    {
+        return $this->orderBy($this->getKeyName(), 'asc');
+    }
+
+    /**
+     * Add an "order by" primary key desc clause to the query.
+     *
+     * @return \Models\Builder\Builder
+     */
+    public function orderDesc()
+    {
+        return $this->orderBy($this->getKeyName(), 'desc');
     }
 
     /**

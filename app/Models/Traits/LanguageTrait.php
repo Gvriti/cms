@@ -83,7 +83,7 @@ trait LanguageTrait
      * @param  bool|string  $language
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function joinLanguages($language = false)
+    public function joinLanguages($language = true)
     {
         $table = $this->getTable();
         $languageTable = $this->getLanguageTable();

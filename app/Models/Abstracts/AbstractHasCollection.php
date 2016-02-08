@@ -61,7 +61,7 @@ abstract class AbstractHasCollection extends Model
     {
         $query = ! is_null($id) ? $this->collectionId($id) : $this;
 
-        return $query->joinLanguages()->currentLanguage();
+        return $query->joinLanguages();
     }
 
     /**

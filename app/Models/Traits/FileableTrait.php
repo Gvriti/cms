@@ -30,7 +30,6 @@ trait FileableTrait
         $files = $this->file()->joinLanguages()
                               ->byRoute($id ?: $this->id, $this->getTable())
                               ->visible()
-                              ->currentLanguage()
                               ->positionDesc()
                               ->get();
 

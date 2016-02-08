@@ -131,7 +131,8 @@ class AdminPhotosController extends Controller
         if ($this->request->ajax()) {
             $model = $this->model;
 
-            $data['items'] = $model->joinLanguages()->where('id', $id)->getOrFail();
+            $data['items'] = $model->joinLanguages(false)->where('id', $id)
+                                                         ->getOrFail();
 
             $view = view()->make('admin.photos.edit', $data)->render();
 

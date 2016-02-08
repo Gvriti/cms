@@ -35,7 +35,7 @@ class AdminLocalizationController extends Controller
      */
     public function index()
     {
-        $data['items'] = $this->model->joinLanguages()->currentLanguage()->get();
+        $data['items'] = $this->model->joinLanguages()->get();
 
         return view('admin.localization.index', $data);
     }
@@ -77,8 +77,9 @@ class AdminLocalizationController extends Controller
      */
     public function edit($id)
     {
-        $data['items'] = $this->model->joinLanguages()->where('id', $id)
-                                                      ->getOrFail();
+        $data['items'] = $this->model->joinLanguages(false)
+                                     ->where('id', $id)
+                                     ->getOrFail();
 
         return view('admin.localization.edit', $data);
     }

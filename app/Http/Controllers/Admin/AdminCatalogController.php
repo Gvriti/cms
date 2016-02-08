@@ -116,8 +116,9 @@ class AdminCatalogController extends Controller
      */
     public function edit($collectionId, $id)
     {
-        $data['items'] = $this->model->joinLanguages()->where('id', $id)
-                                                      ->getOrFail();
+        $data['items'] = $this->model->joinLanguages(false)
+                                     ->where('id', $id)
+                                     ->getOrFail();
 
         return view('admin.catalog.edit', $data);
     }

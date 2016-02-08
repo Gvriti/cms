@@ -18,7 +18,6 @@ class LocalizationServiceProvider extends ServiceProvider
         // Do not boot if CMS will load.
         if (! $this->app->runningInConsole() && ! cms_will_load()) {
             $trans = (new Localization)->joinLanguages()
-                                       ->currentLanguage()
                                        ->get()
                                        ->lists('value', 'name');
 

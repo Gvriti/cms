@@ -130,7 +130,9 @@ class AdminFilesController extends Controller
     public function edit($routeName, $routeId, $id)
     {
         if ($this->request->ajax()) {
-            $data['items'] = $this->model->joinLanguages()->where('id', $id)->getOrFail();
+            $data['items'] = $this->model->joinLanguages(false)
+                                         ->where('id', $id)
+                                         ->getOrFail();
 
             $view = view()->make('admin.files.edit', $data)->render();
 

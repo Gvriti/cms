@@ -14,7 +14,7 @@ abstract class Model extends BaseModel
      *
      * @var \Models\Builder\Builder|null
      */
-    private $builder;
+    protected $builder;
 
     /**
      * Create a new Eloquent model instance.
@@ -210,26 +210,6 @@ abstract class Model extends BaseModel
         }
 
         throw new HttpResponseException($response);
-    }
-
-    /**
-     * Add an "order by" primary key asc clause to the query.
-     *
-     * @return \Models\Builder\Builder
-     */
-    public function orderAsc()
-    {
-        return $this->orderBy($this->getKeyName(), 'asc');
-    }
-
-    /**
-     * Add an "order by" primary key desc clause to the query.
-     *
-     * @return \Models\Builder\Builder
-     */
-    public function orderDesc()
-    {
-        return $this->orderBy($this->getKeyName(), 'desc');
     }
 
     /**

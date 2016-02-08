@@ -128,7 +128,6 @@ class File extends Model
         $this->foreignModel = new $model;
 
         $this->foreignModel = $this->foreignModel->joinLanguages()
-                                                 ->currentLanguage()
                                                  ->findOrFail($this->route_id);
 
         $this->foreignModel['routeName'] = $this->route_name;
@@ -153,9 +152,9 @@ class File extends Model
      */
     public function getByRoute()
     {
-        return $this->joinLanguages()->byRoute()->currentLanguage()
-                                                ->orderBy('position', 'desc')
-                                                ->paginate(20);
+        return $this->joinLanguages()->byRoute()
+                                     ->orderBy('position', 'desc')
+                                     ->paginate(20);
     }
 
     /**
