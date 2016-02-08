@@ -162,10 +162,11 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+
         /*
-         * Required Laravel Service Providers...
+         * Composer Required Service Providers...
          */
-        Illuminate\Html\HtmlServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -238,10 +239,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        // Required
-        'Form' => Illuminate\Html\FormFacade::class,
+        // Composer Required Facades
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
-        // Project
+        // Project Facades
         'Auth'     => Custom\Support\Facades\Auth\MultiAuth::class,
         'AuthCms'  => Custom\Support\Facades\Auth\AuthCms::class,
         'AuthUser' => Custom\Support\Facades\Auth\AuthUser::class,

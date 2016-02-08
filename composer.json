@@ -7,9 +7,9 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "illuminate/html": "5.*",
+        "laravelcollective/html": "5.1.*",
         "league/glide": "1.0.*",
-        "php-curl-class/php-curl-class": "4.8.*",
+        "php-curl-class/php-curl-class": "4.10.*",
         "cocur/slugify": "1.4.*",
         "mews/captcha": "2.1.*",
         "barryvdh/laravel-elfinder": "0.3.*"
