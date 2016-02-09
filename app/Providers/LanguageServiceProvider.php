@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Http\Request;
-use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Config\Repository;
 
 class LanguageServiceProvider extends ServiceProvider
 {
@@ -12,7 +12,7 @@ class LanguageServiceProvider extends ServiceProvider
      * Bootstrap the application services.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Config\Repository  $config
+     * @param  \Illuminate\Contracts\Config\Repository  $config
      * @return void
      */
     public function boot(Request $request, Repository $config)
@@ -35,7 +35,7 @@ class LanguageServiceProvider extends ServiceProvider
      * Set language config.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Config\Repository  $config
+     * @param  \Illuminate\Contracts\Config\Repository  $config
      * @return void
      */
     protected function setLanguageConfig(Request $request, Repository $config)
@@ -75,7 +75,7 @@ class LanguageServiceProvider extends ServiceProvider
      * Make current URL for all available languages of the aplication.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Config\Repository  $config
+     * @param  \Illuminate\Contracts\Config\Repository  $config
      * @return array
      */
     protected function makeLanguageUrls(Request $request, Repository $config)

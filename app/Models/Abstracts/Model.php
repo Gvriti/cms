@@ -35,21 +35,28 @@ abstract class Model extends BaseModel
     /**
      * Get the updatable attributes for the model.
      *
-     * @param  array   $attributes
-     * @param  string  $exclude
+     * @param  array  $attributes
+     * @param  string|null  $exclude
      * @return array
      */
     public function getUpdatable(array $attributes = [], $exclude = null)
     {
-        if (is_null($exclude)) {
-            $notUpdatable = $this->notUpdatable;
-        } else {
-            $notUpdatable = $this->{'notUpdatable' . ucfirst($exclude)};
+        if (! ($hasUpdatable = ! empty($this->updatable)) && empty($this->notUpdatable)) {
+            return $attributes;
         }
 
-        $updatable = array_flip(array_diff($this->fillable, (array) $notUpdatable));
+        $property = is_null($exclude) ? 'updatable' : 'updatable' . ucfirst($exclude);
 
-        return array_intersect_key($attributes, $updatable);
+        if ($hasUpdatable) {
+            $fillable = array_flip(array_intersect($this->fillable, (array) $this->{$property}));
+        } else {
+            $fillable = array_flip(array_diff(
+                $this->fillable,
+                (array) $this->{'not' . ucfirst($property)}
+            ));
+        }
+
+        return array_intersect_key($attributes, $fillable);
     }
 
     /**

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Config\Repository as Config;
+use Illuminate\Contracts\Config\Repository as Config;
 
 class DynamicRouteServiceProvider extends ServiceProvider
 {
@@ -36,7 +36,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
     /**
      * The config repository instance.
      *
-     * @var \Illuminate\Config\Repository
+     * @var \Illuminate\Contracts\Config\Repository
      */
     protected $config;
 
@@ -101,7 +101,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Routing\Router  $router
-     * @param  \Illuminate\Config\Repository  $config
+     * @param  \Illuminate\Contracts\Config\Repository  $config
      * @return void
      */
     public function boot(Request $request, Router $router, Config $config)
@@ -154,7 +154,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
     /**
      * Build a new routes.
      *
-     * @param  \Illuminate\Config\Repository  $config
+     * @param  \Illuminate\Contracts\Config\Repository  $config
      * @return void
      */
     public function build()

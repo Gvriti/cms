@@ -6,7 +6,7 @@ use League\Glide\Server;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use League\Glide\Http\NotFoundException;
-use Illuminate\Config\Repository as Config;
+use Illuminate\Contracts\Config\Repository as Config;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SiteGlideServerController extends Controller
@@ -40,7 +40,7 @@ class SiteGlideServerController extends Controller
     /**
      * Display the specified image.
      *
-     * @param  \Illuminate\Config\Repository  $config
+     * @param  \Illuminate\Contracts\Config\Repository  $config
      * @param  string  $path
      * @return Request
      *

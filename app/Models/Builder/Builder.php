@@ -3,7 +3,9 @@
 namespace Models\Builder;
 
 use Models\Abstracts\Model;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Database\Query\JoinClause;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 
@@ -15,6 +17,13 @@ class Builder extends EloquentBuilder
      * @var \Models\Abstracts\Model
      */
     protected $model;
+
+    /**
+     * The columns that should be appended to pagination count.
+     *
+     * @var array
+     */
+    public $columnsForPagination;
 
     /**
      * Create a new Eloquent query builder instance.
@@ -40,11 +49,23 @@ class Builder extends EloquentBuilder
     {
         $this->query->addSelect($columns);
 
-        $query = $this->getQuery();
-
-        $query->columns = array_unique($query->columns);
+        $this->query->columns = array_unique($this->query->columns);
 
         return $this;
+    }
+
+    /**
+     * Set the columns for pagination count.
+     *
+     * @param  string  $columns
+     * @param  string  $method
+     * @return \Models\Builder\Builder
+     */
+    public function selectForPagination($columns, $method = 'addSelect')
+    {
+        $this->columnsForPagination[] = $columns;
+
+        return call_user_func_array([$this, $method], [$columns]);
     }
 
     /**
@@ -61,7 +82,7 @@ class Builder extends EloquentBuilder
      * Execute the query as a "select" statement or throw an exception.
      *
      * @param  array  $columns
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @return \Illuminate\Support\Collection|static[]
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
@@ -82,6 +103,34 @@ class Builder extends EloquentBuilder
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
         $this->prefixColumnsOnJoin();
+
+        if ($this->columnsForPagination) {
+            $columnsBackup = $this->query->columns;
+
+            $this->query->columns = null;
+
+            $total = $this->query->selectRaw(
+                'count(*) as aggregate, ' . implode($this->columnsForPagination, ',')
+            )->get();
+
+            if (isset($this->query->groups)) {
+                $total = count($total);
+            } else {
+                $total = isset($total[0]) ? $total[0]->aggregate : 0;
+            }
+
+            $this->query->columns = $columnsBackup;
+
+            $this->forPage(
+                $page = $page ?: Paginator::resolveCurrentPage($pageName),
+                $perPage = $perPage ?: $this->model->getPerPage()
+            );
+
+            return new LengthAwarePaginator($this->get($columns), $total, $perPage, $page, [
+                'path' => Paginator::resolveCurrentPath(),
+                'pageName' => $pageName,
+            ]);
+        }
 
         return parent::paginate($perPage, $columns, $pageName, $page);
     }
@@ -133,7 +182,9 @@ class Builder extends EloquentBuilder
                                 $value->clauses[$key]['first'] = "{$query->from}.{$first}";
                             }
 
-                            if (strpos($second = $value->clauses[$key]['second'], '.') === false) {
+                            if (! is_object($second = $value->clauses[$key]['second'])
+                                && strpos($second, '.') === false
+                            ) {
                                 if (is_null($second)) {
                                     $value->clauses[$key]['second'] = "{$value->table}.id";
                                 } else {
