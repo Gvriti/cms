@@ -31,7 +31,7 @@ class Permission extends Model
      * Get the list of permissions by user id.
      *
      * @param  int  $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function permissions($id)
     {

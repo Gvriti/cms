@@ -12,7 +12,7 @@ abstract class AbstractHasGallery extends Model
      *
      * @param  int  $id
      * @return \Models\Gallery|
-     *         \Illuminate\Database\Eloquent\Builder
+     *         \Models\Abstracts\Builder
      */
     public function gallery($id = null)
     {
@@ -55,7 +55,7 @@ abstract class AbstractHasGallery extends Model
      * Build a query based on the gallery.
      *
      * @param  int  $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function byGallery($id)
     {
@@ -66,7 +66,7 @@ abstract class AbstractHasGallery extends Model
      * Get the gallery instance and add a where `type` clause to the query.
      *
      * @param  string|null  $type
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function byType($type = null)
     {
@@ -78,7 +78,7 @@ abstract class AbstractHasGallery extends Model
     /**
      * Add a where `file` is not empty clause to the query.
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function hasFile()
     {
@@ -89,7 +89,7 @@ abstract class AbstractHasGallery extends Model
      * Add a where `gallery_id` clause to the query.
      *
      * @param  mixed  $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function galleryId($id)
     {
@@ -100,7 +100,7 @@ abstract class AbstractHasGallery extends Model
      * Add a where `visible` clause to the query.
      *
      * @param  int  $visible
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function visible($visible = 1)
     {

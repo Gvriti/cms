@@ -58,7 +58,7 @@ class Page extends Model
      *
      * @param  int  $id
      * @return \Models\Menu|
-     *         \Illuminate\Database\Eloquent\Builder
+     *         \Models\Abstracts\Builder
      */
     public function menu($id = null)
     {
@@ -72,7 +72,7 @@ class Page extends Model
      *
      * @param  int  $id
      * @return \Models\Collection|
-     *         \Illuminate\Database\Eloquent\Builder
+     *         \Models\Abstracts\Builder
      */
     public function collection($id = null)
     {
@@ -85,7 +85,7 @@ class Page extends Model
      * Add a appropriate query for the cms.
      *
      * @param  int  $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function forAdmin($id = null)
     {
@@ -100,7 +100,7 @@ class Page extends Model
      * Add the appropriate query for the site.
      *
      * @param  int  $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function forSite($id = null)
     {
@@ -176,7 +176,7 @@ class Page extends Model
      *
      * @param  string  $slug
      * @param  int     $parentId
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function route($slug, $parentId)
     {
@@ -187,7 +187,7 @@ class Page extends Model
      * Add a where `menu_id` clause to the query.
      *
      * @param  int  $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function menuId($id)
     {
@@ -198,7 +198,7 @@ class Page extends Model
      * Add a where `parent_id` clause to the query.
      *
      * @param  int  $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function parentId($id)
     {
@@ -210,7 +210,7 @@ class Page extends Model
      *
      * @param  int     $id
      * @param  string  $operator
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function collectionId($id, $operator = '=')
     {
@@ -221,7 +221,7 @@ class Page extends Model
      * Add a where `visible` clause to the query.
      *
      * @param  int  $visible
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function visible($visible = 1)
     {
@@ -252,7 +252,7 @@ class Page extends Model
     /**
      * Add a `collection` left join to the query.
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function joinCollectionType()
     {

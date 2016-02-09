@@ -81,7 +81,7 @@ trait LanguageTrait
      * Add a "_languages" left join to the query.
      *
      * @param  bool|string  $language
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function joinLanguages($language = true)
     {
@@ -106,7 +106,7 @@ trait LanguageTrait
     /**
      * Add a where `language` clause to the query.
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function currentLanguage()
     {

@@ -107,7 +107,7 @@ trait PositionableTrait
     /**
      * Add an "order by" position asc clause to the query.
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function positionAsc()
     {
@@ -117,7 +117,7 @@ trait PositionableTrait
     /**
      * Add an "order by" position desc clause to the query.
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function positionDesc()
     {

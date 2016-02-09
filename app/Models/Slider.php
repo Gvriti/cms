@@ -66,7 +66,7 @@ class Slider extends Model
     /**
      * Build a query for admin.
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function forAdmin()
     {
@@ -76,7 +76,7 @@ class Slider extends Model
     /**
      * Build a query for site.
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function forSite()
     {

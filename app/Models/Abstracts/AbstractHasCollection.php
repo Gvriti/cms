@@ -12,7 +12,7 @@ abstract class AbstractHasCollection extends Model
      *
      * @param  int  $id
      * @return \Models\Collection|
-     *         \Illuminate\Database\Eloquent\Builder
+     *         \Models\Abstracts\Builder
      */
     public function collection($id = null)
     {
@@ -55,7 +55,7 @@ abstract class AbstractHasCollection extends Model
      * Add a appropriate query for the cms.
      *
      * @param  int|null  $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function forAdmin($id = null)
     {
@@ -68,7 +68,7 @@ abstract class AbstractHasCollection extends Model
      * Add the appropriate query for the site.
      *
      * @param  int|null  $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function forSite($id = null)
     {
@@ -80,7 +80,7 @@ abstract class AbstractHasCollection extends Model
      *
      * @param  string    $slug
      * @param  int|null  $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function bySlug($slug, $id = null)
     {
@@ -122,7 +122,7 @@ abstract class AbstractHasCollection extends Model
      * Get the collection instance and add a where `type` clause to the query.
      *
      * @param  string|null  $type
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function byType($type = null)
     {
@@ -135,7 +135,7 @@ abstract class AbstractHasCollection extends Model
      * Add a where `collection_id` clause to the query.
      *
      * @param  int  $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function collectionId($id)
     {
@@ -146,7 +146,7 @@ abstract class AbstractHasCollection extends Model
      * Add a where `visible` clause to the query.
      *
      * @param  int  $visible
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function visible($visible = 1)
     {

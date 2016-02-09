@@ -56,7 +56,7 @@ trait FileableTrait
     /**
      * Add a `file` left join to the query.
      * 
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Models\Abstracts\Builder
      */
     public function joinFileId()
     {
