@@ -30,7 +30,7 @@
         <li>
             <a href="{{ cms_route($parent->routeName . '.edit', $parent->routeParams, $key) }}">
                 <span class="visible-xs">{{$key}}</span>
-                <span class="hidden-xs">{{language($key)}}</span>
+                <span class="hidden-xs">{{languages($key)}}</span>
             </a>
         </li>
     @endforeach

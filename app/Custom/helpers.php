@@ -3,26 +3,26 @@
 /**
  * Get the application default language.
  *
- * @param  string|null  $value
  * @return string
  */
-function language($value = null)
+function language()
 {
-    if (is_null($value)) {
-        return config('app.language');
-    }
-
-    return config('app.languages.' . $value);
+    return config('app.language');
 }
 
 /**
- * Get all application languages.
+ * Get the application languages.
  *
+ * @param  string|null  $value
  * @return array
  */
-function languages()
+function languages($value = null)
 {
-    return config('app.languages', []);
+    if (is_null($value)) {
+        return config('app.languages', []);
+    }
+
+    return config('app.languages.' . $value);
 }
 
 /**
@@ -370,7 +370,6 @@ function fill_data($result, $message = null, $input = null)
  *
  * @param  string  $key
  * @param  array   $parameters
- * @param  bool    $render
  * @return array
  */
 function fill_db_data($key, array $parameters = [])
