@@ -13,16 +13,16 @@ function language()
 /**
  * Get the application languages.
  *
- * @param  string|null  $value
+ * @param  string|null  $key
  * @return array
  */
-function languages($value = null)
+function languages($key = null)
 {
-    if (is_null($value)) {
+    if (is_null($key)) {
         return config('app.languages', []);
     }
 
-    return config('app.languages.' . $value);
+    return config('app.languages.' . $key);
 }
 
 /**

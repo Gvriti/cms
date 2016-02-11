@@ -134,7 +134,7 @@ abstract class AuthController extends Controller
         $credentials = $this->request->only($this->loginUsername(), 'password');
 
         if ($this->auth->attempt($credentials, $this->request->has('remember'))) {
-            return $this->handleUserWasAuthenticated($this->request, $throttles);
+            return $this->handleUserWasAuthenticated($throttles);
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -181,11 +181,7 @@ abstract class AuthController extends Controller
 
         $this->auth->login($this->create());
 
-        if ($this->request->ajax()) {
-            return $this->ajaxViewResponse($this->ajaxLoginViewResponse);
-        }
-
-        return redirect((string) $this->authenticatedPath);
+        return $this->handleUserWasAuthenticated();
     }
 
     /**
@@ -213,7 +209,7 @@ abstract class AuthController extends Controller
      * @param  bool  $throttles
      * @return \Illuminate\Http\Response
      */
-    protected function handleUserWasAuthenticated($throttles)
+    protected function handleUserWasAuthenticated($throttles = false)
     {
         if ($throttles) {
             $this->clearLoginAttempts($this->request);
