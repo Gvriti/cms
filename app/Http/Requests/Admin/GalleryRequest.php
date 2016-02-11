@@ -8,7 +8,7 @@ use App\Http\Requests\Request;
 class GalleryRequest extends Request
 {
     /**
-     * Determine if the user is authorized to make equest.
+     * Determine if the user is authorized to make request.
      *
      * @return bool
      */
