@@ -40,7 +40,7 @@ return [
     "filled"               => "The :attribute field is required.",
     "image"                => "The :attribute must be an image.",
     "in"                   => "The selected :attribute is invalid.",
-    "integer"              => ":attribute უნდა იყოს ციფრი.",
+    "integer"              => ":attribute უნდა იყოს მთელი რიცხვი.",
     "ip"                   => "The :attribute must be a valid IP address.",
     'json'                 => 'The :attribute must be a valid JSON string.',
     "max"                  => [
@@ -57,7 +57,7 @@ return [
         "array"   => "The :attribute must have at least :min items.",
     ],
     "not_in"               => "The selected :attribute is invalid.",
-    "numeric"              => ":attribute უნდა შეიცავდეს მხოლოდ ციფრებს.",
+    "numeric"              => ":attribute უნდა შეიცავდეს მხოლოდ რიცხვებს.",
     "regex"                => ":attribute: ფორმატი არასწორია.",
     "required"             => ":attribute აუცილებელია.",
     "required_if"          => ":attribute აუცილებელია როდესაც :other არის :value.",
@@ -67,7 +67,7 @@ return [
     "required_without_all" => "The :attribute field is required when none of :values are present.",
     "same"                 => "The :attribute and :other must match.",
     "size"                 => [
-        "numeric" => ":attribute უნდა შედგებოდეს :size ციფრისგან.",
+        "numeric" => ":attribute უნდა შედგებოდეს :size მთელი რიცხვისგან.",
         "file"    => "The :attribute must be :size kilobytes.",
         "string"  => "The :attribute must be :size characters.",
         "array"   => "The :attribute must contain :size items.",
