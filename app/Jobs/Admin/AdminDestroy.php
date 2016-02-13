@@ -33,11 +33,11 @@ class AdminDestroy extends Job implements SelfHandling
     protected $isFileable;
 
     /**
-     * Recursively deletable directory.
+     * Recursively deletable directories.
      *
      * @var string
      */
-    protected $deleteDir;
+    protected $deleteDirs;
 
     /**
      * Create a new job instance.
@@ -45,10 +45,10 @@ class AdminDestroy extends Job implements SelfHandling
      * @param  Models\Model  $model
      * @param  int   $id
      * @param  bool  $isFileable
-     * @param  null|string  $deleteDir
+     * @param  null|string  $deleteDirs
      * @return void
      */
-    public function __construct($model, $id, $isFileable = true, $deleteDir = null)
+    public function __construct($model, $id, $isFileable = true, $deleteDirs = null)
     {
         $this->model = $model;
 
@@ -56,7 +56,7 @@ class AdminDestroy extends Job implements SelfHandling
 
         $this->isFileable = $isFileable;
 
-        $this->deleteDir = $deleteDir;
+        $this->deleteDirs = $deleteDirs;
     }
 
     /**
@@ -70,8 +70,10 @@ class AdminDestroy extends Job implements SelfHandling
             return $this->response('error', trans('database.error.1451'));
         }
 
-        if (! is_null($this->deleteDir)) {
-            (new Filesystem)->deleteDirectory($this->deleteDir);
+        if (! is_null($this->deleteDirs)) {
+            foreach ((array) $this->deleteDirs as $dir) {
+                (new Filesystem)->deleteDirectory($dir);
+            }
         }
 
         return $this->response('success', trans('database.deleted'));

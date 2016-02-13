@@ -25,7 +25,11 @@ class SiteCurrentPageEventListener
                 'meta_desc' => $trans->get('meta_desc') ?: $title,
             ];
         } else {
-            if (! is_null($current->tab_title)) {
+            if (empty($current->id)) {
+                $current->id = 0;
+            }
+
+            if (! empty($current->tab_title)) {
                 $current->title .= ' - ' . $current->tab_title;
             }
 
@@ -35,7 +39,7 @@ class SiteCurrentPageEventListener
                 }
 
                 $current->slug = $path;
-            } elseif (! is_null($current->tab_slug)) {
+            } elseif (! empty($current->tab_slug)) {
                 $current->slug .= '/' . $current->tab_slug;
             }
 
