@@ -20,7 +20,7 @@ class SiteCurrentPageEventListener
             $current = (object) [
                 'id'        => 0,
                 'title'     => $title = $trans->get('site_title'),
-                'slug'      => '',
+                'slug'      => $this->getPath(),
                 'image'     => asset('assets/site/images/logo.png'),
                 'meta_desc' => $trans->get('meta_desc') ?: $title,
             ];
@@ -34,11 +34,9 @@ class SiteCurrentPageEventListener
             }
 
             if (empty($current->slug)) {
-                if (strpos($path = request()->getPathInfo(), $language = language()) === 1) {
-                    $path = substr($path, strlen($language) + 2);
-                }
+                $current->slug = $this->getPath();
 
-                $current->slug = $path;
+                $current->original_slug = basename($current->slug);
             } elseif (! empty($current->tab_slug)) {
                 $current->slug .= '/' . $current->tab_slug;
             }
@@ -59,6 +57,22 @@ class SiteCurrentPageEventListener
         }
 
         $event->current = $current;
+    }
+
+    /**
+     * Get the current path without language prefix.
+     *
+     * @return string
+     */
+    protected function getPath()
+    {
+        $path = trim(request()->getPathInfo(), '/');
+
+        if (strpos($path, $language = language()) === 0) {
+            $path = substr($path, strlen($language));
+        }
+
+        return $path;
     }
 
     /**
