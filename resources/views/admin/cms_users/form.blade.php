@@ -97,7 +97,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label text-left">Active:</label>
         <div class="col-sm-10">
-            {!! Form::checkbox('active', null, true, [
+            {!! Form::checkbox('active', null, null, [
                 'id' => 'active',
                 'class' => 'iswitch iswitch-secondary'
             ]) !!}

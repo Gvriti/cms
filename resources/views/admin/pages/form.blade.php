@@ -95,7 +95,7 @@
 <div class="form-group">
     <label class="col-sm-2 control-label">Visible:</label>
     <div class="col-sm-10">
-        {!! Form::checkbox('visible', null, true, [
+        {!! Form::checkbox('visible', null, null, [
             'id' => 'visible' . $lang,
             'class' => 'visible iswitch iswitch-secondary',
             'data-type' => 'general'

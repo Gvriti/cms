@@ -37,7 +37,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label">Visible:</label>
-                                {!! Form::checkbox('visible', null, true, [
+                                {!! Form::checkbox('visible', null, null, [
                                     'id' => 'visible',
                                     'class' => 'visible iswitch iswitch-secondary'
                                 ]) !!}
