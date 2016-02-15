@@ -27,7 +27,7 @@ class SitePhotosController extends Controller
     }
 
     /**
-     * Display a listing of the photo.
+     * Display a listing of the resource.
      *
      * @param  \Models\Gallery  $gallery
      * @return Response

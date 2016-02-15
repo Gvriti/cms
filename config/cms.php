@@ -141,7 +141,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | This array used to specify types with methods, that will allow to
-    | send a POST request.
+    | send a POST requests.
     |
     */
 

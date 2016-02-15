@@ -2,6 +2,8 @@
 
 namespace App\Listeners\Site;
 
+use Illuminate\Support\Collection;
+
 class SiteBreadcrumbEventListener
 {
     /**
@@ -15,7 +17,9 @@ class SiteBreadcrumbEventListener
         if (is_object($event->current)) {
             $breadcrumb = app_instance('breadcrumb');
 
-            if (($parent = $breadcrumb->last()) !== $event->current) {
+            if ($breadcrumb instanceof Collection
+                && ($parent = $breadcrumb->last()) !== $event->current
+            ) {
                 $event->current->original_slug = $event->current->slug;
 
                 $event->current->parent_slug = $parent->slug;

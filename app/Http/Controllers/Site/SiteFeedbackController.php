@@ -30,7 +30,7 @@ class SiteFeedbackController extends Controller
     }
 
     /**
-     * Display the specified page.
+     * Display the specified resource.
      *
      * @param  \Models\Page  $page
      * @return Response

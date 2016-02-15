@@ -27,7 +27,7 @@ class SiteVideosController extends Controller
     }
 
     /**
-     * Display a listing of the video.
+     * Display a listing of the resource.
      *
      * @param  \Models\Gallery  $gallery
      * @return Response

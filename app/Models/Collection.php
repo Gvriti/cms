@@ -4,8 +4,8 @@ namespace Models;
 
 use Models\Abstracts\Model;
 
-class Collection extends Model {
-
+class Collection extends Model
+{
     /**
      * The database table used by the model.
      *

@@ -143,17 +143,22 @@ class Page extends Model
      * Get all sibling pages if the model has a parent page.
      *
      * @param  int|null  $id
+     * @param  bool      $self
      * @return \Illuminate\Support\Collection|static[]
      */
-    public function getSiblingPages($id = null)
+    public function getSiblingPages($id = null, $self = false)
     {
         if (((int) $id = $id ?: $this->parent_id) == 0) {
             return $this->newCollection();
         }
 
-        return $this->forSite()->where('id', '<>', (int) $this->id)
-                               ->parentId($id)
-                               ->get();
+        $query = $this->forSite();
+
+        if (! $self) {
+            $query->where('id', '<>', (int) $this->id);
+        }
+
+        return $query->parentId($id)->positionAsc()->get();
     }
 
     /**

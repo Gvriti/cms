@@ -97,6 +97,13 @@ class DynamicRouteServiceProvider extends ServiceProvider
     protected $tabs = [];
 
     /**
+     * The array of the types that will allow post requests.
+     *
+     * @var array
+     */
+    protected $postableMethods = [];
+
+    /**
      * Define a dynamic routes.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -126,7 +133,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
             $hasStaticRoute = false;
         }
 
-        if (! $config['cms_will_load'] && ! $hasStaticRoute) {
+        if (! $config->get('cms_will_load') && ! $hasStaticRoute) {
             $this->build();
         }
     }
@@ -146,9 +153,12 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $this->implicitTypes = $this->config->get('cms.pages.implicit', []);
 
+        $this->postableMethods = $this->config->get('cms.post_methods', []);
+
         $this->moduleTypes = $this->config->get('cms.modules', []);
 
         $this->tabs = $this->config->get('cms.tabs', []);
+
     }
 
     /**
@@ -315,6 +325,8 @@ class DynamicRouteServiceProvider extends ServiceProvider
      * @param  array   $parameters
      * @param  string|null  $defaultMethod
      * @return void
+     * 
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     protected function setCurrentRoute($type, array $parameters = [], $defaultMethod = null)
     {
@@ -367,7 +379,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
         if ($this->request->method() == 'POST'
             && array_key_exists(
                 $type = "{$typeParts[0]}@{$method}",
-                $postTypes = $this->config->get('cms.post_methods', [])
+                $postTypes = $this->postableMethods
             )
         ) {
             $route = 'post';

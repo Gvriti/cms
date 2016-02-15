@@ -2,12 +2,11 @@
 
 namespace Models;
 
-use Models\Abstracts\Model;
 use Models\Traits\LanguageTrait;
 use Models\Traits\PositionableTrait;
-use Models\Abstracts\AbstractHasGallery;
+use Models\Abstracts\AbstractHasGallery as Model;
 
-class Photo extends AbstractHasGallery
+class Photo extends Model
 {
     use LanguageTrait, PositionableTrait;
 

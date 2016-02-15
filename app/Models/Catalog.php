@@ -5,9 +5,9 @@ namespace Models;
 use Models\Traits\FileableTrait;
 use Models\Traits\LanguageTrait;
 use Models\Traits\PositionableTrait;
-use Models\Abstracts\AbstractHasCollection;
+use Models\Abstracts\AbstractHasCollection as Model;
 
-class Catalog extends AbstractHasCollection
+class Catalog extends Model
 {
     use LanguageTrait, PositionableTrait, FileableTrait;
 

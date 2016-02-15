@@ -28,7 +28,7 @@ class SiteGalleriesController extends Controller
     }
 
     /**
-     * Display a listing of the gallery.
+     * Display a listing of the resource.
      *
      * @param  \Models\Page  $page
      * @param  \Models\Collection  $collection
