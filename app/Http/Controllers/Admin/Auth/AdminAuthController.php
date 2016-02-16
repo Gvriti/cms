@@ -95,7 +95,7 @@ class AdminAuthController extends Controller
         $this->auth->get()->lockScreen();
 
         if ($this->request->ajax()) {
-            $view = view()->make('admin.lockscreen')->render();
+            $view = view('admin.lockscreen')->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }

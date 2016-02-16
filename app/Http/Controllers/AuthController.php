@@ -145,7 +145,13 @@ abstract class AuthController extends Controller
         }
 
         if ($this->request->ajax()) {
-            return response()->json(fill_data(false, trans($this->authFailMessage)));
+            if ($this->request->wantsJson()) {
+                return response()->json([
+                    $this->loginUsername() => trans($this->authFailMessage)
+                ], 422);
+            }
+
+            return response(trans($this->authFailMessage), 422);
         }
 
         $redirect = is_null($this->loginPath) ? redirect()->back() : redirect($this->loginPath());
@@ -192,11 +198,15 @@ abstract class AuthController extends Controller
     protected function getLogout()
     {
         if ($this->request->ajax()) {
-            if (! is_null($html = $this->ajaxLogoutViewResponse)) {
-                $html = view()->make($this->ajaxLogoutViewResponse)->render();
+            if (! is_null($view = $this->ajaxLogoutViewResponse)) {
+                $view = view($this->ajaxLogoutViewResponse);
             }
 
-            return response()->json(['result' => true, 'view' => $html]);
+            if ($this->request->wantsJson()) {
+                return response()->json(['result' => true, 'view' => $view->render()]);
+            }
+
+            return $view;
         }
 
         return is_null($this->logoutPath) ? redirect()->back()
@@ -235,10 +245,14 @@ abstract class AuthController extends Controller
     protected function ajaxViewResponse($view = null)
     {
         if (! is_null($view)) {
-            $view = view()->make($view)->render();
+            $view = view($view);
         }
 
-        return response()->json(['result' => true, 'view' => $view]);
+        if ($this->request->wantsJson()) {
+            return response()->json(['result' => true, 'view' => $view->render()]);
+        }
+
+        return $view;
     }
 
     /**
@@ -292,12 +306,16 @@ abstract class AuthController extends Controller
     {
         $session = $this->request->getSession();
 
-        if (! is_null($errors = $session->get('errors'))) {
-            $errors = $errors->first();
+        if (! is_null($error = $session->get('errors'))) {
+            $error = $error->first();
         }
 
         $session->forget('errors');
 
-        return response()->json(fill_data(false, $errors));
+        if ($this->request->wantsJson()) {
+            return response()->json(fill_data(false, $error), 429);
+        }
+
+        return response($error, 429);
     }
 }

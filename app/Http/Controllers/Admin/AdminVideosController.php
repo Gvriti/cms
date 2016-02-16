@@ -71,7 +71,7 @@ class AdminVideosController extends Controller
             $data['current'] = $this->model;
             $data['current']['gallery_id'] = $galleryId;
 
-            $view = view()->make('admin.videos.create', $data)->render();
+            $view = view('admin.videos.create', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }
@@ -94,7 +94,7 @@ class AdminVideosController extends Controller
         $newModel = $this->model->create($input);
 
         if ($request->ajax()) {
-            $view = view()->make('admin.videos.item', [
+            $view = view('admin.videos.item', [
                 'model' => $newModel,
                 'modelInput' => $input
             ])->render();
@@ -134,7 +134,7 @@ class AdminVideosController extends Controller
             $data['items'] = $model->joinLanguages(false)->where('id', $id)
                                                          ->getOrFail();
 
-            $view = view()->make('admin.videos.edit', $data)->render();
+            $view = view('admin.videos.edit', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }

@@ -68,7 +68,7 @@ class AdminFilesController extends Controller
         if ($this->request->ajax()) {
             $data['current'] = $this->model;
 
-            $view = view()->make('admin.files.create', $data)->render();
+            $view = view('admin.files.create', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }
@@ -94,7 +94,7 @@ class AdminFilesController extends Controller
         $newModel = $this->model->create($input);
 
         if ($request->ajax()) {
-            $view = view()->make('admin.files.item', [
+            $view = view('admin.files.item', [
                 'model' => $newModel,
                 'modelInput' => $input
             ])->render();
@@ -134,7 +134,7 @@ class AdminFilesController extends Controller
                                          ->where('id', $id)
                                          ->getOrFail();
 
-            $view = view()->make('admin.files.edit', $data)->render();
+            $view = view('admin.files.edit', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }

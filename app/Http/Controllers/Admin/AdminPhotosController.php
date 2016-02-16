@@ -71,7 +71,7 @@ class AdminPhotosController extends Controller
             $data['current'] = $this->model;
             $data['current']['gallery_id'] = $galleryId;
 
-            $view = view()->make('admin.photos.create', $data)->render();
+            $view = view('admin.photos.create', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }
@@ -94,7 +94,7 @@ class AdminPhotosController extends Controller
         $newModel = $this->model->create($input);
 
         if ($request->ajax()) {
-            $view = view()->make('admin.photos.item', [
+            $view = view('admin.photos.item', [
                 'model' => $newModel,
                 'modelInput' => $input
             ])->render();
@@ -134,7 +134,7 @@ class AdminPhotosController extends Controller
             $data['items'] = $model->joinLanguages(false)->where('id', $id)
                                                          ->getOrFail();
 
-            $view = view()->make('admin.photos.edit', $data)->render();
+            $view = view('admin.photos.edit', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }

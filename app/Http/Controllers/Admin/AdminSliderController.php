@@ -62,7 +62,7 @@ class AdminSliderController extends Controller
         if ($this->request->ajax()) {
             $data['current'] = $this->model;
 
-            $view = view()->make('admin.slider.create', $data)->render();
+            $view = view('admin.slider.create', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }
@@ -83,7 +83,7 @@ class AdminSliderController extends Controller
         $newModel = $this->model->create($input);
 
         if ($request->ajax()) {
-            $view = view()->make('admin.slider.item', [
+            $view = view('admin.slider.item', [
                 'model' => $newModel,
                 'modelInput' => $input
             ])->render();
@@ -121,7 +121,7 @@ class AdminSliderController extends Controller
                                          ->where('id', $id)
                                          ->getOrFail();
 
-            $view = view()->make('admin.slider.edit', $data)->render();
+            $view = view('admin.slider.edit', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }

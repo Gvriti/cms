@@ -44,7 +44,7 @@ class SiteAuthController extends Controller
      */
     protected function sendLockoutResponse(Request $request)
     {
-        // Overridden "ThrottlesLogins" trait method
+        // Override "ThrottlesLogins" trait method "sendLockoutResponse".
         $response = $this->lockoutResponse($request);
 
         if ($request->ajax()) {
