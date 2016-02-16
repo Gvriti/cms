@@ -5,7 +5,7 @@
 <meta name="description" content="{{$current->meta_desc}}">
 <meta property="og:url" content="{{$url = site_url($current->slug, [], true)}}">
 <meta property="og:type" content="Website">
-<meta property="og:site_name" content="{{$app['trans']->get('site_title')}}">
+<meta property="og:site_name" content="{{$trans->get('site_title')}}">
 <meta property="og:title" content="{{$current->title}}">
 <meta property="og:description" content="{{$current->meta_desc}}"/>
 <meta property="og:image" content="{{$current->image}}">

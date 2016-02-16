@@ -22,7 +22,7 @@
     @if ($alert = session()->get('alert'))
         <div class="alert alert-{{$alert['result'] ? 'success' : 'danger'}}">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            {{$app['trans']->get($alert['message'])}}
+            {{$trans->get($alert['message'])}}
         </div>
     @endif
         <div id="feedback">
@@ -33,7 +33,7 @@
                         <div class="form-group">
                             {!! Form::text('name', null, [
                                 'class' => 'form-control',
-                                'placeholder' => $app['trans']->get('name')
+                                'placeholder' => $trans->get('name')
                             ]) !!}
                             @if ($error = $errors->first('name'))
                             <div class="text-danger">{{$error}}</div>
@@ -43,7 +43,7 @@
                         <div class="form-group">
                             {!! Form::text('email', null, [
                                 'class' => 'form-control',
-                                'placeholder' => $app['trans']->get('email')
+                                'placeholder' => $trans->get('email')
                             ]) !!}
                             @if ($error = $errors->first('email'))
                             <div class="text-danger">{{$error}}</div>
@@ -53,7 +53,7 @@
                         <div class="form-group">
                             {!! Form::text('phone', null, [
                                 'class' => 'form-control',
-                                'placeholder' => $app['trans']->get('phone')
+                                'placeholder' => $trans->get('phone')
                             ]) !!}
                             @if ($error = $errors->first('phone'))
                             <div class="text-danger">{{$error}}</div>
@@ -62,7 +62,7 @@
                         <!-- .form-group -->
                         <div class="form-group">
                             <div class="clearfix">
-                                <input type="text" name="captcha" autocomplete="off" placeholder="{{$app['trans']->get('enter_code')}}" class="form-control pull-left code">
+                                <input type="text" name="captcha" autocomplete="off" placeholder="{{$trans->get('enter_code')}}" class="form-control pull-left code">
                                 <img src="{{captcha_src('flat')}}" height="40" id="captcha-img" alt="captcha">
                                 <a href="#" id="captcha-reload">
                                     <img src="{{asset('assets/site/images/reload.png')}}" width="20" height="20" alt="reload">
@@ -79,7 +79,7 @@
                         <div class="form-group">
                             {!! Form::textarea('text', null, [
                                 'class' => 'form-control',
-                                'placeholder' => $app['trans']->get('text')
+                                'placeholder' => $trans->get('text')
                             ]) !!}
                             @if ($error = $errors->first('text'))
                             <span class="text-danger">{{$error}}</span>
@@ -91,7 +91,7 @@
                 </div>
                 <!-- .row -->
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">{{$app['trans']->get('send')}}</button>
+                    <button type="submit" class="btn btn-primary">{{$trans->get('send')}}</button>
                 </div>
                 <!-- .form-group -->
             </form>

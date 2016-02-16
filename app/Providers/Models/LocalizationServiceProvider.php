@@ -22,6 +22,8 @@ class LocalizationServiceProvider extends ServiceProvider
                                        ->lists('value', 'name');
 
             $this->app->instance('trans', $trans);
+
+            view()->share('trans', $trans);
         }
     }
 
