@@ -47,7 +47,9 @@ class AdminLocalizationController extends Controller
      */
     public function create()
     {
-        return view('admin.localization.create');
+        $data['current'] = $this->model;
+
+        return view('admin.localization.create', $data);
     }
 
     /**
@@ -62,7 +64,7 @@ class AdminLocalizationController extends Controller
 
         if ($request->has('close')) {
             return redirect()->route(cms_route('localization.index'))
-                             ->with('alert', fill_data('success', trans('general.created')));
+                    ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('localization.edit', [$newModel->id]))
@@ -122,5 +124,53 @@ class AdminLocalizationController extends Controller
         return $this->dispatch(
             new AdminDestroy($this->model, $id, false)
         );
+    }
+
+    /**
+     * Get the localization modal form by speicific name.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Response
+     */
+    public function getModal(Request $request)
+    {
+        if (! ($name = $request->get('name'))) {
+            return response('Invalid name.', 422);
+        }
+
+        $data['items'] = $this->model->where('name', $name)
+                                     ->joinLanguages(false)
+                                     ->get();
+
+        if ($data['items']->isEmpty()) {
+            $data['current'] = $this->model;
+            $data['current']->name = $name;
+
+            $form = 'create';
+        } else {
+            $form = 'edit';
+        }
+
+        return view('admin.localization.modal.' . $form, $data);
+    }
+
+    /**
+     * Create/Update a localization model.
+     *
+     * @param  \App\Http\Requests\Admin\LocalizationRequest  $request
+     * @return Response
+     */
+    public function postModal(LocalizationRequest $request)
+    {
+        if ($id = $request->get('id')) {
+            $this->model->findOrFail($id)->update($request->all());
+        } else {
+            $this->model->create($request->all());
+        }
+
+        return response()->json([
+            'name' => $request->get('name'),
+            'value' => $request->get('value')
+        ]);
     }
 }

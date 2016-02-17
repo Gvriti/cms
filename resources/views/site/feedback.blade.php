@@ -91,7 +91,7 @@
                 </div>
                 <!-- .row -->
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">{{$trans->get('send')}}</button>
+                    <button type="submit" class="btn btn-primary" data-trans="send">{{$trans->get('send', 'გაგზავნა')}}</button>
                 </div>
                 <!-- .form-group -->
             </form>

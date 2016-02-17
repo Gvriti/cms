@@ -6,11 +6,11 @@
             'id' => 'name' . $lang,
             'class' => 'name form-control',
             'data-type' => 'general'
-        ]) !!}
+        ] + ($current->name ? ['readonly'] : [])) !!}
         @if ($error)
         <span>{{$error}}</span>
         @endif
-        <span class="description">name is the identifier for the value (it's not changeable after creation!)</span>
+        <span class="description">Name is the identifier for the "value" (it's not changeable after creation!)</span>
     </div>
 </div>
 
@@ -27,7 +27,7 @@
         @if ($error)
         <span>{{$error}}</span>
         @endif
-        <span class="description">Title is a short description of the "value", visible only for CMS Users</span>
+        <span class="description">Title for the "value". It's visible only for CMS Users</span>
     </div>
 </div>
 

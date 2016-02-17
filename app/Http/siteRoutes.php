@@ -17,3 +17,9 @@ $router->group(['namespace' => 'Site'], function ($router) {
         'as' => 'glide', 'uses' => 'SiteGlideServerController@show'
     ])->where('path', '.+');
 });
+
+// Localization requests from site
+$router->group(['namespace' => 'Admin', 'middleware' => 'CmsAuth'], function ($router) {
+    $router->get('!localization', ['as' => cms_prefix('localization.form'), 'uses' => 'AdminLocalizationController@getModal']);
+    $router->post('!localization', ['as' => cms_prefix('localization.form'), 'uses' => 'AdminLocalizationController@postModal']);
+});

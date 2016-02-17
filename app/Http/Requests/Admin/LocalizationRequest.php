@@ -25,8 +25,12 @@ class LocalizationRequest extends Request
     {
         $id = $this->route('localization');
 
+        if (! is_null($id)) {
+            $id = '|unique:localization,name,' . $id;
+        }
+
         return [
-            'name'  => 'required|min:2|max:32|regex:/^\w+$/|unique:localization,name,'.$id,
+            'name'  => 'required|min:2|max:32|regex:/^\w+$/' . $id,
             'title' => 'required|min:2',
             'value' => 'required|min:2'
         ];

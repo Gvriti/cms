@@ -8,3 +8,5 @@
 <!-- #footer -->
 <script src="{{asset('assets/site/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/site/js/custom.js')}}"></script>
+<script src="{{asset('assets/js/custom-site.js')}}"></script>
+<div id="params" data-trans-url="{{cms_route('localization.form')}}" data-token="{{csrf_token()}}"></div>

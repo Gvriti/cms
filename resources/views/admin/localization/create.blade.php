@@ -25,7 +25,7 @@
         <h3 class="panel-title">Create a translation</h3>
     </div>
     <div class="panel-body">
-        {!! Form::open([
+        {!! Form::model($current, [
             'method' => 'post',
             'url'    => cms_route('localization.index'),
             'class'  => 'form-horizontal'
