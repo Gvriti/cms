@@ -108,9 +108,9 @@ $(document).ready(function($) {
             $.post("{{cms_route('calendar.save')}}", input, function(data) {
                 // Create Event Entry
                 $("#events-list").append(
-                    '<li id="event' + data.result.id + '">\
-                        <a href="#" data-event-class="event-color-' + data.result.color + '" data-color="' + data.result.color + '" data-id="' + data.result.id + '">\
-                            <span class="title badge badge-' + data.result.color + ' badge-roundless">' + title + '</span>\
+                    '<li id="event' + data.input.id + '">\
+                        <a href="#" data-event-class="event-color-' + data.input.color + '" data-color="' + data.input.color + '" data-id="' + data.input.id + '">\
+                            <span class="title badge badge-' + data.input.color + ' badge-roundless">' + title + '</span>\
                             <span class="description hidden"></span>\
                         </a>\
                     </li>'

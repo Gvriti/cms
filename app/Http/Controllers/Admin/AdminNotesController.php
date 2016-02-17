@@ -61,13 +61,13 @@ class AdminNotesController extends Controller
         if ($this->request->has('id')) {
             $id = $this->request->get('id');
 
-            $result = $this->model->findOrFail($id)->update($input);
+            $model = $this->model->findOrFail($id)->update($input);
         } else {
-            $result = $this->model->create($input);
+            $model = $this->model->create($input);
         }
 
         if ($this->request->ajax()) {
-            return response()->json($result);
+            return response()->json($model);
         }
 
         return redirect()->back();
@@ -93,10 +93,10 @@ class AdminNotesController extends Controller
 
         $input['color'] = $calendar->getRandomColor();
 
-        $result = $calendar->create($input);
+        $model = $calendar->create($input);
 
         if ($this->request->ajax()) {
-            return response()->json($result);
+            return response()->json($model);
         }
 
         return redirect()->back();
@@ -111,10 +111,10 @@ class AdminNotesController extends Controller
     {
         $id = $this->request->get('id');
 
-        $result = $this->model->delete($id);
+        $model = $this->model->delete($id);
 
         if ($this->request->ajax()) {
-            return response()->json($result);
+            return response()->json($model);
         }
 
         return redirect()->back();
