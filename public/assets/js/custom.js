@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     // Fix sidebar toggle when it has fixed position
     $('a[data-toggle="sidebar"]').on('click', function(e) {
         e.preventDefault();
@@ -44,22 +44,17 @@ $(function() {
     var ajaxFormSelector = '.ajax-form';
     $(document).on('submit', ajaxFormSelector, function(e) {
         e.preventDefault();
-        var form  = $(this);
-        var url   = form.attr('action');
-        var input = form.serialize();
-
+        var form = $(this);
         var lang = form.data('lang');
-        lang = lang === undefined ? '' : '_' + lang;
-
         $('.form-group', form).find('.text-danger').remove();
 
         $.ajax({
             type: 'POST',
-            url: url,
+            url: form.attr('action'),
             dataType: 'json',
-            data: input,
+            data: form.serialize(),
             success: function(data, status, xhr) {
-                // alert toastr message
+                // toastr alert message
                 if (typeof toastr == 'object') {
                     toastr[data.result](data.message);
                 }
@@ -126,10 +121,8 @@ $(function() {
         e.preventDefault();
         var item = $(this);
         var form = item.closest('form');
-        var url  = form.attr('action');
 
-        var input = $(form).serializeArray();
-        $.post(url, input, function(data) {
+        $.post(form.attr('action'), $(form).serialize(), function(data) {
             if (data) {
                 if (data.visible) {
                     var icon = 'fa-eye';

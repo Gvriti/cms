@@ -20,7 +20,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Title:</label>
                                         {!! Form::text('title', null, [
-                                            'id' => 'title_' . $item->language,
+                                            'id' => 'title' . $item->language,
                                             'class' => 'title form-control',
                                             'autofocus'
                                         ]) !!}
@@ -30,7 +30,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Short description:</label>
                                         {!! Form::textarea('description', null, [
-                                            'id' => 'description_' . $item->language,
+                                            'id' => 'description' . $item->language,
                                             'class' => 'form-control',
                                             'rows' => '2'
                                         ]) !!}
@@ -41,7 +41,7 @@
                                         <label class="control-label">Image:</label>
                                         <div class="input-group">
                                             {!! Form::text('file', null, [
-                                                'id' => 'file_' . $item->language,
+                                                'id' => 'file' . $item->language,
                                                 'class' => 'file form-control',
                                                 'data-type'  => 'general',
                                             ]) !!}
@@ -55,7 +55,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Visible:</label>
                                         {!! Form::checkbox('visible', null, null, [
-                                            'id' => 'visible_' . $item->language,
+                                            'id' => 'visible' . $item->language,
                                             'class' => 'visible iswitch iswitch-secondary',
                                             'data-type' => 'general'
                                         ]) !!}

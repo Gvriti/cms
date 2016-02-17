@@ -80,7 +80,7 @@
                 ]) !!}
                     @include('admin.catalog.form', [
                         'collectionId'  => $current->collection_id,
-                        'lang'          => '_' . $current->language,
+                        'lang'          => $current->language,
                         'submit'        => trans('general.update'),
                         'submitAndBack' => trans('general.update_n_back'),
                         'icon'          => 'save'

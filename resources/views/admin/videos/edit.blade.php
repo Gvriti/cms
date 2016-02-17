@@ -20,7 +20,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Title:</label>
                                         {!! Form::text('title', null, [
-                                            'id' => 'title_' . $item->language,
+                                            'id' => 'title' . $item->language,
                                             'class' => 'title form-control',
                                             'autofocus'
                                         ]) !!}
@@ -30,7 +30,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Video Link:</label>
                                         {!! Form::text('file', null, [
-                                            'id' => 'file_' . $item->language,
+                                            'id' => 'file' . $item->language,
                                             'class' => 'file form-control',
                                         ]) !!}
                                     </div>
@@ -39,7 +39,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Visible:</label>
                                         {!! Form::checkbox('visible', null, null, [
-                                            'id' => 'visible_' . $item->language,
+                                            'id' => 'visible' . $item->language,
                                             'class' => 'visible iswitch iswitch-secondary',
                                             'data-type' => 'general'
                                         ]) !!}
