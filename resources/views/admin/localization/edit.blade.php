@@ -65,7 +65,6 @@
                 'class'     => 'form-horizontal '.$settings->get('ajax_form'),
                 'data-lang' => $item->language
             ]) !!}
-            <input type="hidden" name="asdfsdf" value="ssss">
                 @include('admin.localization.form', [
                     'lang'          => '_' . $item->language,
                     'submit'        => trans('general.update'),

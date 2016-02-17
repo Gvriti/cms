@@ -384,7 +384,7 @@ function fill_db_data($key, array $parameters = [])
  * @param  mixed   $default
  * @return string|array
  */
-function user_roles($key = null, $default = [])
+function user_roles($key = null, $default = null)
 {
     if (! is_null($key)) {
         return config('cms.user_roles.' . $key, $default);
@@ -461,11 +461,12 @@ function cms_files($key = null, $default = [])
  * Get the icon name.
  *
  * @param  string  $key
+ * @param  mixed   $default
  * @return string|array
  */
-function icon_type($key)
+function icon_type($key, $default = null)
 {
-    return config('cms.icons.' . $key);
+    return config('cms.icons.' . $key, $default);
 }
 
 /**

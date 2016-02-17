@@ -60,7 +60,9 @@ $(function() {
             data: input,
             success: function(data, status, xhr) {
                 // alert toastr message
-                toastr[data.result](data.message);
+                if (typeof toastr == 'object') {
+                    toastr[data.result](data.message);
+                }
                 // fill form inputs
                 if (data.input && typeof data.input === 'object') {
                     $.each(data.input, function(index, element) {
