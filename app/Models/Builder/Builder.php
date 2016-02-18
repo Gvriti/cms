@@ -212,6 +212,18 @@ class Builder extends EloquentBuilder
     }
 
     /**
+     * Determine if any rows exist for the current query or throw an exception.
+     *
+     * @return bool
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function existsOrFail()
+    {
+        return $this->exists() || abort(404);
+    }
+
+    /**
      * Add an "order by" primary key asc clause to the query.
      *
      * @return \Models\Builder\Builder
