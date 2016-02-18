@@ -54,7 +54,7 @@
         <button type="submit" class="btn btn-secondary" title="{{ $submit }}">
             <i class="fa fa-{{ $icon }}"></i>
         </button>
-        <a href="{{ cms_route('localization.index') }}" class="btn btn-blue" title="{{ trans('general.back') }}">
+        <a href="{{ cms_route('translations.index') }}" class="btn btn-blue" title="{{ trans('general.back') }}">
             <i class="fa fa-arrow-left"></i>
         </a>
     </div>

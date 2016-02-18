@@ -1,6 +1,6 @@
 <script type="text/javascript">
 $(function () {
-    var modalSelector = $('#localization-modal');
+    var modalSelector = $('#translations-modal');
 
     $('form', modalSelector).on('submit', function (e) {
         e.preventDefault();

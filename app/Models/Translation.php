@@ -5,7 +5,7 @@ namespace Models;
 use Models\Abstracts\Model;
 use Models\Traits\LanguageTrait;
 
-class Localization extends Model
+class Translation extends Model
 {
     use LanguageTrait;
 
@@ -14,7 +14,7 @@ class Localization extends Model
      *
      * @var string
      */
-    protected $table = 'localization';
+    protected $table = 'translations';
 
     /**
      * The attributes that are mass assignable.
@@ -35,14 +35,14 @@ class Localization extends Model
      *
      * @var string
      */
-    protected $languageTable = 'localization_languages';
+    protected $languageTable = 'translation_languages';
 
     /**
      * The attributes that are mass assignable for the Language model.
      *
      * @var array
      */
-    protected $languageFillable = ['localization_id', 'language', 'value'];
+    protected $languageFillable = ['translation_id', 'language', 'value'];
 
     /**
      * The attributes that are not updatable for the Language model.

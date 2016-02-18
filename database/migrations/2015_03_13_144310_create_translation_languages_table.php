@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLocalizationLanguagesTable extends Migration
+class CreateTranslationLanguagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,16 @@ class CreateLocalizationLanguagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('localization_languages', function (Blueprint $table) {
+        Schema::create('translation_languages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('localization_id')->unsigned();
+            $table->integer('translation_id')->unsigned();
             $table->string('language', 3);
             $table->string('value');
             $table->timestamps();
 
-            $table->foreign('localization_id')->references('id')
-                                              ->on('localization')
-                                              ->onDelete('cascade');
+            $table->foreign('translation_id')->references('id')
+                                             ->on('translations')
+                                             ->onDelete('cascade');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateLocalizationLanguagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('localization_languages');
+        Schema::drop('translation_languages');
     }
 }

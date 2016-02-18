@@ -1,4 +1,4 @@
-<div class="modal fade" id="localization-modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="translations-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,12 +16,12 @@
                 <div class="tab-pane{{language() != $current->language ? '' : ' active'}}" id="item-{{$current->language}}">
                     {!! Form::model($current, [
                         'method' => 'post',
-                        'url'    => cms_route('localization.form', [], $current->language),
+                        'url'    => cms_route('translations.form', [], $current->language),
                         'class'  => 'form-horizontal ajax-form',
                         'data-lang'  => $current->language
                     ]) !!}
                         <input type="hidden" name="id" value="{{$current->id}}">
-                        @include('admin.localization.modal.form', [
+                        @include('admin.translations.modal.form', [
                             'lang' => $current->language,
                         ])
                     {!! Form::close() !!}
@@ -30,5 +30,5 @@
             </div>
         </div>
     </div>
-@include('admin.localization.modal.scripts')
+@include('admin.translations.modal.scripts')
 </div>

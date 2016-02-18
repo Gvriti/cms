@@ -107,9 +107,9 @@
               </a>
             </li>
             <li>
-              <a href="{{ cms_route('localization.index') }}">
-                <i class="fa fa-language" title="Localization"></i>
-                <span class="title">Localization</span>
+              <a href="{{ cms_route('translations.index') }}">
+                <i class="fa fa-language" title="Translations"></i>
+                <span class="title">Translations</span>
               </a>
             </li>
           </ul>

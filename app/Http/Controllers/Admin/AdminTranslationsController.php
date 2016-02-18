@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\Localization;
+use Models\Translation;
 use Illuminate\Http\Request;
 use App\Jobs\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\LocalizationRequest;
+use App\Http\Requests\Admin\TranslationRequest;
 
-class AdminLocalizationController extends Controller
+class AdminTranslationsController extends Controller
 {
     /**
-     * The Localization instance.
+     * The Translation instance.
      *
-     * @var \Models\Localization
+     * @var \Models\Translation
      */
     protected $model;
 
     /**
      * Create a new controller instance.
      *
-     * @param  \Models\Localization  $model
+     * @param  \Models\Translation  $model
      * @return void
      */
-    public function __construct(Localization $model)
+    public function __construct(Translation $model)
     {
         $this->model = $model;
     }
@@ -37,7 +37,7 @@ class AdminLocalizationController extends Controller
     {
         $data['items'] = $this->model->joinLanguages()->get();
 
-        return view('admin.localization.index', $data);
+        return view('admin.translations.index', $data);
     }
 
     /**
@@ -49,25 +49,25 @@ class AdminLocalizationController extends Controller
     {
         $data['current'] = $this->model;
 
-        return view('admin.localization.create', $data);
+        return view('admin.translations.create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\LocalizationRequest  $request
+     * @param  \App\Http\Requests\Admin\TranslationRequest  $request
      * @return Response
      */
-    public function store(LocalizationRequest $request)
+    public function store(TranslationRequest $request)
     {
         $newModel = $this->model->create($request->all());
 
         if ($request->has('close')) {
-            return redirect()->route(cms_route('localization.index'))
+            return redirect()->route(cms_route('translations.index'))
                     ->with('alert', fill_data('success', trans('general.created')));
         }
 
-        return redirect(cms_route('localization.edit', [$newModel->id]))
+        return redirect(cms_route('translations.edit', [$newModel->id]))
                 ->with('alert', fill_data('success', trans('general.created')));
     }
 
@@ -83,17 +83,17 @@ class AdminLocalizationController extends Controller
                                      ->where('id', $id)
                                      ->getOrFail();
 
-        return view('admin.localization.edit', $data);
+        return view('admin.translations.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\LocalizationRequest  $request
+     * @param  \App\Http\Requests\Admin\TranslationRequest  $request
      * @param  int  $id
      * @return Response
      */
-    public function update(LocalizationRequest $request, $id)
+    public function update(TranslationRequest $request, $id)
     {
         $input = $request->all();
 
@@ -106,7 +106,7 @@ class AdminLocalizationController extends Controller
         }
 
         if ($request->has('close')) {
-            return redirect(cms_route('localization.index'))
+            return redirect(cms_route('translations.index'))
                     ->with('alert', fill_data('success', trans('general.updated')));
         }
 
@@ -127,7 +127,7 @@ class AdminLocalizationController extends Controller
     }
 
     /**
-     * Get the localization modal form by speicific name.
+     * Get the translation modal form by speicific name.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return Response
@@ -151,16 +151,16 @@ class AdminLocalizationController extends Controller
             $form = 'edit';
         }
 
-        return view('admin.localization.modal.' . $form, $data);
+        return view('admin.translations.modal.' . $form, $data);
     }
 
     /**
-     * Create/Update a localization model.
+     * Create/Update a translation model.
      *
-     * @param  \App\Http\Requests\Admin\LocalizationRequest  $request
+     * @param  \App\Http\Requests\Admin\TranslationRequest  $request
      * @return Response
      */
-    public function postModal(LocalizationRequest $request)
+    public function postModal(TranslationRequest $request)
     {
         if ($id = $request->get('id')) {
             $this->model->findOrFail($id)->update($request->all());

@@ -4,9 +4,9 @@
     <div class="title-env">
         <h1 class="title">
             <i class="fa fa-language"></i>
-            Localization
+            Translations
         </h1>
-        <p class="description">Edit localization</p>
+        <p class="description">Edit translations</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
@@ -15,7 +15,7 @@
             </li>
             <li class="active">
                 <i class="fa fa-language"></i>
-                <strong>Localization</strong>
+                <strong>Translations</strong>
             </li>
         </ol>
     </div>
@@ -61,11 +61,11 @@
             <div class="panel-body">
             {!! Form::model($current, [
                 'method'    => 'put',
-                'url'       => cms_route('localization.update', [$current->id], $isMultiLang ? $current->language : null),
+                'url'       => cms_route('translations.update', [$current->id], $isMultiLang ? $current->language : null),
                 'class'     => 'form-horizontal '.$settings->get('ajax_form'),
                 'data-lang' => $current->language
             ]) !!}
-                @include('admin.localization.form', [
+                @include('admin.translations.form', [
                     'lang'          => $current->language,
                     'submit'        => trans('general.update'),
                     'submitAndBack' => trans('general.update_n_back'),

@@ -185,7 +185,7 @@ return [
         // Eloquent model service providers
         App\Providers\Models\MenuServiceProvider::class,
         App\Providers\Models\PageServiceProvider::class,
-        App\Providers\Models\LocalizationServiceProvider::class,
+        App\Providers\Models\TranslationServiceProvider::class,
         App\Providers\Models\CalendarServiceProvider::class,
 
         App\Providers\RouteServiceProvider::class,

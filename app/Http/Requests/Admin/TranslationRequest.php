@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
 
-class LocalizationRequest extends Request
+class TranslationRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,10 @@ class LocalizationRequest extends Request
      */
     public function rules()
     {
-        $id = $this->route('localization');
+        $id = $this->route('translations');
 
         if (! is_null($id)) {
-            $id = '|unique:localization,name,' . $id;
+            $id = '|unique:translations,name,' . $id;
         }
 
         return [

@@ -4,7 +4,7 @@
     <div class="title-env">
         <h1 class="title">
             <i class="fa fa-language"></i>
-            Localization
+            Translations
         </h1>
         <p class="description">List of all translation</p>
     </div>
@@ -15,14 +15,14 @@
             </li>
             <li class="active">
                 <i class="fa fa-language"></i>
-                <strong>Localization</strong>
+                <strong>Translations</strong>
             </li>
         </ol>
     </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">List of all translation</h3>
+        <h3 class="panel-title">List of all translations</h3>
         <div class="panel-options">
             <a href="#">
                 <i class="fa fa-gear"></i>
@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="panel-body">
-        <a href="{{ cms_route('localization.create') }}" class="btn btn-secondary btn-icon-standalone">
+        <a href="{{ cms_route('translations.create') }}" class="btn btn-secondary btn-icon-standalone">
             <i class="fa fa-file"></i>
             <span>{{ trans('general.create') }}</span>
         </a>
@@ -57,10 +57,10 @@
                     <td>{{ $item->id }}</td>
                     <td>
                         <div class="btn-action">
-                            <a href="{{ cms_route('localization.edit', $item->id) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
+                            <a href="{{ cms_route('translations.edit', $item->id) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                                 <span class="fa fa-edit"></span>
                             </a>
-                            {!! Form::open(['method' => 'delete', 'url' => cms_route('localization.destroy', $item->id), 'class' => 'form-delete']) !!}
+                            {!! Form::open(['method' => 'delete', 'url' => cms_route('translations.destroy', $item->id), 'class' => 'form-delete']) !!}
                             <button type="submit" class="btn btn-danger" data-id="{{ $item->id }}" title="{{trans('general.delete')}}">
                                 <span class="fa fa-trash"></span>
                             </button>

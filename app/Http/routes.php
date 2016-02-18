@@ -84,8 +84,8 @@ $router->group(['prefix' => cms_slug(), 'namespace' => 'Admin', 'middleware' => 
         'except' => ['show']
     ]);
 
-    // localization
-    $router->resource('localization', 'AdminLocalizationController', ['names' => cms_prefix('localization', true),
+    // translations
+    $router->resource('translations', 'AdminTranslationsController', ['names' => cms_prefix('translations', true),
         'except' => ['show']
     ]);
 

@@ -2,10 +2,10 @@
 
 namespace App\Providers\Models;
 
-use Models\Localization;
+use Models\Translation;
 use Illuminate\Support\ServiceProvider;
 
-class LocalizationServiceProvider extends ServiceProvider
+class TranslationServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -17,9 +17,9 @@ class LocalizationServiceProvider extends ServiceProvider
         // Do not boot if we are running in the console to avoid migration fail.
         // Do not boot if CMS will load.
         if (! $this->app->runningInConsole() && ! cms_will_load()) {
-            $trans = (new Localization)->joinLanguages()
-                                       ->get()
-                                       ->lists('value', 'name');
+            $trans = (new Translation)->joinLanguages()
+                                      ->get()
+                                      ->lists('value', 'name');
 
             $this->app->instance('trans', $trans);
 

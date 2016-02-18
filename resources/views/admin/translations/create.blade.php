@@ -4,7 +4,7 @@
     <div class="title-env">
         <h1 class="title">
             <i class="fa fa-language"></i>
-            Localization
+            Translations
         </h1>
         <p class="description">Creation of the translation</p>
     </div>
@@ -15,7 +15,7 @@
             </li>
             <li class="active">
                 <i class="fa fa-language"></i>
-                <strong>Localization</strong>
+                <strong>Translations</strong>
             </li>
         </ol>
     </div>
@@ -27,10 +27,10 @@
     <div class="panel-body">
         {!! Form::model($current, [
             'method' => 'post',
-            'url'    => cms_route('localization.index'),
+            'url'    => cms_route('translations.index'),
             'class'  => 'form-horizontal'
         ]) !!}
-            @include('admin.localization.form', [
+            @include('admin.translations.form', [
                 'lang'          => null,
                 'submit'        => trans('general.create'),
                 'submitAndBack' => trans('general.create_n_close'),
