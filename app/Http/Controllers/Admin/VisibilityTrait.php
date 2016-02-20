@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 trait VisibilityTrait
 {
     /**
-     * Update visibility of the specified Eloquent model.
+     * Update visibility of the specified resource.
      *
      * @param  int  $id
      * @return Response
