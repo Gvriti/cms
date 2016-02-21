@@ -72,7 +72,7 @@
         </li>
         <li>
           <a href="{{ cms_route('cmsUsers.index') }}">
-            <i class="fa fa-user-secret" title="CMS Users"></i>
+            <i class="{{icon_type('cms_users')}}" title="CMS Users"></i>
             <span class="title">CMS Users</span>
           </a>
         </li>
@@ -209,7 +209,7 @@
           <ul class="dropdown-menu user-profile-menu list-unstyled">
             <li>
               <a href="{{cms_route('cmsUsers.show', [AuthCms::id()])}}">
-                <i class="fa fa-user-secret"></i>
+                <i class="{{icon_type('cms_users')}}"></i>
                 Profile
               </a>
             </li>

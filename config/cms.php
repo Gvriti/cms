@@ -217,7 +217,10 @@ return [
         'photos'      => 'fa fa-photo',
         'videos'      => 'fa fa-video-camera',
 
-        'files'       => 'el el-paper-clip'
+        'files'       => 'el el-paper-clip',
+
+        'permissions' => 'fa fa-lock',
+        'cms_users'   => 'fa fa-user-secret',
     ],
 
 ];

@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="fa fa-user-secret"></i>
+            <i class="{{icon_type('cms_users')}}"></i>
             CMS Users
         </h1>
         <p class="description">List of all cms users</p>
@@ -14,7 +14,7 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li class="active">
-                <i class="fa fa-user-secret"></i>
+                <i class="{{icon_type('cms_users')}}"></i>
                 <strong>CMS Users</strong>
             </li>
         </ol>
@@ -78,7 +78,7 @@
                 @endif
                 @if (AuthCms::get()->isAdmin() && $item->role != 'admin')
                     <a href="{{cms_route('permissions.index', [$item->id])}}" class="text-warning">
-                        <i class="fa fa-lock"></i>
+                        <i class="{{icon_type('permissions')}}"></i>
                         Permissions
                     </a>
                 @endif

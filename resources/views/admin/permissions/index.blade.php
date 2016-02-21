@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="fa fa-lock"></i>
+            <i class="{{icon_type('permissions')}}"></i>
             Permissions
         </h1>
         <p class="description">Set permissions for the selected cms user</p>
@@ -14,10 +14,10 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li>
-                <a href="{{ cms_route('cmsUsers.index') }}"><i class="fa fa-user-secret"></i>CMS Users</a>
+                <a href="{{ cms_route('cmsUsers.index') }}"><i class="{{icon_type('cms_users')}}"></i>CMS Users</a>
             </li>
             <li class="active">
-                <i class="fa fa-lock"></i>
+                <i class="{{icon_type('permissions')}}"></i>
                 <strong>Permissions</strong>
             </li>
         </ol>

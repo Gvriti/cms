@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="fa fa-user-secret"></i>
+            <i class="{{icon_type('cms_users')}}"></i>
             CMS Users
         </h1>
         <p class="description">Creation of the CMS user</p>
@@ -14,7 +14,7 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li class="active">
-                <i class="fa fa-user-secret"></i>
+                <i class="{{icon_type('cms_users')}}"></i>
                 <strong>CMS Users</strong>
             </li>
         </ol>
