@@ -78,8 +78,8 @@
                             <a href="{{ cms_route('pages.edit', [$menu->id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                                 <span class="fa fa-edit"></span>
                             </a>
-                            {!! Form::open(['method' => 'delete', 'url' => cms_route('pages.destroy', [$menu->id, $item->id]), 'class' => 'form-delete']) !!}
-                                <button type="submit" class="btn btn-danger" data-id="{{ $item->id }}" title="{{trans('general.delete')}}"{{$item->sub || $item->files_id ? ' disabled' : ''}}>
+                            {!! Form::open(['method' => 'delete', 'url' => cms_route('pages.destroy', [$menu->id, $item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
+                                <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}"{{$item->sub || $item->files_id ? ' disabled' : ''}}>
                                     <span class="fa fa-trash"></span>
                                 </button>
                             {!! Form::close() !!}
@@ -100,8 +100,6 @@
 @include('admin.scripts.move', ['route' => 'pages', 'list' => $menus, 'id' => $menu->id, 'column' => 'menu_id', 'recursive' => true])
 <script type="text/javascript">
 $(function() {
-    @include('admin.scripts.destroy', ['subTree' => true])
-
     positionable('{{ cms_route('pages.updatePosition') }}');
 
     // Update pages URL recursively, after position update

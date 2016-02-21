@@ -40,6 +40,47 @@ $(function () {
         }, 800, this);
     });
 
+    // Delete form
+    $('.form-delete').on('submit', function(e) {
+        e.preventDefault();
+        var perform = confirm('Are you sure you want to delete?');
+        if (perform != true) return;
+        var form = $(this);
+        var formId = $(this).data('id');
+        var btn = form.find('[type="submit"]').prop('disabled', true);
+
+        var input = form.serialize();
+        $.ajax({
+            type: 'POST',
+            url: form.attr('action'),
+            dataType: 'json',
+            data: input,
+            success: function(data, status, xhr) {
+                if (data) {
+                    // alert toastr message
+                    toastr[data.result](data.message);
+
+                    if (data.result == 'success') {
+                        $('#item' + formId).fadeOut(600, function() {
+                            if ($(this).data('parent') == 1) {
+                                $(this).closest('.uk-parent').removeClass('uk-parent');
+                                disableParentDeletion(formId);
+                            }
+                            $(this).remove();
+                        });
+                    }
+                }
+
+                btn.prop('disabled', false);
+            },
+            error: function(xhr) {
+                btn.prop('disabled', false);
+
+                alert(xhr.responseText);
+            }
+        });
+    });
+
     // Ajax form submit
     var ajaxFormSelector = '.ajax-form';
     $(document).on('submit', ajaxFormSelector, function(e) {
@@ -209,11 +250,11 @@ function updateUrl(target, url) {
 }
 
 function disableParentDeletion() {
-    $('#nestable-list .form-delete button[type="submit"]').prop('disabled', false);
+    $('#nestable-list .form-delete [type="submit"]').prop('disabled', false);
 
     $('#nestable-list .uk-parent').each(function() {
         id = $(this).data('id');
-        $('.form-delete button[data-id="' + id + '"]', this).prop('disabled', true);
+        $('.form-delete[data-id="' + id + '"] [type="submit"]', this).prop('disabled', true);
     });
 }
 

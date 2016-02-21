@@ -65,8 +65,8 @@
                             <a href="{{ cms_route('menus.edit', [$item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                                 <span class="fa fa-edit"></span>
                             </a>
-                            {!! Form::open(['method' => 'delete', 'url' => cms_route('menus.destroy', [$item->id]), 'class' => 'form-delete']) !!}
-                            <button type="submit" class="btn btn-danger" data-id="{{ $item->id }}" title="{{trans('general.delete')}}">
+                            {!! Form::open(['method' => 'delete', 'url' => cms_route('menus.destroy', [$item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
+                            <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}">
                                 <span class="fa fa-trash"></span>
                             </button>
                             {!! Form::close() !!}
@@ -79,8 +79,6 @@
     </div>
 </div>
 <script type="text/javascript">
-@include('admin.scripts.destroy')
-
 $('#items').on('click', '.cbr-radio', function() {
     var id = $(this).find('input').data('id');
     var data = {'id':id, '_token':csrf_token()};

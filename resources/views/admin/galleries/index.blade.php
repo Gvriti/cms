@@ -72,8 +72,8 @@
                                     <a href="{{ cms_route('galleries.edit', [$collection->id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                                         <span class="fa fa-edit"></span>
                                     </a>
-                                    {!! Form::open(['method' => 'delete', 'url' => cms_route('galleries.destroy', [$collection->id, $item->id]), 'class' => 'form-delete']) !!}
-                                        <button type="submit" class="btn btn-danger" data-id="{{ $item->id }}" title="{{trans('general.delete')}}">
+                                    {!! Form::open(['method' => 'delete', 'url' => cms_route('galleries.destroy', [$collection->id, $item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
+                                        <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}">
                                             <span class="fa fa-trash"></span>
                                         </button>
                                     {!! Form::close() !!}
@@ -110,8 +110,6 @@
 @include('admin.scripts.move', ['route' => 'galleries', 'list' => $similarTypes, 'id' => $collection->id, 'column' => 'collection_id'])
 <script type="text/javascript">
 $(function() {
-    @include('admin.scripts.destroy')
-
 @if ($collection->admin_order_by == 'position')
     positionable('{{ cms_route('galleries.updatePosition') }}', '{{$collection->admin_sort}}', {{request('page', 1)}}, '{{$items->hasMorePages()}}');
 @endif

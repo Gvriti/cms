@@ -1,7 +1,7 @@
 @if ($item->sub)
 <ul>
 @foreach ((array) $item->sub as $item)
-    <li id="item{{ $item->id }}" class="item{{$item->collapse ? ' uk-collapsed' : ''}}" data-id="{{ $item->id }}">
+    <li id="item{{ $item->id }}" class="item{{$item->collapse ? ' uk-collapsed' : ''}}" data-id="{{ $item->id }}" data-parent="1">
         <div class="uk-nestable-item">
             <div class="uk-nestable-handle"></div>
             <div data-nestable-action="toggle"></div>
@@ -31,8 +31,8 @@
                 <a href="{{ cms_route('pages.edit', [$item->menu_id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                     <span class="fa fa-edit"></span>
                 </a>
-                {!! Form::open(['method' => 'delete', 'url' => cms_route('pages.destroy', [$menu->id, $item->id]), 'class' => 'form-delete']) !!}
-                    <button type="submit" class="btn btn-danger" data-id="{{ $item->id }}" title="{{trans('general.delete')}}"{{$item->sub || $item->files_id ? ' disabled' : ''}}>
+                {!! Form::open(['method' => 'delete', 'url' => cms_route('pages.destroy', [$menu->id, $item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
+                    <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}"{{$item->sub || $item->files_id ? ' disabled' : ''}}>
                         <span class="fa fa-trash"></span>
                     </button>
                 {!! Form::close() !!}

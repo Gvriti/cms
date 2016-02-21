@@ -63,8 +63,8 @@
                             <a href="{{ cms_route('collections.edit', [$item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                                 <span class="fa fa-edit"></span>
                             </a>
-                            {!! Form::open(['method' => 'delete', 'url' => cms_route('collections.destroy', $item->id), 'class' => 'form-delete']) !!}
-                            <button type="submit" class="btn btn-danger" data-id="{{ $item->id }}" title="{{trans('general.delete')}}">
+                            {!! Form::open(['method' => 'delete', 'url' => cms_route('collections.destroy', $item->id), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
+                            <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}">
                                 <span class="fa fa-trash"></span>
                             </button>
                             {!! Form::close() !!}
@@ -78,8 +78,6 @@
 </div>
 <script type="text/javascript">
 $(function() {
-    @include('admin.scripts.destroy')
-
     var table = $('#items');
     table.dataTable({
         pageLength: 50,

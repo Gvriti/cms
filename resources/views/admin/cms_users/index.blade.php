@@ -83,10 +83,12 @@
                     </a>
                 @endif
                 @if (AuthCms::get()->isAdmin() && AuthCms::id() != $item->id)
-                    <a href="#" class="delete" data-id="{{ $item->id }}" >
-                        <i class="fa fa-user-times"></i>
-                        Delete
-                    </a>
+                    {!! Form::open(['method' => 'delete', 'url' => cms_route('cmsUsers.destroy', [$item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
+                        <a href="#" class="delete">
+                            <i class="fa fa-user-times"></i>
+                            Delete
+                        </a>
+                    {!! Form::close() !!}
                 @endif
                 </td>
             </tr>
@@ -107,24 +109,7 @@
 $(function() {
     $('.members-table a.delete').on('click', function(e) {
         e.preventDefault();
-
-        var perform = confirm("{{trans('general.delete_confirm')}}");
-        if (perform != true) return;
-
-        var item = $(this);
-        var id = $(this).data('id');
-
-        var data = {'id':id, '_method':'delete', '_token':csrf_token()};
-
-        $.post("{{cms_route('cmsUsers.index')}}/" + id, data, function(data) {
-            toastr[data.result](data.message);
-
-            if (data.result == 'success') {
-                item.closest('tr').remove();
-            }
-        }, 'json').fail(function(xhr) {
-            alert(xhr.responseText);
-        });
+        $(this).closest('.form-delete').submit();
     });
 });
 </script>
