@@ -32,7 +32,11 @@ abstract class Request extends FormRequest
     public function response(array $errors)
     {
         foreach ((array) $this->customErrors as $key => $value) {
-            $errors[$key][] = $value;
+            if (is_array($value)) {
+                $errors[$key] = array_merge($errors[$key], $value);
+            } else {
+                $errors[$key][] = $value;
+            }
         }
 
         return parent::response($errors);
