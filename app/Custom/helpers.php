@@ -590,7 +590,7 @@ function getYoutubeEmbed($url)
 /**
  * Calculate age based on the date.
  *
- * @param  string $dob
+ * @param  string  $dob
  * @return int
  */
 function getAge($dob)

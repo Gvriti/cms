@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{icon_type('pages')}}"></i>
+            <i class="{{$iconPages = icon_type('pages')}}"></i>
             {{$menu->title}}
         </h1>
         <p class="description">{{ $menu->description }}</p>
@@ -14,10 +14,10 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li>
-                <a href="{{ cms_route('menus.index') }}"><i class="{{icon_type('menus')}}"></i>Menus</a>
+                <a href="{{ cms_route('menus.index') }}"><i class="{{$iconMenus = icon_type('menus')}}"></i>Menus</a>
             </li>
             <li class="active">
-                <i class="{{icon_type('pages')}}"></i>
+                <i class="{{$iconPages}}"></i>
                 <strong>{{$menu->title}}</strong>
             </li>
         </ol>
@@ -38,7 +38,7 @@
     </div>
     <div class="panel-body">
         <a href="{{ cms_route('pages.create', [$menu->id]) }}" class="btn btn-secondary btn-icon-standalone">
-            <i class="{{icon_type('pages')}}"></i>
+            <i class="{{$iconPages}}"></i>
             <span>{{ trans('general.create') }}</span>
         </a>
         <button id="save-tree" class="btn btn-secondary btn-icon-standalone dn" disabled>
@@ -59,7 +59,7 @@
                                 <span class="fa fa-link"></span>
                             </a>
                             <a href="#" class="movable btn btn-white" title="Move to menu" data-id="{{$item->id}}">
-                                <span class="{{icon_type('menus')}}"></span>
+                                <span class="{{$iconMenus}}"></span>
                             </a>
                             {!! Form::open(['method' => 'post', 'url' => cms_route('pages.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
                                 <button type="submit" class="btn btn-{{$item->visible ? 'white' : 'gray'}}" title="{{trans('general.visibility')}}">

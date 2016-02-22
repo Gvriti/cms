@@ -17,10 +17,11 @@ return [
     "description" => "აღწერა",
     "content"     => "შიგთავსი",
 
-    "name"     => "სახელი",
-    "lastname" => "გვარი",
-    "email"    => "ელ.ფოსტა",
-    "phone"    => "ტელეფონი",
-    "password" => "პაროლი"
+    "name"      => "სახელი",
+    "fisrtname" => "სახელი",
+    "lastname"  => "გვარი",
+    "email"     => "ელ.ფოსტა",
+    "phone"     => "ტელეფონი",
+    "password"  => "პაროლი"
 
 ];

@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{icon_type('photos')}}"></i>
+            <i class="{{$icon = icon_type('photos')}}"></i>
             Slider
         </h1>
     </div>
@@ -33,7 +33,7 @@
                     </li>
                     <li>
                         <a href="#" data-modal="add">
-                            <i class="{{icon_type('photos')}}"></i>
+                            <i class="{{$icon}}"></i>
                             Add Image
                         </a>
                     </li>

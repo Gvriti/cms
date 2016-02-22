@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{icon_type('articles')}}"></i>
+            <i class="{{$iconArticle = icon_type('articles')}}"></i>
             {{ $collection->type }}
         </h1>
         <p class="description">{{ $collection->description }}</p>
@@ -14,10 +14,10 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li>
-                <a href="{{ cms_route('collections.index') }}"><i class="{{icon_type('collections')}}"></i>Collections</a>
+                <a href="{{ cms_route('collections.index') }}"><i class="{{$iconColl = icon_type('collections')}}"></i>Collections</a>
             </li>
             <li class="active">
-                <i class="{{icon_type('articles')}}"></i>
+                <i class="{{$iconArticle}}"></i>
                 <strong>{{ $collection->title }}</strong>
             </li>
         </ol>
@@ -40,7 +40,7 @@
             </div>
             <div class="panel-body">
                 <a href="{{ cms_route('articles.create', [$collection->id]) }}" class="btn btn-secondary btn-icon-standalone">
-                    <i class="{{icon_type('articles')}}"></i>
+                    <i class="{{$iconArticle}}"></i>
                     <span>{{ trans('general.create') }}</span>
                 </a>
                 <button id="save-tree" class="btn btn-secondary btn-icon-standalone dn" disabled>
@@ -59,7 +59,7 @@
                                 <div class="btn-action togglable pull-right">
                                     <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
                                     <a href="#" class="movable btn btn-white" title="Move to collection" data-id="{{$item->id}}">
-                                        <span class="{{icon_type('collections')}}"></span>
+                                        <span class="{{$iconColl}}"></span>
                                     </a>
                                     {!! Form::open(['method' => 'post', 'url' => cms_route('articles.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
                                         <button type="submit" class="btn btn-{{$item->visible ? 'white' : 'gray'}}" data-id="{{ $item->id }}" title="{{trans('general.visibility')}}">
@@ -92,7 +92,7 @@
     </div>
     <div class="col-md-3 content-sidebar pull-left">
         <a href="{{cms_route('collections.create', ['type' => $collection->type])}}" class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
-            <i class="{{icon_type('collections')}}"></i>
+            <i class="{{$iconColl}}"></i>
             <span>კოლექციის დამატება</span>
         </a>
         <ul class="list-unstyled bg">

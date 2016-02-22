@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{icon_type('files')}}"></i>
+            <i class="{{$icon = icon_type('files')}}"></i>
             {{ $parent->title }}
         </h1>
         <p class="description">List of the files</p>
@@ -17,7 +17,7 @@
                 <a href="{{ cms_route($parent->routeName . '.edit', $parent->routeParams) }}"><i class="{{icon_type($parent->routeName)}}"></i>{{$parent->title}}</a>
             </li>
             <li class="active">
-                <i class="{{icon_type('files')}}"></i>
+                <i class="{{$icon}}"></i>
                 <strong>Files</strong>
             </li>
         </ol>
@@ -68,7 +68,7 @@
                     </li>
                     <li>
                         <a href="#" data-modal="add">
-                            <i class="{{icon_type('files')}}"></i>
+                            <i class="{{$icon}}"></i>
                             Add File
                         </a>
                     </li>

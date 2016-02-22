@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{icon_type('menus')}}"></i>
+            <i class="{{$icon = icon_type('menus')}}"></i>
             Menus
         </h1>
         <p class="description">List of all menus</p>
@@ -14,7 +14,7 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li class="active">
-                <i class="{{icon_type('menus')}}"></i>
+                <i class="{{$icon}}"></i>
                 <strong>Menus</strong>
             </li>
         </ol>
@@ -35,7 +35,7 @@
     </div>
     <div class="panel-body">
         <a href="{{ cms_route('menus.create') }}" class="btn btn-secondary btn-icon-standalone">
-            <i class="{{icon_type('menus')}}"></i>
+            <i class="{{$icon}}"></i>
             <span>{{ trans('general.create') }}</span>
         </a>
         <table id="items" class="table table-small-font table-bordered table-striped">

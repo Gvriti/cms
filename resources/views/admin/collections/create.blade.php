@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{icon_type('collections')}}"></i>
+            <i class="{{$icon = icon_type('collections')}}"></i>
             Collections
         </h1>
         <p class="description">Creation of the collection</p>
@@ -14,7 +14,7 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li class="active">
-                <i class="{{icon_type('collections')}}"></i>
+                <i class="{{$icon}}"></i>
                 <strong>Collections</strong>
             </li>
         </ol>

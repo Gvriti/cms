@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{icon_type('cms_users')}}"></i>
+            <i class="{{$icon = icon_type('cms_users')}}"></i>
             Profile
         </h1>
         <p class="description">Profile of the cms user</p>
@@ -14,7 +14,7 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li>
-                <a href="{{ cms_route('cmsUsers.index') }}"><i class="{{icon_type('cms_users')}}"></i>CMS Users</a>
+                <a href="{{ cms_route('cmsUsers.index') }}"><i class="{{$icon}}"></i>CMS Users</a>
             </li>
             <li class="active">
                 <strong>{{$current->firstname}} {{$current->lastname}}</strong>

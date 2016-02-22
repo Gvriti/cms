@@ -48,7 +48,7 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 }
 
 /* filter parameters list */
-#params-list .param {padding-right:15px;}
+#params-list .param {padding-right:15px;vertical-align:middle;}
 
 
 /*** OVERRIDE BOOTSTRAP ***/

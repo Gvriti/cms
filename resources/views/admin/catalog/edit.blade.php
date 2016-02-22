@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{icon_type('catalog')}}"></i>
+            <i class="{{$icon = icon_type('catalog')}}"></i>
             Catalog
         </h1>
         <p class="description">Edit catalog</p>
@@ -17,7 +17,7 @@
                 <a href="{{ cms_route('collections.index') }}"><i class="{{icon_type('collections')}}"></i>Collections</a>
             </li>
             <li class="active">
-                <i class="{{icon_type('catalog')}}"></i>
+                <i class="{{$icon}}"></i>
                 <strong>catalog</strong>
             </li>
         </ol>
