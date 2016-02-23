@@ -26,8 +26,8 @@
                     }
                 },
                 getFileCallback: function(file) {
-                    if (parent.$('#{{ $input_id }}_{{ language() }}').length) {
-                        parent.$('#{{ $input_id }}_{{ language() }}').val(file.url).trigger('fileSet');
+                    if (parent.$('#{{ $input_id . language() }}').length) {
+                        parent.$('#{{ $input_id . language() }}').val(file.url).trigger('fileSet');
                     } else {
                         parent.$('#{{ $input_id }}').val(file.url).trigger('fileSet');
                     }
