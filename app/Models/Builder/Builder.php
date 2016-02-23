@@ -19,11 +19,11 @@ class Builder extends EloquentBuilder
     protected $model;
 
     /**
-     * The columns that should be appended to pagination count.
+     * The columns that should be added to the count query.
      *
      * @var array
      */
-    public $columnsForPagination;
+    public $columnsForCount = [];
 
     /**
      * Create a new Eloquent query builder instance.
@@ -40,10 +40,7 @@ class Builder extends EloquentBuilder
     }
 
     /**
-     * Add a new select column to the query.
-     *
-     * @param  mixed  $column
-     * @return $this
+     * {@inheritdoc}
      */
     public function addSelect($columns)
     {
@@ -55,17 +52,25 @@ class Builder extends EloquentBuilder
     }
 
     /**
-     * Set the columns for pagination count.
+     * Add a new select to the count query.
      *
-     * @param  string  $columns
+     * @param  array|mixed  $columns
      * @param  string  $method
      * @return \Models\Builder\Builder
      */
-    public function selectForPagination($columns, $method = 'addSelect')
+    public function addSelectCount($columns, $method = 'addSelect')
     {
-        $this->columnsForPagination[] = $columns;
+        $columns = (array) $columns;
 
-        return call_user_func_array([$this, $method], [$columns]);
+        if (! isset($this->columnsForCount[$method])) {
+            $this->columnsForCount[$method] = [];
+        }
+
+        $this->columnsForCount[$method] = array_unique(array_merge(
+            $this->columnsForCount[$method], $columns
+        ));
+
+        return call_user_func_array([$this, $method], $columns);
     }
 
     /**
@@ -104,14 +109,20 @@ class Builder extends EloquentBuilder
     {
         $this->prefixColumnsOnJoin();
 
-        if ($this->columnsForPagination) {
+        if ($this->columnsForCount) {
             $columnsBackup = $this->query->columns;
 
             $this->query->columns = null;
 
-            $total = $this->query->selectRaw(
-                'count(*) as aggregate, ' . implode($this->columnsForPagination, ',')
-            )->get();
+            $query = $this->query->selectRaw('count(*) as aggregate');
+
+            foreach ($this->columnsForCount as $method => $selects) {
+                foreach ((array) $selects as $select) {
+                    $query->{$method}($select);
+                }
+            }
+
+            $total = $query->get();
 
             if (isset($this->query->groups)) {
                 $total = count($total);
