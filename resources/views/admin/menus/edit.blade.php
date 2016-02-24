@@ -37,7 +37,6 @@
             'class'  => 'form-horizontal '.$settings->get('ajax_form')
         ]) !!}
             @include('admin.menus.form', [
-                'id'            => $current->id,
                 'submit'        => trans('general.update'),
                 'submitAndBack' => trans('general.update_n_back'),
                 'icon'          => 'save'

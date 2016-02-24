@@ -32,8 +32,8 @@
         <button type="submit" class="btn btn-secondary" title="{{ $submit }}">
             <i class="fa fa-{{ $icon }}"></i>
         </button>
-    @if ($id)
-        <a href="{{ cms_route('pages.index', [$id]) }}" class="btn btn-info" title="{{ trans('general.pages') }}">
+    @if ($current->id)
+        <a href="{{ cms_route('pages.index', [$current->id]) }}" class="btn btn-info" title="{{ trans('general.pages') }}">
             <i class="{{icon_type('pages')}}"></i>
         </a>
     @endif

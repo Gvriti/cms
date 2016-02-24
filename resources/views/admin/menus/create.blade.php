@@ -40,7 +40,6 @@
             'class'  => 'form-horizontal'
         ]) !!}
             @include('admin.menus.form', [
-                'id'            => null,
                 'submit'        => trans('general.create'),
                 'submitAndBack' => trans('general.create_n_close'),
                 'icon'          => 'save'

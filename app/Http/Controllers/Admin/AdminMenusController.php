@@ -45,7 +45,9 @@ class AdminMenusController extends Controller
      */
     public function create()
     {
-        return view('admin.menus.create');
+        $data['current'] = $this->model;
+
+        return view('admin.menus.create', $data);
     }
 
     /**
