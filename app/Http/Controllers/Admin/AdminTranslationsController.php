@@ -60,14 +60,14 @@ class AdminTranslationsController extends Controller
      */
     public function store(TranslationRequest $request)
     {
-        $newModel = $this->model->create($request->all());
+        $model = $this->model->create($request->all());
 
         if ($request->has('close')) {
             return redirect()->route(cms_route('translations.index'))
                     ->with('alert', fill_data('success', trans('general.created')));
         }
 
-        return redirect(cms_route('translations.edit', [$newModel->id]))
+        return redirect(cms_route('translations.edit', [$model->id]))
                 ->with('alert', fill_data('success', trans('general.created')));
     }
 

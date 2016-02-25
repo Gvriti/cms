@@ -91,11 +91,11 @@ class AdminFilesController extends Controller
         $input['route_name'] = $routeName;
         $input['route_id'] = $routeId;
 
-        $newModel = $this->model->create($input);
+        $model = $this->model->create($input);
 
         if ($request->ajax()) {
             $view = view('admin.files.item', [
-                'model' => $newModel,
+                'model' => $model,
                 'modelInput' => $input
             ])->render();
 

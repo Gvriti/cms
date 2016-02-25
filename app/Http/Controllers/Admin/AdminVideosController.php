@@ -91,11 +91,11 @@ class AdminVideosController extends Controller
         $input = $request->all();
         $input['gallery_id'] = $galleryId;
 
-        $newModel = $this->model->create($input);
+        $model = $this->model->create($input);
 
         if ($request->ajax()) {
             $view = view('admin.videos.item', [
-                'model' => $newModel,
+                'model' => $model,
                 'modelInput' => $input
             ])->render();
 

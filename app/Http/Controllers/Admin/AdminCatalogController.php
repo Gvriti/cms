@@ -85,14 +85,14 @@ class AdminCatalogController extends Controller
         $input = $request->all();
         $input['collection_id'] = $collectionId;
 
-        $newModel = $this->model->create($input);
+        $model = $this->model->create($input);
 
         if ($request->has('close')) {
             return redirect(cms_route('catalog.index', [$collectionId]))
                     ->with('alert', fill_data('success', trans('general.created')));
         }
 
-        return redirect(cms_route('catalog.edit', [$collectionId, $newModel->id]))
+        return redirect(cms_route('catalog.edit', [$collectionId, $model->id]))
                 ->with('alert', fill_data('success', trans('general.created')));
     }
 

@@ -80,11 +80,11 @@ class AdminSliderController extends Controller
     {
         $input = $request->all();
 
-        $newModel = $this->model->create($input);
+        $model = $this->model->create($input);
 
         if ($request->ajax()) {
             $view = view('admin.slider.item', [
-                'model' => $newModel,
+                'model' => $model,
                 'modelInput' => $input
             ])->render();
 

@@ -91,11 +91,11 @@ class AdminPhotosController extends Controller
         $input = $request->all();
         $input['gallery_id'] = $galleryId;
 
-        $newModel = $this->model->create($input);
+        $model = $this->model->create($input);
 
         if ($request->ajax()) {
             $view = view('admin.photos.item', [
-                'model' => $newModel,
+                'model' => $model,
                 'modelInput' => $input
             ])->render();
 

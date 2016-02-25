@@ -92,14 +92,14 @@ class AdminPagesController extends Controller
         $input = $request->all();
         $input['menu_id'] = $menuId;
 
-        $newModel = $this->model->create($input);
+        $model = $this->model->create($input);
 
         if ($request->has('close')) {
             return redirect(cms_route('pages.index', [$menuId]))
                     ->with('alert', fill_data('success', trans('general.created')));
         }
 
-        return redirect(cms_route('pages.edit', [$menuId, $newModel->id]))
+        return redirect(cms_route('pages.edit', [$menuId, $model->id]))
                 ->with('alert', fill_data('success', trans('general.created')));
     }
 
