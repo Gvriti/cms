@@ -14,12 +14,12 @@ class CreateSiteSettingsTable extends Migration
     {
         Schema::create('site_settings', function (Blueprint $table) {
             $table->tinyInteger('id', true);
-            $table->string('email');
-            $table->string('phone', 32);
-            $table->string('facebook');
-            $table->string('twitter');
-            $table->string('googleplus');
-            $table->string('map', 800);
+            $table->string('email')->nullable();
+            $table->string('phone', 32)->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('googleplus')->nullable();
+            $table->string('map', 800)->nullable();
             $table->timestamps();
         });
 
