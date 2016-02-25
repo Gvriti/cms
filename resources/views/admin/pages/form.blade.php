@@ -3,7 +3,7 @@
     <label class="col-sm-2 control-label required">Title:</label>
     <div class="col-sm-10">
         {!! Form::text('title', null, [
-            'id' => 'title' . $lang,
+            'id' => 'title' . $current->language,
             'class' => 'form-control',
         ]) !!}
         @if ($error)
@@ -18,7 +18,7 @@
     <label class="col-sm-2 control-label">Short title:</label>
     <div class="col-sm-10">
         {!! Form::text('short_title', null, [
-            'id' => 'short_title' . $lang,
+            'id' => 'short_title' . $current->language,
             'class' => 'form-control',
         ]) !!}
         @if ($error)
@@ -33,8 +33,8 @@
     <label class="col-sm-2 control-label">Slug:</label>
     <div class="col-sm-10">
         {!! Form::text('slug', null, [
-            'id' => 'slug' . $lang,
-            'class' => 'slug form-control',
+            'id' => 'slug' . $current->language,
+            'class' => 'form-control',
             'data-type' => 'general'
         ]) !!}
         @if ($error)
@@ -51,8 +51,8 @@
             <label class="col-lg-6 col-sm-2 control-label required">Type:</label>
             <div class="col-lg-6 col-sm-10">
                 {!! Form::select('type', $types, null, [
-                    'id' => 'type' . $lang,
-                    'class' => 'type form-control select',
+                    'id' => 'type' . $current->language,
+                    'class' => 'form-control select',
                     'data-type' => 'general'
                 ]) !!}
                 @if ($error)
@@ -66,8 +66,8 @@
             <label class="col-lg-4 col-sm-2 control-label">Template:</label>
             <div class="col-lg-6 col-sm-10">
                 {!! Form::select('template', ['' => ''] + $templates, null, [
-                    'id' => 'template' . $lang,
-                    'class' => 'template form-control select',
+                    'id' => 'template' . $current->language,
+                    'class' => 'form-control select',
                     'data-type' => 'general'
                 ]) !!}
             </div>
@@ -78,8 +78,8 @@
             <label class="col-lg-4 col-sm-2 control-label required">Collection:</label>
             <div class="col-lg-6 col-sm-10">
                 {!! Form::select('collection_id', ['' => ''] + $collections, null, [
-                    'id' => 'collection_id' . $lang,
-                    'class' => 'collection_id form-control select',
+                    'id' => 'collection_id' . $current->language,
+                    'class' => 'form-control select',
                     'data-type' => 'general'
                 ]) !!}
                 @if ($error)
@@ -96,8 +96,8 @@
     <label class="col-sm-2 control-label">Visible:</label>
     <div class="col-sm-10">
         {!! Form::checkbox('visible', null, null, [
-            'id' => 'visible' . $lang,
-            'class' => 'visible iswitch iswitch-secondary',
+            'id' => 'visible' . $current->language,
+            'class' => 'iswitch iswitch-secondary',
             'data-type' => 'general'
         ]) !!}
     </div>
@@ -109,7 +109,7 @@
     <label class="col-sm-2 control-label">Description:</label>
     <div class="col-sm-10">
         {!! Form::textarea('description', null, [
-            'id' => 'description' . $lang,
+            'id' => 'description' . $current->language,
             'class' => 'form-control text-editor',
             'rows' => '5'
         ]) !!}
@@ -122,7 +122,7 @@
     <label class="col-sm-2 control-label">Content:</label>
     <div class="col-sm-10">
         {!! Form::textarea('content', null, [
-            'id' => 'content' . $lang,
+            'id' => 'content' . $current->language,
             'class' => 'form-control text-editor',
             'rows' => '10'
         ]) !!}
@@ -135,7 +135,7 @@
     <label class="col-sm-2 control-label">Meta description:</label>
     <div class="col-sm-10">
         {!! Form::text('meta_desc', null, [
-            'id' => 'meta_desc' . $lang,
+            'id' => 'meta_desc' . $current->language,
             'class' => 'form-control',
         ]) !!}
         @if ($error)
@@ -152,8 +152,8 @@
     <div class="col-lg-6 col-sm-10">
         <div class="input-group">
             {!! Form::text('image', null, [
-                'id' => 'image' . $lang,
-                'class' => 'image form-control',
+                'id' => 'image' . $current->language,
+                'class' => 'form-control',
                 'data-type' => 'general'
             ]) !!}
             <div class="input-group-btn popup" data-browse="image">

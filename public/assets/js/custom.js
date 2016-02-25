@@ -87,6 +87,7 @@ $(function () {
         e.preventDefault();
         var form = $(this);
         var lang = form.data('lang');
+        lang = lang ? lang : '';
         $('.form-group', form).find('.text-danger').remove();
 
         $.ajax({
@@ -108,7 +109,7 @@ $(function () {
                         }
 
                         if (item.data('type') == 'general') {
-                            var inputGeneral = $(ajaxFormSelector + ' .' + index);
+                            var inputGeneral = $(ajaxFormSelector + ' [name="' + index + '"]');
                             $(inputGeneral).each(function(i, e) {
                                 item = $(e);
                                 if (item.val() != element) {

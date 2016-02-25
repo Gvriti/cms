@@ -10,9 +10,7 @@
                 'url'    => cms_route('translations.form'),
                 'class'  => 'form-horizontal ajax-form'
             ]) !!}
-                @include('admin.translations.modal.form', [
-                    'lang' => null,
-                ])
+                @include('admin.translations.modal.form')
             {!! Form::close() !!}
         </div>
     </div>

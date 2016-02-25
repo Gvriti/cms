@@ -5,16 +5,14 @@ $(function () {
     $('form', modalSelector).on('submit', function (e) {
         e.preventDefault();
         var form  = $(this);
-        var input = form.serialize();
         $('.form-group', form).find('.text-danger').remove();
-
         var lang = form.data('lang');
 
         $.ajax({
             type: 'POST',
             url: form.attr('action'),
             dataType: 'json',
-            data: input,
+            data: form.serialize(),
             success: function(data) {
                 $('.modal-footer', form).prepend(
                     $('<span class="text-success">saved</span>').delay(1000).fadeOut(300, function () {
@@ -23,7 +21,13 @@ $(function () {
                 ).fadeIn(300);
 
                 if (! lang || lang == '{{$currentLang = language()}}') {
-                    $('[data-trans="'+data.name+'"]').text(data.value);
+                    var trans = $('[data-trans="'+data.name+'"]');
+                    var attrName = trans.data('trans-attr');
+                    if (! attrName) {
+                        trans.text(data.value);
+                    } else {
+                        trans.attr(attrName, data.value);
+                    }
                 }
                 if (! lang) {
                 @if (count(languages()) > 1)
@@ -55,7 +59,13 @@ $(function () {
         var lang = $(this).closest('form').data('lang');
 
         if (! lang || lang == '{{$currentLang}}') {
-            $('[data-trans="{{$current->name}}"]').text($(this).val());
+            var trans = $('[data-trans="{{$current->name}}"]');
+            var attrName = trans.data('trans-attr');
+            if (! attrName) {
+                trans.text($(this).val());
+            } else {
+                trans.attr(attrName, $(this).val());
+            }
         }
     });
 

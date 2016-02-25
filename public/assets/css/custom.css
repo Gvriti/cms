@@ -121,6 +121,7 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 /* users list & form */
 .members-table tbody tr td {padding: 12px 15px;}
 .members-table tbody tr td .name.active {color:#006600;}
+.members-table tbody tr td.action-links a+form {padding-top:5px;}
 .member-form-inputs .control-label {line-height:1.42857143;}
 .member-form-inputs .multi-check {font-size:12px;display:inline-block;}
 .member-form-add-header .user-name.create {width:100%;}

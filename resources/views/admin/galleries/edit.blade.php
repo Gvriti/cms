@@ -68,7 +68,6 @@
                 ]) !!}
                     {!! Form::hidden('type', null) !!}
                     @include('admin.galleries.form', [
-                        'lang'          => $current->language,
                         'submit'        => trans('general.update'),
                         'submitAndBack' => trans('general.update_n_back'),
                         'icon'          => 'save'

@@ -79,7 +79,6 @@
                     'data-lang' => $current->language
                 ]) !!}
                     @include('admin.pages.form', [
-                        'lang'          => $current->language,
                         'submit'        => trans('general.update'),
                         'submitAndBack' => trans('general.update_n_back'),
                         'icon'          => 'save'

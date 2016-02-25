@@ -31,7 +31,6 @@
             'class'  => 'form-horizontal'
         ]) !!}
             @include('admin.translations.form', [
-                'lang'          => null,
                 'submit'        => trans('general.create'),
                 'submitAndBack' => trans('general.create_n_close'),
                 'icon'          => 'save'

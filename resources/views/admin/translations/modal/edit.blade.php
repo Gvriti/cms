@@ -21,9 +21,7 @@
                         'data-lang'  => $current->language
                     ]) !!}
                         <input type="hidden" name="id" value="{{$current->id}}">
-                        @include('admin.translations.modal.form', [
-                            'lang' => $current->language,
-                        ])
+                        @include('admin.translations.modal.form')
                     {!! Form::close() !!}
                 </div>
             @endforeach

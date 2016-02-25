@@ -3,7 +3,7 @@
     <label class="col-sm-2 control-label required">Title:</label>
     <div class="col-sm-10">
         {!! Form::text('title', null, [
-            'id' => 'title' . $lang,
+            'id' => 'title' . $current->language,
             'class' => 'form-control',
         ]) !!}
         @if ($error)
@@ -18,7 +18,7 @@
     <label class="col-sm-2 control-label">Short title:</label>
     <div class="col-sm-10">
         {!! Form::text('short_title', null, [
-            'id' => 'short_title' . $lang,
+            'id' => 'short_title' . $current->language,
             'class' => 'form-control',
         ]) !!}
         @if ($error)
@@ -33,8 +33,8 @@
     <label class="col-sm-2 control-label">Slug:</label>
     <div class="col-sm-10">
         {!! Form::text('slug', null, [
-            'id' => 'slug' . $lang,
-            'class' => 'slug form-control',
+            'id' => 'slug' . $current->language,
+            'class' => 'form-control',
             'data-type' => 'general',
         ]) !!}
         @if ($error)
@@ -49,7 +49,7 @@
     <label class="col-sm-2 control-label required">Type:</label>
     <div class="col-sm-10">
         {!! Form::select('type', inner_collection('galleries.types'), null, [
-            'id' => 'type' . $lang,
+            'id' => 'type' . $current->language,
             'class' => 'form-control select',
         ] + ($current->id ? ['disabled' => 'disabled'] : [])) !!}
         @if ($error)
@@ -100,8 +100,8 @@
             <label class="col-sm-4 control-label required">Admin sort:</label>
             <div class="col-sm-8">
                 {!! Form::select('admin_sort', inner_collection('galleries.sort'), null, [
-                    'id' => 'admin_sort' . $lang,
-                    'class' => 'admin_sort form-control select',
+                    'id' => 'admin_sort' . $current->language,
+                    'class' => 'form-control select',
                     'data-type' => 'general'
                 ]) !!}
                 @if ($error)
@@ -116,8 +116,8 @@
             <label class="col-sm-4 control-label required">Site sort:</label>
             <div class="col-sm-8">
                 {!! Form::select('site_sort', inner_collection('galleries.sort'), null, [
-                    'id' => 'site_sort' . $lang,
-                    'class' => 'site_sort form-control select',
+                    'id' => 'site_sort' . $current->language,
+                    'class' => 'form-control select',
                     'data-type' => 'general'
                 ]) !!}
                 @if ($error)
@@ -184,8 +184,8 @@
     <label class="col-sm-2 control-label">Visible:</label>
     <div class="col-sm-10">
         {!! Form::checkbox('visible', null, null, [
-            'id' => 'visible' . $lang,
-            'class' => 'visible iswitch iswitch-secondary',
+            'id' => 'visible' . $current->language,
+            'class' => 'iswitch iswitch-secondary',
             'data-type' => 'general'
         ]) !!}
     </div>
@@ -197,7 +197,7 @@
     <label class="col-sm-2 control-label">Meta description:</label>
     <div class="col-sm-10">
         {!! Form::text('meta_desc', null, [
-            'id' => 'meta_desc' . $lang,
+            'id' => 'meta_desc' . $current->language,
             'class' => 'form-control',
         ]) !!}
         @if ($error)
@@ -214,8 +214,8 @@
     <div class="col-sm-6">
         <div class="input-group">
             {!! Form::text('image', null, [
-                'id' => 'image' . $lang,
-                'class' => 'image form-control',
+                'id' => 'image' . $current->language,
+                'class' => 'form-control',
                 'data-type' => 'general'
             ]) !!}
             <div class="input-group-btn popup" data-browse="image">

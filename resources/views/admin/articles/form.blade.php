@@ -3,7 +3,7 @@
     <label class="col-sm-2 control-label required">Title:</label>
     <div class="col-sm-10">
         {!! Form::text('title', null, [
-            'id' => 'title' . $lang,
+            'id' => 'title' . $current->language,
             'class' => 'form-control',
         ]) !!}
         @if ($error)
@@ -18,7 +18,7 @@
     <label class="col-sm-2 control-label">Short title:</label>
     <div class="col-sm-10">
         {!! Form::text('short_title', null, [
-            'id' => 'short_title' . $lang,
+            'id' => 'short_title' . $current->language,
             'class' => 'form-control',
         ]) !!}
         @if ($error)
@@ -33,8 +33,8 @@
     <label class="col-sm-2 control-label">Slug:</label>
     <div class="col-sm-10">
         {!! Form::text('slug', null, [
-            'id' => 'slug' . $lang,
-            'class' => 'slug form-control',
+            'id' => 'slug' . $current->language,
+            'class' => 'form-control',
             'data-type' => 'general',
         ]) !!}
         @if ($error)
@@ -49,8 +49,8 @@
     <label class="col-sm-2 control-label">Visible:</label>
     <div class="col-sm-10">
         {!! Form::checkbox('visible', null, null, [
-            'id' => 'visible' . $lang,
-            'class' => 'visible iswitch iswitch-secondary',
+            'id' => 'visible' . $current->language,
+            'class' => 'iswitch iswitch-secondary',
             'data-type' => 'general'
         ]) !!}
     </div>
@@ -62,7 +62,7 @@
     <label class="col-sm-2 control-label">Description:</label>
     <div class="col-sm-10">
         {!! Form::textarea('description', null, [
-            'id' => 'description' . $lang,
+            'id' => 'description' . $current->language,
             'class' => 'form-control text-editor',
             'rows' => '5'
         ]) !!}
@@ -75,7 +75,7 @@
     <label class="col-sm-2 control-label">Content:</label>
     <div class="col-sm-10">
         {!! Form::textarea('content', null, [
-            'id' => 'content' . $lang,
+            'id' => 'content' . $current->language,
             'class' => 'form-control text-editor',
             'rows' => '10'
         ]) !!}
@@ -88,7 +88,7 @@
     <label class="col-sm-2 control-label">Meta description:</label>
     <div class="col-sm-10">
         {!! Form::text('meta_desc', null, [
-            'id' => 'meta_desc' . $lang,
+            'id' => 'meta_desc' . $current->language,
             'class' => 'form-control',
         ]) !!}
         @if ($error)
@@ -105,8 +105,8 @@
     <div class="col-lg-6 col-sm-10">
         <div class="input-group">
             {!! Form::text('image', null, [
-                'id' => 'image' . $lang,
-                'class' => 'image form-control',
+                'id' => 'image' . $current->language,
+                'class' => 'form-control',
                 'data-type' => 'general'
             ]) !!}
             <div class="input-group-btn popup" data-browse="image">

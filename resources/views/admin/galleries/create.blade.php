@@ -34,7 +34,6 @@
             'class'  => 'form-horizontal'
         ]) !!}
             @include('admin.galleries.form', [
-                'lang'          => null,
                 'submit'        => trans('general.create'),
                 'submitAndBack' => trans('general.create_n_close'),
                 'icon'          => 'save'

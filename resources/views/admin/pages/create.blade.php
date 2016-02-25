@@ -35,7 +35,6 @@
         ]) !!}
             {!! Form::hidden('parent_id', null) !!}
             @include('admin.pages.form', [
-                'lang'          => null,
                 'submit'        => trans('general.create'),
                 'submitAndBack' => trans('general.create_n_close'),
                 'icon'          => 'save'

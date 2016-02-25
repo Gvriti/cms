@@ -28,13 +28,12 @@
         <h3 class="panel-title">Create an article</h3>
     </div>
     <div class="panel-body">
-        {!! Form::open([
+        {!! Form::model($current, [
             'method' => 'post',
             'url'  => cms_route('articles.index', [$current->collection_id]),
             'class'  => 'form-horizontal'
         ]) !!}
             @include('admin.articles.form', [
-                'lang'          => null,
                 'submit'        => trans('general.create'),
                 'submitAndBack' => trans('general.create_n_close'),
                 'icon'          => 'save'

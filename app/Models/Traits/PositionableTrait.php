@@ -24,7 +24,7 @@ trait PositionableTrait
             }
         }
 
-        app('db')->transaction(function() use ($data, $parentId, $params, $nestable) {
+        app('db')->transaction(function () use ($data, $parentId, $params, $nestable) {
             $attributes = [];
 
             $position = 0;
@@ -39,7 +39,7 @@ trait PositionableTrait
 
                 $attributes['position'] = $position;
 
-                $this->newQuery()->where('id', $item['id'])->update($attributes);
+                $this->where('id', $item['id'])->update($attributes);
 
                 if (isset($item['children'])) {
                     $this->updatePosition($item['children'], $item['id'], $params, $nestable);
@@ -65,11 +65,11 @@ trait PositionableTrait
 
         if ($params['move'] == 'next') {
             if ($params['orderBy'] == 'desc') {
-                $posFunc = function(&$value) {
+                $posFunc = function (&$value) {
                     return $value['pos'] += 1;
                 };
             } else {
-                $posFunc = function(&$value) {
+                $posFunc = function (&$value) {
                     return $value['pos'] -= 1;
                 };
             }
@@ -77,11 +77,11 @@ trait PositionableTrait
             $newPos = end($data)['pos'] - 1;
         } else {
             if ($params['orderBy'] == 'asc') {
-                $posFunc = function(&$value) {
+                $posFunc = function (&$value) {
                     return $value['pos'] += 1;
                 };
             } else {
-                $posFunc = function(&$value) {
+                $posFunc = function (&$value) {
                     return $value['pos'] -= 1;
                 };
             }

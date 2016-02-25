@@ -3,8 +3,8 @@
     <label class="col-sm-2 control-label required">Name:</label>
     <div class="col-sm-6">
         {!! Form::text('name', null, [
-            'id' => 'name' . $lang,
-            'class' => 'name form-control',
+            'id' => 'name' . $current->language,
+            'class' => 'form-control',
             'data-type' => 'general'
         ] + ($current->name ? ['readonly'] : [])) !!}
         @if ($error)
@@ -20,8 +20,8 @@
     <label class="col-sm-2 control-label required">Title:</label>
     <div class="col-sm-6">
         {!! Form::text('title', null, [
-            'id' => 'title' . $lang,
-            'class' => 'title form-control',
+            'id' => 'title' . $current->language,
+            'class' => 'form-control',
             'data-type' => 'general'
         ]) !!}
         @if ($error)
@@ -37,7 +37,7 @@
     <label class="col-sm-2 control-label required">Value:</label>
     <div class="col-sm-6">
         {!! Form::text('value', null, [
-            'id' => 'value' . $lang,
+            'id' => 'value' . $current->language,
             'class' => 'form-control',
         ]) !!}
         @if ($error)
