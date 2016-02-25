@@ -16,7 +16,6 @@ class CreateSiteSettingsTable extends Migration
             $table->tinyInteger('id', true);
             $table->string('email');
             $table->string('phone', 32);
-            $table->string('date_format', 32);
             $table->string('facebook');
             $table->string('twitter');
             $table->string('googleplus');

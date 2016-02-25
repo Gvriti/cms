@@ -51,49 +51,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Date Format:</label>
-                <div class="col-sm-5">
-                    <div>
-                        {!! Form::radio('date_format', 'd F Y', $siteSettings->date_format == 'd F Y', [
-                            'class' => 'cbr cbr-success'
-                        ]) !!}
-                        <label>{{date('d F Y')}}</label>
-                    </div>
-                    <div>
-                        {!! Form::radio('date_format', 'F d, Y', $siteSettings->date_format == 'F d, Y', [
-                            'class' => 'cbr cbr-success'
-                        ]) !!}
-                        <label>{{date('F d, Y')}}</label>
-                    </div>
-                    <div>
-                        {!! Form::radio('date_format', 'd M Y', $siteSettings->date_format == 'd M Y', [
-                            'class' => 'cbr cbr-success'
-                        ]) !!}
-                        <label>{{date('d M Y')}}</label>
-                    </div>
-                    <div>
-                        {!! Form::radio('date_format', 'M d, Y', $siteSettings->date_format == 'M d, Y', [
-                            'class' => 'cbr cbr-success'
-                        ]) !!}
-                        <label>{{date('M d, Y')}}</label>
-                    </div>
-                    <div>
-                        {!! Form::radio('date_format', 'd.m.Y', $siteSettings->date_format == 'd.m.Y', [
-                            'class' => 'cbr cbr-success'
-                        ]) !!}
-                        <label>{{date('d.m.Y')}}</label>
-                    </div>
-                    <div class="form-inline">
-                        {!! Form::radio('date_format', '', ! in_array($siteSettings->date_format, $dateFormatStatic), [
-                            'class' => 'cbr cbr-success'
-                        ]) !!}
-                        <label>Custom format:</label>
-                        <input type="text" name="date_format_custom" class="form-control" value="{{in_array($siteSettings->date_format, $dateFormatStatic) ? 'Y-m-d' : $siteSettings->date_format}}">
-                        <div class="desc">Read more about <a href="http://www.w3schools.com/php/func_date_date.asp" target="_blank">date format</a>, <a href="http://php.net/date" target="_blank">date format</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="col-sm-3 control-label">Faceebook page:</label>
                 <div class="col-sm-5">
                     {!! Form::text('facebook', $siteSettings->facebook, [
