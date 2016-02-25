@@ -8,7 +8,7 @@ $(function() {
         $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
     });
 
-    $('.panel form .type.select').on('click', function(){
+    $('.panel form [name="type"].select').on('click', function(){
         var collection = $('.panel form .collection').addClass('hidden');
         var template = $('.panel form .template');
         var templateSelect = $('select', template).html('<option value=""></option>');
