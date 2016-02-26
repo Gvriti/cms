@@ -4,7 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="cms" />
-    <meta name="author" content="David Gvritishvili [gvritishvili.david@gmail.com]" />
     <title>405 Method Not Allowed</title>
     <link rel="shortcut icon" href="{{ asset('assets/images/admin/favicon.ico') }}">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">

@@ -51,7 +51,7 @@ class Article extends Model
      *
      * @var array
      */
-    protected $languageFillable = ['article_id', 'language', 'title', 'short_title', 'description', 'content', 'meta_desc'];
+    protected $languageFillable = ['article_id', 'language', 'title', 'description', 'content', 'meta_desc'];
 
     /**
      * The attributes that are not updatable for the Language model.

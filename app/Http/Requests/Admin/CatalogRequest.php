@@ -28,7 +28,6 @@ class CatalogRequest extends Request
 
         return [
             'title'       => 'required|min:2',
-            'short_title' => 'required|min:2',
             'slug'        => 'required|min:2|unique:catalog,slug,'.$id,
         ];
     }
@@ -41,10 +40,6 @@ class CatalogRequest extends Request
     public function all()
     {
         $input = parent::all();
-
-        if (! $this->has('short_title')) {
-            $input['short_title'] = $this->get('title');
-        }
 
         if ($this->has('slug')) {
             $input['slug'] = (new Slugify)->slugify($input['slug']);

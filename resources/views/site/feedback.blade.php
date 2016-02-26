@@ -65,7 +65,7 @@
                                 <input type="text" name="captcha" autocomplete="off" placeholder="{{$trans->get('enter_code')}}" class="form-control pull-left code">
                                 <img src="{{captcha_src('flat')}}" height="40" id="captcha-img" alt="captcha">
                                 <a href="#" id="captcha-reload">
-                                    <img src="{{asset('assets/site/images/reload.png')}}" width="20" height="20" alt="reload">
+                                    <img src="{{asset('assets/images/reload.png')}}" width="20" height="20" alt="reload">
                                 </a>
                             </div>
                             @if ($error = $errors->first('captcha'))

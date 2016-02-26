@@ -17,7 +17,6 @@ class CreateGalleryLanguagesTable extends Migration
             $table->integer('gallery_id')->unsigned();
             $table->string('language', 3);
             $table->string('title');
-            $table->string('short_title');
             $table->string('meta_desc')->nullable();
             $table->timestamps();
 

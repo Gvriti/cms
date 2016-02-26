@@ -14,21 +14,6 @@
 
 <div class="form-group-separator"></div>
 
-<div class="form-group{{($error = $errors->first('short_title')) ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label">Short title:</label>
-    <div class="col-sm-10">
-        {!! Form::text('short_title', null, [
-            'id' => 'short_title' . $current->language,
-            'class' => 'form-control',
-        ]) !!}
-        @if ($error)
-        <span>{{$error}}</span>
-        @endif
-    </div>
-</div>
-
-<div class="form-group-separator"></div>
-
 <div class="form-group{{($error = $errors->first('slug')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label">Slug:</label>
     <div class="col-sm-10">
@@ -40,19 +25,6 @@
         @if ($error)
         <span>{{$error}}</span>
         @endif
-    </div>
-</div>
-
-<div class="form-group-separator"></div>
-
-<div class="form-group">
-    <label class="col-sm-2 control-label">Visible:</label>
-    <div class="col-sm-10">
-        {!! Form::checkbox('visible', null, null, [
-            'id' => 'visible' . $current->language,
-            'class' => 'iswitch iswitch-secondary',
-            'data-type' => 'general'
-        ]) !!}
     </div>
 </div>
 
@@ -113,6 +85,19 @@
                 <span class="btn btn-info">არჩევა</span>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="form-group-separator"></div>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">Visible:</label>
+    <div class="col-sm-10">
+        {!! Form::checkbox('visible', null, null, [
+            'id' => 'visible' . $current->language,
+            'class' => 'iswitch iswitch-secondary',
+            'data-type' => 'general'
+        ]) !!}
     </div>
 </div>
 

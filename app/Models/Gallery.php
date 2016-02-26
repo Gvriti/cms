@@ -50,7 +50,7 @@ class Gallery extends Model
      *
      * @var array
      */
-    protected $languageFillable = ['gallery_id', 'language', 'title', 'short_title', 'meta_desc'];
+    protected $languageFillable = ['gallery_id', 'language', 'title', 'meta_desc'];
 
     /**
      * The attributes that are not updatable for the Language model.

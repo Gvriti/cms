@@ -28,7 +28,6 @@ class GalleryRequest extends Request
 
         return [
             'title'          => 'required|min:2',
-            'short_title'    => 'required|min:2',
             'slug'           => 'required|min:2|unique:galleries,slug,'.$id,
             'type'           => 'required',
             'admin_order_by' => 'required',
@@ -48,10 +47,6 @@ class GalleryRequest extends Request
     public function all()
     {
         $input = parent::all();
-
-        if (! $this->has('short_title')) {
-            $input['short_title'] = $this->get('title');
-        }
 
         if ($this->has('slug')) {
             $input['slug'] = (new Slugify)->slugify($input['slug']);

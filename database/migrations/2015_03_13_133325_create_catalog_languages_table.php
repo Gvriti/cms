@@ -17,7 +17,6 @@ class CreateCatalogLanguagesTable extends Migration
             $table->integer('catalog_id')->unsigned();
             $table->string('language', 3);
             $table->string('title');
-            $table->string('short_title');
             $table->text('description');
             $table->mediumText('content');
             $table->string('meta_desc')->nullable();

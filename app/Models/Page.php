@@ -158,7 +158,10 @@ class Page extends Model
             $query->where('id', '<>', (int) $this->id);
         }
 
-        return $query->parentId($id)->positionAsc()->get();
+        $collection = $query->parentId($id)->positionAsc()->get();
+
+        return ($self && $collection->count() > 1) ? $collection
+                                                   : $collection->make();
     }
 
     /**
