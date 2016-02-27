@@ -110,7 +110,7 @@ trait LanguageTrait
      */
     public function currentLanguage()
     {
-        return $this->where('language', language());
+        return $this->where("{$this->getLanguageTable()}.language", language());
     }
 
     /**

@@ -6,7 +6,7 @@
             @foreach ($items as $item)
                 <div class="tab-pane{{language() != $item->language ? '' : ' active'}}" id="modal-item-{{$item->language}}">
                     <div class="modal-gallery-image">
-                        <img src="{{$item->file ?: $item->file_default}}" class="file_{{$item->language}} img-responsive" />
+                        <img src="{{$item->file ?: $item->file_default}}" class="file{{$item->language}} img-responsive" />
                     </div>
                     {!! Form::model($item, [
                         'method' => 'put',
@@ -45,7 +45,7 @@
                                                 'class' => 'file form-control',
                                                 'data-type'  => 'general',
                                             ]) !!}
-                                            <div class="input-group-btn popup" data-browse="file_{{$item->language}}">
+                                            <div class="input-group-btn popup" data-browse="file{{$item->language}}">
                                                 <span class="btn btn-info">არჩევა</span>
                                             </div>
                                         </div>
@@ -56,7 +56,7 @@
                                         <label class="control-label">Visible:</label>
                                         {!! Form::checkbox('visible', null, null, [
                                             'id' => 'visible' . $item->language,
-                                            'class' => 'visible iswitch iswitch-secondary',
+                                            'class' => 'iswitch iswitch-secondary',
                                             'data-type' => 'general'
                                         ]) !!}
                                     </div>

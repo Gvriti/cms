@@ -34,7 +34,7 @@
                                 <label class="control-label">Visible:</label>
                                 {!! Form::checkbox('visible', null, null, [
                                     'id' => 'visible',
-                                    'class' => 'visible iswitch iswitch-secondary'
+                                    'class' => 'iswitch iswitch-secondary'
                                 ]) !!}
                             </div>
                         </div>

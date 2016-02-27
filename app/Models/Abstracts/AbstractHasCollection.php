@@ -88,6 +88,27 @@ abstract class AbstractHasCollection extends Model
     }
 
     /**
+     * Add a "pages" join to the query.
+     *
+     * @param  array|mixed  $column
+     * @return \Digital\Repositories\Eloquent\EloquentBuilder
+     */
+    public function withPage($column = null)
+    {
+        $column = $column ?: [
+            'pages.parent_id',
+            'pages.slug as page_slug',
+            'page_languages.title as page_title'
+        ];
+
+        return $this->leftJoin('pages', 'collection_id', '=', 'collection_id')
+                    ->join('page_languages', function ($query) {
+                        $query->on('pages.id', '=', 'page_id')
+                              ->where('page_languages.language', '=', language());
+                    })->addSelect($column);
+    }
+
+    /**
      * Concatenate current model slug to its parent pages slug recursively.
      *
      * @param  int|null  $id

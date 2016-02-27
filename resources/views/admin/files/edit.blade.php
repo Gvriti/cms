@@ -7,11 +7,11 @@
                 <div class="tab-pane{{language() != $item->language ? '' : ' active'}}" id="modal-item-{{$item->language}}">
                     <div class="modal-gallery-image">
                     @if (in_array($ext = pathinfo($item->file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif']))
-                        <img src="{{$item->file}}" class="file_{{$item->language}} img-responsive" />
+                        <img src="{{$item->file}}" class="file{{$item->language}} img-responsive" />
                     @elseif( ! empty($ext))
-                        <img src="{{asset('assets/images/file-ext-icons/'.$ext.'.png')}}" class="file_{{$item->language}} not-photo img-responsive" alt="{{$item->title}}" />
+                        <img src="{{asset('assets/images/file-ext-icons/'.$ext.'.png')}}" class="file{{$item->language}} not-photo img-responsive" alt="{{$item->title}}" />
                     @else
-                        <img src="{{asset('assets/images/file-ext-icons/www.png')}}" class="file_{{$item->language}} not-photo img-responsive" alt="{{$item->title}}" />
+                        <img src="{{asset('assets/images/file-ext-icons/www.png')}}" class="file{{$item->language}} not-photo img-responsive" alt="{{$item->title}}" />
                     @endif
                     </div>
                     {!! Form::model($item, [
@@ -40,7 +40,7 @@
                                                 'id' => 'file' . $item->language,
                                                 'class' => 'file form-control',
                                             ]) !!}
-                                            <div class="input-group-btn popup" data-browse="file_{{$item->language}}">
+                                            <div class="input-group-btn popup" data-browse="file{{$item->language}}">
                                                 <span class="btn btn-info">არჩევა</span>
                                             </div>
                                         </div>
@@ -51,7 +51,7 @@
                                         <label class="control-label">Visible:</label>
                                         {!! Form::checkbox('visible', null, null, [
                                             'id' => 'visible' . $item->language,
-                                            'class' => 'visible iswitch iswitch-secondary',
+                                            'class' => 'iswitch iswitch-secondary',
                                             'data-type' => 'general'
                                         ]) !!}
                                     </div>

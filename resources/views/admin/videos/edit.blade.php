@@ -40,7 +40,7 @@
                                         <label class="control-label">Visible:</label>
                                         {!! Form::checkbox('visible', null, null, [
                                             'id' => 'visible' . $item->language,
-                                            'class' => 'visible iswitch iswitch-secondary',
+                                            'class' => 'iswitch iswitch-secondary',
                                             'data-type' => 'general'
                                         ]) !!}
                                     </div>

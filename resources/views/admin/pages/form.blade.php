@@ -93,19 +93,6 @@
 <div class="form-group-separator"></div>
 
 <div class="form-group">
-    <label class="col-sm-2 control-label">Visible:</label>
-    <div class="col-sm-10">
-        {!! Form::checkbox('visible', null, null, [
-            'id' => 'visible' . $current->language,
-            'class' => 'iswitch iswitch-secondary',
-            'data-type' => 'general'
-        ]) !!}
-    </div>
-</div>
-
-<div class="form-group-separator"></div>
-
-<div class="form-group">
     <label class="col-sm-2 control-label">Description:</label>
     <div class="col-sm-10">
         {!! Form::textarea('description', null, [
@@ -160,6 +147,19 @@
                 <span class="btn btn-info">არჩევა</span>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="form-group-separator"></div>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">Visible:</label>
+    <div class="col-sm-10">
+        {!! Form::checkbox('visible', null, null, [
+            'id' => 'visible' . $current->language,
+            'class' => 'iswitch iswitch-secondary',
+            'data-type' => 'general'
+        ]) !!}
     </div>
 </div>
 

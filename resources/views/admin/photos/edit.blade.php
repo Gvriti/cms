@@ -6,7 +6,7 @@
             @foreach ($items as $item)
                 <div class="tab-pane{{language() != $item->language ? '' : ' active'}}" id="modal-item-{{$item->language}}">
                     <div class="modal-gallery-image">
-                        <img src="{{$item->file ?: $item->file_default}}" class="file_{{$item->language}} img-responsive" />
+                        <img src="{{$item->file ?: $item->file_default}}" class="file{{$item->language}} img-responsive" />
                     </div>
                     {!! Form::model($item, [
                         'method' => 'put',
@@ -21,7 +21,7 @@
                                         <label class="control-label">Title:</label>
                                         {!! Form::text('title', null, [
                                             'id' => 'title' . $item->language,
-                                            'class' => 'title form-control',
+                                            'class' => 'form-control',
                                             'autofocus'
                                         ]) !!}
                                     </div>
@@ -32,10 +32,10 @@
                                         <div class="input-group">
                                             {!! Form::text('file', null, [
                                                 'id' => 'file' . $item->language,
-                                                'class' => 'file form-control',
-                                                'data-type'  => 'general',
+                                                'class' => 'form-control',
+                                                'data-type' => 'general',
                                             ]) !!}
-                                            <div class="input-group-btn popup" data-browse="file_{{$item->language}}">
+                                            <div class="input-group-btn popup" data-browse="file{{$item->language}}">
                                                 <span class="btn btn-info">არჩევა</span>
                                             </div>
                                         </div>
@@ -46,7 +46,7 @@
                                         <label class="control-label">Visible:</label>
                                         {!! Form::checkbox('visible', null, null, [
                                             'id' => 'visible' . $item->language,
-                                            'class' => 'visible iswitch iswitch-secondary',
+                                            'class' => 'iswitch iswitch-secondary',
                                             'data-type' => 'general'
                                         ]) !!}
                                     </div>
@@ -81,12 +81,12 @@
             if (lang == currentLang) {
                 var item = $(formSelector + '[data-lang="'+lang+'"]');
 
-                var title   = $('.title', item).val();
-                var file    = $('.file', item).val();
-                var visible = $('.visible', item).prop('checked');
+                var title   = $('[name="title"]', item).val();
+                var file    = $('[name="file"]', item).val();
+                var visible = $('[name="visible"]', item).prop('checked');
 
                 var item = $('.gallery-env #item{{$item->id}}');
-                $('.title', item).text(title);
+                $('[name="title"]', item).text(title);
                 $('.thumb img', item).attr('src', file);
 
                 var icon = visible ? 'fa-eye' : 'fa-eye-slash'
@@ -94,7 +94,7 @@
             }
         });
 
-        $(formSelector + ' .file').on('fileSet', function(e) {
+        $(formSelector + ' [name="file"]').on('fileSet', function(e) {
             var fileId    = $(this).attr('id');
             var fileValue = $(this).val();
             $('#form-modal .' + fileId).attr('src', fileValue);
