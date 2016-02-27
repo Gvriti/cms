@@ -21,7 +21,7 @@
                                         <label class="control-label">Title:</label>
                                         {!! Form::text('title', null, [
                                             'id' => 'title' . $item->language,
-                                            'class' => 'title form-control',
+                                            'class' => 'form-control',
                                             'autofocus'
                                         ]) !!}
                                     </div>
@@ -31,7 +31,8 @@
                                         <label class="control-label">Video Link:</label>
                                         {!! Form::text('file', null, [
                                             'id' => 'file' . $item->language,
-                                            'class' => 'file form-control',
+                                            'class' => 'form-control',
+                                            'data-type' => 'general'
                                         ]) !!}
                                     </div>
                                 </div>
@@ -75,12 +76,12 @@
             if (lang == currentLang) {
                 var item = $(formSelector + '[data-lang="'+lang+'"]');
 
-                var title   = $('.title', item).val();
-                var file    = $('.file', item).val();
-                var visible = $('.visible', item).prop('checked');
+                var title   = $('[name="title"]', item).val();
+                var file    = $('[name="file"]', item).val();
+                var visible = $('[name="visible"]', item).prop('checked');
 
                 var item = $('.gallery-env #item{{$item->id}}');
-                $('.title', item).text(title);
+                $('[name="title"]', item).text(title);
                 $('.thumb iframe', item).attr('src', data.youtube);
                 $('#form-modal iframe').attr('src', data.youtube);
 

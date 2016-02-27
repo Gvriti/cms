@@ -27,7 +27,7 @@
                                         <label class="control-label">Title:</label>
                                         {!! Form::text('title', null, [
                                             'id' => 'title' . $item->language,
-                                            'class' => 'title form-control',
+                                            'class' => 'form-control',
                                             'autofocus'
                                         ]) !!}
                                     </div>
@@ -38,7 +38,7 @@
                                         <div class="input-group">
                                             {!! Form::text('file', null, [
                                                 'id' => 'file' . $item->language,
-                                                'class' => 'file form-control',
+                                                'class' => 'form-control',
                                             ]) !!}
                                             <div class="input-group-btn popup" data-browse="file{{$item->language}}">
                                                 <span class="btn btn-info">არჩევა</span>
@@ -86,12 +86,12 @@
             if (lang == currentLang) {
                 var item = $(formSelector + '[data-lang="'+lang+'"]');
 
-                var title   = $('.title', item).val();
-                var file    = $('.file', item).val();
-                var visible = $('.visible', item).prop('checked');
+                var title   = $('[name="title"]', item).val();
+                var file    = $('[name="file"]', item).val();
+                var visible = $('[name="visible"]', item).prop('checked');
 
                 var item = $('.gallery-env #item{{$item->id}}');
-                $('.title', item).text(title);
+                $('[name="title"]', item).text(title);
                 $('.thumb img', item).attr('src', getFileImage(file).file);
 
                 var icon = visible ? 'fa-eye' : 'fa-eye-slash'
@@ -99,7 +99,7 @@
             }
         });
 
-        $(formSelector + ' .file').on('fileSet', function(e) {
+        $(formSelector + ' [name="file"]').on('fileSet', function(e) {
             var fileId    = $(this).attr('id');
             var fileValue = $(this).val();
             var result = getFileImage(fileValue);
