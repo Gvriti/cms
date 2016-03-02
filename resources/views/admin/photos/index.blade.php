@@ -103,7 +103,7 @@
                 </li>
             @endforeach
             </ul>
-            {!! $items->render() !!}
+            {!! $items->links() !!}
         </div>
         <div class="col-sm-3 gallery-left">
             <div class="gallery-sidebar">

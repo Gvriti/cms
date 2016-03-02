@@ -12,15 +12,18 @@
         <h1>{{$current->title}}</h1>
     </header>
     <!-- .heading -->
-    <div id="items">
-<?php foreach ($items as $item): ?>
-        {{$item->title}}
-<?php endforeach ?>
+    <div id="items" class="row">
+    @foreach ($items as $item)
+        <div class="col-sm-3">
+            {{$item->title}}
+        </div>
+        <!-- .col-sm-3 -->
+    @endforeach
     </div>
     <!-- #items -->
 @if ($items->lastPage() > 1)
     <div id="pager">
-        {!! $items->render() !!}
+        {!! $items->links() !!}
     </div>
     <!-- #pager -->
 @endif

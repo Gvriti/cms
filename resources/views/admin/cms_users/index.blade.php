@@ -102,7 +102,7 @@
         </a>
     </div>
     <div class="pull-right">
-        {!! $items->appends(['role' => request('role')])->render() !!}
+        {!! $items->appends(['role' => request('role')])->links() !!}
     </div>
 </div>
 <script type="text/javascript">

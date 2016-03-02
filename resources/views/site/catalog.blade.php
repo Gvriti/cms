@@ -44,7 +44,7 @@
     <!-- #items -->
 @if ($items->lastPage() > 1)
     <div id="pager">
-        {!! $items->render() !!}
+        {!! $items->links() !!}
     </div>
     <!-- #pager -->
 @endif

@@ -85,7 +85,7 @@
                         </li>
                     @endforeach
                     </ul>
-                    {!! $items->render() !!}
+                    {!! $items->links() !!}
                 </div>
             </div>
         </div>
