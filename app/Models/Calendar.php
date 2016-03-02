@@ -19,7 +19,9 @@ class Calendar extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'color', 'start', 'end', 'time_start', 'time_end'];
+    protected $fillable = [
+        'title', 'description', 'color', 'start', 'end', 'time_start', 'time_end'
+    ];
 
     /**
      * The attributes that are not updatable.
@@ -27,6 +29,15 @@ class Calendar extends Model
      * @var array
      */
     protected $notUpdatable = [];
+
+    /**
+     * The list of the available colors.
+     *
+     * @var array
+     */
+    protected $colors = [
+        'red', 'blue', 'green', 'orange', 'turquoise', 'purple', 'black', 'gray'
+    ];
 
     /**
      * Get the mutated `start` attribute.
@@ -61,13 +72,6 @@ class Calendar extends Model
 
         return $value;
     }
-
-    /**
-     * The list of the available colors.
-     *
-     * @var array
-     */
-    protected $colors = ['red', 'blue', 'green', 'orange', 'turquoise', 'purple', 'black', 'gray'];
 
     /**
      * Get a random color.

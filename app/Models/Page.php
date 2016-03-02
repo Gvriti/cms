@@ -23,7 +23,9 @@ class Page extends Model
      *
      * @var array
      */
-    protected $fillable = ['parent_id', 'menu_id', 'collection_id', 'type', 'template', 'slug', 'position', 'visible', 'collapse', 'image'];
+    protected $fillable = [
+        'parent_id', 'menu_id', 'collection_id', 'type', 'template', 'slug', 'position', 'visible', 'collapse', 'image'
+    ];
 
     /**
      * The attributes that are not updatable.
@@ -44,14 +46,18 @@ class Page extends Model
      *
      * @var array
      */
-    protected $languageFillable = ['page_id', 'language', 'title', 'short_title', 'description', 'content', 'meta_desc'];
+    protected $languageFillable = [
+        'page_id', 'language', 'title', 'short_title', 'description', 'content', 'meta_desc'
+    ];
 
     /**
      * The attributes that are not updatable for the Language model.
      *
      * @var array
      */
-    protected $languageNotUpdatable = ['language'];
+    protected $languageNotUpdatable = [
+        'language'
+    ];
 
     /**
      * Get the Menu instance.

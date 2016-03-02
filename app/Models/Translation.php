@@ -21,14 +21,18 @@ class Translation extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'title'];
+    protected $fillable = [
+        'name', 'title'
+    ];
 
     /**
      * The attributes that are not updatable.
      *
      * @var array
      */
-    protected $notUpdatable = ['name'];
+    protected $notUpdatable = [
+        'name'
+    ];
 
     /**
      * Related database table name used by the Language model.
@@ -42,12 +46,16 @@ class Translation extends Model
      *
      * @var array
      */
-    protected $languageFillable = ['translation_id', 'language', 'value'];
+    protected $languageFillable = [
+        'translation_id', 'language', 'value'
+    ];
 
     /**
      * The attributes that are not updatable for the Language model.
      *
      * @var array
      */
-    protected $languageNotUpdatable = ['language'];
+    protected $languageNotUpdatable = [
+        'language'
+    ];
 }

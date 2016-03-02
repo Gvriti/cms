@@ -19,12 +19,16 @@ class Collection extends Model
      * @var array
      */
 
-    protected $fillable = ['title', 'type', 'admin_order_by', 'admin_sort', 'admin_per_page', 'site_order_by', 'site_sort', 'site_per_page', 'description'];
+    protected $fillable = [
+        'title', 'type', 'admin_order_by', 'admin_sort', 'admin_per_page', 'site_order_by', 'site_sort', 'site_per_page', 'description'
+    ];
 
     /**
      * The attributes that are not updatable.
      *
      * @var array
      */
-    protected $notUpdatable = ['type'];
+    protected $notUpdatable = [
+        'type'
+    ];
 }

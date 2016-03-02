@@ -18,7 +18,9 @@ class Permission extends Model
      *
      * @var array
      */
-    protected $fillable = ['cms_user_id', 'route_name'];
+    protected $fillable = [
+        'cms_user_id', 'route_name'
+    ];
 
     /**
      * The attributes that are not updatable.

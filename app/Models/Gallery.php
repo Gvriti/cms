@@ -29,14 +29,18 @@ class Gallery extends Model
      *
      * @var array
      */
-    protected $fillable = ['collection_id', 'type', 'slug', 'admin_order_by', 'admin_sort', 'admin_per_page', 'site_order_by', 'site_sort', 'site_per_page', 'position', 'visible', 'image'];
+    protected $fillable = [
+        'collection_id', 'type', 'slug', 'admin_order_by', 'admin_sort', 'admin_per_page', 'site_order_by', 'site_sort', 'site_per_page', 'position', 'visible', 'image'
+    ];
 
     /**
      * The attributes that are not updatable.
      *
      * @var array
      */
-    protected $notUpdatable = ['type'];
+    protected $notUpdatable = [
+        'type'
+    ];
 
     /**
      * Related database table name used by the Language model.
@@ -50,12 +54,16 @@ class Gallery extends Model
      *
      * @var array
      */
-    protected $languageFillable = ['gallery_id', 'language', 'title', 'meta_desc'];
+    protected $languageFillable = [
+        'gallery_id', 'language', 'title', 'meta_desc'
+    ];
 
     /**
      * The attributes that are not updatable for the Language model.
      *
      * @var array
      */
-    protected $languageNotUpdatable = ['language'];
+    protected $languageNotUpdatable = [
+        'language'
+    ];
 }

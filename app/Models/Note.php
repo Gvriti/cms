@@ -18,7 +18,9 @@ class Note extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'content'];
+    protected $fillable = [
+        'title', 'description', 'content'
+    ];
 
     /**
      * The attributes that are not updatable.

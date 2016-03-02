@@ -23,14 +23,18 @@ class File extends Model
      *
      * @var array
      */
-    protected $fillable = ['route_name', 'route_id', 'position', 'visible'];
+    protected $fillable = [
+        'route_name', 'route_id', 'position', 'visible'
+    ];
 
     /**
      * The attributes that are not updatable.
      *
      * @var array
      */
-    protected $notUpdatable = ['route_name', 'route_id'];
+    protected $notUpdatable = [
+        'route_name', 'route_id'
+    ];
 
     /**
      * Related database table name used by the Language model.
@@ -44,14 +48,18 @@ class File extends Model
      *
      * @var array
      */
-    protected $languageFillable = ['file_id', 'language', 'title', 'file'];
+    protected $languageFillable = [
+        'file_id', 'language', 'title', 'file'
+    ];
 
     /**
      * The attributes that are not updatable for the Language model.
      *
      * @var array
      */
-    protected $languageNotUpdatable = ['language'];
+    protected $languageNotUpdatable = [
+        'language'
+    ];
 
     /**
      * Get the mutated file attribute.

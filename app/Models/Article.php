@@ -30,7 +30,9 @@ class Article extends Model
      *
      * @var array
      */
-    protected $fillable = ['collection_id', 'slug', 'position', 'visible', 'image'];
+    protected $fillable = [
+        'collection_id', 'slug', 'position', 'visible', 'image'
+    ];
 
     /**
      * The attributes that are not updatable.
@@ -51,12 +53,16 @@ class Article extends Model
      *
      * @var array
      */
-    protected $languageFillable = ['article_id', 'language', 'title', 'description', 'content', 'meta_desc'];
+    protected $languageFillable = [
+        'article_id', 'language', 'title', 'description', 'content', 'meta_desc'
+    ];
 
     /**
      * The attributes that are not updatable for the Language model.
      *
      * @var array
      */
-    protected $languageNotUpdatable = ['language'];
+    protected $languageNotUpdatable = [
+        'language'
+    ];
 }

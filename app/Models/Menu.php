@@ -18,7 +18,9 @@ class Menu extends Model
      *
      * @var array
      */
-    protected $fillable = ['main', 'title', 'description'];
+    protected $fillable = [
+        'main', 'title', 'description'
+    ];
 
     /**
      * The attributes that are not updatable.

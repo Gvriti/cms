@@ -7,20 +7,6 @@ use Models\Abstracts\Model;
 class Language extends Model
 {
     /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = [];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [];
-
-    /**
      * The attributes that are not updatable.
      *
      * @var array

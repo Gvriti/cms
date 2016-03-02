@@ -29,14 +29,18 @@ class Video extends Model
      *
      * @var array
      */
-    protected $fillable = ['gallery_id', 'position', 'visible', 'file'];
+    protected $fillable = [
+        'gallery_id', 'position', 'visible', 'file'
+    ];
 
     /**
      * The attributes that are not updatable.
      *
      * @var array
      */
-    protected $notUpdatable = ['gallery_id'];
+    protected $notUpdatable = [
+        'gallery_id'
+    ];
 
     /**
      * Related database table name used by the Language model.
@@ -50,12 +54,16 @@ class Video extends Model
      *
      * @var array
      */
-    protected $languageFillable = ['video_id', 'language', 'title'];
+    protected $languageFillable = [
+        'video_id', 'language', 'title'
+    ];
 
     /**
      * The attributes that are not updatable for the Language model.
      *
      * @var array
      */
-    protected $languageNotUpdatable = ['language'];
+    protected $languageNotUpdatable = [
+        'language'
+    ];
 }

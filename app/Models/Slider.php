@@ -22,7 +22,9 @@ class Slider extends Model
      *
      * @var array
      */
-    protected $fillable = ['position', 'visible', 'link', 'file'];
+    protected $fillable = [
+        'position', 'visible', 'link', 'file'
+    ];
 
     /**
      * The attributes that are not updatable.
@@ -43,14 +45,18 @@ class Slider extends Model
      *
      * @var array
      */
-    protected $languageFillable = ['slider_id', 'language', 'title', 'description'];
+    protected $languageFillable = [
+        'slider_id', 'language', 'title', 'description'
+    ];
 
     /**
      * The attributes that are not updatable for the Language model.
      *
      * @var array
      */
-    protected $languageNotUpdatable = ['language'];
+    protected $languageNotUpdatable = [
+        'language'
+    ];
 
     /**
      * Get the mutated file attribute.
