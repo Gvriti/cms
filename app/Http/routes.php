@@ -18,10 +18,13 @@ $router->group(['prefix' => cms_slug(), 'namespace' => 'Admin\Auth'], function (
     $router->post('login', ['as' => cms_prefix('login'), 'uses' => 'AdminAuthController@postLogin']);
     $router->get('logout', ['as' => cms_prefix('logout'), 'uses' => 'AdminAuthController@getLogout']);
 
+
     // lockscreen
-    $router->get('lockscreen', ['as' => cms_prefix('lockscreen'), 'uses' => 'AdminAuthController@getLockscreen']);
-    $router->post('lockscreen', ['as' => cms_prefix('lockscreen'), 'uses' => 'AdminAuthController@postLockscreen']);
-    $router->put('lockscreen', ['as' => cms_prefix('lockscreen'), 'uses' => 'AdminAuthController@setLockscreen']);
+    $router->group(['middleware' => 'CmsLockscreen'], function ($router) {
+        $router->get('lockscreen', ['as' => cms_prefix('lockscreen'), 'uses' => 'AdminAuthController@getLockscreen']);
+        $router->post('lockscreen', ['as' => cms_prefix('lockscreen'), 'uses' => 'AdminAuthController@postLockscreen']);
+        $router->put('lockscreen', ['as' => cms_prefix('lockscreen'), 'uses' => 'AdminAuthController@setLockscreen']);
+    });
 });
 
 // CMS

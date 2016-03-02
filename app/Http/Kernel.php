@@ -28,6 +28,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'CmsAuth' => \App\Http\Middleware\Admin\AdminAuthenticate::class,
         'CmsGuest' => \App\Http\Middleware\Admin\AdminRedirectIfAuthenticated::class,
+        'CmsLockscreen' => \App\Http\Middleware\Admin\AdminLockscreen::class,
 
         'SiteAuth' => \App\Http\Middleware\Site\SiteAuthenticate::class,
         'SiteGuest' => \App\Http\Middleware\Site\SiteRedirectIfAuthenticated::class,

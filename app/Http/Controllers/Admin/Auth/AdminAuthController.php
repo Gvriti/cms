@@ -76,10 +76,6 @@ class AdminAuthController extends Controller
      */
     public function getLockscreen()
     {
-        if (! $this->auth->check()) {
-            return redirect($this->loginPath());
-        }
-
         $this->request->session()->flash('includeLockscreen', 1);
 
         return view('admin.app');
