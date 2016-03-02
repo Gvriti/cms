@@ -89,9 +89,9 @@ $(function() {
         {column_number : 3, filter_type: 'text', filter_default_label : 'ID'}
     ]);
 
-@if (Input::has('type'))
+@if ($type = request('type'))
     yadcf.exFilterColumn(table, [
-        [2, '{{request('type')}}']
+        [2, '{{$type}}']
     ]);
 @endif
 });

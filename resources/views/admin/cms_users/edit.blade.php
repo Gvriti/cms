@@ -60,4 +60,27 @@
         {!! Form::close() !!}
     </div>
 </div>
+<script type="text/javascript">
+$(function() {
+    $('.ajax-form').on('ajaxFormSuccess', function() {
+        var firstname = $('#firstname', this).val();
+        var lastname = $('#lastname', this).val();
+        var photo = $('#photo', this).val();
+        var role = $('[name="role"]', this).val();
+        var roles = ['{!!implode("', '", $roles)!!}'];
+
+        $('.user-name a', this).text(firstname + ' ' + lastname);
+        $('.user-name span', this).text(roles[role]);
+        $('.user-img img', this).attr('src', photo);
+        $('.user-img img', this).attr('src', photo);
+        if (role != 'admin') {
+            $('.permissions', this).removeClass('hidden');
+        } else {
+            $('.permissions', this).addClass('hidden');
+        }
+
+        $('#password, #password_confirmation', this).val('');
+    });
+});
+</script>
 @endsection

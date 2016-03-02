@@ -11,7 +11,4 @@ return [
     |
     */
 
-    // attributes
-    "" => "",
-
 ];

@@ -8,5 +8,7 @@
 <!-- #footer -->
 <script src="{{asset('assets/site/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/site/js/custom.js')}}"></script>
-<script src="{{asset('assets/js/custom-site.js')}}"></script>
+@if (AuthCms::check())
+<script src="{{ asset('assets/js/trans.js') }}"></script>
 <div id="translations" data-trans-url="{{cms_route('translations.form')}}" data-token="{{csrf_token()}}"></div>
+@endif

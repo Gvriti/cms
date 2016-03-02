@@ -154,28 +154,3 @@
     <div class="btn btn-info pull-right" data-toggle="collapse" data-target="#change-password">პაროლის შეცვლა</div>
 @endif
 </div>
-@if ($current->id)
-<script type="text/javascript">
-$(function() {
-    $('.ajax-form').on('ajaxFormSuccess', function() {
-        var firstname = $('#firstname', this).val();
-        var lastname = $('#lastname', this).val();
-        var photo = $('#photo', this).val();
-        var role = $('[name="role"]', this).val();
-        var roles = ['{!!implode("', '", $roles)!!}'];
-
-        $('.user-name a', this).text(firstname + ' ' + lastname);
-        $('.user-name span', this).text(roles[role]);
-        $('.user-img img', this).attr('src', photo);
-        $('.user-img img', this).attr('src', photo);
-        if (role > 0) {
-            $('.permissions', this).removeClass('hidden');
-        } else {
-            $('.permissions', this).addClass('hidden');
-        }
-
-        $('#password, #password_confirmation', this).val('');
-    });
-});
-</script>
-@endif

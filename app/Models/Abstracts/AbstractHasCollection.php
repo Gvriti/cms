@@ -93,7 +93,7 @@ abstract class AbstractHasCollection extends Model
      * @param  array|mixed  $column
      * @return \Digital\Repositories\Eloquent\EloquentBuilder
      */
-    public function withPage($column = null)
+    public function joinPage($column = null)
     {
         $column = $column ?: [
             'pages.parent_id',
