@@ -4,6 +4,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Environment
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the "environment" your application is currently
+    | running in. This may determine how you prefer to configure various
+    | services your application utilizes. Set this in your ".env" file.
+    |
+    */
+
+    'env' => env('APP_ENV', 'production'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Debug Mode
     |--------------------------------------------------------------------------
     |
@@ -13,7 +26,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG'),
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -104,7 +117,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 
@@ -139,13 +152,11 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
-        Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
-        Illuminate\Routing\ControllerServiceProvider::class,
         Illuminate\Cookie\CookieServiceProvider::class,
         Illuminate\Database\DatabaseServiceProvider::class,
         Illuminate\Encryption\EncryptionServiceProvider::class,
@@ -164,32 +175,34 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * Application Service Providers...
+         */
+        App\Providers\LanguageServiceProvider::class,
+
+        /*
          * Composer Required Service Providers...
          */
+        App\Providers\GlideServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        App\Providers\Admin\ElfinderServiceProvider::class,
+        Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\LanguageServiceProvider::class,
-
-        Custom\Auth\AuthServiceProvider::class,
-        Mews\Captcha\CaptchaServiceProvider::class,
-        Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider::class,
-        App\Providers\GlideServiceProvider::class,
-        App\Providers\SettingsServiceProvider::class,
-        App\Providers\Admin\ElfinderServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+        App\Providers\Site\DynamicRouteServiceProvider::class,
 
         // Eloquent model service providers
+        App\Providers\SettingsServiceProvider::class,
         App\Providers\Models\MenuServiceProvider::class,
         App\Providers\Models\PageServiceProvider::class,
         App\Providers\Models\TranslationServiceProvider::class,
         App\Providers\Models\CalendarServiceProvider::class,
-
-        App\Providers\RouteServiceProvider::class,
-        App\Providers\Site\DynamicRouteServiceProvider::class,
 
     ],
 
@@ -208,9 +221,8 @@ return [
 
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
-        // 'Auth'      => Illuminate\Support\Facades\Auth::class,
+        'Auth'      => Illuminate\Support\Facades\Auth::class,
         'Blade'     => Illuminate\Support\Facades\Blade::class,
-        'Bus'       => Illuminate\Support\Facades\Bus::class,
         'Cache'     => Illuminate\Support\Facades\Cache::class,
         'Config'    => Illuminate\Support\Facades\Config::class,
         'Cookie'    => Illuminate\Support\Facades\Cookie::class,
@@ -221,7 +233,6 @@ return [
         'File'      => Illuminate\Support\Facades\File::class,
         'Gate'      => Illuminate\Support\Facades\Gate::class,
         'Hash'      => Illuminate\Support\Facades\Hash::class,
-        'Input'     => Illuminate\Support\Facades\Input::class,
         'Lang'      => Illuminate\Support\Facades\Lang::class,
         'Log'       => Illuminate\Support\Facades\Log::class,
         'Mail'      => Illuminate\Support\Facades\Mail::class,
@@ -242,11 +253,6 @@ return [
         // Composer Required Facades
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-
-        // Project Facades
-        'Auth'     => Custom\Support\Facades\Auth\MultiAuth::class,
-        'AuthCms'  => Custom\Support\Facades\Auth\AuthCms::class,
-        'AuthUser' => Custom\Support\Facades\Auth\AuthUser::class,
 
     ],
 

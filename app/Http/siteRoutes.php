@@ -19,7 +19,7 @@ $router->group(['namespace' => 'Site'], function ($router) {
 });
 
 // translation requests from site
-$router->group(['namespace' => 'Admin', 'middleware' => 'CmsAuth'], function ($router) {
-    $router->get('!translations', ['as' => cms_prefix('translations.form'), 'uses' => 'AdminTranslationsController@getModal']);
-    $router->post('!translations', ['as' => cms_prefix('translations.form'), 'uses' => 'AdminTranslationsController@postModal']);
+$router->group(['middleware' => ['web', 'cms.auth'], 'namespace' => 'Admin'], function ($router) {
+    $router->get('!translations', ['as' => 'translations.form', 'uses' => 'AdminTranslationsController@getModal']);
+    $router->post('!translations', ['as' => 'translations.form', 'uses' => 'AdminTranslationsController@postModal']);
 });

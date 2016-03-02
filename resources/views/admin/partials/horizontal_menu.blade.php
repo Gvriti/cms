@@ -200,21 +200,21 @@
         </li>
         <li class="dropdown user-profile">
           <a href="#" data-toggle="dropdown">
-            <img src="{{ AuthCms::get()->photo }}" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+            <img src="{{ Auth::guard('cms')->user()->photo }}" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
             <span>
-              {{AuthCms::get()->firstname}} {{AuthCms::get()->lastname}}
+              {{Auth::guard('cms')->user()->firstname}} {{Auth::guard('cms')->user()->lastname}}
               <i class="fa fa-angle-down"></i>
             </span>
           </a>
           <ul class="dropdown-menu user-profile-menu list-unstyled">
             <li>
-              <a href="{{cms_route('cmsUsers.show', [AuthCms::id()])}}">
+              <a href="{{cms_route('cmsUsers.show', [Auth::guard('cms')->id()])}}">
                 <i class="{{icon_type('cms_users')}}"></i>
                 Profile
               </a>
             </li>
             <li>
-              <a href="{{cms_route('cmsUsers.edit', [AuthCms::id()])}}">
+              <a href="{{cms_route('cmsUsers.edit', [Auth::guard('cms')->id()])}}">
                 <i class="fa fa-edit"></i>
                 Edit
               </a>

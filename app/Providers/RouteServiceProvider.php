@@ -91,11 +91,17 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function filterRoutes(Router $router)
     {
-        if (! is_null($this->language)) {
-            $routes = $router->getRoutes();
+        $routes = $router->getRoutes();
 
-            foreach ($routes as $key => $route) {
+        $cmsSlug = cms_slug();
+
+        foreach ($routes as $key => $route) {
+            if (! is_null($this->language)) {
                 $route->prefix($this->language);
+            }
+
+            if (str_contains($route->getPrefix(), $cmsSlug)) {
+                $route->name('.' . $cmsSlug);
             }
         }
     }

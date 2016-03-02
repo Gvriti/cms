@@ -36,21 +36,6 @@ function language_isset()
 }
 
 /**
- * Get the available multi-auth instance.
- *
- * @param  string|null  $method
- * @return \Custom\Auth\Auth
- */
-function multi_auth($method = null)
-{
-    if (is_null($method)) {
-        return app('Custom\Auth\Auth');
-    }
-
-    return app('Custom\Auth\Auth')->$method();
-}
-
-/**
  * Determine if the CMS routes should be loaded.
  *
  * @return bool
@@ -93,26 +78,21 @@ function cms_slug($language = false)
 }
 
 /**
- * Add a cms name to the name of the route.
+ * Add the cms slug to the name of the resource route.
  *
  * @param  string  $name
- * @param  bool    $resource
- * @return string|array
+ * @return array
  */
-function cms_prefix($name, $resource = false)
+function resource_names($name)
 {
-    $prefixedName = cms_slug() . '.' . $name;
-
-    if (! $resource) return $prefixedName;
-
     return [
-        'index'   => $prefixedName . '.index',
-        'create'  => $prefixedName . '.create',
-        'store'   => $prefixedName . '.store',
-        'show'    => $prefixedName . '.show',
-        'edit'    => $prefixedName . '.edit',
-        'update'  => $prefixedName . '.update',
-        'destroy' => $prefixedName . '.destroy'
+        'index'   => $name . '.index',
+        'create'  => $name . '.create',
+        'store'   => $name . '.store',
+        'show'    => $name . '.show',
+        'edit'    => $name . '.edit',
+        'update'  => $name . '.update',
+        'destroy' => $name . '.destroy'
     ];
 }
 
@@ -129,7 +109,7 @@ function cms_prefix($name, $resource = false)
 function cms_route($name, $parameters = [], $language = null, $absolute = true, $route = null)
 {
     try {
-        $route = route(cms_slug() . '.' . $name, $parameters, $absolute, $route);
+        $route = route($name . '.' . cms_slug(), $parameters, $absolute, $route);
     } catch (Exception $e) {
         return '#not-found';
     }

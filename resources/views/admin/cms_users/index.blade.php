@@ -56,7 +56,7 @@
                 @endif
                 </td>
                 <td class="user-name">
-                    <a href="{{cms_route('cmsUsers.edit', [$item->id])}}" class="name{{AuthCms::id() == $item->id ? ' active' : ''}}">{{$item->firstname}} {{$item->lastname}}</a>
+                    <a href="{{cms_route('cmsUsers.edit', [$item->id])}}" class="name{{Auth::guard('cms')->id() == $item->id ? ' active' : ''}}">{{$item->firstname}} {{$item->lastname}}</a>
                     <span>{{$item->role_text}}</span>
                 </td>
                 <td>
@@ -70,19 +70,19 @@
                         <i class="fa fa-user"></i>
                         Profile
                     </a>
-                @if (AuthCms::get()->isAdmin() || AuthCms::id() == $item->id)
+                @if (Auth::guard('cms')->user()->isAdmin() || Auth::guard('cms')->id() == $item->id)
                     <a href="{{cms_route('cmsUsers.edit', [$item->id])}}" class="edit">
                         <i class="fa fa-pencil"></i>
                         Edit Profile
                     </a>
                 @endif
-                @if (AuthCms::get()->isAdmin() && $item->role != 'admin')
+                @if (Auth::guard('cms')->user()->isAdmin() && $item->role != 'admin')
                     <a href="{{cms_route('permissions.index', [$item->id])}}" class="text-warning">
                         <i class="{{icon_type('permissions')}}"></i>
                         Permissions
                     </a>
                 @endif
-                @if (AuthCms::get()->isAdmin() && AuthCms::id() != $item->id)
+                @if (Auth::guard('cms')->user()->isAdmin() && Auth::guard('cms')->id() != $item->id)
                     {!! Form::open(['method' => 'delete', 'url' => cms_route('cmsUsers.destroy', [$item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
                         <a href="#" class="delete">
                             <i class="fa fa-user-times"></i>

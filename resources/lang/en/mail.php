@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Mail language lines
+    | Mail Language Lines
     |--------------------------------------------------------------------------
     |
     | Language lines are used to general languages.

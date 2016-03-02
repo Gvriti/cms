@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware\Admin;
 
+use Auth;
 use Closure;
 
 class AdminRedirectIfAuthenticated
@@ -11,13 +12,14 @@ class AdminRedirectIfAuthenticated
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
-        $auth = $request->user()->cms();
+        $guard = Auth::guard('cms');
 
-        if ($auth->check() && ! $auth->get()->hasLockScreen()) {
+        if ($guard->check() && ! $guard->user()->hasLockScreen()) {
             if ($request->ajax()) {
                 return response()->json(fill_data(true));
             }

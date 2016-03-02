@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Models\CmsUser;
-use Custom\Auth\Auth;
 use Illuminate\Http\Request;
 use App\Jobs\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
@@ -27,9 +26,9 @@ class AdminCmsUsersController extends Controller
     protected $request;
 
     /**
-     * The authenticated cms instance.
+     * The authenticated cms user instance.
      *
-     * @var \Custom\Auth\Auth
+     * @var \Models\CmsUser
      */
     protected $auth;
 
@@ -38,16 +37,15 @@ class AdminCmsUsersController extends Controller
      *
      * @param  \Models\CmsUser  $model
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Custom\Auth\Auth  $auth
      * @return void
      */
-    public function __construct(CmsUser $model, Request $request, Auth $auth)
+    public function __construct(CmsUser $model, Request $request)
     {
         $this->model = $model;
 
         $this->request = $request;
 
-        $this->auth = $auth->cms();
+        $this->auth = $request->user('cms');
     }
 
     /**
@@ -75,7 +73,7 @@ class AdminCmsUsersController extends Controller
      */
     public function create()
     {
-        if (! $this->auth->get()->isAdmin()) {
+        if (! $this->auth->isAdmin()) {
             throw new AccessDeniedHttpException;
         }
 
@@ -94,7 +92,7 @@ class AdminCmsUsersController extends Controller
      */
     public function store(CmsUserRequest $request)
     {
-        if (! $this->auth->get()->isAdmin()) {
+        if (! $this->auth->isAdmin()) {
             throw new AccessDeniedHttpException;
         }
 
@@ -132,7 +130,7 @@ class AdminCmsUsersController extends Controller
      */
     public function edit($id)
     {
-        if (! $this->auth->get()->isAdmin() && $this->auth->id() != $id) {
+        if (! $this->auth->isAdmin() && $this->auth->id != $id) {
             return redirect()->back();
         }
 
@@ -178,10 +176,10 @@ class AdminCmsUsersController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->auth->get()->isAdmin()) {
+        if ($this->auth->isAdmin()) {
             $user = $this->model->findOrFail($id);
 
-            if ($this->auth->id() == $id) {
+            if ($this->auth->id == $id) {
                 $this->model = null;
             }
         } else {

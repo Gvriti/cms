@@ -2,14 +2,10 @@
 
 namespace Models;
 
-use Models\Abstracts\Model;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Models\Abstracts\User as Model;
 
-class User extends Model implements AuthenticatableContract
+class User extends Model
 {
-    use Authenticatable;
-
     /**
      * The database table used by the model.
      *
@@ -22,19 +18,25 @@ class User extends Model implements AuthenticatableContract
      *
      * @var array
      */
-    protected $fillable = ['email', 'firstname', 'lastname', 'phone', 'address', 'active', 'password', 'reset_token'];
+    protected $fillable = [
+        'email', 'firstname', 'lastname', 'phone', 'address', 'active', 'password', 'reset_token'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token', 'reset_token'];
+    protected $hidden = [
+        'password', 'remember_token', 'reset_token'
+    ];
 
     /**
      * The attributes that are not updatable.
      *
      * @var array
      */
-    protected $notUpdatable = ['email'];
+    protected $notUpdatable = [
+        'email'
+    ];
 }

@@ -8,31 +8,13 @@ use Illuminate\Contracts\Foundation\Application;
 class AdminDashboardController extends Controller
 {
     /**
-     * The application instance.
-     *
-     * @var \Illuminate\Foundation\Application
-     */
-    protected $app;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Illuminate\Foundation\Application  $app
-     * @return void
-     */
-    public function __construct(Application $app)
-    {
-        $this->app = $app;
-    }
-
-    /**
      * Display a Dashboard.
      *
      * @return Response
      */
     public function index()
     {
-        $db = $this->app['db'];
+        $db = app('db');
 
         // count basic
         $data['menusTotal'] = $db->table('menus')->count();

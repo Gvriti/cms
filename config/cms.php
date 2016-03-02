@@ -11,11 +11,11 @@ return [
     |
     */
 
-    'version' => '1.0.4',
+    'version' => '1.0.3',
 
     /*
     |--------------------------------------------------------------------------
-    | CMS slug
+    | CMS Slug
     |--------------------------------------------------------------------------
     |
     | Here you should specify the cms slug for the application.
@@ -99,7 +99,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Inner collections
+    | Inner Collections
     |--------------------------------------------------------------------------
     |
     | The array of the collection types that has a parent collection.
@@ -137,16 +137,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Postable methods
+    | Request Methods
     |--------------------------------------------------------------------------
     |
     | This array used to specify types with methods, that will allow to
-    | send a POST requests.
+    | send a specific requests.
+    |
+    | For example: "post", "put", "delete".
     |
     */
 
-    'post_methods' => [
-        'feedback@index' => 'send'
+    'methods' => [
+        'post' => [
+            'feedback@index' => 'send'
+        ]
     ],
 
     /*
@@ -163,7 +167,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | File routes
+    | File Routes
     |--------------------------------------------------------------------------
     |
     | The array of file route names, that has an access to the attached files.
@@ -185,7 +189,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | CMS User roles
+    | CMS User Roles
     |--------------------------------------------------------------------------
     |
     | This array used to specify CMS user roles.
@@ -199,7 +203,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | CMS route type icons
+    | CMS Route Type Icons
     |--------------------------------------------------------------------------
     |
     | Set icons for all CMS route types.

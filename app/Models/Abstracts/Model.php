@@ -122,14 +122,15 @@ abstract class Model extends BaseModel
      * Update the model in the database.
      *
      * @param  array   $attributes
+     * @param  array   $options
      * @param  string  $exclude
      * @return bool|int
      */
-    public function update(array $attributes = [], $exclude = null)
+    public function update(array $attributes = [], array $options = [], $exclude = null)
     {
         $attributes = $this->getUpdatable($attributes, $exclude);
 
-        return $this->fill($attributes)->save();
+        return parent::update($attributes, $options);
     }
 
     /**

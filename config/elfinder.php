@@ -74,7 +74,7 @@ return [
 
     'route' => [
         'prefix' => 'filemanager',
-        'middleware' => 'CmsAuth', //Set to null to disable middleware filter
+        'middleware' => ['web', 'cms.auth'], //Set to null to disable middleware filter
     ],
 
     /*

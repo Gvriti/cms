@@ -2,15 +2,10 @@
 
 namespace Models;
 
-use Models\Abstracts\Model;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Http\Exception\HttpResponseException;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Models\Abstracts\User as Model;
 
-class CmsUser extends Model implements AuthenticatableContract
+class CmsUser extends Model
 {
-    use Authenticatable;
-
     /**
      * The database table used by the model.
      *
@@ -23,21 +18,25 @@ class CmsUser extends Model implements AuthenticatableContract
      *
      * @var array
      */
-    protected $fillable = ['email', 'firstname', 'lastname', 'phone', 'address', 'role', 'active', 'photo', 'password'];
+    protected $fillable = [
+        'email', 'firstname', 'lastname', 'phone', 'address', 'role', 'active', 'photo', 'password'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = [
+        'password', 'remember_token'
+    ];
 
     /**
      * The attributes that are not updatable.
      *
      * @var array
      */
-    protected $notUpdatable = ['remember_token'];
+    protected $notUpdatable = [];
 
     /**
      * Get the mutated `role` attribute.

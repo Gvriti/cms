@@ -37,13 +37,13 @@ class ElfinderServiceProvider extends ServiceProvider
             $config['namespace'] = 'Barryvdh\Elfinder';
 
             $router->group($config, function($router) {
-                $router->get('index', ['as' => cms_prefix('filemanager.index'), 'uses' => 'ElfinderController@showIndex']);
+                $router->get('index', ['as' => 'filemanager.index', 'uses' => 'ElfinderController@showIndex']);
                 $router->any('connector', [
-                    'as' => cms_prefix('filemanager.connector'),
+                    'as' => 'filemanager.connector',
                     'uses' => '\App\Http\Controllers\ElfinderController@showConnector'
                 ]);
-                $router->get('popup/{input_id}', ['as' => cms_prefix('filemanager.popup'), 'uses' => 'ElfinderController@showPopup']);
-                $router->get('tinymce4', ['as' => cms_prefix('filemanager.tinymce4'), 'uses' => 'ElfinderController@showTinyMCE4']);
+                $router->get('popup/{input_id}', ['as' => 'filemanager.popup', 'uses' => 'ElfinderController@showPopup']);
+                $router->get('tinymce4', ['as' => 'filemanager.tinymce4', 'uses' => 'ElfinderController@showTinyMCE4']);
             });
         }
     }

@@ -117,12 +117,13 @@ trait LanguageTrait
      * Update the Eloquent model with its related Language model.
      *
      * @param  array   $attributes
+     * @param  array   $options
      * @param  string  $exclude
      * @return int
      */
-    public function update(array $attributes = [], $exclude = null)
+    public function update(array $attributes = [], array $options = [], $exclude = null)
     {
-        parent::update($attributes, $exclude);
+        parent::update($attributes, $options, $exclude);
 
         $attributes = $this->getLanguageUpdatable($attributes, $exclude);
 

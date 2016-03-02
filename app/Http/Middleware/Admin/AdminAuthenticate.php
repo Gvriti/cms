@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware\Admin;
 
+use Auth;
 use Closure;
 use Models\Permission;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -9,11 +10,11 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 class AdminAuthenticate
 {
     /**
-     * The Auth implementation.
+     * The guard implementation.
      *
-     * @var \Custom\Auth\Auth
+     * @var \Illuminate\Auth\SessionGuard
      */
-    protected $auth;
+    protected $guard;
 
     /**
      * The Permission instance.
@@ -38,21 +39,22 @@ class AdminAuthenticate
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
-        $this->auth = $request->user()->cms();
+        $this->guard = Auth::guard('cms');
 
-        if ($this->auth->guest()) {
-            if ($request->ajax()) {
+        if ($this->guard->guest()) {
+            if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             } else {
                 return redirect()->guest(cms_route('login'));
             }
         }
 
-        if ($this->auth->get()->hasLockScreen()) {
+        if ($this->guard->user()->hasLockScreen()) {
             return redirect(cms_route('lockscreen'));
         }
 
@@ -70,10 +72,10 @@ class AdminAuthenticate
      */
     private function checkRoutePermission($request)
     {
-        if (! $this->auth->get()->isAdmin()) {
+        if (! $this->guard->user()->isAdmin()) {
             $routeName = $request->route()->getName();
 
-            if (! $this->permission->permissions($this->auth->id())->accessRoute($routeName)) {
+            if (! $this->permission->permissions($this->guard->id())->accessRoute($routeName)) {
                 throw new AccessDeniedHttpException;
             }
         }

@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Database interaction language lines
+    | Database Interaction Language Lines
     |--------------------------------------------------------------------------
     |
     | The following language lines are used to interact with the database.

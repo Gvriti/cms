@@ -73,7 +73,7 @@
         </div>
     </div>
 
-@if (AuthCms::get()->isAdmin() && AuthCms::id() != $current->id)
+@if (Auth::guard('cms')->user()->isAdmin() && Auth::guard('cms')->id() != $current->id)
     <div class="form-group-separator"></div>
 
     <div class="form-group{{($error = $errors->first('role')) ? ' validate-has-error' : '' }}">

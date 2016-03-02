@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | General language lines
+    | General Language Lines
     |--------------------------------------------------------------------------
     |
     | The following language lines are used to general languages.

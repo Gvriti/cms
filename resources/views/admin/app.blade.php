@@ -3,7 +3,7 @@
 <head>
     @include('admin.partials.head')
 </head>
-<body class="page-body {{$settings->get('body')}}{{AuthCms::get()->hasLockScreen() ? ' lockscreen-page' : ''}}">
+<body class="page-body {{$settings->get('body')}}{{Auth::guard('cms')->user()->hasLockScreen() ? ' lockscreen-page' : ''}}">
     <div id="container">
         @include('admin.partials.user_top')
     @if ($settings->get('horizontal_menu'))

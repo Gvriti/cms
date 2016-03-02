@@ -7,7 +7,7 @@
             </div>
             {!! Form::model($current, [
                 'method' => 'post',
-                'url'    => cms_route('translations.form'),
+                'url'    => route('translations.form'),
                 'class'  => 'form-horizontal ajax-form'
             ]) !!}
                 @include('admin.translations.modal.form')

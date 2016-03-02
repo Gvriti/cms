@@ -97,11 +97,11 @@ class DynamicRouteServiceProvider extends ServiceProvider
     protected $tabs = [];
 
     /**
-     * The array of the types that will allow post requests.
+     * The array of the types that will allow specific requests.
      *
      * @var array
      */
-    protected $postableMethods = [];
+    protected $requestMethods = [];
 
     /**
      * Define a dynamic routes.
@@ -153,7 +153,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $this->implicitTypes = $this->config->get('cms.pages.implicit', []);
 
-        $this->postableMethods = $this->config->get('cms.post_methods', []);
+        $this->requestMethods = $this->config->get('cms.methods', []);
 
         $this->moduleTypes = $this->config->get('cms.modules', []);
 
@@ -376,21 +376,21 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $this->app->instance('breadcrumb', new Collection($this->pages));
 
-        if ($this->request->method() == 'POST'
+        $route = strtolower($this->request->method());
+
+        if (array_key_exists($route, $this->requestMethods)
             && array_key_exists(
                 $type = "{$typeParts[0]}@{$method}",
-                $postTypes = $this->postableMethods
+                $types = $this->requestMethods[$route]
             )
         ) {
-            $route = 'post';
-
-            $method = $postTypes[$type];
+            $method = $types[$type];
         } else {
             $route = 'get';
         }
 
         $this->router->{$route}($this->uriPrefix . $segments, [
-            'as' => 'current', 'uses' => $controller . '@' . $method]
+            'middleware' => 'web', 'as' => 'current', 'uses' => $controller . '@' . $method]
         );
     }
 

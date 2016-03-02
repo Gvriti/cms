@@ -6,26 +6,11 @@ use Models\CmsUser;
 use Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Exception\HttpResponseException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class AdminPermissionsController extends Controller
 {
-    /**
-     * The application instance.
-     *
-     * @var \Illuminate\Foundation\Application
-     */
-    protected $app;
-
-    /**
-     * The Request instance.
-     *
-     * @var \Illuminate\Http\Request
-     */
-    protected $request;
-
     /**
      * The Permission instance.
      *
@@ -34,11 +19,11 @@ class AdminPermissionsController extends Controller
     protected $model;
 
     /**
-     * The authenticated cms instance.
+     * The Request instance.
      *
-     * @var \Custom\Auth\Auth
+     * @var \Illuminate\Http\Request
      */
-    protected $auth;
+    protected $request;
 
     /**
      * Route group names that are hidden for list.
@@ -59,22 +44,15 @@ class AdminPermissionsController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  \Illuminate\Foundation\Application  $app
-     * @param  \Illuminate\Http\Request  $request
      * @param  \Models\Permission  $model
+     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    public function __construct(Application $app, Request $request, Permission $model)
+    public function __construct(Permission $model, Request $request)
     {
-        $this->app = $app;
-
         $this->model = $model;
 
         $this->request = $request;
-
-        if (! is_null($request->user())) {
-            $this->auth = $request->user()->cms()->get();
-        }
     }
 
     /**
@@ -121,7 +99,7 @@ class AdminPermissionsController extends Controller
 
         $input = $this->request->get('permissions', []);
 
-        $this->app['db']->transaction(function() use ($input, $id) {
+        app('db')->transaction(function() use ($input, $id) {
             $this->model->clear($id);
 
             $attributes = [];
@@ -153,11 +131,13 @@ class AdminPermissionsController extends Controller
      */
     protected function checkAccess($id)
     {
-        if ($this->auth->id == $id) {
+        $auth = $this->request->user('cms');
+
+        if ($auth->id == $id) {
             throw new AccessDeniedHttpException(redirect()->back());
         }
 
-        if (! $this->auth->isAdmin()) {
+        if (! $auth->isAdmin()) {
             throw new AccessDeniedHttpException;
         }
     }
@@ -169,7 +149,7 @@ class AdminPermissionsController extends Controller
      */
     protected function getAllRouteNames()
     {
-        $routes = $this->app['router']->getRoutes();
+        $routes = app('router')->getRoutes();
 
         $routeNames = [];
 
