@@ -11,15 +11,15 @@
 |
 */
 
-$router->group(['namespace' => 'Site'], function ($router) {
+$router->group(['middleware' => ['web'], 'namespace' => 'Site'], function ($router) {
     // glide server
     $router->get($this->app['config']->get('site.glide_base_url') . '/{path}', [
         'as' => 'glide', 'uses' => 'SiteGlideServerController@show'
     ])->where('path', '.+');
 });
 
-// translation requests from site
-$router->group(['middleware' => ['web', 'cms.auth'], 'namespace' => 'Admin'], function ($router) {
-    $router->get('!translations', ['as' => 'translations.form', 'uses' => 'AdminTranslationsController@getModal']);
-    $router->post('!translations', ['as' => 'translations.form', 'uses' => 'AdminTranslationsController@postModal']);
+// translation form request
+$router->group(['middleware' => ['web', 'cms.auth'], 'namespace' => 'Admin', 'prefix' => cms_slug()], function ($router) {
+    $router->get('translations/form', ['as' => 'translations.popup', 'uses' => 'AdminTranslationsController@getModal']);
+    $router->post('translations/form', ['as' => 'translations.popup', 'uses' => 'AdminTranslationsController@postModal']);
 });

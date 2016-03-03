@@ -46,14 +46,9 @@
     </ul>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading clearfix">
         <h3 class="panel-title">Edit translation</h3>
-        <div class="panel-options">
-            <a href="#" data-toggle="panel">
-                <span class="collapse-icon">&ndash;</span>
-                <span class="expand-icon">+</span>
-            </a>
-        </div>
+        <a href="{{cms_route('translations.create')}}" class="pull-right">Add another translation</a>
     </div>
     <div class="tab-content">
     @foreach ($items as $current)

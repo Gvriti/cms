@@ -4,16 +4,17 @@ $(function () {
 
     $('form', modalSelector).on('submit', function (e) {
         e.preventDefault();
-        var form  = $(this);
-        $('.form-group', form).find('.text-danger').remove();
+        var form = $(this);
         var lang = form.data('lang');
+        lang = lang ? lang : '';
+        $('.form-group', form).find('.text-danger').remove();
 
         $.ajax({
             type: 'POST',
             url: form.attr('action'),
             dataType: 'json',
             data: form.serialize(),
-            success: function(data) {
+            success: function (data) {
                 $('.modal-footer', form).prepend(
                     $('<span class="text-success">saved</span>').delay(1000).fadeOut(300, function () {
                         $(this).remove();
@@ -37,13 +38,20 @@ $(function () {
                     $('[data-trans="'+data.name+'"]').trigger(ev);
                 @endif
                     modalSelector.modal('hide');
+                } else {
+                    $('form [name="title"]', modalSelector).each(function (i, e) {
+                        $(e).val(data.title);
+                    });
+                    $('form [name="type"]', modalSelector).each(function (i, e) {
+                        $(e).val(data.type);
+                    });
                 }
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 if (xhr.status == 422) {
                     var data = xhr.responseJSON;
 
-                    $.each(data, function(index, element) {
+                    $.each(data, function (index, element) {
                         var field = $('#' + index + lang, form);
                         var errorMsg = '<div class="text-danger">'+element+'</div>';
                         field.after(errorMsg);

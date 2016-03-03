@@ -163,7 +163,7 @@ class AdminPermissionsController extends Controller
             if (! is_null($routeName) && strpos($route->getPrefix(), $cmsSlug) !== false) {
                 if ($prevRouteName == $routeName) continue;
 
-                $baseRouteName = explode('.', substr($routeName, strpos($routeName, '.') + 1));
+                $baseRouteName = explode('.', substr($routeName, 0, strrpos($routeName, '.')));
 
                 $routeNames[$baseRouteName[0]][] = $routeName;
 

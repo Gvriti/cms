@@ -14,7 +14,7 @@ class SiteCurrentPageEventListener
     {
         $current = $event->current;
 
-        $trans = app_instance('trans');
+        $trans = app_instance('trans')->lists('value', 'name');
 
         if (! is_object($current)) {
             $current = (object) [

@@ -16,8 +16,8 @@
                 <div class="tab-pane{{language() != $current->language ? '' : ' active'}}" id="item-{{$current->language}}">
                     {!! Form::model($current, [
                         'method' => 'post',
-                        'url'    => route('translations.form', [], $current->language),
-                        'class'  => 'form-horizontal ajax-form',
+                        'url'    => cms_route('translations.popup', [], count(languages()) > 1 ? $current->language : null),
+                        'class'  => 'form-horizontal',
                         'data-lang'  => $current->language
                     ]) !!}
                         <input type="hidden" name="id" value="{{$current->id}}">

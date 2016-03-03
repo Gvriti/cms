@@ -49,6 +49,8 @@ class AdminTranslationsController extends Controller
     {
         $data['current'] = $this->model;
 
+        $data['transTypes'] = (array) config('cms.trans_types');
+
         return view('admin.translations.create', $data);
     }
 
@@ -82,6 +84,8 @@ class AdminTranslationsController extends Controller
         $data['items'] = $this->model->joinLanguages(false)
                                      ->where('id', $id)
                                      ->getOrFail();
+
+        $data['transTypes'] = (array) config('cms.trans_types');
 
         return view('admin.translations.edit', $data);
     }
@@ -151,6 +155,8 @@ class AdminTranslationsController extends Controller
             $form = 'edit';
         }
 
+        $data['transTypes'] = (array) config('cms.trans_types');
+
         return view('admin.translations.modal.' . $form, $data);
     }
 
@@ -168,9 +174,6 @@ class AdminTranslationsController extends Controller
             $this->model->create($request->all());
         }
 
-        return response()->json([
-            'name' => $request->get('name'),
-            'value' => $request->get('value')
-        ]);
+        return response()->json($request->only('title', 'value', 'type'));
     }
 }

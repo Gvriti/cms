@@ -22,7 +22,7 @@ class Translation extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'title'
+        'name', 'title', 'type'
     ];
 
     /**

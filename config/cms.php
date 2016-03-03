@@ -203,6 +203,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Translation Types
+    |--------------------------------------------------------------------------
+    |
+    | The list of types that will separate translations.
+    |
+    */
+
+    'trans_types' => [
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | CMS Route Type Icons
     |--------------------------------------------------------------------------
     |
@@ -211,8 +223,9 @@ return [
     */
 
     'icons' => [
-        'menus'       => 'fa fa-list',
-        'pages'       => 'fa fa-indent',
+        'menus'        => 'fa fa-list',
+        'pages'        => 'fa fa-indent',
+        'translations' => 'fa fa-language',
 
         'collections' => 'fa fa-list-alt',
         'catalog'     => 'fa fa-briefcase',

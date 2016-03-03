@@ -17,13 +17,11 @@ class TranslationServiceProvider extends ServiceProvider
         // Do not boot if we are running in the console to avoid migration fail.
         // Do not boot if CMS will load.
         if (! $this->app->runningInConsole() && ! cms_will_load()) {
-            $trans = (new Translation)->joinLanguages()
-                                      ->get()
-                                      ->lists('value', 'name');
+            $trans = (new Translation)->joinLanguages()->get();
 
             $this->app->instance('trans', $trans);
 
-            view()->share('trans', $trans);
+            view()->share('trans', $trans->lists('value', 'name'));
         }
     }
 

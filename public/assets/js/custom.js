@@ -128,7 +128,6 @@ $(function () {
                     form.trigger('ajaxFormSuccess', [data.input]);
                 }
                 $('.form-group', form).removeClass('validate-has-error');
-                $('#form-changes', form).val(1);
             },
             error: function(xhr) {
                 if (xhr.status == 422) {
