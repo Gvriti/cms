@@ -143,7 +143,7 @@
                 'class' => 'form-control',
                 'data-type' => 'general'
             ]) !!}
-            <div class="input-group-btn popup" data-browse="image">
+            <div class="input-group-btn popup" data-browse="image{{$current->language}}">
                 <span class="btn btn-info">არჩევა</span>
             </div>
         </div>

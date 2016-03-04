@@ -26,11 +26,7 @@
                     }
                 },
                 getFileCallback: function(file) {
-                    if (parent.$('#{{ $input_id }}').length) {
-                        parent.$('#{{ $input_id }}').val(file.url).trigger('fileSet');
-                    } else {
-                        parent.$('#{{ $input_id }}').val(file.url).trigger('fileSet');
-                    }
+                    parent.$('#{{ $input_id }}').val(file.url).trigger('fileSet');
                     parent.jQuery.fancybox.close();
                 },
                 width: 880,
