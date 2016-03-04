@@ -56,10 +56,10 @@
             </a>
         </div>
     </div>
-    <div class="tab-content">
-    @foreach ($items as $current)
-        <div class="tab-pane{{language() != $current->language ? '' : ' active'}}" id="item-{{$current->language}}">
-            <div class="panel-body">
+    <div class="panel-body">
+        <div class="tab-content">
+        @foreach ($items as $current)
+            <div class="tab-pane{{language() != $current->language ? '' : ' active'}}" id="item-{{$current->language}}">
                 {!! Form::model($current, [
                     'method'    => 'put',
                     'url'       => cms_route('galleries.update', [$current->collection_id, $current->id], $isMultiLang ? $current->language : null),
@@ -74,8 +74,8 @@
                     ])
                 {!! Form::close() !!}
             </div>
+        @endforeach
         </div>
-    @endforeach
     </div>
 </div>
 @include('admin.galleries.scripts')

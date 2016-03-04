@@ -39,21 +39,27 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">CMS settings form</h3>
+        <div class="panel-options">
+            <a href="#" data-toggle="panel">
+                <span class="collapse-icon">&ndash;</span>
+                <span class="expand-icon">+</span>
+            </a>
+        </div>
     </div>
-    {!! Form::open([
-        'method' => 'put',
-        'url'    => cms_route('settings.update'),
-        'class'  => 'form-horizontal',
-        'id'     => 'form-update'
-    ]) !!}
-        {!! Form::hidden('tab', request('tab', 1), ['id' => 'tab']) !!}
-        {!! Form::hidden('skin_sidebar', $settings->get('skin_sidebar'), ['id' => 'skin_sidebar']) !!}
-        {!! Form::hidden('skin_user_menu', $settings->get('skin_user_menu'), ['id' => 'skin_user_menu']) !!}
-        {!! Form::hidden('skin_horizontal', $settings->get('skin_horizontal'), ['id' => 'skin_horizontal']) !!}
-        {!! Form::hidden('skin_login', $settings->get('skin_login'), ['id' => 'skin_login']) !!}
-        <div class="tab-content">
-            <div class="tab-pane{{request('tab', 1) == 1 ? ' active' : ''}}" id="general">
-                <div class="panel-body">
+    <div class="panel-body">
+        {!! Form::open([
+            'method' => 'put',
+            'url'    => cms_route('settings.update'),
+            'class'  => 'form-horizontal',
+            'id'     => 'form-update'
+        ]) !!}
+            {!! Form::hidden('tab', request('tab', 1), ['id' => 'tab']) !!}
+            {!! Form::hidden('skin_sidebar', $settings->get('skin_sidebar'), ['id' => 'skin_sidebar']) !!}
+            {!! Form::hidden('skin_user_menu', $settings->get('skin_user_menu'), ['id' => 'skin_user_menu']) !!}
+            {!! Form::hidden('skin_horizontal', $settings->get('skin_horizontal'), ['id' => 'skin_horizontal']) !!}
+            {!! Form::hidden('skin_login', $settings->get('skin_login'), ['id' => 'skin_login']) !!}
+            <div class="tab-content">
+                <div class="tab-pane{{request('tab', 1) == 1 ? ' active' : ''}}" id="general">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -161,271 +167,271 @@
 
                     <div class="form-group-separator"></div>
                 </div>
-            </div>
-            <div class="tab-pane{{request('tab') == 2 ? ' active' : ''}}" id="skin">
-                <div class="panel-body">
-                    <table class="table table-hover middle-align">
-                        <thead>
-                            <tr>
-                                <th>Skin Name</th>
-                                <th width="400">Color Palette</th>
-                                <th width="280">Skin Activation</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="skin-name-link">Default Skin</div>
-                                </td>
-                                <td>
-                                    <div class="skin-color-palette">
-                                        <span style="background-color: #2c2e2f"></span>
-                                        <span style="background-color: #EEE"></span>
-                                        <span style="background-color: #FFFFFF"></span>
-                                        <span style="background-color: #68b828"></span>
-                                        <span style="background-color: #27292a"></span>
-                                        <span style="background-color: #323435"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-skin data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
-                                    <a href="#" data-skin data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
-                                    <a href="#" data-skin data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="skin-name-link">Aero</div>
-                                </td>
-                                <td>
-                                    <div class="skin-color-palette">
-                                        <span style="background-color: #558C89"></span>
-                                        <span style="background-color: #ECECEA"></span>
-                                        <span style="background-color: #FFFFFF"></span>
-                                        <span style="background-color: #5F9A97"></span>
-                                        <span style="background-color: #558C89"></span>
-                                        <span style="background-color: #255E5b"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-skin="skin-aero" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
-                                    <a href="#" data-skin="skin-aero" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
-                                    <a href="#" data-skin="skin-aero" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="skin-name-link">Navy</div>
-                                </td>
-                                <td>
-                                    <div class="skin-color-palette">
-                                        <span style="background-color: #2c3e50"></span>
-                                        <span style="background-color: #a7bfd6"></span>
-                                        <span style="background-color: #FFFFFF"></span>
-                                        <span style="background-color: #34495e"></span>
-                                        <span style="background-color: #2c3e50"></span>
-                                        <span style="background-color: #ff4e50"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-skin="skin-navy" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
-                                    <a href="#" data-skin="skin-navy" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
-                                    <a href="#" data-skin="skin-navy" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="skin-name-link">Facebook</div>
-                                </td>
-                                <td>
-                                    <div class="skin-color-palette">
-                                        <span style="background-color: #3b5998"></span>
-                                        <span style="background-color: #8b9dc3"></span>
-                                        <span style="background-color: #FFFFFF"></span>
-                                        <span style="background-color: #4160a0"></span>
-                                        <span style="background-color: #3b5998"></span>
-                                        <span style="background-color: #8b9dc3"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-skin="skin-facebook" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
-                                    <a href="#" data-skin="skin-facebook" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
-                                    <a href="#" data-skin="skin-facebook" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="skin-name-link">Turquise</div>
-                                </td>
-                                <td>
-                                    <div class="skin-color-palette">
-                                        <span style="background-color: #16a085"></span>
-                                        <span style="background-color: #96ead9"></span>
-                                        <span style="background-color: #FFFFFF"></span>
-                                        <span style="background-color: #1daf92"></span>
-                                        <span style="background-color: #16a085"></span>
-                                        <span style="background-color: #0f7e68"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-skin="skin-turquoise" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
-                                    <a href="#" data-skin="skin-turquoise" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
-                                    <a href="#" data-skin="skin-turquoise" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="skin-name-link">Lime</div>
-                                </td>
-                                <td>
-                                    <div class="skin-color-palette">
-                                        <span style="background-color: #8cc657"></span>
-                                        <span style="background-color: #ffffff"></span>
-                                        <span style="background-color: #FFFFFF"></span>
-                                        <span style="background-color: #95cd62"></span>
-                                        <span style="background-color: #8cc657"></span>
-                                        <span style="background-color: #70a93c"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-skin="skin-lime" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
-                                    <a href="#" data-skin="skin-lime" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
-                                    <a href="#" data-skin="skin-lime" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="skin-name-link">Green</div>
-                                </td>
-                                <td>
-                                    <div class="skin-color-palette">
-                                        <span style="background-color: #27ae60"></span>
-                                        <span style="background-color: #a2f9c7"></span>
-                                        <span style="background-color: #FFFFFF"></span>
-                                        <span style="background-color: #2fbd6b"></span>
-                                        <span style="background-color: #27ae60"></span>
-                                        <span style="background-color: #1c954f"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-skin="skin-green" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
-                                    <a href="#" data-skin="skin-green" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
-                                    <a href="#" data-skin="skin-green" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="skin-name-link">Purple</div>
-                                </td>
-                                <td>
-                                    <div class="skin-color-palette">
-                                        <span style="background-color: #795b95"></span>
-                                        <span style="background-color: #c2afd4"></span>
-                                        <span style="background-color: #FFFFFF"></span>
-                                        <span style="background-color: #795b95"></span>
-                                        <span style="background-color: #27ae60"></span>
-                                        <span style="background-color: #5f3d7e"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-skin="skin-purple" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
-                                    <a href="#" data-skin="skin-purple" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
-                                    <a href="#" data-skin="skin-purple" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="skin-name-link">White</div>
-                                </td>
-                                <td>
-                                    <div class="skin-color-palette">
-                                        <span style="background-color: #FFF"></span>
-                                        <span style="background-color: #666"></span>
-                                        <span style="background-color: #95cd62"></span>
-                                        <span style="background-color: #EEE"></span>
-                                        <span style="background-color: #95cd62"></span>
-                                        <span style="background-color: #555"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-skin="skin-white" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
-                                    <a href="#" data-skin="skin-white" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
-                                    <a href="#" data-skin="skin-white" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="skin-name-link">Concrete</div>
-                                </td>
-                                <td>
-                                    <div class="skin-color-palette">
-                                        <span style="background-color: #a8aba2"></span>
-                                        <span style="background-color: #666"></span>
-                                        <span style="background-color: #a40f37"></span>
-                                        <span style="background-color: #b8bbb3"></span>
-                                        <span style="background-color: #a40f37"></span>
-                                        <span style="background-color: #323232"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-skin="skin-concrete" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
-                                    <a href="#" data-skin="skin-concrete" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
-                                    <a href="#" data-skin="skin-concrete" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="skin-name-link">Watermelon</div>
-                                </td>
-                                <td>
-                                    <div class="skin-color-palette">
-                                        <span style="background-color: #b63131"></span>
-                                        <span style="background-color: #f7b2b2"></span>
-                                        <span style="background-color: #FFF"></span>
-                                        <span style="background-color: #c03737"></span>
-                                        <span style="background-color: #b63131"></span>
-                                        <span style="background-color: #32932e"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-skin="skin-watermelon" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
-                                    <a href="#" data-skin="skin-watermelon" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
-                                    <a href="#" data-skin="skin-watermelon" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="skin-name-link">Lemonade</div>
-                                </td>
-                                <td>
-                                    <div class="skin-color-palette">
-                                        <span style="background-color: #f5c150"></span>
-                                        <span style="background-color: #ffeec9"></span>
-                                        <span style="background-color: #FFF"></span>
-                                        <span style="background-color: #ffcf67"></span>
-                                        <span style="background-color: #f5c150"></span>
-                                        <span style="background-color: #d9a940"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-skin="skin-lemonade" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
-                                    <a href="#" data-skin="skin-lemonade" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
-                                    <a href="#" data-skin="skin-lemonade" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="tab-pane{{request('tab') == 2 ? ' active' : ''}}" id="skin">
+                    <div class="panel-body">
+                        <table class="table table-hover middle-align">
+                            <thead>
+                                <tr>
+                                    <th>Skin Name</th>
+                                    <th width="400">Color Palette</th>
+                                    <th width="280">Skin Activation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="skin-name-link">Default Skin</div>
+                                    </td>
+                                    <td>
+                                        <div class="skin-color-palette">
+                                            <span style="background-color: #2c2e2f"></span>
+                                            <span style="background-color: #EEE"></span>
+                                            <span style="background-color: #FFFFFF"></span>
+                                            <span style="background-color: #68b828"></span>
+                                            <span style="background-color: #27292a"></span>
+                                            <span style="background-color: #323435"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-skin data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
+                                        <a href="#" data-skin data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
+                                        <a href="#" data-skin data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="skin-name-link">Aero</div>
+                                    </td>
+                                    <td>
+                                        <div class="skin-color-palette">
+                                            <span style="background-color: #558C89"></span>
+                                            <span style="background-color: #ECECEA"></span>
+                                            <span style="background-color: #FFFFFF"></span>
+                                            <span style="background-color: #5F9A97"></span>
+                                            <span style="background-color: #558C89"></span>
+                                            <span style="background-color: #255E5b"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-skin="skin-aero" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
+                                        <a href="#" data-skin="skin-aero" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
+                                        <a href="#" data-skin="skin-aero" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="skin-name-link">Navy</div>
+                                    </td>
+                                    <td>
+                                        <div class="skin-color-palette">
+                                            <span style="background-color: #2c3e50"></span>
+                                            <span style="background-color: #a7bfd6"></span>
+                                            <span style="background-color: #FFFFFF"></span>
+                                            <span style="background-color: #34495e"></span>
+                                            <span style="background-color: #2c3e50"></span>
+                                            <span style="background-color: #ff4e50"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-skin="skin-navy" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
+                                        <a href="#" data-skin="skin-navy" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
+                                        <a href="#" data-skin="skin-navy" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="skin-name-link">Facebook</div>
+                                    </td>
+                                    <td>
+                                        <div class="skin-color-palette">
+                                            <span style="background-color: #3b5998"></span>
+                                            <span style="background-color: #8b9dc3"></span>
+                                            <span style="background-color: #FFFFFF"></span>
+                                            <span style="background-color: #4160a0"></span>
+                                            <span style="background-color: #3b5998"></span>
+                                            <span style="background-color: #8b9dc3"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-skin="skin-facebook" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
+                                        <a href="#" data-skin="skin-facebook" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
+                                        <a href="#" data-skin="skin-facebook" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="skin-name-link">Turquise</div>
+                                    </td>
+                                    <td>
+                                        <div class="skin-color-palette">
+                                            <span style="background-color: #16a085"></span>
+                                            <span style="background-color: #96ead9"></span>
+                                            <span style="background-color: #FFFFFF"></span>
+                                            <span style="background-color: #1daf92"></span>
+                                            <span style="background-color: #16a085"></span>
+                                            <span style="background-color: #0f7e68"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-skin="skin-turquoise" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
+                                        <a href="#" data-skin="skin-turquoise" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
+                                        <a href="#" data-skin="skin-turquoise" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="skin-name-link">Lime</div>
+                                    </td>
+                                    <td>
+                                        <div class="skin-color-palette">
+                                            <span style="background-color: #8cc657"></span>
+                                            <span style="background-color: #ffffff"></span>
+                                            <span style="background-color: #FFFFFF"></span>
+                                            <span style="background-color: #95cd62"></span>
+                                            <span style="background-color: #8cc657"></span>
+                                            <span style="background-color: #70a93c"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-skin="skin-lime" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
+                                        <a href="#" data-skin="skin-lime" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
+                                        <a href="#" data-skin="skin-lime" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="skin-name-link">Green</div>
+                                    </td>
+                                    <td>
+                                        <div class="skin-color-palette">
+                                            <span style="background-color: #27ae60"></span>
+                                            <span style="background-color: #a2f9c7"></span>
+                                            <span style="background-color: #FFFFFF"></span>
+                                            <span style="background-color: #2fbd6b"></span>
+                                            <span style="background-color: #27ae60"></span>
+                                            <span style="background-color: #1c954f"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-skin="skin-green" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
+                                        <a href="#" data-skin="skin-green" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
+                                        <a href="#" data-skin="skin-green" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="skin-name-link">Purple</div>
+                                    </td>
+                                    <td>
+                                        <div class="skin-color-palette">
+                                            <span style="background-color: #795b95"></span>
+                                            <span style="background-color: #c2afd4"></span>
+                                            <span style="background-color: #FFFFFF"></span>
+                                            <span style="background-color: #795b95"></span>
+                                            <span style="background-color: #27ae60"></span>
+                                            <span style="background-color: #5f3d7e"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-skin="skin-purple" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
+                                        <a href="#" data-skin="skin-purple" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
+                                        <a href="#" data-skin="skin-purple" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="skin-name-link">White</div>
+                                    </td>
+                                    <td>
+                                        <div class="skin-color-palette">
+                                            <span style="background-color: #FFF"></span>
+                                            <span style="background-color: #666"></span>
+                                            <span style="background-color: #95cd62"></span>
+                                            <span style="background-color: #EEE"></span>
+                                            <span style="background-color: #95cd62"></span>
+                                            <span style="background-color: #555"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-skin="skin-white" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
+                                        <a href="#" data-skin="skin-white" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
+                                        <a href="#" data-skin="skin-white" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="skin-name-link">Concrete</div>
+                                    </td>
+                                    <td>
+                                        <div class="skin-color-palette">
+                                            <span style="background-color: #a8aba2"></span>
+                                            <span style="background-color: #666"></span>
+                                            <span style="background-color: #a40f37"></span>
+                                            <span style="background-color: #b8bbb3"></span>
+                                            <span style="background-color: #a40f37"></span>
+                                            <span style="background-color: #323232"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-skin="skin-concrete" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
+                                        <a href="#" data-skin="skin-concrete" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
+                                        <a href="#" data-skin="skin-concrete" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="skin-name-link">Watermelon</div>
+                                    </td>
+                                    <td>
+                                        <div class="skin-color-palette">
+                                            <span style="background-color: #b63131"></span>
+                                            <span style="background-color: #f7b2b2"></span>
+                                            <span style="background-color: #FFF"></span>
+                                            <span style="background-color: #c03737"></span>
+                                            <span style="background-color: #b63131"></span>
+                                            <span style="background-color: #32932e"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-skin="skin-watermelon" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
+                                        <a href="#" data-skin="skin-watermelon" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
+                                        <a href="#" data-skin="skin-watermelon" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="skin-name-link">Lemonade</div>
+                                    </td>
+                                    <td>
+                                        <div class="skin-color-palette">
+                                            <span style="background-color: #f5c150"></span>
+                                            <span style="background-color: #ffeec9"></span>
+                                            <span style="background-color: #FFF"></span>
+                                            <span style="background-color: #ffcf67"></span>
+                                            <span style="background-color: #f5c150"></span>
+                                            <span style="background-color: #d9a940"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-skin="skin-lemonade" data-type="skin_sidebar" class="btn btn-sm btn-white sidebar">Sidebar</a>
+                                        <a href="#" data-skin="skin-lemonade" data-type="skin_horizontal" class="btn btn-sm btn-white horizontal">Horizontal menu</a>
+                                        <a href="#" data-skin="skin-lemonade" data-type="skin_login" class="btn btn-sm btn-white login">Login</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-10 btn-action pull-right">
-                <button type="submit" class="btn btn-secondary" title="{{ trans('general.update') }}">
-                    <i class="fa fa-save"></i>
-                </button>
+            <div class="form-group">
+                <div class="col-sm-10 btn-action pull-right">
+                    <button type="submit" class="btn btn-secondary" title="{{ trans('general.update') }}">
+                        <i class="fa fa-save"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-    {!! Form::close() !!}
+        {!! Form::close() !!}
+    </div>
 </div>
 
 <!-- Imported styles on this page -->
