@@ -100,6 +100,7 @@ class AdminTranslationsController extends Controller
     public function update(TranslationRequest $request, $id)
     {
         $input = $request->all();
+        unset($input['name']);
 
         $this->model->findOrFail($id)->update($input);
 
@@ -168,12 +169,22 @@ class AdminTranslationsController extends Controller
      */
     public function postModal(TranslationRequest $request)
     {
-        if ($id = $request->get('id')) {
-            $this->model->findOrFail($id)->update($request->all());
+        $input = $request->only('id', 'name', 'title', 'value', 'type');
+
+        if (is_null($input['id'])) {
+            unset($input['id']);
+
+            $this->model->create($input);
         } else {
-            $this->model->create($request->all());
+            unset($input['name']);
+
+            $model = $this->model->findOrFail($input['id']);
+
+            $model->update($input);
+
+            $input['name'] = $model->name;
         }
 
-        return response()->json($request->only('title', 'value', 'type'));
+        return response()->json($input);
     }
 }
