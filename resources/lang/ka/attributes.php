@@ -12,16 +12,16 @@ return [
     */
 
     // attributes
-    "title"       => "სათაური",
-    "text"        => "ტექსტი",
-    "description" => "აღწერა",
-    "content"     => "შიგთავსი",
+    'title' => 'სათაური',
+    'text' => 'ტექსტი',
+    'description' => 'აღწერა',
+    'content' => 'შიგთავსი',
 
-    "name"      => "სახელი",
-    "fisrtname" => "სახელი",
-    "lastname"  => "გვარი",
-    "email"     => "ელ.ფოსტა",
-    "phone"     => "ტელეფონი",
-    "password"  => "პაროლი"
+    'name' => 'სახელი',
+    'fisrtname' => 'სახელი',
+    'lastname' => 'გვარი',
+    'email' => 'ელ.ფოსტა',
+    'phone' => 'ტელეფონი',
+    'password' => 'პაროლი'
 
 ];

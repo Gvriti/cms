@@ -13,7 +13,7 @@
         {!!$current->description!!}
     </header>
     <!-- .jumbotron -->
-    <div id="items">
+    <div id="items" class="row">
     @foreach ($items as $item)
         <div class="col-sm-3">
         @if ($item->file)

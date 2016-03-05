@@ -27,7 +27,7 @@ class AuthSiteController extends Controller
             'email'     => 'required|email|max:255|unique:users',
             'firstname' => 'required|min:2|max:255',
             'lastname'  => 'required|min:2|max:255',
-            'password'  => 'required|confirmed|min:6',
+            'password'  => 'required|min:6|confirmed',
         ], [], (array) trans('attributes'));
     }
 
