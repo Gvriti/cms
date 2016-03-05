@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Events\QueryExecuted;
+
 /**
  * Get the application default language.
  *
@@ -589,22 +591,23 @@ function getAge($dob)
  *
  * @return void
  */
-function log_executed_sql_queries()
+function log_executed_db_queries()
 {
     $filename = storage_path('logs/queries.log');
     $separator = '--------------------------------------------------------' . PHP_EOL;
 
     if (file_exists($filename)) {
-        unlink($filename);
+        @unlink($filename);
     }
 
     file_put_contents($filename, $separator);
 
-    app('events')->listen('illuminate.query', function($sql, $bindings, $time) use ($filename, $separator) {
-        $sql      = 'SQL: ' . $sql . PHP_EOL;
-        $bindings = $bindings ? 'Bindings: ' . implode(', ', $bindings) . PHP_EOL : '';
-        $time     = 'Time: ' . $time . PHP_EOL;
-        $data     = $sql . $bindings . $time . $separator;
+    app('events')->listen(QueryExecuted::class, function($query) use ($filename, $separator) {
+        $conn     = 'Connection: ' . $query->connectionName . PHP_EOL;
+        $sql      = 'SQL: ' . $query->sql . PHP_EOL;
+        $bindings = 'Bindings: ' . implode(', ', (array) $query->bindings) . PHP_EOL;
+        $time     = 'Time: ' . $query->time . PHP_EOL;
+        $data     = $conn . $sql . $bindings . $time . $separator;
 
         $flags = FILE_APPEND | LOCK_EX;
 
