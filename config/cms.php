@@ -128,7 +128,7 @@ return [
     | Modules
     |--------------------------------------------------------------------------
     |
-    | This array used to specify modules.
+    | This array used to specify module types.
     |
     */
 
@@ -159,6 +159,10 @@ return [
     |--------------------------------------------------------------------------
     |
     | This array used to specify types, that will allow additional tab URIs.
+    |
+    | type => [
+    |     'uri' => 'method'
+    | ]
     |
     */
 
@@ -206,7 +210,7 @@ return [
     | Translation Types
     |--------------------------------------------------------------------------
     |
-    | The list of types that will separate translations.
+    | The list of types that will filter translations.
     |
     */
 
