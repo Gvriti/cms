@@ -61,13 +61,13 @@ class AdminNotesController extends Controller
         if ($this->request->has('id')) {
             $id = $this->request->get('id');
 
-            $model = $this->model->findOrFail($id)->update($input);
+            $this->model->findOrFail($id)->update($input);
         } else {
-            $model = $this->model->create($input);
+            $this->model = $this->model->create($input);
         }
 
         if ($this->request->ajax()) {
-            return response()->json($model);
+            return response()->json($this->model->id);
         }
 
         return redirect()->back();

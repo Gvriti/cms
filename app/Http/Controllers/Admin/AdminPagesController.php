@@ -205,11 +205,11 @@ class AdminPagesController extends Controller
 
             $model = $this->model->findOrFail($id);
 
-            $result = $model->update(['collapse' => $model->collapse ? 0 : 1]);
-
-            if ($result) return response()->json(fill_data($result));
+            if ($model->update(['collapse' => $model->collapse ? 0 : 1])) {
+                return response()->json(true);
+            }
         }
 
-        return response()->json(fill_data(false, trans('general.invalid_input')));
+        return response(trans('general.invalid_input'), 422);
     }
 }

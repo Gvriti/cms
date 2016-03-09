@@ -134,25 +134,6 @@ abstract class Model extends BaseModel
     }
 
     /**
-     * Save the model to the database.
-     *
-     * @param  array  $options
-     * @return bool
-     *
-     * @throws \Illuminate\Http\Exception\HttpResponseException
-     */
-    public function save(array $options = [])
-    {
-        try {
-            parent::save($options);
-        } catch (QueryException $e) {
-            $this->queryExceptionResponse($e);
-        }
-
-        return $this;
-    }
-
-    /**
      * Delete the model from the database.
      *
      * @param  int|null  $id
@@ -162,19 +143,15 @@ abstract class Model extends BaseModel
      */
     public function delete($id = null)
     {
-        try {
-            if (! is_null($id)) {
-                if (! is_null($model = $this->find($id))) {
-                    return $model->delete();
-                }
-
-                return;
+        if (! is_null($id)) {
+            if (! is_null($model = $this->find($id))) {
+                return $model->delete();
             }
 
-            return parent::delete();
-        } catch (QueryException $e) {
-            $this->queryExceptionResponse($e);
+            return;
         }
+
+        return parent::delete();
     }
 
     /**
@@ -187,11 +164,7 @@ abstract class Model extends BaseModel
      */
     public static function destroy($ids)
     {
-        try {
-            return parent::whereIn('id', (array) $ids)->delete();
-        } catch (QueryException $e) {
-            $this->queryExceptionResponse($e);
-        }
+        return parent::whereIn('id', (array) $ids)->delete();
     }
 
 

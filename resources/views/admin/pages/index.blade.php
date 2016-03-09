@@ -110,7 +110,6 @@ $(function() {
     // Collapse parent pages
     $('#items').on('click', '[data-nestable-action]', function() {
         var id = $(this).closest('li').data('id');
-
         var input = {'id':id, '_method':'put', '_token':csrf_token()};
         $.post("{{cms_route('pages.collapse')}}", input, function(data) {}, 'json')
         .fail(function(xhr) {

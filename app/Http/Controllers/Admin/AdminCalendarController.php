@@ -76,17 +76,17 @@ class AdminCalendarController extends Controller
         if ($this->request->has('id')) {
             $id = $this->request->get('id');
 
-            $result = $this->model->findOrFail($id)->updateEvent($this->request);
+            $this->model->findOrFail($id)->updateEvent($this->request);
         } else {
             $input = $this->request->all();
             $input['color'] = $this->model->getRandomColor();
 
-            $result = $this->model->create($input);
+            $this->model = $this->model->create($input);
         }
 
         if ($this->request->ajax()) {
             return response()->json(fill_data(
-                'success', trans('general.saved'), $result->getAttributes()
+                'success', trans('general.saved'), $this->model->getAttributes()
             ));
         }
 

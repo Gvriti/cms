@@ -25,7 +25,7 @@
             </a>
             <div class="xe-label">
                 <strong class="num">{{$menusTotal}}</strong>
-                <span>Total Menus</span>
+                <span>Total menus</span>
             </div>
         </div>
     </div>
@@ -35,12 +35,12 @@
                 <i class="{{icon_type('pages')}}"></i>
             </a>
             <div class="xe-label">
-                <strong class="num">{{$pagesMainTotal}}</strong>
-                <span>Main Pages</span>
+                <strong class="num">{{$mainPagesTotal}}</strong>
+                <span>Main pages</span>
             </div>
             <div class="xe-label">
                 <strong class="num numTotal">{{$pagesTotal}}</strong>
-                <span>Total Pages</span>
+                <span>Total pages</span>
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@
             </a>
             <div class="xe-label">
                 <strong class="num">{{$collectionsTotal}}</strong>
-                <span>Total Collections</span>
+                <span>Total collections</span>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
             </a>
             <div class="xe-label">
                 <strong class="num">{{$usersTotal}}</strong>
-                <span>Total CMS Users</span>
+                <span>Total cms users</span>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
                 </a>
                 <div class="xe-label">
                     <strong class="num">{{$catalogTotalDistinct}}</strong>
-                    <span>Catalog by Category</span>
+                    <span>Catalog by category</span>
                 </div>
             </div>
             <div class="xe-lower">
@@ -94,13 +94,13 @@
                 </a>
                 <div class="xe-label">
                     <strong class="num">{{$articlesTotalDistinct}}</strong>
-                    <span>Articles by Category</span>
+                    <span>Articles by category</span>
                 </div>
             </div>
             <div class="xe-lower">
                 <div class="border"></div>
                 <span>Details</span>
-                <strong>{{$articlesTotal}} Total Article</strong>
+                <strong>{{$articlesTotal}} Total article</strong>
             </div>
         </div>
     </div>
@@ -118,7 +118,7 @@
             <div class="xe-lower">
                 <div class="border"></div>
                 <span>Details</span>
-                <strong>{{$photoAlbumTotal}} Total Photo Albums</strong>
+                <strong>{{$photoAlbumTotal}} Total photo albums</strong>
             </div>
         </div>
     </div>
@@ -130,13 +130,13 @@
                 </a>
                 <div class="xe-label">
                     <strong class="num">{{$videosTotal}}</strong>
-                    <span>Total Videos</span>
+                    <span>Total videos</span>
                 </div>
             </div>
             <div class="xe-lower">
                 <div class="border"></div>
                 <span>Details</span>
-                <strong>{{$videoAlbumTotal}} Total Video Albums</strong>
+                <strong>{{$videoAlbumTotal}} Total video albums</strong>
             </div>
         </div>
     </div>
@@ -176,7 +176,7 @@
                 </a>
                 <div class="xe-label">
                     <strong class="num">{{$calendarTotal}}</strong>
-                    <span>Total Calendar Events</span>
+                    <span>Total calendar events</span>
                 </div>
             </div>
             <div class="xe-lower">
@@ -218,7 +218,7 @@
             <div class="xe-lower">
                 <div class="border"></div>
                 <span>Details</span>
-                <strong>{{$photoAlbumTotal + $videoAlbumTotal}} total gallery items</strong>
+                <strong>{{$photoAlbumTotal + $videoAlbumTotal}} Total gallery items</strong>
             </div>
         </div>
     </div>

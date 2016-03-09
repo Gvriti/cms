@@ -18,11 +18,9 @@ trait PositionableTrait
 
             $nestable = in_array('parent_id', $this->model->getFillable());
 
-            $result = $this->model->updatePosition($data, 0, $params, $nestable);
-
-            return response()->json($result);
+            return response()->json(
+                $this->model->updatePosition($data, 0, $params, $nestable)
+            );
         }
-
-        return false;
     }
 }

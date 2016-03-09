@@ -89,9 +89,9 @@ $(function() {
     $('#save-note').on('click', function() {
         var input = {'id':id, 'title':title, 'description':description, 'content':content, '_method':'put', '_token':csrf_token()};
 
-        $.post("{{cms_route('notes.save')}}", input, function(data) {
-            if (! id && data) {
-                $('.list-of-notes .current').data('id', data.id);
+        $.post("{{cms_route('notes.save')}}", input, function(newId) {
+            if (! id && newId) {
+                $('.list-of-notes .current').data('id', newId);
             }
 
             $('#save-note .icon-var').removeClass('fa-spin fa-save').addClass('fa-check');

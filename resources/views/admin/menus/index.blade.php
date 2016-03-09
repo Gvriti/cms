@@ -83,9 +83,6 @@ $('#items').on('click', '.cbr-radio', function() {
     var id = $(this).find('input').data('id');
     var data = {'id':id, '_token':csrf_token()};
     $.post("{{cms_route('menus.setMain')}}", data, function(data) {
-        if (!data.result) {
-            alert(data.message);
-        }
     }, 'json').fail(function(xhr) {
         alert(xhr.responseText);
     });

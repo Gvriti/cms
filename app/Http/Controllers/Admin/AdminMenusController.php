@@ -137,11 +137,11 @@ class AdminMenusController extends Controller
 
             $this->model->where('main', 1)->update(['main' => 0]);
 
-            $result = $this->model->findOrFail($id)->update(['main' => 1]);
-
-            if ($result) return response()->json(fill_data($result));
+            return response()->json(
+                $this->model->findOrFail($id)->update(['main' => 1])
+            );
         }
 
-        return response()->json(fill_data(false, trans('general.invalid_input')));
+        return response(trans('general.invalid_input'), 422);
     }
 }
