@@ -116,73 +116,77 @@ class Page extends Model
     }
 
     /**
-     * Get all sub pages.
+     * Get sub pages.
      *
+     * @param  bool|int  $recursive
      * @param  int|null  $id
      * @return \Illuminate\Support\Collection|static[]
      */
-    public function getSubPages($id = null)
+    public function getSubPages($recursive = false, $id = null)
     {
-        $pages = $this->forSite()->parentId($id ?: $this->id)->get();
+        $pages = $this->forSite()->parentId($id ?: $this->id)->positionAsc()->get();
 
-        $slug = $this->slug;
+        if (is_int($recursive) && $recursive > 0) {
+            $recursive -= 1;
+        }
 
-        return $pages->each(function ($item) use ($slug) {
-            $item->original_slug = $item->slug;
-
-            $item->slug = $slug . '/' . $item->slug;
-        });
+        return $recursive ? $pages->each(function ($item) use ($recursive) {
+            $item->subPages = $this->getSubPages($recursive, $item->id);
+        }) : $pages;
     }
 
     /**
      * Determine if the model has a sub page.
      *
-     * @param  int|null  $id
      * @return bool
      */
-    public function hasSubPage($id = null)
+    public function hasSubPage()
     {
-        return $this->parentId($id ?: $this->id)->exists();
+        return $this->parentId($this->id)->exists();
     }
 
     /**
-     * Get all sibling pages if the model has a parent page.
+     * Get sibling pages if the model has a parent page.
      *
-     * @param  int|null  $id
-     * @param  bool      $self
+     * @param  bool|int  $recursive
+     * @param  bool  $self
      * @return \Illuminate\Support\Collection|static[]
      */
-    public function getSiblingPages($id = null, $self = false)
+    public function getSiblingPages($recursive = false, $self = true)
     {
-        if (((int) $id = $id ?: $this->parent_id) == 0) {
+        if (! $this->parent_id) {
             return $this->newCollection();
         }
 
-        $query = $this->forSite();
+        $pages = $this->forSite();
 
         if (! $self) {
-            $query->where('id', '<>', (int) $this->id);
+            $pages->where('id', '<>', (int) $this->id);
         }
 
-        $collection = $query->parentId($id)->positionAsc()->get();
+        $pages = $pages->parentId($this->parent_id)->positionAsc()->get();
 
-        return ($self && $collection->count() > 1) ? $collection
-                                                   : $collection->make();
+        if ($self && $pages->count() > 1) {
+            return $recursive ? $pages->each(function ($item) use ($recursive) {
+                $item->subPages = $this->getSubPages($recursive);
+            }) : $pages;
+        } else {
+            return $pages->make();
+        }
     }
 
     /**
-     * Determine if the model has a parent and sibling page.
+     * Determine if the model has a parent page.
      *
-     * @param  int|null  $id
      * @return bool
      */
-    public function hasSiblingPage($id = null)
+    public function hasSiblingPage()
     {
-        if (((int) $id = $id ?: $this->parent_id) == 0) {
+        if (! $this->parent_id) {
             return false;
         }
 
-        return $this->parentId($id)->where('id', '<>', (int) $this->id)->exists();
+        return $this->parentId($this->parent_id)->exists();
     }
 
     /**

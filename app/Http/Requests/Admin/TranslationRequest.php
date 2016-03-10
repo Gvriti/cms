@@ -23,14 +23,14 @@ class TranslationRequest extends Request
      */
     public function rules()
     {
-        $id = $this->route('translations');
+        $id = $this->route('translations') ?: $this->get('id');
 
-        if (! is_null($id)) {
-            $id = '|unique:translations,name,' . $id;
+        if ($id) {
+            $id = ',name,' . $id;
         }
 
         return [
-            'name'  => 'required|min:2|max:32|regex:/^\w+$/' . $id,
+            'name'  => 'required|min:2|max:32|regex:/^\w+$/|unique:translations' . $id,
             'title' => 'required|min:2',
             'value' => 'required|min:2'
         ];

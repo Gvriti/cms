@@ -27,8 +27,8 @@ class CatalogRequest extends Request
         $id = $this->route('catalog');
 
         return [
-            'title'       => 'required|min:2',
-            'slug'        => 'required|min:2|unique:catalog,slug,'.$id,
+            'title' => 'required|min:2',
+            'slug'  => 'required|min:2|unique:catalog,slug,'.$id,
         ];
     }
 

@@ -60,7 +60,7 @@ galleryEnv.on('click', 'a[data-delete]', function(e) {
     e.preventDefault();
     var action = $(this).data('delete');
     if (action == 'multiselect') {
-        var perform = confirm("{{trans('general.delete_selected_confirm')}}");
+        var perform = confirm("{{trans('general.confirm_delete_selected')}}");
         if (perform != true) return;
 
         var ids = [];
@@ -68,7 +68,7 @@ galleryEnv.on('click', 'a[data-delete]', function(e) {
             ids.push($(e).data('id'));
         });
     } else {
-        var perform = confirm("{{trans('general.delete_confirm')}}");
+        var perform = confirm("{{trans('general.confirm_delete')}}");
         if (perform != true) return;
         var ids = [$(this).data('id')];
     }

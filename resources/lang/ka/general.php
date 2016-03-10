@@ -58,7 +58,8 @@ return [
     'files'       => 'ფაილები',
 
     // confirmations
-    'delete_confirm' => 'ნამდვილად გსურთ წაშლა?',
-    'delete_selected_confirm' => 'ნამდვილად გსურთ ყველა მონიშნულის წაშლა?',
+    'confirm_action'          => 'ნამდვილად გსურთ ამ მოქმედების შესრულება?',
+    'confirm_delete'          => 'ნამდვილად გსურთ წაშლა?',
+    'confirm_delete_selected' => 'ნამდვილად გსურთ ყველა მონიშნულის წაშლა?',
 
 ];
