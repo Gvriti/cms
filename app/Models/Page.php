@@ -88,7 +88,7 @@ class Page extends Model
     }
 
     /**
-     * Add a appropriate query for the cms.
+     * Add the appropriate query for the cms.
      *
      * @param  int  $id
      * @return \Models\Abstracts\Builder

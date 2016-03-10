@@ -21,21 +21,39 @@
     </div>
 </div>
 <ul class="nav nav-tabs">
-    <li{!!request()->has('role') ? '' : ' class="active"'!!}>
-        <a href="{{cms_route('cmsUsers.index')}}">All CMS Users</a>
+    <li{!!($role = request()->get('role')) ? '' : ' class="active"'!!}>
+        <a href="{{cms_route('cmsUsers.index', $params = request()->except('role'))}}">All CMS Users</a>
     </li>
 @foreach (user_roles() as $key => $value)
-    <li{!!request('role') == "$key" ? ' class="active"' : ''!!}>
-        <a href="{{cms_route('cmsUsers.index', ['role' => $key])}}">{{$value}}</a>
+    <li{!!$role == "$key" ? ' class="active"' : ''!!}>
+        <a href="{{cms_route('cmsUsers.index', $params + ['role' => $key])}}">{{$value}}</a>
     </li>
 @endforeach
 </ul>
 <div class="tab-content clearfix">
-    <div class="pull-left">
+    <div class="pull-left padr">
         <a href="{{ cms_route('cmsUsers.create') }}" class="btn btn-secondary btn-icon-standalone">
             <i class="fa fa-user-plus"></i>
             <span>{{ trans('general.create') }}</span>
         </a>
+    </div>
+    <div id="params-list" class="pull-left">
+        <form action="{{cms_route('cmsUsers.index')}}" method="GET">
+        @if ($role)
+            <input type="hidden" name="role" value="{{$role}}">
+        @endif
+            <div class="param dib">
+                <input type="text" name="name" class="form-control" placeholder="სახელი და/ან გვარი" value="{{request('name')}}">
+            </div>
+            <div class="param dib">
+                <input type="text" name="email" class="form-control" placeholder="ელ.ფოსტა" value="{{request('email')}}">
+            </div>
+            <div class="param dib">
+                Active: <input type="checkbox" name="active" value="1" class="cbr cbr-success"{{request('active') ? ' checked' : ''}}>
+            </div>
+            <button type="submit" class="btn btn-secondary vat">Search</button>
+            <a href="{{cms_route('cmsUsers.index', request()->only('role'))}}" class="btn btn-black vat">Reset</a>
+        </form>
     </div>
     <table class="table table-hover members-table middle-align">
         <thead>
@@ -102,7 +120,7 @@
         </a>
     </div>
     <div class="pull-right">
-        {!! $items->appends(['role' => request('role')])->links() !!}
+        {!! $items->appends(['role' => $role])->links() !!}
     </div>
 </div>
 <script type="text/javascript">

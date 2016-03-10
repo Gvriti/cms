@@ -52,7 +52,7 @@ abstract class AbstractHasCollection extends Model
     }
 
     /**
-     * Add a appropriate query for the cms.
+     * Add the appropriate query for the cms.
      *
      * @param  int|null  $id
      * @return \Models\Abstracts\Builder

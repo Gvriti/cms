@@ -55,13 +55,9 @@ class AdminCmsUsersController extends Controller
      */
     public function index()
     {
-        $model = $this->model;
-
-        if ($this->request->has('role')) {
-            $model = $model->where('role', $this->request->get('role'));
-        }
-
-        $data['items'] = $model->orderDesc()->paginate(20);
+        $data['items'] = $this->model->adminFilter($this->request)
+                                     ->orderDesc()
+                                     ->paginate(20);
 
         return view('admin.cms_users.index', $data);
     }

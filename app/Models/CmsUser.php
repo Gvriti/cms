@@ -2,6 +2,7 @@
 
 namespace Models;
 
+use Illuminate\Http\Request;
 use Models\Abstracts\User as Model;
 
 class CmsUser extends Model
@@ -113,5 +114,30 @@ class CmsUser extends Model
     public function unlockScreen()
     {
         return session()->remove('lockscreen');
+    }
+
+    /**
+     * Filter a query by specific parameters.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Models\Abstracts\Builder
+     */
+    public function adminFilter(Request $request)
+    {
+        $query = $this;
+
+        if ($value = $request->get('name')) {
+            $query = $query->whereRaw("CONCAT(firstname, ' ', lastname) like ?", ["%{$value}%"]);
+        }
+
+        if ($value = $request->get('email')) {
+            $query = $query->whereRaw('email like ?', ["%{$value}%"]);
+        }
+
+        if ($value = $request->get('role')) {
+            $query = $query->where('role', $value);
+        }
+
+        return $query;
     }
 }
