@@ -54,6 +54,10 @@ class AdminAuthenticate
             }
         }
 
+        if (! $this->guard->user()->active) {
+            throw new AccessDeniedHttpException;
+        }
+
         if ($this->guard->user()->hasLockScreen()) {
             return redirect(cms_route('lockscreen'));
         }

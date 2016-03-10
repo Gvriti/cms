@@ -73,9 +73,9 @@
         </div>
     </div>
 
-@if (Auth::guard('cms')->user()->isAdmin() && Auth::guard('cms')->id() != $current->id)
     <div class="form-group-separator"></div>
 
+@if (Auth::guard('cms')->user()->isAdmin() && Auth::guard('cms')->id() != $current->id)
     <div class="form-group{{($error = $errors->first('role')) ? ' validate-has-error' : '' }}">
         <label class="col-sm-2 control-label text-left required">Role:</label>
         <div class="col-sm-10">
@@ -88,12 +88,13 @@
             @endif
         </div>
     </div>
-@else
-    {!! Form::hidden('role', null) !!}
-@endif
 
     <div class="form-group-separator"></div>
+@else
+    {!! Form::hidden('role', null) !!}
 
+@endif
+@if (Auth::guard('cms')->id() != $current->id)
     <div class="form-group">
         <label class="col-sm-2 control-label text-left">Active:</label>
         <div class="col-sm-10">
@@ -106,6 +107,7 @@
 
     <div class="form-group-separator"></div>
 
+@endif
     <div class="form-group">
         <label class="col-sm-2 control-label text-left">Photo:</label>
         <div class="col-sm-6">
