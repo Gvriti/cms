@@ -131,13 +131,13 @@ class AdminPermissionsController extends Controller
      */
     protected function checkAccess($id)
     {
-        $auth = $this->request->user('cms');
+        $user = $this->request->user('cms');
 
-        if ($auth->id == $id) {
-            throw new AccessDeniedHttpException(redirect()->back());
+        if ($user->id == $id) {
+            throw new HttpResponseException(redirect()->back());
         }
 
-        if (! $auth->isAdmin()) {
+        if (! $user->isAdmin()) {
             throw new AccessDeniedHttpException;
         }
     }

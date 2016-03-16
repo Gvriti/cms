@@ -14,41 +14,24 @@ class CreateCmsSettingsTable extends Migration
     {
         Schema::create('cms_settings', function (Blueprint $table) {
             $table->tinyInteger('id', true);
-            $table->string('sidebar_position', 16)->default('fixed');
-            $table->string('sidebar_direction', 16)->default('left-sidebar');
+            $table->integer('cms_user_id')->unsigned();
+            $table->string('sidebar_position', 64)->default('fixed');
+            $table->string('sidebar_direction', 64)->default('left-sidebar');
             $table->boolean('horizontal_menu')->default(0);
-            $table->string('horizontal_menu_minimal', 16)->nullable();
-            $table->string('horizontal_menu_click', 16)->nullable();
+            $table->string('horizontal_menu_minimal', 64)->nullable();
+            $table->string('horizontal_menu_click', 64)->nullable();
             $table->string('skin_sidebar', 64)->nullable();
             $table->string('skin_user_menu', 64)->nullable();
             $table->string('skin_horizontal', 64)->nullable();
             $table->string('skin_login', 64)->nullable();
-            $table->string('layout_boxed', 16)->nullable();
-            $table->string('alert_position', 32)->default('top-right');
-            $table->string('ajax_form', 16)->default('ajax-form');
-            $table->string('lockscreen')->default('600000');
+            $table->string('layout_boxed', 64)->nullable();
+            $table->string('alert_position', 64)->default('top-right');
+            $table->string('ajax_form', 64)->default('ajax-form');
+            $table->string('lockscreen')->default('0');
             $table->timestamps();
+
+            $table->foreign('cms_user_id')->references('id')->on('cms_users')->onDelete('cascade');
         });
-
-        // Insert default row.
-        // Seeding in migration, because of triggers constraint.
-        DB::table('cms_settings')->insert([[]]);
-
-        // Create triggers
-        DB::unprepared(
-'CREATE TRIGGER `cms_settings_insert_not_allowed` BEFORE INSERT ON `cms_settings`
-FOR EACH ROW BEGIN
-    SIGNAL SQLSTATE "45000"
-    SET MESSAGE_TEXT = "insert not allowed";
-END'
-);
-        DB::unprepared(
-'CREATE TRIGGER `cms_settings_delete_not_allowed` BEFORE DELETE ON `cms_settings`
-FOR EACH ROW BEGIN
-    SIGNAL SQLSTATE "45000"
-    SET MESSAGE_TEXT = "delete not allowed";
-END'
-);
     }
 
     /**

@@ -32,7 +32,7 @@ class TranslationRequest extends Request
         return [
             'name'  => 'required|min:2|max:32|regex:/^\w+$/|unique:translations' . $id,
             'title' => 'required|min:2',
-            'value' => 'required|min:2'
+            'value' => 'required'
         ];
     }
 

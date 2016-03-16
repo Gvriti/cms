@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware\Admin;
 
-use Auth;
 use Closure;
 use Models\Permission;
+use Illuminate\Contracts\Auth\Guard;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class AdminAuthenticate
@@ -17,21 +17,14 @@ class AdminAuthenticate
     protected $guard;
 
     /**
-     * The Permission instance.
-     *
-     * @var \Models\Permission
-     */
-    protected $permission;
-
-    /**
      * Create a new middleware instance.
      *
      * @param  \Models\Permission  $permission
      * @return void
      */
-    public function __construct(Permission $permission)
+    public function __construct(Guard $guard)
     {
-        $this->permission = $permission;
+        $this->guard = $guard;
     }
 
     /**
@@ -39,13 +32,10 @@ class AdminAuthenticate
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        $this->guard = Auth::guard('cms');
-
         if ($this->guard->guest()) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
@@ -79,7 +69,7 @@ class AdminAuthenticate
         if (! $this->guard->user()->isAdmin()) {
             $routeName = $request->route()->getName();
 
-            if (! $this->permission->permissions($this->guard->id())->accessRoute($routeName)) {
+            if (! (new Permission)->permissions($this->guard->id())->accessRoute($routeName)) {
                 throw new AccessDeniedHttpException;
             }
         }

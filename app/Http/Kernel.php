@@ -47,6 +47,7 @@ class Kernel extends HttpKernel
         'cms.auth' => \App\Http\Middleware\Admin\AdminAuthenticate::class,
         'cms.guest' => \App\Http\Middleware\Admin\AdminRedirectIfAuthenticated::class,
         'cms.lockscreen' => \App\Http\Middleware\Admin\AdminLockscreen::class,
+        'cms.settings' => \App\Http\Middleware\Admin\CmsSettings::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
 
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,

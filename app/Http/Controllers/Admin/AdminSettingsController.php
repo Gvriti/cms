@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use DB;
 use Schema;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\Guard;
 
 class AdminSettingsController extends Controller
 {
@@ -56,34 +56,35 @@ class AdminSettingsController extends Controller
      * Update the `cms_settings` table.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Contracts\Auth\Guard  $guard
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Guard $guard)
     {
         $columns = array_flip(Schema::getColumnListing('cms_settings'));
         unset($columns['id']);
 
         $attributes = $request->all();
-        $checkboxes = [
-            'ajax_form'               => 'ajax-form',
-            'layout_boxed'            => 'boxed-container',
-            'horizontal_menu_click'   => 'click-to-expand',
-            'horizontal_menu_minimal' => 'navbar-minimal'
-        ];
+        $checkboxes = ['layout_boxed', 'horizontal_menu_click', 'horizontal_menu_minimal', 'ajax_form'];
 
-        foreach ($checkboxes as $key => $value) {
-            if (isset($attributes[$key])) {
-                $attributes[$key] = $value;
-            } else {
-                $attributes[$key] = null;
+        foreach ($checkboxes as $value) {
+            if (! isset($attributes[$value])) {
+                $attributes[$value] = '';
             }
         }
 
         $attributes['horizontal_menu'] = $request->has('horizontal_menu') ? 1 : 0;
+        $attributes['cms_user_id'] = $guard->id();
 
         $attributes = array_intersect_key($attributes, $columns);
 
-        DB::table('cms_settings')->update($attributes);
+        $table = app('db')->table('cms_settings');
+
+        if (is_null($table->where('cms_user_id', $guard->id())->first())) {
+            $table->insert($attributes);
+        } else {
+            $table->update($attributes);
+        }
 
         return redirect(cms_route('settings.index', ['tab' => $request->get('tab', 1)]))
                     ->with('alert', fill_data('success', trans('general.updated')));

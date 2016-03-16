@@ -116,6 +116,27 @@ class Page extends Model
     }
 
     /**
+     * Get the base page.
+     *
+     * @param  int|null  $id
+     * @return static
+     */
+    public function getBasePage($id = null)
+    {
+        $id = ($id ?: $this->parent_id);
+
+        if (! $id || is_null($page = $this->where('id', $id)->forSite()->first())) {
+            return $this;
+        }
+
+        if (! $page->parent_id) {
+            return $page;
+        }
+
+        return $this->getBasePage($page->parent_id);
+    }
+
+    /**
      * Get sub pages.
      *
      * @param  bool|int  $recursive

@@ -30,7 +30,7 @@ class AdminCmsUsersController extends Controller
      *
      * @var \Models\CmsUser
      */
-    protected $auth;
+    protected $user;
 
     /**
      * Create a new controller instance.
@@ -45,7 +45,7 @@ class AdminCmsUsersController extends Controller
 
         $this->request = $request;
 
-        $this->auth = $request->user('cms');
+        $this->user = $request->user('cms');
     }
 
     /**
@@ -69,7 +69,7 @@ class AdminCmsUsersController extends Controller
      */
     public function create()
     {
-        if (! $this->auth->isAdmin()) {
+        if (! $this->user->isAdmin()) {
             throw new AccessDeniedHttpException;
         }
 
@@ -88,13 +88,15 @@ class AdminCmsUsersController extends Controller
      */
     public function store(CmsUserRequest $request)
     {
-        if (! $this->auth->isAdmin()) {
+        if (! $this->user->isAdmin()) {
             throw new AccessDeniedHttpException;
         }
 
         $input = $request->all();
 
         $model = $this->model->create($input);
+
+        app('db')->table('cms_settings')->insert(['cms_user_id' => $model->id]);
 
         if ($request->has('close')) {
             return redirect(cms_route('cmsUsers.index'))
@@ -126,7 +128,7 @@ class AdminCmsUsersController extends Controller
      */
     public function edit($id)
     {
-        if (! $this->auth->isAdmin() && $this->auth->id != $id) {
+        if (! $this->user->isAdmin() && $this->user->id != $id) {
             return redirect()->back();
         }
 
@@ -172,10 +174,10 @@ class AdminCmsUsersController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->auth->isAdmin()) {
+        if ($this->user->isAdmin()) {
             $user = $this->model->findOrFail($id);
 
-            if ($this->auth->id == $id) {
+            if ($this->user->id == $id) {
                 $this->model = null;
             }
         } else {

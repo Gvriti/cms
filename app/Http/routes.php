@@ -11,7 +11,7 @@
 |
 */
 
-$router->group(['middleware' => ['web'], 'prefix' => cms_slug()], function ($router) {
+$router->group(['middleware' => ['web', 'cms.settings'], 'prefix' => cms_slug()], function ($router) {
     // authentication
     $router->group(['namespace' => 'Auth'], function ($router) {
         // login

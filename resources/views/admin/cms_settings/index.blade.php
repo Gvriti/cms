@@ -102,7 +102,7 @@
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">Horizontal menu minimal:</label>
                                 <div class="col-sm-4">
-                                    {!! Form::checkbox('horizontal_menu_minimal', $settings->get('horizontal_menu_minimal'), $settings->get('horizontal_menu_minimal'), [
+                                    {!! Form::checkbox('horizontal_menu_minimal', 'navbar-minimal', $settings->get('horizontal_menu_minimal'), [
                                         'class' => 'horizontal_menu_minimal iswitch iswitch-secondary'
                                     ]) !!}
                                 </div>
@@ -113,7 +113,7 @@
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">Horizontal open on click:</label>
                                 <div class="col-sm-4">
-                                    {!! Form::checkbox('horizontal_menu_click', $settings->get('horizontal_menu_click'), $settings->get('horizontal_menu_click'), [
+                                    {!! Form::checkbox('horizontal_menu_click', 'click-to-expand', $settings->get('horizontal_menu_click'), [
                                         'class' => 'horizontal_menu_click iswitch iswitch-secondary'
                                     ]) !!}
                                 </div>
@@ -126,7 +126,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Layout boxed:</label>
                         <div class="col-sm-10">
-                            {!! Form::checkbox('layout_boxed', $settings->get('layout_boxed'), $settings->get('layout_boxed'), [
+                            {!! Form::checkbox('layout_boxed', 'boxed-container', $settings->get('layout_boxed'), [
                                 'class' => 'layout_boxed iswitch iswitch-secondary'
                             ]) !!}
                         </div>
@@ -159,7 +159,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Ajax forms:</label>
                         <div class="col-sm-10">
-                            {!! Form::checkbox('ajax_form', $settings->get('ajax_form'), $settings->get('ajax_form'), [
+                            {!! Form::checkbox('ajax_form', 'ajax-form', $settings->get('ajax_form'), [
                                 'class' => 'ajax_form iswitch iswitch-secondary'
                             ]) !!}
                         </div>
@@ -451,7 +451,7 @@ $(function() {
         $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
     });
 
-    var isHorizontalMenu = {{$settings->get('horizontal_menu')}};
+    var isHorizontalMenu = {{$settings->get('horizontal_menu', 0)}};
 
     var skin_sidebar = '{{$settings->get('skin_sidebar')}}';
     var skin_horizontal = isHorizontalMenu ? '{{$settings->get('skin_horizontal')}}' : '{{$settings->get('skin_user_menu')}}';
