@@ -52,7 +52,7 @@
                 Active: <input type="checkbox" name="active" value="1" class="cbr cbr-success"{{request('active') ? ' checked' : ''}}>
             </div>
             <button type="submit" class="btn btn-secondary vat">Search</button>
-            <a href="{{cms_route('cmsUsers.index', request()->only('role'))}}" class="btn btn-black vat">Reset</a>
+            <a href="{{cms_route('cmsUsers.index', request()->only(['page', 'role']))}}" class="btn btn-black vat">Reset</a>
         </form>
     </div>
     <table class="table table-hover members-table middle-align">
@@ -120,7 +120,7 @@
         </a>
     </div>
     <div class="pull-right">
-        {!! $items->appends(['role' => $role])->links() !!}
+        {!! $items->appends(request()->all())->links() !!}
     </div>
 </div>
 <script type="text/javascript">
