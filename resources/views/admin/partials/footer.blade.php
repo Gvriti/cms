@@ -120,7 +120,7 @@ $(function() {
     toastr.options = {
         "closeButton": true,
         "debug": false,
-        "positionClass": "toast-{{$settings->get('alert_position')}}",
+        "positionClass": "toast-{{$settings->get('alert_position', 'top-right')}}",
         "onclick": null,
         "showDuration": "300",
         "hideDuration": "1000",

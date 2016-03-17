@@ -22,15 +22,15 @@ class CmsUsersTableSeeder extends DatabaseSeeder
                 'active'     => 1,
                 'password'   => '$2a$10$EPz1yOC.C5aLDXl3o3E0p.ybr1wBJAyWWkCETPRPM/mJ1fL03aY8K',
                 'created_at' => $currentDate
-            ],
+            ]
+        ]);
+
+        DB::table('cms_settings')->truncate();
+
+        DB::table('cms_settings')->insert([
             [
-                'email'      => 'email@example.com',
-                'firstname'  => 'სახელი',
-                'lastname'   => 'გვარი',
-                'role'       => 'member',
-                'active'     => 1,
-                'password'   => '$2a$10$We95h4v/f2WFty/ls6Z6aOMskhmVR/70Pc1woKRufRx5jX6q3J0Sy',
-                'created_at' => $currentDate
+                'cms_user_id' => 1,
+                'created_at'  => $currentDate
             ]
         ]);
     }
