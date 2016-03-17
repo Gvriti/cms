@@ -31,24 +31,24 @@
 @endforeach
 </ul>
 <div class="tab-content clearfix">
-    <div class="pull-left padr">
+    <div class="dib padr">
         <a href="{{ cms_route('cmsUsers.create') }}" class="btn btn-secondary btn-icon-standalone">
             <i class="fa fa-user-plus"></i>
             <span>{{ trans('general.create') }}</span>
         </a>
     </div>
-    <div id="params-list" class="pull-left">
+    <div class="dib vam">
         <form action="{{cms_route('cmsUsers.index')}}" method="GET">
         @if ($role)
             <input type="hidden" name="role" value="{{$role}}">
         @endif
-            <div class="param dib">
+            <div class="dib padr">
                 <input type="text" name="name" class="form-control" placeholder="სახელი და/ან გვარი" value="{{request('name')}}">
             </div>
-            <div class="param dib">
+            <div class="dib padr">
                 <input type="text" name="email" class="form-control" placeholder="ელ.ფოსტა" value="{{request('email')}}">
             </div>
-            <div class="param dib">
+            <div class="dib padr">
                 Active: <input type="checkbox" name="active" value="1" class="cbr cbr-success"{{request('active') ? ' checked' : ''}}>
             </div>
             <button type="submit" class="btn btn-secondary vat">Search</button>
@@ -113,7 +113,7 @@
         @endforeach
         </tbody>
     </table>
-    <div class="pull-left">
+    <div class="dib">
         <a href="{{ cms_route('cmsUsers.create') }}" class="btn btn-secondary btn-icon-standalone">
             <i class="fa fa-user-plus"></i>
             <span>{{ trans('general.create') }}</span>

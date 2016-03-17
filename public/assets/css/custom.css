@@ -11,6 +11,7 @@ iframe {border:0;}
 .dib {display:inline-block;}
 .ovh {overflow:hidden;}
 .vat {vertical-align:top;}
+.vam {vertical-align:middle;}
 .padr {padding-right:15px;}
 .padl {padding-left:15px;}
 
@@ -47,11 +48,13 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
     #select-home {float:none;padding-top:15px;}
 }
 
-/* filter parameters list */
-#params-list .param {padding-right:15px;vertical-align:middle;}
-
 
 /*** OVERRIDE BOOTSTRAP ***/
+
+/* modal dialog for horizontal menu */
+@media (min-width: 768px) {
+    .horizontal-menu + .page-container .modal-dialog {margin:100px auto 30px;}
+}
 
 /* buttons */
 #items .item {position:relative;}
