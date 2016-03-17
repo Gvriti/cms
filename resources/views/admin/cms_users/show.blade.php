@@ -26,9 +26,11 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="user-info-sidebar">
+            @if ($current->photo)
                 <div class="user-img">
                     <img src="{{$current->photo}}" alt="user-img" class="img-cirlce img-responsive img-thumbnail" />
                 </div>
+            @endif
                 <div class="user-name">
                     {{$current->firstname}} {{$current->lastname}}
                     <span class="user-status is-online"></span>

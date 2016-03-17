@@ -24,11 +24,11 @@ class RouteServiceProvider extends ServiceProvider
     protected $language;
 
     /**
-     * Indicates if the CMS routes should be loaded.
+     * The CMS slug.
      *
-     * @var bool
+     * @var string
      */
-    protected $cmsWillLoad = true;
+    protected $cmsSlug;
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -44,7 +44,7 @@ class RouteServiceProvider extends ServiceProvider
             $this->language = $config->get('app.language');
         }
 
-        $this->cmsWillLoad = $config->get('cms_will_load');
+        $this->cmsSlug = $config->get('cms.slug');
 
         parent::boot($router);
     }
@@ -53,38 +53,32 @@ class RouteServiceProvider extends ServiceProvider
      * Define the routes for the application.
      *
      * @param  \Illuminate\Routing\Router  $router
-     * @param  bool  $cached
      * @return void
      */
-    public function map(Router $router, $cached = false)
+    public function map(Router $router)
     {
-        $router->group(['namespace' => $this->namespace], function ($router) use ($cached) {
+        $router->group(['namespace' => $this->namespace], function ($router) {
             require app_path('Http/siteRoutes.php');
-
-            if (! $cached && ($this->app->runningInConsole() || $this->cmsWillLoad)) {
-                require app_path('Http/routes.php');
-            }
+            require app_path('Http/routes.php');
         });
 
         $this->filterRoutes($router);
     }
 
     /**
-    * {@inheritdoc}
-    */
+     * {@inheritdoc}
+     */
     protected function loadCachedRoutes()
     {
-        $this->app->booted(function ($app) {
-            if ($app->runningInConsole() || $this->cmsWillLoad) {
-                require $this->app->getCachedRoutesPath();
-            }
+        parent::loadCachedRoutes();
 
-            $this->map($app['router'], true);
+        $this->app->booted(function () {
+            $this->filterRoutes($this->app['router']);
         });
     }
 
     /**
-     * Add the specified language to all route URIs as a prefix.
+     * Filter all routes by specified language and cms slug.
      *
      * @param  \Illuminate\Routing\Router  $router
      * @return void
@@ -93,15 +87,13 @@ class RouteServiceProvider extends ServiceProvider
     {
         $routes = $router->getRoutes();
 
-        $cmsSlug = cms_slug();
-
         foreach ($routes as $key => $route) {
             if (! is_null($this->language)) {
                 $route->prefix($this->language);
             }
 
-            if (str_contains($route->getPrefix(), $cmsSlug)) {
-                $route->name('.' . $cmsSlug);
+            if (str_contains($route->getPrefix(), $this->cmsSlug)) {
+                $route->name('.' . $this->cmsSlug);
             }
         }
     }

@@ -113,28 +113,24 @@ class DynamicRouteServiceProvider extends ServiceProvider
      */
     public function boot(Request $request, Router $router, Config $config)
     {
-        $this->request = $request;
+        if (! $config->get('cms_will_load')) {
+            $this->request = $request;
 
-        $this->router = $router;
+            $this->router = $router;
 
-        $this->config = $config;
+            $this->config = $config;
 
-        $routes = $router->getRoutes()->getRoutes();
+            if (language_isset()) {
+                $this->uriPrefix = language() . '/';
+            }
 
-        if (language_isset()) {
-            $this->uriPrefix = language() . '/';
-        }
-
-        try {
-            $router->getRoutes()->match($this->request);
-
-            $hasStaticRoute = true;
-        } catch (Exception $e) {
-            $hasStaticRoute = false;
-        }
-
-        if (! $config->get('cms_will_load') && ! $hasStaticRoute) {
-            $this->build();
+            $this->app->booted(function () use ($router) {
+                try {
+                    $router->getRoutes()->match($this->request);
+                } catch (Exception $e) {
+                    $this->build();
+                }
+            });
         }
     }
 
@@ -357,10 +353,6 @@ class DynamicRouteServiceProvider extends ServiceProvider
         }
 
         foreach ($parameters as $key => $value) {
-            $bindCallback = function () use ($value) {
-                return $value;
-            };
-
             if ($key < 1) {
                 $segments .= '{slug}';
 
@@ -371,7 +363,9 @@ class DynamicRouteServiceProvider extends ServiceProvider
                 $bindKey = 'fake' . $key;
             }
 
-            $this->router->bind($bindKey, $bindCallback);
+            $this->router->bind($bindKey, function () use ($value) {
+                return $value;
+            });
         }
 
         $this->app->instance('breadcrumb', new Collection($this->pages));
@@ -390,7 +384,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
         }
 
         $this->router->{$route}($this->uriPrefix . $segments, [
-            'middleware' => ['web'], 'as' => 'current', 'uses' => $controller . '@' . $method]
+            'middleware' => ['web'], 'uses' => $controller . '@' . $method]
         );
     }
 
