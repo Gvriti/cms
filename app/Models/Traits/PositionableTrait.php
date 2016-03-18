@@ -123,4 +123,17 @@ trait PositionableTrait
     {
         return $this->orderBy('position', 'desc');
     }
+
+    /**
+     * Save a new model and get the instance.
+     *
+     * @param  array  $attributes
+     * @return $this
+     */
+    public static function create(array $attributes = [])
+    {
+        $attributes['position'] = (int) parent::max('position') + 1;
+
+        return parent::create($attributes);
+    }
 }
