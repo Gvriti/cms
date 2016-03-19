@@ -289,7 +289,7 @@ class Page extends Model
     }
 
     /**
-     * Add a `collection` left join to the query.
+     * Add a `collection` join to the query.
      *
      * @return \Models\Abstracts\Builder
      */

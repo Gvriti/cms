@@ -19,7 +19,7 @@
 </div>
 <div class="row">
     <div class="col-sm-3">
-        <div class="xe-widget xe-counter xe-counter-red"  data-count=".num" data-from="1" data-to="{{$menusTotal}}" data-duration="2" data-easing="true" data-delay="1">
+        <div class="xe-widget xe-counter xe-counter-red"  data-count=".num" data-from="0" data-to="{{$menusTotal}}" data-duration="2" data-easing="true" data-delay="1">
             <a href="{{cms_route('menus.index')}}" class="xe-icon">
                 <i class="{{icon_type('menus')}}"></i>
             </a>
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="col-sm-3">
-        <div class="xe-widget xe-counter" data-count=".num" data-count=".numTotal" data-from="1" data-to="{{$pagesTotal}}" data-duration="3">
+        <div class="xe-widget xe-counter" data-count=".num" data-count=".numTotal" data-from="0" data-to="{{$pagesTotal}}" data-duration="3">
             <a href="{{is_null($mainPage) ? cms_route('menus.index') : cms_route('pages.index', [$mainPage->id])}}" class="xe-icon">
                 <i class="{{icon_type('pages')}}"></i>
             </a>
@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="col-sm-3">
-        <div class="xe-widget xe-counter xe-counter-blue" data-count=".num" data-from="1" data-to="{{$usersTotal}}" data-duration="2" data-easing="true">
+        <div class="xe-widget xe-counter xe-counter-blue" data-count=".num" data-from="0" data-to="{{$usersTotal}}" data-duration="2" data-easing="true">
             <a href="{{cms_route('cmsUsers.index')}}" class="xe-icon">
                 <i class="{{icon_type('cms_users')}}"></i>
             </a>

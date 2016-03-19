@@ -78,7 +78,7 @@ trait LanguageTrait
     }
 
     /**
-     * Add a "_languages" left join to the query.
+     * Add a "_languages" join to the query.
      *
      * @param  bool|string  $language
      * @return \Models\Abstracts\Builder
@@ -87,11 +87,10 @@ trait LanguageTrait
     {
         $table = $this->getTable();
         $languageTable = $this->getLanguageTable();
-        $foreignKey = str_singular($table) . '_id';
 
         $columns = ["{$languageTable}.*", "{$languageTable}.id as {$languageTable}_id", "{$table}.*"];
 
-        $query = $this->leftJoin($languageTable, 'id', '=', $foreignKey)
+        $query = $this->leftJoin($languageTable, 'id', '=', $this->getForeignKey())
                       ->addSelect($columns);
 
         if ($language === true) {
