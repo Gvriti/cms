@@ -12,8 +12,16 @@ iframe {border:0;}
 .ovh {overflow:hidden;}
 .vat {vertical-align:top;}
 .vam {vertical-align:middle;}
+.pad {padding:15px;}
+.padt {padding-top:15px;}
 .padr {padding-right:15px;}
+.padb {padding-bottom:15px;}
 .padl {padding-left:15px;}
+.mrg {margin:15px;}
+.mrgt {margin-top:15px;}
+.mrgr {margin-right:15px;}
+.mrgb {margin-bottom:15px;}
+.mrgl {margin-left:15px;}
 
 .pointer {cursor:pointer;}
 

@@ -12,14 +12,14 @@ class AdminAuthenticate
     /**
      * The guard implementation.
      *
-     * @var \Illuminate\Auth\SessionGuard
+     * @var \Illuminate\Contracts\Auth\Guard
      */
     protected $guard;
 
     /**
      * Create a new middleware instance.
      *
-     * @param  \Models\Permission  $permission
+     * @param  \Illuminate\Contracts\Auth\Guard  $guard
      * @return void
      */
     public function __construct(Guard $guard)

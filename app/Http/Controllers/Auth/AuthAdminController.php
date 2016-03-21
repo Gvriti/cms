@@ -31,8 +31,6 @@ class AuthAdminController extends Controller
     {
         $this->middleware('cms.guest', ['except' => ['logout', 'getLogout', 'setLockscreen']]);
 
-        $this->redirectPath = cms_url();
-
         $this->redirectAfterLogout = cms_route('login');
     }
 
@@ -100,5 +98,19 @@ class AuthAdminController extends Controller
         }
 
         return redirect()->back()->withErrors(trans('auth.invalid.password'));
+    }
+
+    /**
+     * Get the post register / login redirect path.
+     *
+     * @return string
+     */
+    public function redirectPath()
+    {
+        if (is_null($this->redirectPath) || $this->redirectPath == '/') {
+            return cms_url();
+        }
+
+        return cms_route($this->redirectPath);
     }
 }

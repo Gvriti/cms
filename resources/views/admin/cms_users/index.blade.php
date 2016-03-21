@@ -55,7 +55,7 @@
             <a href="{{cms_route('cmsUsers.index', request()->only(['page', 'role']))}}" class="btn btn-black vat">Reset</a>
         </form>
     </div>
-    <table class="table table-hover members-table middle-align">
+    <table class="table stacktable table-hover members-table middle-align">
         <thead>
             <tr>
                 <th></th>

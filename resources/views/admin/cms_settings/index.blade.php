@@ -169,7 +169,7 @@
                 </div>
                 <div class="tab-pane{{request('tab') == 2 ? ' active' : ''}}" id="skin">
                     <div class="panel-body">
-                        <table class="table table-hover middle-align">
+                        <table class="table stacktable table-hover middle-align">
                             <thead>
                                 <tr>
                                     <th>Skin Name</th>

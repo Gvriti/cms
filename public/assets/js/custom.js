@@ -138,7 +138,7 @@ $(function () {
                         field.closest('.form-group').addClass('validate-has-error');
 
                         var errorMsg = '<div class="text-danger">'+element+'</div>';
-                        if (! field.next().length) {
+                        if (! field.next().length && ! field.prev().length) {
                             field.after(errorMsg);
                         } else {
                             field.parent().after(errorMsg);

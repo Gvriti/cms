@@ -114,7 +114,7 @@ $(function() {
     });
 
     // Initialize stacktable
-    $('.table').stacktable();
+    $('.stacktable').stacktable();
 
     // toast notification options
     toastr.options = {

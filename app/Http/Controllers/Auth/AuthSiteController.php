@@ -46,4 +46,18 @@ class AuthSiteController extends Controller
 
         return (new User)->create($input);
     }
+
+    /**
+     * Get the post register / login redirect path.
+     *
+     * @return string
+     */
+    public function redirectPath()
+    {
+        if (is_null($this->redirectPath) || $this->redirectPath == '/') {
+            return site_url();
+        }
+
+        return site_route($this->redirectPath);
+    }
 }

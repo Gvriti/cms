@@ -35,7 +35,7 @@
             <i class="{{$icon}}"></i>
             <span>{{ trans('general.create') }}</span>
         </a>
-        <table id="items" class="table table-striped table-bordered">
+        <table id="items" class="table stacktable table-striped table-bordered">
             <thead>
                 <tr class="replace-inputs">
                     <th>Name</th>
