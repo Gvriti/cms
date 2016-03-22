@@ -79,7 +79,7 @@
                                 <span class="fa fa-edit"></span>
                             </a>
                             {!! Form::open(['method' => 'delete', 'url' => cms_route('pages.destroy', [$menu->id, $item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
-                                <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}"{{$item->sub || $item->files_id ? ' disabled' : ''}}>
+                                <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}"{{$item->sub ? ' disabled' : ''}}>
                                     <span class="fa fa-trash"></span>
                                 </button>
                             {!! Form::close() !!}

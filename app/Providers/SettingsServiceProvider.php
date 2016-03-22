@@ -18,9 +18,9 @@ class SettingsServiceProvider extends ServiceProvider
         if (! $this->app->runningInConsole()) {
             if (! cms_will_load()) {
                 // Site settings
-                $settings = $this->app['db']->table('site_settings')->first();
-
-                $settings = new Collection($settings);
+                $settings = new Collection(
+                    $this->app['db']->table('site_settings')->first()
+                );
 
                 view()->share(['siteSettings' => $settings]);
             }

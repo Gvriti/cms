@@ -71,8 +71,10 @@ class AdminDestroy extends Job implements SelfHandling
         }
 
         if (! is_null($this->deleteDirs)) {
+            $filesystem = new Filesystem;
+
             foreach ((array) $this->deleteDirs as $dir) {
-                (new Filesystem)->deleteDirectory($dir);
+                $filesystem->deleteDirectory($dir);
             }
         }
 
@@ -90,15 +92,6 @@ class AdminDestroy extends Job implements SelfHandling
             return false;
         }
 
-        if ($this->isFileable) {
-            $hasFiles = (new File)->byRoute($this->id, $this->model->getTable())
-                                  ->first(['id']);
-
-            if ($hasFiles) {
-                return false;
-            }
-        }
-
         return true;
     }
 
@@ -109,6 +102,10 @@ class AdminDestroy extends Job implements SelfHandling
      */
     protected function performDelete()
     {
+        if ($this->isFileable) {
+            (new File)->byRoute($this->id, $this->model->getTable())->delete();
+        }
+
         if (is_array($this->id)) {
             return (bool) $this->model->destroy($this->id);
         }
