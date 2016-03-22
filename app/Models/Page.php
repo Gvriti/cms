@@ -189,7 +189,7 @@ class Page extends Model
 
         if ($self && $pages->count() > 1) {
             return $recursive ? $pages->each(function ($item) use ($recursive) {
-                $item->subPages = $this->getSubPages($recursive);
+                $item->subPages = $this->getSubPages($recursive, $item->id);
             }) : $pages;
         } else {
             return $pages->make();
