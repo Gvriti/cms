@@ -2,16 +2,16 @@
 
 /*
 |--------------------------------------------------------------------------
-| CMS Routes
+| Application Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register all of the routes for the CMS.
+| Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
 */
 
-$router->group(['middleware' => ['web', 'cms.settings'], 'prefix' => cms_slug()], function ($router) {
+$router->group(['middleware' => 'cms.settings', 'prefix' => cms_slug()], function ($router) {
     // authentication
     $router->group(['namespace' => 'Auth'], function ($router) {
         // login
