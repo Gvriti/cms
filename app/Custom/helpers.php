@@ -456,23 +456,21 @@ function icon_type($key, $default = null)
  *
  * @param  string  $path
  * @param  string  $type
- * @param  string  $crop
+ * @param  string|null  $crop
  * @return string
  */
-function glide($path, $type, $crop = '')
+function glide($path, $type, $crop = null)
 {
     $config = config();
 
     $files = '/' . current((array) $config['elfinder.dir']) . '/';
 
-    $pos = strpos($path, $files);
-
-    if ($pos !== false) {
+    if (($pos = strpos($path, $files)) !== false) {
         $glideBaseUrl = '/' . $config['site.glide_base_url'] . '/';
 
         $query = '?type=' . $type;
 
-        if ($crop) {
+        if (! is_null($crop)) {
             $query .= '&crop=' . $crop;
         }
 
