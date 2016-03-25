@@ -8,7 +8,7 @@
             {!! Form::model($current, [
                 'method' => 'post',
                 'url'    => cms_route('translations.popup'),
-                'class'  => 'form-horizontal ajax-form'
+                'class'  => 'form-horizontal'
             ]) !!}
                 @include('admin.translations.modal.form')
             {!! Form::close() !!}

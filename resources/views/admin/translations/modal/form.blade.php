@@ -27,7 +27,7 @@
             @if ($error = $errors->first('title'))
             <div class="text-danger">{{$error}}</div>
             @endif
-            <span class="description">The value contains the translated text that will be displayed on the site</span>
+            <span class="description">The title for the "value". It's visible only for CMS Users</span>
         </div>
     </div>
 

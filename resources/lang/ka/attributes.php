@@ -13,6 +13,7 @@ return [
 
     // attributes
     'title' => 'სათაური',
+    'value' => 'მნიშვნელობა',
     'text' => 'ტექსტი',
     'description' => 'აღწერა',
     'content' => 'შიგთავსი',
