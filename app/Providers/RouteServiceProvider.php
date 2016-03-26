@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Routing\Router;
+use Illuminate\Config\Repository as Config;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
@@ -17,20 +18,6 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'App\Http\Controllers';
 
     /**
-     * The requested language.
-     *
-     * @var string
-     */
-    protected $language;
-
-    /**
-     * The CMS slug.
-     *
-     * @var string
-     */
-    protected $cmsSlug;
-
-    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @param  \Illuminate\Routing\Router  $router
@@ -38,13 +25,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        $config = $this->app['config'];
-
-        if ($config->get('language_isset')) {
-            $this->language = $config->get('app.language');
-        }
-
-        $this->cmsSlug = $config->get('cms.slug');
+        //
 
         parent::boot($router);
     }
@@ -59,7 +40,9 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapWebRoutes($router);
 
-        $this->filterRoutes($router);
+        $this->app->booted(function ($app) {
+            $this->filterRoutes($app['router'], $app['config']);
+        });
     }
 
     /**
@@ -87,8 +70,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::loadCachedRoutes();
 
-        $this->app->booted(function () {
-            $this->filterRoutes($this->app['router']);
+        $this->app->booted(function ($app) {
+            $this->filterRoutes($app['router'], $app['config']);
         });
     }
 
@@ -96,19 +79,28 @@ class RouteServiceProvider extends ServiceProvider
      * Filter all routes by specified language and cms slug.
      *
      * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Config\Repository  $config
      * @return void
      */
-    protected function filterRoutes(Router $router)
+    protected function filterRoutes(Router $router, Config $config)
     {
+        $language = null;
+
+        if ($config->get('language_isset')) {
+            $language = $config->get('app.language');
+        }
+
+        $cmsSlug = $config->get('cms.slug');
+
         $routes = $router->getRoutes();
 
-        foreach ($routes as $key => $route) {
-            if (! is_null($this->language)) {
-                $route->prefix($this->language);
+        foreach ($routes as $route) {
+            if (! is_null($language)) {
+                $route->prefix($language);
             }
 
-            if (str_contains($route->getPrefix(), $this->cmsSlug)) {
-                $route->name('.' . $this->cmsSlug);
+            if (str_contains($route->getPrefix(), $cmsSlug)) {
+                $route->name('.' . $cmsSlug);
             }
         }
     }
