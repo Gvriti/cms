@@ -62,11 +62,11 @@ class LanguageServiceProvider extends ServiceProvider
         $config->set(['url_segments' => $segments]);
         $config->set(['url_segments_count' => $segmentsCount]);
 
-        $cmsWillLoad = current($segments) == $config->get('cms.slug');
+        $cmsIsBooted = current($segments) == $config->get('cms.slug');
 
-        $config->set(['cms_will_load' => $cmsWillLoad]);
+        $config->set(['cms_is_booted' => $cmsIsBooted]);
 
-        if (! $cmsWillLoad) {
+        if (! $cmsIsBooted) {
             $config->set(['app.locale' => $config->get('app.language')]);
         }
     }

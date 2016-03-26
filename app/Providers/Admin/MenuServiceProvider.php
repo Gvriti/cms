@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers\Models;
+namespace App\Providers\Admin;
 
 use Models\Menu;
 use Illuminate\Support\ServiceProvider;
@@ -14,9 +14,9 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Do not boot if we are running in the console to avoid migration fail.
-        // Do not boot if CMS will not load.
-        if (! $this->app->runningInConsole() && cms_will_load()) {
+        // Do not boot if running in console to avoid artisan fail, when db table doesn't exists.
+        // Boot if CMS is booted.
+        if (! $this->app->runningInConsole() && cms_is_booted()) {
             $menus = (new Menu)->get();
 
             view()->composer([

@@ -179,30 +179,29 @@ return [
          */
         App\Providers\LanguageServiceProvider::class,
 
-        /*
-         * Composer Required Service Providers...
-         */
-        App\Providers\GlideServiceProvider::class,
-        Mews\Captcha\CaptchaServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
-        App\Providers\Admin\ElfinderServiceProvider::class,
-        Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider::class,
-
-        /*
-         * Application Service Providers...
-         */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\Site\DynamicRouteServiceProvider::class,
 
-        // Eloquent model service providers
-        App\Providers\SettingsServiceProvider::class,
-        App\Providers\Models\MenuServiceProvider::class,
-        App\Providers\Models\PageServiceProvider::class,
-        App\Providers\Models\TranslationServiceProvider::class,
-        App\Providers\Models\CalendarServiceProvider::class,
+        App\Providers\GlideServiceProvider::class,
+
+        // Admin service providers
+        App\Providers\Admin\MenuServiceProvider::class,
+        App\Providers\Admin\ElfinderServiceProvider::class,
+        App\Providers\Admin\CalendarServiceProvider::class,
+        // Site service providers
+        App\Providers\Site\DynamicRouteServiceProvider::class,
+        App\Providers\Site\PageServiceProvider::class,
+        App\Providers\Site\TranslationServiceProvider::class,
+        App\Providers\Site\SettingsServiceProvider::class,
+
+        /*
+         * Composer Required Service Providers...
+         */
+        Collective\Html\HtmlServiceProvider::class,
+        Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
 
     ],
 

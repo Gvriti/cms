@@ -113,7 +113,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
      */
     public function boot(Request $request, Router $router, Config $config)
     {
-        if (! $config->get('cms_will_load')) {
+        if (! $config->get('cms_is_booted')) {
             $this->request = $request;
 
             $this->router = $router;

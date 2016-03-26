@@ -15,7 +15,8 @@ class ElfinderServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        if ($this->app->runningInConsole() || cms_will_load()) {
+        // Boot only when running in console or CMS is booted.
+        if ($this->app->runningInConsole() || cms_is_booted()) {
             $viewPath = dirname((new ReflectionClass($this))->getParentClass()->getFilename());
             $viewPath .= '/../resources/views';
 

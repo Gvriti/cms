@@ -42,9 +42,9 @@ function language_isset()
  *
  * @return bool
  */
-function cms_will_load()
+function cms_is_booted()
 {
-    return config('cms_will_load', false);
+    return config('cms_is_booted', false);
 }
 
 /**

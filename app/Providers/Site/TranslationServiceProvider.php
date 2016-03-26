@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers\Models;
+namespace App\Providers\Site;
 
 use Models\Translation;
 use Illuminate\Support\ServiceProvider;
@@ -14,9 +14,9 @@ class TranslationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Do not boot if we are running in the console to avoid migration fail.
-        // Do not boot if CMS will load.
-        if (! $this->app->runningInConsole() && ! cms_will_load()) {
+        // Do not boot if running in console to avoid artisan fail, when db table doesn't exists.
+        // Do not boot if CMS is booted.
+        if (! $this->app->runningInConsole() && ! cms_is_booted()) {
             $trans = (new Translation)->joinLanguages()->get();
 
             $this->app->instance('trans', $trans);

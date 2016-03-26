@@ -8,11 +8,11 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "5.2.*",
-        "league/glide": "1.0.*",
-        "php-curl-class/php-curl-class": "4.10.*",
+        "barryvdh/laravel-elfinder": "0.3.*",
         "cocur/slugify": "1.4.*",
+        "league/glide": "1.0.*",
         "mews/captcha": "2.1.*",
-        "barryvdh/laravel-elfinder": "0.3.*"
+        "php-curl-class/php-curl-class": "4.10.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
