@@ -160,14 +160,16 @@ class DynamicRouteServiceProvider extends ServiceProvider
     /**
      * Build a new routes.
      *
-     * @param  \Illuminate\Contracts\Config\Repository  $config
      * @return void
      */
     public function build()
     {
         $this->init();
 
-        $this->router->group(['namespace' => $this->namespace], function () {
+        $this->router->group([
+            'middleware' => 'web',
+            'namespace' => $this->namespace
+        ], function () {
             $this->setRoutes();
         });
     }
@@ -183,7 +185,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
     {
         if (! $this->segmentsCount) {
             $this->router->get($this->uriPrefix, [
-                'middleware' => ['web'], 'uses' => 'SiteHomeController@index'
+                'uses' => 'SiteHomeController@index'
             ]);
 
             return;
@@ -384,7 +386,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
         }
 
         $this->router->{$route}($this->uriPrefix . $segments, [
-            'middleware' => ['web'], 'uses' => $controller . '@' . $method]
+            'uses' => $controller . '@' . $method]
         );
     }
 
