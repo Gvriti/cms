@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="panel-body">
-        {!! Form::open([
+        {!! Form::model($current, [
             'method' => 'post',
             'url'    => cms_route('menus.index'),
             'class'  => 'form-horizontal'

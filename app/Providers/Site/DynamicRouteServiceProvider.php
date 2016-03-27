@@ -154,7 +154,6 @@ class DynamicRouteServiceProvider extends ServiceProvider
         $this->moduleTypes = $this->config->get('cms.modules', []);
 
         $this->tabs = $this->config->get('cms.tabs', []);
-
     }
 
     /**
@@ -386,8 +385,8 @@ class DynamicRouteServiceProvider extends ServiceProvider
         }
 
         $this->router->{$route}($this->uriPrefix . $segments, [
-            'uses' => $controller . '@' . $method]
-        );
+            'uses' => $controller . '@' . $method
+        ]);
     }
 
     /**
@@ -403,18 +402,19 @@ class DynamicRouteServiceProvider extends ServiceProvider
         $path = explode('.', $path);
 
         if (($pathCount = count($path)) > 1) {
-            for ($i = 0; $i < $pathCount; $i++) {
-                if (($i + 1) == $pathCount) {
-                    $namespace .= 'Site' . studly_case($path[$i]);
+            for ($i = 1; $i <= $pathCount; $i++) {
+                if ($i == $pathCount) {
+                    $namespace .= '\\' . studly_case($path[$i - 2])
+                                       . studly_case($path[$i - 1]);
                 } else {
-                    $namespace .= '\\' . studly_case($path[$i]);
+                    $namespace .= '\\' . studly_case($path[$i - 1]);
                 }
             }
         } else {
             $namespace .= 'Site' . studly_case($path[0]);
         }
 
-        return $namespace .= 'Controller';
+        return ltrim($namespace .= 'Controller', '\\');
     }
 
     /**

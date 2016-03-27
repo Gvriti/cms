@@ -20,7 +20,11 @@ class PageServiceProvider extends ServiceProvider
         if (! $this->app->runningInConsole() && ! cms_is_booted()) {
             $menu = (new menu)->where('main', 1)->first(['id']);
 
-            $pages = (new page)->forSite($menu ? $menu->id : $menu)->positionAsc()->get();
+            $pages = [];
+
+            if (! is_null($menu)) {
+                $pages = (new page)->forSite($menu->id)->positionAsc()->get();
+            }
 
             $this->app->instance('pagesTree', make_tree($pages, ''));
         }
