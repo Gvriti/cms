@@ -27,11 +27,11 @@ class PageRequest extends Request
         $id = $this->route('pages');
 
         return [
-            'title'         => 'required|min:2',
-            'short_title'   => 'required|min:2',
-            'slug'          => 'required|min:2|unique:pages,slug,'.$id,
-            'type'          => 'required',
-            'collection_id' => 'required_if:type,collections|integer'
+            'title'       => 'required|min:2',
+            'short_title' => 'required|min:2',
+            'slug'        => 'required|min:2|unique:pages,slug,'.$id,
+            'type'        => 'required',
+            'type_id'     => 'required_if:type,' . $this->get('type') . '|integer'
         ];
     }
 
@@ -58,8 +58,8 @@ class PageRequest extends Request
             $input['type'] = null;
         }
 
-        if ($input['type'] != 'collections') {
-            $input['collection_id'] = 0;
+        if (! in_array($input['type'], cms_pages('attached'))) {
+            $input['type_id'] = 0;
         }
 
         $input['visible'] = $this->has('visible') ? 1 : 0;

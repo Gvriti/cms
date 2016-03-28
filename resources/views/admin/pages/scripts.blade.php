@@ -4,21 +4,19 @@ $(function() {
         placeholder: 'Select item',
         allowClear: true
     }).on('select2-open', function() {
-        // Adding Custom Scrollbar
+        // Add custom scrollbar
         $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
     });
 
-    $('.panel form [name="type"].select').on('click', function(){
-        var collection = $('.panel form .collection').addClass('hidden');
+    $('.panel form [name="type"].select').on('change', function(){
+        var typeId = $('.panel form .type-id').addClass('hidden');
         var template = $('.panel form .template');
         var templateSelect = $('select', template).html('<option value=""></option>');
 
-        if (this.value != 'collections') {
+        if (["{!!implode('","', (array) cms_pages('attached'))!!}"].indexOf(this.value) == -1) {
             // Get templates list
             $.post('{{cms_route('pages.templates')}}', {'type':this.value, '_token':'{{csrf_token()}}'}, function (data) {
-
                 if (data.length != 0) {
-                    console.log(data);
                     template.removeClass('hidden');
 
                     $.each(data, function (key, value) {
@@ -29,11 +27,12 @@ $(function() {
                 } else {
                     template.addClass('hidden');
                 }
-            }, 'json').fail(function (xhr, status, error) {
+            }, 'json').fail(function (xhr) {
                 alert(xhr.responseText);
             });
         } else {
-            collection.removeClass('hidden');
+            $('label', typeId).text($(this).val());
+            typeId.removeClass('hidden');
             template.addClass('hidden');
         }
     });

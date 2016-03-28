@@ -22,7 +22,7 @@
                 <a href="{{ cms_route('files.index', ['pages', $item->id]) }}" class="btn btn-{{$item->files_id ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
                     <span class="{{icon_type('files')}}"></span>
                 </a>
-                <a href="{{($isAttached = in_array($item->type, cms_pages('attached'))) ? $item->collection_id ? cms_route($item->collection_type . '.index', [$item->collection_id]) : cms_route($item->type . '.index') : '#' }}" class="btn btn-{{$isAttached ? 'info' : 'white disabled'}}" title="{{$item->collection_title ?: ucfirst($item->type)}}">
+                <a href="{{($isAttached = in_array($item->type, cms_pages('attached'))) ? $item->type_id ? cms_route($item->collection_type . '.index', [$item->type_id]) : cms_route($item->type . '.index') : '#' }}" class="btn btn-{{$isAttached ? 'info' : 'white disabled'}}" title="{{$item->collection_title ?: ucfirst($item->type)}}">
                     <span class="{{$isAttached ? icon_type($item->collection_type ?: $item->type) : 'fa fa-file-text-o'}}"></span>
                 </a>
                 <a href="{{ cms_route('pages.create', [$item->menu_id, 'id' => $item->id]) }}" class="btn btn-secondary" title="{{trans('general.create')}}">

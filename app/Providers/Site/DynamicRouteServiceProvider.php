@@ -269,9 +269,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $implicitModel = get_model_name($page->type);
 
-        $implicitModel = (new $implicitModel)->findOrFail(
-            $page->{str_singular($page->type) . '_id'}
-        );
+        $implicitModel = (new $implicitModel)->findOrFail($page->type_id);
 
         if (! $slug) {
             $this->setCurrentRoute($implicitModel->type, [

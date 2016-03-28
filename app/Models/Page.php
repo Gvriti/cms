@@ -2,6 +2,7 @@
 
 namespace Models;
 
+use Closure;
 use Models\Abstracts\Model;
 use Models\Traits\FileableTrait;
 use Models\Traits\LanguageTrait;
@@ -24,7 +25,7 @@ class Page extends Model
      * @var array
      */
     protected $fillable = [
-        'parent_id', 'menu_id', 'collection_id', 'type', 'template', 'slug', 'position', 'visible', 'collapse', 'image'
+        'parent_id', 'menu_id', 'type_id', 'type', 'template', 'slug', 'position', 'visible', 'collapse', 'image'
     ];
 
     /**
@@ -105,13 +106,20 @@ class Page extends Model
      * Get the base page.
      *
      * @param  int|null  $id
+     * @param  \Closure|null  $id
      * @return static
      */
-    public function getBasePage($id = null)
+    public function getBasePage($id = null, Closure $callback = null)
     {
         $id = ($id ?: $this->parent_id);
 
-        if (! $id || is_null($page = $this->where('id', $id)->forSite()->first())) {
+        $page = $this->where('id', $id)->forSite()->first();
+
+        if (! is_null($callback) && $callback($page)) {
+            return $page;
+        }
+
+        if (! $id || is_null($page)) {
             return $this;
         }
 
@@ -231,15 +239,15 @@ class Page extends Model
     }
 
     /**
-     * Add a where `collection_id` clause to the query.
+     * Add a where `type_id` clause to the query.
      *
      * @param  int     $id
      * @param  string  $operator
      * @return \Models\Abstracts\Builder
      */
-    public function collectionId($id, $operator = '=')
+    public function typeId($id, $operator = '=')
     {
-        return $this->where('collection_id', $operator, $id);
+        return $this->where('type_id', $operator, $id);
     }
 
     /**
@@ -289,7 +297,7 @@ class Page extends Model
             $this->getTable() . '.*'
         ];
 
-        return $this->leftJoin($table, 'collection_id')->addSelect($columns);
+        return $this->leftJoin($table, 'type_id')->addSelect($columns);
     }
 
     /**
