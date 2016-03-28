@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{$iconPhotos = icon_type('photos')}}"></i>
+            <i class="{{$iconCurrent = icon_type('photos')}}"></i>
             {{ $collection->title }}
         </h1>
     </div>
@@ -41,7 +41,7 @@
                     </li>
                     <li>
                         <a href="#" data-modal="add">
-                            <i class="{{$iconPhotos}}"></i>
+                            <i class="{{$iconCurrent}}"></i>
                             Add Image
                         </a>
                     </li>
@@ -108,7 +108,7 @@
         <div class="col-sm-3 gallery-left">
             <div class="gallery-sidebar">
                 <a href="{{cms_route('galleries.create', [$collection->collection_id, 'type' => $collection->type])}}" class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
-                    <i class="{{$iconPhotos}}"></i>
+                    <i class="{{$iconCurrent}}"></i>
                     <span>ალბომის დამატება</span>
                 </a>
                 <ul class="list-unstyled">

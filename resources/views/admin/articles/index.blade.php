@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{$iconArticle = icon_type('articles')}}"></i>
+            <i class="{{$iconCurrent = icon_type('articles')}}"></i>
             {{ $collection->type }}
         </h1>
         <p class="description">{{ $collection->description }}</p>
@@ -17,7 +17,7 @@
                 <a href="{{ cms_route('collections.index') }}"><i class="{{$iconColl = icon_type('collections')}}"></i>Collections</a>
             </li>
             <li class="active">
-                <i class="{{$iconArticle}}"></i>
+                <i class="{{$iconCurrent}}"></i>
                 <strong>{{ $collection->title }}</strong>
             </li>
         </ol>
@@ -40,7 +40,7 @@
             </div>
             <div class="panel-body">
                 <a href="{{ cms_route('articles.create', [$collection->id]) }}" class="btn btn-secondary btn-icon-standalone">
-                    <i class="{{$iconArticle}}"></i>
+                    <i class="{{$iconCurrent}}"></i>
                     <span>{{ trans('general.create') }}</span>
                 </a>
                 <button id="save-tree" class="btn btn-secondary btn-icon-standalone dn" disabled>

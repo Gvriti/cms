@@ -79,7 +79,6 @@
                     'data-lang' => $current->language
                 ]) !!}
                     @include('admin.articles.form', [
-                        'collectionId'  => $current->collection_id,
                         'submit'        => trans('general.update'),
                         'submitAndBack' => trans('general.update_n_back'),
                         'icon'          => 'save'

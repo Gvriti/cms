@@ -24,9 +24,6 @@
     <div class="panel-heading">
         <h3 class="panel-title">List of all menus</h3>
         <div class="panel-options">
-            <a href="#">
-                <i class="fa fa-gear"></i>
-            </a>
             <a href="#" data-toggle="panel">
                 <span class="collapse-icon">&ndash;</span>
                 <span class="expand-icon">+</span>

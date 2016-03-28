@@ -49,11 +49,9 @@ class AdminPagesController extends Controller
      */
     public function index($menuId)
     {
-        $model = $this->model;
-
         $data['menu'] = (new Menu)->findOrFail($menuId);
 
-        $data['items'] = make_tree($model->forAdmin($menuId)->get());
+        $data['items'] = make_tree($this->model->forAdmin($menuId)->get());
 
         $data['url'] = site_url();
 
