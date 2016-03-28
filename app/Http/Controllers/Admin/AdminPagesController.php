@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Models\Menu;
 use Models\Page;
 use Illuminate\Http\Request;
 use App\Jobs\Admin\AdminDestroy;
@@ -50,7 +51,7 @@ class AdminPagesController extends Controller
     {
         $model = $this->model;
 
-        $data['menu'] = $model->menu()->findOrFail($menuId);
+        $data['menu'] = (new Menu)->findOrFail($menuId);
 
         $data['items'] = make_tree($model->forAdmin($menuId)->get());
 

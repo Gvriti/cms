@@ -60,20 +60,6 @@ class Page extends Model
     ];
 
     /**
-     * Get the Menu instance.
-     *
-     * @param  int  $id
-     * @return \Models\Menu|
-     *         \Models\Abstracts\Builder
-     */
-    public function menu($id = null)
-    {
-        $model = new Menu;
-
-        return is_null($id) ? $model : $model->where('id', $id);
-    }
-
-    /**
      * Get the Collection instance.
      *
      * @param  int  $id
