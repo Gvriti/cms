@@ -97,7 +97,7 @@
         </div>
     </div>
 </div>
-@include('admin.scripts.move', ['route' => 'pages', 'list' => $menus, 'id' => $menu->id, 'column' => 'menu_id', 'recursive' => true])
+@include('admin.scripts.move', ['route' => cms_route('pages.move', [$menu->id]), 'column' => 'menu_id', 'list' => $menus, 'id' => $menu->id, 'recursive' => true])
 <script type="text/javascript">
 $(function() {
     positionable('{{ cms_route('pages.updatePosition') }}');

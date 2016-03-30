@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Models\Menu;
 use Models\Page;
+use Models\Collection;
 use Illuminate\Http\Request;
 use App\Jobs\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
@@ -72,9 +73,7 @@ class AdminPagesController extends Controller
 
         $data['types'] = cms_pages('types');
 
-        $data['collections'] = $this->model->collection()->get()
-                                                         ->lists('title', 'id')
-                                                         ->toArray();
+        $data['collections'] = (new Collection)->get()->lists('title', 'id')->toArray();
 
         return view('admin.pages.create', $data);
     }
@@ -122,16 +121,13 @@ class AdminPagesController extends Controller
      */
     public function edit($menuId, $id)
     {
-        $model = $this->model;
-
-        $data['items'] = $model->joinLanguages(false)->where('id', $id)
-                                                     ->getOrFail();
+        $data['items'] = $this->model->joinLanguages(false)
+                                    ->where('id', $id)
+                                    ->getOrFail();
 
         $data['types'] = cms_pages('types');
 
-        $data['collections'] = $model->collection()->get()
-                                                   ->lists('title', 'id')
-                                                   ->toArray();
+        $data['collections'] = (new Collection)->get()->lists('title', 'id')->toArray();
 
         return view('admin.pages.edit', $data);
     }

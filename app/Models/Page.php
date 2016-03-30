@@ -57,7 +57,7 @@ class Page extends Model
      * @var array
      */
     protected $languageNotUpdatable = [
-        'language'
+        'page_id', 'language'
     ];
 
     /**
@@ -289,7 +289,7 @@ class Page extends Model
      */
     public function joinCollectionType()
     {
-        $table = $this->collection()->getTable();
+        $table = (new Collection)->getTable();
 
         $columns = [
             $table . '.title as collection_title',

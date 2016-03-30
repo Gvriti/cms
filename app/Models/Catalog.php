@@ -63,6 +63,6 @@ class Catalog extends Model
      * @var array
      */
     protected $languageNotUpdatable = [
-        'language'
+        'catalog_id', 'language'
     ];
 }

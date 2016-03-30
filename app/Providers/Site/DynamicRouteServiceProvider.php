@@ -141,19 +141,19 @@ class DynamicRouteServiceProvider extends ServiceProvider
      */
     protected function init()
     {
-        $this->segments = $this->config->get('url_segments', []);
+        $this->segments = (array) $this->config->get('url_segments');
 
         $this->segmentsCount = $this->config->get('url_segments_count', 0);
 
-        $this->attachedTypes = $this->config->get('cms.pages.attached', []);
+        $this->attachedTypes = (array) $this->config->get('cms.pages.attached');
 
-        $this->implicitTypes = $this->config->get('cms.pages.implicit', []);
+        $this->implicitTypes = (array) $this->config->get('cms.pages.implicit');
 
-        $this->requestMethods = $this->config->get('cms.methods', []);
+        $this->requestMethods = (array) $this->config->get('cms.methods');
 
-        $this->moduleTypes = $this->config->get('cms.modules', []);
+        $this->moduleTypes = (array) $this->config->get('cms.modules');
 
-        $this->tabs = $this->config->get('cms.tabs', []);
+        $this->tabs = (array) $this->config->get('cms.tabs');
     }
 
     /**
@@ -274,7 +274,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
         if (! $slug) {
             $this->setCurrentRoute($implicitModel->type, [
                 $page, $implicitModel
-            ], 'index');
+            ], 'index', $this->pagesCount);
 
             return;
         }
@@ -319,19 +319,23 @@ class DynamicRouteServiceProvider extends ServiceProvider
      * @param  string  $type
      * @param  array   $parameters
      * @param  string|null  $defaultMethod
+     * @param  int  $fakeBind
      * @return void
-     * 
+     *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    protected function setCurrentRoute($type, array $parameters = [], $defaultMethod = null)
+    protected function setCurrentRoute($type, array $parameters = [], $defaultMethod = null, $fakeBind = 0)
     {
         if ($this->segmentsLeftCount == 2) {
             if (array_key_exists($type, $this->tabs)
-                && array_key_exists(
-                    $tab = end($this->segmentsLeft), (array) $this->tabs[$type]
+                && (array_key_exists(
+                        $tabKey = $tab = end($this->segmentsLeft),
+                        $tabs = (array) $this->tabs[$type]
+                    )
+                    || is_int($tabKey = key($tabs))
                 )
             ) {
-                $defaultMethod = $this->tabs[$type][$tab];
+                $defaultMethod = $this->tabs[$type][$tabKey];
 
                 $parameters[] = $tab;
             } else {
@@ -347,23 +351,21 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $segments = '';
 
-        for ($i = 0; $i <= ($this->segmentsCount - 2); $i++) { 
+        $paramsCount = count($parameters);
+
+        for ($i = 0; $i <= ($this->segmentsCount - ($paramsCount + 1)); $i++) { 
             $segments .= $this->segments[$i] . '/';
         }
 
-        foreach ($parameters as $key => $value) {
-            if ($key < 1) {
-                $segments .= '{slug}';
+        foreach ($parameters as $key => $binder) {
+            $segments .= '{bind' . $key . '}' . (
+                ($paramsCount - $fakeBind - 1) == $key ? '' : '/'
+            );
 
-                $bindKey = 'slug';
-            } else {
-                $segments .= '{fake' . $key . '}';
+            $key = 'bind' . $key;
 
-                $bindKey = 'fake' . $key;
-            }
-
-            $this->router->bind($bindKey, function () use ($value) {
-                return $value;
+            $this->router->bind($key, function () use ($binder) {
+                return $binder;
             });
         }
 

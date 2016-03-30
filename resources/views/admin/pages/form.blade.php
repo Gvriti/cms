@@ -61,30 +61,34 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6 template{{($templates = cms_pages('templates.' . $current->type, [])) ? '' : ' hidden'}}">
-        <div class="form-group">
-            <label class="col-lg-3 col-sm-2 control-label">Template:</label>
-            <div class="col-lg-9 col-sm-10">
-                {!! Form::select('template', ['' => ''] + $templates, null, [
-                    'id' => 'template' . $current->language,
-                    'class' => 'form-control select',
-                    'data-type' => 'general'
-                ]) !!}
+    <div class="col-lg-6">
+        <div class="row">
+            <div class="col-lg-12 type-id{{(($error = $errors->first('type_id')) || $current->type_id) ? '' : ' hidden'}}">
+                <div class="form-group{{$error ? ' validate-has-error' : '' }}">
+                    <label class="col-lg-3 col-sm-2 control-label required">{{$current->type_id ? $current->type : 'Type id'}}:</label>
+                    <div class="col-lg-9 col-sm-10">
+                        {!! Form::select('type_id', ['' => ''] + $collections, null, [
+                            'id' => 'type_id' . $current->language,
+                            'class' => 'form-control select',
+                            'data-type' => 'general'
+                        ]) !!}
+                        @if ($error)
+                        <span>{{$error}}</span>
+                        @endif
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-lg-6 type-id{{(($error = $errors->first('type_id')) || $current->type_id) ? '' : ' hidden'}}">
-        <div class="form-group{{$error ? ' validate-has-error' : '' }}">
-            <label class="col-lg-3 col-sm-2 control-label required">{{$current->type_id ? $current->type : 'Type id'}}:</label>
-            <div class="col-lg-9 col-sm-10">
-                {!! Form::select('type_id', ['' => ''] + $collections, null, [
-                    'id' => 'type_id' . $current->language,
-                    'class' => 'form-control select',
-                    'data-type' => 'general'
-                ]) !!}
-                @if ($error)
-                <span>{{$error}}</span>
-                @endif
+            <div class="col-lg-12 template{{($templates = cms_pages('templates.' . $current->type, [])) ? '' : ' hidden'}}">
+                <div class="form-group">
+                    <label class="col-lg-3 col-sm-2 control-label">Template:</label>
+                    <div class="col-lg-9 col-sm-10">
+                        {!! Form::select('template', ['' => ''] + $templates, null, [
+                            'id' => 'template' . $current->language,
+                            'class' => 'form-control select',
+                            'data-type' => 'general'
+                        ]) !!}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

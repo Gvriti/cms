@@ -3,18 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use Models\Abstracts\Model;
+use Illuminate\Http\Request;
 
 trait MovableTrait
 {
     /**
      * Move item to the specified direction.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return Response
      */
-    public function move($id)
+    public function move(Request $request, $id)
     {
-        $input = $this->request->only(['id', 'column', 'column_value', 'recursive']);
+        $input = $request->only(['id', 'column', 'column_value', 'recursive']);
+
+        if (! $this->model instanceof Model) {
+            return $this->getMovableResponse($request, 'error', 'Model not found');
+        }
 
         if ($id != $input['column_value']) {
             app('db')->transaction(function () use ($input) {
@@ -36,13 +42,7 @@ trait MovableTrait
             });
         }
 
-        if ($this->request->ajax()) {
-            return response()->json(fill_data(
-                'success', trans('general.updated'), $input
-            ));
-        }
-
-        return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
+        return $this->getMovableResponse($request, 'success', trans('general.updated'));
     }
 
     /**
@@ -64,5 +64,24 @@ trait MovableTrait
                 $this->updateMenu($item, $column, $columnValue);
             }
         }
+    }
+
+    /**
+     * Get the movable response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $type
+     * @param  string|null  $message
+     * @return Response
+     */
+    protected function getMovableResponse(Request $request, $type, $message = null)
+    {
+        if ($request->ajax() && $request->wantsJson()) {
+            return response()->json(fill_data(
+                $type, $message
+            ));
+        }
+
+        return redirect()->back()->with('alert', fill_data($type, $message));
     }
 }

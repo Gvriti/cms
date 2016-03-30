@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Models\Catalog;
+use Models\Collection;
 use Illuminate\Http\Request;
 use App\Jobs\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
@@ -48,13 +49,11 @@ class AdminCatalogController extends Controller
      */
     public function index($collectionId)
     {
-        $model = $this->model;
+        $data['parent'] = (new Collection)->findOrFail($collectionId);
 
-        $data['collection'] = $model->collection()->findOrFail($collectionId);
+        $data['items'] = $this->model->joinFileId()->getAdminCollection($data['parent']);
 
-        $data['items'] = $model->joinFileId()->getAdminCollection($data['collection']);
-
-        $data['similarTypes'] = $model->byType()->get();
+        $data['similarTypes'] = $this->model->byType()->get();
 
         return view('admin.catalog.index', $data);
     }

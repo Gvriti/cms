@@ -147,7 +147,7 @@ abstract class AbstractHasCollection extends Model
      */
     public function byType($type = null)
     {
-        return $this->collection()->where(
+        return (new Collection)->where(
             'type', is_null($type) ? static::TYPE : $type
         );
     }

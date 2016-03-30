@@ -18,8 +18,8 @@ class CreatePagesTable extends Migration
             $table->integer('parent_id')->default(0);
             $table->integer('type_id')->unsigned()->default(0);
             $table->string('slug')->unique();
-            $table->string('type', 32)->default('text');
-            $table->string('template', 32)->nullable();
+            $table->string('type', 64)->default('text');
+            $table->string('template', 64)->nullable();
             $table->integer('position')->default(1)->unsigned();
             $table->boolean('visible')->default(1);
             $table->boolean('collapse')->default(0);

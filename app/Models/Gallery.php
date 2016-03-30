@@ -64,6 +64,6 @@ class Gallery extends Model
      * @var array
      */
     protected $languageNotUpdatable = [
-        'language'
+        'gallery_id', 'language'
     ];
 }

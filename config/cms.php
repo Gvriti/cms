@@ -60,7 +60,7 @@ return [
     |
     */
 
-    'routes' => [
+    'collection_routes' => [
         'collections' => [
             'catalog'   => 'AdminCatalogController',
             'articles'  => 'AdminArticlesController',

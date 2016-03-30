@@ -13,24 +13,24 @@ $(function() {
         var template = $('.panel form .template');
         var templateSelect = $('select', template).html('<option value=""></option>');
 
-        if (["{!!implode('","', (array) cms_pages('attached'))!!}"].indexOf(this.value) == -1) {
-            // Get templates list
-            $.post('{{cms_route('pages.templates')}}', {'type':this.value, '_token':'{{csrf_token()}}'}, function (data) {
-                if (data.length != 0) {
-                    template.removeClass('hidden');
+        // Get templates list
+        $.post('{{cms_route('pages.templates')}}', {'type':this.value, '_token':'{{csrf_token()}}'}, function (data) {
+            if (data.length != 0) {
+                template.removeClass('hidden');
 
-                    $.each(data, function (key, value) {
-                        templateSelect.append('<option value="'+key+'">'+value+'</option>');
-                    });
+                $.each(data, function (key, value) {
+                    templateSelect.append('<option value="'+key+'">'+value+'</option>');
+                });
 
-                    templateSelect.select2('val', '');
-                } else {
-                    template.addClass('hidden');
-                }
-            }, 'json').fail(function (xhr) {
-                alert(xhr.responseText);
-            });
-        } else {
+                templateSelect.select2('val', '');
+            } else {
+                template.addClass('hidden');
+            }
+        }, 'json').fail(function (xhr) {
+            alert(xhr.responseText);
+        });
+
+        if (["{!!implode('","', (array) cms_pages('attached'))!!}"].indexOf(this.value) != -1) {
             $('label', typeId).text($(this).val());
             typeId.removeClass('hidden');
             template.addClass('hidden');

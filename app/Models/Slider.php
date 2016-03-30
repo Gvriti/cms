@@ -55,7 +55,7 @@ class Slider extends Model
      * @var array
      */
     protected $languageNotUpdatable = [
-        'language'
+        'slider_id', 'language'
     ];
 
     /**

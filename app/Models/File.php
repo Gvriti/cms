@@ -58,7 +58,7 @@ class File extends Model
      * @var array
      */
     protected $languageNotUpdatable = [
-        'language'
+        'file_id', 'language'
     ];
 
     /**

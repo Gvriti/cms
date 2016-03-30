@@ -63,6 +63,6 @@ class Article extends Model
      * @var array
      */
     protected $languageNotUpdatable = [
-        'language'
+        'article_id', 'language'
     ];
 }

@@ -4,9 +4,9 @@
     <div class="title-env">
         <h1 class="title">
             <i class="{{$iconCurrent = icon_type('galleries')}}"></i>
-            {{ $collection->title }}
+            {{ $parent->title }}
         </h1>
-        <p class="description">{{ $collection->description }}</p>
+        <p class="description">{{ $parent->description }}</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
@@ -18,7 +18,7 @@
             </li>
             <li class="active">
                 <i class="{{$iconCurrent}}"></i>
-                <strong>{{ $collection->title }}</strong>
+                <strong>{{ $parent->title }}</strong>
             </li>
         </ol>
     </div>
@@ -29,7 +29,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title ttc">Albums</h3>
                 <div class="panel-options">
-                    <a href="{{cms_route('collections.edit', [$collection->id])}}">
+                    <a href="{{cms_route('collections.edit', [$parent->id])}}">
                         <i class="fa fa-gear"></i>
                     </a>
                     <a href="#" data-toggle="panel">
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <a href="{{ cms_route('galleries.create', [$collection->id]) }}" class="btn btn-secondary btn-icon-standalone">
+                <a href="{{ cms_route('galleries.create', [$parent->id]) }}" class="btn btn-secondary btn-icon-standalone">
                     <i class="{{$iconCurrent}}"></i>
                     <span>{{ trans('general.create') }}</span>
                 </a>
@@ -52,10 +52,10 @@
                     @foreach ($items as $item)
                         <li id="item{{ $item->id }}" class="item" data-id="{{ $item->id }}" data-pos="{{$item->position}}">
                             <div class="uk-nestable-item clearfix">
-                            @if ($collection->admin_order_by == 'position')
+                            @if ($parent->admin_order_by == 'position')
                                 <div class="uk-nestable-handle"></div>
                             @endif
-                                <div class="list-label"><a href="{{ cms_route('galleries.edit', [$collection->id, $item->id]) }}">{{ $item->title }}</a></div>
+                                <div class="list-label"><a href="{{ cms_route('galleries.edit', [$parent->id, $item->id]) }}">{{ $item->title }}</a></div>
                                 <div class="btn-action togglable pull-right">
                                     <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
                                     <a href="#" class="movable btn btn-white" title="Move to collection" data-id="{{$item->id}}">
@@ -69,10 +69,10 @@
                                     <a href="{{ cms_route($item->type . '.index', [$item->id]) }}" class="btn btn-info" title="{{trans('general.gallery')}}">
                                         <span class="{{icon_type($item->type)}}"></span>
                                     </a>
-                                    <a href="{{ cms_route('galleries.edit', [$collection->id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
+                                    <a href="{{ cms_route('galleries.edit', [$parent->id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                                         <span class="fa fa-edit"></span>
                                     </a>
-                                    {!! Form::open(['method' => 'delete', 'url' => cms_route('galleries.destroy', [$collection->id, $item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
+                                    {!! Form::open(['method' => 'delete', 'url' => cms_route('galleries.destroy', [$parent->id, $item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
                                         <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}">
                                             <span class="fa fa-trash"></span>
                                         </button>
@@ -91,15 +91,15 @@
         </div>
     </div>
     <div class="col-md-3 content-sidebar pull-left">
-        <a href="{{cms_route('collections.create', ['type' => $collection->type])}}" class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
+        <a href="{{cms_route('collections.create', ['type' => $parent->type])}}" class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
             <i class="{{$iconColl}}"></i>
             <span>კოლექციის დამატება</span>
         </a>
         <ul class="list-unstyled bg">
         @foreach ($similarTypes as $item)
-            <li{!!$item->id != $collection->id ? '' : ' class="active"'!!}>
+            <li{!!$item->id != $parent->id ? '' : ' class="active"'!!}>
                 <a href="{{ cms_route($item->type . '.index', $item->id) }}">
-                    <i class="fa fa-folder{{$item->id != $collection->id ? '' : '-open'}}-o"></i>
+                    <i class="fa fa-folder{{$item->id != $parent->id ? '' : '-open'}}-o"></i>
                     <span>{{$item->title}}</span>
                 </a>
             </li>
@@ -107,11 +107,11 @@
         </ul>
     </div>
 </div>
-@include('admin.scripts.move', ['route' => 'galleries', 'list' => $similarTypes, 'id' => $collection->id, 'column' => 'collection_id'])
+@include('admin.scripts.move', ['route' => cms_route('galleries.move', [$parent->id]), 'column' => 'collection_id', 'list' => $similarTypes, 'parentId' => $parent->id])
 <script type="text/javascript">
 $(function() {
-@if ($collection->admin_order_by == 'position')
-    positionable('{{ cms_route('galleries.updatePosition') }}', '{{$collection->admin_sort}}', {{request('page', 1)}}, '{{$items->hasMorePages()}}');
+@if ($parent->admin_order_by == 'position')
+    positionable('{{ cms_route('galleries.updatePosition') }}', '{{$parent->admin_sort}}', {{request('page', 1)}}, '{{$items->hasMorePages()}}');
 @endif
 });
 </script>

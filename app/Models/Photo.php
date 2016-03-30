@@ -64,7 +64,7 @@ class Photo extends Model
      * @var array
      */
     protected $languageNotUpdatable = [
-        'language'
+        'photo_id', 'language'
     ];
 
     /**

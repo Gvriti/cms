@@ -64,6 +64,6 @@ class Video extends Model
      * @var array
      */
     protected $languageNotUpdatable = [
-        'language'
+        'video_id', 'language'
     ];
 }

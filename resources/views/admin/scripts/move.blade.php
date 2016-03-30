@@ -1,13 +1,12 @@
-<!-- Small modal -->
 <div id="movable-modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form action="{{cms_route($route . '.move', [$id])}}" method="post" id="movable-form" class="{{$settings->get('ajax_form')}}">
+            <form action="{{$route}}" method="post" id="movable-form" class="{{$settings->get('ajax_form')}}">
                 <input type="hidden" name="_method" value="put">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <input type="hidden" name="column" value="{{$column}}">
                 <input type="hidden" name="id" value="0">
-            @if (! empty($recursive))
+            @if (isset($recursive) && $recursive)
                 <input type="hidden" name="recursive" value="1">
             @endif
                 <div class="row">
@@ -15,9 +14,11 @@
                         <div class="form-group">
                             <label class="control-label">Move to:</label>
                             <select name="column_value" id="column_value" class="form-control">
+                        @if (! empty($list))
                             @foreach ($list as $item)
                                 <option value="{{$item->id}}">{{$item->title}}</option>
                             @endforeach
+                        @endif
                             </select>
                         </div>
                     </div>
@@ -50,7 +51,7 @@ $(function() {
 
         movableModal.modal('hide');
 
-        if (target != {{$id}}) {
+        if (target != {{isset($parentId) ? $parentId : 0}}) {
             $('#item'+id).remove();
         }
     });

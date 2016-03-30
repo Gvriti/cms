@@ -56,6 +56,6 @@ class Translation extends Model
      * @var array
      */
     protected $languageNotUpdatable = [
-        'language'
+        'translation_id', 'language'
     ];
 }
