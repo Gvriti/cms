@@ -58,13 +58,11 @@ class AdminMenusController extends Controller
      */
     public function store(MenuRequest $request)
     {
-        $input = $request->all();
-
-        $model = $this->model->create($input);
+        $model = $this->model->create($request->all());
 
         if ($request->has('close')) {
             return redirect()->route(cms_route('menus.index'))
-                                ->with('alert', fill_data('success', trans('general.created')));
+                    ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('menus.edit', [$model->id]))

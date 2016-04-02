@@ -74,9 +74,7 @@ class AdminCollectionsController extends Controller
      */
     public function store(CollectionRequest $request)
     {
-        $input = $request->all();
-
-        $model = $this->model->create($input);
+        $model = $this->model->create($request->all());
 
         if ($request->has('close')) {
             return redirect()->route(cms_route('collections.index'))

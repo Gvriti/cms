@@ -92,9 +92,7 @@ class AdminCmsUsersController extends Controller
             throw new AccessDeniedHttpException;
         }
 
-        $input = $request->all();
-
-        $model = $this->model->create($input);
+        $model = $this->model->create($request->all());
 
         app('db')->table('cms_settings')->insert(['cms_user_id' => $model->id]);
 

@@ -2,6 +2,8 @@
 
 namespace App\Listeners\Site;
 
+use Models\Abstracts\Model;
+
 class SiteCurrentPageEventListener
 {
     /**
@@ -16,20 +18,26 @@ class SiteCurrentPageEventListener
 
         $trans = app_instance('trans')->lists('value', 'name');
 
-        if (! is_object($current)) {
+        if (! $current instanceof Model) {
+            if (is_object($current) && isset($current->title)) {
+                $title = $current->title;
+            } else {
+                $title = $trans->get('site_title');
+            }
+
             $current = (object) [
                 'id'        => 0,
-                'title'     => $title = $trans->get('site_title'),
+                'title'     => $title,
                 'slug'      => $this->getPath(),
                 'image'     => asset('assets/site/images/logo.png'),
                 'meta_desc' => $trans->get('meta_desc') ?: $title,
             ];
         } else {
-            if (empty($current->id)) {
+            if (is_null($current->id)) {
                 $current->id = 0;
             }
 
-            if (! empty($current->tab_title)) {
+            if (! is_null($current->tab_title)) {
                 $current->title .= ' - ' . $current->tab_title;
             }
 
@@ -37,7 +45,7 @@ class SiteCurrentPageEventListener
                 $current->slug = $this->getPath();
 
                 $current->original_slug = basename($current->slug);
-            } elseif (! empty($current->tab_slug)) {
+            } elseif (! is_null($current->tab_slug)) {
                 $current->slug .= '/' . $current->tab_slug;
             }
 
