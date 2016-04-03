@@ -32,7 +32,7 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group{{($error = $errors->first('lastname')) ? ' validate-has-error' : '' }}">
-                <label class="col-sm-4 control-label text-left required">Lastname:</label>
+                <label class="col-sm-4 control-label required">Lastname:</label>
                 <div class="col-sm-8">
                     {!! Form::text('lastname', null, [
                         'id' => 'lastname',
@@ -128,12 +128,9 @@
     <div id="change-password" class="form-group{{ ! $current->id ? '' : ' collapse' . ($errors->has('password') ? ' in' : '')}}">
         <div class="col-sm-6">
             <div class="form-group{{($error = $errors->first('password')) ? ' validate-has-error' : '' }}">
-                <label class="col-sm-4 control-label text-left">Password:</label>
+                <label class="col-sm-4 control-label text-left{{$current->id ? '' : ' required'}}">Password:</label>
                 <div class="col-sm-8">
-                    {!! Form::password('password', [
-                        'id' => 'password',
-                        'class' => 'form-control'
-                    ]) !!}
+                    <input type="password" name="password" id="password" class="form-control">
                     @if ($error)
                     <span>{{$error}}</span>
                     @endif
@@ -142,7 +139,7 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="col-sm-4 control-label text-left">Repeat Password:</label>
+                <label class="col-sm-4 control-label{{$current->id ? '' : ' required'}}">Repeat Password:</label>
                 <div class="col-sm-8">
                     <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
                 </div>

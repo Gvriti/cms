@@ -19,7 +19,7 @@
         </div>
         <!-- .text -->
     @endif
-    @if ($alert = session()->get('alert'))
+    @if ($alert = session('alert'))
         <div class="alert alert-{{$alert['result'] ? 'success' : 'danger'}}">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             {{$trans->get($alert['message'])}}

@@ -91,8 +91,8 @@ return [
     */
 
     'passwords' => [
-        'cms_users' => [
-            'provider' => 'cms_users',
+        'users' => [
+            'provider' => 'users',
             'email' => 'auth.emails.password',
             'table' => 'password_resets',
             'expire' => 60,

@@ -36,7 +36,5 @@ class User extends Model
      *
      * @var array
      */
-    protected $notUpdatable = [
-        'email'
-    ];
+    protected $notUpdatable = [];
 }
