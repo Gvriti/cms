@@ -269,15 +269,15 @@ class Page extends Model
      */
     public function fullSlug($id = null)
     {
-        if (! $id = (is_null($id) ? $this->parent_id : $id)) {
+        if (! ($id = (is_null($id) ? $this->parent_id : $id))) {
             return $this;
         }
 
-        $page = $this->find($id, ['slug', 'parent_id']);
+        if (is_null($page = (new static)->find($id, ['slug', 'parent_id']))) {
+            return $this;
+        }
 
-        if (is_null($page)) return $this;
-
-        $this->slug = $page->slug . '/' . $this->slug;
+        $this->slug = trim($page->slug . '/' . $this->slug, '/');
 
         return $this->fullSlug($page->parent_id);
     }

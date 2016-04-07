@@ -4,9 +4,12 @@ namespace Models\Abstracts;
 
 use Models\Page;
 use Models\Collection;
+use Models\Traits\PageableTrait;
 
 abstract class AbstractHasCollection extends Model
 {
+    use PageableTrait;
+
     /**
      * Get the Collection instance.
      *
@@ -85,58 +88,6 @@ abstract class AbstractHasCollection extends Model
     public function bySlug($slug, $id = null)
     {
         return $this->where('slug', $slug)->forSite($id);
-    }
-
-    /**
-     * Add a "pages" join to the query.
-     *
-     * @param  array|mixed  $column
-     * @return \Digital\Repositories\Eloquent\EloquentBuilder
-     */
-    public function joinPage($column = null)
-    {
-        $column = $column ?: [
-            'pages.parent_id',
-            'pages.slug as page_slug',
-            'page_languages.title as page_title'
-        ];
-
-        return $this->leftJoin('pages', 'collection_id', '=', 'collection_id')
-                    ->join('page_languages', function ($query) {
-                        $query->on('pages.id', '=', 'page_id')
-                              ->where('page_languages.language', '=', language());
-                    })->addSelect($column);
-    }
-
-    /**
-     * Concatenate current model slug to its parent pages slug recursively.
-     *
-     * @param  int|null  $id
-     * @return $this
-     */
-    public function fullSlug($id = null)
-    {
-        if (is_null($id) && ! is_null($this->page_slug)) {
-            $this->slug = $this->page_slug . '/' . $this->slug;
-
-            if (! (int) $this->parent_id) return $this;
-
-            $id = $this->parent_id;
-
-            $page = (new Page)->find($id, ['slug', 'parent_id']);
-        } else {
-            $page = (new Page)->collectionId($this->collection_id)
-                              ->first(['slug', 'parent_id']);
-        }
-
-        if (is_null($page)) return $this;
-
-        $page->fullSlug();
-
-        $this->page_slug = trim($page->slug . '/' . $this->page_slug, '/');
-        $this->slug = $page->slug . '/' . $this->slug;
-
-        return $this;
     }
 
     /**
