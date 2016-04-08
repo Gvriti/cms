@@ -51,12 +51,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Faceebook page:</label>
+                <label class="col-sm-3 control-label">Facebook page:</label>
                 <div class="col-sm-5">
                     {!! Form::text('facebook', $siteSettings->facebook, [
                         'class' => 'form-control',
                     ]) !!}
-                    <span class="description">Paste faceebook page url.</span>
+                    <span class="description">Facebook page url.</span>
                 </div>
             </div>
             <div class="form-group">
@@ -65,7 +65,7 @@
                     {!! Form::text('twitter', $siteSettings->twitter, [
                         'class' => 'form-control',
                     ]) !!}
-                    <span class="description">Paste twitter page url.</span>
+                    <span class="description">Twitter page url.</span>
                 </div>
             </div>
             <div class="form-group">
@@ -74,7 +74,7 @@
                     {!! Form::text('googleplus', $siteSettings->googleplus, [
                         'class' => 'form-control',
                     ]) !!}
-                    <span class="description">Paste google plus page url.</span>
+                    <span class="description">Google plus page url.</span>
                 </div>
             </div>
             <div class="form-group">
@@ -83,7 +83,7 @@
                     {!! Form::text('map', $siteSettings->map, [
                         'class' => 'form-control',
                     ]) !!}
-                    <span class="description">Paste map url.</span>
+                    <span class="description">Map url.</span>
                 </div>
             </div>
         </div>
