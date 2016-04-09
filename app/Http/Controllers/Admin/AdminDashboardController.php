@@ -16,7 +16,7 @@ class AdminDashboardController extends Controller
     {
         $db = app('db');
 
-        // count basic
+        // main
         $data['menusTotal'] = $db->table('menus')->count();
 
         $data['pagesTotal'] = $db->table('pages')->count();
@@ -28,9 +28,6 @@ class AdminDashboardController extends Controller
         $data['collectionsTotal'] = $db->table('collections')->count();
         $data['usersTotal'] = $db->table('cms_users')->count();
 
-        // count collection types
-        $data['galleriesTotal'] = $db->table('collections')->where('type', 'galleries')->count();
-
         // catalog
         $data['catalogTotalDistinct'] = $db->table('catalog')->count($db->raw('DISTINCT collection_id'));
         $data['catalogTotal'] = $db->table('catalog')->count();
@@ -38,6 +35,9 @@ class AdminDashboardController extends Controller
         // articles
         $data['articlesTotalDistinct'] = $db->table('articles')->count($db->raw('DISTINCT collection_id'));
         $data['articlesTotal'] = $db->table('articles')->count();
+
+        // galleries
+        $data['galleriesTotal'] = $db->table('collections')->where('type', 'galleries')->count();
 
         // photos
         $data['photoAlbumTotal'] = $db->table('galleries')->where('type', 'photos')->count();

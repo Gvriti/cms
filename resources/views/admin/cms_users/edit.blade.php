@@ -32,7 +32,7 @@
                     <div class="col-md-2 col-sm-4 pull-right-sm">
                         <div class="action-buttons">
                             <div class="profile">
-                                <a href="{{$routeShow = cms_route('cmsUsers.show', [$current->id])}}" class="btn btn-block btn-turquoise">{{trans('general.profile')}}</a>
+                                <a href="{{$routeShow = cms_route('cmsUsers.show', [$current->id])}}" class="btn btn-block btn-turquoise">Profile</a>
                             </div>
                         @if (Auth::guard('cms')->user()->isAdmin())
                             <div class="permissions{{$current->role == 'admin' ? ' hidden' : ''}}">

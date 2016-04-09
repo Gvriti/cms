@@ -69,38 +69,38 @@
 </div>
 <div class="row">
     <div class="col-sm-3">
-        <div class="xe-widget xe-counter-block"  data-count=".num" data-from="0" data-to="{{$catalogTotalDistinct}}" data-duration="3">
+        <div class="xe-widget xe-counter-block"  data-count=".num" data-from="0" data-to="{{$catalogTotal}}" data-duration="3">
             <div class="xe-upper">
                 <a href="{{cms_route('collections.index', ['type' => 'catalog'])}}" class="xe-icon">
                     <i class="{{icon_type('catalog')}}"></i>
                 </a>
                 <div class="xe-label">
-                    <strong class="num">{{$catalogTotalDistinct}}</strong>
-                    <span>Catalog by category</span>
+                    <strong class="num">{{$catalogTotal}}</strong>
+                    <span>Total catalog</span>
                 </div>
             </div>
             <div class="xe-lower">
                 <div class="border"></div>
                 <span>Details</span>
-                <strong>{{$catalogTotal}} Total catalog</strong>
+                <strong>{{$catalogTotalDistinct}} Catalog by category</strong>
             </div>
         </div>
     </div>
     <div class="col-sm-3">
-        <div class="xe-widget xe-counter-block xe-counter-block-blue"  data-count=".num" data-from="0" data-to="{{$articlesTotalDistinct}}" data-duration="3" data-easing="true">
+        <div class="xe-widget xe-counter-block xe-counter-block-blue"  data-count=".num" data-from="0" data-to="{{$articlesTotal}}" data-duration="3" data-easing="true">
             <div class="xe-upper">
                 <a href="{{cms_route('collections.index', ['type' => 'articles'])}}" class="xe-icon">
                     <i class="{{icon_type('articles')}}"></i>
                 </a>
                 <div class="xe-label">
-                    <strong class="num">{{$articlesTotalDistinct}}</strong>
-                    <span>Articles by category</span>
+                    <strong class="num">{{$articlesTotal}}</strong>
+                    <span>Total article</span>
                 </div>
             </div>
             <div class="xe-lower">
                 <div class="border"></div>
                 <span>Details</span>
-                <strong>{{$articlesTotal}} Total article</strong>
+                <strong>{{$articlesTotalDistinct}} Articles by category</strong>
             </div>
         </div>
     </div>
@@ -205,20 +205,20 @@
         </div>
     </div>
     <div class="col-sm-3">
-        <div class="xe-widget xe-counter-block xe-counter-block-info"  data-count=".num" data-from="0" data-to="{{$galleriesTotal}}" data-duration="3">
+        <div class="xe-widget xe-counter-block xe-counter-block-info"  data-count=".num" data-from="0" data-to="{{$totalAlbums = ($photoAlbumTotal + $videoAlbumTotal)}}" data-duration="3">
             <div class="xe-upper">
-                <div class="xe-icon">
+                <a href="{{cms_route('collections.index', ['type' => 'galleries'])}}" class="xe-icon">
                     <i class="{{icon_type('galleries')}}"></i>
-                </div>
+                </a>
                 <div class="xe-label">
-                    <strong class="num">{{$galleriesTotal}}</strong>
-                    <span>Total galleries</span>
+                    <strong class="num">{{$totalAlbums}}</strong>
+                    <span>Total gallery items</span>
                 </div>
             </div>
             <div class="xe-lower">
                 <div class="border"></div>
                 <span>Details</span>
-                <strong>{{$photoAlbumTotal + $videoAlbumTotal}} Total gallery items</strong>
+                <strong>{{$galleriesTotal}} Total galleries</strong>
             </div>
         </div>
     </div>
