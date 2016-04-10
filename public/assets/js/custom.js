@@ -1,6 +1,6 @@
 $(function () {
     // Fix sidebar toggle when it has fixed position
-    $('a[data-toggle="sidebar"]').on('click', function(e) {
+    $('a[data-toggle="sidebar"]').on('click', function (e) {
         e.preventDefault();
 
         var expanded = $('#main-menu').find('.expanded');
@@ -14,7 +14,7 @@ $(function () {
     });
 
     // Toggle page action buttons
-    $('#items').on('click', '.btn-toggle', function(e) {
+    $('#items').on('click', '.btn-toggle', function (e) {
         e.preventDefault();
 
         if (! $(this).hasClass('active')) {
@@ -27,21 +27,21 @@ $(function () {
     });
 
     // Make form closable on "#submit-close" click
-    $('#submit-close').on('click', function() {
+    $('#submit-close').on('click', function () {
         $('input.form-close').val(1);
     });
 
     // Disable buttons on submit for some period of time
-    $(document).on('submit', 'form', function() {
+    $(document).on('submit', 'form', function () {
         $('input[type="submit"], button[type="submit"]', this).prop('disabled', true);
 
-        setTimeout(function(form) {
+        setTimeout(function (form) {
             $('input[type="submit"], button[type="submit"]', form).prop('disabled', false);
         }, 800, this);
     });
 
     // Delete form
-    $('.form-delete').on('submit', function(e) {
+    $('.form-delete').on('submit', function (e) {
         e.preventDefault();
         var perform = confirm('Are you sure you want to delete?');
         if (perform != true) return;
@@ -55,13 +55,13 @@ $(function () {
             url: form.attr('action'),
             dataType: 'json',
             data: input,
-            success: function(data, status, xhr) {
+            success: function (data, status, xhr) {
                 if (data) {
                     // alert toastr message
                     toastr[data.result](data.message);
 
                     if (data.result == 'success') {
-                        form.closest('#item' + formId).fadeOut(600, function() {
+                        form.closest('#item' + formId).fadeOut(600, function () {
                             if ($(this).data('parent') == 1) {
                                 $(this).closest('.uk-parent').removeClass('uk-parent');
                                 disableParentDeletion(formId);
@@ -74,7 +74,7 @@ $(function () {
 
                 btn.prop('disabled', false);
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 btn.prop('disabled', false);
 
                 alert(xhr.responseText);
@@ -84,7 +84,7 @@ $(function () {
 
     // Ajax form submit
     var ajaxFormSelector = '.ajax-form';
-    $(document).on('submit', ajaxFormSelector, function(e) {
+    $(document).on('submit', ajaxFormSelector, function (e) {
         e.preventDefault();
         var form = $(this);
         var lang = form.data('lang');
@@ -96,14 +96,14 @@ $(function () {
             url: form.attr('action'),
             dataType: 'json',
             data: form.serialize(),
-            success: function(data, status, xhr) {
+            success: function (data, status, xhr) {
                 // toastr alert message
                 if (typeof toastr == 'object') {
                     toastr[data.result](data.message);
                 }
                 // fill form inputs
                 if (data.input && typeof data.input === 'object') {
-                    $.each(data.input, function(index, element) {
+                    $.each(data.input, function (index, element) {
                         var item = $('#' + index + lang, form);
                         if (item.val() != element) {
                             item.val(element);
@@ -111,7 +111,7 @@ $(function () {
 
                         if (item.data('type') == 'general') {
                             var inputGeneral = $(ajaxFormSelector + ' [name="' + index + '"]');
-                            $(inputGeneral).each(function(i, e) {
+                            $(inputGeneral).each(function (i, e) {
                                 item = $(e);
                                 if (item.val() != element) {
                                     item.val(element);
@@ -132,13 +132,13 @@ $(function () {
                 }
                 $('.form-group', form).removeClass('validate-has-error');
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 form.trigger('ajaxFormError');
 
                 if (xhr.status == 422) {
                     var data = xhr.responseJSON;
 
-                    $.each(data, function(index, element) {
+                    $.each(data, function (index, element) {
                         var field = $('#' + index + lang, form);
                         field.closest('.form-group').addClass('validate-has-error');
 
@@ -159,19 +159,18 @@ $(function () {
                     alert(xhr.responseText);
                 }
             },
-            complete: function(xhr) {
+            complete: function (xhr) {
                 form.trigger('ajaxFormComplete');
             }
         });
     });
 
     // Visibility request
-    $('.visibility button[type="submit"]').on('click', function(e) {
+    $('form.visibility').on('submit', function (e) {
         e.preventDefault();
-        var item = $(this);
-        var form = item.closest('form');
+        var form = $(this);
 
-        $.post(form.attr('action'), $(form).serialize(), function(data) {
+        $.post(form.attr('action'), form.serialize(), function (data) {
             if (data) {
                 if (data.visible) {
                     var icon = 'fa-eye';
@@ -187,7 +186,7 @@ $(function () {
                     .find('span')
                     .attr('class', icon);
             }
-        }, 'json').fail(function(xhr) {
+        }, 'json').fail(function (xhr) {
             alert(xhr.responseText);
         });
     });
@@ -197,7 +196,7 @@ $(function () {
 var timer;
 var timerIsActive = true;
 
-$('form#set-lockscreen').on('submit', function(e) {
+$('form#set-lockscreen').on('submit', function (e) {
     e.preventDefault();
 
     clearTimeout(timer);
@@ -209,12 +208,12 @@ $('form#set-lockscreen').on('submit', function(e) {
 function setLockscreen(url) {
     var input = {'_method':'put', '_token':csrf_token()};
 
-    $.post(url, input, function(data) {
+    $.post(url, input, function (data) {
         if (data) {
             $('body').append(data.view);
             $('body').addClass('lockscreen-page');
         }
-    }, 'json').fail(function(xhr) {
+    }, 'json').fail(function (xhr) {
         alert(xhr.responseText);
     });
 }
@@ -244,7 +243,7 @@ function lockscreen(time, url, reActive) {
 function updateUrl(target, url) {
     var prevUrl = url;
 
-    target.each(function() {
+    target.each(function () {
         var item = $(this).find('a.link');
 
         url = prevUrl + '/' + item.data('slug');
@@ -260,7 +259,7 @@ function updateUrl(target, url) {
 function disableParentDeletion() {
     $('#nestable-list .form-delete [type="submit"]').prop('disabled', false);
 
-    $('#nestable-list .uk-parent').each(function() {
+    $('#nestable-list .uk-parent').each(function () {
         id = $(this).data('id');
         $('.form-delete[data-id="' + id + '"] [type="submit"]', this).prop('disabled', true);
     });
@@ -285,14 +284,14 @@ function positionable(url, orderBy, page, hasMorePages) {
         }
     }
 
-    $('#nestable-list').on('nestable-stop', function(e) {
+    $('#nestable-list').on('nestable-stop', function (e) {
         $('#nestable-list .move').remove();
         saveBtn.show().prop('disabled', false);
         saveBtnIcon.removeClass('fa-spin fa-check').addClass('fa-save');
     });
 
     // Position move
-    $('#nestable-list').on('click',  'a.move', function(e) {
+    $('#nestable-list').on('click',  'a.move', function (e) {
         e.preventDefault();
         var move = $(this).data('move');
         var item = $(this).closest('li');
@@ -304,13 +303,13 @@ function positionable(url, orderBy, page, hasMorePages) {
             var items = item.prevAll();
         }
 
-        items.each(function(i, e) {
+        items.each(function (i, e) {
             input.push({'id':$(e).data('id'), 'pos':$(e).data('pos')});
         });
 
         var input = $.extend({'data':input, 'move':move, 'orderBy':orderBy}, postHiddens);
 
-        $.post(url, input, function(data) {
+        $.post(url, input, function (data) {
             page = move == 'next' ? page + 1 : page - 1;
             var href = window.location.href;
             var hrefQueryStart = href.indexOf('?');
@@ -318,13 +317,13 @@ function positionable(url, orderBy, page, hasMorePages) {
                 href = href.substr(0, hrefQueryStart);
             }
             window.location.href = href + '?page=' + page;
-        }, 'json').fail(function(xhr, status, error) {
+        }, 'json').fail(function (xhr, status, error) {
             alert(xhr.responseText);
         });
     });
 
     // Position save
-    saveBtn.on('click', function() {
+    saveBtn.on('click', function () {
         $(this).prop('disabled', true);
         saveBtnIcon.addClass('fa-spin');
 
@@ -342,15 +341,15 @@ function positionable(url, orderBy, page, hasMorePages) {
 
         if (orderBy) {
             var posArr = [];
-            $(input).each(function(i, e) {
+            $(input).each(function (i, e) {
                 posArr[i] = e.pos;
             });
             if (orderBy == 'desc') {
-                posArr.sort(function(a, b) {return b-a});
+                posArr.sort(function (a, b) {return b-a});
             } else {
-                posArr.sort(function(a, b) {return a-b});
+                posArr.sort(function (a, b) {return a-b});
             }
-            $(posArr).each(function(i, e) {
+            $(posArr).each(function (i, e) {
                 input[i].pos = e;
             });
         }
@@ -358,11 +357,11 @@ function positionable(url, orderBy, page, hasMorePages) {
         input = {'data':input};
 
         input = $.extend(input, postHiddens);
-        $.post(url, input, function(data) {
+        $.post(url, input, function (data) {
             saveBtnIcon.removeClass('fa-spin fa-save').addClass('fa-check');
 
             if (orderBy) {
-                $(input.data).each(function(i, e) {
+                $(input.data).each(function (i, e) {
                     $('#nestable-list #item'+e.id).data('pos', e.pos);
                 });
             }
@@ -370,11 +369,11 @@ function positionable(url, orderBy, page, hasMorePages) {
             saveBtn.trigger('positionSaved');
 
             disableParentDeletion();
-        }, 'json').fail(function(xhr) {
+        }, 'json').fail(function (xhr) {
             saveBtnIcon.removeClass('fa-spin fa-save').addClass('fa-remove');
 
             alert(xhr.responseText);
-        }).always(function() {
+        }).always(function () {
             saveBtn.delay(400).fadeOut(500);
         });
     });

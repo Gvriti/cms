@@ -39,7 +39,7 @@ $router->group(['middleware' => 'cms.settings', 'prefix' => cms_slug()], functio
         ]);
 
         // pages
-        $router->post('pages/visibility/{id}', ['as' => 'pages.visibility', 'uses' => 'AdminPagesController@visibility']);
+        $router->post('pages/{id}/visibility', ['as' => 'pages.visibility', 'uses' => 'AdminPagesController@visibility']);
         $router->post('pages/position', ['as' => 'pages.updatePosition', 'uses' => 'AdminPagesController@updatePosition']);
         $router->post('pages/templates', ['as' => 'pages.templates', 'uses' => 'AdminPagesController@getTemplates']);
         $router->put('pages/move/{menuId}', ['as' => 'pages.move', 'uses' => 'AdminPagesController@move']);
@@ -55,7 +55,7 @@ $router->group(['middleware' => 'cms.settings', 'prefix' => cms_slug()], functio
         // routes from config
         foreach ($this->app['config']->get('cms.collection_routes') as $prefix => $routes) {
             foreach ($routes as $route => $controller) {
-                $router->post($route . '/visibility/{id}', [
+                $router->post($route . '/{id}/visibility', [
                     'as' => $route . '.visibility',
                     'uses' => $controller . '@visibility'
                 ]);
@@ -74,14 +74,14 @@ $router->group(['middleware' => 'cms.settings', 'prefix' => cms_slug()], functio
         }
 
         // attached files
-        $router->post('files/visibility/{id}', ['as' => 'files.visibility', 'uses' => 'AdminFilesController@visibility']);
+        $router->post('files/{id}/visibility', ['as' => 'files.visibility', 'uses' => 'AdminFilesController@visibility']);
         $router->post('files/position', ['as' => 'files.updatePosition', 'uses' => 'AdminFilesController@updatePosition']);
         $router->resource('{routeName}/{routeId}/files', 'AdminFilesController', ['names' => resource_names('files'),
             'except' => ['show']
         ]);
 
         // slider
-        $router->post('slider/visibility/{id}', ['as' => 'slider.visibility', 'uses' => 'AdminSliderController@visibility']);
+        $router->post('slider/{id}/visibility', ['as' => 'slider.visibility', 'uses' => 'AdminSliderController@visibility']);
         $router->post('slider/position', ['as' => 'slider.updatePosition', 'uses' => 'AdminSliderController@updatePosition']);
         $router->resource('slider', 'AdminSliderController', ['names' => resource_names('slider'),
             'except' => ['show']
