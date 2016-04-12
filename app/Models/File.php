@@ -115,14 +115,14 @@ class File extends Model
         $namespace = __NAMESPACE__ . '\\';
         $model = $namespace . ($name = str_singular(ucfirst($this->route_name)));
 
-        if (! @class_exists($model)) {
+        if (! class_exists($model, false)) {
             $modelExists = false;
 
             if (! empty($dirs = (new Filesystem)->directories(app_path('Models')))) {
                 foreach ($dirs as $dir) {
                     $model = $namespace . basename($dir) . '\\' . $name;
 
-                    if (@class_exists($model)) {
+                    if (class_exists($model, false)) {
                         $modelExists = true;
 
                         break;

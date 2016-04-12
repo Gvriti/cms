@@ -2,13 +2,9 @@
 
 namespace App\Providers\Site;
 
-use Exception;
 use Models\Page;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Router;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Contracts\Config\Repository as Config;
 
 class DynamicRouteServiceProvider extends ServiceProvider
 {
@@ -106,40 +102,45 @@ class DynamicRouteServiceProvider extends ServiceProvider
     /**
      * Define a dynamic routes.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Routing\Router  $router
-     * @param  \Illuminate\Contracts\Config\Repository  $config
      * @return void
      */
-    public function boot(Request $request, Router $router, Config $config)
+    public function boot()
     {
-        if (! $config->get('cms_is_booted')) {
-            $this->request = $request;
+        $this->app->booted(function ($app) {
+            $this->config = $app['config'];
 
-            $this->router = $router;
+            if (! $this->config->get('cms_is_booted')) {
+                $this->request = $app['request'];
 
-            $this->config = $config;
+                $this->router = $app['router'];
 
-            if (language_isset()) {
-                $this->uriPrefix = language() . '/';
-            }
+                if ($this->config->get('language_isset')) {
+                    $this->uriPrefix = $this->config->get('app.language') . '/';
+                }
 
-            $this->app->booted(function () use ($router) {
-                try {
-                    $router->getRoutes()->match($this->request);
-                } catch (Exception $e) {
+                $routeMatches = 0;
+
+                foreach ($this->router->getRoutes() as $route) {
+                    if ($route->matches($this->request)) {
+                        $routeMatches = 1;
+
+                        break;
+                    }
+                }
+
+                if (! $routeMatches) {
                     $this->build();
                 }
-            });
-        }
+            }
+        });
     }
 
     /**
-     * Initialize routes properties.
+     * Set router configuration.
      *
      * @return void
      */
-    protected function init()
+    protected function configure()
     {
         $this->segments = (array) $this->config->get('url_segments');
 
@@ -163,7 +164,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
      */
     public function build()
     {
-        $this->init();
+        $this->configure();
 
         $this->router->group([
             'middleware' => 'web',

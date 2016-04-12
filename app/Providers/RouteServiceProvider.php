@@ -92,9 +92,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $cmsSlug = $config->get('cms.slug');
 
-        $routes = $router->getRoutes();
-
-        foreach ($routes as $route) {
+        foreach ($router->getRoutes() as $route) {
             if (! is_null($language)) {
                 $route->prefix($language);
             }
