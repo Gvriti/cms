@@ -22,7 +22,7 @@
         <div class="main-content">
             <div class="page-error centered">
                 <div class="error-symbol">
-                    <i class="fa fa-warning"></i>
+                    <i class="fa fa-server"></i>
                 </div>
                 <h2>
                     500 Internal Server Error

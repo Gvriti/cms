@@ -22,7 +22,7 @@
         <div class="main-content">
             <div class="page-error centered">
                 <div class="error-symbol">
-                    <i class="fa fa-warning"></i>
+                    <i class="fa fa-power-off"></i>
                 </div>
                 <h2>
                     503 Service Unavailable

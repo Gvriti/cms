@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="cms" />
-    <title>405 Method Not Allowed</title>
+    <title>401 Unauthorized</title>
     <link rel="shortcut icon" href="{{ asset('assets/images/admin/favicon.ico') }}">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
     <link rel="stylesheet" href="{{ asset('assets/css/fonts/font-awesome-4.5.0/css/font-awesome.min.css') }}">
@@ -22,13 +22,13 @@
         <div class="main-content">
             <div class="page-error centered">
                 <div class="error-symbol">
-                    <i class="fa fa-times"></i>
+                    <i class="fa fa-user-times"></i>
                 </div>
                 <h2>
-                    405 Method Not Allowed
-                    <small>The requested method is not allowed!</small>
+                    401 Unauthorized
+                    <small>The request requires authentication!</small>
                 </h2>
-                <p>The resource was found but the request method is not allowed.</p>
+                <p>The request has not been applied because it lacks valid authentication credentials for the target resource.</p>
             </div>
         @if (! request()->has('iframe'))
             <div class="page-error-search centered">
@@ -42,3 +42,4 @@
     </div>
 </body>
 </html>
+

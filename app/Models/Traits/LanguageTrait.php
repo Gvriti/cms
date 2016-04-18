@@ -42,7 +42,7 @@ trait LanguageTrait
      */
     public function getLanguageFillable()
     {
-        return $this->languageFillable;
+        return (array) $this->languageFillable;
     }
 
     /**
@@ -52,7 +52,7 @@ trait LanguageTrait
      */
     public function getLanguageNotUpdatable()
     {
-        return $this->languageNotUpdatable;
+        return (array) $this->languageNotUpdatable;
     }
 
     /**
@@ -65,13 +65,13 @@ trait LanguageTrait
     public function getLanguageUpdatable(array $attributes = [], $exclude = null)
     {
         if (is_null($exclude)) {
-            $notUpdatable = $this->languageNotUpdatable;
+            $notUpdatable = $this->getLanguageNotUpdatable();
         } else {
-            $notUpdatable = $this->{'notUpdatable' . ucfirst($exclude)};
+            $notUpdatable = (array) $this->{'notUpdatable' . ucfirst($exclude)};
         }
 
         $updatable = array_flip(array_diff(
-            (array) $this->languageFillable, (array) $notUpdatable
+            $this->getLanguageFillable(), $notUpdatable
         ));
 
         return array_intersect_key($attributes, $updatable);

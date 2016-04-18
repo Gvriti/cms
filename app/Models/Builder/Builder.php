@@ -78,7 +78,7 @@ class Builder extends EloquentBuilder
      */
     public function get($columns = ['*'])
     {
-        $this->prefixColumnsOnJoin();
+        $this->prefixColumnsOnJoin($columns);
 
         return parent::get($columns);
     }
@@ -107,7 +107,7 @@ class Builder extends EloquentBuilder
      */
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
-        $this->prefixColumnsOnJoin();
+        $this->prefixColumnsOnJoin($columns);
 
         if ($this->columnsForCount) {
             $columnsBackup = $this->query->columns;
@@ -163,15 +163,20 @@ class Builder extends EloquentBuilder
     /**
      * Prefix columns with the model table name if join clause is set.
      *
+     * @param  array  $columns
      * @return void
      */
-    protected function prefixColumnsOnJoin()
+    protected function prefixColumnsOnJoin($columns = ['*'])
     {
         $query = $this->getQuery();
 
         if (! is_null($joins = $query->joins)) {
-            $bindings = array_diff(array_keys($query->getRawBindings()), [
-                // exclude from prefix
+            if (isset($columns[0]) && $columns[0] != '*') {
+                $query->columns = (array) $columns;
+            }
+
+            $bindings = ['column'] + array_diff(array_keys($query->getRawBindings()), [
+                // exclude from bindings
                 'select'
             ]);
 
@@ -203,6 +208,8 @@ class Builder extends EloquentBuilder
                                 }
                             }
                         }
+                    } elseif (is_string($value) && $value == 'id') {
+                        $query->{$bindings[$i] . 's'}[$key] = $query->from . '.' . $value;
                     } elseif (isset($value['column']) && strpos($value['column'], '.') === false) {
                         $columns = array_merge(
                             array_values($this->model->getFillable()),
@@ -211,11 +218,9 @@ class Builder extends EloquentBuilder
 
                         if ($value['column'] == 'id' || in_array($value['column'], $columns)) {
                             $table = $query->from . '.';
-                        } else {
-                            $table = null;
-                        }
 
-                        $query->{$bindings[$i] . 's'}[$key]['column'] = $table . $value['column'];
+                            $query->{$bindings[$i] . 's'}[$key]['column'] = $table . $value['column'];
+                        }
                     }
                 }
             }

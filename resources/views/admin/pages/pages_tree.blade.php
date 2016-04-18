@@ -14,10 +14,10 @@
                 <a href="#" class="movable btn btn-white" title="Move to menu" data-id="{{$item->id}}">
                     <span class="{{icon_type('menus')}}"></span>
                 </a>
-                {!! Form::open(['method' => 'post', 'url' => cms_route('pages.visibility', [$item->id]), 'class' => 'visibility', 'id']) !!}
-                <button type="submit" class="btn btn-{{$item->visible ? 'white' : 'gray'}}" title="{{trans('general.visibility')}}">
-                    <span class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></span>
-                </button>
+                {!! Form::open(['method' => 'post', 'url' => cms_route('pages.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
+                    <button type="submit" class="btn btn-{{$item->visible ? 'white' : 'gray'}}" title="{{trans('general.visibility')}}">
+                        <span class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></span>
+                    </button>
                 {!! Form::close() !!}
                 <a href="{{ cms_route('files.index', ['pages', $item->id]) }}" class="btn btn-{{$item->files_id ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
                     <span class="{{icon_type('files')}}"></span>

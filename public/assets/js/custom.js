@@ -181,7 +181,7 @@ $(function () {
                     var removeClass = 'btn-white';
                     var addClass = 'btn-gray';
                 }
-                item.removeClass(removeClass)
+                form.removeClass(removeClass)
                     .addClass(addClass)
                     .find('span')
                     .attr('class', icon);
