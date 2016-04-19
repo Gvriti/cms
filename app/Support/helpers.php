@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Database\Events\QueryExecuted;
 
 /**
@@ -48,39 +50,22 @@ function cms_is_booted()
 }
 
 /**
- * Get the Eloquent model name.
+ * Get the cms slug
  *
- * @param  string  $name
+ * @param  string  $path
  * @return string
  */
-function get_model_name($name)
+function cms_slug($path = null)
 {
-    return 'Models\\' . ucfirst(str_singular($name));
-}
-
-/**
- * Get a cms slug
- *
- * @param  bool|string  $language
- * @return string
- */
-function cms_slug($language = false)
-{
-    $slug = config('cms.slug');
-
-    if ($language === false) return $slug;
-
-    if (is_string($language)) {
-        $slug = $language . '/' . $slug;
-    } elseif (($language === true || language_isset()) && count(languages()) > 1) {
-        $slug = language() . '/' . $slug;
+    if (is_null($path)) {
+        return config('cms.slug');
     }
 
-    return $slug;
+    return config('cms.slug') . '/' . $path;
 }
 
 /**
- * Add the cms slug to the name of the resource route.
+ * Get the list of named resource.
  *
  * @param  string  $name
  * @return array
@@ -102,79 +87,107 @@ function resource_names($name)
  * Generate a CMS URL to a named route.
  *
  * @param  string  $name
- * @param  array   $parameters
+ * @param  mixed   $parameters
  * @param  string  $language
  * @param  bool    $absolute
- * @param  \Illuminate\Routing\Route  $route
  * @return string
  */
-function cms_route($name, $parameters = [], $language = null, $absolute = true, $route = null)
+function cms_route($name, $parameters = [], $language = null, $absolute = true)
 {
     try {
-        $route = route($name . '.' . cms_slug(), $parameters, $absolute, $route);
+        $route = route($name . '.' . cms_slug(), $parameters, $absolute);
     } catch (Exception $e) {
         return '#not-found';
     }
 
-    $route = prefix_language($route, $language);
-
-    return $route;
+    return add_language($route, $language);
 }
 
 /**
  * Generate a CMS URL.
  *
  * @param  string  $path
- * @param  mixed   $parameters
+ * @param  array   $parameters
  * @param  bool    $secure
  * @return string
  */
-function cms_url($path = null, $parameters = [], $language = null, $secure = null)
+function cms_url($path = null, array $parameters = [], $language = null, $secure = null)
 {
-    if (is_array($path)) {
-        $path = implode('/', array_filter($path));
-    }
-
-    $query = $parameters ? '?' . http_build_query((array) $parameters) : '';
-
-    $path = trim($path, '/');
-
-    return url(cms_slug($language) . '/' . $path, [], $secure) . $query;
+    return url(prefix_language(cms_slug($path), $language), [], $secure) . build_query($parameters);
 }
 
 /**
- * Generate a URL to a named route.
+ * Generate a Site URL to a named route.
  *
  * @param  string  $name
- * @param  array   $parameters
+ * @param  mixed   $parameters
  * @param  string  $language
  * @param  bool    $absolute
- * @param  \Illuminate\Routing\Route  $route
  * @return string
  */
-function site_route($name, $parameters = [], $language = null, $absolute = true, $route = null)
+function site_route($name, $parameters = [], $language = null, $absolute = true)
 {
     try {
-        $route = route($name, $parameters, $absolute, $route);
+        $route = route($name, $parameters, $absolute);
     } catch (Exception $e) {
         return '#not-found';
     }
 
-    $route = prefix_language($route, $language);
-
-    return $route;
+    return add_language($route, $language);
 }
 
 /**
  * Generate a Site URL.
  *
  * @param  string  $path
- * @param  mixed   $parameters
+ * @param  array   $parameters
  * @param  string  $language
  * @param  bool    $secure
  * @return string
  */
-function site_url($path = null, $parameters = [], $language = null, $secure = null)
+function site_url($path = null, array $parameters = [], $language = null, $secure = null)
+{
+    return url(prefix_language($path, $language), [], $secure) . build_query($parameters);
+}
+
+/**
+ * Build a query string from an array of key value pairs.
+ *
+ * @param  array  $parameters
+ * @param  mixed  $numericPrefix
+ * @return string
+ */
+function build_query(array $parameters, $numericPrefix = null)
+{
+    if (count($parameters) == 0) {
+        return '';
+    }
+
+    $query = http_build_query(
+        $keyed = empty($numericPrefix) ? Arr::where($parameters, function ($k) {
+            return is_string($k);
+        }) : $parameters, $numericPrefix
+    );
+
+    if (empty($numericPrefix) && count($keyed) < count($parameters)) {
+        $query .= '&'.implode(
+            '&', Arr::where($parameters, function ($k) {
+                return is_numeric($k);
+            })
+        );
+    }
+
+    return '?'.trim($query, '&');
+}
+
+/**
+ * Prefix language to the path.
+ *
+ * @param  string  $path
+ * @param  string  $language
+ * @return string
+ */
+function prefix_language($path, $language)
 {
     if (is_array($path)) {
         $path = implode('/', array_filter($path));
@@ -188,19 +201,17 @@ function site_url($path = null, $parameters = [], $language = null, $secure = nu
         $path = language() . '/' . $path;
     }
 
-    $query = $parameters ? '?' . http_build_query((array) $parameters) : '';
-
-    return url($path, [], $secure) . $query;
+    return $path;
 }
 
 /**
- * Prefix language to url.
+ * Add language to the url.
  *
  * @param  string  $url
  * @param  string  $language
  * @return string
  */
-function prefix_language($url, $language)
+function add_language($url, $language)
 {
     $languageList = languages();
 
@@ -227,6 +238,17 @@ function prefix_language($url, $language)
     }
 
     return $url;
+}
+
+/**
+ * Get the Eloquent model path.
+ *
+ * @param  string  $name
+ * @return string
+ */
+function model_path($name)
+{
+    return 'Models\\' . ucfirst(str_singular($name));
 }
 
 /**

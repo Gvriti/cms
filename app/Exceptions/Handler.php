@@ -63,7 +63,11 @@ class Handler extends ExceptionHandler
         $status = $e->getStatusCode();
 
         if ($this->request->ajax()) {
-            return response()->make(trans('http.' . $status), $status);
+            if (($trans = trans('http.' . $status)) !== 'http.' . $status) {
+                return response($trans, $status);
+            } else {
+                return response($e->getMessage(), $status);
+            }
         }
 
         if ($view = $this->getExceptionView($status, $e)) {
@@ -91,7 +95,11 @@ class Handler extends ExceptionHandler
                 );
             }
 
-            return response()->make(trans('http.' . $status), $status);
+            if (($trans = trans('http.' . $status)) !== 'http.' . $status) {
+                return response($trans, $status);
+            } else {
+                return response($e->getMessage(), $status);
+            }
         }
 
         if (! $debug && ! $viewChecked && ($view = $this->getExceptionView($status, $e))) {

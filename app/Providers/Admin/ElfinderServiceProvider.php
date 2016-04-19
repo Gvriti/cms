@@ -32,7 +32,7 @@ class ElfinderServiceProvider extends ServiceProvider
             $config = $this->app['config']->get('elfinder.route', []);
 
             if (isset($config['prefix'])) {
-                $config['prefix'] = cms_slug() . '/' .$config['prefix'];
+                $config['prefix'] = cms_slug($config['prefix']);
             }
 
             $config['namespace'] = 'Barryvdh\Elfinder';

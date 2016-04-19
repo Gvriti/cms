@@ -268,7 +268,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
             return;
         }
 
-        $implicitModel = get_model_name($page->type);
+        $implicitModel = model_path($page->type);
 
         $implicitModel = (new $implicitModel)->findOrFail($page->type_id);
 
@@ -301,7 +301,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
      */
     protected function setInnerAttachedTypeRoute($type, $id, $slug)
     {
-        $model = get_model_name($type);
+        $model = model_path($type);
 
         $model = (new $model);
 
