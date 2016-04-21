@@ -12,7 +12,7 @@ trait FileableTrait
      *
      * @return \Models\File
      */
-    public function file()
+    public function fileInstance()
     {
         return new File;
     }
@@ -20,18 +20,20 @@ trait FileableTrait
     /**
      * Get the model files.
      *
-     * @param  int  $id
-     * @return \Illuminate\Support\Collection|static[]
+     * @param  int|null  $id
+     * @param  string|null  $name
+     * @return \Illuminate\Support\Collection
      */
-    public function getFiles($id = null)
+    public function getFiles($id = null, $name = null)
     {
         $imageExt = ['png', 'jpg', 'jpeg', 'gif', 'bmp'];
 
-        $files = $this->file()->joinLanguages()
-                              ->byRoute($id ?: $this->id, $this->getTable())
-                              ->visible()
-                              ->positionDesc()
-                              ->get();
+        $files = $this->fileInstance()
+                        ->joinLanguages()
+                        ->byRoute($id ?: $this->id, $name ?: $this->getTable())
+                        ->visible()
+                        ->positionDesc()
+                        ->get();
 
         $images = $mixed = [];
 
@@ -64,7 +66,7 @@ trait FileableTrait
 
         $keyName = $this->getKeyName();
 
-        $fileTable = $this->file()->getTable();
+        $fileTable = $this->fileInstance()->getTable();
 
         return $this->leftJoin($fileTable, function ($join) use ($table, $keyName, $fileTable) {
             $join->on("{$table}.{$keyName}", '=', "route_id")
@@ -80,7 +82,7 @@ trait FileableTrait
      */
     public function hasFile($id)
     {
-        $file = $this->file()->where(['route_id' => $id, 'route_name' => $this->table])->first();
+        $file = $this->fileInstance()->where(['route_id' => $id, 'route_name' => $this->table])->first();
 
         return ! is_null($file);
     }
