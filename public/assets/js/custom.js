@@ -135,7 +135,7 @@ $(function () {
             error: function (xhr) {
                 form.trigger('ajaxFormError');
 
-                if (xhr.status == 422) {
+                if (xhr.responseJSON !== undefined) {
                     var data = xhr.responseJSON;
 
                     $.each(data, function (index, element) {

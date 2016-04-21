@@ -18,7 +18,7 @@ trait PageableTrait
         $column = $column ?: [
             'pages.parent_id',
             'pages.slug as parent_slug',
-            'page_languages.title as page_title'
+            'page_languages.title as parent_title'
         ];
 
         return $this->leftJoin('pages', $foreignKey, '=', 'type_id')

@@ -120,7 +120,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
                 $routeMatches = 0;
 
-                foreach ($this->router->getRoutes() as $route) {
+                foreach ($this->router->getRoutes()->get($this->request->method()) as $route) {
                     if ($route->matches($this->request)) {
                         $routeMatches = 1;
 
@@ -330,7 +330,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
         if ($this->segmentsLeftCount == 2) {
             if (array_key_exists($type, $this->tabs)
                 && (array_key_exists(
-                        $tabKey = $tab = end($this->segmentsLeft),
+                        $tabKey = $tab = (string) end($this->segmentsLeft),
                         $tabs = (array) $this->tabs[$type]
                     )
                     || is_int($tabKey = key($tabs))

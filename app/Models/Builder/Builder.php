@@ -260,6 +260,26 @@ class Builder extends EloquentBuilder
     }
 
     /**
+     * Add an "order by" created at asc clause to the query.
+     *
+     * @return \Models\Builder\Builder
+     */
+    public function createdAsc()
+    {
+        return $this->orderBy('created_at', 'asc');
+    }
+
+    /**
+     * Add an "order by" created at desc clause to the query.
+     *
+     * @return \Models\Builder\Builder
+     */
+    public function createdDesc()
+    {
+        return $this->orderBy('created_at', 'desc');
+    }
+
+    /**
      * Dynamically handle calls into the query or Eloquent model instance.
      *
      * @param  string  $method

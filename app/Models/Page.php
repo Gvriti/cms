@@ -84,9 +84,10 @@ class Page extends Model
     {
         $query = ! is_null($id) ? $this->menuId($id) : $this;
 
-        return $query->joinLanguages()->joinCollectionType()
-                                      ->joinFileId()
-                                      ->positionAsc();
+        return $query->joinLanguages()
+                    ->joinCollectionType()
+                    ->joinFileId()
+                    ->positionAsc();
     }
 
     /**
@@ -111,19 +112,15 @@ class Page extends Model
      */
     public function getBasePage($id = null, Closure $callback = null)
     {
-        $id = ($id ?: $this->parent_id);
-
-        $page = $this->where('id', $id)->forSite()->first();
-
-        if (! is_null($callback) && $callback($page)) {
-            return $page;
-        }
-
-        if (! $id || is_null($page)) {
+        if (! ($id = ($id ?: $this->parent_id))) {
             return $this;
         }
 
-        if (! $page->parent_id) {
+        if (is_null($page = $this->where('id', $id)->forSite()->first())) {
+            return $this;
+        }
+
+        if (! $page->parent_id || (! is_null($callback) && $callback($page))) {
             return $page;
         }
 
@@ -135,7 +132,7 @@ class Page extends Model
      *
      * @param  bool|int  $recursive
      * @param  int|null  $id
-     * @return \Illuminate\Support\Collection|static[]
+     * @return \Illuminate\Support\Collection
      */
     public function getSubPages($recursive = false, $id = null)
     {
@@ -165,11 +162,12 @@ class Page extends Model
      *
      * @param  bool|int  $recursive
      * @param  bool  $self
-     * @return \Illuminate\Support\Collection|static[]
+     * @param  bool  $firstLevel
+     * @return \Illuminate\Support\Collection
      */
-    public function getSiblingPages($recursive = false, $self = true)
+    public function getSiblingPages($recursive = false, $self = true, $firstLevel = false)
     {
-        if (! $this->parent_id) {
+        if (! $firstLevel && ! $this->parent_id) {
             return $this->newCollection();
         }
 
@@ -179,7 +177,10 @@ class Page extends Model
             $pages->where('id', '<>', (int) $this->id);
         }
 
-        $pages = $pages->parentId($this->parent_id)->positionAsc()->get();
+        $pages = $pages->parentId($this->parent_id)
+                        ->menuId($this->menu_id)
+                        ->positionAsc()
+                        ->get();
 
         if ($self && $pages->count() > 1) {
             return $recursive ? $pages->each(function ($item) use ($recursive) {
