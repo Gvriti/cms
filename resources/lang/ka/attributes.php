@@ -19,7 +19,7 @@ return [
     'content' => 'შიგთავსი',
 
     'name' => 'სახელი',
-    'fisrtname' => 'სახელი',
+    'firstname' => 'სახელი',
     'lastname' => 'გვარი',
     'email' => 'ელ.ფოსტა',
     'phone' => 'ტელეფონი',
