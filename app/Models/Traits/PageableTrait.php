@@ -9,23 +9,24 @@ trait PageableTrait
     /**
      * Add a "pages" join to the query.
      *
-     * @param  array|mixed  $column
+     * @param  string  $type
      * @param  string  $foreignKey
-     * @return \Digital\Repositories\Eloquent\EloquentBuilder
+     * @return \Models\Abstracts\Builder
      */
-    public function joinPage($column = null, $foreignKey = 'collection_id')
+    public function joinPage($type = 'left', $foreignKey = 'collection_id')
     {
-        $column = $column ?: [
-            'pages.parent_id',
-            'pages.slug as parent_slug',
-            'page_languages.title as parent_title'
-        ];
-
-        return $this->leftJoin('pages', $foreignKey, '=', 'type_id')
-                    ->join('page_languages', function ($query) {
-                        $query->on('pages.id', '=', 'page_id')
-                              ->where('page_languages.language', '=', language());
-                    })->addSelect($column);
+        return $this->join('pages', $foreignKey, '=', 'type_id', $type)
+                    ->leftjoin('page_languages', function ($q) {
+                        $q->on('page_languages.page_id', '=', 'pages.id')
+                            ->where(function ($q) {
+                                return $q->where('page_languages.language', '=', language())
+                                        ->orWhereNull('page_languages.language');
+                            });
+                    })->addSelect([
+                        'pages.parent_id',
+                        'pages.slug as parent_slug',
+                        'page_languages.title as parent_title'
+                    ]);
     }
 
     /**

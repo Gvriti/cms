@@ -298,7 +298,8 @@ class Page extends Model
             $this->getTable() . '.*'
         ];
 
-        return $this->leftJoin($table, 'type_id')->addSelect($columns);
+        return $this->leftJoin($table, 'type_id', '=', $table . '.id')
+                    ->addSelect($columns);
     }
 
     /**

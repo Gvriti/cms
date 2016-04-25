@@ -87,7 +87,7 @@ class Builder extends EloquentBuilder
      * Execute the query as a "select" statement or throw an exception.
      *
      * @param  array  $columns
-     * @return \Illuminate\Support\Collection|static[]
+     * @return \Illuminate\Support\Collection
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
@@ -190,6 +190,8 @@ class Builder extends EloquentBuilder
                         $clauses = $value->clauses;
 
                         foreach ($clauses as $key => $clause) {
+                            if ($clause['nested']) continue;
+
                             if (is_null($clause['operator'])) {
                                 $value->clauses[$key]['operator'] = "=";
                             }
@@ -198,14 +200,12 @@ class Builder extends EloquentBuilder
                                 $value->clauses[$key]['first'] = "{$query->from}.{$first}";
                             }
 
-                            if (! is_object($second = $value->clauses[$key]['second'])
+                            if (is_string($second = $value->clauses[$key]['second'])
                                 && strpos($second, '.') === false
                             ) {
-                                if (is_null($second)) {
-                                    $value->clauses[$key]['second'] = "{$value->table}.id";
-                                } else {
-                                    $value->clauses[$key]['second'] = "{$value->table}.{$second}";
-                                }
+                                $value->clauses[$key]['second'] = "{$value->table}.{$second}";
+                            } elseif (is_null($second)) {
+                                $value->clauses[$key]['second'] = "{$value->table}.id";
                             }
                         }
                     } elseif (is_string($value) && $value == 'id') {

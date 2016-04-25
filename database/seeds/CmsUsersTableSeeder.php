@@ -20,7 +20,7 @@ class CmsUsersTableSeeder extends DatabaseSeeder
                 'lastname'   => 'Gvritishvili',
                 'role'       => 'admin',
                 'active'     => 1,
-                'password'   => '$2a$10$EPz1yOC.C5aLDXl3o3E0p.ybr1wBJAyWWkCETPRPM/mJ1fL03aY8K',
+                'password'   => '$2y$10$Z32s522b8mcksnaar80/k.sRjTvaxnLiUq87eOxtBi4ZbGYVpe/p2',
                 'created_at' => $currentDate
             ]
         ]);

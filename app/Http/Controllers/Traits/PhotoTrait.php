@@ -17,7 +17,7 @@ trait PhotoTrait
      */
     public function getPhoto($id = null, $path = null)
     {
-        if ($this->user instanceof User) {
+        if (isset($this->user) && $this->user instanceof User) {
             $id = $this->user->id;
 
             $path = $this->user->getTable();

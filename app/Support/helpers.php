@@ -509,7 +509,7 @@ function glide($path, $type, $crop = null)
  * @param  int  $precision
  * @return string
  */
-function formatBytes($bytes, $precision = 2)
+function format_bytes($bytes, $precision = 2)
 {
     $units = ['B', 'KB', 'MB', 'GB', 'TB'];
 
