@@ -160,6 +160,9 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .notes-env .list-of-notes li .addon-buttons button {float:left;border:none;background:0 0;outline:0;background:#f5f5f5;border:1px solid #e0e0e0;border-top:0;border-right:0;zoom:1;-webkit-opacity:0;-moz-opacity:0;opacity:0;-ms-filter:alpha(Opacity=0);filter:alpha(opacity=0)}
 .notes-env .list-of-notes li:hover .addon-buttons button {zoom:1;-webkit-opacity:1;-moz-opacity:1;opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(opacity=100)}
 
+/* icheck red checkbox */
+.permissions .icheckbox_square-red {background:url('../js/icheck/skins/square/red-x.png') no-repeat;}
+
 /*** OVERRIDE ThirdPartyPlugins ***/
 
 /* datatables & yadcf-filter */

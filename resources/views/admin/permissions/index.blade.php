@@ -51,7 +51,7 @@
             </div>
         </div>
     </div>
-    <div class="member-form-inputs">
+    <div class="member-form-inputs permissions">
     @foreach ($routes as $group => $route)
         <div class="panel panel-default clearfix">
             <div class="panel-heading">
