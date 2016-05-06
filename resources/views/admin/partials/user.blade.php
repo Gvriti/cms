@@ -9,15 +9,15 @@
     <li class="dropdown hover-line">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-calendar"></i>
-      @if (($calendarEventsCount = count($calendarEvents)) > 0)
-        <span class="badge badge-orange">{{$calendarEventsCount}}</span>
+      @if ($countCalendarEvents = count($calendarEvents))
+        <span class="badge badge-orange">{{$countCalendarEvents}}</span>
       @endif
       </a>
-    @if ($calendarEventsCount)
+    @if ($countCalendarEvents)
       <ul class="dropdown-menu notifications">
         <li class="top">
           <p class="small">
-            You have <strong>{{$calendarEventsCount}}</strong> upcoming event{{$calendarEventsCount > 1 ? 's' : ''}}.
+            You have <strong>{{$countCalendarEvents}}</strong> upcoming event{{$countCalendarEvents > 1 ? 's' : ''}}.
           </p>
         </li>
         <li>
@@ -52,7 +52,6 @@
     @endif
     </li>
     @if (count($languages) > 1)
-    <!-- Added in v1.2 -->
     <li class="dropdown hover-line language-switcher">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <img src="{{ asset('assets/images/flags/flag-'.language().'.png') }}" alt="flag-{{language()}}" />

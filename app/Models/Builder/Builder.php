@@ -210,7 +210,10 @@ class Builder extends EloquentBuilder
                         }
                     } elseif (is_string($value) && $value == 'id') {
                         $query->{$bindings[$i] . 's'}[$key] = $query->from . '.' . $value;
-                    } elseif (isset($value['column']) && strpos($value['column'], '.') === false) {
+                    } elseif (is_array($value)
+                            && isset($value['column'])
+                            && strpos($value['column'], '.') === false
+                        ) {
                         $columns = array_merge(
                             array_values($this->model->getFillable()),
                             array_values($this->model->getDates())

@@ -41,7 +41,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $uriPrefix;
+    protected $uriPrefix = '/';
 
     /**
      * The list of URL segments.

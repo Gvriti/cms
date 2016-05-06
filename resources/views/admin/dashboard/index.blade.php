@@ -223,6 +223,5 @@
         </div>
     </div>
 </div>
-<!-- Imported scripts on this page -->
 <script src="{{asset('assets/js/xenon-widgets.js')}}"></script>
 @endsection

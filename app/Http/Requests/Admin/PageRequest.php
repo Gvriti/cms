@@ -54,11 +54,11 @@ class PageRequest extends Request
             $input['slug'] = (new Slugify)->slugify($this->get('title'));
         }
 
-        if (! array_key_exists($this->get('type'), cms_pages('types'))) {
+        if (! array_key_exists($type = $this->get('type'), cms_pages('types'))) {
             $input['type'] = null;
         }
 
-        if (! in_array($input['type'], cms_pages('attached'))) {
+        if (! in_array($type, cms_pages('attached'))) {
             $input['type_id'] = 0;
         }
 

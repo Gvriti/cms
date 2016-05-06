@@ -171,21 +171,19 @@ $(function () {
         var form = $(this);
 
         $.post(form.attr('action'), form.serialize(), function (data) {
-            if (data) {
-                if (data.visible) {
-                    var icon = 'fa-eye';
-                    var removeClass = 'btn-gray';
-                    var addClass = 'btn-white';
-                } else {
-                    var icon = 'fa-eye-slash';
-                    var removeClass = 'btn-white';
-                    var addClass = 'btn-gray';
-                }
-                form.removeClass(removeClass)
-                    .addClass(addClass)
-                    .find('span')
-                    .attr('class', icon);
+            if (data.visible) {
+                var icon = 'fa fa-eye';
+                var removeClass = 'btn-gray';
+                var addClass = 'btn-white';
+            } else {
+                var icon = 'fa fa-eye-slash';
+                var removeClass = 'btn-white';
+                var addClass = 'btn-gray';
             }
+            form.removeClass(removeClass)
+                .addClass(addClass)
+                .find('span')
+                .attr('class', icon);
         }, 'json').fail(function (xhr) {
             alert(xhr.responseText);
         });

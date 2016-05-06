@@ -29,7 +29,7 @@ trait VisibilityTrait
         }
 
         if ($request->ajax() || $request->wantsJson()) {
-            return response()->json(['visible' => $visible]);
+            return response()->json($visible);
         }
 
         return redirect()->back();
