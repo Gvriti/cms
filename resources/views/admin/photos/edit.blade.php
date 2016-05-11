@@ -73,32 +73,32 @@
         @endif
         </div>
     </div>
-    <script type="text/javascript">
-        var currentLang = '{{language()}}';
-        var formSelector = '#form-modal .ajax-form';
-        $(formSelector).on('ajaxFormSuccess', function(e) {
-            var lang = $(this).data('lang');
-            if (lang == currentLang) {
-                var item = $(formSelector + '[data-lang="'+lang+'"]');
-
-                var title   = $('[name="title"]', item).val();
-                var file    = $('[name="file"]', item).val();
-                var visible = $('[name="visible"]', item).prop('checked');
-
-                var item = $('.gallery-env #item{{$item->id}}');
-                $('[name="title"]', item).text(title);
-                $('.thumb img', item).attr('src', file);
-
-                var icon = visible ? 'fa-eye' : 'fa-eye-slash'
-                $('.visibility i', item).attr('class', icon);
-            }
-        });
-
-        $(formSelector + ' [name="file"]').on('fileSet', function(e) {
-            var fileId    = $(this).attr('id');
-            var fileValue = $(this).val();
-            $('#form-modal .' + fileId).attr('src', fileValue);
-        });
-    </script>
 </div>
+<script type="text/javascript">
+    var currentLang = '{{language()}}';
+    var formSelector = '#form-modal .ajax-form';
+    $(formSelector).on('ajaxFormSuccess', function(e) {
+        var lang = $(this).data('lang');
+        if (lang == currentLang) {
+            var item = $(formSelector + '[data-lang="'+lang+'"]');
+
+            var title   = $('[name="title"]', item).val();
+            var file    = $('[name="file"]', item).val();
+            var visible = $('[name="visible"]', item).prop('checked');
+
+            var item = $('.gallery-env #item{{$item->id}}');
+            $('[name="title"]', item).text(title);
+            $('.thumb img', item).attr('src', file);
+
+            var icon = visible ? 'fa-eye' : 'fa-eye-slash'
+            $('.visibility i', item).attr('class', icon);
+        }
+    });
+
+    $(formSelector + ' [name="file"]').on('fileSet', function(e) {
+        var fileId    = $(this).attr('id');
+        var fileValue = $(this).val();
+        $('#form-modal .' + fileId).attr('src', fileValue);
+    });
+</script>
 @endif

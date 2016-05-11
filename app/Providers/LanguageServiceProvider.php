@@ -22,10 +22,10 @@ class LanguageServiceProvider extends ServiceProvider
         $languages = $this->makeLanguageUrls($request, $config);
 
         view()->composer([
-            'admin.partials.user',
-            'admin.partials.horizontal_menu',
-            'site.partials.head',
-            'site.partials.header'
+            'admin._partials.user',
+            'admin._partials.horizontal_menu',
+            'site._partials.head',
+            'site._partials.header'
         ], function($view) use ($languages) {
             $view->with('languages', $languages);
         });

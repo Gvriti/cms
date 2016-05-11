@@ -84,7 +84,10 @@
         </div>
     </div>
 {!! Form::close() !!}
+@push('styles.head')
 <link rel="stylesheet" href="{{ asset('assets/js/icheck/skins/all.css') }}">
+@endpush
+@push('scripts.bottom')
 <script src="{{ asset('assets/js/icheck/icheck.min.js') }}"></script>
 <script type="text/javascript">
 $(function() {
@@ -124,4 +127,5 @@ $(function() {
     });
 })
 </script>
+@endpush
 @endsection

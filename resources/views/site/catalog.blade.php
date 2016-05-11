@@ -2,7 +2,7 @@
 @section('content')
 <div id="breadcrumb">
     <div class="container">
-        @include('site.partials.breadcrumb')
+        @include('site._partials.breadcrumb')
     </div>
     <!-- .container -->
 </div>

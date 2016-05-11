@@ -53,7 +53,7 @@ class SiteBreadcrumbEventListener
     {
         $events->listen([
                 'composing: site.app',
-                'composing: site.partials.breadcrumb',
+                'composing: site._partials.breadcrumb',
             ],
             'App\Listeners\Site\SiteBreadcrumbEventListener@onBreadcrumbComposer'
         );

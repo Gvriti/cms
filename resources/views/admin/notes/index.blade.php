@@ -60,9 +60,8 @@
         </div>
     </div>
 </div>
-<!-- Imported scripts on this page -->
+@push('scripts.bottom')
 <script src="{{ asset('assets/js/min/xenon-notes-min.js') }}"></script>
-
 <script type="text/javascript">
 $(function() {
     var id,
@@ -136,4 +135,5 @@ $(function() {
     });
 });
 </script>
+@endpush
 @endsection

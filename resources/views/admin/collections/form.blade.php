@@ -172,6 +172,7 @@
         </a>
     </div>
 </div>
+@push('scripts.bottom')
 <script type="text/javascript">
 $(function() {
     $('.select').select2({
@@ -183,10 +184,7 @@ $(function() {
     });
 });
 </script>
-
-<!-- Imported styles on this page -->
 <link rel="stylesheet" href="{{ asset('assets/js/select2/select2.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/js/select2/select2-bootstrap.css') }}">
-
-<!-- Imported scripts on this page -->
 <script src="{{ asset('assets/js/select2/select2.min.js') }}"></script>
+@endpush

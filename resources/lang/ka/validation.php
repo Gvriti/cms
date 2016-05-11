@@ -35,6 +35,7 @@ return [
     'different'            => 'The :attribute and :other must be different.',
     'digits'               => ':attribute უნდა შედგებოდეს :digits ციფრისგან.',
     'digits_between'       => ':attribute უნდა შეიცავდეს ციფრებს :min-დან :max-მდე.',
+    'dimensions'           => ':attribute არის არასწორი ზომის.',
     'distinct'             => 'The :attribute field has a duplicate value.',
     'email'                => ':attribute შეყვანილია არასწორი ფორმატით.',
     'exists'               => 'The selected :attribute is invalid.',

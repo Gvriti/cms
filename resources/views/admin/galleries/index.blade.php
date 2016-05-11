@@ -107,7 +107,8 @@
         </ul>
     </div>
 </div>
-@include('admin.scripts.move', ['route' => cms_route('galleries.move', [$parent->id]), 'column' => 'collection_id', 'list' => $similarTypes, 'parentId' => $parent->id])
+@push('scripts.bottom')
+@include('admin._scripts.move', ['route' => cms_route('galleries.move', [$parent->id]), 'column' => 'collection_id', 'list' => $similarTypes, 'parentId' => $parent->id])
 <script type="text/javascript">
 $(function() {
 @if ($parent->admin_order_by == 'position')
@@ -115,7 +116,7 @@ $(function() {
 @endif
 });
 </script>
-<!-- Imported scripts on this page -->
 <script src="{{ asset('assets/js/uikit/js/uikit.min.js') }}"></script>
 <script src="{{ asset('assets/js/uikit/js/addons/nestable.min.js') }}"></script>
+@endpush
 @endsection

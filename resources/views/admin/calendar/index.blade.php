@@ -50,7 +50,6 @@
         </div>
     </div>
 </section>
-<!-- Small modal -->
 <div id="event-modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -83,15 +82,13 @@
         </form>
     </div>
 </div>
-
-<!-- Imported styles on this page -->
+@push('styles.head')
 <link rel="stylesheet" href="{{asset('assets/js/fullcalendar/fullcalendar.min.css')}}">
-
-<!-- Imported scripts on this page -->
+@endpush
+@push('scripts.bottom')
 <script src="{{asset('assets/js/moment.min.js')}}"></script>
 <script src="{{asset('assets/js/fullcalendar/fullcalendar.min.js')}}"></script>
 <script src="{{asset('assets/js/jquery-ui/jquery-ui.min.js')}}"></script>
-
 <script type="text/javascript">
 // Calendar Initialization
 $(document).ready(function($) {
@@ -320,4 +317,5 @@ $(document).ready(function($) {
     }
 });
 </script>
+@endpush
 @endsection

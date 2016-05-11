@@ -97,7 +97,8 @@
         </div>
     </div>
 </div>
-@include('admin.scripts.move', ['route' => cms_route('pages.move', [$menu->id]), 'column' => 'menu_id', 'list' => $menus, 'id' => $menu->id, 'recursive' => true])
+@push('scripts.bottom')
+@include('admin._scripts.move', ['route' => cms_route('pages.move', [$menu->id]), 'column' => 'menu_id', 'list' => $menus, 'id' => $menu->id, 'recursive' => true])
 <script type="text/javascript">
 $(function() {
     positionable('{{ cms_route('pages.updatePosition') }}');
@@ -118,7 +119,7 @@ $(function() {
     });
 });
 </script>
-<!-- Imported scripts on this page -->
 <script src="{{ asset('assets/js/uikit/js/uikit.min.js') }}"></script>
 <script src="{{ asset('assets/js/uikit/js/addons/nestable.min.js') }}"></script>
+@endpush
 @endsection

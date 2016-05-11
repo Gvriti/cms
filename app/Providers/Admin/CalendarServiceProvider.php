@@ -23,8 +23,8 @@ class CalendarServiceProvider extends ServiceProvider
             $calendar = (new Calendar)->getActive($start, $end);
 
             view()->composer([
-                'admin.partials.user',
-                'admin.partials.horizontal_menu',
+                'admin._partials.user',
+                'admin._partials.horizontal_menu',
                 'admin.dashboard.index'
             ], function($view) use ($calendar) {
                 $view->with('calendarEvents', $calendar);

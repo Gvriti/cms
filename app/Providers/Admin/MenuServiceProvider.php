@@ -20,8 +20,8 @@ class MenuServiceProvider extends ServiceProvider
             $menus = (new Menu)->get();
 
             view()->composer([
-                'admin.partials.sidebar_menu',
-                'admin.partials.horizontal_menu',
+                'admin._partials.sidebar_menu',
+                'admin._partials.horizontal_menu',
                 'admin.menus.index',
                 'admin.pages.index'
             ], function($view) use ($menus) {

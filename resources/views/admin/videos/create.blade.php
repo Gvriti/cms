@@ -46,6 +46,7 @@
         </div>
     </div>
 </div>
+@push('scripts.bottom')
 <script type="text/javascript">
     var sort = '{{request('sort', 'desc')}}';
     var currentPage = {{request('page', 1)}};
@@ -90,4 +91,5 @@
         });
     });
 </script>
+@endpush
 @endif

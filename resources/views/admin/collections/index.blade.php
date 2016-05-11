@@ -76,6 +76,7 @@
         </table>
     </div>
 </div>
+@push('scripts.bottom')
 <script type="text/javascript">
 $(function() {
     var table = $('#items');
@@ -96,7 +97,6 @@ $(function() {
 @endif
 });
 </script>
-
-<!-- Imported scripts on this page -->
 <script src="{{ asset('assets/js/datatables/yadcf/jquery.dataTables.yadcf.js') }}"></script>
+@endpush
 @endsection

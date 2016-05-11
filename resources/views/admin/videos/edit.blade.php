@@ -68,27 +68,29 @@
         @endif
         </div>
     </div>
-    <script type="text/javascript">
-        var currentLang = '{{language()}}';
-        var formSelector = '#form-modal .ajax-form';
-        $(formSelector).on('ajaxFormSuccess', function(e, data) {
-            var lang = $(this).data('lang');
-            if (lang == currentLang) {
-                var item = $(formSelector + '[data-lang="'+lang+'"]');
-
-                var title   = $('[name="title"]', item).val();
-                var file    = $('[name="file"]', item).val();
-                var visible = $('[name="visible"]', item).prop('checked');
-
-                var item = $('.gallery-env #item{{$item->id}}');
-                $('[name="title"]', item).text(title);
-                $('.thumb iframe', item).attr('src', data.youtube);
-                $('#form-modal iframe').attr('src', data.youtube);
-
-                var icon = visible ? 'fa-eye' : 'fa-eye-slash'
-                $('.visibility i', item).attr('class', icon);
-            }
-        });
-    </script>
 </div>
+@push('scripts.bottom')
+<script type="text/javascript">
+    var currentLang = '{{language()}}';
+    var formSelector = '#form-modal .ajax-form';
+    $(formSelector).on('ajaxFormSuccess', function(e, data) {
+        var lang = $(this).data('lang');
+        if (lang == currentLang) {
+            var item = $(formSelector + '[data-lang="'+lang+'"]');
+
+            var title   = $('[name="title"]', item).val();
+            var file    = $('[name="file"]', item).val();
+            var visible = $('[name="visible"]', item).prop('checked');
+
+            var item = $('.gallery-env #item{{$item->id}}');
+            $('[name="title"]', item).text(title);
+            $('.thumb iframe', item).attr('src', data.youtube);
+            $('#form-modal iframe').attr('src', data.youtube);
+
+            var icon = visible ? 'fa-eye' : 'fa-eye-slash'
+            $('.visibility i', item).attr('class', icon);
+        }
+    });
+</script>
+@endpush
 @endif

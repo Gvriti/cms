@@ -125,6 +125,7 @@
         </div>
     </div>
 </section>
+@push('scripts.bottom')
 <script type="text/javascript">
 $(function() {
     var routeCreate = '{!!cms_route('photos.create', [$collection->id, 'sort' => $collection->admin_sort, 'page' => $items->currentPage(), 'lastPage' => $items->lastPage()])!!}';
@@ -133,14 +134,11 @@ $(function() {
     var sort = '{{$collection->admin_sort}}';
     var page = {{request('page', 1)}};
     var hasMorePages = '{{$items->hasMorePages()}}';
-    @include('admin.scripts.album')
+    @include('admin._scripts.album')
 });
 </script>
-
-<!-- Imported scripts on this page -->
 <script src="{{ asset('assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
-
-<!-- Imported scripts on this page -->
 <script src="{{ asset('assets/js/uikit/js/uikit.min.js') }}"></script>
 <script src="{{ asset('assets/js/uikit/js/addons/nestable.min.js') }}"></script>
+@endpush
 @endsection

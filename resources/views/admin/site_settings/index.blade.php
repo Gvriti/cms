@@ -69,12 +69,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">Googleplus page:</label>
+                <label class="col-sm-3 control-label">Google Plus page:</label>
                 <div class="col-sm-5">
                     {!! Form::text('googleplus', $siteSettings->googleplus, [
                         'class' => 'form-control',
                     ]) !!}
-                    <span class="description">Google plus page url.</span>
+                    <span class="description">Google Plus page url.</span>
                 </div>
             </div>
             <div class="form-group">
@@ -100,14 +100,12 @@
     {!! Form::close() !!}
 @endif
 </div>
-
-<!-- Imported styles on this page -->
+@push('styles.head')
 <link rel="stylesheet" href="{{ asset('assets/js/select2/select2.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/js/select2/select2-bootstrap.css') }}">
-
-<!-- Imported scripts on this page -->
+@endpush
+@push('scripts.bottom')
 <script src="{{ asset('assets/js/select2/select2.min.js') }}"></script>
-
 <script type="text/javascript">
 $(function() {
     $('.select').select2({
@@ -119,4 +117,5 @@ $(function() {
     });
 });
 </script>
+@endpush
 @endsection

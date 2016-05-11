@@ -92,8 +92,8 @@ class SiteCurrentPageEventListener
     public function subscribe($events)
     {
         $events->listen([
-                'composing: site.partials.head',
-                'composing: site.partials.pages',
+                'composing: site._partials.head',
+                'composing: site._partials.pages',
             ],
             'App\Listeners\Site\SiteCurrentPageEventListener@onCurrentPageComposer'
         );

@@ -62,6 +62,7 @@
         {!! Form::close() !!}
     </div>
 </div>
+@push('scripts.bottom')
 <script type="text/javascript">
 $(function() {
     $('.ajax-form').on('ajaxFormSuccess', function() {
@@ -84,4 +85,5 @@ $(function() {
     });
 });
 </script>
+@endpush
 @endsection

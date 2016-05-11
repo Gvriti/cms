@@ -75,6 +75,7 @@
         </table>
     </div>
 </div>
+@push('scripts.bottom')
 <script type="text/javascript">
 $('#items').on('click', '.cbr-radio', function() {
     var id = $(this).find('input').data('id');
@@ -85,4 +86,5 @@ $('#items').on('click', '.cbr-radio', function() {
     });
 });
 </script>
+@endpush
 @endsection

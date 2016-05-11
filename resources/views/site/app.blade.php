@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{language()}}">
 <head>
-@include('site.partials.head')
+@include('site._partials.head')
 </head>
 <body>
 <div id="root">
-    @include('site.partials.header')
+    @include('site._partials.header')
     <main id="main">
         <div id="content">
             @yield('content')
@@ -15,6 +15,6 @@
     <!-- #main -->
 </div>
 <!-- #root -->
-@include('site.partials.footer')
+@include('site._partials.footer')
 </body>
 </html>

@@ -14,7 +14,7 @@
             </div>
             <!-- .navbar-header -->
             <div id="navbar" class="navbar-collapse collapse">
-                @include('site.partials.pages')
+                @include('site._partials.pages')
             @if (! empty($languages))
                 <ul class="nav navbar-nav navbar-right">
                 @foreach ($languages as $key => $value)

@@ -145,3 +145,4 @@ function csrf_token() {
     return '{{csrf_token()}}';
 }
 </script>
+@stack('scripts.bottom')

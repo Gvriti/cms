@@ -46,7 +46,7 @@ galleryEnv.on('click', 'a[data-modal]', function(e) {
     }
 });
 
-// on hide modal event
+// Modal hidden event listener
 galleryEnv.on('hidden.bs.modal', '#form-modal', function () {
     if (multiselect.length) {
         $('#item'+multiselect[0]+' .thumb[data-modal="edit"]').trigger('click');
@@ -99,7 +99,7 @@ galleryEnv.on('click', '.visibility', function(e) {
 
     var input = {'_token':csrf_token()};
     $.post(url, input, function(data) {
-        if (data.visible) {
+        if (data) {
             value = 1;
             var icon = 'fa-eye';
         } else {

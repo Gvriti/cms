@@ -14,5 +14,5 @@
             {!! Form::close() !!}
         </div>
     </div>
-@include('admin.translations.modal.scripts')
+    @include('admin.translations.modal.scripts')
 </div>

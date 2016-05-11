@@ -41,7 +41,7 @@ $(function () {
     });
 
     // Delete form
-    $('.form-delete').on('submit', function (e) {
+    $(document).on('submit', '.form-delete', function (e) {
         e.preventDefault();
         var perform = confirm('Are you sure you want to delete?');
         if (perform != true) return;
@@ -49,12 +49,11 @@ $(function () {
         var formId = $(this).data('id');
         var btn = form.find('[type="submit"]').prop('disabled', true);
 
-        var input = form.serialize();
         $.ajax({
             type: 'POST',
             url: form.attr('action'),
             dataType: 'json',
-            data: input,
+            data: form.serialize(),
             success: function (data, status, xhr) {
                 if (data) {
                     // alert toastr message
@@ -71,13 +70,12 @@ $(function () {
                         });
                     }
                 }
-
-                btn.prop('disabled', false);
             },
             error: function (xhr) {
-                btn.prop('disabled', false);
-
                 alert(xhr.responseText);
+            },
+            complete: function () {
+                btn.prop('disabled', false);
             }
         });
     });
@@ -171,7 +169,7 @@ $(function () {
         var form = $(this);
 
         $.post(form.attr('action'), form.serialize(), function (data) {
-            if (data.visible) {
+            if (data) {
                 var icon = 'fa fa-eye';
                 var removeClass = 'btn-gray';
                 var addClass = 'btn-white';

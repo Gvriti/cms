@@ -433,14 +433,12 @@
         {!! Form::close() !!}
     </div>
 </div>
-
-<!-- Imported styles on this page -->
+@push('styles.head')
 <link rel="stylesheet" href="{{ asset('assets/js/select2/select2.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/js/select2/select2-bootstrap.css') }}">
-
-<!-- Imported scripts on this page -->
+@endpush
+@push('scripts.bottom')
 <script src="{{ asset('assets/js/select2/select2.min.js') }}"></script>
-
 <script type="text/javascript">
 $(function() {
     $('.select').select2({
@@ -531,4 +529,5 @@ $(function() {
     });
 });
 </script>
+@endpush
 @endsection

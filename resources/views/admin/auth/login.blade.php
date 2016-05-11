@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/xenon-forms.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/xenon-components.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/xenon-skins.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/icheck/skins/all.css') }}">
     <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -65,8 +66,6 @@
             </div>
         </div>
     </div>
-<link rel="stylesheet" href="{{ asset('assets/js/icheck/skins/all.css') }}">
-
 <script src="{{ asset('assets/js/jquery-validate/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('assets/js/icheck/icheck.min.js') }}"></script>
 <script type="text/javascript">

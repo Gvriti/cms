@@ -78,53 +78,53 @@
         @endif
         </div>
     </div>
-    <script type="text/javascript">
-        var currentLang = '{{language()}}';
-        var formSelector = '#form-modal .ajax-form';
-        $(formSelector).on('ajaxFormSuccess', function(e) {
-            var lang = $(this).data('lang');
-            if (lang == currentLang) {
-                var item = $(formSelector + '[data-lang="'+lang+'"]');
-
-                var title   = $('[name="title"]', item).val();
-                var file    = $('[name="file"]', item).val();
-                var visible = $('[name="visible"]', item).prop('checked');
-
-                var item = $('.gallery-env #item{{$item->id}}');
-                $('[name="title"]', item).text(title);
-                $('.thumb img', item).attr('src', getFileImage(file).file);
-
-                var icon = visible ? 'fa-eye' : 'fa-eye-slash'
-                $('.visibility i', item).attr('class', icon);
-            }
-        });
-
-        $(formSelector + ' [name="file"]').on('fileSet', function(e) {
-            var fileId    = $(this).attr('id');
-            var fileValue = $(this).val();
-            var result = getFileImage(fileValue);
-
-            $('#form-modal .' + fileId).removeClass('not-photo');
-            if (! result.isPhoto) {
-                $('#form-modal .' + fileId).addClass('not-photo');
-            }
-            $('#form-modal .' + fileId).attr('src', result.file);
-        });
-
-        function getFileImage(file) {
-            var fileExt = file.substr((~-file.lastIndexOf(".") >>> 0) + 2);
-            var result = {'file':file, 'isPhoto':true};
-            if (fileExt.length && ['jpg', 'jpeg', 'png', 'gif'].indexOf(fileExt) < 0) {
-                file = '{{asset('assets/images/file-ext-icons')}}/' + fileExt + '.png';
-                result.isPhoto = false;
-            } else if (! fileExt.length) {
-                file = '{{asset('assets/images/file-ext-icons/www.png')}}';
-                result.isPhoto = false;
-            }
-            result.file = file;
-
-            return result;
-        }
-    </script>
 </div>
+<script type="text/javascript">
+    var currentLang = '{{language()}}';
+    var formSelector = '#form-modal .ajax-form';
+    $(formSelector).on('ajaxFormSuccess', function(e) {
+        var lang = $(this).data('lang');
+        if (lang == currentLang) {
+            var item = $(formSelector + '[data-lang="'+lang+'"]');
+
+            var title   = $('[name="title"]', item).val();
+            var file    = $('[name="file"]', item).val();
+            var visible = $('[name="visible"]', item).prop('checked');
+
+            var item = $('.gallery-env #item{{$item->id}}');
+            $('[name="title"]', item).text(title);
+            $('.thumb img', item).attr('src', getFileImage(file).file);
+
+            var icon = visible ? 'fa-eye' : 'fa-eye-slash'
+            $('.visibility i', item).attr('class', icon);
+        }
+    });
+
+    $(formSelector + ' [name="file"]').on('fileSet', function(e) {
+        var fileId    = $(this).attr('id');
+        var fileValue = $(this).val();
+        var result = getFileImage(fileValue);
+
+        $('#form-modal .' + fileId).removeClass('not-photo');
+        if (! result.isPhoto) {
+            $('#form-modal .' + fileId).addClass('not-photo');
+        }
+        $('#form-modal .' + fileId).attr('src', result.file);
+    });
+
+    function getFileImage(file) {
+        var fileExt = file.substr((~-file.lastIndexOf(".") >>> 0) + 2);
+        var result = {'file':file, 'isPhoto':true};
+        if (fileExt.length && ['jpg', 'jpeg', 'png', 'gif'].indexOf(fileExt) < 0) {
+            file = '{{asset('assets/images/file-ext-icons')}}/' + fileExt + '.png';
+            result.isPhoto = false;
+        } else if (! fileExt.length) {
+            file = '{{asset('assets/images/file-ext-icons/www.png')}}';
+            result.isPhoto = false;
+        }
+        result.file = file;
+
+        return result;
+    }
+</script>
 @endif
