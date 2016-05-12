@@ -18,7 +18,7 @@ class CreateSiteSettingsTable extends Migration
             $table->string('phone', 32)->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
-            $table->string('googleplus')->nullable();
+            $table->string('google_plus')->nullable();
             $table->string('map', 800)->nullable();
             $table->timestamps();
         });

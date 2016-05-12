@@ -71,7 +71,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">Google Plus page:</label>
                 <div class="col-sm-5">
-                    {!! Form::text('googleplus', $siteSettings->googleplus, [
+                    {!! Form::text('google_plus', $siteSettings->google_plus, [
                         'class' => 'form-control',
                     ]) !!}
                     <span class="description">Google Plus page url.</span>

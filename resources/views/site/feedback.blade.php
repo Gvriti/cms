@@ -33,7 +33,9 @@
                         <div class="form-group">
                             {!! Form::text('name', null, [
                                 'class' => 'form-control',
-                                'placeholder' => $trans->get('name')
+                                'placeholder' => $trans->get('name', 'სახელი'),
+                                'data-trans' => 'name',
+                                'data-trans-attr' => 'placeholder',
                             ]) !!}
                             @if ($error = $errors->first('name'))
                             <div class="text-danger">{{$error}}</div>
@@ -43,7 +45,9 @@
                         <div class="form-group">
                             {!! Form::text('email', null, [
                                 'class' => 'form-control',
-                                'placeholder' => $trans->get('email')
+                                'placeholder' => $trans->get('email', 'ელ.ფოსტა'),
+                                'data-trans' => 'email',
+                                'data-trans-attr' => 'placeholder',
                             ]) !!}
                             @if ($error = $errors->first('email'))
                             <div class="text-danger">{{$error}}</div>
@@ -53,7 +57,9 @@
                         <div class="form-group">
                             {!! Form::text('phone', null, [
                                 'class' => 'form-control',
-                                'placeholder' => $trans->get('phone')
+                                'placeholder' => $trans->get('phone', 'ტელეფონი'),
+                                'data-trans' => 'phone',
+                                'data-trans-attr' => 'placeholder',
                             ]) !!}
                             @if ($error = $errors->first('phone'))
                             <div class="text-danger">{{$error}}</div>
@@ -61,16 +67,18 @@
                         </div>
                         <!-- .form-group -->
                         <div class="form-group">
-                            <div class="clearfix">
-                                <input type="text" name="captcha" autocomplete="off" placeholder="{{$trans->get('enter_code')}}" class="form-control pull-left code">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input type="text" name="captcha" autocomplete="off" class="form-control" placeholder="{{$trans->get('enter_code', 'შეიყვანეთ კოდი')}}" data-trans="enter_code" data-trans-attr="placeholder">
+                                    @if ($error = $errors->first('captcha'))
+                                    <span class="text-danger">{{$error}}</span>
+                                    @endif
+                                </div>
                                 <img src="{{captcha_src('flat')}}" height="40" id="captcha-img" alt="captcha">
                                 <a href="#" id="captcha-reload">
                                     <img src="{{asset('assets/images/reload.png')}}" width="20" height="20" alt="reload">
                                 </a>
                             </div>
-                            @if ($error = $errors->first('captcha'))
-                            <span class="text-danger">{{$error}}</span>
-                            @endif
                         </div>
                         <!-- .form-group -->
                     </div>
@@ -79,7 +87,8 @@
                         <div class="form-group">
                             {!! Form::textarea('text', null, [
                                 'class' => 'form-control',
-                                'placeholder' => $trans->get('text')
+                                'placeholder' => $trans->get('text', 'ტექსტი'),
+                                'data-trans' => 'text',
                             ]) !!}
                             @if ($error = $errors->first('text'))
                             <span class="text-danger">{{$error}}</span>

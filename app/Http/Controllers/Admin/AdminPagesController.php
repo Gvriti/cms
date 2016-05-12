@@ -69,7 +69,7 @@ class AdminPagesController extends Controller
     {
         $data['current'] = $this->model;
         $data['current']->menu_id = $menuId;
-        $data['current']->parent_id = (int) $this->request->get('id');
+        $data['current']->parent_id = (int) $this->request->get('id', 0);
 
         $data['types'] = cms_pages('types');
 
@@ -196,7 +196,7 @@ class AdminPagesController extends Controller
     public function collapse()
     {
         if ($this->request->has('id')) {
-            $id = (int) $this->request->get('id');
+            $id = (int) $this->request->get('id', 0);
 
             $model = $this->model->findOrFail($id);
 

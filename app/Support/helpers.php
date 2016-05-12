@@ -284,8 +284,8 @@ function find_item($items, $value, $key = 'id', $multiple = false, $recursive = 
             $result[] = $item;
         }
 
-        if ($recursive && isset($item->sub)) {
-            if ($data = find_item($item->sub, $value, $key, $multiple, $recursive)) {
+        if ($recursive && isset($item->subPages)) {
+            if ($data = find_item($item->subPages, $value, $key, $multiple, $recursive)) {
                 $result = is_array($data) ? array_merge($result, $data) : $data;
 
                 if (! $multiple) break;
@@ -325,7 +325,7 @@ function make_tree($items, $slug = false, $parentId = 0, $parentKey = 'parent_id
                 $item->slug = $slug;
             }
 
-            $item->sub = make_tree($items, $slug, $item->$key, $parentKey, $key);
+            $item->subPages = make_tree($items, $slug, $item->$key, $parentKey, $key);
 
             $tree[] = $item;
         }

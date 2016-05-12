@@ -67,6 +67,7 @@
                 <span class="expand-icon">+</span>
             </a>
         </div>
+        <a href="{{cms_route('pages.create', [$current->menu_id, 'id' => $current->parent_id])}}" class="pull-right padr">Add more</a>
     </div>
     <div class="panel-body">
         <div class="tab-content">

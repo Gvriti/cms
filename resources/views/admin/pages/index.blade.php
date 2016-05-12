@@ -79,7 +79,7 @@
                                 <span class="fa fa-edit"></span>
                             </a>
                             {!! Form::open(['method' => 'delete', 'url' => cms_route('pages.destroy', [$menu->id, $item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
-                                <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}"{{$item->sub ? ' disabled' : ''}}>
+                                <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}"{{$item->subPages ? ' disabled' : ''}}>
                                     <span class="fa fa-trash"></span>
                                 </button>
                             {!! Form::close() !!}
@@ -88,9 +88,7 @@
                             <span class="fa fa-toggle-left"></span>
                         </a>
                     </div>
-                    @if (! empty($item->sub))
-                        @include('admin.pages.pages_tree', ['url' => $newUrl])
-                    @endif
+                    @include('admin.pages.pages_tree', ['url' => $newUrl])
                 </li>
             @endforeach
             </ul>
