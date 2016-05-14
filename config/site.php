@@ -31,14 +31,7 @@ return [
     'glide_base_url' => '!img',
 
     'glide' => [
-        'articles'     => ['w' => 320, 'h' => 200, 'fit' => 'crop'],
-        'article'      => ['w' => 570, 'h' => 290, 'fit' => 'crop'],
-        'catalog'      => ['w' => 320, 'h' => 200, 'fit' => 'crop'],
-        'catalog-item' => ['w' => 570, 'h' => 290, 'fit' => 'crop'],
-        'gallery'      => ['w' => 320, 'h' => 200, 'fit' => 'crop'],
-        'photos'       => ['w' => 270, 'h' => 180, 'fit' => 'crop'],
-        'text'         => ['w' => 570, 'h' => 290, 'fit' => 'crop'],
-        'files'        => ['w' => 270, 'h' => 180, 'fit' => 'crop'],
+        'attached' => ['w' => 270, 'h' => 180, 'fit' => 'crop'],
     ],
 
     'glide_crop' => [
