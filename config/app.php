@@ -201,7 +201,7 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider::class,
-        Mews\Captcha\CaptchaServiceProvider::class,
+        App\Providers\CaptchaServiceProvider::class,
 
     ],
 

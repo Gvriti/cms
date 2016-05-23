@@ -17,7 +17,7 @@ class GlideServiceProvider extends ServiceProvider
     protected $defer = true;
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap the application services.
      *
      * @return void
      */
@@ -27,7 +27,7 @@ class GlideServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register any application services.
+     * Register the application services.
      *
      * @return void
      */

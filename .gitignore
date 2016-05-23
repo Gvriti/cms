@@ -20,7 +20,8 @@ public/files/*
 *.exe
 *.o
 *.so
-/.tags*
+*.tags
+tags
 
 # Packages #
 ############
