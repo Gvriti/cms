@@ -39,7 +39,7 @@ class AdminCalendarController extends Controller
     /**
      * Display a listing of the events.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -51,7 +51,7 @@ class AdminCalendarController extends Controller
     /**
      * Get all of the events.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function events()
     {
@@ -65,7 +65,7 @@ class AdminCalendarController extends Controller
     /**
      * Create or update a event.
      *
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function save()
     {
@@ -96,7 +96,7 @@ class AdminCalendarController extends Controller
     /**
      * Remove the specified event.
      *
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function destroy()
     {

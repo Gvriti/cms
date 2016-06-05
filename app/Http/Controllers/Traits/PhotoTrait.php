@@ -13,7 +13,7 @@ trait PhotoTrait
      *
      * @param  int|null  $id
      * @param  string|null  $path
-     * @return Response
+     * @return mixed
      */
     public function getPhoto($id = null, $path = null)
     {
@@ -28,22 +28,22 @@ trait PhotoTrait
         }
 
         try {
-            return (new Glide([
+            (new Glide([
                 'source' => storage_path("app/images/{$path}"),
                 'cache'  => storage_path("app/images/cache/{$path}"),
                 'group_cache_in_folders' => false
             ]))->getServer()->outputImage(
                 "{$id}/photo.jpg", config('site.glide_users', [])
             );
-        } catch (Exception $e) {
-            return $this->getDefaultPhotoResponse();
-        }
+        } catch (Exception $e) {}
+
+        return $this->getDefaultPhotoResponse();
     }
 
     /**
      * Get the default photo.
      *
-     * @return Response
+     * @return mixed
      */
     protected function getDefaultPhotoResponse()
     {

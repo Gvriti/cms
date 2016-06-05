@@ -31,7 +31,7 @@ class AdminMenusController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -41,7 +41,7 @@ class AdminMenusController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -54,7 +54,7 @@ class AdminMenusController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\Admin\MenuRequest  $request
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(MenuRequest $request)
     {
@@ -73,7 +73,7 @@ class AdminMenusController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -87,7 +87,7 @@ class AdminMenusController extends Controller
      *
      * @param  \App\Http\Requests\Admin\MenuRequest  $request
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function update(MenuRequest $request, $id)
     {
@@ -113,7 +113,7 @@ class AdminMenusController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return mixed
      */
     public function destroy($id)
     {
@@ -126,7 +126,7 @@ class AdminMenusController extends Controller
      * Set the specified menu to main.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function setMain(Request $request)
     {

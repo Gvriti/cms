@@ -12,7 +12,10 @@ trait VisibilityTrait
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|
+     *          \Illuminate\Http\JsonResponse|
+     *          \Illuminate\Http\RedirectResponse|
+     *          \Symfony\Component\HttpFoundation\Response
      */
     public function visibility(Request $request, $id)
     {

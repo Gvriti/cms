@@ -12,7 +12,7 @@ class AdminBugReportController extends Controller
     /**
      * Display a settings list.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -24,7 +24,7 @@ class AdminBugReportController extends Controller
      *
      * @param  \Illuminate\Contracts\Mail\Mailer  $mail
      * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function send(Mailer $mail, Request $request)
     {
@@ -40,7 +40,7 @@ class AdminBugReportController extends Controller
         $view = 'admin.bug_report.mail_html';
 
         try {
-            $result = $mail->send($view, $data, function ($m) use ($data, $host) {
+            $mail->send($view, $data, function ($m) use ($data, $host) {
                 $m->from(env('MAIL_USERNAME'))
                   ->to('bugs@digitaldesign.ge')
                   ->subject($host . ' - bug report');

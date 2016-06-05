@@ -158,7 +158,7 @@ abstract class Model extends BaseModel
      * Destroy the models for the given IDs.
      *
      * @param  array|int  $ids
-     * @return int
+     * @return mixed
      *
      * @throws \Illuminate\Http\Exception\HttpResponseException
      */

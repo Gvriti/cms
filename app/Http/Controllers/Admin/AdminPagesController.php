@@ -46,7 +46,7 @@ class AdminPagesController extends Controller
      * Display a listing of the resource.
      *
      * @param  int  $menuId
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index($menuId)
     {
@@ -63,7 +63,7 @@ class AdminPagesController extends Controller
      * Show the form for creating a new resource.
      *
      * @param  int  $menuId
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create($menuId)
     {
@@ -83,7 +83,7 @@ class AdminPagesController extends Controller
      *
      * @param  \App\Http\Requests\Admin\PageRequest  $request
      * @param  int  $menuId
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(PageRequest $request, $menuId)
     {
@@ -105,7 +105,7 @@ class AdminPagesController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -117,7 +117,7 @@ class AdminPagesController extends Controller
      *
      * @param  int  $menuId
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($menuId, $id)
     {
@@ -138,7 +138,7 @@ class AdminPagesController extends Controller
      * @param  \App\Http\Requests\Admin\PageRequest  $request
      * @param  int  $menuId
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function update(PageRequest $request, $menuId, $id)
     {
@@ -165,7 +165,7 @@ class AdminPagesController extends Controller
      *
      * @param  int  $menuId
      * @param  int  $id
-     * @return Response
+     * @return mixed
      */
     public function destroy($menuId, $id)
     {
@@ -181,7 +181,7 @@ class AdminPagesController extends Controller
     /**
      * Get the templates list.
      *
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getTemplates()
     {
@@ -191,7 +191,7 @@ class AdminPagesController extends Controller
     /**
      * Collapse specified page.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function collapse()
     {

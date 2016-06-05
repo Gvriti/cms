@@ -30,7 +30,7 @@ class SiteVideosController extends Controller
      * Display a listing of the resource.
      *
      * @param  \Models\Gallery  $gallery
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Gallery $gallery)
     {

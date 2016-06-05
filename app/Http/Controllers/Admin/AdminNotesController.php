@@ -40,7 +40,7 @@ class AdminNotesController extends Controller
     /**
      * Display a listing of the .
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -52,7 +52,7 @@ class AdminNotesController extends Controller
     /**
      * insert/update on the .
      *
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function save()
     {
@@ -77,7 +77,7 @@ class AdminNotesController extends Controller
      * Move note into the calendar.
      *
      * @param  \Models\Calendar  $calendar
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function calendar(Calendar $calendar)
     {
@@ -105,7 +105,7 @@ class AdminNotesController extends Controller
     /**
      * Remove the specified .
      *
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function destroy()
     {

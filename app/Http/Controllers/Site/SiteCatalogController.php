@@ -32,7 +32,7 @@ class SiteCatalogController extends Controller
      *
      * @param  \Models\Page  $page
      * @param  \Models\Collection  $collection
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Page $page, Collection $collection)
     {
@@ -48,7 +48,7 @@ class SiteCatalogController extends Controller
      *
      * @param  \Models\Page  $page
      * @param  string  $slug
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Page $page, $slug)
     {

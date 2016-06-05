@@ -45,7 +45,7 @@ class AdminFilesController extends Controller
      *
      * @param  string $routeName
      * @param  int    $routeId
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index($routeName, $routeId)
     {
@@ -61,7 +61,7 @@ class AdminFilesController extends Controller
      *
      * @param  string $routeName
      * @param  int    $routeId
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function create($routeName, $routeId)
     {
@@ -82,7 +82,7 @@ class AdminFilesController extends Controller
      * @param  \App\Http\Requests\Admin\FileRequest  $request
      * @param  string  $routeName
      * @param  int     $routeId
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(FileRequest $request, $routeName, $routeId)
     {
@@ -112,7 +112,7 @@ class AdminFilesController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -125,7 +125,7 @@ class AdminFilesController extends Controller
      * @param  string  $routeName
      * @param  int     $routeId
      * @param  int     $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function edit($routeName, $routeId, $id)
     {
@@ -149,7 +149,7 @@ class AdminFilesController extends Controller
      * @param  string  $routeName
      * @param  int     $routeId
      * @param  int     $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(FileRequest $request, $routeName, $routeId, $id)
     {
@@ -172,7 +172,7 @@ class AdminFilesController extends Controller
      * @param  string  $routeName
      * @param  int     $routeId
      * @param  int     $id
-     * @return Response
+     * @return mixed
      */
     public function destroy($routeName, $routeId, $id)
     {

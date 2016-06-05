@@ -32,7 +32,7 @@ class SiteGalleriesController extends Controller
      *
      * @param  \Models\Page  $page
      * @param  \Models\Collection  $collection
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Page $page, Collection $collection)
     {

@@ -9,7 +9,7 @@ class SiteHomeController extends Controller
     /**
      * Display a home page.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {

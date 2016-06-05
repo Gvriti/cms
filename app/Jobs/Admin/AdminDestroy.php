@@ -6,10 +6,8 @@ use Models\File;
 use App\Jobs\Job;
 use Models\Abstracts\Model;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Database\QueryException;
-use Illuminate\Contracts\Bus\SelfHandling;
 
-class AdminDestroy extends Job implements SelfHandling
+class AdminDestroy extends Job
 {
     /**
      * The Model instance.
@@ -42,7 +40,7 @@ class AdminDestroy extends Job implements SelfHandling
     /**
      * Create a new job instance.
      *
-     * @param  Models\Model  $model
+     * @param  \Models\Abstracts\Model  $model
      * @param  int   $id
      * @param  bool  $isFileable
      * @param  null|string  $deleteDirs
@@ -62,7 +60,7 @@ class AdminDestroy extends Job implements SelfHandling
     /**
      * Execute the job.
      *
-     * @return void
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function handle()
     {
@@ -84,7 +82,7 @@ class AdminDestroy extends Job implements SelfHandling
     /**
      * Determine if this Model is  deletable.
      *
-     * @return Response|bool
+     * @return bool
      */
     protected function isDeletable()
     {
@@ -98,7 +96,7 @@ class AdminDestroy extends Job implements SelfHandling
     /**
      * Perform the delete query on this Model instance.
      *
-     * @return bool|Illuminate\Database\QueryException
+     * @return bool
      */
     protected function performDelete()
     {
@@ -118,7 +116,7 @@ class AdminDestroy extends Job implements SelfHandling
      *
      * @param  string  $type
      * @param  string  $message
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     protected function response($type, $message)
     {

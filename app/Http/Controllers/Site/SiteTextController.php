@@ -11,7 +11,7 @@ class SiteTextController extends Controller
      * Display the specified resource.
      *
      * @param  \Models\Page  $page
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Page $page)
     {

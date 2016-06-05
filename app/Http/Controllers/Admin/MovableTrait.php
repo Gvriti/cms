@@ -12,7 +12,7 @@ trait MovableTrait
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function move(Request $request, $id)
     {
@@ -72,7 +72,7 @@ trait MovableTrait
      * @param  \Illuminate\Http\Request  $request
      * @param  string  $type
      * @param  string|null  $message
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     protected function getMovableResponse(Request $request, $type, $message = null)
     {

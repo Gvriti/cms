@@ -44,7 +44,7 @@ class AdminPhotosController extends Controller
      * Display a listing of the resource.
      *
      * @param  int  $galleryId
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index($galleryId)
     {
@@ -63,7 +63,7 @@ class AdminPhotosController extends Controller
      * Show the form for creating a new resource.
      *
      * @param  int  $galleryId
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function create($galleryId)
     {
@@ -84,7 +84,7 @@ class AdminPhotosController extends Controller
      *
      * @param  \App\Http\Requests\Admin\PhotoRequest  $request
      * @param  int  $galleryId
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(PhotoRequest $request, $galleryId)
     {
@@ -112,7 +112,7 @@ class AdminPhotosController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -124,7 +124,7 @@ class AdminPhotosController extends Controller
      *
      * @param  int  $galleryId
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function edit($galleryId, $id)
     {
@@ -148,7 +148,7 @@ class AdminPhotosController extends Controller
      * @param  \App\Http\Requests\Admin\PhotoRequest  $request
      * @param  int  $galleryId
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(PhotoRequest $request, $galleryId, $id)
     {
@@ -170,7 +170,7 @@ class AdminPhotosController extends Controller
      *
      * @param  int  $galleryId
      * @param  int  $id
-     * @return Response
+     * @return mixed
      */
     public function destroy($galleryId, $id)
     {

@@ -33,7 +33,7 @@ class SiteFeedbackController extends Controller
      * Display the specified resource.
      *
      * @param  \Models\Page  $page
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Page $page)
     {
@@ -49,7 +49,7 @@ class SiteFeedbackController extends Controller
      *
      * @param  \Illuminate\Contracts\Mail\Mailer  $mail
      * @param  \App\Http\Requests\Site\FeedbackRequest  $request
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function send(Mailer $mail, FeedbackRequest $request)
     {
@@ -62,7 +62,7 @@ class SiteFeedbackController extends Controller
         $subject = $request->getHost() . ' - feedback';
 
         try {
-            $result = $mail->send('site.mail.feedback', $data, function ($m) use ($data, $email, $subject) {
+            $mail->send('site.mail.feedback', $data, function ($m) use ($data, $email, $subject) {
                 $m->from(config('mail.username'), $this->request->getHost())
                   ->to($email)
                   ->subject($subject);

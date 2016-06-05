@@ -60,7 +60,7 @@ class AdminPermissionsController extends Controller
      *
      * @param  \Models\CmsUser  $model
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(CmsUser $user, $id)
     {
@@ -91,7 +91,7 @@ class AdminPermissionsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store($id)
     {
@@ -126,7 +126,7 @@ class AdminPermissionsController extends Controller
      * @param  int  $id
      * @return void
      *
-     * @throws Illuminate\Http\Exception\HttpResponseException|
+     * @throws \Illuminate\Http\Exception\HttpResponseException|
      *         Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
      */
     protected function checkAccess($id)

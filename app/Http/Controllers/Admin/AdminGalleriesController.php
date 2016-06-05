@@ -45,7 +45,7 @@ class AdminGalleriesController extends Controller
      * Display a listing of the resource.
      *
      * @param  int  $collectionId
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index($collectionId)
     {
@@ -62,7 +62,7 @@ class AdminGalleriesController extends Controller
      * Show the form for creating a new resource.
      *
      * @param  int  $collectionId
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create($collectionId)
     {
@@ -80,7 +80,7 @@ class AdminGalleriesController extends Controller
      *
      * @param  \App\Http\Requests\Admin\GalleryRequest  $request
      * @param  int  $collectionId
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(GalleryRequest $request, $collectionId)
     {
@@ -102,7 +102,7 @@ class AdminGalleriesController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -114,7 +114,7 @@ class AdminGalleriesController extends Controller
      *
      * @param  int  $collectionId
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($collectionId, $id)
     {
@@ -131,7 +131,7 @@ class AdminGalleriesController extends Controller
      * @param  \App\Http\Requests\Admin\GalleryRequest  $request
      * @param  int  $collectionId
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function update(GalleryRequest $request, $collectionId, $id)
     {
@@ -158,7 +158,7 @@ class AdminGalleriesController extends Controller
      *
      * @param  int  $collectionId
      * @param  int  $id
-     * @return Response
+     * @return mixed
      */
     public function destroy($collectionId, $id)
     {

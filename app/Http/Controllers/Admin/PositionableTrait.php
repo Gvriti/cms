@@ -7,7 +7,7 @@ trait PositionableTrait
     /**
      * Update the position of the resource.
      *
-     * @return Response|bool
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|bool
      */
     public function updatePosition()
     {

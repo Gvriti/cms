@@ -32,7 +32,10 @@ class AdminAuthenticate
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @return mixed
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|
+     *          \Illuminate\Http\RedirectResponse|
+     *          \Illuminate\Routing\Redirector|
+     *          \Symfony\Component\HttpFoundation\Response
      */
     public function handle($request, Closure $next)
     {

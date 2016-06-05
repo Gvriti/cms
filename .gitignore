@@ -6,6 +6,7 @@ Homestead.yaml
 Homestead.json
 .env
 /bower_components
+.idea
 public/files/*
 !public/files/test.txt
 *sftp-config.json

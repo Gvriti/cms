@@ -51,7 +51,7 @@ class AdminCmsUsersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -65,7 +65,9 @@ class AdminCmsUsersController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
      */
     public function create()
     {
@@ -84,7 +86,9 @@ class AdminCmsUsersController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\Admin\CmsUserRequest  $request
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
      */
     public function store(CmsUserRequest $request)
     {
@@ -109,7 +113,7 @@ class AdminCmsUsersController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -122,7 +126,7 @@ class AdminCmsUsersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -142,7 +146,7 @@ class AdminCmsUsersController extends Controller
      *
      * @param  \App\Http\Requests\Admin\CmsUserRequest  $request
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function update(CmsUserRequest $request, $id)
     {
@@ -168,7 +172,7 @@ class AdminCmsUsersController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return mixed
      */
     public function destroy($id)
     {

@@ -51,7 +51,7 @@ class AuthAdminController extends Controller
      * Set the lockscreen.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function setLockscreen(Request $request)
     {
@@ -70,7 +70,7 @@ class AuthAdminController extends Controller
      * Handle a lockscreen request to the application.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return $this|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function postLockscreen(Request $request)
     {

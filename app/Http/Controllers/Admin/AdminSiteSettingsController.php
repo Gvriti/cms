@@ -12,7 +12,7 @@ class AdminSiteSettingsController extends Controller
     /**
      * Display a settings list.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -27,7 +27,7 @@ class AdminSiteSettingsController extends Controller
      * Update the `site_settings` table.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request)
     {

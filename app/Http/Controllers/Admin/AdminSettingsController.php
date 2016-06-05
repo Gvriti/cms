@@ -12,7 +12,7 @@ class AdminSettingsController extends Controller
     /**
      * Display a settings list.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -57,7 +57,7 @@ class AdminSettingsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Contracts\Auth\Guard  $guard
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Guard $guard)
     {
