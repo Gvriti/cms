@@ -204,14 +204,6 @@ abstract class Model extends BaseModel
     /**
      * {@inheritdoc}
      */
-    public function offsetExists($offset)
-    {
-        return $this->__isset($offset);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function offsetGet($offset)
     {
         return $this->getAttributeValue($offset);
