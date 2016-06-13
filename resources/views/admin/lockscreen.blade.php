@@ -25,7 +25,6 @@
             </div>
         </div>
     </div>
-@push('scripts.bottom')
     <script type="text/javascript">
         $(function() {
             // Reveal Login form
@@ -70,6 +69,5 @@
         @endif
         });
     </script>
-@endpush
 </div>
 @endif

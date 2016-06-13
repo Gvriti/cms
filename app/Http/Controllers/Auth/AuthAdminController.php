@@ -57,10 +57,10 @@ class AuthAdminController extends Controller
     {
         Auth::guard($this->getGuard())->user()->lockScreen();
 
-        if ($request->ajax()) {
-            $view = view('admin.lockscreen')->render();
-
-            return response()->json(['result' => true, 'view' => $view]);
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'result' => true, 'view' => view('admin.lockscreen')->render()
+            ]);
         }
 
         return redirect(cms_route('dashboard'));
@@ -86,14 +86,14 @@ class AuthAdminController extends Controller
         if ($isValid) {
             Auth::guard($this->getGuard())->user()->unlockScreen();
 
-            if ($request->ajax()) {
+            if ($request->ajax() || $request->wantsJson()) {
                 return response()->json(fill_data(true));
             }
 
             return redirect()->intended(cms_route('dashboard'));
         }
 
-        if ($request->ajax()) {
+        if ($request->ajax() || $request->wantsJson()) {
             return response()->json(fill_data(false, trans('auth.invalid.password')));
         }
 

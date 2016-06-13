@@ -48,9 +48,9 @@
     <ul class="nav nav-tabs col-xs-4 right-aligned">
         <li class="active">
             <a href="#" data-toggle="tab">
-                <span class="visible-xs"><i class="fa fa-files-o"></i></span>
+                <span class="visible-xs"><i class="{{$iconFiles = icon_type('files')}}"></i></span>
                 <div class="hidden-xs btn-icon-standalone">
-                    <i class="fa fa-files-o"></i> {{trans('general.files')}}
+                    <i class="{{$iconFiles}}"></i> {{trans('general.files')}}
                 </div>
             </a>
         </li>

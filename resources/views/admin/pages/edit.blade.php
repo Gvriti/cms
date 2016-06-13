@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{icon_type('pages')}}"></i>
+            <i class="{{$iconCurrent = icon_type('pages')}}"></i>
             Pages
         </h1>
         <p class="description">Edit page</p>
@@ -17,7 +17,7 @@
                 <a href="{{ cms_route('menus.index') }}"><i class="{{icon_type('menus')}}"></i>Menus</a>
             </li>
             <li class="active">
-                <i class="{{icon_type('pages')}}"></i>
+                <i class="{{$iconCurrent}}"></i>
                 <strong>Pages</strong>
             </li>
         </ol>
@@ -47,12 +47,22 @@
     @endforeach
 @endif
     </ul>
-    <ul class="nav nav-tabs col-xs-4 right-aligned">
+    <ul id="attached-types" class="nav nav-tabs col-xs-4 right-aligned">
+        @if (in_array($current->type, cms_pages('attached')))
+        <li class="attached">
+            <a href="{{cms_route($current->type.'.edit', [$current->type_id])}}">
+                <span class="visible-xs"><i class="{{$iconType = icon_type($current->type)}}"></i></span>
+                <div class="hidden-xs btn-icon-standalone">
+                    <i class="{{$iconType}}"></i> {{trans('general.'.$current->type)}}
+                </div>
+            </a>
+        </li>
+        @endif
         <li>
             <a href="{{cms_route('files.index', ['pages', $current->id])}}">
-                <span class="visible-xs"><i class="fa fa-files-o"></i></span>
+                <span class="visible-xs"><i class="{{$iconFiles = icon_type('files')}}"></i></span>
                 <div class="hidden-xs btn-icon-standalone">
-                    <i class="fa fa-files-o"></i> {{trans('general.files')}}
+                    <i class="{{$iconFiles}}"></i> {{trans('general.files')}}
                 </div>
             </a>
         </li>
@@ -90,5 +100,15 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $('.ajax-form').on('ajaxFormSuccess', function (form, data) {
+        var attachedTypes = $('#attached-types');
+        $('.attached', attachedTypes).remove();
+
+        if (data.typeHtml !== undefined) {
+            attachedTypes.prepend(data.typeHtml);
+        }
+    });
+</script>
 @include('admin.pages.scripts')
 @endsection

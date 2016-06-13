@@ -59,7 +59,7 @@ class AdminSliderController extends Controller
      */
     public function create()
     {
-        if ($this->request->ajax()) {
+        if ($this->request->ajax() || $this->request->wantsJson()) {
             $data['current'] = $this->model;
 
             $view = view('admin.slider.create', $data)->render();
@@ -82,7 +82,7 @@ class AdminSliderController extends Controller
 
         $model = $this->model->create($input);
 
-        if ($request->ajax()) {
+        if ($request->ajax() || $request->wantsJson()) {
             $view = view('admin.slider.item', [
                 'model' => $model,
                 'modelInput' => $input
@@ -116,7 +116,7 @@ class AdminSliderController extends Controller
      */
     public function edit($id)
     {
-        if ($this->request->ajax()) {
+        if ($this->request->ajax() || $this->request->wantsJson()) {
             $data['items'] = $this->model->joinLanguages(false)
                                          ->where('id', $id)
                                          ->getOrFail();
@@ -142,7 +142,7 @@ class AdminSliderController extends Controller
 
         $this->model->findOrFail($id)->update($input);
 
-        if ($request->ajax()) {
+        if ($request->ajax() || $request->wantsJson()) {
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input
             ));

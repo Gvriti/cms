@@ -146,7 +146,13 @@ class AdminPagesController extends Controller
 
         $this->model->findOrFail($id)->update($input);
 
-        if ($request->ajax()) {
+        if ($request->ajax() || $request->wantsJson()) {
+            if (in_array($type = $request->get('type'), cms_pages('attached'))) {
+                $input['typeHtml'] = view(
+                    'admin.pages.attached_type', ['input' => $input]
+                )->render();
+            }
+
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input
             ));

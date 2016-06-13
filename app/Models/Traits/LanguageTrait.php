@@ -17,8 +17,8 @@ trait LanguageTrait
     /**
      * Get the language related to this model.
      *
-     * @param  \Models\Abstract\Model  $model
-     * @return \Models\Abstract\Model
+     * @param  \Models\Abstracts\Model  $model
+     * @return \Models\Abstracts\Model
      */
     public function language(Model $model)
     {

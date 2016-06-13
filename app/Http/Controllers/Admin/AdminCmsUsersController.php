@@ -154,7 +154,7 @@ class AdminCmsUsersController extends Controller
 
         $this->model->findOrFail($id)->update($input);
 
-        if ($request->ajax()) {
+        if ($request->ajax() || $request->wantsJson()) {
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input
             ));

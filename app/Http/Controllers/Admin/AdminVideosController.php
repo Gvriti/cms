@@ -67,7 +67,7 @@ class AdminVideosController extends Controller
      */
     public function create($galleryId)
     {
-        if ($this->request->ajax()) {
+        if ($this->request->ajax() || $this->request->wantsJson()) {
             $data['current'] = $this->model;
             $data['current']['gallery_id'] = $galleryId;
 
@@ -93,7 +93,7 @@ class AdminVideosController extends Controller
 
         $model = $this->model->create($input);
 
-        if ($request->ajax()) {
+        if ($request->ajax() || $request->wantsJson()) {
             $view = view('admin.videos.item', [
                 'model' => $model,
                 'modelInput' => $input
@@ -156,7 +156,7 @@ class AdminVideosController extends Controller
 
         $this->model->findOrFail($id)->update($input);
 
-        if ($request->ajax()) {
+        if ($request->ajax() || $request->wantsJson()) {
             $input += ['youtube' => getYoutubeEmbed($request->get('file'))];
 
             return response()->json(fill_data(
@@ -176,10 +176,8 @@ class AdminVideosController extends Controller
      */
     public function destroy($galleryId, $id)
     {
-        $id = $this->request->get('ids');
-
         return $this->dispatch(
-            new AdminDestroy($this->model, $id, false)
+            new AdminDestroy($this->model, $this->request->get('ids'), false)
         );
     }
 }

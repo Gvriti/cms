@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use RuntimeException;
 use Models\Abstracts\Model;
 use Illuminate\Http\Request;
 
@@ -12,15 +13,14 @@ trait VisibilityTrait
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|
-     *          \Illuminate\Http\JsonResponse|
-     *          \Illuminate\Http\RedirectResponse|
-     *          \Symfony\Component\HttpFoundation\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     *
+     * @throws \RuntimeException
      */
     public function visibility(Request $request, $id)
     {
-        if (! $this->model instanceof Model) {
-            return response('Model not found.', 500);
+        if (! isset($this->model) || ! $this->model instanceof Model) {
+            throw new RuntimeException('Model not found');
         }
 
         $model = $this->model->findOrFail($id);

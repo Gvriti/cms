@@ -62,7 +62,7 @@ class Handler extends ExceptionHandler
     {
         $status = $e->getStatusCode();
 
-        if ($this->request->ajax()) {
+        if ($this->request->ajax() || $this->request->wantsJson()) {
             if (($trans = trans('http.' . $status)) !== 'http.' . $status) {
                 return response($trans, $status);
             } else {
@@ -88,7 +88,7 @@ class Handler extends ExceptionHandler
 
         $debug = config('app.debug');
 
-        if ($this->request->ajax()) {
+        if ($this->request->ajax() || $this->request->wantsJson()) {
             if ($debug) {
                 return response()->make(
                     $e->getMessage() . ' in ' . $e->getFile() . ' line ' . $e->getLine(), $status

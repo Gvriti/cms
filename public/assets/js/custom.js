@@ -14,12 +14,13 @@ $(function () {
     });
 
     // Toggle page action buttons
-    $('#items').on('click', '.btn-toggle', function (e) {
+    var items = $('#items');
+    items.on('click', '.btn-toggle', function (e) {
         e.preventDefault();
 
         if (! $(this).hasClass('active')) {
-            $('#items .btn-action').hide();
-            $('#items .btn-toggle').removeClass('active');
+            $('.btn-action', items).hide();
+            $('.btn-toggle', items).removeClass('active');
         }
 
         $(this).siblings('.btn-action').toggle(300);
@@ -54,7 +55,7 @@ $(function () {
             url: form.attr('action'),
             dataType: 'json',
             data: form.serialize(),
-            success: function (data, status, xhr) {
+            success: function (data) {
                 if (data) {
                     // alert toastr message
                     toastr[data.result](data.message);
@@ -94,7 +95,7 @@ $(function () {
             url: form.attr('action'),
             dataType: 'json',
             data: form.serialize(),
-            success: function (data, status, xhr) {
+            success: function (data) {
                 // toastr alert message
                 if (typeof toastr == 'object') {
                     toastr[data.result](data.message);
@@ -114,7 +115,7 @@ $(function () {
                                 if (item.val() != element) {
                                     item.val(element);
                                     if (item.is(':checkbox')) {
-                                        var bool = element == 1 ? true : false;
+                                        var bool = element == 1;
                                         item.prop('checked', bool);
                                     }
                                     if (item.is('select')) {
@@ -157,7 +158,7 @@ $(function () {
                     alert(xhr.responseText);
                 }
             },
-            complete: function (xhr) {
+            complete: function () {
                 form.trigger('ajaxFormComplete');
             }
         });
@@ -169,14 +170,15 @@ $(function () {
         var form = $(this);
 
         $.post(form.attr('action'), form.serialize(), function (data) {
+            var icon, removeClass, addClass;
             if (data) {
-                var icon = 'fa fa-eye';
-                var removeClass = 'btn-gray';
-                var addClass = 'btn-white';
+                icon = 'fa fa-eye';
+                removeClass = 'btn-gray';
+                addClass = 'btn-white';
             } else {
-                var icon = 'fa fa-eye-slash';
-                var removeClass = 'btn-white';
-                var addClass = 'btn-gray';
+                icon = 'fa fa-eye-slash';
+                removeClass = 'btn-white';
+                addClass = 'btn-gray';
             }
             form.removeClass(removeClass)
                 .addClass(addClass)
@@ -206,8 +208,9 @@ function setLockscreen(url) {
 
     $.post(url, input, function (data) {
         if (data) {
-            $('body').append(data.view);
-            $('body').addClass('lockscreen-page');
+            var body = $('body');
+            body.append(data.view);
+            body.addClass('lockscreen-page');
         }
     }, 'json').fail(function (xhr) {
         alert(xhr.responseText);
@@ -253,10 +256,11 @@ function updateUrl(target, url) {
 }
 
 function disableParentDeletion() {
-    $('#nestable-list .form-delete [type="submit"]').prop('disabled', false);
+    var nestable = $('#nestable-list');
+    $('.form-delete [type="submit"]', nestable).prop('disabled', false);
 
-    $('#nestable-list .uk-parent').each(function () {
-        id = $(this).data('id');
+    $('.uk-parent', nestable).each(function () {
+        var id = $(this).data('id');
         $('.form-delete[data-id="' + id + '"] [type="submit"]', this).prop('disabled', true);
     });
 }
@@ -265,6 +269,7 @@ function positionable(url, orderBy, page, hasMorePages) {
     var saveBtn = $('#save-tree');
     var saveBtnIcon = $('.icon-var', saveBtn);
     var postHiddens = {'_token':csrf_token()};
+    var nestable = $('#nestable-list');
 
     if (page) {
         var aTagStart = '<a href="#" class="move btn btn-gray fa-long-arrow-';
@@ -273,39 +278,40 @@ function positionable(url, orderBy, page, hasMorePages) {
         var aTagEnd = '></a>';
 
         if (hasMorePages) {
-            $('#nestable-list .btn-action').prepend(aTagStart + aTagNext + aTagEnd);
+            $('.btn-action', nestable).prepend(aTagStart + aTagNext + aTagEnd);
         }
         if (page > 1) {
-            $('#nestable-list .btn-action').prepend(aTagStart + aTagPrev + aTagEnd);
+            $('.btn-action', nestable).prepend(aTagStart + aTagPrev + aTagEnd);
         }
     }
 
-    $('#nestable-list').on('nestable-stop', function (e) {
-        $('#nestable-list .move').remove();
+    nestable.on('nestable-stop', function () {
+        $('.move', nestable).remove();
         saveBtn.show().prop('disabled', false);
         saveBtnIcon.removeClass('fa-spin fa-check').addClass('fa-save');
     });
 
     // Position move
-    $('#nestable-list').on('click',  'a.move', function (e) {
+    nestable.on('click',  'a.move', function (e) {
         e.preventDefault();
         var move = $(this).data('move');
         var item = $(this).closest('li');
         var input = [{'id':item.data('id'), 'pos':item.data('pos')}];
+        var items;
 
         if (move == 'next') {
-            var items = item.nextAll();
+            items = item.nextAll();
         } else {
-            var items = item.prevAll();
+            items = item.prevAll();
         }
 
         items.each(function (i, e) {
             input.push({'id':$(e).data('id'), 'pos':$(e).data('pos')});
         });
 
-        var input = $.extend({'data':input, 'move':move, 'orderBy':orderBy}, postHiddens);
+        input = $.extend({'data':input, 'move':move, 'orderBy':orderBy}, postHiddens);
 
-        $.post(url, input, function (data) {
+        $.post(url, input, function () {
             page = move == 'next' ? page + 1 : page - 1;
             var href = window.location.href;
             var hrefQueryStart = href.indexOf('?');
@@ -313,7 +319,7 @@ function positionable(url, orderBy, page, hasMorePages) {
                 href = href.substr(0, hrefQueryStart);
             }
             window.location.href = href + '?page=' + page;
-        }, 'json').fail(function (xhr, status, error) {
+        }, 'json').fail(function (xhr) {
             alert(xhr.responseText);
         });
     });
@@ -322,18 +328,19 @@ function positionable(url, orderBy, page, hasMorePages) {
     saveBtn.on('click', function () {
         $(this).prop('disabled', true);
         saveBtnIcon.addClass('fa-spin');
+        var nestable = $('#nestable-list');
 
         if (page) {
-            $('#nestable-list .move').remove();
+            $('.move', nestable).remove();
             if (hasMorePages) {
-                $('#nestable-list .btn-action').prepend(aTagStart + aTagNext + aTagEnd);
+                $('btn-action', nestable).prepend(aTagStart + aTagNext + aTagEnd);
             }
             if (page > 1) {
-                $('#nestable-list .btn-action').prepend(aTagStart + aTagPrev + aTagEnd);
+                $('btn-action', nestable).prepend(aTagStart + aTagPrev + aTagEnd);
             }
         }
 
-        var input = $('#nestable-list').data('nestable').serialize();
+        var input = nestable.data('nestable').serialize();
 
         if (orderBy) {
             var posArr = [];
@@ -353,12 +360,12 @@ function positionable(url, orderBy, page, hasMorePages) {
         input = {'data':input};
 
         input = $.extend(input, postHiddens);
-        $.post(url, input, function (data) {
+        $.post(url, input, function () {
             saveBtnIcon.removeClass('fa-spin fa-save').addClass('fa-check');
 
             if (orderBy) {
                 $(input.data).each(function (i, e) {
-                    $('#nestable-list #item'+e.id).data('pos', e.pos);
+                    $('item'+e.id, nestable).data('pos', e.pos);
                 });
             }
 
