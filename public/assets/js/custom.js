@@ -82,7 +82,7 @@ $(function () {
     });
 
     // Ajax form submit
-    var ajaxFormSelector = '.ajax-form';
+    var ajaxFormSelector = 'form.ajax-form';
     $(document).on('submit', ajaxFormSelector, function (e) {
         e.preventDefault();
         var form = $(this);

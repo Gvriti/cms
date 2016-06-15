@@ -65,7 +65,7 @@
 @push('scripts.bottom')
 <script type="text/javascript">
 $(function() {
-    $('.ajax-form').on('ajaxFormSuccess', function() {
+    $('form.ajax-form').on('ajaxFormSuccess', function() {
         var firstname = $('#firstname', this).val();
         var lastname = $('#lastname', this).val();
         var photo = $('#photo', this).val();

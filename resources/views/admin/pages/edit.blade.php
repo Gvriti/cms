@@ -101,7 +101,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    $('.ajax-form').on('ajaxFormSuccess', function (form, data) {
+    $('form.ajax-form').on('ajaxFormSuccess', function (form, data) {
         var attachedTypes = $('#attached-types');
         $('.attached', attachedTypes).remove();
 
