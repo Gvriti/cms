@@ -13,10 +13,10 @@ trait PageableTrait
      * @param  string  $foreignKey
      * @return \Models\Abstracts\Builder
      */
-    public function joinPage($type = 'left', $foreignKey = 'collection_id')
+    public function joinPage($type = 'right', $foreignKey = 'collection_id')
     {
         return $this->join('pages', $foreignKey, '=', 'type_id', $type)
-                    ->leftjoin('page_languages', function ($q) {
+                    ->leftJoin('page_languages', function ($q) {
                         $q->on('page_languages.page_id', '=', 'pages.id')
                             ->where(function ($q) {
                                 return $q->where('page_languages.language', '=', language())

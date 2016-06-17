@@ -2,7 +2,6 @@
 
 namespace Models\Abstracts;
 
-use Models\Page;
 use Models\Collection;
 use Models\Traits\PageableTrait;
 
