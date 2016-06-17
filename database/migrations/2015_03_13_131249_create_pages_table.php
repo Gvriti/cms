@@ -16,9 +16,9 @@ class CreatePagesTable extends Migration
             $table->increments('id');
             $table->integer('menu_id')->unsigned();
             $table->integer('parent_id')->default(0);
-            $table->integer('type_id')->unsigned()->default(0);
             $table->string('slug')->unique();
             $table->string('type', 64)->default('text');
+            $table->integer('type_id')->unsigned()->default(0);
             $table->string('template', 64)->nullable();
             $table->integer('position')->default(1)->unsigned();
             $table->boolean('visible')->default(1);
