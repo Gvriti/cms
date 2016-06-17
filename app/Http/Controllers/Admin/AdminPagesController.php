@@ -73,7 +73,7 @@ class AdminPagesController extends Controller
 
         $data['types'] = cms_pages('types');
 
-        $data['collections'] = (new Collection)->get()->lists('title', 'id')->toArray();
+        $data['collections'] = (new Collection)->get()->pluck('title', 'id')->toArray();
 
         return view('admin.pages.create', $data);
     }
@@ -127,7 +127,7 @@ class AdminPagesController extends Controller
 
         $data['types'] = cms_pages('types');
 
-        $data['collections'] = (new Collection)->get()->lists('title', 'id')->toArray();
+        $data['collections'] = (new Collection)->get()->pluck('title', 'id')->toArray();
 
         return view('admin.pages.edit', $data);
     }

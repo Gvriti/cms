@@ -25,7 +25,7 @@ class TranslationServiceProvider extends ServiceProvider
 
             $this->app->instance('trans', $trans);
 
-            view()->share('trans', $trans->lists('value', 'name'));
+            view()->share('trans', $trans->pluck('value', 'name'));
         }
     }
 

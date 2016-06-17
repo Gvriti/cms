@@ -70,7 +70,7 @@ class AdminPermissionsController extends Controller
 
         $data['current'] = $this->model->permissions($id)
                                        ->get()
-                                       ->lists('route_name')
+                                       ->pluck('route_name')
                                        ->toArray();
 
         $routeNames = array_diff_key(

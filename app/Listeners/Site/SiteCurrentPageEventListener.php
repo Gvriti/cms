@@ -16,7 +16,7 @@ class SiteCurrentPageEventListener
     {
         $current = $event->current;
 
-        $trans = app_instance('trans')->lists('value', 'name');
+        $trans = app_instance('trans')->pluck('value', 'name');
 
         if (! $current instanceof Model) {
             if (is_object($current) && isset($current->title)) {
