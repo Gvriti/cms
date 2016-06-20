@@ -4,7 +4,7 @@ namespace Models;
 
 use Models\Traits\LanguageTrait;
 use Models\Traits\PositionableTrait;
-use Models\Abstracts\AbstractHasGallery as Model;
+use Models\Abstracts\HasGallery as Model;
 
 class Photo extends Model
 {

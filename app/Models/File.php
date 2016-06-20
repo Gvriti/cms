@@ -120,7 +120,11 @@ class File extends Model
 
             if (! empty($dirs = (new Filesystem)->directories(app_path('Models')))) {
                 foreach ($dirs as $dir) {
-                    $model = $namespace . basename($dir) . '\\' . $name;
+                    if (($baseName = basename($dir)) == 'Abstracts') {
+                        continue;
+                    }
+
+                    $model = $namespace . $baseName . '\\' . $name;
 
                     if (class_exists($model)) {
                         $modelExists = true;
@@ -135,8 +139,9 @@ class File extends Model
 
         $this->foreignModel = new $model;
 
-        $this->foreignModel = $this->foreignModel->joinLanguages()
-                                                 ->findOrFail($this->route_id);
+        $this->foreignModel = $this->foreignModel
+                                    ->joinLanguages()
+                                    ->findOrFail($this->route_id);
 
         $this->foreignModel['routeName'] = $this->route_name;
 
@@ -160,9 +165,10 @@ class File extends Model
      */
     public function getByRoute()
     {
-        return $this->joinLanguages()->byRoute()
-                                     ->orderBy('position', 'desc')
-                                     ->paginate(20);
+        return $this->joinLanguages()
+                    ->byRoute()
+                    ->orderBy('position', 'desc')
+                    ->paginate(20);
     }
 
     /**

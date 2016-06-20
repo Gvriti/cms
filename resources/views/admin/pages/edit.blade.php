@@ -105,8 +105,8 @@
         var attachedTypes = $('#attached-types');
         $('.attached', attachedTypes).remove();
 
-        if (data.typeHtml !== undefined) {
-            attachedTypes.prepend(data.typeHtml);
+        if (data.input.typeHtml !== undefined) {
+            attachedTypes.prepend(data.input.typeHtml);
         }
     });
 </script>

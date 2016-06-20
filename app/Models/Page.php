@@ -96,7 +96,7 @@ class Page extends Model
      * @param  int  $id
      * @return \Models\Abstracts\Builder
      */
-    public function forSite($id = null)
+    public function forPublic($id = null)
     {
         $query = ! is_null($id) ? $this->menuId($id) : $this;
 
@@ -116,7 +116,7 @@ class Page extends Model
             return $this;
         }
 
-        if (is_null($page = $this->where('id', $id)->forSite()->first())) {
+        if (is_null($page = $this->where('id', $id)->forPublic()->first())) {
             return $this;
         }
 
@@ -136,7 +136,7 @@ class Page extends Model
      */
     public function getSubPages($recursive = false, $id = null)
     {
-        $pages = $this->forSite()->parentId($id ?: $this->id)->positionAsc()->get();
+        $pages = $this->forPublic()->parentId($id ?: $this->id)->positionAsc()->get();
 
         if (is_int($recursive) && $recursive > 0) {
             $recursive -= 1;
@@ -171,7 +171,7 @@ class Page extends Model
             return $this->newCollection();
         }
 
-        $pages = $this->forSite();
+        $pages = $this->forPublic();
 
         if (! $self) {
             $pages->where('id', '<>', (int) $this->id);
@@ -214,7 +214,7 @@ class Page extends Model
      */
     public function route($slug, $parentId)
     {
-        return $this->forSite()->where('slug', $slug)->parentId($parentId);
+        return $this->forPublic()->where('slug', $slug)->parentId($parentId);
     }
 
     /**

@@ -2,10 +2,9 @@
 
 namespace Models\Abstracts;
 
-use Models\Page;
 use Models\Gallery;
 
-abstract class AbstractHasGallery extends Model
+abstract class HasGallery extends Model
 {
     /**
      * Get the Gallery instance.

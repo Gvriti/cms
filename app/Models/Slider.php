@@ -84,7 +84,7 @@ class Slider extends Model
      *
      * @return \Models\Abstracts\Builder
      */
-    public function forSite()
+    public function forPublic()
     {
         return $this->joinLanguages()->where('visible', 1)
                                      ->whereNotNull('file')

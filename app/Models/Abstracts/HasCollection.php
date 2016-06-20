@@ -5,7 +5,7 @@ namespace Models\Abstracts;
 use Models\Collection;
 use Models\Traits\PageableTrait;
 
-abstract class AbstractHasCollection extends Model
+abstract class HasCollection extends Model
 {
     use PageableTrait;
 
@@ -48,7 +48,7 @@ abstract class AbstractHasCollection extends Model
     public function getSiteCollection(Collection $collection, $columns = ['*'])
     {
         return $this->collectionId($collection->id)
-                    ->forSite()
+                    ->forPublic()
                     ->orderBy($collection->site_order_by, $collection->site_sort)
                     ->paginate($collection->site_per_page, $columns);
     }
@@ -72,7 +72,7 @@ abstract class AbstractHasCollection extends Model
      * @param  int|null  $id
      * @return \Models\Abstracts\Builder
      */
-    public function forSite($id = null)
+    public function forPublic($id = null)
     {
         return $this->forAdmin($id)->visible();
     }
@@ -86,7 +86,7 @@ abstract class AbstractHasCollection extends Model
      */
     public function bySlug($slug, $id = null)
     {
-        return $this->where('slug', $slug)->forSite($id);
+        return $this->where('slug', $slug)->forPublic($id);
     }
 
     /**

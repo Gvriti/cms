@@ -23,7 +23,7 @@ class PageServiceProvider extends ServiceProvider
             $pages = [];
 
             if (! is_null($menu)) {
-                $pages = (new page)->forSite($menu->id)->positionAsc()->get();
+                $pages = (new page)->forPublic($menu->id)->positionAsc()->get();
             }
 
             $this->app->instance('pagesTree', make_tree($pages, ''));

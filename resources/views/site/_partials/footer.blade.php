@@ -6,5 +6,3 @@
     <!-- .container -->
 </footer>
 <!-- #footer -->
-<script src="{{asset('assets/site/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('assets/site/js/custom.js')}}"></script>

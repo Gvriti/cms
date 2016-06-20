@@ -4,7 +4,7 @@ namespace Models;
 
 use Models\Traits\LanguageTrait;
 use Models\Traits\PositionableTrait;
-use Models\Abstracts\AbstractHasCollection as Model;
+use Models\Abstracts\HasCollection as Model;
 
 class Gallery extends Model
 {

@@ -56,10 +56,14 @@ $(function () {
             dataType: 'json',
             data: form.serialize(),
             success: function (data) {
-                if (data) {
-                    // alert toastr message
-                    toastr[data.result](data.message);
+                form.trigger('deleteFormSuccess', [data])
 
+                if (data) {
+                    // toastr alert message
+                    if (typeof toastr == 'object') {
+                        toastr[data.result](data.message);
+                    }
+                    // delete action
                     if (data.result == 'success') {
                         form.closest('#item' + formId).fadeOut(600, function () {
                             if ($(this).data('parent') == 1) {
@@ -76,6 +80,8 @@ $(function () {
                 alert(xhr.responseText);
             },
             complete: function () {
+                form.trigger('deleteFormComplete');
+
                 btn.prop('disabled', false);
             }
         });
@@ -96,6 +102,8 @@ $(function () {
             dataType: 'json',
             data: form.serialize(),
             success: function (data) {
+                form.trigger('ajaxFormSuccess', [data]);
+
                 // toastr alert message
                 if (typeof toastr == 'object') {
                     toastr[data.result](data.message);
@@ -125,15 +133,11 @@ $(function () {
                             });
                         }
                     });
-                    form.trigger('ajaxFormSuccess', [data.input]);
-                } else {
-                    form.trigger('ajaxFormSuccess');
                 }
+
                 $('.form-group', form).removeClass('validate-has-error');
             },
             error: function (xhr) {
-                form.trigger('ajaxFormError');
-
                 if (xhr.responseJSON !== undefined) {
                     var data = xhr.responseJSON;
 
