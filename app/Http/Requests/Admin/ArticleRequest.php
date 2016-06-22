@@ -27,8 +27,8 @@ class ArticleRequest extends Request
         $id = $this->route('articles');
 
         return [
-            'title'       => 'required|min:2',
-            'slug'        => 'required|min:2|unique:articles,slug,'.$id,
+            'title' => 'required|min:2',
+            'slug'  => 'required|min:2|unique:articles,slug,'.$id,
         ];
     }
 

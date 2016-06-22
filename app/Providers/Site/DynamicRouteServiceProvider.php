@@ -79,18 +79,11 @@ class DynamicRouteServiceProvider extends ServiceProvider
     protected $implicitTypes = [];
 
     /**
-     * The array of the modules type of the Page.
+     * The array of the explicit types of the Page.
      *
      * @var array
      */
-    protected $moduleTypes = [];
-
-    /**
-     * The array of the types with an additional URIs.
-     *
-     * @var array
-     */
-    protected $tabs = [];
+    protected $explicitTypes = [];
 
     /**
      * The array of the types that will allow specific requests.
@@ -98,6 +91,13 @@ class DynamicRouteServiceProvider extends ServiceProvider
      * @var array
      */
     protected $requestMethods = [];
+
+    /**
+     * The array of the types with an additional URIs.
+     *
+     * @var array
+     */
+    protected $tabs = [];
 
     /**
      * Define a dynamic routes.
@@ -150,9 +150,9 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $this->implicitTypes = (array) $this->config->get('cms.pages.implicit');
 
-        $this->requestMethods = (array) $this->config->get('cms.methods');
+        $this->explicitTypes = (array) $this->config->get('cms.pages.explicit');
 
-        $this->moduleTypes = (array) $this->config->get('cms.modules');
+        $this->requestMethods = (array) $this->config->get('cms.methods');
 
         $this->tabs = (array) $this->config->get('cms.tabs');
     }
@@ -262,7 +262,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
     {
         $slug = current($this->segmentsLeft);
 
-        if (in_array($page->type, $this->moduleTypes)) {
+        if (in_array($page->type, $this->explicitTypes)) {
             $this->setCurrentRoute($page->type, [$page, $slug], 'show');
 
             return;
