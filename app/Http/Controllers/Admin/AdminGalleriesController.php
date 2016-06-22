@@ -101,10 +101,9 @@ class AdminGalleriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return void
      */
-    public function show($id)
+    public function show()
     {
         //
     }
