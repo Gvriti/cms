@@ -74,6 +74,16 @@ class AdminTranslationsController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @return void
+     */
+    public function show()
+    {
+        //
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
