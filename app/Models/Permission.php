@@ -33,7 +33,7 @@ class Permission extends Model
      * Get the list of permissions by user id.
      *
      * @param  int  $id
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function permissions($id)
     {

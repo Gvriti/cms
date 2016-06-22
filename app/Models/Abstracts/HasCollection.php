@@ -14,7 +14,7 @@ abstract class HasCollection extends Model
      *
      * @param  int  $id
      * @return \Models\Collection|
-     *         \Models\Abstracts\Builder
+     *         \Models\Builder\Builder
      */
     public function collection($id = null)
     {
@@ -57,7 +57,7 @@ abstract class HasCollection extends Model
      * Add the appropriate query for the cms.
      *
      * @param  int|null  $id
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function forAdmin($id = null)
     {
@@ -70,7 +70,7 @@ abstract class HasCollection extends Model
      * Add the appropriate query for the site.
      *
      * @param  int|null  $id
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function forPublic($id = null)
     {
@@ -82,7 +82,7 @@ abstract class HasCollection extends Model
      *
      * @param  string    $slug
      * @param  int|null  $id
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function bySlug($slug, $id = null)
     {
@@ -93,7 +93,7 @@ abstract class HasCollection extends Model
      * Get the collection instance and add a where `type` clause to the query.
      *
      * @param  string|null  $type
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function byType($type = null)
     {
@@ -106,7 +106,7 @@ abstract class HasCollection extends Model
      * Add a where `collection_id` clause to the query.
      *
      * @param  int  $id
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function collectionId($id)
     {
@@ -117,7 +117,7 @@ abstract class HasCollection extends Model
      * Add a where `visible` clause to the query.
      *
      * @param  int  $visible
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function visible($visible = 1)
     {

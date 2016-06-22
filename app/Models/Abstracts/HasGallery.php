@@ -11,7 +11,7 @@ abstract class HasGallery extends Model
      *
      * @param  int  $id
      * @return \Models\Gallery|
-     *         \Models\Abstracts\Builder
+     *         \Models\Builder\Builder
      */
     public function gallery($id = null)
     {
@@ -54,7 +54,7 @@ abstract class HasGallery extends Model
      * Build a query based on the gallery.
      *
      * @param  int  $id
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function byGallery($id)
     {
@@ -65,7 +65,7 @@ abstract class HasGallery extends Model
      * Get the gallery instance and add a where `type` clause to the query.
      *
      * @param  string|null  $type
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function byType($type = null)
     {
@@ -77,7 +77,7 @@ abstract class HasGallery extends Model
     /**
      * Add a where `file` is not empty clause to the query.
      *
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function hasFile()
     {
@@ -88,7 +88,7 @@ abstract class HasGallery extends Model
      * Add a where `gallery_id` clause to the query.
      *
      * @param  mixed  $id
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function galleryId($id)
     {
@@ -99,7 +99,7 @@ abstract class HasGallery extends Model
      * Add a where `visible` clause to the query.
      *
      * @param  int  $visible
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function visible($visible = 1)
     {

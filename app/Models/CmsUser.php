@@ -120,7 +120,7 @@ class CmsUser extends Model
      * Filter a query by specific parameters.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function adminFilter(Request $request)
     {

@@ -105,7 +105,7 @@ trait LanguageTrait
     /**
      * Add a where `language` clause to the query.
      *
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function currentLanguage()
     {

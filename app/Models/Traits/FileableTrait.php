@@ -58,7 +58,7 @@ trait FileableTrait
     /**
      * Add a `file` join to the query.
      * 
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function joinFileId()
     {

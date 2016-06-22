@@ -65,7 +65,7 @@ class Page extends Model
      *
      * @param  int  $id
      * @return \Models\Collection|
-     *         \Models\Abstracts\Builder
+     *         \Models\Builder\Builder
      */
     public function collection($id = null)
     {
@@ -78,7 +78,7 @@ class Page extends Model
      * Add the appropriate query for the cms.
      *
      * @param  int  $id
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function forAdmin($id = null)
     {
@@ -94,7 +94,7 @@ class Page extends Model
      * Add the appropriate query for the site.
      *
      * @param  int  $id
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function forPublic($id = null)
     {
@@ -210,7 +210,7 @@ class Page extends Model
      *
      * @param  string  $slug
      * @param  int     $parentId
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function route($slug, $parentId)
     {
@@ -221,7 +221,7 @@ class Page extends Model
      * Add a where `menu_id` clause to the query.
      *
      * @param  int  $id
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function menuId($id)
     {
@@ -232,7 +232,7 @@ class Page extends Model
      * Add a where `parent_id` clause to the query.
      *
      * @param  int  $id
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function parentId($id)
     {
@@ -244,7 +244,7 @@ class Page extends Model
      *
      * @param  int     $id
      * @param  string  $operator
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function typeId($id, $operator = '=')
     {
@@ -255,7 +255,7 @@ class Page extends Model
      * Add a where `visible` clause to the query.
      *
      * @param  int  $visible
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function visible($visible = 1)
     {
@@ -286,7 +286,7 @@ class Page extends Model
     /**
      * Add a `collection` join to the query.
      *
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function joinCollectionType()
     {

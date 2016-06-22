@@ -72,7 +72,7 @@ class Slider extends Model
     /**
      * Build a query for admin.
      *
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function forAdmin()
     {
@@ -82,7 +82,7 @@ class Slider extends Model
     /**
      * Build a query for site.
      *
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function forPublic()
     {

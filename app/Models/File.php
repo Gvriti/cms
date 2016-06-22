@@ -176,7 +176,7 @@ class File extends Model
      *
      * @param  null|int     $routeId
      * @param  null|string  $routeName
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function byRoute($routeId = null, $routeName = null)
     {
@@ -188,7 +188,7 @@ class File extends Model
      * Add a where `visible` clause to the query.
      *
      * @param  int  $visible
-     * @return \Models\Abstracts\Builder
+     * @return \Models\Builder\Builder
      */
     public function visible($visible = 1)
     {
