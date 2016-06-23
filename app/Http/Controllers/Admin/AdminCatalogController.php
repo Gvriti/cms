@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Models\Catalog;
 use Models\Collection;
-use Illuminate\Http\Request;
 use App\Jobs\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CatalogRequest;
@@ -21,24 +20,14 @@ class AdminCatalogController extends Controller
     protected $model;
 
     /**
-     * The Request instance.
-     *
-     * @var \Illuminate\Http\Request
-     */
-    protected $request;
-
-    /**
      * Create a new controller instance.
      *
      * @param  \Models\Catalog  $model
-     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    public function __construct(Catalog $model, Request $request)
+    public function __construct(Catalog $model)
     {
         $this->model = $model;
-
-        $this->request = $request;
     }
 
     /**

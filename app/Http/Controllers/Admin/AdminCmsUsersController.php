@@ -6,6 +6,7 @@ use Models\CmsUser;
 use Illuminate\Http\Request;
 use App\Jobs\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\Guard;
 use App\Http\Requests\Admin\CmsUserRequest;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -19,13 +20,6 @@ class AdminCmsUsersController extends Controller
     protected $model;
 
     /**
-     * The Request instance.
-     *
-     * @var \Illuminate\Http\Request
-     */
-    protected $request;
-
-    /**
      * The authenticated cms user instance.
      *
      * @var \Models\CmsUser
@@ -36,26 +30,24 @@ class AdminCmsUsersController extends Controller
      * Create a new controller instance.
      *
      * @param  \Models\CmsUser  $model
-     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    public function __construct(CmsUser $model, Request $request)
+    public function __construct(CmsUser $model, Guard $guard)
     {
         $this->model = $model;
 
-        $this->request = $request;
-
-        $this->user = $request->user('cms');
+        $this->user = $guard->user();
     }
 
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['items'] = $this->model->adminFilter($this->request)
+        $data['items'] = $this->model->adminFilter($request)
                                      ->orderDesc()
                                      ->paginate(20);
 
@@ -126,7 +118,9 @@ class AdminCmsUsersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|
+     *         \Illuminate\Http\RedirectResponse|
+     *         \Illuminate\View\View
      */
     public function edit($id)
     {
@@ -150,6 +144,10 @@ class AdminCmsUsersController extends Controller
      */
     public function update(CmsUserRequest $request, $id)
     {
+        if (! $this->user->isAdmin() && $this->user->id != $id) {
+            return redirect()->back();
+        }
+
         $input = $request->all();
 
         $this->model->findOrFail($id)->update($input);
@@ -177,8 +175,6 @@ class AdminCmsUsersController extends Controller
     public function destroy($id)
     {
         if ($this->user->isAdmin()) {
-            $user = $this->model->findOrFail($id);
-
             if ($this->user->id == $id) {
                 $this->model = null;
             }

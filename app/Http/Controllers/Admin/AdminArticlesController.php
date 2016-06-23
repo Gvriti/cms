@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Models\Article;
 use Models\Collection;
-use Illuminate\Http\Request;
 use App\Jobs\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ArticleRequest;
@@ -21,24 +20,14 @@ class AdminArticlesController extends Controller
     protected $model;
 
     /**
-     * The Request instance.
-     *
-     * @var \Illuminate\Http\Request
-     */
-    protected $request;
-
-    /**
      * Create a new controller instance.
      *
      * @param  \Models\Article  $model
-     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    public function __construct(Article $model, Request $request)
+    public function __construct(Article $model)
     {
         $this->model = $model;
-
-        $this->request = $request;
     }
 
     /**

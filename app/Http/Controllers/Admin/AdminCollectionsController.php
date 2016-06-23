@@ -18,25 +18,14 @@ class AdminCollectionsController extends Controller
     protected $model;
 
     /**
-     * The Request instance.
-     *
-     * @var \Illuminate\Http\Request
-     */
-    protected $request;
-
-    /**
      * Create a new controller instance.
      *
      * @param  \Models\Collection  $model
-     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    public function __construct(Collection $model, Request $request)
+    public function __construct(Collection $model)
     {
         $this->model = $model;
-
-        $this->request = $request;
-
     }
 
     /**
@@ -54,12 +43,13 @@ class AdminCollectionsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
         $data['current'] = $this->model;
-        $data['current']->type = $this->request->get('type');
+        $data['current']->type = $request->get('type');
         $data['current']->admin_per_page = 20;
         $data['current']->site_per_page = 10;
 

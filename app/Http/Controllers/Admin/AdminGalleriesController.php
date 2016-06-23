@@ -21,24 +21,14 @@ class AdminGalleriesController extends Controller
     protected $model;
 
     /**
-     * The Request instance.
-     *
-     * @var \Illuminate\Http\Request
-     */
-    protected $request;
-
-    /**
      * Create a new controller instance.
      *
      * @param  \Models\Gallery  $model
-     * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    public function __construct(Gallery $model, Request $request)
+    public function __construct(Gallery $model)
     {
         $this->model = $model;
-
-        $this->request = $request;
     }
 
     /**
@@ -61,14 +51,15 @@ class AdminGalleriesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $collectionId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create($collectionId)
+    public function create(Request $request, $collectionId)
     {
         $data['current'] = $this->model;
         $data['current']->collection_id = $collectionId;
-        $data['current']->type = $this->request->get('type');
+        $data['current']->type = $request->get('type');
         $data['current']->admin_per_page = 20;
         $data['current']->site_per_page = 10;
 
