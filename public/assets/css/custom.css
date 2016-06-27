@@ -68,7 +68,7 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 
 /* buttons */
 #items .item {position:relative;}
-#items .item .btn {width:40px;margin-left:2px;margin-right:2px;}
+#items .item .btn {min-width:40px;margin-left:2px;margin-right:2px;}
 #items .item .btn.item-id {width:auto;}
 #items .item .btn-action.togglable {text-align:right;}
 #items .item .btn-toggle {display:none;margin-bottom:0;}
@@ -113,7 +113,7 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .cbr-replaced .cbr-state {width:19px;height:18px;}
 
 /* uk-nestable */
-.uk-nestable-item .list-label {padding:9px;}
+.uk-nestable-item .list-label {padding:0 5px;}
 
 /* panel title */
 .title-env .title {text-transform:capitalize;}

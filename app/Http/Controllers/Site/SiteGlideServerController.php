@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Site;
 use League\Glide\Server;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use League\Glide\Http\NotFoundException;
 use Illuminate\Contracts\Config\Repository as Config;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -61,8 +60,8 @@ class SiteGlideServerController extends Controller
         }
 
         try {
-            return $this->server->outputImage($path, $settings);
-        } catch (NotFoundException $e) {
+            $this->server->outputImage($path, $settings);
+        } catch (NotFoundHttpException $e) {
             return $path;
         }
     }

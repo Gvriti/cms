@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 class SiteHomeController extends Controller
 {
     /**
-     * Display a home page.
+     * Display the home page.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

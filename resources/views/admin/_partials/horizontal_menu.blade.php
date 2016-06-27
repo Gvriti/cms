@@ -196,7 +196,7 @@
           </form>
         </li>
         <li>
-          <a href="{{site_url()}}" target="_blank"><i class="el el-website"></i></a>
+          <a href="{{site_url()}}" target="_blank"><i class="fa fa-desktop"></i></a>
         </li>
         <li class="dropdown user-profile">
           <a href="#" data-toggle="dropdown">

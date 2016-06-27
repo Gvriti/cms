@@ -81,7 +81,7 @@
       </form>
     </li>
     <li>
-      <a href="{{site_url()}}" target="_blank" title="საიტზე გადასვლა"><i class="el el-website"></i></a>
+      <a href="{{site_url()}}" target="_blank" title="საიტზე გადასვლა"><i class="fa fa-desktop"></i></a>
     </li>
     <li class="dropdown user-profile">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">

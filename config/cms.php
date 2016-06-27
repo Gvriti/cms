@@ -223,11 +223,12 @@ return [
         'collections' => 'fa fa-list-alt',
         'catalog'     => 'fa fa-briefcase',
         'articles'    => 'fa fa-newspaper-o',
-        'galleries'   => 'fa fa-th',
-        'photos'      => 'fa fa-photo',
-        'videos'      => 'fa fa-video-camera',
 
-        'files'       => 'el el-paper-clip',
+        'galleries' => 'fa fa-th',
+        'photos'    => 'fa fa-photo',
+        'videos'    => 'fa fa-video-camera',
+
+        'files' => 'fa fa-paperclip',
 
         'permissions' => 'fa fa-lock',
         'cms_users'   => 'fa fa-user-secret',

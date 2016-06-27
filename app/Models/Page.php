@@ -25,7 +25,7 @@ class Page extends Model
      * @var array
      */
     protected $fillable = [
-        'parent_id', 'menu_id', 'type_id', 'type', 'template', 'slug', 'position', 'visible', 'collapse', 'image'
+        'parent_id', 'menu_id', 'slug', 'type', 'template', 'type_id', 'position', 'visible', 'collapse', 'image'
     ];
 
     /**

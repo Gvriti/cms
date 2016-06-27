@@ -30,17 +30,17 @@
         </div>
     </div>
     <div class="col-sm-3">
-        <div class="xe-widget xe-counter" data-count=".num" data-count=".numTotal" data-from="0" data-to="{{$pagesTotal}}" data-duration="3">
+        <div class="xe-widget xe-counter" data-count=".num" data-from="0" data-to="{{$pagesTotal}}" data-duration="3">
             <a href="{{is_null($mainPage) ? cms_route('menus.index') : cms_route('pages.index', [$mainPage->id])}}" class="xe-icon">
                 <i class="{{icon_type('pages')}}"></i>
             </a>
             <div class="xe-label">
-                <strong class="num">{{$mainPagesTotal}}</strong>
-                <span>Main pages</span>
+                <strong class="num">{{$pagesTotal}}</strong>
+                <span>Total pages</span>
             </div>
             <div class="xe-label">
-                <strong class="num numTotal">{{$pagesTotal}}</strong>
-                <span>Total pages</span>
+                <strong class="num">{{$mainPagesTotal}}</strong>
+                <span>Main pages</span>
             </div>
         </div>
     </div>

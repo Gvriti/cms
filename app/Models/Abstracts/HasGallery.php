@@ -7,20 +7,6 @@ use Models\Gallery;
 abstract class HasGallery extends Model
 {
     /**
-     * Get the Gallery instance.
-     *
-     * @param  int  $id
-     * @return \Models\Gallery|
-     *         \Models\Builder\Builder
-     */
-    public function gallery($id = null)
-    {
-        $model = (new Gallery)->joinLanguages();
-
-        return is_null($id) ? $model : $model->where('id', $id);
-    }
-
-    /**
      * Get the data based on admin gallery.
      *
      * @param  \Models\Gallery  $gallery
@@ -69,7 +55,7 @@ abstract class HasGallery extends Model
      */
     public function byType($type = null)
     {
-        return $this->gallery()->where(
+        return (new Gallery)->where(
             'type', is_null($type) ? static::TYPE : $type
         );
     }

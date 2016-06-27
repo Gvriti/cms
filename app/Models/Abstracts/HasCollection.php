@@ -10,20 +10,6 @@ abstract class HasCollection extends Model
     use PageableTrait;
 
     /**
-     * Get the Collection instance.
-     *
-     * @param  int  $id
-     * @return \Models\Collection|
-     *         \Models\Builder\Builder
-     */
-    public function collection($id = null)
-    {
-        $model = new Collection;
-
-        return is_null($id) ? $model : $model->where('id', $id);
-    }
-
-    /**
      * Get the data based on admin collection.
      *
      * @param  \Models\Collection  $collection

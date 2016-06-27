@@ -20,7 +20,7 @@ class AdminDashboardController extends Controller
         $data['menusTotal'] = $db->table('menus')->count();
 
         $data['pagesTotal'] = $db->table('pages')->count();
-        $data['mainPage'] = $db->table('menus')->where('main', 1)->first();
+        $data['mainPage'] = $db->table('menus')->where('main', 1)->first(['id']);
         $data['mainPagesTotal'] = $db->table('pages')->where('menu_id',
             is_null($data['mainPage']) ? 1 : $data['mainPage']->id
         )->count();
