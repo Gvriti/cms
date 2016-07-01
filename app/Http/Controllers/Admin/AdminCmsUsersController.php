@@ -144,11 +144,13 @@ class AdminCmsUsersController extends Controller
      */
     public function update(CmsUserRequest $request, $id)
     {
+        $input = $request->all();
+
         if (! $this->user->isAdmin() && $this->user->id != $id) {
             return redirect()->back();
+        } elseif ($this->user->id == $id) {
+            $input['active'] = 1;
         }
-
-        $input = $request->all();
 
         $this->model->findOrFail($id)->update($input);
 

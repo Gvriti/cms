@@ -56,7 +56,7 @@ $(function () {
             dataType: 'json',
             data: form.serialize(),
             success: function (data) {
-                form.trigger('deleteFormSuccess', [data])
+                form.trigger('deleteFormSuccess', [data]);
 
                 if (data) {
                     // toastr alert message

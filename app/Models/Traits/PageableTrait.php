@@ -22,7 +22,8 @@ trait PageableTrait
                                 return $q->where('page_languages.language', '=', language())
                                         ->orWhereNull('page_languages.language');
                             });
-                    })->addSelect([
+                    })->where('pages.visible', '=', 1)
+                    ->addSelect([
                         'pages.parent_id',
                         'pages.slug as parent_slug',
                         'page_languages.title as parent_title'

@@ -66,11 +66,7 @@ class CmsUserRequest extends Request
             $this->offsetSet('password', bcrypt($input['password']));
         }
 
-        if ($auth->email == $this->get('email')) {
-            $input['active'] = 1;
-        } else {
-            $input['active'] = $this->has('active') ? 1 : 0;
-        }
+        $input['active'] = $this->has('active') ? 1 : 0;
 
         return $input;
     }
