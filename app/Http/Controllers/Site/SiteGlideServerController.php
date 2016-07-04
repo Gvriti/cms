@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Site;
 
+use Exception;
 use League\Glide\Server;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Config\Repository as Config;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SiteGlideServerController extends Controller
 {
@@ -42,27 +42,41 @@ class SiteGlideServerController extends Controller
      * @param  \Illuminate\Contracts\Config\Repository  $config
      * @param  string  $path
      * @return Request
-     *
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     public function show(Config $config, $path)
     {
+        $source = (array) $config['elfinder.public'];
+        $source = key($source);
+
+        $fullPath = $source . '/' . $path;
+
         $settings = $config['site.glide.' . $this->request->get('type')];
 
-        if ($crop = $this->request->get('crop')) {
-            $settings['crop'] = $crop;
-        }
-
         if (! is_array($settings)) {
-            $filesDir = current((array) $config['elfinder.dir']);
-
-            return redirect($filesDir . '/' . $path);
+            return redirect($fullPath);
         }
 
         try {
             $this->server->outputImage($path, $settings);
-        } catch (NotFoundHttpException $e) {
-            return $path;
+        } catch (Exception $e) {
+            return $this->getDefaultPhotoResponse($fullPath);
+        }
+    }
+
+    /**
+     * Get the default photo response.
+     *
+     * @param  string  $path
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    protected function getDefaultPhotoResponse($path)
+    {
+        try {
+            return response()->file(public_path($path));
+        } catch (Exception $e) {
+            abort(404);
         }
     }
 }

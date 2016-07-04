@@ -9,12 +9,12 @@
 <!-- #breadcrumb -->
 <div class="container">
     <article id="item" class="jumbotron">
-        <div class="img">
         @if($current->image)
+        <div class="img">
             <img src="{{$current->image}}" class="img-responsive" alt="{{$current->title}}">
-        @endif
         </div>
         <!-- .img -->
+        @endif
         <div class="content">
             <header class="heading">
                 <h1>{{$current->title}}</h1>

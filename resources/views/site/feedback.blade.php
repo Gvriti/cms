@@ -9,6 +9,12 @@
 <!-- #breadcrumb -->
 <div class="container">
     <div id="feedback" class="jumbotron">
+        @if($current->image)
+        <div class="img">
+            <img src="{{$current->image}}" class="img-responsive" alt="{{$current->title}}">
+        </div>
+        <!-- .img -->
+        @endif
         <header class="heading">
             <h1>{{$current->title}}</h1>
         </header>

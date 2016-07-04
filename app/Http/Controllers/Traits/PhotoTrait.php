@@ -41,14 +41,19 @@ trait PhotoTrait
     }
 
     /**
-     * Get the default photo.
+     * Get the default photo response.
      *
-     * @return mixed
+     * @param  string  $path
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    protected function getDefaultPhotoResponse()
+    protected function getDefaultPhotoResponse($path)
     {
-        return response()->file(public_path('assets/images/user-2.png'), [
-            'Content-Type' => ['image/png']
-        ]);
+        try {
+            return response()->file(public_path('assets/images/user-2.png'));
+        } catch (Exception $e) {
+            abort(404);
+        }
     }
 }

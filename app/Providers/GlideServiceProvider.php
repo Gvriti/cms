@@ -36,10 +36,11 @@ class GlideServiceProvider extends ServiceProvider
         $this->app->singleton(Server::class, function ($app) {
             $filesystem = $app[Filesystem::class];
 
-            $source = public_path(current((array) $app['config']->get('elfinder.dir')));
+            $source = (array) $app['config']->get('elfinder.public');
+            $source = key($source);
 
             return (new ServerFactory([
-                'source'                 => $source,
+                'source'                 => public_path($source),
                 'cache'                  => $filesystem->getDriver(),
                 'cache_path_prefix'      => 'images/cache',
                 'group_cache_in_folders' => false
