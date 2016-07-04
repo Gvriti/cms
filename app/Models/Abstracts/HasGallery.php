@@ -7,7 +7,7 @@ use Models\Gallery;
 abstract class HasGallery extends Model
 {
     /**
-     * Get the data based on admin gallery.
+     * Get the data based on the admin gallery.
      *
      * @param  \Models\Gallery  $gallery
      * @param  array  $columns
@@ -21,13 +21,13 @@ abstract class HasGallery extends Model
     }
 
     /**
-     * Get the data based on site gallery.
+     * Get the data based on the public gallery.
      *
      * @param  \Models\Gallery  $gallery
      * @param  array  $columns
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getSiteGallery(Gallery $gallery, $columns = ['*'])
+    public function getPublicGallery(Gallery $gallery, $columns = ['*'])
     {
         return $this->byGallery($gallery->id)
                     ->hasFile()

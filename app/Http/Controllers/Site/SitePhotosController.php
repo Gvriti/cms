@@ -36,7 +36,7 @@ class SitePhotosController extends Controller
     {
         $data['current'] = $gallery;
 
-        $data['items'] = $this->model->getSiteGallery($gallery);
+        $data['items'] = $this->model->getPublicGallery($gallery);
 
         return view('site.photos', $data);
     }

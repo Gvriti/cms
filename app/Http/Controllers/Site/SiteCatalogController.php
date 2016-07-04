@@ -38,7 +38,7 @@ class SiteCatalogController extends Controller
     {
         $data['current'] = $page;
 
-        $data['items'] = $this->model->getSiteCollection($collection);
+        $data['items'] = $this->model->getPublicCollection($collection);
 
         return view('site.catalog', $data);
     }

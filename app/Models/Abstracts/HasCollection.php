@@ -10,7 +10,7 @@ abstract class HasCollection extends Model
     use PageableTrait;
 
     /**
-     * Get the data based on admin collection.
+     * Get the data based on the admin collection.
      *
      * @param  \Models\Collection  $collection
      * @param  array  $columns
@@ -25,13 +25,13 @@ abstract class HasCollection extends Model
     }
 
     /**
-     * Get the data based on site collection.
+     * Get the data based on the public collection.
      *
      * @param  \Models\Collection  $collection
      * @param  array  $columns
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getSiteCollection(Collection $collection, $columns = ['*'])
+    public function getPublicCollection(Collection $collection, $columns = ['*'])
     {
         return $this->collectionId($collection->id)
                     ->forPublic()
@@ -40,7 +40,7 @@ abstract class HasCollection extends Model
     }
 
     /**
-     * Add the appropriate query for the cms.
+     * Add the appropriate query for the admin.
      *
      * @param  int|null  $id
      * @return \Models\Builder\Builder
@@ -53,7 +53,7 @@ abstract class HasCollection extends Model
     }
 
     /**
-     * Add the appropriate query for the site.
+     * Add the appropriate query for the public.
      *
      * @param  int|null  $id
      * @return \Models\Builder\Builder

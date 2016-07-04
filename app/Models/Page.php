@@ -75,7 +75,7 @@ class Page extends Model
     }
 
     /**
-     * Add the appropriate query for the cms.
+     * Add the appropriate query for the admin.
      *
      * @param  int  $id
      * @return \Models\Builder\Builder
@@ -91,7 +91,7 @@ class Page extends Model
     }
 
     /**
-     * Add the appropriate query for the site.
+     * Add the appropriate query for the public.
      *
      * @param  int  $id
      * @return \Models\Builder\Builder
