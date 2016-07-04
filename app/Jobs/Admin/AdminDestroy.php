@@ -28,7 +28,7 @@ class AdminDestroy extends Job
      *
      * @return bool
      */
-    protected $isFileable;
+    protected $fileable;
 
     /**
      * Recursively deletable directories.
@@ -42,17 +42,17 @@ class AdminDestroy extends Job
      *
      * @param  \Models\Abstracts\Model  $model
      * @param  int   $id
-     * @param  bool  $isFileable
+     * @param  bool  $fileable
      * @param  null|string  $deleteDirs
      * @return void
      */
-    public function __construct($model, $id, $isFileable = true, $deleteDirs = null)
+    public function __construct($model, $id, $fileable = true, $deleteDirs = null)
     {
         $this->model = $model;
 
         $this->id = $id;
 
-        $this->isFileable = $isFileable;
+        $this->fileable = $fileable;
 
         $this->deleteDirs = $deleteDirs;
     }
@@ -100,7 +100,7 @@ class AdminDestroy extends Job
      */
     protected function performDelete()
     {
-        if ($this->isFileable) {
+        if ($this->fileable) {
             (new File)->byRoute($this->id, $this->model->getTable())->delete();
         }
 

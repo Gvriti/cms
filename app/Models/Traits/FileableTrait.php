@@ -3,20 +3,9 @@
 namespace Models\Traits;
 
 use Models\File;
-use Models\Abstracts\Model;
 
 trait FileableTrait
 {
-    /**
-     * Get the File instance.
-     *
-     * @return \Models\File
-     */
-    public function fileInstance()
-    {
-        return new File;
-    }
-
     /**
      * Get the model files.
      *
@@ -28,8 +17,7 @@ trait FileableTrait
     {
         $imageExt = ['png', 'jpg', 'jpeg', 'gif', 'bmp'];
 
-        $files = $this->fileInstance()
-                        ->joinLanguages()
+        $files = (new File)->joinLanguages()
                         ->byRoute($id ?: $this->id, $name ?: $this->getTable())
                         ->visible()
                         ->positionDesc()
@@ -66,7 +54,7 @@ trait FileableTrait
 
         $keyName = $this->getKeyName();
 
-        $fileTable = $this->fileInstance()->getTable();
+        $fileTable = (new File)->getTable();
 
         return $this->leftJoin($fileTable, function ($join) use ($table, $keyName, $fileTable) {
             $join->on("{$table}.{$keyName}", '=', "route_id")
@@ -82,7 +70,9 @@ trait FileableTrait
      */
     public function hasFile($id)
     {
-        $file = $this->fileInstance()->where(['route_id' => $id, 'route_name' => $this->table])->first();
+        $file = (new File)->where([
+            'route_id' => $id, 'route_name' => $this->table
+        ])->first();
 
         return ! is_null($file);
     }

@@ -17,6 +17,13 @@ abstract class Model extends BaseModel
     protected $builder;
 
     /**
+     * Indicates if the model has a languages.
+     *
+     * @var bool
+     */
+    protected $languages = false;
+
+    /**
      * Create a new Eloquent model instance.
      *
      * @param  array  $attributes
@@ -30,6 +37,16 @@ abstract class Model extends BaseModel
         if (method_exists(get_called_class(), 'language')) {
             $this->language($this);
         }
+    }
+
+    /**
+     * Determine if a model has a languages.
+     *
+     * @return bool
+     */
+    public function hasLanguages()
+    {
+        return $this->languages;
     }
 
     /**
