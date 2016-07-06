@@ -131,6 +131,20 @@ $(function() {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     };
+
+    var notifications = $('.notifications');
+    $('.external a', notifications).on('click', function(e) {
+        e.preventDefault();
+        var target = $(this);
+        $.get($(this).attr('href'), {}, function() {
+            $('.sm-date', notifications).html('{{date('d F Y')}}');
+            $('.sm-time', notifications).html('{{date('H:i')}}');
+            $('.sm-status', target).html('Update now!');
+            toastr['success']('Sitemap has been saved successfully');
+        }, 'json').fail(function(xhr) {
+            alert(xhr.responseText);
+        });
+    });
 @if (session()->has('alert'))
 
     toastr["{{session('alert.result')}}"]("{{session('alert.message')}}");

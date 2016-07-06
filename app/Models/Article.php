@@ -31,7 +31,7 @@ class Article extends Model
      * @var array
      */
     protected $fillable = [
-        'collection_id', 'slug', 'position', 'visible', 'image'
+        'collection_id', 'slug', 'position', 'visible', 'image', 'created_at'
     ];
 
     /**

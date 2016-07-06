@@ -12,7 +12,8 @@
         "cocur/slugify": "1.4.*",
         "league/glide": "1.0.*",
         "mews/captcha": "2.1.*",
-        "php-curl-class/php-curl-class": "4.10.*"
+        "php-curl-class/php-curl-class": "4.10.*",
+        "sabre/xml": "1.4.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

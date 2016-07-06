@@ -27,8 +27,8 @@
                         <button type="submit" class="btn btn-secondary">{{trans('general.save')}}</button>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 <script type="text/javascript">

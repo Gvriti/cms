@@ -56,6 +56,10 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
     #select-home {float:none;padding-top:15px;}
 }
 
+/* forms */
+.form-horizontal .control-label.text-left{text-align:left;}
+.required:after {content:" *";color:red;}
+
 /*** OVERRIDE BOOTSTRAP ***/
 
 /* fix dropdown empty div position, which was placed on top of all divs */
@@ -81,10 +85,6 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 @media screen and (min-width:768px) {
     .btn-action.togglable {display:block !important;}
 }
-
-/* forms */
-.form-horizontal .control-label.text-left{text-align:left;}
-.required:after {content:" *";color:red;}
 
 /*** OVERRIDE XENON ***/
 
@@ -113,7 +113,7 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .cbr-replaced .cbr-state {width:19px;height:18px;}
 
 /* uk-nestable */
-.uk-nestable-item .list-label {padding:0 5px;}
+.uk-nestable-item .list-label {padding:9px;}
 
 /* panel title */
 .title-env .title {text-transform:capitalize;}

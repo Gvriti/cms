@@ -8,7 +8,7 @@
     <meta name="robots" content="noindex, nofollow">
     <title>CMS - Login</title>
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/fonts/font-awesome-4.5.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fonts/font-awesome-4.6.3/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/xenon-core.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/xenon-forms.css') }}">

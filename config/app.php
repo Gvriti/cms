@@ -85,8 +85,7 @@ return [
     | Application default language
     |--------------------------------------------------------------------------
     |
-    | The application default language, that will be used if language
-    | not set or set incorrectly.
+    | The application default language, that can be changed in runtime by user
     |
     */
 

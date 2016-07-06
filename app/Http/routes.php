@@ -119,6 +119,9 @@ $router->group(['middleware' => 'cms.settings', 'prefix' => cms_slug()], functio
         $router->get('cms-users/{id}/permissions', ['as' => 'permissions.index', 'uses' => 'AdminPermissionsController@index']);
         $router->post('cms-users/{id}/permissions', ['as' => 'permissions.store', 'uses' => 'AdminPermissionsController@store']);
 
+        // sitemap xml
+        $router->get('sitemap/xml/store', ['as' => 'sitemap.xml.store', 'uses' => 'AdminSitemapXmlController@store']);
+
         // bug report
         $router->get('bug-report', ['as' => 'bugReport.index', 'uses' => 'AdminBugReportController@index']);
         $router->post('bug-report', ['as' => 'bugReport.send', 'uses' => 'AdminBugReportController@send']);

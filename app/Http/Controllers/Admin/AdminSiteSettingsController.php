@@ -18,8 +18,6 @@ class AdminSiteSettingsController extends Controller
     {
         $data['siteSettings'] = DB::table('site_settings')->first();
 
-        $data['dateFormatStatic'] = ['d F Y', 'F d, Y', 'd M Y', 'M d, Y'];
-
         return view('admin.site_settings.index', $data);
     }
 
@@ -35,10 +33,6 @@ class AdminSiteSettingsController extends Controller
         unset($columns['id']);
 
         $attributes = $request->all();
-
-        if (! $request->has('date_format')) {
-            $attributes['date_format'] = $request->get('date_format_custom');
-        }
 
         $attributes = array_intersect_key($attributes, $columns);
 

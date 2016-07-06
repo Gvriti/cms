@@ -9,6 +9,7 @@ Homestead.json
 .idea
 public/files/*
 !public/files/test.txt
+public/sitemap.xml
 *sftp-config.json
 # Ignore directories and files starting with "!" symbol
 /\!*

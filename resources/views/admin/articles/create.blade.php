@@ -41,4 +41,5 @@
         {!! Form::close() !!}
     </div>
 </div>
+@include('admin.articles.scripts')
 @endsection

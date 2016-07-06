@@ -43,24 +43,26 @@ abstract class HasCollection extends Model
      * Add the appropriate query for the admin.
      *
      * @param  int|null  $id
+     * @param  mixed  $language
      * @return \Models\Builder\Builder
      */
-    public function forAdmin($id = null)
+    public function forAdmin($id = null, $language = true)
     {
         $query = ! is_null($id) ? $this->collectionId($id) : $this;
 
-        return $query->joinLanguages();
+        return $query->joinLanguages($language);
     }
 
     /**
      * Add the appropriate query for the public.
      *
      * @param  int|null  $id
+     * @param  mixed  $language
      * @return \Models\Builder\Builder
      */
-    public function forPublic($id = null)
+    public function forPublic($id = null, $language = true)
     {
-        return $this->forAdmin($id)->visible();
+        return $this->forAdmin($id, $language)->visible();
     }
 
     /**

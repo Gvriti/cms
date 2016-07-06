@@ -33,10 +33,6 @@ class SiteCurrentPageEventListener
                 'meta_desc' => $trans->get('meta_desc') ?: $title,
             ];
         } else {
-            if (is_null($current->id)) {
-                $current->id = 0;
-            }
-
             if (! is_null($current->tab_title)) {
                 $current->title .= ' - ' . $current->tab_title;
             }
@@ -92,8 +88,7 @@ class SiteCurrentPageEventListener
     public function subscribe($events)
     {
         $events->listen([
-                'composing: site._partials.head',
-                'composing: site._partials.pages',
+                'composing: site.app',
             ],
             'App\Listeners\Site\SiteCurrentPageEventListener@onCurrentPageComposer'
         );

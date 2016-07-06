@@ -36,6 +36,8 @@ abstract class Model extends BaseModel
         // Set language model if it's used into the called model.
         if (method_exists(get_called_class(), 'language')) {
             $this->language($this);
+
+            $this->languages = true;
         }
     }
 

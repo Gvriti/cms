@@ -197,7 +197,10 @@ function prefix_language($path, $language)
 
     if (is_string($language)) {
         $path = $language . '/' . $path;
-    } elseif (($language === true || language_isset()) && count(languages()) > 1) {
+    } elseif ($language !== false
+        && ($language === true || language_isset())
+        && count(languages()) > 1
+    ) {
         $path = language() . '/' . $path;
     }
 

@@ -1,3 +1,4 @@
+
 @extends('admin.app')
 @section('content')
 <div class="page-title">
@@ -90,4 +91,5 @@
         </div>
     </div>
 </div>
+@include('admin.articles.scripts')
 @endsection
