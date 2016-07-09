@@ -41,7 +41,7 @@ class AdminDestroy extends Job
      * Create a new job instance.
      *
      * @param  \Models\Abstracts\Model  $model
-     * @param  int   $id
+     * @param  int  $id
      * @param  bool  $fileable
      * @param  null|string  $deleteDirs
      * @return void

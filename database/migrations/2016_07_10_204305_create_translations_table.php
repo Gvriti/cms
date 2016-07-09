@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTranslationLanguagesTable extends Migration
+class CreateTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,6 +12,14 @@ class CreateTranslationLanguagesTable extends Migration
      */
     public function up()
     {
+        Schema::create('translations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 64)->unique();
+            $table->string('title');
+            $table->string('type', 32)->nullable();
+            $table->timestamps();
+        });
+
         Schema::create('translation_languages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('translation_id')->unsigned();
@@ -33,5 +41,7 @@ class CreateTranslationLanguagesTable extends Migration
     public function down()
     {
         Schema::drop('translation_languages');
+
+        Schema::drop('translations');
     }
 }

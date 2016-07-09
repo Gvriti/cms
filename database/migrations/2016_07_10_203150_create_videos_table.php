@@ -23,6 +23,16 @@ class CreateVideosTable extends Migration
 
             $table->foreign('gallery_id')->references('id')->on('galleries')->onDelete('cascade');
         });
+
+        Schema::create('video_languages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('video_id')->unsigned();
+            $table->string('language', 3);
+            $table->string('title');
+            $table->timestamps();
+
+            $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
+        });
     }
 
     /**
@@ -32,6 +42,8 @@ class CreateVideosTable extends Migration
      */
     public function down()
     {
+        Schema::drop('video_languages');
+
         Schema::drop('videos');
     }
 }

@@ -22,6 +22,16 @@ class CreatePhotosTable extends Migration
 
             $table->foreign('gallery_id')->references('id')->on('galleries');
         });
+
+        Schema::create('photo_languages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('photo_id')->unsigned();
+            $table->string('language', 3);
+            $table->string('title');
+            $table->timestamps();
+
+            $table->foreign('photo_id')->references('id')->on('photos')->onDelete('cascade');
+        });
     }
 
     /**
@@ -31,6 +41,8 @@ class CreatePhotosTable extends Migration
      */
     public function down()
     {
+        Schema::drop('photo_languages');
+
         Schema::drop('photos');
     }
 }

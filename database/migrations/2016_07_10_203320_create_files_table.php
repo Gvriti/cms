@@ -20,6 +20,17 @@ class CreateFilesTable extends Migration
             $table->boolean('visible')->default(1);
             $table->timestamps();
         });
+
+        Schema::create('file_languages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('file_id')->unsigned();
+            $table->string('language', 3);
+            $table->string('title');
+            $table->string('file', 800)->nullable();
+            $table->timestamps();
+
+            $table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');
+        });
     }
 
     /**
@@ -29,6 +40,8 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
+        Schema::drop('file_languages');
+
         Schema::drop('files');
     }
 }

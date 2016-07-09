@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticlesTable extends Migration
+class CreateCatalogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('catalog', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('collection_id')->unsigned();
             $table->string('slug')->unique();
@@ -23,6 +23,19 @@ class CreateArticlesTable extends Migration
 
             $table->foreign('collection_id')->references('id')->on('collections');
         });
+
+        Schema::create('catalog_languages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('catalog_id')->unsigned();
+            $table->string('language', 3);
+            $table->string('title');
+            $table->text('description');
+            $table->mediumText('content');
+            $table->string('meta_desc')->nullable();
+            $table->timestamps();
+
+            $table->foreign('catalog_id')->references('id')->on('catalog')->onDelete('cascade');
+        });
     }
 
     /**
@@ -32,6 +45,8 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('articles');
+        Schema::drop('catalog_languages');
+
+        Schema::drop('catalog');
     }
 }

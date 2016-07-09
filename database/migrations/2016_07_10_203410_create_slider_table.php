@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSliderLanguagesTable extends Migration
+class CreateSliderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,6 +12,15 @@ class CreateSliderLanguagesTable extends Migration
      */
     public function up()
     {
+        Schema::create('slider', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('position')->default(1)->unsigned();
+            $table->boolean('visible')->default(1);
+            $table->string('file', 800)->nullable();
+            $table->string('link', 800)->nullable();
+            $table->timestamps();
+        });
+
         Schema::create('slider_languages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('slider_id')->unsigned();
@@ -32,5 +41,7 @@ class CreateSliderLanguagesTable extends Migration
     public function down()
     {
         Schema::drop('slider_languages');
+
+        Schema::drop('slider');
     }
 }
