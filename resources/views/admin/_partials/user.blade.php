@@ -87,7 +87,7 @@
       </ul>
     @endif
     </li>
-    @if (count($languages) > 1)
+    @if (count($languages = languages()) > 1)
     <li class="dropdown hover-line language-switcher">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <img src="{{ asset('assets/images/flags/flag-'.language().'.png') }}" alt="flag-{{language()}}" />
@@ -97,7 +97,7 @@
         <li>
           <a href="{{$value['url']}}">
             <img src="{{ asset('assets/images/flags/flag-'.$key.'.png') }}" alt="flag-{{$key}}" />
-            {{ $value['name'] }}
+            {{ $value['full_name'] }}
           </a>
         </li>
         @endforeach

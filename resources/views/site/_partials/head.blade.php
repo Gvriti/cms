@@ -11,7 +11,7 @@
 <meta property="og:image" content="{{$current->image}}">
 <title>{{$current->title}}</title>
 <link rel="canonical" href="{{$url}}">
-@if (count($languages) > 1)
+@if (count($languages = languages()) > 1)
 @foreach ($languages as $key => $value)
 <link rel="alternate" hreflang="{{$key}}" href="{{site_url($current->slug, [], $key)}}">
 @endforeach

@@ -15,11 +15,11 @@
             <!-- .navbar-header -->
             <div id="navbar" class="navbar-collapse collapse">
                 @include('site._partials.pages')
-            @if (! empty($languages))
-                <ul class="nav navbar-nav navbar-right">
+            @if (count($languages = languages()) > 1)
+                <ul class="nav navbar-nav navbar-right text-uppercase">
                 @foreach ($languages as $key => $value)
                     <li{!!$key == language() ? ' class="active"' : ''!!}>
-                        <a href="{{$value['url']}}">{{$value['name']}}</a>
+                        <a href="{{$value['url']}}">{{$value['short_name']}}</a>
                     </li>
                 @endforeach
                 </ul>

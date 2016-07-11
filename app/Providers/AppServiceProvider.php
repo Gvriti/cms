@@ -3,23 +3,22 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\View\Compilers\BladeCompiler;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
      *
-     * @param  \Illuminate\View\Compilers\BladeCompiler $bladeCompiler
      * @return void
      */
-    public function boot(BladeCompiler $bladeCompiler)
+    public function boot()
     {
         if ($this->app['config']->get('app.debug')) {
             log_executed_db_queries();
         }
 
-        $bladeCompiler->directive('php', function ($expression) {
+        $this->app['view']->getEngineResolver()->resolve('blade')->getCompiler()
+            ->directive('php', function ($expression) {
             return "<?php {$expression}; ?>";
         });
     }

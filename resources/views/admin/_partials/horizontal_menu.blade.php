@@ -123,7 +123,7 @@
       </ul>
       <!-- notifications and other links -->
       <ul class="nav nav-userinfo navbar-right">
-        @if ($languages)
+        @if (count($languages = languages()) > 1)
         <!-- Added in v1.2 -->
         <li class="dropdown hover-line language-switcher">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -134,7 +134,7 @@
             <li>
               <a href="{{$value['url']}}">
                 <img src="{{ asset('assets/images/flags/flag-'.$key.'.png') }}" alt="flag-{{$key}}" />
-                {{ $value['name'] }}
+                {{ $value['full_name'] }}
               </a>
             </li>
             @endforeach

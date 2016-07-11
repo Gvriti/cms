@@ -51,14 +51,14 @@ class DynamicRouteServiceProvider extends ServiceProvider
     protected $segments = [], $segmentsLeft = [];
 
     /**
-     * Get the count of the total URL segments.
+     * Number of total URL segments.
      *
      * @var int
      */
     protected $segmentsCount = 0, $segmentsLeftCount = 0;
 
     /**
-     * The array of the Page instances.
+     * The array of the Page instance.
      *
      * @var array
      */

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Illuminate\Database\Events\QueryExecuted;
 
 /**
@@ -18,15 +17,20 @@ function language()
  * Get the application languages.
  *
  * @param  string|null  $key
+ * @param  string  $value
  * @return array
  */
-function languages($key = null)
+function languages($key = null, $value = 'full_name')
 {
     if (is_null($key)) {
         return config('app.languages', []);
     }
 
-    return config('app.languages.' . $key);
+    if (! is_null($value)) {
+        $value = '.' . $value;
+    }
+
+    return config("app.languages.{$key}{$value}");
 }
 
 /**
@@ -107,13 +111,14 @@ function cms_route($name, $parameters = [], $language = null, $absolute = true)
  * Generate a CMS URL.
  *
  * @param  string  $path
- * @param  array   $parameters
- * @param  bool    $secure
+ * @param  array  $parameters
+ * @param  string|null  $language
+ * @param  bool  $secure
  * @return string
  */
 function cms_url($path = null, array $parameters = [], $language = null, $secure = null)
 {
-    return url(prefix_language(cms_slug($path), $language), [], $secure) . build_query($parameters);
+    return url(prefix_language(cms_slug($path), $language), [], $secure) . query_string($parameters);
 }
 
 /**
@@ -147,7 +152,7 @@ function site_route($name, $parameters = [], $language = null, $absolute = true)
  */
 function site_url($path = null, array $parameters = [], $language = null, $secure = null)
 {
-    return url(prefix_language($path, $language), [], $secure) . build_query($parameters);
+    return url(prefix_language($path, $language), [], $secure) . query_string($parameters);
 }
 
 /**
@@ -155,9 +160,10 @@ function site_url($path = null, array $parameters = [], $language = null, $secur
  *
  * @param  array  $parameters
  * @param  mixed  $numericPrefix
+ * @param  string  $basePrefix
  * @return string
  */
-function build_query(array $parameters, $numericPrefix = null)
+function query_string(array $parameters, $numericPrefix = null, $basePrefix = '?')
 {
     if (count($parameters) == 0) {
         return '';
@@ -177,7 +183,7 @@ function build_query(array $parameters, $numericPrefix = null)
         );
     }
 
-    return '?'.trim($query, '&');
+    return $basePrefix.trim($query, '&');
 }
 
 /**
@@ -235,7 +241,7 @@ function add_language($url, $language)
 
         array_unshift($path, $language);
 
-        $query = isset($segments['query']) ? '?' . $segments['query'] : null;
+        $query = isset($segments['query']) ? '?' . $segments['query'] : '';
 
         return $request->root() . '/' . implode('/', $path) . $query;
     }
@@ -303,9 +309,9 @@ function find_item($items, $value, $key = 'id', $multiple = false, $recursive = 
 /**
  * Make a nestable items tree.
  *
- * @param  array   $data
- * @param  string  $slug
- * @param  int     $parentId
+ * @param  array  $items
+ * @param  bool|string  $slug
+ * @param  int  $parentId
  * @param  string  $parentKey
  * @param  string  $key
  * @return array
@@ -488,10 +494,11 @@ function glide($path, $type, $crop = null)
 {
     $config = config();
 
-    $files = '/' . current((array) $config['elfinder.dir']) . '/';
+    $files = (array) $config['elfinder.dir'];
+    $files = '/' . current($files) . '/';
 
     if (($pos = strpos($path, $files)) !== false) {
-        $glideBaseUrl = '/' . $config['site.glide_base_url'] . '/';
+        $baseUrl = '/' . $config['site.glide_base_url'] . '/';
 
         $query = '?type=' . $type;
 
@@ -499,7 +506,7 @@ function glide($path, $type, $crop = null)
             $query .= '&crop=' . $crop;
         }
 
-        return substr_replace($path, $glideBaseUrl, $pos, strlen($files)) . $query;
+        return substr_replace($path, $baseUrl, $pos, strlen($files)) . $query;
     }
 
     return $path;
@@ -578,7 +585,7 @@ function getYoutubeId($url)
         return (string) end($path);
     }
 
-    return;
+    return '#not_found';
 }
 
 /**

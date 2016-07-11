@@ -101,8 +101,14 @@ return [
     */
 
     'languages' => [
-        'ka' => 'Georgian',
-        'en' => 'English'
+        'ka' => [
+            'short_name' => 'ge',
+            'full_name' => 'Georgian'
+        ],
+        'en' => [
+            'short_name' => 'en',
+            'full_name' => 'English'
+        ]
     ],
 
     /*
