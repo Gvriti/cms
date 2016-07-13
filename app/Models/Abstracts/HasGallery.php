@@ -55,7 +55,7 @@ abstract class HasGallery extends Model
      */
     public function byType($type = null)
     {
-        return (new Gallery)->where(
+        return (new Gallery)->joinLanguages()->where(
             'type', is_null($type) ? static::TYPE : $type
         );
     }

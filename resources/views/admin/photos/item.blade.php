@@ -1,22 +1,25 @@
-@if (! empty($model) || ! empty($modelInput))
-<li id="item{{$model->id}}" data-id="{{$model->id}}" data-pos="{{$model->position}}" data-url="{{cms_route('photos.edit', [$model->gallery_id, $model->id])}}" class="item col-md-3 col-sm-4 col-xs-6">
+@if (! empty($item) || ! empty($itemLang))
+<li id="item{{$item->id}}" data-id="{{$item->id}}" data-pos="{{$item->position}}" data-url="{{cms_route('photos.edit', [$item->gallery_id, $item->id])}}" class="item col-md-3 col-sm-4 col-xs-6">
     <div class="album-image">
         <a href="#" class="thumb" data-modal="edit">
-            <img src="{{$model->file ?: $model->file_default}}" class="img-responsive" alt="{{$modelInput['title']}}" />
+            <img src="{{$item->file ?: $item->file_default}}" class="img-responsive" alt="{{$itemLang['title']}}" />
         </a>
         <a href="#" class="name">
-            <span class="title">{{$modelInput['title']}}</span>
-            <em>{{$model->created_at->format('d F Y')}}</em>
+            <span class="title">{{$itemLang['title']}}</span>
+            <em>{{$item->created_at->format('d F Y')}}</em>
         </a>
         <div class="image-options">
-            <a href="#" data-url="{{cms_route('photos.visibility', [$model->id])}}" class="visibility">
-                <i class="fa fa-eye{{$model->visible ? '' : '-slash'}}"></i>
+            <div class="select-item dib">
+                <input type="checkbox" data-id="{{$item->id}}" class="cbr" />
+            </div>
+            <a href="#" data-url="{{cms_route('photos.visibility', [$item->id])}}" class="visibility">
+                <i class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></i>
             </a>
             <a href="#" data-modal="edit"><i class="fa fa-pencil"></i></a>
-            <a href="#" data-delete="this" data-id="{{$model->id}}"><i class="fa fa-trash"></i></a>
+            <a href="#" data-delete="this" data-id="{{$item->id}}"><i class="fa fa-trash"></i></a>
         </div>
         <div class="image-checkbox select-item">
-            <input type="checkbox" data-id="{{$model->id}}" class="cbr" />
+            <input type="checkbox" data-id="{{$item->id}}" class="cbr" />
         </div>
     </div>
 </li>

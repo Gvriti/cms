@@ -1,28 +1,28 @@
-@if (! empty($model) || ! empty($modelInput))
-<li id="item{{$model->id}}" data-id="{{$model->id}}" data-pos="{{$model->position}}" data-url="{{cms_route('files.edit', [$model->route_name, $model->route_id, $model->id])}}" class="item col-md-2 col-sm-4 col-xs-6">
+@if (! empty($item) || ! empty($itemLang))
+<li id="item{{$item->id}}" data-id="{{$item->id}}" data-pos="{{$item->position}}" data-url="{{cms_route('files.edit', [$item->route_name, $item->route_id, $item->id])}}" class="item col-md-2 col-sm-4 col-xs-6">
     <div class="album-image">
         <a href="#" class="thumb" data-modal="edit">
-        @if (in_array($ext = pathinfo($modelInput['file'], PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif']))
-            <img src="{{$modelInput['file']}}" class="img-responsive" alt="{{$modelInput['title']}}" />
+        @if (in_array($ext = pathinfo($itemLang['file'], PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif']))
+            <img src="{{$itemLang['file']}}" class="img-responsive" alt="{{$itemLang['title']}}" />
         @elseif( ! empty($ext))
-            <img src="{{asset('assets/images/file-ext-icons/'.$ext.'.png')}}" class="img-responsive" alt="{{$modelInput['title']}}" />
+            <img src="{{asset('assets/images/file-ext-icons/'.$ext.'.png')}}" class="img-responsive" alt="{{$itemLang['title']}}" />
         @else
-            <img src="{{asset('assets/images/file-ext-icons/www.png')}}" class="img-responsive" alt="{{$modelInput['title']}}" />
+            <img src="{{asset('assets/images/file-ext-icons/www.png')}}" class="img-responsive" alt="{{$itemLang['title']}}" />
         @endif
         </a>
         <a href="#" class="name">
-            <span class="title">{{$modelInput['title']}}</span>
-            <em>{{$model->created_at->format('d F Y')}}</em>
+            <span class="title">{{$itemLang['title']}}</span>
+            <em>{{$item->created_at->format('d F Y')}}</em>
         </a>
         <div class="image-options">
             <div class="file-checkbox select-item dib">
-                <input type="checkbox" data-id="{{$model->id}}" class="cbr" />
+                <input type="checkbox" data-id="{{$item->id}}" class="cbr" />
             </div>
-            <a href="#" data-url="{{cms_route('files.visibility', [$model->id])}}" class="visibility">
-                <i class="fa fa-eye{{$model->visible ? '' : '-slash'}}"></i>
+            <a href="#" data-url="{{cms_route('files.visibility', [$item->id])}}" class="visibility">
+                <i class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></i>
             </a>
             <a href="#" data-modal="edit"><i class="fa fa-pencil"></i></a>
-            <a href="#" data-delete="this" data-id="{{$model->id}}"><i class="fa fa-trash"></i></a>
+            <a href="#" data-delete="this" data-id="{{$item->id}}"><i class="fa fa-trash"></i></a>
         </div>
     </div>
 </li>

@@ -95,8 +95,8 @@ class AdminFilesController extends Controller
 
         if ($request->ajax() || $request->wantsJson()) {
             $view = view('admin.files.item', [
-                'model' => $model,
-                'modelInput' => $input
+                'item' => $model,
+                'itemLang' => $input
             ])->render();
 
             return response()->json(
@@ -152,9 +152,7 @@ class AdminFilesController extends Controller
      */
     public function update(FileRequest $request, $routeName, $routeId, $id)
     {
-        $input = $request->all();
-
-        $this->model->findOrFail($id)->update($input);
+        $this->model->findOrFail($id)->update($input = $request->all());
 
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json(fill_data(

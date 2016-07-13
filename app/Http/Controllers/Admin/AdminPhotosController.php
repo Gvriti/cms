@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Models\Photo;
+use Models\Gallery;
 use Illuminate\Http\Request;
 use App\Jobs\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
@@ -50,9 +51,9 @@ class AdminPhotosController extends Controller
     {
         $model = $this->model;
 
-        $data['collection'] = $model->gallery()->findOrFail($galleryId);
+        $data['parent'] = (new Gallery)->joinLanguages()->findOrFail($galleryId);
 
-        $data['items'] = $model->getAdminGallery($data['collection']);
+        $data['items'] = $model->getAdminGallery($data['parent']);
 
         $data['similarTypes'] = $model->byType()->get();
 
@@ -95,8 +96,8 @@ class AdminPhotosController extends Controller
 
         if ($request->ajax() || $request->wantsJson()) {
             $view = view('admin.photos.item', [
-                'model' => $model,
-                'modelInput' => $input
+                'item' => $model,
+                'itemLang' => $input
             ])->render();
 
             return response()->json(
@@ -151,9 +152,7 @@ class AdminPhotosController extends Controller
      */
     public function update(PhotoRequest $request, $galleryId, $id)
     {
-        $input = $request->all();
-
-        $this->model->findOrFail($id)->update($input);
+        $this->model->findOrFail($id)->update($input = $request->all());
 
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json(fill_data(

@@ -4,7 +4,7 @@
     <div class="title-env">
         <h1 class="title">
             <i class="{{$iconCurrent = icon_type('photos')}}"></i>
-            {{ $collection->title }}
+            {{ $parent->title }}
         </h1>
     </div>
     <div class="breadcrumb-env">
@@ -16,10 +16,10 @@
                 <a href="{{ cms_route('collections.index') }}"><i class="{{icon_type('collections')}}"></i>Collections</a>
             </li>
             <li>
-                <a href="{{ cms_route('galleries.index', [$collection->collection_id]) }}"><i class="{{icon_type('galleries')}}"></i>Galleries</a>
+                <a href="{{ cms_route('galleries.index', [$parent->collection_id]) }}"><i class="{{icon_type('galleries')}}"></i>Galleries</a>
             </li>
             <li class="active">
-                <strong>{{ $collection->title }}</strong>
+                <strong>{{ $parent->title }}</strong>
             </li>
         </ol>
     </div>
@@ -31,7 +31,7 @@
                 <h2>Photos</h2>
                 <ul class="album-options list-unstyled list-inline">
                     <li>
-                        <a href="{{cms_route('galleries.edit', [$collection->collection_id, $collection->id])}}">
+                        <a href="{{cms_route('galleries.edit', [$parent->collection_id, $parent->id])}}">
                             <i class="fa fa-gear"></i>
                         </a>
                     </li>
@@ -45,7 +45,7 @@
                             Add Image
                         </a>
                     </li>
-                @if ($collection->admin_order_by == 'position')
+                @if ($parent->admin_order_by == 'position')
                     <li>
                         <a href="#" data-action="sort">
                             <i class="fa fa-arrows"></i>
@@ -77,9 +77,9 @@
                     Drag images to sort them
                 </div>
             </div>
-            <ul id="nestable-list" class="album-images list-unstyled row" data-insert="{{$collection->admin_sort == 'desc' ? 'prepend' : 'append'}}" data-uk-nestable="{maxDepth:1}">
+            <ul id="nestable-list" class="album-images list-unstyled row" data-insert="{{$parent->admin_sort == 'desc' ? 'prepend' : 'append'}}" data-uk-nestable="{maxDepth:1}">
             @foreach($items as $item)
-                <li id="item{{$item->id}}" data-id="{{$item->id}}" data-pos="{{$item->position}}" data-url="{{cms_route('photos.edit', [$collection->id, $item->id])}}" class="item col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <li id="item{{$item->id}}" data-id="{{$item->id}}" data-pos="{{$item->position}}" data-url="{{cms_route('photos.edit', [$parent->id, $item->id])}}" class="item col-lg-3 col-md-4 col-sm-4 col-xs-6">
                     <div class="album-image">
                         <a href="#" class="thumb" data-modal="edit">
                             <img src="{{$item->file ?: $item->file_default}}" class="img-responsive" alt="{{$item->title}}" />
@@ -107,15 +107,15 @@
         </div>
         <div class="col-sm-3 gallery-left">
             <div class="gallery-sidebar">
-                <a href="{{cms_route('galleries.create', [$collection->collection_id, 'type' => $collection->type])}}" class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
+                <a href="{{cms_route('galleries.create', [$parent->collection_id, 'type' => $parent->type])}}" class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
                     <i class="{{$iconCurrent}}"></i>
                     <span>ალბომის დამატება</span>
                 </a>
                 <ul class="list-unstyled">
                 @foreach ($similarTypes as $item)
-                    <li{!!$item->id != $collection->id ? '' : ' class="active"'!!}>
+                    <li{!!$item->id != $parent->id ? '' : ' class="active"'!!}>
                         <a href="{{ cms_route($item->type . '.index', [$item->id]) }}">
-                            <i class="fa fa-folder{{$item->id != $collection->id ? '' : '-open'}}-o"></i>
+                            <i class="fa fa-folder{{$item->id != $parent->id ? '' : '-open'}}-o"></i>
                             <span>{{$item->title}}</span>
                         </a>
                     </li>
@@ -128,10 +128,10 @@
 @push('scripts.bottom')
 <script type="text/javascript">
 $(function() {
-    var routeCreate = '{!!cms_route('photos.create', [$collection->id, 'sort' => $collection->admin_sort, 'page' => $items->currentPage(), 'lastPage' => $items->lastPage()])!!}';
-    var routeIndex = '{{cms_route('photos.index', [$collection->id])}}';
+    var routeCreate = '{!!cms_route('photos.create', [$parent->id, 'sort' => $parent->admin_sort, 'page' => $items->currentPage(), 'lastPage' => $items->lastPage()])!!}';
+    var routeIndex = '{{cms_route('photos.index', [$parent->id])}}';
     var routePosition = '{{cms_route('photos.updatePosition')}}';
-    var sort = '{{$collection->admin_sort}}';
+    var sort = '{{$parent->admin_sort}}';
     var page = {{request('page', 1)}};
     var hasMorePages = '{{$items->hasMorePages()}}';
     @include('admin._scripts.album')

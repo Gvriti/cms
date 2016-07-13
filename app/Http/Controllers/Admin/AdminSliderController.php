@@ -78,14 +78,12 @@ class AdminSliderController extends Controller
      */
     public function store(SliderRequest $request)
     {
-        $input = $request->all();
-
-        $model = $this->model->create($input);
+        $model = $this->model->create($input = $request->all());
 
         if ($request->ajax() || $request->wantsJson()) {
             $view = view('admin.slider.item', [
-                'model' => $model,
-                'modelInput' => $input
+                'item' => $model,
+                'itemLang' => $input
             ])->render();
 
             return response()->json(
@@ -137,9 +135,7 @@ class AdminSliderController extends Controller
      */
     public function update(SliderRequest $request, $id)
     {
-        $input = $request->all();
-
-        $this->model->findOrFail($id)->update($input);
+        $this->model->findOrFail($id)->update($input = $request->all());
 
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json(fill_data(
