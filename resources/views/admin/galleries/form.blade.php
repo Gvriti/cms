@@ -120,7 +120,7 @@
         <div class="form-group{{($error = $errors->first('admin_per_page')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label required">Admin per page:</label>
             <div class="col-sm-8">
-                <div id="admin_per_page{{$current->language}}" class="input-group spinner" data-type="general" data-step="1" data-min="2" data-max="50">
+                <div id="admin_per_page{{$current->language}}" class="input-group spinner" data-type="general" data-step="1" data-min="1" data-max="50">
                     <div class="input-group-btn">
                         <span class="btn btn-info" data-type="decrement">-</span>
                     </div>
@@ -143,7 +143,7 @@
         <div class="form-group{{($error = $errors->first('site_per_page')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label required">Site per page:</label>
             <div class="col-sm-8">
-                <div id="site_per_page{{$current->language}}" class="input-group spinner" data-type="general" data-step="1" data-min="2" data-max="50">
+                <div id="site_per_page{{$current->language}}" class="input-group spinner" data-type="general" data-step="1" data-min="1" data-max="50">
                     <div class="input-group-btn">
                         <span class="btn btn-info" data-type="decrement">-</span>
                     </div>

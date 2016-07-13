@@ -32,10 +32,10 @@ class GalleryRequest extends Request
             'type'           => 'required',
             'admin_order_by' => 'required',
             'admin_sort'     => 'required',
-            'admin_per_page' => 'required|numeric|min:2|max:50',
+            'admin_per_page' => 'required|numeric|min:1|max:50',
             'site_order_by'  => 'required',
             'site_sort'      => 'required',
-            'site_per_page'  => 'required|numeric|min:2|max:50'
+            'site_per_page'  => 'required|numeric|min:1|max:50'
         ];
     }
 
