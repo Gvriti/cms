@@ -10,7 +10,7 @@
                     </div>
                     {!! Form::model($item, [
                         'method' => 'put',
-                        'url'    => cms_route('videos.update', [$item->gallery_id, $item->id], ($isMultiLang = count(languages()) > 1) ? $item->language : null),
+                        'url'    => cms_route('videos.update', [$item->gallery_id, $item->id], ($isMultiLang = (count(languages()) > 1)) ? $item->language : null),
                         'class'  => 'form-horizontal '.$settings->get('ajax_form'),
                         'data-lang' => $item->language
                     ]) !!}

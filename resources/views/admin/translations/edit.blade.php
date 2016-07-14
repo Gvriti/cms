@@ -22,7 +22,7 @@
 </div>
 <div class="clearfix">
     <ul class="nav nav-tabs col-xs-8">
-@if ($isMultiLang = count(languages()) > 1)
+@if ($isMultiLang = (count(languages()) > 1))
     @foreach ($items as $current)
         <li{!!language() != $current->language ? '' : ' class="active"'!!}>
             <a href="#item-{{$current->language}}" data-toggle="tab">
