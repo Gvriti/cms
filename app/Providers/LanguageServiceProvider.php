@@ -16,7 +16,7 @@ class LanguageServiceProvider extends ServiceProvider
     protected $languages = [];
 
     /**
-     * Number of total application languages.
+     * The number of total application languages.
      *
      * @var int
      */
@@ -30,7 +30,7 @@ class LanguageServiceProvider extends ServiceProvider
     protected $segments = [];
 
     /**
-     * Number of total URL segments.
+     * The number of total URL segments.
      *
      * @var int
      */

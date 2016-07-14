@@ -51,18 +51,25 @@ class DynamicRouteServiceProvider extends ServiceProvider
     protected $segments = [], $segmentsLeft = [];
 
     /**
-     * Number of total URL segments.
+     * The number of total URL segments.
      *
      * @var int
      */
     protected $segmentsCount = 0, $segmentsLeftCount = 0;
 
     /**
-     * The array of the Page instance.
+     * The array of page instances.
      *
      * @var array
      */
     protected $pages = [];
+
+    /**
+     * The number of total page instances.
+     *
+     * @var int
+     */
+    protected $pagesCount = 0;
 
     /**
      * The array of the attached types of the Page.
@@ -237,6 +244,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         if (($this->pagesCount == $this->segmentsCount)
             && ! in_array($page->type, $this->implicitTypes)
+            && ! in_array($page->type, $this->explicitTypes)
         ) {
             $this->setCurrentRoute($page->type, [$page], 'index');
 
@@ -260,10 +268,8 @@ class DynamicRouteServiceProvider extends ServiceProvider
      */
     protected function setAttachedTypeRoute(Page $page)
     {
-        $slug = current($this->segmentsLeft);
-
         if (in_array($page->type, $this->explicitTypes)) {
-            $this->setCurrentRoute($page->type, [$page, $slug], 'show');
+            $this->setCurrentRoute($page->type, [$page], 'show', $this->pagesCount);
 
             return;
         }
@@ -272,7 +278,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $implicitModel = (new $implicitModel)->findOrFail($page->type_id);
 
-        if (! $slug) {
+        if (! ($slug = current($this->segmentsLeft))) {
             $this->setCurrentRoute($implicitModel->type, [
                 $page, $implicitModel
             ], 'index', $this->pagesCount);
@@ -354,7 +360,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $paramsCount = count($parameters);
 
-        for ($i = 0; $i <= ($this->segmentsCount - ($paramsCount + 1)); $i++) { 
+        for ($i = 0; $i <= ($this->segmentsCount - ($paramsCount + 1)); $i++) {
             $segments .= $this->segments[$i] . '/';
         }
 
@@ -406,7 +412,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
             for ($i = 1; $i <= $pathCount; $i++) {
                 if ($i == $pathCount) {
                     $namespace .= '\\' . studly_case($path[$i - 2])
-                                       . studly_case($path[$i - 1]);
+                        . studly_case($path[$i - 1]);
                 } else {
                     $namespace .= '\\' . studly_case($path[$i - 1]);
                 }
