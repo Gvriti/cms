@@ -105,6 +105,62 @@
         </div>
     </div>
     <div class="col-sm-3">
+        <div class="xe-widget xe-counter-block xe-counter-block-turquoise"  data-count=".num" data-from="0" data-to="{{$filesTotal}}" data-duration="3">
+            <div class="xe-upper">
+                <div class="xe-icon">
+                    <i class="{{icon_type('files')}}"></i>
+                </div>
+                <div class="xe-label">
+                    <strong class="num">{{$filesTotal}}</strong>
+                    <span>Total attached files</span>
+                </div>
+            </div>
+            <div class="xe-lower">
+                <div class="border"></div>
+                <span>Details</span>
+                <strong>Files used in {{$filesTotalDistinct}} category</strong>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="xe-widget xe-counter-block xe-counter-block-orange"  data-count=".num" data-from="0" data-to="{{$calendarTotal}}" data-duration="3">
+            <div class="xe-upper">
+                <a href="{{cms_route('calendar.index')}}" class="xe-icon">
+                    <i class="fa fa-calendar"></i>
+                </a>
+                <div class="xe-label">
+                    <strong class="num">{{$calendarTotal}}</strong>
+                    <span>Total calendar events</span>
+                </div>
+            </div>
+            <div class="xe-lower">
+                <div class="border"></div>
+                <span>Details</span>
+                <strong>{{count($calendarEvents)}} Events between 1 week</strong>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="xe-widget xe-counter-block xe-counter-block-info"  data-count=".num" data-from="0" data-to="{{$totalAlbums = ($photoAlbumTotal + $videoAlbumTotal)}}" data-duration="3">
+            <div class="xe-upper">
+                <a href="{{cms_route('collections.index', ['type' => 'galleries'])}}" class="xe-icon">
+                    <i class="{{icon_type('galleries')}}"></i>
+                </a>
+                <div class="xe-label">
+                    <strong class="num">{{$totalAlbums}}</strong>
+                    <span>Total gallery items</span>
+                </div>
+            </div>
+            <div class="xe-lower">
+                <div class="border"></div>
+                <span>Details</span>
+                <strong>{{$galleriesTotal}} Total galleries</strong>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
         <div class="xe-widget xe-counter-block xe-counter-block-danger"  data-count=".num" data-from="0" data-to="{{$photosTotal}}" data-duration="3">
             <div class="xe-upper">
                 <a href="{{cms_route('collections.index', ['type' => 'galleries'])}}" class="xe-icon">
@@ -140,88 +196,32 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-@if ($notes)
-    <div class="col-sm-3">
-        <div class="xe-widget xe-todo-list">
-            <div class="xe-header">
-                <a href="{{cms_route('notes.index')}}" class="xe-icon">
-                    <i class="fa fa-file-text-o"></i>
-                </a>
-                <div class="xe-label">
-                    <span>Last 5 note</span>
-                    <strong>Notes</strong>
+    @if ($notes)
+        <div class="col-sm-3">
+            <div class="xe-widget xe-todo-list">
+                <div class="xe-header">
+                    <a href="{{cms_route('notes.index')}}" class="xe-icon">
+                        <i class="fa fa-file-text-o"></i>
+                    </a>
+                    <div class="xe-label">
+                        <span>Last 5 note</span>
+                        <strong>Notes</strong>
+                    </div>
                 </div>
-            </div>
-            <div class="xe-body">
-                <ul class="list-unstyled">
-                @foreach ($notes as $item)
-                    <li>
-                        <label>
-                            <span>{{$item->title}}</span>
-                        </label>
-                    </li>
-                @endforeach
-                </ul>
+                <div class="xe-body">
+                    <ul class="list-unstyled">
+                        @foreach ($notes as $item)
+                            <li>
+                                <label>
+                                    <span>{{$item->title}}</span>
+                                </label>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-@endif
-    <div class="col-sm-3">
-        <div class="xe-widget xe-counter-block xe-counter-block-orange"  data-count=".num" data-from="0" data-to="{{$calendarTotal}}" data-duration="3">
-            <div class="xe-upper">
-                <a href="{{cms_route('calendar.index')}}" class="xe-icon">
-                    <i class="fa fa-calendar"></i>
-                </a>
-                <div class="xe-label">
-                    <strong class="num">{{$calendarTotal}}</strong>
-                    <span>Total calendar events</span>
-                </div>
-            </div>
-            <div class="xe-lower">
-                <div class="border"></div>
-                <span>Details</span>
-                <strong>{{count($calendarEvents)}} Events between 1 week</strong>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="xe-widget xe-counter-block xe-counter-block-turquoise"  data-count=".num" data-from="0" data-to="{{$filesTotal}}" data-duration="3">
-            <div class="xe-upper">
-                <div class="xe-icon">
-                    <i class="{{icon_type('files')}}"></i>
-                </div>
-                <div class="xe-label">
-                    <strong class="num">{{$filesTotal}}</strong>
-                    <span>Total attached files</span>
-                </div>
-            </div>
-            <div class="xe-lower">
-                <div class="border"></div>
-                <span>Details</span>
-                <strong>Files used in {{$filesTotalDistinct}} category</strong>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="xe-widget xe-counter-block xe-counter-block-info"  data-count=".num" data-from="0" data-to="{{$totalAlbums = ($photoAlbumTotal + $videoAlbumTotal)}}" data-duration="3">
-            <div class="xe-upper">
-                <a href="{{cms_route('collections.index', ['type' => 'galleries'])}}" class="xe-icon">
-                    <i class="{{icon_type('galleries')}}"></i>
-                </a>
-                <div class="xe-label">
-                    <strong class="num">{{$totalAlbums}}</strong>
-                    <span>Total gallery items</span>
-                </div>
-            </div>
-            <div class="xe-lower">
-                <div class="border"></div>
-                <span>Details</span>
-                <strong>{{$galleriesTotal}} Total galleries</strong>
-            </div>
-        </div>
-    </div>
+    @endif
 </div>
 @push('scripts.bottom')
 <script src="{{asset('assets/js/xenon-widgets.js')}}"></script>
