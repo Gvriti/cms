@@ -110,7 +110,7 @@ class AdminGalleriesController extends Controller
     {
         $data['items'] = $this->model->joinLanguages(false)
                                      ->where('id', $id)
-                                     ->get();
+                                     ->getOrFail();
 
         return view('admin.galleries.edit', $data);
     }
