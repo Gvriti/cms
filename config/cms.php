@@ -53,15 +53,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | CMS Routes
+    | CMS Resource Routes
     |--------------------------------------------------------------------------
     |
     | Here you can specify routes, which will also obtain additional routes.
-    | See routes.php file for additional routes.
     |
     */
 
-    'collection_routes' => [
+    'routes' => [
         'collections' => [
             'catalog'   => 'AdminCatalogController',
             'articles'  => 'AdminArticlesController',

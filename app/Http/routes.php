@@ -52,9 +52,9 @@ $router->group(['middleware' => 'cms.settings', 'prefix' => cms_slug()], functio
         $router->resource('collections', 'AdminCollectionsController', ['names' => resource_names('collections'),
             'except' => ['show']
         ]);
-        // collection routes from config
-        foreach ($this->app['config']->get('cms.collection_routes') as $prefix => $routes) {
-            foreach ($routes as $route => $controller) {
+        // routes from config
+        foreach ((array) $this->app['config']->get('cms.routes') as $prefix => $routes) {
+            foreach ((array) $routes as $route => $controller) {
                 $router->post($route . '/{id}/visibility', [
                     'as' => $route . '.visibility',
                     'uses' => $controller . '@visibility'
