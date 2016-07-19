@@ -58,9 +58,7 @@ class PageRequest extends Request
             $input['type'] = null;
         }
 
-        if (! in_array($type, cms_pages('attached'))
-            || in_array($type, cms_pages('explicit'))
-        ) {
+        if (! in_array($type, cms_pages('attached'))) {
             $input['type_id'] = 0;
         }
 

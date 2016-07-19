@@ -205,7 +205,9 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
             if (is_null($page)) {
                 if (count($this->pages) < 1
-                    || ! in_array($this->pages[$i - 1]->type, $this->attachedTypes)
+                    || (! in_array($type = $this->pages[$i - 1]->type, $this->attachedTypes)
+                        && ! in_array($type, $this->explicitTypes)
+                    )
                 ) {
                     $this->app->abort(404);
                 }
@@ -244,7 +246,6 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         if (($this->pagesCount == $this->segmentsCount)
             && ! in_array($page->type, $this->implicitTypes)
-            && ! in_array($page->type, $this->explicitTypes)
         ) {
             $this->setCurrentRoute($page->type, [$page], 'index');
 
@@ -268,8 +269,10 @@ class DynamicRouteServiceProvider extends ServiceProvider
      */
     protected function setAttachedTypeRoute(Page $page)
     {
-        if (in_array($page->type, $this->explicitTypes)) {
-            $this->setCurrentRoute($page->type, [$page], 'show', $this->pagesCount);
+        $slug = current($this->segmentsLeft);
+
+        if ($slug && in_array($page->type, $this->explicitTypes)) {
+            $this->setCurrentRoute($page->type, [$page, $slug], 'show');
 
             return;
         }
@@ -278,7 +281,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $implicitModel = (new $implicitModel)->findOrFail($page->type_id);
 
-        if (! ($slug = current($this->segmentsLeft))) {
+        if (! $slug) {
             $this->setCurrentRoute($implicitModel->type, [
                 $page, $implicitModel
             ], 'index', $this->pagesCount);
@@ -311,11 +314,11 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $model = (new $model);
 
-        if (method_exists($model, 'bySlug')) {
-            $model = $model->bySlug($slug, $id)->firstOrFail();
-        } else {
-            $model = $model->findOrFail($id);
+        if (! method_exists($model, 'bySlug')) {
+            $this->app->abort(404);
         }
+
+        $model = $model->bySlug($slug, $id)->firstOrFail();
 
         $this->setCurrentRoute($model->type, [$model], 'index');
     }
@@ -324,7 +327,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
      * Set the current route.
      *
      * @param  string  $type
-     * @param  array   $parameters
+     * @param  array  $parameters
      * @param  string|null  $defaultMethod
      * @param  int  $fakeBind
      * @return void
