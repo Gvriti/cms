@@ -101,7 +101,7 @@ function cms_route($name, $parameters = [], $language = null, $absolute = true)
     try {
         $route = route($name . '.' . cms_slug(), $parameters, $absolute);
     } catch (Exception $e) {
-        return '#not-found';
+        return '#not_found';
     }
 
     return add_language($route, $language);
@@ -135,7 +135,7 @@ function site_route($name, $parameters = [], $language = null, $absolute = true)
     try {
         $route = route($name, $parameters, $absolute);
     } catch (Exception $e) {
-        return '#not-found';
+        return '#not_found';
     }
 
     return add_language($route, $language);
