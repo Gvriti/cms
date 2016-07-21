@@ -93,10 +93,7 @@ abstract class HasGallery extends Model
     }
 
     /**
-     * Save a new model and get the instance.
-     *
-     * @param  array  $attributes
-     * @return $this
+     * {@inheritdoc}
      */
     public static function create(array $attributes = [])
     {
