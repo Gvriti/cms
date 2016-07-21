@@ -39,7 +39,8 @@ class AdminGalleriesController extends Controller
      */
     public function index($collectionId)
     {
-        $data['parent'] = (new Collection)->findOrFail($collectionId);
+        $data['parent'] = (new Collection)->where('type', Gallery::TYPE)
+            ->findOrFail($collectionId);
 
         $data['items'] = $this->model->getAdminCollection($data['parent']);
 

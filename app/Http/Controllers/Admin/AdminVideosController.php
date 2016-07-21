@@ -49,13 +49,13 @@ class AdminVideosController extends Controller
      */
     public function index($galleryId)
     {
-        $model = $this->model;
+        $data['parent'] = (new Gallery)->where('type', Video::TYPE)
+            ->joinLanguages()
+            ->findOrFail($galleryId);
 
-        $data['parent'] = (new Gallery)->joinLanguages()->findOrFail($galleryId);
+        $data['items'] = $this->model->getAdminGallery($data['parent']);
 
-        $data['items'] = $model->getAdminGallery($data['parent']);
-
-        $data['similarTypes'] = $model->byType()->get();
+        $data['similarTypes'] = $this->model->byType()->get();
 
         return view('admin.videos.index', $data);
     }

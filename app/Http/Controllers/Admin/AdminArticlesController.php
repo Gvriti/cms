@@ -38,7 +38,8 @@ class AdminArticlesController extends Controller
      */
     public function index($collectionId)
     {
-        $data['parent'] = (new Collection)->findOrFail($collectionId);
+        $data['parent'] = (new Collection)->where('type', Article::TYPE)
+            ->findOrFail($collectionId);
 
         $data['items'] = $this->model->joinFileId()->getAdminCollection($data['parent']);
 

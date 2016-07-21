@@ -38,7 +38,8 @@ class AdminCatalogController extends Controller
      */
     public function index($collectionId)
     {
-        $data['parent'] = (new Collection)->findOrFail($collectionId);
+        $data['parent'] = (new Collection)->where('type', Catalog::TYPE)
+            ->findOrFail($collectionId);
 
         $data['items'] = $this->model->joinFileId()->getAdminCollection($data['parent']);
 
