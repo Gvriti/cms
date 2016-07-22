@@ -40,7 +40,7 @@ class CmsUser extends Model
     protected $notUpdatable = [];
 
     /**
-     * Get the mutated `role` attribute.
+     * Get the mutated "role" attribute.
      *
      * @param  string  $value
      * @return string
@@ -55,7 +55,7 @@ class CmsUser extends Model
     }
 
     /**
-     * Get the mutated `photo` attribute.
+     * Get the mutated "photo" attribute.
      *
      * @param  string  $value
      * @return string

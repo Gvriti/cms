@@ -78,7 +78,7 @@ abstract class HasCollection extends Model
     }
 
     /**
-     * Get the collection instance and add a where `type` clause to the query.
+     * Get the collection instance and add a where "type" clause to the query.
      *
      * @param  string|null  $type
      * @return \Models\Builder\Builder
@@ -91,7 +91,7 @@ abstract class HasCollection extends Model
     }
 
     /**
-     * Add a where `collection_id` clause to the query.
+     * Add a where "collection_id" clause to the query.
      *
      * @param  int  $id
      * @return \Models\Builder\Builder
@@ -102,7 +102,7 @@ abstract class HasCollection extends Model
     }
 
     /**
-     * Add a where `visible` clause to the query.
+     * Add a where "visible" clause to the query.
      *
      * @param  int  $visible
      * @return \Models\Builder\Builder

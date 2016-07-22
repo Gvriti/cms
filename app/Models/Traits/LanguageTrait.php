@@ -103,7 +103,7 @@ trait LanguageTrait
     }
 
     /**
-     * Add a where `language` clause to the query.
+     * Add a where "language" clause to the query.
      *
      * @return \Models\Builder\Builder
      */

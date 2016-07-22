@@ -219,7 +219,7 @@ class Page extends Model
     }
 
     /**
-     * Add a where `menu_id` clause to the query.
+     * Add a where "menu_id" clause to the query.
      *
      * @param  int  $id
      * @return \Models\Builder\Builder
@@ -230,7 +230,7 @@ class Page extends Model
     }
 
     /**
-     * Add a where `parent_id` clause to the query.
+     * Add a where "parent_id" clause to the query.
      *
      * @param  int  $id
      * @return \Models\Builder\Builder
@@ -241,7 +241,7 @@ class Page extends Model
     }
 
     /**
-     * Add a where `type_id` clause to the query.
+     * Add a where "type_id" clause to the query.
      *
      * @param  int     $id
      * @param  string  $operator
@@ -253,7 +253,7 @@ class Page extends Model
     }
 
     /**
-     * Add a where `visible` clause to the query.
+     * Add a where "visible" clause to the query.
      *
      * @param  int  $visible
      * @return \Models\Builder\Builder
@@ -285,7 +285,7 @@ class Page extends Model
     }
 
     /**
-     * Add a `collection` join to the query.
+     * Add a "collection" join to the query.
      *
      * @return \Models\Builder\Builder
      */

@@ -44,7 +44,7 @@ trait FileableTrait
     }
 
     /**
-     * Add a `file` join to the query.
+     * Add a "file" join to the query.
      * 
      * @return \Models\Builder\Builder
      */

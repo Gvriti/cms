@@ -48,7 +48,7 @@ abstract class HasGallery extends Model
     }
 
     /**
-     * Get the gallery instance and add a where `type` clause to the query.
+     * Get the gallery instance and add a where "type" clause to the query.
      *
      * @param  string|null  $type
      * @return \Models\Builder\Builder
@@ -61,7 +61,7 @@ abstract class HasGallery extends Model
     }
 
     /**
-     * Add a where `file` is not empty clause to the query.
+     * Add a where "file" is not empty clause to the query.
      *
      * @return \Models\Builder\Builder
      */
@@ -71,7 +71,7 @@ abstract class HasGallery extends Model
     }
 
     /**
-     * Add a where `gallery_id` clause to the query.
+     * Add a where "gallery_id" clause to the query.
      *
      * @param  mixed  $id
      * @return \Models\Builder\Builder
@@ -82,7 +82,7 @@ abstract class HasGallery extends Model
     }
 
     /**
-     * Add a where `visible` clause to the query.
+     * Add a where "visible" clause to the query.
      *
      * @param  int  $visible
      * @return \Models\Builder\Builder

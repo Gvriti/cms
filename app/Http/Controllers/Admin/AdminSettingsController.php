@@ -53,7 +53,7 @@ class AdminSettingsController extends Controller
     }
 
     /**
-     * Update the `cms_settings` table.
+     * Update the "cms_settings" table.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Contracts\Auth\Guard  $guard

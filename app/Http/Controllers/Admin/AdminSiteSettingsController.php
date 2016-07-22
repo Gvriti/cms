@@ -22,7 +22,7 @@ class AdminSiteSettingsController extends Controller
     }
 
     /**
-     * Update the `site_settings` table.
+     * Update the "site_settings" table.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse

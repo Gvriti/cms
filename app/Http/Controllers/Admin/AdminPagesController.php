@@ -141,9 +141,7 @@ class AdminPagesController extends Controller
      */
     public function update(PageRequest $request, $menuId, $id)
     {
-        $input = $request->all();
-
-        $this->model->findOrFail($id)->update($input);
+        $this->model->findOrFail($id)->update($input = $request->all());
 
         if ($request->ajax() || $request->wantsJson()) {
             if (in_array($type = $request->get('type'), cms_pages('attached'))) {

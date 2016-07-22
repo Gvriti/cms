@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="fa fa-dashboard"></i>
+            <i class="{{$icon = icon_type('fa fa-dashboard')}}"></i>
             Dashboard
         </h1>
         <p class="description">The main page of the cms</p>
@@ -12,7 +12,7 @@
         <ol class="breadcrumb bc-1">
             <li class="active">
                 <i class="fa fa-dashboard"></i>
-                <strong>Dashboard</strong>
+                <strong>{{$icon}}</strong>
             </li>
         </ol>
     </div>

@@ -64,7 +64,8 @@ return [
         'collections' => [
             'catalog'   => 'AdminCatalogController',
             'articles'  => 'AdminArticlesController',
-            'galleries' => 'AdminGalleriesController'
+            'galleries' => 'AdminGalleriesController',
+            'faq'       => 'AdminFaqController'
         ],
         'galleries' => [
             'photos' => 'AdminPhotosController',
@@ -85,7 +86,8 @@ return [
         'types' => [
             'catalog'   => 'Catalog',
             'articles'  => 'Articles',
-            'galleries' => 'Galleries'
+            'galleries' => 'Galleries',
+            'faq'       => 'Faq'
         ],
         'order_by' => [
             'position'   => 'Position',
@@ -222,6 +224,7 @@ return [
         'collections' => 'fa fa-list-alt',
         'catalog'     => 'fa fa-briefcase',
         'articles'    => 'fa fa-newspaper-o',
+        'faq'        => 'fa fa-question-circle',
 
         'galleries' => 'fa fa-th',
         'photos'    => 'fa fa-photo',
@@ -231,6 +234,8 @@ return [
 
         'permissions' => 'fa fa-lock',
         'cms_users'   => 'fa fa-user-secret',
+
+        'dashboard' => 'fa fa-dashboard',
     ],
 
 ];

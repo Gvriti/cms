@@ -40,7 +40,7 @@ class Calendar extends Model
     ];
 
     /**
-     * Get the mutated `start` attribute.
+     * Get the mutated "start" attribute.
      *
      * @param  string  $value
      * @return string
@@ -57,7 +57,7 @@ class Calendar extends Model
     }
 
     /**
-     * Get the mutated `end` attribute.
+     * Get the mutated "end" attribute.
      *
      * @param  string  $value
      * @return string

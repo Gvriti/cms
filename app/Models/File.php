@@ -172,7 +172,7 @@ class File extends Model
     }
 
     /**
-     * Add a where `route_id, route_name` clause to the query.
+     * Add a where "route_id, route_name" clause to the query.
      *
      * @param  null|int     $routeId
      * @param  null|string  $routeName
@@ -185,7 +185,7 @@ class File extends Model
     }
 
     /**
-     * Add a where `visible` clause to the query.
+     * Add a where "visible" clause to the query.
      *
      * @param  int  $visible
      * @return \Models\Builder\Builder

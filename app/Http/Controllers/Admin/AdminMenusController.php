@@ -101,9 +101,7 @@ class AdminMenusController extends Controller
      */
     public function update(MenuRequest $request, $id)
     {
-        $input = $request->all();
-
-        $this->model->findOrFail($id)->update($input);
+        $this->model->findOrFail($id)->update($input = $request->all());
 
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json(fill_data(
