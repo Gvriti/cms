@@ -18,9 +18,7 @@ abstract class HasCollection extends Model
      */
     public function getAdminCollection(Collection $collection, $columns = ['*'])
     {
-        return $this->collectionId($collection->id)
-                    ->forAdmin()
-                    ->orderBy($collection->admin_order_by, $collection->admin_sort)
+        return $this->adminCollection($collection)
                     ->paginate($collection->admin_per_page, $columns);
     }
 
@@ -33,10 +31,32 @@ abstract class HasCollection extends Model
      */
     public function getPublicCollection(Collection $collection, $columns = ['*'])
     {
-        return $this->collectionId($collection->id)
-                    ->forPublic()
-                    ->orderBy($collection->site_order_by, $collection->site_sort)
+        return $this->publicCollection($collection)
                     ->paginate($collection->site_per_page, $columns);
+    }
+
+    /**
+     * Build a query based on the admin collection.
+     *
+     * @param  \Models\Collection  $collection
+     * @return \Models\Builder\Builder
+     */
+    public function adminCollection(Collection $collection)
+    {
+        return $this->forAdmin($collection->id)
+                    ->orderBy($collection->admin_order_by, $collection->admin_sort);
+    }
+
+    /**
+     * Build a query based on the public collection.
+     *
+     * @param  \Models\Collection  $collection
+     * @return \Models\Builder\Builder
+     */
+    public function publicCollection(Collection $collection)
+    {
+        return $this->forPublic($collection->id)
+                    ->orderBy($collection->site_order_by, $collection->site_sort);
     }
 
     /**

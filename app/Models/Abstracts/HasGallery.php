@@ -15,8 +15,7 @@ abstract class HasGallery extends Model
      */
     public function getAdminGallery(Gallery $gallery, $columns = ['*'])
     {
-        return $this->byGallery($gallery->id)
-                    ->orderBy($gallery->admin_order_by, $gallery->admin_sort)
+        return $this->adminGallery($gallery)
                     ->paginate($gallery->admin_per_page, $columns);
     }
 
@@ -29,11 +28,34 @@ abstract class HasGallery extends Model
      */
     public function getPublicGallery(Gallery $gallery, $columns = ['*'])
     {
+        return $this->publicGallery($gallery)
+                    ->paginate($gallery->site_per_page, $columns);
+    }
+
+    /**
+     * Build a query based on the admin gallery.
+     *
+     * @param  \Models\Gallery  $gallery
+     * @return \Models\Builder\Builder
+     */
+    public function adminGallery(Gallery $gallery)
+    {
+        return $this->byGallery($gallery->id)
+                    ->orderBy($gallery->admin_order_by, $gallery->admin_sort);
+    }
+
+    /**
+     * Build a query based on the public gallery.
+     *
+     * @param  \Models\Gallery  $gallery
+     * @return \Models\Builder\Builder
+     */
+    public function publicGallery(Gallery $gallery)
+    {
         return $this->byGallery($gallery->id)
                     ->hasFile()
                     ->visible()
-                    ->orderBy($gallery->site_order_by, $gallery->site_sort)
-                    ->paginate($gallery->site_per_page, $columns);
+                    ->orderBy($gallery->site_order_by, $gallery->site_sort);
     }
 
     /**
