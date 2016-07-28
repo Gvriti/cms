@@ -90,13 +90,13 @@
           </li>
           <li>
             <a href="{{ cms_route('siteSettings.index') }}">
-              <i class="fa fa-gear" title="Admin Settings"></i>
+              <i class="fa fa-gear" title="Site Settings"></i>
               <span class="title">Site Settings</span>
             </a>
           </li>
           <li>
             <a href="{{ cms_route('translations.index') }}">
-              <i class="fa fa-language" title="Translations"></i>
+              <i class="{{icon_type('translations')}}" title="Translations"></i>
               <span class="title">Translations</span>
             </a>
           </li>
@@ -115,15 +115,15 @@
             </a>
           </li>
           <li>
-            <a href="{{ cms_route('notes.index') }}">
-              <i class="fa fa-file-text-o" title="notes"></i>
-              <span class="title">Notes</span>
-            </a>
-          </li>
-          <li>
             <a href="{{ cms_route('calendar.index') }}">
               <i class="fa fa-calendar" title="Calendar"></i>
               <span class="title">Calendar</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ cms_route('notes.index') }}">
+              <i class="fa fa-file-text-o" title="notes"></i>
+              <span class="title">Notes</span>
             </a>
           </li>
           <li>
