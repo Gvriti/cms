@@ -123,6 +123,22 @@ abstract class Model extends BaseModel
     }
 
     /**
+     * Execute the query and get the specified attribute.
+     *
+     * @param  string  $attribute
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public function getAttr($attribute, $default = null)
+    {
+        if (! is_null($model = $this->first([$attribute]))) {
+            return $model->{$attribute} ?: $default;
+        }
+
+        return $default;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function create(array $attributes = [])
@@ -162,30 +178,14 @@ abstract class Model extends BaseModel
      */
     public function delete($id = null)
     {
-        if (! is_null($id)) {
-            if (! is_null($model = $this->find($id))) {
-                return $model->delete();
-            }
-
-            return;
+        if (is_null($id)) {
+            return parent::delete();
         }
 
-        return parent::delete();
+        if (! is_null($model = $this->find($id))) {
+            return $model->delete();
+        }
     }
-
-    /**
-     * Destroy the models for the given IDs.
-     *
-     * @param  array|int  $ids
-     * @return mixed
-     *
-     * @throws \Illuminate\Http\Exception\HttpResponseException
-     */
-    public static function destroy($ids)
-    {
-        return parent::whereIn('id', (array) $ids)->delete();
-    }
-
 
     /**
      * Throw new HttpResponseException.

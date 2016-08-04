@@ -58,4 +58,15 @@ class Translation extends Model
     protected $languageNotUpdatable = [
         'translation_id', 'language'
     ];
+
+    /**
+     * Build a query based on the name.
+     *
+     * @param  string  $name
+     * @return \Models\Builder\Builder
+     */
+    public function byName($name)
+    {
+        return $this->where('name', $name)->joinLanguages();
+    }
 }
