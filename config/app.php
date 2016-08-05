@@ -192,19 +192,18 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\GlideServiceProvider::class,
-
-        // Admin service providers
+        // Admin Service Providers
         App\Providers\Admin\MenuServiceProvider::class,
         App\Providers\Admin\ElfinderServiceProvider::class,
         App\Providers\Admin\CalendarServiceProvider::class,
-        // Site service providers
+        // Site Service Providers
         App\Providers\Site\DynamicRouteServiceProvider::class,
         App\Providers\Site\PageServiceProvider::class,
         App\Providers\Site\TranslationServiceProvider::class,
         App\Providers\Site\SettingsServiceProvider::class,
 
         /*
-         * Composer Required Service Providers...
+         * Package Service Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
         Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider::class,
