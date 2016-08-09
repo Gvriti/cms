@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="control-label">Move to:</label>
+                            <label class="control-label" for="column_value">Move to:</label>
                             <select name="column_value" id="column_value" class="form-control">
                         @if (! empty($list))
                             @foreach ($list as $item)
@@ -40,18 +40,18 @@ $(function() {
         e.preventDefault();
 
         id = $(this).data('id');
-        $('#movable-modal input[name="id"]').val(id);
+        movableModal.find('input[name="id"]').val(id);
 
         movableModal.modal();
     });
 
-    // Remove moved page
+    // Remove moved item
     $('#movable-form').on('ajaxFormSuccess', function() {
         var target = $(this).find('#column_value').val();
 
         movableModal.modal('hide');
 
-        if (target != {{isset($parentId) ? $parentId : 0}}) {
+        if (target != '{{isset($parentId) ? $parentId : 0}}') {
             $('#item'+id).remove();
         }
     });
