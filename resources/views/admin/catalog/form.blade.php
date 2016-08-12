@@ -56,16 +56,13 @@
 
 <div class="form-group-separator"></div>
 
-<div class="form-group{{($error = $errors->first('meta_desc')) ? ' validate-has-error' : '' }}">
+<div class="form-group">
     <label class="col-sm-2 control-label">Meta description:</label>
     <div class="col-sm-10">
         {!! Form::text('meta_desc', null, [
             'id' => 'meta_desc' . $current->language,
             'class' => 'form-control',
         ]) !!}
-        @if ($error)
-        <span>{{$error}}</span>
-        @endif
         <span class="description">Description for search engines. It is best to keep meta descriptions less then 150 or 160 characters.</span>
     </div>
 </div>
