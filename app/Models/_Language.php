@@ -4,7 +4,7 @@ namespace Models;
 
 use Models\Abstracts\Model;
 
-class Language extends Model
+class _Language extends Model
 {
     /**
      * The attributes that are not updatable.

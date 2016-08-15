@@ -2,15 +2,15 @@
 
 namespace Models\Traits;
 
-use Models\Language;
+use Models\_Language;
 use Models\Abstracts\Model;
 
 trait LanguageTrait
 {
     /**
-     * The Language instance.
+     * The _Language instance.
      *
-     * @var \Models\Language
+     * @var \Models\_Language
      */
     protected $languageModel;
 
@@ -22,11 +22,11 @@ trait LanguageTrait
      */
     public function language(Model $model)
     {
-        return $this->languageModel = new Language($model);
+        return $this->languageModel = new _Language($model);
     }
 
     /**
-     * Get the table associated with the Language model.
+     * Get the table associated with the _Language model.
      *
      * @return string
      */
@@ -36,7 +36,7 @@ trait LanguageTrait
     }
 
     /**
-     * Get the fillable attributes for the Language model.
+     * Get the fillable attributes for the _Language model.
      *
      * @return array
      */
@@ -46,7 +46,7 @@ trait LanguageTrait
     }
 
     /**
-     * Get the not updatable attributes for the Language model.
+     * Get the not updatable attributes for the _Language model.
      *
      * @return array
      */
@@ -56,7 +56,7 @@ trait LanguageTrait
     }
 
     /**
-     * Get the updatable attributes for the Language model.
+     * Get the updatable attributes for the _Language model.
      *
      * @param  array   $attributes
      * @param  string  $exclude
@@ -113,7 +113,7 @@ trait LanguageTrait
     }
 
     /**
-     * Update the Eloquent model with its related Language model.
+     * Update the Eloquent model with its related _Language model.
      *
      * @param  array   $attributes
      * @param  array   $options
@@ -132,7 +132,7 @@ trait LanguageTrait
     }
 
     /**
-     * Save a new model with its related Language model and return the instance.
+     * Save a new model with its related _Language model and return the instance.
      *
      * @param  array  $attributes
      * @return array
