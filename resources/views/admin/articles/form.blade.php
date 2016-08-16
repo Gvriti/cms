@@ -72,11 +72,16 @@
 <div class="form-group">
     <label class="col-sm-2 control-label">Created at:</label>
     <div class="col-lg-6 col-sm-10">
-        {!! Form::text('created_at', null, [
-            'id' => 'created_at' . $current->language,
-            'class' => 'form-control datetimepicker',
-            'data-format' => 'yyyy-mm-dd',
-        ]) !!}
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </span>
+            {!! Form::text('created_at', null, [
+                'id' => 'created_at' . $current->language,
+                'class' => 'form-control datetimepicker',
+                'data-format' => 'yyyy-mm-dd',
+            ]) !!}
+        </div>
     </div>
 </div>
 

@@ -49,6 +49,10 @@ class ArticleRequest extends Request
 
         $input['visible'] = $this->has('visible') ? 1 : 0;
 
+        if (! $this->has('created_at')) {
+            unset($input['created_at']);
+        }
+
         return $input;
     }
 
