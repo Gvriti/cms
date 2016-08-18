@@ -87,7 +87,7 @@
             var visible = $('[name="visible"]', item).prop('checked');
 
             var item = $('.gallery-env #item{{$item->id}}');
-            $('[name="title"]', item).text(title);
+            $('.title', item).text(title);
             $('.thumb img', item).attr('src', file);
 
             var icon = visible ? 'fa-eye' : 'fa-eye-slash'

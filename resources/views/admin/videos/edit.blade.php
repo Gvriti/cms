@@ -83,7 +83,7 @@
             var visible = $('[name="visible"]', item).prop('checked');
 
             var item = $('.gallery-env #item{{$item->id}}');
-            $('[name="title"]', item).text(title);
+            $('.title', item).text(title);
             $('.thumb iframe', item).attr('src', data.youtube);
             $('#form-modal iframe').attr('src', data.youtube);
 
