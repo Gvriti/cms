@@ -18,7 +18,6 @@ class CreateVideosTable extends Migration
             $table->integer('position')->default(1)->unsigned();
             $table->boolean('visible')->default(1);
             $table->string('file', 800)->nullable();
-            $table->string('meta_desc')->nullable();
             $table->timestamps();
 
             $table->foreign('gallery_id')->references('id')->on('galleries')->onDelete('cascade');
