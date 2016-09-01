@@ -107,17 +107,18 @@ class Page extends Model
     /**
      * Get the base page.
      *
+     * @param  array  $columns
      * @param  int|null  $id
-     * @param  \Closure|null  $id
+     * @param  \Closure|null  $callback
      * @return static
      */
-    public function getBasePage($id = null, Closure $callback = null)
+    public function getBasePage($columns = ['*'], $id = null, Closure $callback = null)
     {
         if (! ($id = ($id ?: $this->parent_id))) {
             return $this;
         }
 
-        if (is_null($page = $this->where('id', $id)->forPublic()->first())) {
+        if (is_null($page = $this->where('id', $id)->forPublic()->first($columns))) {
             return $this;
         }
 
@@ -125,26 +126,34 @@ class Page extends Model
             return $page;
         }
 
-        return $this->getBasePage($page->parent_id);
+        return $this->getBasePage($columns, $page->parent_id, $callback);
     }
 
     /**
      * Get sub pages.
      *
+     * @param  array  $columns
      * @param  bool|int  $recursive
-     * @param  int|null  $id
+     * @param  int|null  $value
+     * @param  string  $key
      * @return \Illuminate\Support\Collection
      */
-    public function getSubPages($recursive = false, $id = null)
+    public function getSubPages($columns = ['*'], $recursive = false, $value = null, $key = 'parent_id')
     {
-        $pages = $this->forPublic()->parentId($id ?: $this->id)->positionAsc()->get();
+        if (! is_array($columns)) {
+            $columns = [$columns];
+        }
+
+        $columns = current($columns) == '*' ? $columns : array_merge($columns, ['id']);
+
+        $pages = $this->forPublic()->where($key, $value ?: $this->id)->positionAsc()->get($columns);
 
         if (is_int($recursive) && $recursive > 0) {
             $recursive -= 1;
         }
 
-        return $recursive ? $pages->each(function ($item) use ($recursive) {
-            $item->subPages = $this->getSubPages($recursive, $item->id);
+        return $recursive ? $pages->each(function ($item) use ($columns, $recursive) {
+            $item->subPages = $this->getSubPages($columns, $recursive, $item->id);
         }) : $pages;
     }
 
@@ -161,12 +170,13 @@ class Page extends Model
     /**
      * Get sibling pages if the model has a parent page.
      *
+     * @param  array  $columns
      * @param  bool|int  $recursive
      * @param  bool  $self
      * @param  bool  $firstLevel
      * @return \Illuminate\Support\Collection
      */
-    public function getSiblingPages($recursive = false, $self = true, $firstLevel = false)
+    public function getSiblingPages($columns = ['*'], $recursive = false, $self = true, $firstLevel = false)
     {
         if (! $firstLevel && ! $this->parent_id) {
             return $this->newCollection();
@@ -181,11 +191,11 @@ class Page extends Model
         $pages = $pages->parentId($this->parent_id)
                         ->menuId($this->menu_id)
                         ->positionAsc()
-                        ->get();
+                        ->get($columns);
 
         if ($self && $pages->count() > 1) {
-            return $recursive ? $pages->each(function ($item) use ($recursive) {
-                $item->subPages = $this->getSubPages($recursive, $item->id);
+            return $recursive ? $pages->each(function ($item) use ($columns, $recursive) {
+                $item->subPages = $this->getSubPages($columns, $recursive, $item->id);
             }) : $pages;
         } else {
             return $pages->make();
