@@ -56,8 +56,8 @@ $(function() {
             "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
             "save table contextmenu directionality emoticons template paste textcolor"
         ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor | fullscreen",
-
+        toolbar: "insertfile undo redo | styleselect fontsizeselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor | fullscreen",
+        fontsize_formats: '10px 12px 14px 16px 18px 20px 22px 24px 26px 30px 36px',
         image_advtab: true,
 
         file_browser_callback : elFinderBrowser,
@@ -151,7 +151,7 @@ $(function() {
 @endif
 @if (! session()->has('includeLockscreen') && $settings->get('lockscreen'))
 
-    lockscreen({{$settings->get('lockscreen')}}, '{{cms_route('lockscreen')}}');
+    lockscreen('{{$settings->get('lockscreen')}}', '{{cms_route('lockscreen')}}');
 @endif
 });
 
