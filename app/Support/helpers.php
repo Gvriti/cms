@@ -94,14 +94,19 @@ function resource_names($name)
  * @param  mixed   $parameters
  * @param  string  $language
  * @param  bool    $absolute
+ * @param  bool    $throwException
  * @return string
  */
-function cms_route($name, $parameters = [], $language = null, $absolute = true)
+function cms_route($name, $parameters = [], $language = null, $absolute = true, $throwException = true)
 {
     try {
         $route = route($name . '.' . cms_slug(), $parameters, $absolute);
     } catch (Exception $e) {
-        return '#not_found';
+        if ($throwException) {
+            throw $e;
+        } else {
+            return '/#not_found';
+        }
     }
 
     return add_language($route, $language);
@@ -128,14 +133,19 @@ function cms_url($path = null, array $parameters = [], $language = null, $secure
  * @param  mixed   $parameters
  * @param  string  $language
  * @param  bool    $absolute
+ * @param  bool    $throwException
  * @return string
  */
-function site_route($name, $parameters = [], $language = null, $absolute = true)
+function site_route($name, $parameters = [], $language = null, $absolute = true, $throwException = true)
 {
     try {
         $route = route($name, $parameters, $absolute);
     } catch (Exception $e) {
-        return '#not_found';
+        if ($throwException) {
+            throw $e;
+        } else {
+            return '/#not_found';
+        }
     }
 
     return add_language($route, $language);
@@ -585,7 +595,7 @@ function getYoutubeId($url)
         return (string) end($path);
     }
 
-    return '#not_found';
+    return '/#not_found';
 }
 
 /**

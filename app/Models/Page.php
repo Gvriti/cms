@@ -306,7 +306,6 @@ class Page extends Model
         $columns = [
             $table . '.title as collection_title',
             $table . '.type as collection_type',
-            $this->getTable() . '.*'
         ];
 
         return $this->leftJoin($table, 'type_id', '=', $table . '.id')

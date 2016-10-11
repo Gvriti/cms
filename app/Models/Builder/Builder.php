@@ -40,18 +40,6 @@ class Builder extends EloquentBuilder
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function addSelect($columns)
-    {
-        $this->query->addSelect($columns);
-
-        $this->query->columns = array_unique($this->query->columns);
-
-        return $this;
-    }
-
-    /**
      * Add a new select to the count query.
      *
      * @param  array|mixed  $columns
@@ -187,25 +175,28 @@ class Builder extends EloquentBuilder
 
                 foreach ($binding as $key => $value) {
                     if ($value instanceof JoinClause) {
-                        $clauses = $value->clauses;
+                        $wheres = $value->wheres;
 
-                        foreach ($clauses as $key => $clause) {
-                            if ($clause['nested']) continue;
+                        foreach ($wheres as $key => $clause) {
+                            if (! empty($clause['nested'])) continue;
 
                             if (is_null($clause['operator'])) {
-                                $value->clauses[$key]['operator'] = "=";
+                                $value->wheres[$key]['operator'] = "=";
                             }
 
-                            if (strpos($first = $value->clauses[$key]['first'], '.') === false) {
-                                $value->clauses[$key]['first'] = "{$query->from}.{$first}";
+                            if (isset($value->wheres[$key]['first'])
+                                && strpos($first = $value->wheres[$key]['first'], '.') === false
+                            ) {
+                                $value->wheres[$key]['first'] = "{$query->from}.{$first}";
                             }
 
-                            if (is_string($second = $value->clauses[$key]['second'])
+                            if (isset($value->wheres[$key]['second'])
+                                && is_string($second = $value->wheres[$key]['second'])
                                 && strpos($second, '.') === false
                             ) {
-                                $value->clauses[$key]['second'] = "{$value->table}.{$second}";
+                                $value->wheres[$key]['second'] = "{$value->table}.{$second}";
                             } elseif (is_null($second)) {
-                                $value->clauses[$key]['second'] = "{$value->table}.id";
+                                $value->wheres[$key]['second'] = "{$value->table}.id";
                             }
                         }
                     } elseif (is_string($value) && $value == 'id') {

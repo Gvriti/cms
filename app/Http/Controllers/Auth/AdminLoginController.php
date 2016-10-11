@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use Auth;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Auth\AuthController as Controller;
+use App\Http\Controllers\Auth\LoginController as Controller;
 
-class AuthAdminController extends Controller
+class AdminLoginController extends Controller
 {
     /**
      * The guard name.
@@ -23,15 +23,63 @@ class AuthAdminController extends Controller
     protected $loginView = 'admin.auth.login';
 
     /**
-     * Create a new authentication controller instance.
+     * Create a new controller instance.
      *
      * @return void
      */
     public function __construct()
     {
-        $this->middleware('cms.guest', ['except' => ['logout', 'getLogout', 'setLockscreen']]);
+        $this->middleware('cms.guest', ['except' => ['logout', 'setLockscreen']]);
+    }
 
-        $this->redirectAfterLogout = cms_route('login');
+    /**
+     * {@inheritdoc}
+     */
+    public function showLoginForm()
+    {
+        return view($this->loginView);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function username()
+    {
+        return $this->username ?: 'email';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect(cms_route('login'));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function guard()
+    {
+        return Auth::guard($this->guard);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function redirectPath()
+    {
+        if ($this->redirectNamed) {
+            return cms_route($this->redirectTo);
+        }
+
+        return cms_url($this->redirectTo);
     }
 
     /**
@@ -98,19 +146,5 @@ class AuthAdminController extends Controller
         }
 
         return redirect()->back()->withErrors(trans('auth.invalid.password'));
-    }
-
-    /**
-     * Get the post register / login redirect path.
-     *
-     * @return string
-     */
-    public function redirectPath()
-    {
-        if (is_null($this->redirectPath) || $this->redirectPath == '/') {
-            return cms_url();
-        }
-
-        return cms_route($this->redirectPath);
     }
 }

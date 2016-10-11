@@ -56,10 +56,7 @@ trait FileableTrait
 
         $fileTable = (new File)->getTable();
 
-        return $this->leftJoin($fileTable, function ($join) use ($table, $keyName, $fileTable) {
-            $join->on("{$table}.{$keyName}", '=', "route_id")
-                 ->where("{$fileTable}.route_name", '=', $table);
-        })->groupBy("{$table}.{$keyName}")->addSelect(["{$fileTable}.id as {$fileTable}_id"]);
+        return $this->selectRaw("(select count(*) from {$fileTable} where {$table}.{$keyName} = route_id and route_name = ?) as files_cnt", [$table]);
     }
 
     /**

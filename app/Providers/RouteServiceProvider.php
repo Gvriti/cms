@@ -9,7 +9,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * This namespace is applied to the controller routes in your routes file.
+     * This namespace is applied to your controller routes.
      *
      * In addition, it is set as the URL generator's root namespace.
      *
@@ -20,14 +20,13 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    public function boot(Router $router)
+    public function boot()
     {
         //
 
-        parent::boot($router);
+        parent::boot();
     }
 
     /**
@@ -38,10 +37,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
+        $this->mapApiRoutes($router);
+
         $this->mapWebRoutes($router);
 
-        $this->app->booted(function ($app) {
-            $this->filterRoutes($app['router'], $app['config']);
+        $this->mapCmsRoutes($router);
+
+        $this->app->booted(function ($app) use ($router) {
+            $this->filterRoutes($router, $app['config']);
         });
     }
 
@@ -56,10 +59,47 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes(Router $router)
     {
         $router->group([
-            'namespace' => $this->namespace, 'middleware' => 'web',
+            'middleware' => 'web',
+            'namespace' => $this->namespace,
         ], function ($router) {
-            require app_path('Http/siteRoutes.php');
-            require app_path('Http/routes.php');
+            require base_path('routes/web.php');
+        });
+    }
+
+    /**
+     * Define the "cms" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @param  \Illuminate\Routing\Router  $router
+     * @return void
+     */
+    protected function mapCmsRoutes(Router $router)
+    {
+        $router->group([
+            'middleware' => 'web',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/cms.php');
+        });
+    }
+
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @param  \Illuminate\Routing\Router  $router
+     * @return void
+     */
+    protected function mapApiRoutes(Router $router)
+    {
+        $router->group([
+            'middleware' => 'api',
+            'namespace' => $this->namespace,
+            'prefix' => 'api',
+        ], function ($router) {
+            require base_path('routes/api.php');
         });
     }
 
@@ -76,7 +116,7 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Filter all routes by specified language and cms slug.
+     * Filter all routes by specified language and CMS slug.
      *
      * @param  \Illuminate\Routing\Router  $router
      * @param  \Illuminate\Config\Repository  $config

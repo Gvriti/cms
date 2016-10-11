@@ -2,12 +2,12 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| CMS Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
+| This file is where you may define all of the routes that are handled
+| by your application. Just tell Laravel the URIs it should respond
+| to using a Closure or controller method. Build something great!
 |
 */
 
@@ -15,15 +15,15 @@ $router->group(['middleware' => 'cms.settings', 'prefix' => cms_slug()], functio
     // authentication
     $router->group(['namespace' => 'Auth'], function ($router) {
         // login
-        $router->get('login', ['as' => 'login', 'uses' => 'AuthAdminController@getLogin']);
-        $router->post('login', ['as' => 'login', 'uses' => 'AuthAdminController@postLogin']);
-        $router->get('logout', ['as' => 'logout', 'uses' => 'AuthAdminController@getLogout']);
+        $router->get('login', ['as' => 'login', 'uses' => 'AdminLoginController@showLoginForm']);
+        $router->post('login', ['as' => 'login', 'uses' => 'AdminLoginController@login']);
+        $router->get('logout', ['as' => 'logout', 'uses' => 'AdminLoginController@logout']);
 
         // lockscreen
         $router->group(['middleware' => ['cms.lockscreen']], function ($router) {
-            $router->get('lockscreen', ['as' => 'lockscreen', 'uses' => 'AuthAdminController@getLockscreen']);
-            $router->post('lockscreen', ['as' => 'lockscreen', 'uses' => 'AuthAdminController@postLockscreen']);
-            $router->put('lockscreen', ['as' => 'lockscreen', 'uses' => 'AuthAdminController@setLockscreen']);
+            $router->get('lockscreen', ['as' => 'lockscreen', 'uses' => 'AdminLoginController@getLockscreen']);
+            $router->post('lockscreen', ['as' => 'lockscreen', 'uses' => 'AdminLoginController@postLockscreen']);
+            $router->put('lockscreen', ['as' => 'lockscreen', 'uses' => 'AdminLoginController@setLockscreen']);
         });
     });
 

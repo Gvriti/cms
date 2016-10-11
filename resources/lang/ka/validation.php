@@ -54,6 +54,7 @@ return [
         'array'   => 'The :attribute may not have more than :max items.',
     ],
     'mimes'                => ':attribute უნდა იყოს შემდეგი ტიპის: :values.',
+    'mimetypes'            => ':attribute უნდა იყოს შემდეგი ტიპის: :values.',
     'min'                  => [
         'numeric' => ':attribute უნდა იყოს მინიმუმ :min.',
         'file'    => 'The :attribute must be at least :min kilobytes.',
@@ -81,6 +82,7 @@ return [
     'string'               => 'The :attribute must be a string.',
     'timezone'             => 'The :attribute must be a valid zone.',
     'unique'               => 'შეყვანილი :attribute უკვე გამოყენებულია.',
+    'uploaded'             => ':attribute ვერ აიტვირთა.',
     'url'                  => 'The :attribute format is invalid.',
 
     /*

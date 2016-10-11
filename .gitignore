@@ -1,15 +1,17 @@
 # Project #
 ###################
-/vendor
 /node_modules
+/public/storage
+/storage/*.key
+/vendor
+/.idea
 Homestead.yaml
 Homestead.json
 .env
 /bower_components
-.idea
-public/files/*
-!public/files/test.txt
-public/sitemap.xml
+/public/files/*
+/!public/files/test.txt
+/public/sitemap.xml
 *sftp-config.json
 # Ignore directories and files starting with "!" symbol
 /\!*

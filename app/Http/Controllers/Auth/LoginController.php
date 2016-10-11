@@ -3,23 +3,22 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-abstract class AuthController extends Controller
+class LoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Registration & Login Controller
+    | Login Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesUsers;
 
     /**
      * The login username.
@@ -29,11 +28,18 @@ abstract class AuthController extends Controller
     protected $username = 'email';
 
     /**
-     * Where to redirect users after login / registration.
+     * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectPath = '/';
+    protected $redirectTo = '/';
+
+    /**
+     * Indicates if the redirect path is named route.
+     *
+     * @var bool
+     */
+    protected $redirectNamed = false;
 
     /**
      * The maximum number of login attempts for delaying further attempts.
@@ -48,4 +54,5 @@ abstract class AuthController extends Controller
      * @return int
      */
     protected $lockoutTime = 120;
+
 }

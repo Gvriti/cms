@@ -13,10 +13,8 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li class="active">
-                <a href="{{ cms_route('galleries.index') }}">
-                    <i class="{{icon_type('galleries')}}"></i>
-                    Slider
-                </a>
+                <i class="{{$icon}}"></i>
+                Slider
             </li>
         </ol>
     </div>
