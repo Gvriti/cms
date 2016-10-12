@@ -97,12 +97,12 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
     .navbar.horizontal-menu .navbar-inner>.nav.nav-userinfo
     {display:block;}
 }
-/* user navbar menu form buttons */
-.user-info-navbar .user-info-menu>li form button{position:relative;padding:0;margin:0;height:auto;color:#979898;z-index:2;}
+.user-info-navbar .user-info-menu > li form button {position:relative;padding:0;margin:0;height:auto;color:#979898;z-index:2;}
 /* language dropdown */
 .user-info-navbar .user-info-menu > li > a.dropdown-toggle {padding-bottom:27px;}
 .user-info-navbar .user-info-menu > li.language-switcher a > img {margin-right:0;}
 .user-info-navbar .user-info-menu > li.language-switcher ul a > img {margin-right:5px;}
+.user-info-navbar .user-info-menu .user-profile-menu > li button {display:block;color:#979898;padding:0;padding-bottom:15px;background:none;border:0;}
 
 /* fix & collapse menu at the same time */
 /*.sidebar-menu.fixed.collapsed .sidebar-menu-inner {position:fixed;}*/

@@ -147,10 +147,13 @@
           </a>
         </li>
         <li class="last">
-          <a href="{{cms_route('logout')}}">
-            <i class="fa fa-sign-out"></i>
-            Logout
-          </a>
+          <form action="{{cms_route('logout')}}" method="post">
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
+            <button>
+              <i class="fa fa-sign-out"></i>
+              Logout
+            </button>
+          </form>
         </li>
       </ul>
     </li>

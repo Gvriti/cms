@@ -5,11 +5,17 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
+    /**
+     * The Request instance.
+     *
+     * @var \Illuminate\Http\Request|null
+     */
+    protected $request;
+
     /**
      * A list of the exception types that should not be reported.
      *
@@ -41,18 +47,14 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
+     * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $e)
+    public function render($request, Exception $exception)
     {
         $this->request = $request;
 
-        if ($e instanceof ModelNotFoundException) {
-            $e = new NotFoundHttpException($e->getMessage(), $e);
-        }
-
-        return parent::render($request, $e);
+        return parent::render($request, $this->prepareException($exception));
     }
 
     /**
@@ -74,31 +76,31 @@ class Handler extends ExceptionHandler
     /**
      * {@inheritdoc}
      */
-    protected function renderHttpException(HttpException $e)
+    protected function renderHttpException(HttpException $exception)
     {
-        $status = $e->getStatusCode();
+        $status = $exception->getStatusCode();
 
         if ($this->request->expectsJson()) {
             if (($trans = trans('http.' . $status)) !== 'http.' . $status) {
                 return response($trans, $status);
             } else {
-                return response($e->getMessage(), $status);
+                return response($exception->getMessage(), $status);
             }
         }
 
-        if ($view = $this->getExceptionView($status, $e)) {
+        if ($view = $this->getExceptionView($status, $exception)) {
             return $view;
         }
 
-        return $this->convertExceptionToResponse($e, true);
+        return $this->convertExceptionToResponse($exception, true);
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function convertExceptionToResponse(Exception $e, $viewChecked = false)
+    protected function convertExceptionToResponse(Exception $exception, $viewChecked = false)
     {
-        $response = parent::convertExceptionToResponse($e);
+        $response = parent::convertExceptionToResponse($exception);
 
         $status = $response->getStatusCode();
 
@@ -107,18 +109,18 @@ class Handler extends ExceptionHandler
         if ($this->request->expectsJson()) {
             if ($debug) {
                 return response()->make(
-                    $e->getMessage() . ' in ' . $e->getFile() . ' line ' . $e->getLine(), $status
+                    $exception->getMessage() . ' in ' . $exception->getFile() . ' line ' . $exception->getLine(), $status
                 );
             }
 
             if (($trans = trans('http.' . $status)) !== 'http.' . $status) {
                 return response($trans, $status);
             } else {
-                return response($e->getMessage(), $status);
+                return response($exception->getMessage(), $status);
             }
         }
 
-        if (! $debug && ! $viewChecked && ($view = $this->getExceptionView($status, $e))) {
+        if (! $debug && ! $viewChecked && ($view = $this->getExceptionView($status, $exception))) {
             return $view;
         }
 
@@ -129,15 +131,15 @@ class Handler extends ExceptionHandler
      * Get the view for the given exception.
      *
      * @param  string  $status
-     * @param  \Exception  $e
+     * @param  \Exception  $exception
      * @return \Illuminate\Http\Response|bool
      */
-    protected function getExceptionView($status, $e)
+    protected function getExceptionView($status, $exception)
     {
         $dir = cms_is_booted() ? 'admin' : 'site';
 
         if (view()->exists($dir . ".errors.{$status}")) {
-            return response()->view($dir . ".errors.{$status}", ['exception' => $e], $status);
+            return response()->view($dir . ".errors.{$status}", ['exception' => $exception], $status);
         }
 
         return false;

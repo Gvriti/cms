@@ -96,6 +96,8 @@ function resource_names($name)
  * @param  bool    $absolute
  * @param  bool    $throwException
  * @return string
+ *
+ * @throws \Exception
  */
 function cms_route($name, $parameters = [], $language = null, $absolute = true, $throwException = true)
 {
@@ -135,6 +137,8 @@ function cms_url($path = null, array $parameters = [], $language = null, $secure
  * @param  bool    $absolute
  * @param  bool    $throwException
  * @return string
+ *
+ * @throws \Exception
  */
 function site_route($name, $parameters = [], $language = null, $absolute = true, $throwException = true)
 {
@@ -169,27 +173,22 @@ function site_url($path = null, array $parameters = [], $language = null, $secur
  * Build a query string from an array of key value pairs.
  *
  * @param  array  $parameters
- * @param  mixed  $numericPrefix
  * @param  string  $basePrefix
  * @return string
  */
-function query_string(array $parameters, $numericPrefix = null, $basePrefix = '?')
+function query_string(array $parameters, $basePrefix = '?')
 {
     if (count($parameters) == 0) {
         return '';
     }
 
     $query = http_build_query(
-        $keyed = empty($numericPrefix) ? Arr::where($parameters, function ($k) {
-            return is_string($k);
-        }) : $parameters, $numericPrefix
+        $keyed = array_filter($parameters, 'is_string', ARRAY_FILTER_USE_KEY)
     );
 
-    if (empty($numericPrefix) && count($keyed) < count($parameters)) {
+    if (count($keyed) < count($parameters)) {
         $query .= '&'.implode(
-            '&', Arr::where($parameters, function ($k) {
-                return is_numeric($k);
-            })
+            '&', array_filter($parameters, 'is_numeric', ARRAY_FILTER_USE_KEY)
         );
     }
 

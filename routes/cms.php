@@ -17,7 +17,7 @@ $router->group(['middleware' => 'cms.settings', 'prefix' => cms_slug()], functio
         // login
         $router->get('login', ['as' => 'login', 'uses' => 'AdminLoginController@showLoginForm']);
         $router->post('login', ['as' => 'login', 'uses' => 'AdminLoginController@login']);
-        $router->get('logout', ['as' => 'logout', 'uses' => 'AdminLoginController@logout']);
+        $router->post('logout', ['as' => 'logout', 'uses' => 'AdminLoginController@logout']);
 
         // lockscreen
         $router->group(['middleware' => ['cms.lockscreen']], function ($router) {
