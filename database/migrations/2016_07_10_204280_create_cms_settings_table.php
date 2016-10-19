@@ -41,6 +41,6 @@ class CreateCmsSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('cms_settings');
+        Schema::dropIfExists('cms_settings');
     }
 }

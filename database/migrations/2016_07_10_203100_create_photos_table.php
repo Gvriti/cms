@@ -41,8 +41,8 @@ class CreatePhotosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('photo_languages');
+        Schema::dropIfExists('photo_languages');
 
-        Schema::drop('photos');
+        Schema::dropIfExists('photos');
     }
 }

@@ -45,8 +45,8 @@ class CreateCatalogTable extends Migration
      */
     public function down()
     {
-        Schema::drop('catalog_languages');
+        Schema::dropIfExists('catalog_languages');
 
-        Schema::drop('catalog');
+        Schema::dropIfExists('catalog');
     }
 }

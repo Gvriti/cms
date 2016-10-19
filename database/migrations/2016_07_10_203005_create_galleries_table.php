@@ -50,8 +50,8 @@ class CreateGalleriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('gallery_languages');
+        Schema::dropIfExists('gallery_languages');
 
-        Schema::drop('galleries');
+        Schema::dropIfExists('galleries');
     }
 }

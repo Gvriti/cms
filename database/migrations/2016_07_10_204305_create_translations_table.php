@@ -40,8 +40,8 @@ class CreateTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('translation_languages');
+        Schema::dropIfExists('translation_languages');
 
-        Schema::drop('translations');
+        Schema::dropIfExists('translations');
     }
 }

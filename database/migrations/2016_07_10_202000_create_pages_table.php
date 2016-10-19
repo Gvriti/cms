@@ -51,8 +51,8 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('page_languages');
+        Schema::dropIfExists('page_languages');
 
-        Schema::drop('pages');
+        Schema::dropIfExists('pages');
     }
 }

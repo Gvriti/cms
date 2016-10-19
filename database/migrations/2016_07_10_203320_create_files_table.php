@@ -40,8 +40,8 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('file_languages');
+        Schema::dropIfExists('file_languages');
 
-        Schema::drop('files');
+        Schema::dropIfExists('files');
     }
 }

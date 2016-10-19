@@ -41,8 +41,8 @@ class CreateFaqTable extends Migration
      */
     public function down()
     {
-        Schema::drop('faq_languages');
+        Schema::dropIfExists('faq_languages');
 
-        Schema::drop('faq');
+        Schema::dropIfExists('faq');
     }
 }

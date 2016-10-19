@@ -51,6 +51,6 @@ END'
      */
     public function down()
     {
-        Schema::drop('site_settings');
+        Schema::dropIfExists('site_settings');
     }
 }

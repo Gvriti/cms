@@ -40,8 +40,8 @@ class CreateSliderTable extends Migration
      */
     public function down()
     {
-        Schema::drop('slider_languages');
+        Schema::dropIfExists('slider_languages');
 
-        Schema::drop('slider');
+        Schema::dropIfExists('slider');
     }
 }

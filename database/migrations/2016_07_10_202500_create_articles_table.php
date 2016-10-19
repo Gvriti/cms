@@ -45,8 +45,8 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('article_languages');
+        Schema::dropIfExists('article_languages');
 
-        Schema::drop('articles');
+        Schema::dropIfExists('articles');
     }
 }
