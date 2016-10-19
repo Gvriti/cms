@@ -80,18 +80,20 @@ trait LanguageTrait
     /**
      * Add a "*_languages" join to the query.
      *
-     * @param  bool|string  $language
+     * @param  mixed  $language
+     * @param  bool  $language
      * @return \Models\Builder\Builder
      */
-    public function joinLanguages($language = true)
+    public function joinLanguages($language = true, $addCollumns = true)
     {
         $table = $this->getTable();
         $languageTable = $this->getLanguageTable();
 
-        $columns = ["{$languageTable}.*", "{$languageTable}.id as {$languageTable}_id", "{$table}.*"];
+        $query = $this->leftJoin($languageTable, "{$table}.id", '=', "{$languageTable}.{$this->getForeignKey()}");
 
-        $query = $this->leftJoin($languageTable, "{$table}.id", '=', "{$languageTable}.{$this->getForeignKey()}")
-                      ->addSelect($columns);
+        if ($addCollumns) {
+            $query->addSelect(["{$languageTable}.*", "{$languageTable}.id as {$languageTable}_id", "{$table}.*"]);
+        }
 
         if ($language === true) {
             return $query->currentLanguage();

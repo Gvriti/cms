@@ -274,20 +274,18 @@ class Builder extends EloquentBuilder
     }
 
     /**
-     * Dynamically handle calls into the query or Eloquent model instance.
-     *
-     * @param  string  $method
-     * @param  array   $parameters
-     * @return mixed
+     * {@inheritdoc}
      */
     public function __call($method, $parameters)
     {
-        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5);
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 4);
 
-        $isLoop = isset($backtrace[1]['function']) && isset($backtrace[4]['function'])
-                  && $backtrace[1]['function'] == $backtrace[4]['function'];
+        $isLoop = in_array($method, [
+            $backtrace[1]['function'], $backtrace[2]['function'], $backtrace[3]['function']
+        ]);
 
         if (method_exists($this->model, $method) && ! $isLoop) {
+
             $this->model->setBuilder($this);
 
             return call_user_func_array([$this->model, $method], $parameters);
