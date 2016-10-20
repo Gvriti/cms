@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b2617f1a20b14466523cfbec58b4cfbc",
-    "content-hash": "c415afdb3a415b8bebd183926592dc18",
+    "hash": "00c8e051952a1e172ec52ff293efdeea",
+    "content-hash": "0304a4cec0c84985b6c291a81b49e7bd",
     "packages": [
         {
             "name": "barryvdh/elfinder-flysystem-driver",
@@ -600,16 +600,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.3.18",
+            "version": "v5.3.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "9bee167d173857c25966c19afdaa66f127ca6784"
+                "reference": "f1a5bb417b3e0d1949fe84617eacd1a14d75d7f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/9bee167d173857c25966c19afdaa66f127ca6784",
-                "reference": "9bee167d173857c25966c19afdaa66f127ca6784",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f1a5bb417b3e0d1949fe84617eacd1a14d75d7f1",
+                "reference": "f1a5bb417b3e0d1949fe84617eacd1a14d75d7f1",
                 "shasum": ""
             },
             "require": {
@@ -691,7 +691,7 @@
                 "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (~2.0).",
                 "symfony/css-selector": "Required to use some of the crawler integration testing tools (3.1.*).",
                 "symfony/dom-crawler": "Required to use most of the crawler integration testing tools (3.1.*).",
-                "symfony/psr-http-message-bridge": "Required to psr7 bridging features (0.2.*)."
+                "symfony/psr-http-message-bridge": "Required to use psr7 bridging features (0.2.*)."
             },
             "type": "library",
             "extra": {
@@ -724,7 +724,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-10-08 01:51:20"
+            "time": "2016-10-17 19:35:14"
         },
         {
             "name": "laravelcollective/html",
@@ -782,20 +782,20 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.28",
+            "version": "1.0.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "a9663643ff2d16d7f66ed1e0d3212c5491bc9044"
+                "reference": "1b5c4a0031697f46e779a9d1b309c2e1b24daeab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a9663643ff2d16d7f66ed1e0d3212c5491bc9044",
-                "reference": "a9663643ff2d16d7f66ed1e0d3212c5491bc9044",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/1b5c4a0031697f46e779a9d1b309c2e1b24daeab",
+                "reference": "1b5c4a0031697f46e779a9d1b309c2e1b24daeab",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "php": ">=5.5.9"
             },
             "conflict": {
                 "league/flysystem-sftp": "<1.0.6"
@@ -861,7 +861,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2016-10-07 12:20:37"
+            "time": "2016-10-19 20:38:46"
         },
         {
             "name": "league/flysystem-cached-adapter",
@@ -1251,16 +1251,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "088c04e2f261c33bed6ca5245491cfca69195ccf"
+                "reference": "c0125896dbb151380ab47e96c621741e79623beb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/088c04e2f261c33bed6ca5245491cfca69195ccf",
-                "reference": "088c04e2f261c33bed6ca5245491cfca69195ccf",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/c0125896dbb151380ab47e96c621741e79623beb",
+                "reference": "c0125896dbb151380ab47e96c621741e79623beb",
                 "shasum": ""
             },
             "require": {
@@ -1295,20 +1295,20 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-04-03 06:00:07"
+            "time": "2016-10-17 15:23:22"
         },
         {
             "name": "php-curl-class/php-curl-class",
-            "version": "6.0.0",
+            "version": "7.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-curl-class/php-curl-class.git",
-                "reference": "2e08fc596acb5f9a15ae746dfedd6673134c8cad"
+                "reference": "459231fae786dea2b10c373e763faac7f65e178c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/2e08fc596acb5f9a15ae746dfedd6673134c8cad",
-                "reference": "2e08fc596acb5f9a15ae746dfedd6673134c8cad",
+                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/459231fae786dea2b10c373e763faac7f65e178c",
+                "reference": "459231fae786dea2b10c373e763faac7f65e178c",
                 "shasum": ""
             },
             "require": {
@@ -1316,7 +1316,8 @@
                 "php": ">=5.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "*"
+                "phpunit/phpunit": "*",
+                "squizlabs/php_codesniffer": "*"
             },
             "type": "library",
             "autoload": {
@@ -1351,7 +1352,7 @@
                 "web service",
                 "xml"
             ],
-            "time": "2016-09-03 00:18:01"
+            "time": "2016-09-27 07:35:34"
         },
         {
             "name": "psr/cache",
@@ -1650,24 +1651,24 @@
         },
         {
             "name": "sabre/uri",
-            "version": "1.1.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fruux/sabre-uri.git",
-                "reference": "9012116434d84ef6e5e37a89dfdbfbe2204a8704"
+                "reference": "ef4987fd1c88d1112d75d8527a35a9392d02e488"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fruux/sabre-uri/zipball/9012116434d84ef6e5e37a89dfdbfbe2204a8704",
-                "reference": "9012116434d84ef6e5e37a89dfdbfbe2204a8704",
+                "url": "https://api.github.com/repos/fruux/sabre-uri/zipball/ef4987fd1c88d1112d75d8527a35a9392d02e488",
+                "reference": "ef4987fd1c88d1112d75d8527a35a9392d02e488",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.7"
+                "php": ">=7"
             },
             "require-dev": {
                 "phpunit/phpunit": "*",
-                "sabre/cs": "~0.0.1"
+                "sabre/cs": "~1.0.0"
             },
             "type": "library",
             "autoload": {
@@ -1697,20 +1698,20 @@
                 "uri",
                 "url"
             ],
-            "time": "2016-03-08 02:29:27"
+            "time": "2016-10-07 02:52:31"
         },
         {
             "name": "sabre/xml",
-            "version": "1.4.2",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fruux/sabre-xml.git",
-                "reference": "f48d98c22a4a4bef76cabb5968ffaddbb2bb593e"
+                "reference": "59b20e5bbace9912607481634f97d05a776ffca7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fruux/sabre-xml/zipball/f48d98c22a4a4bef76cabb5968ffaddbb2bb593e",
-                "reference": "f48d98c22a4a4bef76cabb5968ffaddbb2bb593e",
+                "url": "https://api.github.com/repos/fruux/sabre-xml/zipball/59b20e5bbace9912607481634f97d05a776ffca7",
+                "reference": "59b20e5bbace9912607481634f97d05a776ffca7",
                 "shasum": ""
             },
             "require": {
@@ -1718,12 +1719,12 @@
                 "ext-xmlreader": "*",
                 "ext-xmlwriter": "*",
                 "lib-libxml": ">=2.6.20",
-                "php": ">=5.4.1",
-                "sabre/uri": "~1.0"
+                "php": ">=5.5.5",
+                "sabre/uri": ">=1.0,<3.0.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "*",
-                "sabre/cs": "~0.0.2"
+                "sabre/cs": "~1.0.0"
             },
             "type": "library",
             "autoload": {
@@ -1760,7 +1761,7 @@
                 "dom",
                 "xml"
             ],
-            "time": "2016-05-19 21:56:49"
+            "time": "2016-10-09 22:57:52"
         },
         {
             "name": "studio-42/elfinder",
