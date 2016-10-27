@@ -4,6 +4,7 @@ namespace Models;
 
 use Illuminate\Http\Request;
 use Models\Abstracts\User as Model;
+use Illuminate\Http\Exception\HttpResponseException;
 
 class CmsUser extends Model
 {
@@ -42,7 +43,6 @@ class CmsUser extends Model
     /**
      * Get the mutated "role" attribute.
      *
-     * @param  string  $value
      * @return string
      */
     public function getRoleTextAttribute()

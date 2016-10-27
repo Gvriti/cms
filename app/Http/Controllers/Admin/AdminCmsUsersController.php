@@ -20,23 +20,24 @@ class AdminCmsUsersController extends Controller
     protected $model;
 
     /**
-     * The authenticated cms user instance.
+     * The authenticated user instance.
      *
-     * @var \Models\CmsUser
+     * @var \Illuminate\Contracts\Auth\Guard
      */
-    protected $user;
+    protected $auth;
 
     /**
      * Create a new controller instance.
      *
      * @param  \Models\CmsUser  $model
+     * @param  \Illuminate\Contracts\Auth\Guard  $guard
      * @return void
      */
     public function __construct(CmsUser $model, Guard $guard)
     {
         $this->model = $model;
 
-        $this->user = $guard->user();
+        $this->auth = $guard;
     }
 
     /**
@@ -48,8 +49,8 @@ class AdminCmsUsersController extends Controller
     public function index(Request $request)
     {
         $data['items'] = $this->model->adminFilter($request)
-                                     ->orderDesc()
-                                     ->paginate(20);
+            ->orderDesc()
+            ->paginate(20);
 
         return view('admin.cms_users.index', $data);
     }
@@ -63,7 +64,7 @@ class AdminCmsUsersController extends Controller
      */
     public function create()
     {
-        if (! $this->user->isAdmin()) {
+        if (! $this->user()->isAdmin()) {
             throw new AccessDeniedHttpException;
         }
 
@@ -84,7 +85,7 @@ class AdminCmsUsersController extends Controller
      */
     public function store(CmsUserRequest $request)
     {
-        if (! $this->user->isAdmin()) {
+        if (! $this->user()->isAdmin()) {
             throw new AccessDeniedHttpException;
         }
 
@@ -94,11 +95,11 @@ class AdminCmsUsersController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('cmsUsers.index'))
-                    ->with('alert', fill_data('success', trans('general.created')));
+                ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('cmsUsers.edit', [$model->id]))
-                ->with('alert', fill_data('success', trans('general.created')));
+            ->with('alert', fill_data('success', trans('general.created')));
     }
 
     /**
@@ -124,7 +125,7 @@ class AdminCmsUsersController extends Controller
      */
     public function edit($id)
     {
-        if (! $this->user->isAdmin() && $this->user->id != $id) {
+        if (! $this->user()->isAdmin() && $this->user()->id != $id) {
             return redirect()->back();
         }
 
@@ -146,9 +147,9 @@ class AdminCmsUsersController extends Controller
     {
         $input = $request->all();
 
-        if (! $this->user->isAdmin() && $this->user->id != $id) {
+        if (! $this->user()->isAdmin() && $this->user()->id != $id) {
             return redirect()->back();
-        } elseif ($this->user->id == $id) {
+        } elseif ($this->user()->id == $id) {
             $input['active'] = 1;
         }
 
@@ -162,7 +163,7 @@ class AdminCmsUsersController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('cmsUsers.index'))
-                    ->with('alert', fill_data('success', trans('general.updated')));
+                ->with('alert', fill_data('success', trans('general.updated')));
         }
 
         return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
@@ -176,8 +177,8 @@ class AdminCmsUsersController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->user->isAdmin()) {
-            if ($this->user->id == $id) {
+        if ($this->user()->isAdmin()) {
+            if ($this->user()->id == $id) {
                 $this->model = null;
             }
         } else {
@@ -187,5 +188,15 @@ class AdminCmsUsersController extends Controller
         return $this->dispatch(
             new AdminDestroy($this->model, $id, false)
         );
+    }
+
+    /**
+     * Get the authenticated user instance.
+     *
+     * @return \Illuminate\Contracts\Auth\Authenticatable
+     */
+    protected function user()
+    {
+        return $this->auth->user();
     }
 }

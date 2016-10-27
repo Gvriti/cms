@@ -24,7 +24,7 @@ class ArticleRequest extends Request
      */
     public function rules()
     {
-        $id = $this->route('articles');
+        $id = $this->route('article');
 
         return [
             'title' => 'required|min:2',

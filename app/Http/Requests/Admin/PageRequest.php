@@ -24,7 +24,7 @@ class PageRequest extends Request
      */
     public function rules()
     {
-        $id = $this->route('pages');
+        $id = $this->route('page');
 
         return [
             'title'       => 'required|min:2',

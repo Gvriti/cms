@@ -24,7 +24,7 @@ class GalleryRequest extends Request
      */
     public function rules()
     {
-        $id = $this->route('galleries');
+        $id = $this->route('gallery');
 
         return [
             'title'          => 'required|min:2',

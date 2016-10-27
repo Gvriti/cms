@@ -23,7 +23,7 @@ class CmsUserRequest extends Request
      */
     public function rules()
     {
-        $id = $this->route('cms_users');
+        $id = $this->route('cms_user');
 
         $passwordRequired = $this->method() == 'POST' ? 'required|' : '';
 
