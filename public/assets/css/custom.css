@@ -102,7 +102,7 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .user-info-navbar .user-info-menu > li > a.dropdown-toggle {padding-bottom:27px;}
 .user-info-navbar .user-info-menu > li.language-switcher a > img {margin-right:0;}
 .user-info-navbar .user-info-menu > li.language-switcher ul a > img {margin-right:5px;}
-.user-info-navbar .user-info-menu .user-profile-menu > li button {display:block;color:#979898;padding:0;padding-bottom:15px;background:none;border:0;}
+.user-info-navbar .user-info-menu .user-profile-menu > li button {display:block;color:#979898;padding:0 0 15px;background:none;border:0;}
 
 /* fix & collapse menu at the same time */
 /*.sidebar-menu.fixed.collapsed .sidebar-menu-inner {position:fixed;}*/
@@ -160,11 +160,12 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 
 /* notes */
 .notes-env .list-of-notes li .addon-buttons {position:absolute;right:35px;top:1px;}
-.notes-env .list-of-notes li .addon-buttons button {float:left;border:none;background:0 0;outline:0;background:#f5f5f5;border:1px solid #e0e0e0;border-top:0;border-right:0;zoom:1;-webkit-opacity:0;-moz-opacity:0;opacity:0;-ms-filter:alpha(Opacity=0);filter:alpha(opacity=0)}
-.notes-env .list-of-notes li:hover .addon-buttons button {zoom:1;-webkit-opacity:1;-moz-opacity:1;opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(opacity=100)}
+.notes-env .list-of-notes li .addon-buttons button {float:left;;background:0 0;outline:0;background:#f5f5f5;border:1px solid #e0e0e0;border-top:0;border-right:0;zoom:1;-moz-opacity:0;opacity:0;-ms-filter:alpha(Opacity=0);filter:alpha(opacity=0)}
+.notes-env .list-of-notes li:hover .addon-buttons button {zoom:1;-moz-opacity:1;opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(opacity=100)}
 
 /* icheck red checkbox */
 .permissions .icheckbox_square-red {background:url('../js/icheck/skins/square/red-x.png') no-repeat;}
+.permissions .icheckbox_square-red.checked {background-position:-48px 0;}
 
 /*** OVERRIDE ThirdPartyPlugins ***/
 
