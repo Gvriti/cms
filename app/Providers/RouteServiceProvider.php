@@ -41,8 +41,6 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes($router);
 
-        $this->mapCmsRoutes($router);
-
         $this->app->booted(function ($app) use ($router) {
             $this->filterRoutes($router, $app['config']);
         });
@@ -63,23 +61,7 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => $this->namespace,
         ], function ($router) {
             require base_path('routes/web.php');
-        });
-    }
 
-    /**
-     * Define the "cms" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @param  \Illuminate\Routing\Router  $router
-     * @return void
-     */
-    protected function mapCmsRoutes(Router $router)
-    {
-        $router->group([
-            'middleware' => 'web',
-            'namespace' => $this->namespace,
-        ], function ($router) {
             require base_path('routes/cms.php');
         });
     }

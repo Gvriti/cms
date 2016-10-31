@@ -30,9 +30,7 @@ class VideoRequest extends Request
     }
 
     /**
-     * Override parent method, that contains all requests.
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function all()
     {
