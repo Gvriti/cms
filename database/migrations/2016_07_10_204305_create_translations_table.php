@@ -27,9 +27,10 @@ class CreateTranslationsTable extends Migration
             $table->string('value');
             $table->timestamps();
 
-            $table->foreign('translation_id')->references('id')
-                                             ->on('translations')
-                                             ->onDelete('cascade');
+            $table->foreign('translation_id')
+                ->references('id')
+                ->on('translations')
+                ->onDelete('cascade');
         });
     }
 

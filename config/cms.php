@@ -87,7 +87,7 @@ return [
             'catalog'   => 'Catalog',
             'articles'  => 'Articles',
             'galleries' => 'Galleries',
-            'faq'       => 'Faq'
+            'faq'       => 'FAQ'
         ],
         'order_by' => [
             'position'   => 'Position',

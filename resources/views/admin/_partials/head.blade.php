@@ -6,7 +6,7 @@
 <title>CMS</title>
 <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/fonts/font-awesome-4.6.3/css/font-awesome.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/js/datatables/dataTables.bootstrap.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/js/fancybox/jquery.fancybox.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/js/stacktable/stacktable.css') }}">
