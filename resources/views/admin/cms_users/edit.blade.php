@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{$icon = icon_type('cms_users')}}"></i>
+            <i class="{{$icon = icon_type('cmsUsers')}}"></i>
             CMS Users
         </h1>
         <p class="description">Edit CMS user</p>

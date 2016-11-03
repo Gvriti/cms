@@ -33,15 +33,14 @@ class SiteCurrentPageEventListener
                 'meta_desc' => $trans->get('meta_desc') ?: $title,
             ];
         } else {
+            $current->slug = $this->getPath();
+            $current->original_slug = basename($current->slug);
+
             if (! is_null($current->tab_title)) {
                 $current->title .= ' - ' . $current->tab_title;
             }
 
-            if (empty($current->slug)) {
-                $current->slug = $this->getPath();
-
-                $current->original_slug = basename($current->slug);
-            } elseif (! is_null($current->tab_slug)) {
+            if (! is_null($current->tab_slug)) {
                 $current->slug .= '/' . $current->tab_slug;
             }
 
@@ -83,7 +82,7 @@ class SiteCurrentPageEventListener
      * Register the listeners for the subscriber.
      *
      * @param  \Illuminate\Events\Dispatcher  $events
-     * @return array
+     * @return void
      */
     public function subscribe($events)
     {

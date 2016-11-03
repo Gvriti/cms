@@ -245,7 +245,7 @@ return [
         'files' => 'fa fa-paperclip',
 
         'permissions' => 'fa fa-lock',
-        'cms_users'   => 'fa fa-user-secret',
+        'cmsUsers'   => 'fa fa-user-secret',
 
         'dashboard' => 'fa fa-dashboard',
     ],

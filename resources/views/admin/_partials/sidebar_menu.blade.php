@@ -74,7 +74,7 @@
       </li>
       <li>
         <a href="{{ cms_route('cmsUsers.index') }}">
-          <i class="{{icon_type('cms_users')}}" title="CMS Users"></i>
+          <i class="{{icon_type('cmsUsers')}}" title="CMS Users"></i>
           <span class="title">CMS Users</span>
         </a>
       </li>

@@ -14,7 +14,7 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li>
-                <a href="{{ cms_route('cmsUsers.index') }}"><i class="{{icon_type('cms_users')}}"></i>CMS Users</a>
+                <a href="{{ cms_route('cmsUsers.index') }}"><i class="{{icon_type('cmsUsers')}}"></i>CMS Users</a>
             </li>
             <li class="active">
                 <i class="{{$icon}}"></i>

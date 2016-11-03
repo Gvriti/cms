@@ -2,6 +2,7 @@
 
 namespace App\Listeners\Site;
 
+use Models\Abstracts\Model;
 use Illuminate\Support\Collection;
 
 class SiteBreadcrumbEventListener
@@ -14,16 +15,12 @@ class SiteBreadcrumbEventListener
      */
     public function onBreadcrumbComposer($event)
     {
-        if (is_object($event->current)) {
+        if ($event->current instanceof Model) {
             $breadcrumb = app_instance('breadcrumb');
 
             if ($breadcrumb instanceof Collection
-                && ($parent = $breadcrumb->last()) !== $event->current
+                && ! ($parent = $breadcrumb->last()) instanceof $event->current
             ) {
-                $event->current->original_slug = $event->current->slug;
-
-                $event->current->parent_slug = $parent->slug;
-
                 $event->current->slug = $parent->slug . '/' . $event->current->slug;
 
                 $breadcrumb->push($event->current);
