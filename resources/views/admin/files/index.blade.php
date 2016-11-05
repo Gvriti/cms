@@ -14,7 +14,7 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li>
-                <a href="{{ cms_route($parent->routeName . '.edit', $parent->routeParams) }}"><i class="{{icon_type($parent->routeName)}}"></i>{{$parent->title}}</a>
+                <a href="{{ cms_route($routeName . '.edit', $parent->routeParams) }}"><i class="{{icon_type($routeName)}}"></i>{{$parent->title}}</a>
             </li>
             <li class="active">
                 <i class="{{$icon}}"></i>
@@ -28,7 +28,7 @@
 @if (count(languages()) > 1)
     @foreach (languages() as $key => $value)
         <li>
-            <a href="{{ cms_route($parent->routeName . '.edit', $parent->routeParams, $key) }}">
+            <a href="{{ cms_route($routeName . '.edit', $parent->routeParams, $key) }}">
                 <span class="visible-xs">{{$key}}</span>
                 <span class="hidden-xs">{{languages($key)}}</span>
             </a>
@@ -36,7 +36,7 @@
     @endforeach
 @else
         <li>
-            <a href="{{ cms_route($parent->routeName . '.edit', $parent->routeParams) }}">
+            <a href="{{ cms_route($routeName . '.edit', $parent->routeParams) }}">
                 <span class="visible-xs"><i class="fa fa-home"></i></span>
                 <span class="hidden-xs">
                     <i class="fa fa-home"></i> General
@@ -104,7 +104,7 @@
             </div>
             <ul id="nestable-list" class="album-images list-unstyled row" data-insert="prepend" data-uk-nestable="{maxDepth:1}" id="items">
             @foreach($items as $item)
-                <li id="item{{$item->id}}" data-id="{{$item->id}}" data-pos="{{$item->position}}" data-url="{{cms_route('files.edit', [$item->route_name, $item->route_id, $item->id])}}" class="item col-md-2 col-sm-4 col-xs-6">
+                <li id="item{{$item->id}}" data-id="{{$item->id}}" data-pos="{{$item->position}}" data-url="{{cms_route('files.edit', [$routeName, $item->route_id, $item->id])}}" class="item col-md-2 col-sm-4 col-xs-6">
                     <div class="album-image">
                         <a href="#" class="thumb" data-modal="edit">
                         @if (in_array($ext = pathinfo($item->file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif']))
@@ -141,11 +141,11 @@
 @push('scripts.bottom')
 <script type="text/javascript">
 $(function() {
-    var routeCreate = '{!!cms_route('files.create', [$parent->routeName, $parent->id, 'sort' => 'desc', 'page' => $items->currentPage(), 'lastPage' => $items->lastPage()])!!}';
-    var routeIndex = '{{cms_route('files.index', [$parent->routeName, $parent->id])}}';
+    var routeCreate = '{!!cms_route('files.create', [$routeName, $parent->id, 'sort' => 'desc', 'page' => $items->currentPage(), 'lastPage' => $items->lastPage()])!!}';
+    var routeIndex = '{{cms_route('files.index', [$routeName, $parent->id])}}';
     var routePosition = '{{cms_route('files.updatePosition')}}';
     var sort = 'desc';
-    var page = {{request('page', 1)}};
+    var page = '{{request('page', 1)}}';
     var hasMorePages = '{{$items->hasMorePages()}}';
     @include('admin._scripts.album')
 });

@@ -132,7 +132,7 @@ $(function() {
     var routeIndex = '{{cms_route('videos.index', [$parent->id])}}';
     var routePosition = '{{cms_route('videos.updatePosition')}}';
     var sort = '{{$parent->admin_sort}}';
-    var page = {{request('page', 1)}};
+    var page = '{{request('page', 1)}}';
     var hasMorePages = '{{$items->hasMorePages()}}';
     @include('admin._scripts.album', ['orderBy' => $parent->admin_order_by, 'sort' => $parent->admin_sort])
 });

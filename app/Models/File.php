@@ -2,6 +2,7 @@
 
 namespace Models;
 
+use Exception;
 use Models\Abstracts\Model;
 use Models\Traits\LanguageTrait;
 use Models\Traits\PositionableTrait;
@@ -90,16 +91,19 @@ class File extends Model
         parent::__construct($attributes);
 
         if (! is_null($route = request()->route())) {
-            if (! is_null($routeName = $route->parameter('routeName'))) {
-                $this->setAttribute('route_name', $routeName);
+            if (is_null($this->route_name)
+                && ! is_null($routeName = $route->parameter('routeName'))
+            ) {
+                $this->setAttribute('route_name', snake_case($routeName));
             }
 
-            if (! is_null($routeId = $route->parameter('routeId'))) {
+            if (is_null($this->route_id)
+                && ! is_null($routeId = $route->parameter('routeId'))
+            ) {
                 $this->setAttribute('route_id', $routeId);
             }
         }
     }
-
 
     /**
      * Get the specified Eloquent model instance.
@@ -113,7 +117,7 @@ class File extends Model
         }
 
         $namespace = __NAMESPACE__ . '\\';
-        $model = $namespace . ($name = str_singular(ucfirst($this->route_name)));
+        $model = $namespace . ($name = str_singular(studly_case($this->route_name)));
 
         if (! class_exists($model)) {
             $modelExists = false;
@@ -139,11 +143,11 @@ class File extends Model
 
         $this->foreignModel = new $model;
 
-        $this->foreignModel = $this->foreignModel
-                                    ->joinLanguages()
-                                    ->findOrFail($this->route_id);
+        if ($this->foreignModel->hasLanguages()) {
+            $this->foreignModel = $this->foreignModel->joinLanguages();
+        }
 
-        $this->foreignModel['routeName'] = $this->route_name;
+        $this->foreignModel = $this->foreignModel->findOrFail($this->route_id);
 
         $type = (array) cms_files($this->route_name);
 
@@ -196,15 +200,31 @@ class File extends Model
     }
 
     /**
-     * Save a new model and get the instance.
-     *
-     * @param  array  $attributes
-     * @return $this
+     * {@inheritdoc}
      */
     public static function create(array $attributes = [])
     {
         $attributes['position'] = (int) parent::byRoute()->max('position') + 1;
 
         return parent::create($attributes);
+    }
+
+    /**
+     * Get the file size.
+     *
+     * @param  string|null $file
+     * @return string
+     */
+    public function getFileSize($file = null)
+    {
+        try {
+            $size = (new Filesystem)->size(
+                base_path(trim(parse_url($file ?: $this->file, PHP_URL_PATH), '/'))
+            );
+        } catch (Exception $e) {
+            $size = 0;
+        }
+
+        return format_bytes($size);
     }
 }

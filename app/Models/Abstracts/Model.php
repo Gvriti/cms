@@ -21,7 +21,7 @@ abstract class Model extends BaseModel
      *
      * @var bool
      */
-    protected $languages = false;
+    protected $hasLanguages = false;
 
     /**
      * Create a new Eloquent model instance.
@@ -34,10 +34,10 @@ abstract class Model extends BaseModel
         parent::__construct($attributes);
 
         // Set language model if it's used into the called model.
-        if (method_exists(get_called_class(), 'language')) {
-            $this->language($this);
+        if (method_exists(get_called_class(), 'setLanguage')) {
+            $this->setLanguage($this);
 
-            $this->languages = true;
+            $this->hasLanguages = true;
         }
     }
 
@@ -48,7 +48,7 @@ abstract class Model extends BaseModel
      */
     public function hasLanguages()
     {
-        return $this->languages;
+        return $this->hasLanguages;
     }
 
     /**

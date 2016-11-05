@@ -15,14 +15,26 @@ trait LanguageTrait
     protected $languageModel;
 
     /**
-     * Get the language related to this model.
+     * Create a new language instance, related to this model.
      *
      * @param  \Models\Abstracts\Model  $model
-     * @return \Models\Abstracts\Model
+     * @return $this
      */
-    public function language(Model $model)
+    public function setLanguage(Model $model)
     {
-        return $this->languageModel = new _Language($model);
+        $this->languageModel = new _Language($model);
+
+        return $this;
+    }
+
+    /**
+     * Get the language instance, related to this model.
+     *
+     * @return \Models\_Language
+     */
+    public function getLanguage(Model $model)
+    {
+        return $this->languageModel;
     }
 
     /**
@@ -81,17 +93,17 @@ trait LanguageTrait
      * Add a "*_languages" join to the query.
      *
      * @param  mixed  $language
-     * @param  bool  $language
+     * @param  bool  $addColumns
      * @return \Models\Builder\Builder
      */
-    public function joinLanguages($language = true, $addCollumns = true)
+    public function joinLanguages($language = true, $addColumns = true)
     {
         $table = $this->getTable();
         $languageTable = $this->getLanguageTable();
 
         $query = $this->leftJoin($languageTable, "{$table}.id", '=', "{$languageTable}.{$this->getForeignKey()}");
 
-        if ($addCollumns) {
+        if ($addColumns) {
             $query->addSelect(["{$languageTable}.*", "{$languageTable}.id as {$languageTable}_id", "{$table}.*"]);
         }
 
@@ -129,8 +141,8 @@ trait LanguageTrait
         $attributes = $this->getLanguageUpdatable($attributes, $exclude);
 
         return $this->languageModel->where($this->getForeignKey(), $this->id)
-                                   ->where('language', language())
-                                   ->update($attributes);
+            ->where('language', language())
+            ->update($attributes);
     }
 
     /**
@@ -148,9 +160,11 @@ trait LanguageTrait
         $attributes[$this->getForeignKey()] = $this->id;
 
         foreach($languages as $key => $value) {
+            $this->setLanguage($this);
+
             $attributes['language'] = $key;
 
-            $newLanguages[] = $this->language($this)->fill($attributes)->save();
+            $newLanguages[] = $this->languageModel->fill($attributes)->save();
         }
 
         return $newLanguages;

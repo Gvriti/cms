@@ -53,6 +53,8 @@ class AdminFilesController extends Controller
 
         $data['items'] = $this->model->getByRoute();
 
+        $data['routeName'] = $routeName;
+
         return view('admin.files.index', $data);
     }
 
@@ -88,7 +90,7 @@ class AdminFilesController extends Controller
     {
         $input = $request->all();
 
-        $input['route_name'] = $routeName;
+        $input['route_name'] = snake_case($routeName);
         $input['route_id'] = $routeId;
 
         $model = $this->model->create($input);
@@ -96,7 +98,7 @@ class AdminFilesController extends Controller
         if ($request->ajax() || $request->wantsJson()) {
             $view = view('admin.files.item', [
                 'item' => $model,
-                'itemLang' => $input
+                'itemInput' => $input
             ])->render();
 
             return response()->json(

@@ -97,7 +97,7 @@ class AdminPhotosController extends Controller
         if ($request->ajax() || $request->wantsJson()) {
             $view = view('admin.photos.item', [
                 'item' => $model,
-                'itemLang' => $input
+                'itemInput' => $input
             ])->render();
 
             return response()->json(

@@ -97,7 +97,7 @@ class AdminVideosController extends Controller
         if ($request->ajax() || $request->wantsJson()) {
             $view = view('admin.videos.item', [
                 'item' => $model,
-                'itemLang' => $input
+                'itemInput' => $input
             ])->render();
 
             return response()->json(

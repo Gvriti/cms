@@ -1,11 +1,11 @@
-@if (! empty($item) || ! empty($itemLang))
+@if (! empty($item) || ! empty($itemInput))
 <li id="item{{$item->id}}" data-id="{{$item->id}}" data-pos="{{$item->position}}" data-url="{{cms_route('slider.edit', [$item->id])}}" class="item col-md-3 col-sm-4 col-xs-6">
     <div class="album-image">
         <a href="#" class="thumb" data-modal="edit">
-            <img src="{{$item->file ?: $item->file_default}}" class="img-responsive" alt="{{$itemLang['title']}}" />
+            <img src="{{$item->file ?: $item->file_default}}" class="img-responsive" alt="{{$itemInput['title']}}" />
         </a>
         <a href="#" class="name">
-            <span class="title">{{$itemLang['title']}}</span>
+            <span class="title">{{$itemInput['title']}}</span>
             <em>{{$item->created_at->format('d F Y')}}</em>
         </a>
         <div class="image-options">
