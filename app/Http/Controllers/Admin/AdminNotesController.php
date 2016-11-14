@@ -66,7 +66,7 @@ class AdminNotesController extends Controller
             $this->model = $this->model->create($input);
         }
 
-        if ($this->request->ajax() || $this->request->wantsJson()) {
+        if ($this->request->expectsJson()) {
             return response()->json($this->model->id);
         }
 
@@ -95,7 +95,7 @@ class AdminNotesController extends Controller
 
         $model = $calendar->create($input);
 
-        if ($this->request->ajax() || $this->request->wantsJson()) {
+        if ($this->request->expectsJson()) {
             return response()->json($model);
         }
 
@@ -113,7 +113,7 @@ class AdminNotesController extends Controller
 
         $model = $this->model->delete($id);
 
-        if ($this->request->ajax() || $this->request->wantsJson()) {
+        if ($this->request->expectsJson()) {
             return response()->json($model);
         }
 

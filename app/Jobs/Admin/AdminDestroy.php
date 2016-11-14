@@ -120,7 +120,7 @@ class AdminDestroy extends Job
      */
     protected function response($type, $message)
     {
-        if (request()->ajax()) {
+        if (request()->expectsJson()) {
             return response()->json(fill_data($type, $message));
         }
 

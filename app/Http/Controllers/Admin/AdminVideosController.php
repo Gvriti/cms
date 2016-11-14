@@ -68,7 +68,7 @@ class AdminVideosController extends Controller
      */
     public function create($galleryId)
     {
-        if ($this->request->ajax() || $this->request->wantsJson()) {
+        if ($this->request->expectsJson()) {
             $data['current'] = $this->model;
             $data['current']['gallery_id'] = $galleryId;
 
@@ -94,7 +94,7 @@ class AdminVideosController extends Controller
 
         $model = $this->model->create($input);
 
-        if ($request->ajax() || $request->wantsJson()) {
+        if ($request->expectsJson()) {
             $view = view('admin.videos.item', [
                 'item' => $model,
                 'itemInput' => $input
@@ -128,7 +128,7 @@ class AdminVideosController extends Controller
      */
     public function edit($galleryId, $id)
     {
-        if ($this->request->ajax()) {
+        if ($this->request->expectsJson()) {
             $model = $this->model;
 
             $data['items'] = $model->joinLanguages(false)->where('id', $id)
@@ -154,8 +154,8 @@ class AdminVideosController extends Controller
     {
         $this->model->findOrFail($id)->update($input = $request->all());
 
-        if ($request->ajax() || $request->wantsJson()) {
-            $input += ['youtube' => getYoutubeEmbed($request->get('file'))];
+        if ($request->expectsJson()) {
+            $input += ['youtube' => get_youtube_embed($request->get('file'))];
 
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input

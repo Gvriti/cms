@@ -17,7 +17,7 @@ class AdminLockscreen
     public function handle($request, Closure $next)
     {
         if (Auth::guard('cms')->guest()) {
-            if ($request->ajax() || $request->wantsJson()) {
+            if ($request->expectsJson()) {
                 return response('Unauthorized.', 401);
             } else {
                 return redirect()->guest(cms_route('login'));

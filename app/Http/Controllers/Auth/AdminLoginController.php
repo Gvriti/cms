@@ -105,7 +105,7 @@ class AdminLoginController extends Controller
     {
         Auth::guard($this->getGuard())->user()->lockScreen();
 
-        if ($request->ajax() || $request->wantsJson()) {
+        if ($request->expectsJson()) {
             return response()->json([
                 'result' => true, 'view' => view('admin.lockscreen')->render()
             ]);
@@ -134,14 +134,14 @@ class AdminLoginController extends Controller
         if ($isValid) {
             Auth::guard($this->getGuard())->user()->unlockScreen();
 
-            if ($request->ajax() || $request->wantsJson()) {
+            if ($request->expectsJson()) {
                 return response()->json(fill_data(true));
             }
 
             return redirect()->intended(cms_route('dashboard'));
         }
 
-        if ($request->ajax() || $request->wantsJson()) {
+        if ($request->expectsJson()) {
             return response()->json(fill_data(false, trans('auth.invalid.password')));
         }
 

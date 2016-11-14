@@ -84,7 +84,7 @@ class AdminCalendarController extends Controller
             $this->model = $this->model->create($input);
         }
 
-        if ($this->request->ajax() || $this->request->wantsJson()) {
+        if ($this->request->expectsJson()) {
             return response()->json(fill_data(
                 'success', trans('general.saved'), $this->model->getAttributes()
             ));
@@ -104,7 +104,7 @@ class AdminCalendarController extends Controller
 
         $result = $this->model->delete($id);
 
-        if ($this->request->ajax() || $this->request->wantsJson()) {
+        if ($this->request->expectsJson()) {
             return response()->json($result);
         }
 

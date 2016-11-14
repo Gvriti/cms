@@ -123,7 +123,7 @@ class AdminCatalogController extends Controller
     {
         $this->model->findOrFail($id)->update($input = $request->all());
 
-        if ($request->ajax() || $request->wantsJson()) {
+        if ($request->expectsJson()) {
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input
             ));

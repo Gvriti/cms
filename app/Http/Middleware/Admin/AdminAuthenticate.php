@@ -40,7 +40,7 @@ class AdminAuthenticate
     public function handle($request, Closure $next)
     {
         if ($this->guard->guest()) {
-            if ($request->ajax() || $request->wantsJson()) {
+            if ($request->expectsJson()) {
                 return response('Unauthorized.', 401);
             }
 

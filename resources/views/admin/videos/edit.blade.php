@@ -6,7 +6,7 @@
             @foreach ($items as $item)
                 <div class="tab-pane{{language() != $item->language ? '' : ' active'}}" id="modal-item-{{$item->language}}">
                     <div class="modal-gallery-image embed-responsive embed-responsive-16by9">
-                        <iframe src="{{getYoutubeEmbed($item->file)}}" frameborder="0" allowfullscreen class="embed-responsive-item"></iframe>
+                        <iframe src="{{get_youtube_embed($item->file)}}" frameborder="0" allowfullscreen class="embed-responsive-item"></iframe>
                     </div>
                     {!! Form::model($item, [
                         'method' => 'put',

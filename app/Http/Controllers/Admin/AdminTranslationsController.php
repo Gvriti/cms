@@ -114,7 +114,7 @@ class AdminTranslationsController extends Controller
 
         $this->model->findOrFail($id)->update($input);
 
-        if ($request->ajax() || $request->wantsJson()) {
+        if ($request->expectsJson()) {
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input
             ));

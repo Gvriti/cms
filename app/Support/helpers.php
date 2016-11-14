@@ -280,52 +280,16 @@ function home_text()
 }
 
 /**
- * Find specific item(s) into the items tree.
- *
- * @param  array       $items
- * @param  int|string  $value
- * @param  string      $key
- * @param  bool        $multiple
- * @param  bool        $recursive
- * @return mixed
- */
-function find_item($items, $value, $key = 'id', $multiple = false, $recursive = true)
-{
-    if (! is_array($items)) return [];
-
-    $result = [];
-
-    foreach ($items as $item) {
-        if (isset($item->$key) && $item->$key == $value) {
-            if (! $multiple) return $item;
-
-            $result[] = $item;
-        }
-
-        if ($recursive && isset($item->subPages)) {
-            if ($data = find_item($item->subPages, $value, $key, $multiple, $recursive)) {
-                $result = is_array($data) ? array_merge($result, $data) : $data;
-
-                if (! $multiple) break;
-            }
-
-        }
-    }
-
-    return $result;
-}
-
-/**
  * Make a nestable items tree.
  *
  * @param  array  $items
- * @param  bool|string  $slug
+ * @param  string|null  $slug
  * @param  int  $parentId
  * @param  string  $parentKey
  * @param  string  $key
  * @return array
  */
-function make_tree($items, $slug = false, $parentId = 0, $parentKey = 'parent_id', $key = 'id')
+function make_tree($items, $slug = null, $parentId = 0, $parentKey = 'parent_id', $key = 'id')
 {
     if (! $items) return [];
 
@@ -334,8 +298,8 @@ function make_tree($items, $slug = false, $parentId = 0, $parentKey = 'parent_id
     $prevSlug = $slug;
 
     foreach($items as $item) {
-        if (isset($item->$parentKey) && $item->$parentKey == $parentId) {
-            if ($slug !== false) {
+        if (isset($item->{$parentKey}) && $item->{$parentKey} == $parentId) {
+            if (! is_null($slug)) {
                 $slug = $prevSlug ? $prevSlug . '/' . $item->slug : $item->slug;
 
                 $item->original_slug = $item->slug;
@@ -343,7 +307,7 @@ function make_tree($items, $slug = false, $parentId = 0, $parentKey = 'parent_id
                 $item->slug = $slug;
             }
 
-            $item->subPages = make_tree($items, $slug, $item->$key, $parentKey, $key);
+            $item->subPages = make_tree($items, $slug, $item->{$key}, $parentKey, $key);
 
             $tree[] = $item;
         }
@@ -574,7 +538,7 @@ function text_limit($string, $limit = 100, $break = '.', $end = '')
  * @param  string  $url
  * @return string
  */
-function getYoutubeId($url)
+function get_youtube_id($url)
 {
     $parts = parse_url($url);
 
@@ -603,9 +567,9 @@ function getYoutubeId($url)
  * @param  string  $url
  * @return string
  */
-function getYoutubeEmbed($url)
+function get_youtube_embed($url)
 {
-    return 'https://www.youtube.com/embed/' . getYoutubeId($url);
+    return 'https://www.youtube.com/embed/' . get_youtube_id($url);
 }
 
 /**
@@ -614,7 +578,7 @@ function getYoutubeEmbed($url)
  * @param  string  $dob
  * @return int
  */
-function getAge($dob)
+function get_age($dob)
 {
     $dob = new DateTime($dob);
 

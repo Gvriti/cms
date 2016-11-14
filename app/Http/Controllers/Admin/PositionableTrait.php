@@ -33,7 +33,7 @@ trait PositionableTrait
 
         $nestable = in_array('parent_id', $this->model->getFillable());
 
-        if ($request->ajax() || $request->wantsJson()) {
+        if ($request->expectsJson()) {
             return response()->json(
                 $this->model->updatePosition($data, 0, $params, $nestable)
             );

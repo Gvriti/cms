@@ -67,7 +67,7 @@ class AdminFilesController extends Controller
      */
     public function create($routeName, $routeId)
     {
-        if ($this->request->ajax() || $this->request->wantsJson()) {
+        if ($this->request->expectsJson()) {
             $data['current'] = $this->model;
 
             $view = view('admin.files.create', $data)->render();
@@ -95,7 +95,7 @@ class AdminFilesController extends Controller
 
         $model = $this->model->create($input);
 
-        if ($request->ajax() || $request->wantsJson()) {
+        if ($request->expectsJson()) {
             $view = view('admin.files.item', [
                 'item' => $model,
                 'itemInput' => $input
@@ -130,7 +130,7 @@ class AdminFilesController extends Controller
      */
     public function edit($routeName, $routeId, $id)
     {
-        if ($this->request->ajax() || $this->request->wantsJson()) {
+        if ($this->request->expectsJson()) {
             $data['items'] = $this->model->joinLanguages(false)
                                          ->where('id', $id)
                                          ->getOrFail();
@@ -156,7 +156,7 @@ class AdminFilesController extends Controller
     {
         $this->model->findOrFail($id)->update($input = $request->all());
 
-        if ($request->ajax() || $request->wantsJson()) {
+        if ($request->expectsJson()) {
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input
             ));

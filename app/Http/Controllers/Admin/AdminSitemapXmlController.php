@@ -116,7 +116,7 @@ class AdminSitemapXmlController extends Controller
 
         $result = $doc->save(public_path('sitemap.xml'));
 
-        if ($request->ajax() || $request->wantsJson()) {
+        if ($request->expectsJson()) {
             return response()->json($result);
         }
 

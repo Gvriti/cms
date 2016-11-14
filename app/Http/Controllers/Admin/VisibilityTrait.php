@@ -35,7 +35,7 @@ trait VisibilityTrait
             $model->update(['visible' => $visible = 1]);
         }
 
-        if ($request->ajax() || $request->wantsJson()) {
+        if ($request->expectsJson()) {
             return response()->json($visible);
         }
 

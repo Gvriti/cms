@@ -76,7 +76,7 @@ trait MovableTrait
      */
     protected function getMovableResponse(Request $request, $type, $message = null)
     {
-        if ($request->ajax() && $request->wantsJson()) {
+        if ($request->expectsJson()) {
             return response()->json(fill_data(
                 $type, $message
             ));

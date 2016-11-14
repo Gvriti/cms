@@ -19,7 +19,7 @@ class AdminRedirectIfAuthenticated
         $guard = Auth::guard('cms');
 
         if ($guard->check() && ! $guard->user()->hasLockScreen()) {
-            if ($request->ajax() || $request->wantsJson()) {
+            if ($request->expectsJson()) {
                 return response()->json(fill_data(true));
             }
 
