@@ -468,7 +468,7 @@ function glide($path, $type, $crop = null)
     $config = config();
 
     $files = (array) $config['elfinder.dir'];
-    $files = '/' . current($files) . '/';
+    $files = current($files) . '/';
 
     if (($pos = strpos($path, $files)) !== false) {
         $baseUrl = '/' . $config['site.glide_base_url'] . '/';
