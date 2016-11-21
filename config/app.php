@@ -207,14 +207,9 @@ return [
 
         App\Providers\GlideServiceProvider::class,
         // Admin Service Providers
-        App\Providers\Admin\MenuServiceProvider::class,
         App\Providers\Admin\ElfinderServiceProvider::class,
-        App\Providers\Admin\CalendarServiceProvider::class,
         // Site Service Providers
         App\Providers\Site\DynamicRouteServiceProvider::class,
-        App\Providers\Site\PageServiceProvider::class,
-        App\Providers\Site\TranslationServiceProvider::class,
-        App\Providers\Site\SettingsServiceProvider::class,
 
         /*
          * Package Service Providers...

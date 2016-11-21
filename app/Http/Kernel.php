@@ -32,6 +32,14 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+        'cms' => [
+            \App\Http\Middleware\Admin\AdminMainData::class,
+        ],
+
+        'site' => [
+            \App\Http\Middleware\Site\SiteMainData::class,
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',
@@ -49,11 +57,10 @@ class Kernel extends HttpKernel
         'cms.auth' => \App\Http\Middleware\Admin\AdminAuthenticate::class,
         'cms.guest' => \App\Http\Middleware\Admin\AdminRedirectIfAuthenticated::class,
         'cms.lockscreen' => \App\Http\Middleware\Admin\AdminLockscreen::class,
-        'cms.settings' => \App\Http\Middleware\Admin\CmsSettings::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
 
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        
+
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
