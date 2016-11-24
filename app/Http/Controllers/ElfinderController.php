@@ -18,9 +18,7 @@ use Barryvdh\Elfinder\ElfinderController as Elfinder;
 class ElfinderController extends Elfinder
 {
     /**
-     * Get the elFinder response.
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * {@inheritdoc}
      */
     public function showConnector()
     {
