@@ -89,7 +89,13 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 /*** OVERRIDE XENON ***/
 
 /* logo */
+.logo .name {font-size:26px;line-height:1;font-family:Ubuntu, sans-serif;text-transform:uppercase;}
 .sidebar-menu .logo-env {padding:26px 45px;}
+.sidebar-menu .logo-env .name {color:#fff;}
+.horizontal-menu .logo .name {color:#000;}
+@media screen and (max-width:768px) {
+    .horizontal-menu .logo .name {color:#fff;}
+}
 
 /* user navbar */
 @media screen and (max-width:768px) {
