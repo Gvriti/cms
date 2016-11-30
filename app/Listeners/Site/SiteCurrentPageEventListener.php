@@ -72,7 +72,7 @@ class SiteCurrentPageEventListener
         $path = trim(request()->getPathInfo(), '/');
 
         if (strpos($path, $language = language()) === 0) {
-            $path = substr($path, strlen($language));
+            $path = substr($path, strlen($language) + 1);
         }
 
         return $path;

@@ -10,10 +10,10 @@
         "laravelcollective/html": "5.3.*",
         "barryvdh/laravel-elfinder": "0.3.*",
         "cocur/slugify": "2.3.*",
-        "league/glide": "1.1.*",
+        "league/glide": "1.2.*",
         "mews/captcha": "2.1.*",
-        "php-curl-class/php-curl-class": "7.0.*",
-        "sabre/xml": "1.5.*"
+        "php-curl-class/php-curl-class": "7.1.*",
+        "sabre/xml": "2.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

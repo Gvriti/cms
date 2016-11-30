@@ -23,7 +23,7 @@ class TranslationRequest extends Request
      */
     public function rules()
     {
-        $id = $this->route('translations') ?: $this->get('id');
+        $id = $this->route('translation') ?: $this->get('id');
 
         if ($id) {
             $id = ',name,' . $id;
