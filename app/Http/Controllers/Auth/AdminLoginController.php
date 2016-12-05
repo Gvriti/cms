@@ -103,7 +103,7 @@ class AdminLoginController extends Controller
      */
     public function setLockscreen(Request $request)
     {
-        Auth::guard($this->getGuard())->user()->lockScreen();
+        $this->guard()->user()->lockScreen();
 
         if ($request->expectsJson()) {
             return response()->json([
@@ -125,14 +125,14 @@ class AdminLoginController extends Controller
         $isValid = false;
 
         if ($request->has('password')) {
-            $isValid = Auth::guard($this->getGuard())->getProvider()->validateCredentials(
-                Auth::guard($this->getGuard())->user(),
+            $isValid = $this->guard()->getProvider()->validateCredentials(
+                $this->guard()->user(),
                 $request->only('password')
             );
         }
 
         if ($isValid) {
-            Auth::guard($this->getGuard())->user()->unlockScreen();
+            $this->guard()->user()->unlockScreen();
 
             if ($request->expectsJson()) {
                 return response()->json(fill_data(true));

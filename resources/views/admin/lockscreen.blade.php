@@ -12,8 +12,8 @@
                         <h3>Welcome back, {{Auth::guard('cms')->user()->firstname}}!</h3>
                         <p>Enter your password to access the admin.</p>
                         <div class="input-group">
-                            <input type="password" class="form-control input-dark{{$errors->has() ? ' error' : ''}}" name="password" id="password" placeholder="Password" />
-                        @if ($errors->has())
+                            <input type="password" class="form-control input-dark{{! $errors->isEmpty() ? ' error' : ''}}" name="password" id="password" placeholder="Password" />
+                        @if (! $errors->isEmpty())
                             <label class="error">{{$errors->first()}}</label>
                         @endif
                             <span class="input-group-btn">

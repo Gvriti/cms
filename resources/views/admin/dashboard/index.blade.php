@@ -3,18 +3,10 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{$icon = icon_type('fa fa-dashboard')}}"></i>
+            <i class="{{icon_type('dashboard')}}"></i>
             Dashboard
         </h1>
         <p class="description">The main page of the cms</p>
-    </div>
-    <div class="breadcrumb-env">
-        <ol class="breadcrumb bc-1">
-            <li class="active">
-                <i class="fa fa-dashboard"></i>
-                <strong>{{$icon}}</strong>
-            </li>
-        </ol>
     </div>
 </div>
 <div class="row">
