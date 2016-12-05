@@ -46,11 +46,11 @@
     </div>
 
     <div class="col-sm-6">
-        <div class="form-group{{($error = $errors->first('site_order_by')) ? ' validate-has-error' : '' }}">
-            <label class="col-sm-4 control-label required">Site order by:</label>
+        <div class="form-group{{($error = $errors->first('web_order_by')) ? ' validate-has-error' : '' }}">
+            <label class="col-sm-4 control-label required">Web order by:</label>
             <div class="col-sm-8">
-                {!! Form::select('site_order_by', $orderBy, null, [
-                    'id' => 'site_order_by',
+                {!! Form::select('web_order_by', $orderBy, null, [
+                    'id' => 'web_order_by',
                     'class' => 'form-control select',
                 ]) !!}
                 @if ($error)
@@ -80,11 +80,11 @@
     </div>
 
     <div class="col-sm-6">
-        <div class="form-group{{($error = $errors->first('site_sort')) ? ' validate-has-error' : '' }}">
-            <label class="col-sm-4 control-label required">Site sort:</label>
+        <div class="form-group{{($error = $errors->first('web_sort')) ? ' validate-has-error' : '' }}">
+            <label class="col-sm-4 control-label required">Web sort:</label>
             <div class="col-sm-8">
-                {!! Form::select('site_sort', cms_collections('sort'), null, [
-                    'id' => 'site_sort',
+                {!! Form::select('web_sort', cms_collections('sort'), null, [
+                    'id' => 'web_sort',
                     'class' => 'form-control select',
                 ]) !!}
                 @if ($error)
@@ -122,14 +122,14 @@
     </div>
 
     <div class="col-sm-6">
-        <div class="form-group{{($error = $errors->first('site_per_page')) ? ' validate-has-error' : '' }}">
-            <label class="col-sm-4 control-label required">Site per page:</label>
+        <div class="form-group{{($error = $errors->first('web_per_page')) ? ' validate-has-error' : '' }}">
+            <label class="col-sm-4 control-label required">Web per page:</label>
             <div class="col-sm-8">
-                <div id="site_per_page" class="input-group spinner" data-step="1" data-min="1" data-max="50">
+                <div id="web_per_page" class="input-group spinner" data-step="1" data-min="1" data-max="50">
                     <div class="input-group-btn">
                         <span class="btn btn-info" data-type="decrement">-</span>
                     </div>
-                    {!! Form::text('site_per_page', null, [
+                    {!! Form::text('web_per_page', null, [
                         'class' => 'form-control text-center',
                         'readonly' => 1
                     ]) !!}

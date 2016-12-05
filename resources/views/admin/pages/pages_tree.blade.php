@@ -8,7 +8,7 @@
             <div class="list-label"><a href="{{ cms_route('pages.edit', [$item->menu_id, $item->id]) }}">{{ $item->short_title }}</a></div>
             <div class="btn-action togglable pull-right">
                 <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
-                <a href="{{$newUrl = $url . '/' . $item->slug}}" class="link btn btn-white" title="Site link" data-slug="{{$item->slug}}" target="_blank">
+                <a href="{{$newUrl = $url . '/' . $item->slug}}" class="link btn btn-white" title="Go to page" data-slug="{{$item->slug}}" target="_blank">
                     <span class="fa fa-link"></span>
                 </a>
                 <a href="#" class="movable btn btn-white" title="Move to menu" data-id="{{$item->id}}">

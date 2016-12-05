@@ -36,8 +36,8 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\Admin\AdminMainData::class,
         ],
 
-        'site' => [
-            \App\Http\Middleware\Site\SiteMainData::class,
+        'web.data' => [
+            \App\Http\Middleware\Web\WebMainData::class,
         ],
 
         'api' => [

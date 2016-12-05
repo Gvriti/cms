@@ -129,7 +129,7 @@ function cms_url($path = null, array $parameters = [], $language = null, $secure
 }
 
 /**
- * Generate a Site URL to a named route.
+ * Generate a web URL to a named route.
  *
  * @param  string  $name
  * @param  mixed   $parameters
@@ -140,7 +140,7 @@ function cms_url($path = null, array $parameters = [], $language = null, $secure
  *
  * @throws \Exception
  */
-function site_route($name, $parameters = [], $language = null, $absolute = true, $throwException = true)
+function web_route($name, $parameters = [], $language = null, $absolute = true, $throwException = true)
 {
     try {
         $route = route($name, $parameters, $absolute);
@@ -156,7 +156,7 @@ function site_route($name, $parameters = [], $language = null, $absolute = true,
 }
 
 /**
- * Generate a Site URL.
+ * Generate a web URL.
  *
  * @param  string  $path
  * @param  array   $parameters
@@ -164,7 +164,7 @@ function site_route($name, $parameters = [], $language = null, $absolute = true,
  * @param  bool    $secure
  * @return string
  */
-function site_url($path = null, array $parameters = [], $language = null, $secure = null)
+function web_url($path = null, array $parameters = [], $language = null, $secure = null)
 {
     return url(prefix_language($path, $language), [], $secure) . query_string($parameters);
 }
@@ -276,7 +276,7 @@ function model_path($name)
  */
 function home_text()
 {
-    return config('site.home.' . language());
+    return config('web.home.' . language());
 }
 
 /**
@@ -471,7 +471,7 @@ function glide($path, $type, $crop = null)
     $files = current($files) . '/';
 
     if (($pos = strpos($path, $files)) !== false) {
-        $baseUrl = '/' . $config['site.glide_base_url'] . '/';
+        $baseUrl = '/' . $config['web.glide_base_url'] . '/';
 
         $query = '?type=' . $type;
 

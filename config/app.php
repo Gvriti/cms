@@ -208,8 +208,8 @@ return [
         App\Providers\GlideServiceProvider::class,
         // Admin Service Providers
         App\Providers\Admin\ElfinderServiceProvider::class,
-        // Site Service Providers
-        App\Providers\Site\DynamicRouteServiceProvider::class,
+        // Web Service Providers
+        App\Providers\Web\DynamicRouteServiceProvider::class,
 
         /*
          * Package Service Providers...

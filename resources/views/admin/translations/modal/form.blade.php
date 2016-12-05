@@ -43,7 +43,7 @@
             @if ($error = $errors->first('value'))
             <div class="text-danger">{{$error}}</div>
             @endif
-            <span class="description">Value contains the translated text that will be displayed on the site</span>
+            <span class="description">Value contains the translated text that will be displayed on the website</span>
         </div>
     </div>
 

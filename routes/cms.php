@@ -107,8 +107,8 @@ $router->group(['middleware' => 'cms', 'prefix' => cms_slug()], function ($route
         // admin Settings
         $router->get('settings', ['as' => 'settings.index', 'uses' => 'AdminSettingsController@index']);
         $router->put('settings', ['as' => 'settings.update', 'uses' => 'AdminSettingsController@update']);
-        $router->get('site-settings', ['as' => 'siteSettings.index', 'uses' => 'AdminSiteSettingsController@index']);
-        $router->put('site-settings', ['as' => 'siteSettings.update', 'uses' => 'AdminSiteSettingsController@update']);
+        $router->get('web-settings', ['as' => 'webSettings.index', 'uses' => 'AdminWebSettingsController@index']);
+        $router->put('web-settings', ['as' => 'webSettings.update', 'uses' => 'AdminWebSettingsController@update']);
 
         // file manager
         $router->get('filemanager', ['as' => 'filemanager', 'uses' => 'AdminFilemanagerController@index']);

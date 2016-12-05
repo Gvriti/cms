@@ -33,7 +33,7 @@ trait PhotoTrait
                 'cache'  => storage_path("app/images/cache/{$path}"),
                 'group_cache_in_folders' => false
             ]))->getServer()->outputImage(
-                "{$id}/photo.jpg", config('site.glide_users', [])
+                "{$id}/photo.jpg", config('web.glide_users', [])
             );
         } catch (Exception $e) {}
 

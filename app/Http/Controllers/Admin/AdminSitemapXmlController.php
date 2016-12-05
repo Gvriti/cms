@@ -91,7 +91,7 @@ class AdminSitemapXmlController extends Controller
         $pages = (new Page)->visible()->orderBy('menu_id')->positionAsc()->get();
 
         foreach ($pages as $item) {
-            $value = ['url' => ['loc' => site_url(
+            $value = ['url' => ['loc' => web_url(
                 $item->fullSlug = $item->fullSlug()->slug, [], $this->hasManyLang
                 ? $this->mainLanguage
                 : null
@@ -152,7 +152,7 @@ class AdminSitemapXmlController extends Controller
                     continue;
                 }
 
-                $value = ['url' => ['loc' => site_url(
+                $value = ['url' => ['loc' => web_url(
                     [$item->fullSlug, $implicitItem->slug], [], $this->hasManyLang
                     ? $this->mainLanguage
                     : null
@@ -186,7 +186,7 @@ class AdminSitemapXmlController extends Controller
             'attributes' => [
                 'rel' => 'alternate',
                 'hreflang' => $langKey,
-                'href' => site_url(
+                'href' => web_url(
                     [$item->fullSlug, $slug],
                     [],
                     $langKey

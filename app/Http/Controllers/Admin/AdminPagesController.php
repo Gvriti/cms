@@ -54,7 +54,7 @@ class AdminPagesController extends Controller
 
         $data['items'] = make_tree($this->model->forAdmin($menuId)->get());
 
-        $data['url'] = site_url();
+        $data['url'] = web_url();
 
         return view('admin.pages.index', $data);
     }

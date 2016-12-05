@@ -19,9 +19,9 @@ class CreateCollectionsTable extends Migration
             $table->string('admin_order_by', 32)->default('id');
             $table->string('admin_sort', 16)->default('desc');
             $table->tinyInteger('admin_per_page')->default(20);
-            $table->string('site_order_by', 32)->default('id');
-            $table->string('site_sort', 16)->default('desc');
-            $table->tinyInteger('site_per_page')->default(10);
+            $table->string('web_order_by', 32)->default('id');
+            $table->string('web_sort', 16)->default('desc');
+            $table->tinyInteger('web_per_page')->default(10);
             $table->string('description');
             $table->timestamps();
         });

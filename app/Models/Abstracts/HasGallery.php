@@ -29,7 +29,7 @@ abstract class HasGallery extends Model
     public function getPublicGallery(Gallery $gallery, $columns = ['*'])
     {
         return $this->publicGallery($gallery)
-                    ->paginate($gallery->site_per_page, $columns);
+                    ->paginate($gallery->web_per_page, $columns);
     }
 
     /**
@@ -55,7 +55,7 @@ abstract class HasGallery extends Model
         return $this->byGallery($gallery->id)
                     ->hasFile()
                     ->visible()
-                    ->orderBy($gallery->site_order_by, $gallery->site_sort);
+                    ->orderBy($gallery->web_order_by, $gallery->web_sort);
     }
 
     /**

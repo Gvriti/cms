@@ -32,7 +32,7 @@ abstract class HasCollection extends Model
     public function getPublicCollection(Collection $collection, $columns = ['*'])
     {
         return $this->publicCollection($collection)
-                    ->paginate($collection->site_per_page, $columns);
+                    ->paginate($collection->web_per_page, $columns);
     }
 
     /**
@@ -56,11 +56,11 @@ abstract class HasCollection extends Model
     public function publicCollection(Collection $collection)
     {
         return $this->forPublic($collection->id)
-                    ->orderBy($collection->site_order_by, $collection->site_sort);
+                    ->orderBy($collection->web_order_by, $collection->web_sort);
     }
 
     /**
-     * Add the appropriate query for the admin.
+     * Build a admin query.
      *
      * @param  int|null  $id
      * @param  mixed  $language
@@ -74,7 +74,7 @@ abstract class HasCollection extends Model
     }
 
     /**
-     * Add the appropriate query for the public.
+     * Build a public query.
      *
      * @param  int|null  $id
      * @param  mixed  $language

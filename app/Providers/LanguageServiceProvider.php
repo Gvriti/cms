@@ -78,8 +78,8 @@ class LanguageServiceProvider extends ServiceProvider
         }
 
         // Set URL segments and its count, without language segment
-        $config->set(['url_segments' => $this->segments]);
-        $config->set(['url_segments_count' => $this->segmentsCount]);
+        $config->set(['url_path_segments' => $this->segments]);
+        $config->set(['url_path_segments_count' => $this->segmentsCount]);
 
         $cmsIsBooted = current($this->segments) == $config->get('cms.slug');
 

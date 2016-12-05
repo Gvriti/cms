@@ -62,7 +62,7 @@ class AdminGalleriesController extends Controller
         $data['current']->collection_id = $collectionId;
         $data['current']->type = $request->get('type');
         $data['current']->admin_per_page = 20;
-        $data['current']->site_per_page = 10;
+        $data['current']->web_per_page = 10;
 
         return view('admin.galleries.create', $data);
     }

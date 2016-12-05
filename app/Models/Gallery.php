@@ -30,7 +30,7 @@ class Gallery extends Model
      * @var array
      */
     protected $fillable = [
-        'collection_id', 'type', 'slug', 'admin_order_by', 'admin_sort', 'admin_per_page', 'site_order_by', 'site_sort', 'site_per_page', 'position', 'visible', 'image'
+        'collection_id', 'type', 'slug', 'admin_order_by', 'admin_sort', 'admin_per_page', 'web_order_by', 'web_sort', 'web_per_page', 'position', 'visible', 'image'
     ];
 
     /**

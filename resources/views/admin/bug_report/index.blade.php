@@ -15,7 +15,7 @@
             </li>
             <li class="active">
                 <i class="fa fa-gear"></i>
-                <strong>Site Settings</strong>
+                <strong>Bug report</strong>
             </li>
         </ol>
     </div>

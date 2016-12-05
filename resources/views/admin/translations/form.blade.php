@@ -43,7 +43,7 @@
         @if ($error)
         <span>{{$error}}</span>
         @endif
-        <span class="description">The value contains the translated text that will be displayed on the site</span>
+        <span class="description">The value contains the translated text that will be displayed on the website</span>
     </div>
 </div>
 

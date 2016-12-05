@@ -91,9 +91,9 @@
             </a>
           </li>
           <li>
-            <a href="{{ cms_route('siteSettings.index') }}">
-              <i class="fa fa-gear" title="Site Settings"></i>
-              <span class="title">Site Settings</span>
+            <a href="{{ cms_route('webSettings.index') }}">
+              <i class="fa fa-gear" title="Web Settings"></i>
+              <span class="title">Web Settings</span>
             </a>
           </li>
           <li>

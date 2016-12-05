@@ -80,7 +80,7 @@ class Slider extends Model
     }
 
     /**
-     * Build a query for site.
+     * Build a public query.
      *
      * @return \Models\Builder\Builder
      */

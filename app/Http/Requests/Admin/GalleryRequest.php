@@ -33,9 +33,9 @@ class GalleryRequest extends Request
             'admin_order_by' => 'required',
             'admin_sort'     => 'required',
             'admin_per_page' => 'required|numeric|min:1|max:50',
-            'site_order_by'  => 'required',
-            'site_sort'      => 'required',
-            'site_per_page'  => 'required|numeric|min:1|max:50'
+            'web_order_by'  => 'required',
+            'web_sort'      => 'required',
+            'web_per_page'  => 'required|numeric|min:1|max:50'
         ];
     }
 
@@ -62,8 +62,8 @@ class GalleryRequest extends Request
             $input['admin_order_by'] = null;
         }
 
-        if (! array_key_exists($this->get('site_order_by'), $orderList)) {
-            $input['site_order_by'] = null;
+        if (! array_key_exists($this->get('web_order_by'), $orderList)) {
+            $input['web_order_by'] = null;
         }
 
         $sortList = inner_collection('galleries.sort');
@@ -72,8 +72,8 @@ class GalleryRequest extends Request
             $input['admin_sort'] = null;
         }
 
-        if (! array_key_exists($this->get('site_sort'), $sortList)) {
-            $input['site_sort'] = null;
+        if (! array_key_exists($this->get('web_sort'), $sortList)) {
+            $input['web_sort'] = null;
         }
 
         $input['visible'] = $this->has('visible') ? 1 : 0;

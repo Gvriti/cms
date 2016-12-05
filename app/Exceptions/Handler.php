@@ -136,7 +136,7 @@ class Handler extends ExceptionHandler
      */
     protected function getExceptionView($status, $exception)
     {
-        $dir = cms_is_booted() ? 'admin' : 'site';
+        $dir = cms_is_booted() ? 'admin' : 'web';
 
         if (view()->exists($dir . ".errors.{$status}")) {
             return response()->view($dir . ".errors.{$status}", ['exception' => $exception], $status);
