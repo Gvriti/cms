@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController as Controller;
 
 class AdminLoginController extends Controller
@@ -118,7 +118,7 @@ class AdminLoginController extends Controller
      * Handle a lockscreen request to the application.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return $this|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function postLockscreen(Request $request)
     {

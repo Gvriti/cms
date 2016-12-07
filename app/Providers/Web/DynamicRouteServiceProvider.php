@@ -424,7 +424,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
             $namespace .= 'Web' . studly_case($path[0]);
         }
 
-        return ltrim($namespace .= 'Controller', '\\');
+        return ltrim($namespace . 'Controller', '\\');
     }
 
     /**

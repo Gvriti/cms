@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware\Admin;
 
-use Auth;
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class AdminRedirectIfAuthenticated
 {
