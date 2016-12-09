@@ -3,6 +3,7 @@
 namespace App\Listeners\Web;
 
 use Models\Abstracts\Model;
+use App\Support\TranslationCollection;
 
 class WebCurrentPageEventListener
 {
@@ -16,7 +17,7 @@ class WebCurrentPageEventListener
     {
         $current = $event->current;
 
-        $trans = app_instance('trans');
+        $trans = app_instance('trans', new TranslationCollection);
 
         if (! $current instanceof Model) {
             if (is_object($current) && isset($current->title)) {

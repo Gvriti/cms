@@ -191,9 +191,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
     protected function setRoutes()
     {
         if (! $this->segmentsCount) {
-            $this->router->get($this->uriPrefix, [
-                'uses' => 'WebHomeController@index'
-            ]);
+            $this->router->get($this->uriPrefix, 'WebHomeController@index');
 
             return;
         }
