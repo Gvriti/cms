@@ -6,7 +6,7 @@ use Models\Page;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 
-class DynamicRouteServiceProvider extends ServiceProvider
+final class DynamicRouteServiceProvider extends ServiceProvider
 {
     /**
      * The controller namespace for the dynamic routes.
@@ -205,6 +205,7 @@ class DynamicRouteServiceProvider extends ServiceProvider
                 if (count($this->pages) < 1
                     || (! in_array($type = $this->pages[$i - 1]->type, $this->attachedTypes)
                         && ! in_array($type, $this->explicitTypes)
+                        && ! array_key_exists($type, $this->tabs)
                     )
                 ) {
                     $this->app->abort(404);
@@ -240,20 +241,18 @@ class DynamicRouteServiceProvider extends ServiceProvider
     {
         $page = end($this->pages) or $this->app->abort(404);
 
-        $this->pagesCount = count($this->pages);
-
-        if (($this->pagesCount == $this->segmentsCount)
-            && ! in_array($page->type, $this->implicitTypes)
-        ) {
-            $this->setCurrentRoute($page->type, [$page], 'index');
-
-            return;
-        }
-
-        $this->segmentsLeft = array_slice($this->segments, $this->pagesCount);
+        $this->segmentsLeft = array_slice(
+            $this->segments, $this->pagesCount = count($this->pages)
+        );
 
         if (($this->segmentsLeftCount = count($this->segmentsLeft)) > 2) {
             $this->app->abort(404);
+        }
+
+        if (! in_array($page->type, $this->implicitTypes)) {
+            $this->setCurrentRoute($page->type, [$page], 'index');
+
+            return;
         }
 
         $this->setAttachedTypeRoute($page);
@@ -334,7 +333,13 @@ class DynamicRouteServiceProvider extends ServiceProvider
      */
     protected function setCurrentRoute($type, array $parameters = [], $defaultMethod = null, $fakeBind = 0)
     {
-        if ($this->segmentsLeftCount == 2) {
+        $paramsCount = count($parameters);
+
+        if ($this->segmentsLeftCount == 2
+            || ($this->segmentsLeftCount == $paramsCount
+                && current($parameters) instanceof Page
+            )
+        ) {
             if (array_key_exists($type, $this->tabs)
                 && (array_key_exists(
                         $tabKey = $tab = (string) end($this->segmentsLeft),
@@ -359,16 +364,12 @@ class DynamicRouteServiceProvider extends ServiceProvider
 
         $segments = '';
 
-        $paramsCount = count($parameters);
-
         for ($i = 0; $i <= ($this->segmentsCount - ($paramsCount + 1)); $i++) {
             $segments .= $this->segments[$i] . '/';
         }
 
         foreach ($parameters as $key => $binder) {
-            $segments .= '{bind' . $key . '}' . (
-                ($paramsCount - $fakeBind - 1) == $key ? '' : '/'
-            );
+            $segments .= '{bind'.$key.'}'.(($paramsCount - $fakeBind - 1) == $key ? '' : '/');
 
             $key = 'bind' . $key;
 

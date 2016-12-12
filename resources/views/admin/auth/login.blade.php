@@ -33,10 +33,7 @@
                 <form action="{{cms_route('login')}}" method="POST" role="form" id="login" class="login-form fade-in-effect">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="login-header">
-                        <a href="{{cms_route('login')}}" class="logo">
-                            <img src="{{ asset('assets/images/logo@2x.png') }}" height="24" alt="Digital Design">
-                            <span>{{trans('auth.login')}}</span>
-                        </a>
+                        <img src="{{ asset('assets/images/logo@2x.png') }}" height="24" alt="Digital Design">
                         <p>{{trans('auth.login_msg')}}</p>
                     </div>
                     <div class="form-group">

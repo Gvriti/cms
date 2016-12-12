@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @include('admin._partials.head')
+@include('admin._partials.head')
 </head>
 <body class="page-body {{$settings->get('body')}}{{Auth::guard('cms')->user()->hasLockScreen() ? ' lockscreen-page' : ''}}">
     <div id="container">
