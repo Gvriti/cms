@@ -278,10 +278,10 @@ class Builder extends EloquentBuilder
      */
     public function __call($method, $parameters)
     {
-        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 4);
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5);
 
         $isLoop = in_array($method, [
-            $backtrace[1]['function'], $backtrace[2]['function'], $backtrace[3]['function']
+            $backtrace[2]['function'], $backtrace[3]['function'], $backtrace[4]['function']
         ]);
 
         if (method_exists($this->model, $method) && ! $isLoop) {

@@ -13,7 +13,7 @@
         "league/glide": "1.2.*",
         "mews/captcha": "2.1.*",
         "php-curl-class/php-curl-class": "7.1.*",
-        "sabre/xml": "2.0.*"
+        "sabre/xml": "1.5.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

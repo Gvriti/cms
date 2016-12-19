@@ -43,12 +43,11 @@ trait PhotoTrait
     /**
      * Get the default photo response.
      *
-     * @param  string  $path
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    protected function getDefaultPhotoResponse($path)
+    protected function getDefaultPhotoResponse()
     {
         try {
             return response()->file(public_path('assets/images/user-2.png'));
