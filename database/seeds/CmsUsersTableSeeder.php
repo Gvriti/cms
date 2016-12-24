@@ -15,12 +15,12 @@ class CmsUsersTableSeeder extends DatabaseSeeder
 
         DB::table('cms_users')->insert([
             [
-                'email'      => 'dato@digitaldesign.ge',
+                'email'      => 'gvritishvili.david@gmail.com',
                 'firstname'  => 'David',
                 'lastname'   => 'Gvritishvili',
                 'role'       => 'admin',
                 'active'     => 1,
-                'password'   => '$2y$10$Z32s522b8mcksnaar80/k.sRjTvaxnLiUq87eOxtBi4ZbGYVpe/p2',
+                'password'   => '$2y$10$104nOCAkMAcIQGmqpd7fN.I0/7De6VAsBdYgjEBaoevZLYpn2xelu',
                 'created_at' => $currentDate
             ]
         ]);

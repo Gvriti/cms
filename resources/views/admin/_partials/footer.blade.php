@@ -6,7 +6,7 @@
     <div class="footer-inner">
         <!-- Add your copyright text here -->
         <div class="footer-text">
-            <a href="http://digitaldesign.ge/" target="_blank">&copy; {{date('Y')}} Digital Design</a>
+            &copy; {{date('Y')}} David Gvritishvili &lt;gvritishvili.david@gmail.com&gt;
         </div>
         <!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
         <div class="go-up">

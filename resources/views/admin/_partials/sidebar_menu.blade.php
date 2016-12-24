@@ -8,10 +8,10 @@
       <div class="logo">
         <a href="{{ cms_url() }}">
           <div class="logo-expanded">
-            <img src="{{ asset('assets/images/logo@2x.png') }}" height="24" alt="Digital Design" />
+            <div class="name">CMS</div>
           </div>
           <div class="logo-collapsed">
-            <img src="{{ asset('assets/images/logo-collapsed@2x.png') }}" height="24" alt="Digital Design" />
+            <div class="name">CMS</div>
           </div>
         </a>
       </div>

@@ -3,8 +3,7 @@
     <!-- Navbar Brand -->
     <div class="navbar-brand">
       <a href="{{ cms_url() }}" class="logo">
-        <img src="{{ asset('assets/images/logo-white-bg@2x.png') }}" height="24" alt="Digital Design" class="hidden-xs" />
-        <img src="{{ asset('assets/images/logo@2x.png') }}" height="24" alt="Digital Design" class="visible-xs" />
+        <span class="name">CMS</span>
       </a>
       <a href="#" data-toggle="settings-pane" data-animate="true">
         <i class="fa fa-gear"></i>

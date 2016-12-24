@@ -8,9 +8,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{web_url()}}">
-                    <img src="{{asset('assets/site/images/logo.png')}}" alt="Logo">
-                </a>
             </div>
             <!-- .navbar-header -->
             <div id="navbar" class="navbar-collapse collapse">
