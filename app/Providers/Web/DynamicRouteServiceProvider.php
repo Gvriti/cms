@@ -149,19 +149,19 @@ final class DynamicRouteServiceProvider extends ServiceProvider
      */
     protected function configure()
     {
-        $this->segments = (array) $this->config->get('url_path_segments');
+        $this->segments = (array) $this->config->get('url_path_segments', []);
 
         $this->segmentsCount = $this->config->get('url_path_segments_count', 0);
 
-        $this->attachedTypes = (array) $this->config->get('cms.pages.attached');
+        $this->attachedTypes = (array) $this->config->get('cms.pages.attached', []);
 
-        $this->implicitTypes = (array) $this->config->get('cms.pages.implicit');
+        $this->implicitTypes = (array) $this->config->get('cms.pages.implicit', []);
 
-        $this->explicitTypes = (array) $this->config->get('cms.pages.explicit');
+        $this->explicitTypes = (array) $this->config->get('cms.pages.explicit', []);
 
-        $this->requestMethods = (array) $this->config->get('cms.methods');
+        $this->requestMethods = (array) $this->config->get('cms.methods', []);
 
-        $this->tabs = (array) $this->config->get('cms.tabs');
+        $this->tabs = (array) $this->config->get('cms.tabs', []);
     }
 
     /**
