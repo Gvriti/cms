@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Arr;
 use Illuminate\Database\Events\QueryExecuted;
 
 /**
@@ -97,13 +96,13 @@ function resource_names($name)
  * @param  bool    $throwException
  * @return string
  *
- * @throws \Exception
+ * @throws \InvalidArgumentException
  */
 function cms_route($name, $parameters = [], $language = null, $absolute = true, $throwException = true)
 {
     try {
         $route = route($name . '.' . cms_slug(), $parameters, $absolute);
-    } catch (Exception $e) {
+    } catch (InvalidArgumentException $e) {
         if ($throwException) {
             throw $e;
         } else {
@@ -111,7 +110,7 @@ function cms_route($name, $parameters = [], $language = null, $absolute = true, 
         }
     }
 
-    return add_language($route, $language);
+    return add_language($route, $language, $throwException);
 }
 
 /**
@@ -138,13 +137,13 @@ function cms_url($path = null, array $parameters = [], $language = null, $secure
  * @param  bool    $throwException
  * @return string
  *
- * @throws \Exception
+ * @throws \InvalidArgumentException
  */
 function web_route($name, $parameters = [], $language = null, $absolute = true, $throwException = true)
 {
     try {
         $route = route($name, $parameters, $absolute);
-    } catch (Exception $e) {
+    } catch (InvalidArgumentException $e) {
         if ($throwException) {
             throw $e;
         } else {
@@ -152,7 +151,7 @@ function web_route($name, $parameters = [], $language = null, $absolute = true, 
         }
     }
 
-    return add_language($route, $language);
+    return add_language($route, $language, $throwException);
 }
 
 /**
@@ -188,8 +187,8 @@ function query_string(array $parameters, $basePrefix = '?')
 
     if (count($keyed) < count($parameters)) {
         $query .= '&'.implode(
-            '&', array_filter($parameters, 'is_numeric', ARRAY_FILTER_USE_KEY)
-        );
+                '&', array_filter($parameters, 'is_numeric', ARRAY_FILTER_USE_KEY)
+            );
     }
 
     return $basePrefix.trim($query, '&');
@@ -227,9 +226,10 @@ function prefix_language($path, $language)
  *
  * @param  string  $url
  * @param  string  $language
+ * @param  bool    $throwException
  * @return string
  */
-function add_language($url, $language)
+function add_language($url, $language, $throwException = true)
 {
     $languageList = languages();
 
@@ -253,6 +253,8 @@ function add_language($url, $language)
         $query = isset($segments['query']) ? '?' . $segments['query'] : '';
 
         return $request->root() . '/' . implode('/', $path) . $query;
+    } elseif (! is_null($language) && $throwException) {
+        throw new InvalidArgumentException("Language [{$language}] not defined.");
     }
 
     return $url;

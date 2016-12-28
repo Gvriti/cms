@@ -11,7 +11,7 @@
 |
 */
 
-$router->group(['middleware' => 'cms', 'prefix' => cms_slug()], function ($router) {
+$router->group(['middleware' => 'cms.data', 'prefix' => cms_slug()], function ($router) {
     // authentication
     $router->group(['namespace' => 'Auth'], function ($router) {
         // login

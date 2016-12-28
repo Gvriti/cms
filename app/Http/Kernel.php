@@ -32,10 +32,6 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
-        'cms' => [
-            \App\Http\Middleware\Admin\AdminMainData::class,
-        ],
-
         'api' => [
             'throttle:60,1',
             'bindings',
@@ -55,6 +51,7 @@ class Kernel extends HttpKernel
         'cms.auth' => \App\Http\Middleware\Admin\AdminAuthenticate::class,
         'cms.guest' => \App\Http\Middleware\Admin\AdminRedirectIfAuthenticated::class,
         'cms.lockscreen' => \App\Http\Middleware\Admin\AdminLockscreen::class,
+        'cms.data' => \App\Http\Middleware\Admin\AdminMainData::class,
 //        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
 
 //        'can' => \Illuminate\Auth\Middleware\Authorize::class,
