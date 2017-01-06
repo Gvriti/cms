@@ -35,10 +35,10 @@ return [
 
     'pages' => [
         'types' => [
-            'text'        => 'Text',
+            'text' => 'Text',
             'collections' => 'Collections',
-            'feedback'    => 'Feedback',
-            'search'      => 'Search',
+            'feedback' => 'Feedback',
+            'search' => 'Search',
         ],
         'templates' => [],
         'attached' => [
@@ -62,10 +62,10 @@ return [
 
     'routes' => [
         'collections' => [
-            'catalog'   => 'AdminCatalogController',
-            'articles'  => 'AdminArticlesController',
+            'catalog' => 'AdminCatalogController',
+            'articles' => 'AdminArticlesController',
             'galleries' => 'AdminGalleriesController',
-            'faq'       => 'AdminFaqController'
+            'faq' => 'AdminFaqController'
         ],
         'galleries' => [
             'photos' => 'AdminPhotosController',
@@ -84,18 +84,18 @@ return [
 
     'collections' => [
         'types' => [
-            'catalog'   => 'Catalog',
-            'articles'  => 'Articles',
+            'catalog' => 'Catalog',
+            'articles' => 'Articles',
             'galleries' => 'Galleries',
-            'faq'       => 'FAQ'
+            'faq' => 'FAQ'
         ],
         'order_by' => [
-            'position'   => 'Position',
+            'position' => 'Position',
             'created_at' => 'Creation date'
         ],
         'sort' => [
             'desc' => 'Descending',
-            'asc'  => 'Ascending'
+            'asc' => 'Ascending'
         ]
     ],
 
@@ -115,12 +115,12 @@ return [
                 'videos' => 'Videos'
             ],
             'order_by' => [
-                'position'   => 'Position',
+                'position' => 'Position',
                 'created_at' => 'Creation date'
             ],
             'sort' => [
                 'desc' => 'Descending',
-                'asc'  => 'Ascending'
+                'asc' => 'Ascending'
             ]
         ]
     ],
@@ -190,7 +190,7 @@ return [
     */
 
     'user_roles' => [
-        'admin'  => 'Administrator',
+        'admin' => 'Administrator',
         'member' => 'Member'
     ],
 
@@ -227,23 +227,24 @@ return [
     */
 
     'icons' => [
-        'menus'        => 'fa fa-list',
-        'pages'        => 'fa fa-indent',
+        'menus' => 'fa fa-list',
+        'pages' => 'fa fa-indent',
         'translations' => 'fa fa-language',
 
         'collections' => 'fa fa-list-alt',
-        'catalog'     => 'fa fa-briefcase',
-        'articles'    => 'fa fa-newspaper-o',
-        'faq'        => 'fa fa-question-circle',
+        'catalog' => 'fa fa-briefcase',
+        'articles' => 'fa fa-newspaper-o',
+        'faq' => 'fa fa-question-circle',
 
         'galleries' => 'fa fa-th',
-        'photos'    => 'fa fa-photo',
-        'videos'    => 'fa fa-video-camera',
+        'photos' => 'fa fa-photo',
+        'videos' => 'fa fa-video-camera',
 
         'files' => 'fa fa-paperclip',
 
         'permissions' => 'fa fa-lock',
-        'cmsUsers'   => 'fa fa-user-secret',
+        'cmsUsers' => 'fa fa-user-secret',
+        'users' => 'fa fa-user',
 
         'dashboard' => 'fa fa-dashboard',
     ],

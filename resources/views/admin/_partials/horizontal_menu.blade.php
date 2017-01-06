@@ -35,8 +35,8 @@
         </a>
       </li>
       <li>
-        <a href="{{ cms_route('menus.index') }}">
-          <i class="{{icon_type('pages')}}" title="Pages"></i>
+        <a href="{{ $menusUrl = cms_route('menus.index') }}">
+          <i class="{{$pagesIcon = icon_type('pages')}}" title="Pages"></i>
           <span class="title">Site Map</span>
         </a>
         <ul>
@@ -44,13 +44,14 @@
             @foreach ($menus as $item)
               <li>
                 <a href="{{ cms_route('pages.index', [$item->id]) }}">
+                  <i class="{{$pagesIcon}}" title="Pages"></i>
                   <span class="title">{{ $item->title }}</span>
                 </a>
               </li>
             @endforeach
           @endif
           <li>
-            <a href="{{ cms_route('menus.index') }}">
+            <a href="{{ $menusUrl }}">
               <i class="{{icon_type('menus')}}" title="Menus"></i>
               <span class="title">Menu Management</span>
             </a>
@@ -70,19 +71,27 @@
         </a>
       </li>
       <li>
-        <a href="{{ cms_route('cmsUsers.index') }}">
-          <i class="{{icon_type('cmsUsers')}}" title="CMS Users"></i>
-          <span class="title">CMS Users</span>
+        <a href="{{ $cmsUsersUrl = cms_route('cmsUsers.index') }}">
+          <i class="fa fa-users" title="User Groups"></i>
+          <span class="title">User Groups</span>
         </a>
+        <ul>
+          <li>
+            <a href="{{ $cmsUsersUrl }}">
+              <i class="{{icon_type('cmsUsers')}}" title="CMS Users"></i>
+              <span class="title">CMS Users</span>
+            </a>
+          </li>
+        </ul>
       </li>
       <li>
-        <a href="{{ cms_route('settings.index') }}">
+        <a href="{{ $settingsUrl = cms_route('settings.index') }}">
           <i class="fa fa-gears" title="Settings"></i>
           <span class="title">Settings</span>
         </a>
         <ul>
           <li>
-            <a href="{{ cms_route('settings.index') }}">
+            <a href="{{ $settingsUrl }}">
               <i class="fa fa-gear" title="Admin Settings"></i>
               <span class="title">CMS Settings</span>
             </a>
@@ -102,7 +111,7 @@
         </ul>
       </li>
       <li>
-        <a href="{{ cms_route('calendar.index') }}">
+        <a href="{{ $calendarUrl = cms_route('calendar.index') }}">
           <i class="fa fa-flask" title="Extra"></i>
           <span class="title">Extra</span>
         </a>
@@ -114,7 +123,7 @@
             </a>
           </li>
           <li>
-            <a href="{{ cms_route('calendar.index') }}">
+            <a href="{{ $calendarUrl }}">
               <i class="fa fa-calendar" title="Calendar"></i>
               <span class="title">Calendar</span>
             </a>

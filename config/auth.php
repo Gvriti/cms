@@ -70,10 +70,10 @@ return [
             'model' => Models\CmsUser::class,
         ],
 
-        // 'cms_users' => [
-        //     'driver' => 'database',
-        //     'table' => 'cms_users',
-        // ],
+//        'cms_users' => [
+//            'driver' => 'database',
+//            'table' => 'cms_users',
+//        ],
     ],
 
     /*
