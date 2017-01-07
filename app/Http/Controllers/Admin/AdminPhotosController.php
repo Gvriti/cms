@@ -116,7 +116,7 @@ class AdminPhotosController extends Controller
      */
     public function show()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -132,7 +132,7 @@ class AdminPhotosController extends Controller
             $model = $this->model;
 
             $data['items'] = $model->joinLanguages(false)->where('id', $id)
-                                                         ->getOrFail();
+                ->getOrFail();
 
             $view = view('admin.photos.edit', $data)->render();
 

@@ -66,11 +66,11 @@ class AdminTranslationsController extends Controller
 
         if ($request->has('close')) {
             return redirect()->route(cms_route('translations.index'))
-                    ->with('alert', fill_data('success', trans('general.created')));
+                ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('translations.edit', [$model->id]))
-                ->with('alert', fill_data('success', trans('general.created')));
+            ->with('alert', fill_data('success', trans('general.created')));
     }
 
     /**
@@ -80,7 +80,7 @@ class AdminTranslationsController extends Controller
      */
     public function show()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -92,8 +92,8 @@ class AdminTranslationsController extends Controller
     public function edit($id)
     {
         $data['items'] = $this->model->joinLanguages(false)
-                                     ->where('id', $id)
-                                     ->getOrFail();
+            ->where('id', $id)
+            ->getOrFail();
 
         $data['transTypes'] = (array) config('cms.trans_types');
 
@@ -122,7 +122,7 @@ class AdminTranslationsController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('translations.index'))
-                    ->with('alert', fill_data('success', trans('general.updated')));
+                ->with('alert', fill_data('success', trans('general.updated')));
         }
 
         return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
@@ -154,8 +154,8 @@ class AdminTranslationsController extends Controller
         }
 
         $data['items'] = $this->model->where('name', $name)
-                                     ->joinLanguages(false)
-                                     ->get();
+            ->joinLanguages(false)
+            ->get();
 
         if ($data['items']->isEmpty()) {
             $data['current'] = $this->model;

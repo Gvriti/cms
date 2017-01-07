@@ -87,6 +87,6 @@ class AdminSettingsController extends Controller
         }
 
         return redirect(cms_route('settings.index', ['tab' => $request->get('tab', 1)]))
-                    ->with('alert', fill_data('success', trans('general.updated')));
+            ->with('alert', fill_data('success', trans('general.updated')));
     }
 }

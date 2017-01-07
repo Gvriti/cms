@@ -42,8 +42,8 @@ class AdminBugReportController extends Controller
         try {
             $mail->send($view, $data, function ($m) use ($data, $host) {
                 $m->from(env('MAIL_USERNAME'))
-                  ->to('bugs@digitaldesign.ge')
-                  ->subject($host . ' - bug report');
+                    ->to('bugs@digitaldesign.ge')
+                    ->subject($host . ' - bug report');
             });
 
             $message = fill_data('success', trans('mail.message_sent'));

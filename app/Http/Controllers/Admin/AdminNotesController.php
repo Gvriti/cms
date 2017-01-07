@@ -84,7 +84,7 @@ class AdminNotesController extends Controller
         $input['title'] = $this->request->get('title');
 
         $content = explode(PHP_EOL, $this->request->get('content'));
-        
+
         if (count($content) > 1) {
             array_shift($content);
 

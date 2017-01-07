@@ -69,9 +69,9 @@ class AdminPermissionsController extends Controller
         $data['user'] = $user->findOrFail($id);
 
         $data['current'] = $this->model->permissions($id)
-                                       ->get()
-                                       ->pluck('route_name')
-                                       ->toArray();
+            ->get()
+            ->pluck('route_name')
+            ->toArray();
 
         $routeNames = array_diff_key(
             $this->getAllRouteNames(),
@@ -117,7 +117,7 @@ class AdminPermissionsController extends Controller
         });
 
         return redirect(cms_route('permissions.index', [$id]))
-                ->with('alert', fill_data('success', trans('general.saved')));
+            ->with('alert', fill_data('success', trans('general.saved')));
     }
 
     /**

@@ -102,7 +102,7 @@ class AdminSliderController extends Controller
      */
     public function show()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -115,8 +115,8 @@ class AdminSliderController extends Controller
     {
         if ($this->request->expectsJson()) {
             $data['items'] = $this->model->joinLanguages(false)
-                                         ->where('id', $id)
-                                         ->getOrFail();
+                ->where('id', $id)
+                ->getOrFail();
 
             $view = view('admin.slider.edit', $data)->render();
 

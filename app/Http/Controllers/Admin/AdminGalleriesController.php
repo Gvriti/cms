@@ -83,11 +83,11 @@ class AdminGalleriesController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('galleries.index', [$collectionId]))
-                    ->with('alert', fill_data('success', trans('general.created')));
+                ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('galleries.edit', [$collectionId, $model->id]))
-                ->with('alert', fill_data('success', trans('general.created')));
+            ->with('alert', fill_data('success', trans('general.created')));
     }
 
     /**
@@ -97,7 +97,7 @@ class AdminGalleriesController extends Controller
      */
     public function show()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -110,8 +110,8 @@ class AdminGalleriesController extends Controller
     public function edit($collectionId, $id)
     {
         $data['items'] = $this->model->joinLanguages(false)
-                                     ->where('id', $id)
-                                     ->getOrFail();
+            ->where('id', $id)
+            ->getOrFail();
 
         return view('admin.galleries.edit', $data);
     }
@@ -136,7 +136,7 @@ class AdminGalleriesController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('galleries.index', [$collectionId]))
-                    ->with('alert', fill_data('success', trans('general.updated')));
+                ->with('alert', fill_data('success', trans('general.updated')));
         }
 
         return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));

@@ -39,6 +39,6 @@ class AdminWebSettingsController extends Controller
         DB::table('web_settings')->update($attributes);
 
         return redirect(cms_route('webSettings.index'))
-                    ->with('alert', fill_data('success', trans('general.updated')));
+            ->with('alert', fill_data('success', trans('general.updated')));
     }
 }

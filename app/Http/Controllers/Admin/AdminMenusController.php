@@ -62,11 +62,11 @@ class AdminMenusController extends Controller
 
         if ($request->has('close')) {
             return redirect()->route(cms_route('menus.index'))
-                    ->with('alert', fill_data('success', trans('general.created')));
+                ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('menus.edit', [$model->id]))
-                ->with('alert', fill_data('success', trans('general.created')));
+            ->with('alert', fill_data('success', trans('general.created')));
     }
 
     /**
@@ -76,7 +76,7 @@ class AdminMenusController extends Controller
      */
     public function show()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -111,7 +111,7 @@ class AdminMenusController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('menus.index'))
-                    ->with('alert', fill_data('success', trans('general.updated')));
+                ->with('alert', fill_data('success', trans('general.updated')));
         }
 
         return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));

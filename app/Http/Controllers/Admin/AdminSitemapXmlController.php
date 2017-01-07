@@ -143,9 +143,9 @@ class AdminSitemapXmlController extends Controller
             $model = model_path($implicitModel->type);
 
             $items = (new $model)->where(
-                    str_singular($implicitModel->getTable()) . '_id',
-                    $implicitModel->id
-                )->visible()->orderDesc()->get();
+                str_singular($implicitModel->getTable()) . '_id',
+                $implicitModel->id
+            )->visible()->orderDesc()->get();
 
             foreach ($items as $implicitItem) {
                 if (empty($implicitItem->slug)) {

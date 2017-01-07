@@ -116,7 +116,7 @@ class AdminVideosController extends Controller
      */
     public function show()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -132,7 +132,7 @@ class AdminVideosController extends Controller
             $model = $this->model;
 
             $data['items'] = $model->joinLanguages(false)->where('id', $id)
-                                                         ->getOrFail();
+                ->getOrFail();
 
             $view = view('admin.videos.edit', $data)->render();
 

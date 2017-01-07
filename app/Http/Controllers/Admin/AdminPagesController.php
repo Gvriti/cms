@@ -94,11 +94,11 @@ class AdminPagesController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('pages.index', [$menuId]))
-                    ->with('alert', fill_data('success', trans('general.created')));
+                ->with('alert', fill_data('success', trans('general.created')));
         }
 
         return redirect(cms_route('pages.edit', [$menuId, $model->id]))
-                ->with('alert', fill_data('success', trans('general.created')));
+            ->with('alert', fill_data('success', trans('general.created')));
     }
 
     /**
@@ -108,7 +108,7 @@ class AdminPagesController extends Controller
      */
     public function show()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -121,8 +121,8 @@ class AdminPagesController extends Controller
     public function edit($menuId, $id)
     {
         $data['items'] = $this->model->joinLanguages(false)
-                                    ->where('id', $id)
-                                    ->getOrFail();
+            ->where('id', $id)
+            ->getOrFail();
 
         $data['types'] = cms_pages('types');
 
@@ -157,7 +157,7 @@ class AdminPagesController extends Controller
 
         if ($request->has('close')) {
             return redirect(cms_route('pages.index', [$menuId]))
-                    ->with('alert', fill_data('success', trans('general.updated')));
+                ->with('alert', fill_data('success', trans('general.updated')));
         }
 
         return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));

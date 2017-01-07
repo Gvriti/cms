@@ -117,7 +117,7 @@ class AdminFilesController extends Controller
      */
     public function show()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -132,8 +132,8 @@ class AdminFilesController extends Controller
     {
         if ($this->request->expectsJson()) {
             $data['items'] = $this->model->joinLanguages(false)
-                                         ->where('id', $id)
-                                         ->getOrFail();
+                ->where('id', $id)
+                ->getOrFail();
 
             $view = view('admin.files.edit', $data)->render();
 
