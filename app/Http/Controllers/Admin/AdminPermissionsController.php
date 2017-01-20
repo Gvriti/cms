@@ -58,7 +58,7 @@ class AdminPermissionsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \Models\CmsUser  $model
+     * @param  \Models\CmsUser  $user
      * @param  int  $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

@@ -230,13 +230,13 @@
         </a>
         <ul class="dropdown-menu user-profile-menu list-unstyled">
           <li>
-            <a href="{{cms_route('cmsUsers.show', [Auth::guard('cms')->id()])}}">
+            <a href="{{cms_route('cmsUsers.show', [$userId = Auth::guard('cms')->id()])}}">
               <i class="{{icon_type('cmsUsers')}}"></i>
               Profile
             </a>
           </li>
           <li>
-            <a href="{{cms_route('cmsUsers.edit', [Auth::guard('cms')->id()])}}">
+            <a href="{{cms_route('cmsUsers.edit', [$userId])}}">
               <i class="fa fa-edit"></i>
               Edit
             </a>
@@ -248,10 +248,13 @@
             </a>
           </li>
           <li class="last">
-            <a href="{{cms_route('logout')}}">
-              <i class="fa fa-sign-out"></i>
-              Logout
-            </a>
+            <form action="{{cms_route('logout')}}" method="post">
+              <input type="hidden" name="_token" value="{{csrf_token()}}">
+              <button>
+                <i class="fa fa-sign-out"></i>
+                Logout
+              </button>
+            </form>
           </li>
         </ul>
       </li>

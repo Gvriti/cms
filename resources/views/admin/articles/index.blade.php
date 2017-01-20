@@ -112,7 +112,7 @@
 <script type="text/javascript">
 $(function() {
 @if ($parent->admin_order_by == 'position')
-    positionable('{{ cms_route('articles.updatePosition') }}', '{{$parent->admin_sort}}', {{request('page', 1)}}, '{{$items->hasMorePages()}}');
+    positionable('{{ cms_route('articles.updatePosition') }}', '{{$parent->admin_sort}}', '{{request('page', 1)}}', '{{$items->hasMorePages()}}');
 @endif
 });
 </script>

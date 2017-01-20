@@ -129,13 +129,13 @@
       </a>
       <ul class="dropdown-menu user-profile-menu list-unstyled">
         <li>
-          <a href="{{cms_route('cmsUsers.show', [Auth::guard('cms')->id()])}}">
+          <a href="{{cms_route('cmsUsers.show', [$userId = Auth::guard('cms')->id()])}}">
             <i class="{{icon_type('cms_users')}}"></i>
             Profile
           </a>
         </li>
         <li>
-          <a href="{{cms_route('cmsUsers.edit', [Auth::guard('cms')->id()])}}">
+          <a href="{{cms_route('cmsUsers.edit', [$userId])}}">
             <i class="fa fa-edit"></i>
             Edit
           </a>

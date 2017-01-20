@@ -6,7 +6,7 @@
             <i class="{{$icon = icon_type('cmsUsers')}}"></i>
             CMS Users
         </h1>
-        <p class="description">List of all cms users</p>
+        <p class="description">List of all CMS users</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">

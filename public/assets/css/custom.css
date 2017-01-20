@@ -108,7 +108,8 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .user-info-navbar .user-info-menu > li > a.dropdown-toggle {padding-bottom:27px;}
 .user-info-navbar .user-info-menu > li.language-switcher a > img {margin-right:0;}
 .user-info-navbar .user-info-menu > li.language-switcher ul a > img {margin-right:5px;}
-.user-info-navbar .user-info-menu .user-profile-menu > li button {display:block;color:#979898;padding:0 0 15px;background:none;border:0;}
+.user-info-navbar .user-info-menu .user-profile-menu > li button {padding:0 0 15px;}
+.user-profile-menu > li button {display:block;color:#979898;background:none;padding:0 0 15px;border:0;}
 
 /* fix & collapse menu at the same time */
 /*.sidebar-menu.fixed.collapsed .sidebar-menu-inner {position:fixed;}*/
