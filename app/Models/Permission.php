@@ -30,12 +30,26 @@ class Permission extends Model
     protected $notUpdatable = [];
 
     /**
+     * Route group names that are hidden for list.
+     *
+     * @var array
+     */
+    public static $routeGroupsHidden = ['cmsUsers', 'permissions', 'login', 'logout', 'lockscreen'];
+
+    /**
+     * Route names that are hidden for list.
+     *
+     * @var array
+     */
+    public static $routeNamesHidden = [];
+
+    /**
      * Get the list of permissions by user id.
      *
      * @param  int  $id
      * @return \Models\Builder\Builder
      */
-    public function permissions($id)
+    public function userId($id)
     {
         return $this->where('cms_user_id', $id);
     }
@@ -46,9 +60,9 @@ class Permission extends Model
      * @param  string  $routeName
      * @return bool
      */
-    public function accessRoute($routeName)
+    public function hasAccess($routeName)
     {
-        return is_null($this->where('route_name', $routeName)->first());
+        return ! is_null($this->where('route_name', $routeName)->first());
     }
 
     /**
@@ -59,6 +73,6 @@ class Permission extends Model
      */
     public function clear($id)
     {
-        return $this->permissions($id)->delete();
+        return $this->userId($id)->delete();
     }
 }

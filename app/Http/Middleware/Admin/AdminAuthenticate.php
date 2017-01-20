@@ -4,6 +4,7 @@ namespace App\Http\Middleware\Admin;
 
 use Closure;
 use Models\Permission;
+use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -63,16 +64,21 @@ class AdminAuthenticate
     /**
      * Determine if the user has access to the given route
      *
+     * @param  \Illuminate\Http\Request $request
      * @return void
      *
      * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
      */
-    private function checkRoutePermission($request)
+    private function checkRoutePermission(Request $request)
     {
         if (! $this->guard->user()->isAdmin()) {
             $routeName = $request->route()->getName();
 
-            if (! (new Permission)->permissions($this->guard->id())->accessRoute($routeName)) {
+            $routeGroup = substr($routeName, 0, strpos($routeName, '.'));
+
+            if (! in_array($routeGroup, Permission::$routeGroupsHidden)
+                && ! (new Permission)->userId($this->guard->id())->hasAccess($routeName)
+            ) {
                 throw new AccessDeniedHttpException;
             }
         }

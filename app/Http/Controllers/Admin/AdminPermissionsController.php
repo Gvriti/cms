@@ -26,22 +26,6 @@ class AdminPermissionsController extends Controller
     protected $request;
 
     /**
-     * Route group names that are hidden for list.
-     *
-     * @var array
-     */
-    protected $routeGroupsHidden = ['dashboard', 'login', 'logout', 'lockscreen'];
-
-    /**
-     * Route names that are hidden for list.
-     *
-     * @var array
-     */
-    protected $routeNamesHidden = [
-        'cms.cmsUsers.create', 'cms.cmsUsers.store', 'cms.cmsUsers.edit', 'cms.cmsUsers.update', 'cms.cmsUsers.destroy'
-    ];
-
-    /**
      * Create a new controller instance.
      *
      * @param  \Models\Permission  $model
@@ -68,21 +52,21 @@ class AdminPermissionsController extends Controller
 
         $data['user'] = $user->findOrFail($id);
 
-        $data['current'] = $this->model->permissions($id)
+        $data['current'] = $this->model->userId($id)
             ->get()
             ->pluck('route_name')
             ->toArray();
 
         $routeNames = array_diff_key(
             $this->getAllRouteNames(),
-            array_flip($this->routeGroupsHidden)
+            array_flip(Permission::$routeGroupsHidden)
         );
 
-        ksort($routeNames);
+        // ksort($routeNames);
 
         $data['routes'] = $routeNames;
 
-        $data['namesDisallowed'] = $this->routeNamesHidden;
+        $data['namesDisallowed'] = Permission::$routeNamesHidden;
 
         return view('admin.permissions.index', $data);
     }
@@ -105,7 +89,7 @@ class AdminPermissionsController extends Controller
             $attributes = [];
 
             foreach ($input as $key => $value) {
-                if (in_array(key($value), $this->routeGroupsHidden)){
+                if (in_array(key($value), Permission::$routeGroupsHidden)){
                     continue;
                 }
 

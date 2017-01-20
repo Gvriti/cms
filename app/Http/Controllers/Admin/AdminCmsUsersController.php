@@ -126,7 +126,7 @@ class AdminCmsUsersController extends Controller
     public function edit($id)
     {
         if (! $this->user()->isAdmin() && $this->user()->id != $id) {
-            return redirect()->back();
+            throw new AccessDeniedHttpException;
         }
 
         $data['current'] = $this->model->findOrFail($id);
@@ -148,7 +148,7 @@ class AdminCmsUsersController extends Controller
         $input = $request->all();
 
         if (! $this->user()->isAdmin() && $this->user()->id != $id) {
-            return redirect()->back();
+            throw new AccessDeniedHttpException;
         } elseif ($this->user()->id == $id) {
             $input['active'] = 1;
         }

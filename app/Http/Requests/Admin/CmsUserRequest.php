@@ -44,18 +44,16 @@ class CmsUserRequest extends Request
     {
         $input = parent::all();
 
-        $id = $this->route('cms_users');
+        $id = $this->route('cms_user');
 
-        $auth = $this->user('cms');
+        $user = $this->user('cms');
 
-        if ($this->method() == 'PUT' && ! $auth->isAdmin()) {
+        if ($user->id == $id) {
+            $input['role'] = $user->role;
+        } elseif (! $user->isAdmin()
+            || ! in_array($this->get('role'), array_keys(user_roles()))
+        ) {
             $input['role'] = null;
-        } elseif (! in_array($this->get('role'), array_keys(user_roles()))) {
-            $input['role'] = null;
-        }
-
-        if ($auth->id == $id) {
-            $input['role'] = $auth->role;
         }
 
         if (! $this->has('password')) {

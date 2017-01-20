@@ -17,9 +17,3 @@ $router->group(['namespace' => 'Web'], function ($router) {
         'as' => 'glide', 'uses' => 'WebGlideServerController@show'
     ])->where('path', '.+');
 });
-
-// translation form request
-$router->group(['middleware' => 'cms.auth', 'namespace' => 'Admin', 'prefix' => cms_slug()], function ($router) {
-    $router->get('translations/form', ['as' => 'translations.popup', 'uses' => 'AdminTranslationsController@getModal']);
-    $router->post('translations/form', ['as' => 'translations.popup', 'uses' => 'AdminTranslationsController@postModal']);
-});

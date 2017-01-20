@@ -88,6 +88,8 @@ $router->group(['middleware' => 'cms.data', 'prefix' => cms_slug()], function ($
         ]);
 
         // translations
+        $router->get('translations/form', ['as' => 'translations.popup', 'uses' => 'AdminTranslationsController@getModal']);
+        $router->post('translations/form', ['as' => 'translations.popup', 'uses' => 'AdminTranslationsController@postModal']);
         $router->resource('translations', 'AdminTranslationsController', ['names' => resource_names('translations'),
             'except' => ['show']
         ]);
