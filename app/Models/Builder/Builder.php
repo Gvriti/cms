@@ -83,11 +83,9 @@ class Builder extends EloquentBuilder
     {
         $collection = $this->get($columns);
 
-        if (! $collection->isEmpty()) {
-            return $collection;
-        }
+        $collection->isEmpty() and abort(404);
 
-        abort(404);
+        return $collection;
     }
 
     /**
@@ -173,7 +171,7 @@ class Builder extends EloquentBuilder
                     continue;
                 }
 
-                foreach ($binding as $key => $value) {
+                foreach ($binding as $bind => $value) {
                     if ($value instanceof JoinClause) {
                         $wheres = $value->wheres;
 
@@ -190,30 +188,30 @@ class Builder extends EloquentBuilder
                                 $value->wheres[$key]['first'] = "{$query->from}.{$first}";
                             }
 
-                            if (isset($value->wheres[$key]['second'])
+                            if (! empty($value->wheres[$key]['second'])
                                 && is_string($second = $value->wheres[$key]['second'])
                                 && strpos($second, '.') === false
                             ) {
                                 $value->wheres[$key]['second'] = "{$value->table}.{$second}";
-                            } elseif (is_null($second)) {
+                           } elseif (is_null($value->wheres[$key]['second'])) {
                                 $value->wheres[$key]['second'] = "{$value->table}.id";
                             }
                         }
                     } elseif (is_string($value) && $value == 'id') {
-                        $query->{$bindings[$i] . 's'}[$key] = $query->from . '.' . $value;
+                        $query->{$bindings[$i] . 's'}[$bind] = $query->from . '.' . $value;
                     } elseif (is_array($value)
                             && isset($value['column'])
                             && strpos($value['column'], '.') === false
                         ) {
                         $columns = array_merge(
-                            array_values($this->model->getFillable()),
-                            array_values($this->model->getDates())
+                            (array) array_values($this->model->getFillable()),
+                            (array) array_values($this->model->getDates())
                         );
 
                         if ($value['column'] == 'id' || in_array($value['column'], $columns)) {
                             $table = $query->from . '.';
 
-                            $query->{$bindings[$i] . 's'}[$key]['column'] = $table . $value['column'];
+                            $query->{$bindings[$i] . 's'}[$bind]['column'] = $table . $value['column'];
                         }
                     }
                 }

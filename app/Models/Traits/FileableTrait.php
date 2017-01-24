@@ -11,17 +11,18 @@ trait FileableTrait
      *
      * @param  int|null  $id
      * @param  string|null  $name
+     * @param  array|mixed  $columns
      * @return \Illuminate\Support\Collection
      */
-    public function getFiles($id = null, $name = null)
+    public function getFiles($id = null, $name = null, $columns = ['*'])
     {
         $imageExt = ['png', 'jpg', 'jpeg', 'gif', 'bmp'];
 
         $files = (new File)->joinLanguages()
-                        ->byRoute($id ?: $this->id, $name ?: $this->getTable())
-                        ->visible()
-                        ->positionDesc()
-                        ->get();
+            ->byRoute($id ?: $this->id, $name ?: $this->getTable())
+            ->visible()
+            ->positionDesc()
+            ->get($columns);
 
         $images = $mixed = [];
 
@@ -45,7 +46,7 @@ trait FileableTrait
 
     /**
      * Add a "file" join to the query.
-     * 
+     *
      * @return \Models\Builder\Builder
      */
     public function joinFileId()
@@ -56,19 +57,19 @@ trait FileableTrait
 
         $fileTable = (new File)->getTable();
 
-        return $this->selectRaw("(select count(*) from {$fileTable} where {$table}.{$keyName} = route_id and route_name = ?) as files_cnt", [$table]);
+        return $this->selectRaw("(select count(*) from {$fileTable} where {$table}.{$keyName} = model_id and model_name = ?) as files_cnt", [$table]);
     }
 
     /**
      * Determine if the model has a file(s).
-     * 
+     *
      * @param  int  $id
      * @return bool
      */
     public function hasFile($id)
     {
         $file = (new File)->where([
-            'route_id' => $id, 'route_name' => $this->table
+            'model_id' => $id, 'model_name' => $this->table
         ])->first();
 
         return ! is_null($file);

@@ -25,7 +25,7 @@ class File extends Model
      * @var array
      */
     protected $fillable = [
-        'route_name', 'route_id', 'position', 'visible'
+        'model_name', 'model_id', 'position', 'visible'
     ];
 
     /**
@@ -34,7 +34,7 @@ class File extends Model
      * @var array
      */
     protected $notUpdatable = [
-        'route_name', 'route_id'
+        'model_name', 'model_id'
     ];
 
     /**
@@ -74,7 +74,7 @@ class File extends Model
     }
 
     /**
-     * The Model instance, passed by the route.
+     * The eloquent model instance.
      *
      * @var \Models\Abstracts\Model
      */
@@ -91,16 +91,16 @@ class File extends Model
         parent::__construct($attributes);
 
         if (! is_null($route = request()->route())) {
-            if (is_null($this->route_name)
-                && ! is_null($routeName = $route->parameter('routeName'))
+            if (is_null($this->model_name)
+                && ! is_null($modelName = $route->parameter('modelName'))
             ) {
-                $this->setAttribute('route_name', snake_case($routeName));
+                $this->setAttribute('model_name', snake_case($modelName));
             }
 
-            if (is_null($this->route_id)
-                && ! is_null($routeId = $route->parameter('routeId'))
+            if (is_null($this->model_id)
+                && ! is_null($modelId = $route->parameter('modelId'))
             ) {
-                $this->setAttribute('route_id', $routeId);
+                $this->setAttribute('model_id', $modelId);
             }
         }
     }
@@ -117,7 +117,7 @@ class File extends Model
         }
 
         $namespace = __NAMESPACE__ . '\\';
-        $model = $namespace . ($name = str_singular(studly_case($this->route_name)));
+        $model = $namespace . ($name = str_singular(studly_case($this->model_name)));
 
         if (! class_exists($model)) {
             $modelExists = false;
@@ -147,9 +147,9 @@ class File extends Model
             $this->foreignModel = $this->foreignModel->joinLanguages();
         }
 
-        $this->foreignModel = $this->foreignModel->findOrFail($this->route_id);
+        $this->foreignModel = $this->foreignModel->findOrFail($this->model_id);
 
-        $type = (array) cms_files($this->route_name);
+        $type = (array) cms_files($this->model_name);
 
         if (isset($type['foreign_key'])) {
             $routeParams[] = $this->foreignModel->{$type['foreign_key']};
@@ -176,16 +176,16 @@ class File extends Model
     }
 
     /**
-     * Add a where "route_id, route_name" clause to the query.
+     * Add a where "model_id, model_name" clause to the query.
      *
-     * @param  null|int     $routeId
-     * @param  null|string  $routeName
+     * @param  null|int     $modelId
+     * @param  null|string  $modelName
      * @return \Models\Builder\Builder
      */
-    public function byRoute($routeId = null, $routeName = null)
+    public function byRoute($modelId = null, $modelName = null)
     {
-        return $this->where('route_id', $routeId ?: $this->route_id)
-                    ->where('route_name', $routeName ?: $this->route_name);
+        return $this->where('model_id', $modelId ?: $this->model_id)
+                    ->where('model_name', $modelName ?: $this->model_name);
     }
 
     /**

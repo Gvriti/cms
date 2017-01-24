@@ -66,7 +66,7 @@
                                         <span class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></span>
                                     </button>
                                     {!! Form::close() !!}
-                                    <a href="{{ cms_route('files.index', ['catalog', $item->id]) }}" class="btn btn-{{$item->files_id ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
+                                    <a href="{{ cms_route('files.index', ['catalog', $item->id]) }}" class="btn btn-{{$item->files_cnt ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
                                         <span class="{{icon_type('files')}}"></span>
                                     </a>
                                     <a href="{{ cms_route('catalog.edit', [$parent->id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
