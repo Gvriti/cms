@@ -16,7 +16,7 @@
                             </div>
                             {!! Form::model($item, [
                                 'method' => 'put',
-                                'url'    => cms_route('files.update', [$item->route_name, $item->route_id, $item->id], ($isMultiLang = (count(languages()) > 1)) ? $item->language : null),
+                                'url'    => cms_route('files.update', [$item->route_name, $item->route_id, $item->id], is_multilanguage() ? $item->language : null),
                                 'class'  => 'form-horizontal '.$settings->get('ajax_form'),
                                 'data-lang' => $item->language
                             ]) !!}
@@ -64,7 +64,7 @@
                         </div>
                     @endforeach
                 </div>
-                @if ($isMultiLang)
+                @if (is_multilanguage())
                     <ul class="modal-footer modal-gallery-top-controls nav nav-tabs">
                         @foreach ($items as $item)
                             <li{!!language() != $item->language ? '' : ' class="active"'!!}>

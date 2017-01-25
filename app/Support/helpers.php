@@ -43,6 +43,16 @@ function language_isset()
 }
 
 /**
+ * Determine if the application is multilanguage.
+ *
+ * @return bool
+ */
+function is_multilanguage()
+{
+    return count(languages()) > 1;
+}
+
+/**
  * Determine if the CMS routes should be loaded.
  *
  * @return bool

@@ -12,9 +12,9 @@
             <!-- .navbar-header -->
             <div id="navbar" class="navbar-collapse collapse">
                 @include('web._partials.pages')
-            @if (count($languages = languages()) > 1)
+            @if (is_multilanguage())
                 <ul class="nav navbar-nav navbar-right text-uppercase">
-                @foreach ($languages as $key => $value)
+                @foreach (languages() as $key => $value)
                     <li{!!$key == language() ? ' class="active"' : ''!!}>
                         <a href="{{$value['url']}}">{{$value['short_name']}}</a>
                     </li>

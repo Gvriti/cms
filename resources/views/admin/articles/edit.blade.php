@@ -26,7 +26,7 @@
 </div>
 <div class="clearfix">
     <ul class="nav nav-tabs col-xs-8">
-@if ($isMultiLang = (count(languages()) > 1))
+@if (is_multilanguage())
     @foreach ($items as $current)
         <li{!!language() != $current->language ? '' : ' class="active"'!!}>
             <a href="#item-{{$current->language}}" data-toggle="tab">
@@ -76,7 +76,7 @@
             <div class="tab-pane{{language() != $current->language ? '' : ' active'}}" id="item-{{$current->language}}">
                 {!! Form::model($current, [
                     'method'    => 'put',
-                    'url'       => cms_route('articles.update', [$current->collection_id, $current->id], $isMultiLang ? $current->language : null),
+                    'url'       => cms_route('articles.update', [$current->collection_id, $current->id], is_multilanguage() ? $current->language : null),
                     'class'     => 'form-horizontal '.$settings->get('ajax_form'),
                     'data-lang' => $current->language
                 ]) !!}
