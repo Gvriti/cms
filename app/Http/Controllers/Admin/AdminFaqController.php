@@ -86,11 +86,6 @@ class AdminFaqController extends Controller
 
         $model = $this->model->create($input);
 
-        if ($request->has('close')) {
-            return redirect(cms_route('faq.index', [$collectionId]))
-                ->with('alert', fill_data('success', trans('general.created')));
-        }
-
         return redirect(cms_route('faq.edit', [$collectionId, $model->id]))
             ->with('alert', fill_data('success', trans('general.created')));
     }
@@ -139,11 +134,6 @@ class AdminFaqController extends Controller
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input
             ));
-        }
-
-        if ($request->has('close')) {
-            return redirect(cms_route('faq.index', [$collectionId]))
-                ->with('alert', fill_data('success', trans('general.updated')));
         }
 
         return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));

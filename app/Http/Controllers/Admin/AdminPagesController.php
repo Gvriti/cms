@@ -92,11 +92,6 @@ class AdminPagesController extends Controller
 
         $model = $this->model->create($input);
 
-        if ($request->has('close')) {
-            return redirect(cms_route('pages.index', [$menuId]))
-                ->with('alert', fill_data('success', trans('general.created')));
-        }
-
         return redirect(cms_route('pages.edit', [$menuId, $model->id]))
             ->with('alert', fill_data('success', trans('general.created')));
     }
@@ -153,11 +148,6 @@ class AdminPagesController extends Controller
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input
             ));
-        }
-
-        if ($request->has('close')) {
-            return redirect(cms_route('pages.index', [$menuId]))
-                ->with('alert', fill_data('success', trans('general.updated')));
         }
 
         return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));

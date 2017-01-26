@@ -76,11 +76,6 @@ class AdminCatalogController extends Controller
 
         $model = $this->model->create($input);
 
-        if ($request->has('close')) {
-            return redirect(cms_route('catalog.index', [$collectionId]))
-                ->with('alert', fill_data('success', trans('general.created')));
-        }
-
         return redirect(cms_route('catalog.edit', [$collectionId, $model->id]))
             ->with('alert', fill_data('success', trans('general.created')));
     }
@@ -127,11 +122,6 @@ class AdminCatalogController extends Controller
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input
             ));
-        }
-
-        if ($request->has('close')) {
-            return redirect(cms_route('catalog.index', [$collectionId]))
-                ->with('alert', fill_data('success', trans('general.updated')));
         }
 
         return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));

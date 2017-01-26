@@ -93,11 +93,6 @@ class AdminCmsUsersController extends Controller
 
         app('db')->table('cms_settings')->insert(['cms_user_id' => $model->id]);
 
-        if ($request->has('close')) {
-            return redirect(cms_route('cmsUsers.index'))
-                ->with('alert', fill_data('success', trans('general.created')));
-        }
-
         return redirect(cms_route('cmsUsers.edit', [$model->id]))
             ->with('alert', fill_data('success', trans('general.created')));
     }
@@ -159,11 +154,6 @@ class AdminCmsUsersController extends Controller
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input
             ));
-        }
-
-        if ($request->has('close')) {
-            return redirect(cms_route('cmsUsers.index'))
-                ->with('alert', fill_data('success', trans('general.updated')));
         }
 
         return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));

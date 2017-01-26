@@ -1,4 +1,3 @@
-{!! Form::hidden('close', false, ['class' => 'form-close']) !!}
 <div class="form-group{{($error = $errors->first('name')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label required">Name:</label>
     <div class="col-sm-6">

@@ -64,11 +64,6 @@ class AdminTranslationsController extends Controller
     {
         $model = $this->model->create($request->all());
 
-        if ($request->has('close')) {
-            return redirect()->route(cms_route('translations.index'))
-                ->with('alert', fill_data('success', trans('general.created')));
-        }
-
         return redirect(cms_route('translations.edit', [$model->id]))
             ->with('alert', fill_data('success', trans('general.created')));
     }
@@ -118,11 +113,6 @@ class AdminTranslationsController extends Controller
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input
             ));
-        }
-
-        if ($request->has('close')) {
-            return redirect(cms_route('translations.index'))
-                ->with('alert', fill_data('success', trans('general.updated')));
         }
 
         return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));

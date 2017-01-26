@@ -81,11 +81,6 @@ class AdminGalleriesController extends Controller
 
         $model = $this->model->create($input);
 
-        if ($request->has('close')) {
-            return redirect(cms_route('galleries.index', [$collectionId]))
-                ->with('alert', fill_data('success', trans('general.created')));
-        }
-
         return redirect(cms_route('galleries.edit', [$collectionId, $model->id]))
             ->with('alert', fill_data('success', trans('general.created')));
     }
@@ -132,11 +127,6 @@ class AdminGalleriesController extends Controller
             return response()->json(fill_data(
                 'success', trans('general.updated'), $input
             ));
-        }
-
-        if ($request->has('close')) {
-            return redirect(cms_route('galleries.index', [$collectionId]))
-                ->with('alert', fill_data('success', trans('general.updated')));
         }
 
         return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
