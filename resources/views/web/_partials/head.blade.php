@@ -16,7 +16,6 @@
 <link rel="alternate" hreflang="{{$key}}" href="{{web_url($current->slug, [], $key)}}">
 @endforeach
 @endif
-<link rel="shortcut icon" href="{{ asset('assets/site/images/favicon.ico') }}">
 <link rel="stylesheet" href="{{ asset('assets/site/css/bootstrap.min.css') }}">
 <link rel="stylesheet" media="all" href="{{asset('assets/site/css/main.css')}}">
 <link rel="stylesheet" media="all" href="{{asset('assets/site/css/' . language() . '.css')}}">
