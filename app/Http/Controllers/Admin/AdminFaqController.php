@@ -45,7 +45,7 @@ class AdminFaqController extends Controller
      * Display a listing of the resource.
      *
      * @param  int  $collectionId
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index($collectionId)
     {
@@ -62,7 +62,7 @@ class AdminFaqController extends Controller
      * Show the form for creating a new resource.
      *
      * @param  int  $collectionId
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create($collectionId)
     {
@@ -77,7 +77,7 @@ class AdminFaqController extends Controller
      *
      * @param  \App\Http\Requests\Admin\FaqRequest  $request
      * @param  int  $collectionId
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(FaqRequest $request, $collectionId)
     {
@@ -105,7 +105,7 @@ class AdminFaqController extends Controller
      *
      * @param  int  $collectionId
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($collectionId, $id)
     {
@@ -122,7 +122,7 @@ class AdminFaqController extends Controller
      * @param  \App\Http\Requests\Admin\FaqRequest  $request
      * @param  int  $collectionId
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function update(FaqRequest $request, $collectionId, $id)
     {
@@ -144,7 +144,7 @@ class AdminFaqController extends Controller
      *
      * @param  int  $collectionId
      * @param  int  $id
-     * @return Response
+     * @return mixed
      */
     public function destroy($collectionId, $id)
     {

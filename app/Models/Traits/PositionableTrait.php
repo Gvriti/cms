@@ -18,34 +18,30 @@ trait PositionableTrait
      */
     public function updatePosition(array $data, $parentId = 0, array $params = [], $nestable = false)
     {
-        if (! $nestable) {
-            if (! is_array($data = $this->movePosition($data, $params))) {
-                return $data;
-            }
+        if (! $nestable && ! is_array($data = $this->movePosition($data, $params))) {
+            return $data;
         }
 
-        app('db')->transaction(function () use ($data, $parentId, $params, $nestable) {
-            $attributes = [];
+        $attributes = [];
 
-            $position = 0;
+        $position = 0;
 
-            foreach($data as $key => $item) {
-                if ($nestable) {
-                    $position++;
-                    $attributes['parent_id'] = $parentId;
-                } else {
-                    $position = $item['pos'];
-                }
-
-                $attributes['position'] = $position;
-
-                $this->where('id', $item['id'])->update($attributes);
-
-                if (isset($item['children'])) {
-                    $this->updatePosition($item['children'], $item['id'], $params, $nestable);
-                }
+        foreach($data as $key => $item) {
+            if ($nestable) {
+                $position++;
+                $attributes['parent_id'] = $parentId;
+            } else {
+                $position = $item['pos'];
             }
-        });
+
+            $attributes['position'] = $position;
+
+            $this->where('id', $item['id'])->update($attributes);
+
+            if (isset($item['children'])) {
+                $this->updatePosition($item['children'], $item['id'], $params, $nestable);
+            }
+        }
 
         return true;
     }
@@ -125,10 +121,7 @@ trait PositionableTrait
     }
 
     /**
-     * Save a new model and get the instance.
-     *
-     * @param  array  $attributes
-     * @return $this
+     * {@inheritdoc}
      */
     public static function create(array $attributes = [])
     {
