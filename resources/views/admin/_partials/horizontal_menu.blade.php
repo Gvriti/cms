@@ -36,7 +36,7 @@
       </li>
       <li>
         <a href="{{ $menusUrl = cms_route('menus.index') }}">
-          <i class="{{$pagesIcon = icon_type('pages')}}" title="Pages"></i>
+          <i class="fa fa-sitemap" title="Site Map"></i>
           <span class="title">Site Map</span>
         </a>
         <ul>
@@ -44,7 +44,7 @@
             @foreach ($menus as $item)
               <li>
                 <a href="{{ cms_route('pages.index', [$item->id]) }}">
-                  <i class="{{$pagesIcon}}" title="Pages"></i>
+                  <i class="{{icon_type('pages')}}" title="Pages"></i>
                   <span class="title">{{ $item->title }}</span>
                 </a>
               </li>
