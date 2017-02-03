@@ -33,7 +33,7 @@
                                             {!! Form::text('file', null, [
                                                 'id' => 'file' . $item->language,
                                                 'class' => 'form-control',
-                                                'data-type' => 'general',
+                                                'data-lang' => 1,
                                             ]) !!}
                                             <div class="input-group-btn popup" data-browse="file{{$item->language}}">
                                                 <span class="btn btn-info">არჩევა</span>
@@ -47,7 +47,7 @@
                                         {!! Form::checkbox('visible', null, null, [
                                             'id' => 'visible' . $item->language,
                                             'class' => 'iswitch iswitch-secondary',
-                                            'data-type' => 'general'
+                                            'data-lang' => 1
                                         ]) !!}
                                     </div>
                                 </div>

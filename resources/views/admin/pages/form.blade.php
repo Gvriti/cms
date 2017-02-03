@@ -34,7 +34,7 @@
         {!! Form::text('slug', null, [
             'id' => 'slug' . $current->language,
             'class' => 'form-control',
-            'data-type' => 'general'
+            'data-lang' => 1
         ]) !!}
         @if ($error)
         <span>{{$error}}</span>
@@ -52,7 +52,7 @@
                 {!! Form::select('type', $types, null, [
                     'id' => 'type' . $current->language,
                     'class' => 'form-control select',
-                    'data-type' => 'general'
+                    'data-lang' => 1
                 ]) !!}
                 @if ($error)
                 <span>{{$error}}</span>
@@ -69,7 +69,7 @@
                         {!! Form::select('type_id', ['' => ''] + $collections, null, [
                             'id' => 'type_id' . $current->language,
                             'class' => 'form-control select',
-                            'data-type' => 'general'
+                            'data-lang' => 1
                         ]) !!}
                         @if ($error)
                         <span>{{$error}}</span>
@@ -84,7 +84,7 @@
                         {!! Form::select('template', ['' => ''] + $templates, null, [
                             'id' => 'template' . $current->language,
                             'class' => 'form-control select',
-                            'data-type' => 'general'
+                            'data-lang' => 1
                         ]) !!}
                     </div>
                 </div>
@@ -141,7 +141,7 @@
             {!! Form::text('image', null, [
                 'id' => 'image' . $current->language,
                 'class' => 'form-control',
-                'data-type' => 'general'
+                'data-lang' => 1
             ]) !!}
             <div class="input-group-btn popup" data-browse="image{{$current->language}}">
                 <span class="btn btn-info">არჩევა</span>
@@ -158,7 +158,7 @@
         {!! Form::checkbox('visible', null, null, [
             'id' => 'visible' . $current->language,
             'class' => 'iswitch iswitch-secondary',
-            'data-type' => 'general'
+            'data-lang' => 1
         ]) !!}
     </div>
 </div>

@@ -19,7 +19,7 @@
         {!! Form::text('slug', null, [
             'id' => 'slug' . $current->language,
             'class' => 'form-control',
-            'data-type' => 'general',
+            'data-lang' => 1,
         ]) !!}
         @if ($error)
         <span>{{$error}}</span>
@@ -75,7 +75,7 @@
             {!! Form::text('image', null, [
                 'id' => 'image' . $current->language,
                 'class' => 'form-control',
-                'data-type' => 'general'
+                'data-lang' => 1
             ]) !!}
             <div class="input-group-btn popup" data-browse="image{{$current->language}}">
                 <span class="btn btn-info">არჩევა</span>
@@ -92,7 +92,7 @@
         {!! Form::checkbox('visible', null, null, [
             'id' => 'visible' . $current->language,
             'class' => 'iswitch iswitch-secondary',
-            'data-type' => 'general'
+            'data-lang' => 1
         ]) !!}
     </div>
 </div>

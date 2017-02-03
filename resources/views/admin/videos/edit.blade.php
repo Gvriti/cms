@@ -32,7 +32,7 @@
                                         {!! Form::text('file', null, [
                                             'id' => 'file' . $item->language,
                                             'class' => 'form-control',
-                                            'data-type' => 'general'
+                                            'data-lang' => 1
                                         ]) !!}
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                         {!! Form::checkbox('visible', null, null, [
                                             'id' => 'visible' . $item->language,
                                             'class' => 'iswitch iswitch-secondary',
-                                            'data-type' => 'general'
+                                            'data-lang' => 1
                                         ]) !!}
                                     </div>
                                 </div>

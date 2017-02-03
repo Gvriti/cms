@@ -116,7 +116,7 @@ $(function () {
                             item.val(element);
                         }
 
-                        if (item.data('type') == 'general') {
+                        if (item.data('lang')) {
                             var inputGeneral = $(ajaxFormSelector + ' [name="' + index + '"]');
                             $(inputGeneral).each(function (i, e) {
                                 item = $(e);

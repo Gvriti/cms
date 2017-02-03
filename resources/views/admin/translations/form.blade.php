@@ -4,7 +4,7 @@
         {!! Form::text('name', null, [
             'id' => 'name' . $current->language,
             'class' => 'form-control',
-            'data-type' => 'general'
+            'data-lang' => 1
         ] + ($current->name ? ['readonly'] : [])) !!}
         @if ($error)
         <span>{{$error}}</span>
@@ -21,7 +21,7 @@
         {!! Form::text('title', null, [
             'id' => 'title' . $current->language,
             'class' => 'form-control',
-            'data-type' => 'general'
+            'data-lang' => 1
         ]) !!}
         @if ($error)
         <span>{{$error}}</span>
@@ -54,7 +54,7 @@
         {!! Form::select('type', ['' => 'Global'] + $transTypes, null, [
             'id' => 'type' . $current->language,
             'class' => 'form-control',
-            'data-type' => 'general'
+            'data-lang' => 1
         ]) !!}
         <span class="description">The type that will separate translations.</span>
     </div>

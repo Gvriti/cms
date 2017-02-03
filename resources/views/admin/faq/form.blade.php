@@ -32,7 +32,7 @@
         {!! Form::checkbox('visible', null, null, [
             'id' => 'visible' . $current->language,
             'class' => 'iswitch iswitch-secondary',
-            'data-type' => 'general'
+            'data-lang' => 1
         ]) !!}
     </div>
 </div>
