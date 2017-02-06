@@ -25,7 +25,7 @@
         <a href="{{cms_route('cmsUsers.index', $params = request()->except('role'))}}">All CMS Users</a>
     </li>
 @foreach (user_roles() as $key => $value)
-    <li{!!$role == "$key" ? ' class="active"' : ''!!}>
+    <li{!!$role == $key ? ' class="active"' : ''!!}>
         <a href="{{cms_route('cmsUsers.index', $params + ['role' => $key])}}">{{$value}}</a>
     </li>
 @endforeach

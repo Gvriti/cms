@@ -23,8 +23,7 @@ return [
     | Glide settings
     |--------------------------------------------------------------------------
     |
-    | This array used to define glide settings. Key should be a view name.
-    | Base url is for web routes.
+    | This array used to define glide settings.
     |
     */
 

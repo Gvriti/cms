@@ -120,11 +120,11 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .cbr-replaced .cbr-state {width:19px;height:18px;}
 
 /* uk-nestable */
+.uk-nestable-item {clear:both;}
 .uk-nestable-item .list-label {padding:9px;}
 
 /* panel title */
 .title-env .title {text-transform:capitalize;}
-.panel .panel-title.ttc {text-transform:capitalize;}
 .panel .panel-title.ttc {text-transform:capitalize;}
 
 /* gallery image name */
@@ -174,9 +174,6 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 
 /* datatables & yadcf-filter */
 .yadcf-filter {height:30px;background:#fff;border:1px solid #e4e4e4;}
-
-/* uk-nestable */
-.uk-nestable-item {clear:both;}
 
 /* toastr add more positions */
 .toast-top-center {top:0;right:50%;margin-right:-150px;}

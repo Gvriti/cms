@@ -43,7 +43,7 @@
                                             {!! Form::text('file', null, [
                                                 'id' => 'file' . $item->language,
                                                 'class' => 'file form-control',
-                                                'data-type'  => 'general',
+                                                'data-lang' => 1,
                                             ]) !!}
                                             <div class="input-group-btn popup" data-browse="file{{$item->language}}">
                                                 <span class="btn btn-info">არჩევა</span>
