@@ -6,43 +6,10 @@
                     <img src="{{$current->file ?: $current->file_default}}" class="img-responsive" />
                 </div>
                 {!! Form::model($current, [
-                    'url'   => cms_route('files.store', [$current->model_name, $current->model_id]),
+                    'url' => cms_route('files.store', [$current->model_name, $current->model_id]),
                     'class' => 'form-create form-horizontal'
                 ]) !!}
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="control-label">Title:</label>
-                        {!! Form::text('title', null, [
-                            'id' => 'title',
-                            'class' => 'form-control',
-                        ]) !!}
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="control-label">File:</label>
-                        <div class="input-group">
-                            {!! Form::text('file', null, [
-                                'id' => 'file',
-                                'class' => 'form-control',
-                            ]) !!}
-                            <div class="input-group-btn popup" data-browse="file">
-                                <span class="btn btn-info">არჩევა</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="control-label">Visible:</label>
-                        {!! Form::checkbox('visible', null, null, [
-                            'id' => 'visible',
-                            'class' => 'iswitch iswitch-secondary'
-                        ]) !!}
-                    </div>
-                </div>
-                <button type="button" class="btn btn-md btn-white" data-dismiss="modal">{{trans('general.close')}}</button>
-                <button type="submit" class="btn btn-md btn-secondary">{{trans('general.save')}}</button>
+                    @include('admin.files.form')
                 {!!Form::close()!!}
             </div>
         </div>
@@ -95,30 +62,17 @@
             });
         });
 
-        $(formSelector + ' #file').on('fileSet', function() {
-            var result = getFileImage($(this).val());
+        $(formSelector + ' [name="file"]').on('fileSet', function() {
+            var fileValue = $(this).val();
+            var result = getFileImage(fileValue);
 
-            var imageSelector = $('.modal-gallery-image img');
-            imageSelector.removeClass('not-photo');
+            var photoSelector = $('.modal-gallery-image img');
+            photoSelector.removeClass('not-photo');
             if (! result.isPhoto) {
-                imageSelector.addClass('not-photo');
+                photoSelector.addClass('not-photo');
             }
-            imageSelector.attr('src', result.file);
+            photoSelector.attr('src', result.file);
         });
-
-        function getFileImage(file) {
-            var fileExt = file.substr((~-file.lastIndexOf(".") >>> 0) + 2);
-            var result = {'file':file, 'isPhoto':true};
-            if (fileExt.length && ['jpg', 'jpeg', 'png', 'gif'].indexOf(fileExt) < 0) {
-                file = '{{asset('assets/images/file-ext-icons')}}/' + fileExt + '.png';
-                result.isPhoto = false;
-            } else if (! fileExt.length) {
-                file = '{{asset('assets/images/file-ext-icons/www.png')}}';
-                result.isPhoto = false;
-            }
-            result.file = file;
-
-            return result;
-        }
     </script>
+    @include('admin.files.scripts')
 @endif

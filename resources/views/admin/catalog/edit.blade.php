@@ -90,5 +90,7 @@
         </div>
     </div>
 </div>
+@push('scripts.bottom')
 @include('admin.catalog.scripts')
+@endpush
 @endsection

@@ -3,61 +3,26 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="tab-content">
-                    @foreach ($items as $item)
-                        <div class="tab-pane{{language() != $item->language ? '' : ' active'}}" id="modal-item-{{$item->language}}">
+                    @foreach ($items as $current)
+                        <div class="tab-pane{{language() != $current->language ? '' : ' active'}}" id="modal-item-{{$current->language}}">
                             <div class="modal-gallery-image">
-                                @if (in_array($ext = pathinfo($item->file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif']))
-                                    <img src="{{$item->file}}" class="file{{$item->language}} img-responsive" />
+                                @if (in_array($ext = pathinfo($current->file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif']))
+                                    <img src="{{$current->file}}" class="file{{$current->language}} img-responsive" />
                                 @elseif( ! empty($ext))
-                                    <img src="{{asset('assets/images/file-ext-icons/'.$ext.'.png')}}" class="file{{$item->language}} not-photo img-responsive" alt="{{$item->title}}" />
+                                    <img src="{{asset('assets/images/file-ext-icons/'.$ext.'.png')}}" class="file{{$current->language}} not-photo img-responsive" alt="{{$current->title}}" />
                                 @else
-                                    <img src="{{asset('assets/images/file-ext-icons/www.png')}}" class="file{{$item->language}} not-photo img-responsive" alt="{{$item->title}}" />
+                                    <img src="{{asset('assets/images/file-ext-icons/www.png')}}" class="file{{$current->language}} not-photo img-responsive" alt="{{$current->title}}" />
                                 @endif
                             </div>
-                            {!! Form::model($item, [
+                            {!! Form::model($current, [
                                 'method' => 'put',
-                                'url'    => cms_route('files.update', [$item->model_name, $item->model_id, $item->id], is_multilanguage() ? $item->language : null),
-                                'class'  => 'form-horizontal '.$settings->get('ajax_form'),
-                                'data-lang' => $item->language
+                                'url' => cms_route('files.update', [$current->model_name, $current->model_id, $current->id], is_multilanguage() ? $current->language : null),
+                                'class' => 'form-horizontal '.$settings->get('ajax_form'),
+                                'data-lang' => $current->language
                             ]) !!}
                             <div class="modal-body">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="control-label">Title:</label>
-                                            {!! Form::text('title', null, [
-                                                'id' => 'title' . $item->language,
-                                                'class' => 'form-control',
-                                                'autofocus'
-                                            ]) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="control-label">File:</label>
-                                            <div class="input-group">
-                                                {!! Form::text('file', null, [
-                                                    'id' => 'file' . $item->language,
-                                                    'class' => 'form-control',
-                                                ]) !!}
-                                                <div class="input-group-btn popup" data-browse="file{{$item->language}}">
-                                                    <span class="btn btn-info">არჩევა</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="control-label">Visible:</label>
-                                            {!! Form::checkbox('visible', null, null, [
-                                                'id' => 'visible' . $item->language,
-                                                'class' => 'iswitch iswitch-secondary',
-                                                'data-lang' => 1
-                                            ]) !!}
-                                        </div>
-                                    </div>
-                                    <button type="button" class="btn btn-md btn-white" data-dismiss="modal">{{trans('general.close')}}</button>
-                                    <button type="submit" class="btn btn-md btn-secondary">{{trans('general.save')}}</button>
+                                    @include('admin.files.form')
                                 </div>
                             </div>
                             {!!Form::close()!!}
@@ -66,11 +31,11 @@
                 </div>
                 @if (is_multilanguage())
                     <ul class="modal-footer modal-gallery-top-controls nav nav-tabs">
-                        @foreach ($items as $item)
-                            <li{!!language() != $item->language ? '' : ' class="active"'!!}>
-                                <a href="#modal-item-{{$item->language}}" data-toggle="tab">
-                                    <span class="visible-xs">{{$item->language}}</span>
-                                    <span class="hidden-xs">{{languages($item->language)}}</span>
+                        @foreach ($items as $current)
+                            <li{!!language() != $current->language ? '' : ' class="active"'!!}>
+                                <a href="#modal-item-{{$current->language}}" data-toggle="tab">
+                                    <span class="visible-xs">{{$current->language}}</span>
+                                    <span class="hidden-xs">{{languages($current->language)}}</span>
                                 </a>
                             </li>
                         @endforeach
@@ -91,7 +56,7 @@
                 var file    = $('[name="file"]', item).val();
                 var visible = $('[name="visible"]', item).prop('checked');
 
-                item = $('.gallery-env #item{{$item->id}}');
+                item = $('.gallery-env #item{{$current->id}}');
                 $('.title', item).text(title);
                 $('.thumb img', item).attr('src', getFileImage(file).file);
 
@@ -105,27 +70,14 @@
             var fileValue = $(this).val();
             var result = getFileImage(fileValue);
 
-            var formModal = $('#form-modal .' + fileId);
-            formModal.removeClass('not-photo');
+            var photoSelector = $('#form-modal .' + fileId);
+            photoSelector.removeClass('not-photo');
             if (! result.isPhoto) {
-                formModal.addClass('not-photo');
+                photoSelector.addClass('not-photo');
             }
-            formModal.attr('src', result.file);
+            photoSelector.attr('src', result.file);
+
         });
-
-        function getFileImage(file) {
-            var fileExt = file.substr((~-file.lastIndexOf(".") >>> 0) + 2);
-            var result = {'file':file, 'isPhoto':true};
-            if (fileExt.length && ['jpg', 'jpeg', 'png', 'gif'].indexOf(fileExt) < 0) {
-                file = '{{asset('assets/images/file-ext-icons')}}/' + fileExt + '.png';
-                result.isPhoto = false;
-            } else if (! fileExt.length) {
-                file = '{{asset('assets/images/file-ext-icons/www.png')}}';
-                result.isPhoto = false;
-            }
-            result.file = file;
-
-            return result;
-        }
     </script>
+    @include('admin.files.scripts')
 @endif

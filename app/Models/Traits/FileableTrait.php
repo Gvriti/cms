@@ -9,12 +9,12 @@ trait FileableTrait
     /**
      * Get the model files.
      *
+     * @param  array|mixed  $columns
      * @param  int|null  $id
      * @param  string|null  $name
-     * @param  array|mixed  $columns
      * @return \Illuminate\Support\Collection
      */
-    public function getFiles($id = null, $name = null, $columns = ['*'])
+    public function getFiles($columns = ['*'], $id = null, $name = null)
     {
         $imageExt = ['png', 'jpg', 'jpeg', 'gif', 'bmp'];
 

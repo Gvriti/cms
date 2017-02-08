@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Config\Repository;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Mail\Mailer;
 
@@ -24,9 +25,10 @@ class AdminBugReportController extends Controller
      *
      * @param  \Illuminate\Contracts\Mail\Mailer  $mail
      * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Config\Repository  $config
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function send(Mailer $mail, Request $request)
+    public function send(Mailer $mail, Request $request, Repository $config)
     {
         $this->validate($request, [
             'title'       => 'required',
@@ -37,14 +39,13 @@ class AdminBugReportController extends Controller
 
         $host = $request->getHost();
 
-        $view = 'admin.bug_report.mail_html';
-
         try {
-            $mail->send($view, $data, function ($m) use ($data, $host) {
-                $m->from(env('MAIL_USERNAME'))
-                    ->to('bugs@digitaldesign.ge')
-                    ->subject($host . ' - bug report');
-            });
+            $mail->send('admin.bug_report.mail_html', $data,
+                function ($m) use ($data, $host, $config) {
+                    $m->from($config->get('main.username'))
+                        ->to($config->get('cms.bug_mail'))
+                        ->subject($host . ' - bug report');
+                });
 
             $message = fill_data('success', trans('mail.message_sent'));
         } catch (Exception $e) {

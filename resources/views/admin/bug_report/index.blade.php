@@ -6,7 +6,7 @@
             <i class="fa fa-bug"></i>
             Bug Report
         </h1>
-        <p class="description">Send a bug report to the developers</p>
+        <p class="description">Send a bug report to the developer</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
@@ -30,7 +30,7 @@
     ]) !!}
         <div class="panel-body">
             <div class="form-group{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
-                <label class="col-sm-3 control-label">Title:</label>
+                <label class="col-sm-3 control-label required">Title:</label>
                 <div class="col-sm-5">
                     @if ($error)
                     <span class="text-danger">{{$error}}</span>
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="form-group{{($error = $errors->first('description')) ? ' validate-has-error' : '' }}">
-                <label class="col-sm-3 control-label">Description:</label>
+                <label class="col-sm-3 control-label required">Description:</label>
                 <div class="col-sm-5">
                     @if ($error)
                     <span class="text-danger">{{$error}}</span>

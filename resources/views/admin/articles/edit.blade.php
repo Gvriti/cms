@@ -91,5 +91,7 @@
         </div>
     </div>
 </div>
+@push('scripts.bottom')
 @include('admin.articles.scripts')
+@endpush
 @endsection
