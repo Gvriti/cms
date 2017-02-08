@@ -101,10 +101,16 @@ trait LanguageTrait
         $table = $this->getTable();
         $languageTable = $this->getLanguageTable();
 
-        $query = $this->leftJoin($languageTable, "{$table}.id", '=', "{$languageTable}.{$this->getForeignKey()}");
+        $query = $this->leftJoin(
+            $languageTable, "{$table}.id", '=', "{$languageTable}.{$this->getForeignKey()}"
+        );
 
         if ($addColumns) {
-            $query->addSelect(["{$languageTable}.*", "{$languageTable}.id as {$languageTable}_id", "{$table}.*"]);
+            $languageKey = str_singular($languageTable) . '_id';
+
+            $query->addSelect([
+                "{$languageTable}.*", "{$languageTable}.id as {$languageKey}", "{$table}.*"
+            ]);
         }
 
         if ($language === true) {

@@ -52,7 +52,7 @@
                     <div class="uk-nestable-item clearfix">
                         <div class="uk-nestable-handle"></div>
                         <div data-nestable-action="toggle"></div>
-                        <div class="list-label"><a href="{{ cms_route('pages.edit', [$menu->id, $item->id]) }}">{{ $item->short_title }}</a></div>
+                        <div class="list-label"><a href="{{ $editUrl = cms_route('pages.edit', [$menu->id, $item->id]) }}">{{ $item->short_title }}</a></div>
                         <div class="btn-action togglable pull-right">
                             <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
                             <a href="{{$newUrl = $url . '/' . $item->slug}}" class="link btn btn-white" title="Go to page" data-slug="{{$item->slug}}" target="_blank">
@@ -75,7 +75,7 @@
                             <a href="{{ cms_route('pages.create', [$menu->id, 'id' => $item->id]) }}" class="btn btn-secondary" title="{{trans('general.create')}}">
                                 <span class="fa fa-plus"></span>
                             </a>
-                            <a href="{{ cms_route('pages.edit', [$menu->id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
+                            <a href="{{ $editUrl }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                                 <span class="fa fa-edit"></span>
                             </a>
                             {!! Form::open(['method' => 'delete', 'url' => cms_route('pages.destroy', [$menu->id, $item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}

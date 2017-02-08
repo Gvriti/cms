@@ -90,12 +90,7 @@ class AdminFilesController extends Controller
      */
     public function store(FileRequest $request, $modelName, $modelId)
     {
-        $input = $request->all();
-
-        $input['route_name'] = snake_case($modelName);
-        $input['route_id'] = $modelId;
-
-        $model = $this->model->create($input);
+        $model = $this->model->create($input = $request->all());
 
         if ($request->expectsJson()) {
             $view = view('admin.files.item', [

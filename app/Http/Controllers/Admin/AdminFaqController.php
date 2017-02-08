@@ -53,7 +53,7 @@ class AdminFaqController extends Controller
 
         $data['items'] = $this->model->getAdminCollection($data['parent']);
 
-        $data['similarTypes'] = $this->model->byType()->get();
+        $data['parentSimilar'] = $this->model->byType()->get();
 
         return view('admin.faq.index', $data);
     }

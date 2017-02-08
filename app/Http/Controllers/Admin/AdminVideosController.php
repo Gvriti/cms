@@ -55,7 +55,7 @@ class AdminVideosController extends Controller
 
         $data['items'] = $this->model->getAdminGallery($data['parent']);
 
-        $data['similarTypes'] = $this->model->byType()->get();
+        $data['parentSimilar'] = $this->model->byType()->get();
 
         return view('admin.videos.index', $data);
     }

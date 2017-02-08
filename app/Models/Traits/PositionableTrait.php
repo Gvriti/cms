@@ -2,8 +2,7 @@
 
 namespace Models\Traits;
 
-use Models\Language;
-use Models\Abstracts\Model;
+use Exception;
 
 trait PositionableTrait
 {
@@ -19,7 +18,7 @@ trait PositionableTrait
     public function updatePosition(array $data, $parentId = 0, array $params = [], $nestable = false)
     {
         if (! $nestable && ! is_array($data = $this->movePosition($data, $params))) {
-            return $data;
+            return false;
         }
 
         $attributes = [];
@@ -27,6 +26,10 @@ trait PositionableTrait
         $position = 0;
 
         foreach($data as $key => $item) {
+            if (! isset($item['id']) || ! isset($item['pos'])) {
+                return false;
+            }
+
             if ($nestable) {
                 $position++;
                 $attributes['parent_id'] = $parentId;
@@ -55,7 +58,7 @@ trait PositionableTrait
      */
     private function movePosition(array $data, array $params = [])
     {
-        if ($dragging = array_diff(['move', 'orderBy'], array_keys($params))) {
+        if (! isset($params['move']) || ! isset($params['orderBy'])) {
             return $data;
         }
 
@@ -85,7 +88,11 @@ trait PositionableTrait
             $newPos = end($data)['pos'] + 1;
         }
 
-        array_walk($data, $posFunc);
+        try {
+            array_walk($data, $posFunc);
+        } catch (Exception $e) {
+            return false;
+        }
 
         $newData = $this->where(['position' => $newPos])->first(['id']);
 

@@ -14,7 +14,7 @@
                 <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li>
-                <a href="{{ cms_route('collections.index') }}"><i class="{{$iconColl = icon_type('collections')}}"></i>Collections</a>
+                <a href="{{ cms_route('collections.index') }}"><i class="{{$iconParent = icon_type('collections')}}"></i>Collections</a>
             </li>
             <li class="active">
                 <i class="{{$iconCurrent}}"></i>
@@ -55,18 +55,18 @@
                             @if ($parent->admin_order_by == 'position')
                                 <div class="uk-nestable-handle"></div>
                             @endif
-                                <div class="list-label"><a href="{{ cms_route('faq.edit', [$parent->id, $item->id]) }}">{{ $item->title }}</a></div>
+                                <div class="list-label"><a href="{{ $editUrl = cms_route('faq.edit', [$parent->id, $item->id]) }}">{{ $item->title }}</a></div>
                                 <div class="btn-action togglable pull-right">
                                     <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
                                     <a href="#" class="movable btn btn-white" title="Move to collection" data-id="{{$item->id}}">
-                                        <span class="{{$iconColl}}"></span>
+                                        <span class="{{$iconParent}}"></span>
                                     </a>
                                     {!! Form::open(['method' => 'post', 'url' => cms_route('faq.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
                                         <button type="submit" class="btn btn-{{$item->visible ? 'white' : 'gray'}}" data-id="{{ $item->id }}" title="{{trans('general.visibility')}}">
                                             <span class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></span>
                                         </button>
                                     {!! Form::close() !!}
-                                    <a href="{{ cms_route('faq.edit', [$parent->id, $item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
+                                    <a href="{{ $editUrl }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                                         <span class="fa fa-edit"></span>
                                     </a>
                                     {!! Form::open(['method' => 'delete', 'url' => cms_route('faq.destroy', [$parent->id, $item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
@@ -89,11 +89,11 @@
     </div>
     <div class="col-md-3 content-sidebar pull-left">
         <a href="{{cms_route('collections.create', ['type' => $parent->type])}}" class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
-            <i class="{{$iconColl}}"></i>
+            <i class="{{$iconParent}}"></i>
             <span>კოლექციის დამატება</span>
         </a>
         <ul class="list-unstyled bg">
-        @foreach ($similarTypes as $item)
+        @foreach ($parentSimilar as $item)
             <li{!!$item->id != $parent->id ? '' : ' class="active"'!!}>
                 <a href="{{ cms_route($item->type . '.index', [$item->id]) }}">
                     <i class="fa fa-folder{{$item->id != $parent->id ? '' : '-open'}}-o"></i>
@@ -105,7 +105,7 @@
     </div>
 </div>
 @push('scripts.bottom')
-@include('admin._scripts.move', ['route' => cms_route('faq.move', [$parent->id]), 'column' => 'collection_id', 'list' => $similarTypes, 'parentId' => $parent->id])
+@include('admin._scripts.move', ['route' => cms_route('faq.move', [$parent->id]), 'column' => 'collection_id', 'list' => $parentSimilar, 'parentId' => $parent->id])
 <script type="text/javascript">
 $(function() {
 @if ($parent->admin_order_by == 'position')

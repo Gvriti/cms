@@ -43,7 +43,7 @@ class AdminCatalogController extends Controller
 
         $data['items'] = $this->model->joinFileId()->getAdminCollection($data['parent']);
 
-        $data['similarTypes'] = $this->model->byType()->get();
+        $data['parentSimilar'] = $this->model->byType()->get();
 
         return view('admin.catalog.index', $data);
     }

@@ -16,7 +16,7 @@
                             </div>
                             {!! Form::model($item, [
                                 'method' => 'put',
-                                'url'    => cms_route('files.update', [$item->route_name, $item->route_id, $item->id], is_multilanguage() ? $item->language : null),
+                                'url'    => cms_route('files.update', [$item->model_name, $item->model_id, $item->id], is_multilanguage() ? $item->language : null),
                                 'class'  => 'form-horizontal '.$settings->get('ajax_form'),
                                 'data-lang' => $item->language
                             ]) !!}
