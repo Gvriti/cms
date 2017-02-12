@@ -29,7 +29,7 @@
         <li{!!language() != $current->language ? '' : ' class="active"'!!}>
             <a href="#item-{{$current->language}}" data-toggle="tab">
                 <span class="visible-xs">{{$current->language}}</span>
-                <span class="hidden-xs">{{languages($current->language)}}</span>
+                <span class="hidden-xs">{{language($current->language)}}</span>
             </a>
         </li>
     @endforeach

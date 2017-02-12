@@ -5,31 +5,31 @@ use Illuminate\Database\Events\QueryExecuted;
 /**
  * Get the application default language.
  *
+ * @param  string|null  $key
+ * @param  string  $value
  * @return string
  */
-function language()
+function language($key = null, $value = 'full_name')
 {
-    return config('app.language');
+    if (is_null($key)) {
+        return (string) config('app.language');
+    }
+
+    if (! is_null($value)) {
+        $value = '.full_name';
+    }
+
+    return config("app.languages.{$key}{$value}");
 }
 
 /**
  * Get the application languages.
  *
- * @param  string|null  $key
- * @param  string  $value
  * @return array
  */
-function languages($key = null, $value = 'full_name')
+function languages()
 {
-    if (is_null($key)) {
-        return config('app.languages', []);
-    }
-
-    if (! is_null($value)) {
-        $value = '.' . $value;
-    }
-
-    return config("app.languages.{$key}{$value}");
+    return (array) config('app.languages', []);
 }
 
 /**

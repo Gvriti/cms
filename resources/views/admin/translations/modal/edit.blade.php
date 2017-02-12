@@ -6,7 +6,7 @@
                 <ul class="nav nav-tabs">
                 @foreach ($items as $current)
                     <li{!!language() != $current->language ? '' : ' class="active"'!!}>
-                        <a href="#item-{{$current->language}}" data-toggle="tab">{{languages($current->language)}}</a>
+                        <a href="#item-{{$current->language}}" data-toggle="tab">{{language($current->language)}}</a>
                     </li>
                 @endforeach
                 </ul>

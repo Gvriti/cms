@@ -25,32 +25,21 @@
     </div>
     <div class="clearfix">
         <ul class="nav nav-tabs col-xs-8">
-            @if (count(languages()) > 1)
-                @foreach (languages() as $key => $value)
-                    <li>
-                        <a href="{{ cms_route($routeName . '.edit', $parent->routeParams, $key) }}">
-                            <span class="visible-xs">{{$key}}</span>
-                            <span class="hidden-xs">{{languages($key)}}</span>
-                        </a>
-                    </li>
-                @endforeach
-            @else
-                <li>
-                    <a href="{{ cms_route($routeName . '.edit', $parent->routeParams) }}">
-                        <span class="visible-xs"><i class="fa fa-home"></i></span>
-                        <span class="hidden-xs">
-                    <i class="fa fa-home"></i> General
+            <li>
+                <a href="{{ cms_route($routeName . '.edit', $parent->routeParams) }}">
+                    <span class="visible-xs"><i class="fa fa-home"></i></span>
+                    <span class="hidden-xs">
+                    <i class="{{icon_type($parent->getTable())}}"></i> {{$parent->title}}
                 </span>
-                    </a>
-                </li>
-            @endif
+                </a>
+            </li>
         </ul>
         <ul class="nav nav-tabs col-xs-4 right-aligned">
             <li class="active">
                 <a href="#" data-toggle="tab">
-                    <span class="visible-xs"><i class="{{$iconFiles = icon_type('files')}}"></i></span>
+                    <span class="visible-xs"><i class="{{$icon}}"></i></span>
                     <div class="hidden-xs btn-icon-standalone">
-                        <i class="{{$iconFiles}}"></i> {{trans('general.files')}}
+                        <i class="{{$icon}}"></i> {{trans('general.files')}}
                     </div>
                 </a>
             </li>
