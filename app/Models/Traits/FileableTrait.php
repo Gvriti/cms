@@ -45,11 +45,11 @@ trait FileableTrait
     }
 
     /**
-     * Add a "file" join to the query.
+     * Add a files count to the query.
      *
      * @return \Models\Builder\Builder
      */
-    public function joinFileId()
+    public function filesCount()
     {
         $table = $this->getTable();
 
@@ -69,7 +69,7 @@ trait FileableTrait
     public function hasFile($id)
     {
         $file = (new File)->where([
-            'model_id' => $id, 'model_name' => $this->table
+            'model_id' => $id, 'model_name' => $this->getTable()
         ])->first();
 
         return ! is_null($file);

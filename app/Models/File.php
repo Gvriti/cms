@@ -63,7 +63,7 @@ class File extends Model
     ];
 
     /**
-     * Get the mutated file attribute.
+     * Get the mutated file default attribute.
      *
      * @param  string  $value
      * @return string

@@ -8,7 +8,7 @@ function getFileImage(file) {
     ) {
         result.file = '{{asset('assets/images/file-ext-icons')}}/' + fileExt + '.png';
         result.isPhoto = false;
-    } else if (! fileExt.length) {
+    } else if (! fileExt.length || fileExt.indexOf('/') >= 0) {
         result.file = '{{asset('assets/images/file-ext-icons/www.png')}}';
         result.isPhoto = false;
     }

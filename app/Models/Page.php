@@ -86,7 +86,7 @@ class Page extends Model
 
         return $query->joinLanguages()
                     ->joinCollectionType()
-                    ->joinFileId()
+                    ->filesCount()
                     ->positionAsc();
     }
 

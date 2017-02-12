@@ -41,7 +41,7 @@ class AdminArticlesController extends Controller
         $data['parent'] = (new Collection)->where('type', Article::TYPE)
             ->findOrFail($collectionId);
 
-        $data['items'] = $this->model->joinFileId()->getAdminCollection($data['parent']);
+        $data['items'] = $this->model->filesCount()->getAdminCollection($data['parent']);
 
         $data['parentSimilar'] = $this->model->byType()->get();
 
