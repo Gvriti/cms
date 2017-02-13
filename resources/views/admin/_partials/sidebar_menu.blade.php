@@ -1,7 +1,7 @@
 <!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
 <!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
 <!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
-<div class="sidebar-menu toggle-others {{$settings->get('sidebar_position')}}">
+<div class="sidebar-menu toggle-others {{$cmsSettings->get('sidebar_position')}}">
   <div class="sidebar-menu-inner">
     <header class="logo-env">
       <!-- logo -->

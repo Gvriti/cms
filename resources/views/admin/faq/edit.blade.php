@@ -65,7 +65,7 @@
                 {!! Form::model($current, [
                     'method'    => 'put',
                     'url'       => cms_route('faq.update', [$current->collection_id, $current->id], is_multilanguage() ? $current->language : null),
-                    'class'     => 'form-horizontal '.$settings->get('ajax_form'),
+                    'class'     => 'form-horizontal '.$cmsSettings->get('ajax_form'),
                     'data-lang' => $current->language
                 ]) !!}
                     @include('admin.faq.form', [

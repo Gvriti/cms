@@ -21,7 +21,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="page-body login-page {{$settings->get('skin_login')}}">
+<body class="page-body login-page {{$cmsSettings->get('skin_login')}}">
     <div class="login-container">
         <div class="row">
             <div class="col-sm-6">

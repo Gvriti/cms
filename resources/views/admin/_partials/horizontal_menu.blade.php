@@ -1,4 +1,4 @@
-<nav class="navbar horizontal-menu{{$settings->get('layout_boxed') ? '' : ' navbar-fixed-top'}} {{$settings->get('horizontal_menu_minimal')}}"><!-- set fixed position by adding class "navbar-fixed-top" -->
+<nav class="navbar horizontal-menu{{$cmsSettings->get('layout_boxed') ? '' : ' navbar-fixed-top'}} {{$cmsSettings->get('horizontal_menu_minimal')}}"><!-- set fixed position by adding class "navbar-fixed-top" -->
   <div class="navbar-inner">
     <!-- Navbar Brand -->
     <div class="navbar-brand">
@@ -27,7 +27,7 @@
     </div>
     <div class="navbar-mobile-clear"></div>
     <!-- main menu -->
-    <ul class="navbar-nav {{$settings->get('horizontal_menu_click')}}">
+    <ul class="navbar-nav {{$cmsSettings->get('horizontal_menu_click')}}">
       <li>
         <a href="{{ cms_url() }}">
           <i class="{{icon_type('dashboard')}}" title="Dashboard"></i>

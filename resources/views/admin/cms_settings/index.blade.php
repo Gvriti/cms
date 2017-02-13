@@ -54,10 +54,10 @@
             'id'     => 'form-update'
         ]) !!}
             {!! Form::hidden('tab', request('tab', 1), ['id' => 'tab']) !!}
-            {!! Form::hidden('skin_sidebar', $settings->get('skin_sidebar'), ['id' => 'skin_sidebar']) !!}
-            {!! Form::hidden('skin_user_menu', $settings->get('skin_user_menu'), ['id' => 'skin_user_menu']) !!}
-            {!! Form::hidden('skin_horizontal', $settings->get('skin_horizontal'), ['id' => 'skin_horizontal']) !!}
-            {!! Form::hidden('skin_login', $settings->get('skin_login'), ['id' => 'skin_login']) !!}
+            {!! Form::hidden('skin_sidebar', $cmsSettings->get('skin_sidebar'), ['id' => 'skin_sidebar']) !!}
+            {!! Form::hidden('skin_user_menu', $cmsSettings->get('skin_user_menu'), ['id' => 'skin_user_menu']) !!}
+            {!! Form::hidden('skin_horizontal', $cmsSettings->get('skin_horizontal'), ['id' => 'skin_horizontal']) !!}
+            {!! Form::hidden('skin_login', $cmsSettings->get('skin_login'), ['id' => 'skin_login']) !!}
             <div class="tab-content">
                 <div class="tab-pane{{request('tab', 1) == 1 ? ' active' : ''}}" id="general">
                     <div class="row">
@@ -65,7 +65,7 @@
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">Sidebar position:</label>
                                 <div class="col-sm-6">
-                                    {!! Form::select('sidebar_position', $sidebarPosition, $settings->get('sidebar_position'), [
+                                    {!! Form::select('sidebar_position', $sidebarPosition, $cmsSettings->get('sidebar_position'), [
                                         'class' => 'form-control select',
                                     ]) !!}
                                 </div>
@@ -76,7 +76,7 @@
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">Sidebar direction:</label>
                                 <div class="col-sm-6">
-                                    {!! Form::select('sidebar_direction', $sidebarDirection, $settings->get('sidebar_direction'), [
+                                    {!! Form::select('sidebar_direction', $sidebarDirection, $cmsSettings->get('sidebar_direction'), [
                                         'class' => 'form-control select',
                                     ]) !!}
                                 </div>
@@ -91,7 +91,7 @@
                             <div class="form-group">
                                 <label class="col-sm-8 control-label">Horizontal menu:</label>
                                 <div class="col-sm-4">
-                                    {!! Form::checkbox('horizontal_menu', $settings->get('horizontal_menu'), $settings->get('horizontal_menu'), [
+                                    {!! Form::checkbox('horizontal_menu', $cmsSettings->get('horizontal_menu'), $cmsSettings->get('horizontal_menu'), [
                                         'class' => 'horizontal_menu iswitch iswitch-secondary'
                                     ]) !!}
                                 </div>
@@ -102,7 +102,7 @@
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">Horizontal menu minimal:</label>
                                 <div class="col-sm-4">
-                                    {!! Form::checkbox('horizontal_menu_minimal', 'navbar-minimal', $settings->get('horizontal_menu_minimal'), [
+                                    {!! Form::checkbox('horizontal_menu_minimal', 'navbar-minimal', $cmsSettings->get('horizontal_menu_minimal'), [
                                         'class' => 'horizontal_menu_minimal iswitch iswitch-secondary'
                                     ]) !!}
                                 </div>
@@ -113,7 +113,7 @@
                             <div class="form-group">
                                 <label class="col-sm-6 control-label">Horizontal open on click:</label>
                                 <div class="col-sm-4">
-                                    {!! Form::checkbox('horizontal_menu_click', 'click-to-expand', $settings->get('horizontal_menu_click'), [
+                                    {!! Form::checkbox('horizontal_menu_click', 'click-to-expand', $cmsSettings->get('horizontal_menu_click'), [
                                         'class' => 'horizontal_menu_click iswitch iswitch-secondary'
                                     ]) !!}
                                 </div>
@@ -126,7 +126,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Layout boxed:</label>
                         <div class="col-sm-10">
-                            {!! Form::checkbox('layout_boxed', 'boxed-container', $settings->get('layout_boxed'), [
+                            {!! Form::checkbox('layout_boxed', 'boxed-container', $cmsSettings->get('layout_boxed'), [
                                 'class' => 'layout_boxed iswitch iswitch-secondary'
                             ]) !!}
                         </div>
@@ -137,7 +137,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Alert position:</label>
                         <div class="col-sm-6">
-                            {!! Form::select('alert_position', $alertPosition, $settings->get('alert_position'), [
+                            {!! Form::select('alert_position', $alertPosition, $cmsSettings->get('alert_position'), [
                                 'class' => 'form-control select',
                             ]) !!}
                         </div>
@@ -148,7 +148,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Lockscreen after inactivity:</label>
                         <div class="col-sm-6">
-                            {!! Form::select('lockscreen', $lockscreen, $settings->get('lockscreen'), [
+                            {!! Form::select('lockscreen', $lockscreen, $cmsSettings->get('lockscreen'), [
                                 'class' => 'form-control select',
                             ]) !!}
                         </div>
@@ -159,7 +159,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Ajax forms:</label>
                         <div class="col-sm-10">
-                            {!! Form::checkbox('ajax_form', 'ajax-form', $settings->get('ajax_form'), [
+                            {!! Form::checkbox('ajax_form', 'ajax-form', $cmsSettings->get('ajax_form'), [
                                 'class' => 'ajax_form iswitch iswitch-secondary'
                             ]) !!}
                         </div>
@@ -449,14 +449,14 @@ $(function() {
         $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
     });
 
-    var isHorizontalMenu = {{$settings->get('horizontal_menu', 0)}};
+    var isHorizontalMenu = {{$cmsSettings->get('horizontal_menu', 0)}};
 
-    var skin_sidebar = '{{$settings->get('skin_sidebar')}}';
-    var skin_horizontal = isHorizontalMenu ? '{{$settings->get('skin_horizontal')}}' : '{{$settings->get('skin_user_menu')}}';
+    var skin_sidebar = '{{$cmsSettings->get('skin_sidebar')}}';
+    var skin_horizontal = isHorizontalMenu ? '{{$cmsSettings->get('skin_horizontal')}}' : '{{$cmsSettings->get('skin_user_menu')}}';
     if (skin_horizontal) {
         skin_horizontal = skin_horizontal.substring(skin_horizontal.indexOf("skin"));
     }
-    var skin_login = '{{$settings->get('skin_login')}}';
+    var skin_login = '{{$cmsSettings->get('skin_login')}}';
 
     $('#skin [data-skin]').each(function(i, el) {
         var type = $(el).data('type');

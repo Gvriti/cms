@@ -63,7 +63,7 @@
                 {!! Form::model($current, [
                     'method'    => 'put',
                     'url'       => cms_route('galleries.update', [$current->collection_id, $current->id], is_multilanguage() ? $current->language : null),
-                    'class'     => 'form-horizontal '.$settings->get('ajax_form'),
+                    'class'     => 'form-horizontal '.$cmsSettings->get('ajax_form'),
                     'data-lang' => $current->language
                 ]) !!}
                     {!! Form::hidden('type', null) !!}

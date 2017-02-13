@@ -53,7 +53,7 @@
 <div id="event-modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form action="{{cms_route('calendar.save')}}" method="post" id="event-form" class="{{$settings->get('ajax_form')}}">
+            <form action="{{cms_route('calendar.save')}}" method="post" id="event-form" class="{{$cmsSettings->get('ajax_form')}}">
                 <input type="hidden" name="_method" value="put">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <input type="hidden" name="active" id="event-active" value="0">

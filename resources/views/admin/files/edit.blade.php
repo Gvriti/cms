@@ -17,7 +17,7 @@
                             {!! Form::model($current, [
                                 'method' => 'put',
                                 'url' => cms_route('files.update', [$current->model_name, $current->model_id, $current->id], is_multilanguage() ? $current->language : null),
-                                'class' => 'form-horizontal '.$settings->get('ajax_form'),
+                                'class' => 'form-horizontal '.$cmsSettings->get('ajax_form'),
                                 'data-lang' => $current->language
                             ]) !!}
                             <div class="modal-body">

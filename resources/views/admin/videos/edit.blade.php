@@ -11,7 +11,7 @@
                     {!! Form::model($item, [
                         'method' => 'put',
                         'url'    => cms_route('videos.update', [$item->gallery_id, $item->id], is_multilanguage() ? $item->language : null),
-                        'class'  => 'form-horizontal '.$settings->get('ajax_form'),
+                        'class'  => 'form-horizontal '.$cmsSettings->get('ajax_form'),
                         'data-lang' => $item->language
                     ]) !!}
                         <div class="modal-body">

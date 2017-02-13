@@ -1,7 +1,7 @@
 <div id="movable-modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form action="{{$route}}" method="post" id="movable-form" class="{{$settings->get('ajax_form')}}">
+            <form action="{{$route}}" method="post" id="movable-form" class="{{$cmsSettings->get('ajax_form')}}">
                 <input type="hidden" name="_method" value="put">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <input type="hidden" name="column" value="{{$column}}">

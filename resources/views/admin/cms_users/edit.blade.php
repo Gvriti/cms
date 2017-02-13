@@ -25,7 +25,7 @@
         {!! Form::model($current, [
             'method' => 'put',
             'url'    => cms_route('cmsUsers.update', [$current->id]),
-            'class'  => 'form-horizontal '.$settings->get('ajax_form')
+            'class'  => 'form-horizontal '.$cmsSettings->get('ajax_form')
         ]) !!}
             <div class="member-form-add-header">
                 <div class="row">

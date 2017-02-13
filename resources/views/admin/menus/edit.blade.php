@@ -34,7 +34,7 @@
         {!! Form::model($current, [
             'method' => 'put',
             'url'    => cms_route('menus.update', [$current->id]),
-            'class'  => 'form-horizontal '.$settings->get('ajax_form')
+            'class'  => 'form-horizontal '.$cmsSettings->get('ajax_form')
         ]) !!}
             @include('admin.menus.form', [
                 'submit'        => trans('general.update'),

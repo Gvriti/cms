@@ -120,7 +120,7 @@ $(function() {
     toastr.options = {
         "closeButton": true,
         "debug": false,
-        "positionClass": "toast-{{$settings->get('alert_position', 'top-right')}}",
+        "positionClass": "toast-{{$cmsSettings->get('alert_position', 'top-right')}}",
         "onclick": null,
         "showDuration": "300",
         "hideDuration": "1000",
@@ -149,9 +149,9 @@ $(function() {
 
     toastr["{{session('alert.result')}}"]("{{session('alert.message')}}");
 @endif
-@if (! session()->has('includeLockscreen') && $settings->get('lockscreen'))
+@if (! session()->has('includeLockscreen') && $cmsSettings->get('lockscreen'))
 
-    lockscreen('{{$settings->get('lockscreen')}}', '{{cms_route('lockscreen')}}');
+    lockscreen('{{$cmsSettings->get('lockscreen')}}', '{{cms_route('lockscreen')}}');
 @endif
 });
 

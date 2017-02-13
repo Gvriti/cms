@@ -57,7 +57,7 @@
             {!! Form::model($current, [
                 'method'    => 'put',
                 'url'       => cms_route('translations.update', [$current->id], is_multilanguage() ? $current->language : null),
-                'class'     => 'form-horizontal '.$settings->get('ajax_form'),
+                'class'     => 'form-horizontal '.$cmsSettings->get('ajax_form'),
                 'data-lang' => $current->language
             ]) !!}
                 @include('admin.translations.form', [

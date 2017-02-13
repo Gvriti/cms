@@ -29,7 +29,7 @@ class AdminMainData
     }
 
     /**
-     * Share the settings.
+     * Share the cms settings.
      *
      * @return void
      */
@@ -42,7 +42,7 @@ class AdminMainData
             $settings->body = preg_replace('/\s+/', ' ', trim($settings->body));
         }
 
-        view()->share(['settings' => new Collection($settings)]);
+        view()->share(['cmsSettings' => new Collection($settings)]);
     }
 
     /**

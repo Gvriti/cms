@@ -49,8 +49,8 @@
                     data: input,
                     success: function(data) {
                         if (data.result) {
-                        @if ($settings->get('lockscreen'))
-                            lockscreen({{$settings->get('lockscreen')}}, '{{cms_route('lockscreen')}}', true);
+                        @if ($cmsSettings->get('lockscreen'))
+                            lockscreen({{$cmsSettings->get('lockscreen')}}, '{{cms_route('lockscreen')}}', true);
                         @endif
 
                             $('body > #lockscreen').fadeOut(400, function() {
