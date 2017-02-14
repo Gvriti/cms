@@ -176,7 +176,9 @@ class Builder extends EloquentBuilder
                         $wheres = $value->wheres;
 
                         foreach ($wheres as $key => $clause) {
-                            if (! empty($clause['nested'])) continue;
+                            if (! empty($clause['nested'])) {
+                                continue;
+                            }
 
                             if (is_null($clause['operator'])) {
                                 $value->wheres[$key]['operator'] = "=";
@@ -188,12 +190,12 @@ class Builder extends EloquentBuilder
                                 $value->wheres[$key]['first'] = "{$query->from}.{$first}";
                             }
 
-                            if (! empty($value->wheres[$key]['second'])
+                            if (($secondExists = ! empty($value->wheres[$key]['second']))
                                 && is_string($second = $value->wheres[$key]['second'])
                                 && strpos($second, '.') === false
                             ) {
                                 $value->wheres[$key]['second'] = "{$value->table}.{$second}";
-                           } elseif (is_null($value->wheres[$key]['second'])) {
+                            } elseif (! $secondExists) {
                                 $value->wheres[$key]['second'] = "{$value->table}.id";
                             }
                         }
