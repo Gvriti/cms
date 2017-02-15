@@ -14,8 +14,8 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('model_id')->index();
-            $table->string('model_name', 128);
+            $table->string('model_name', 64)->index();
+            $table->integer('model_id')->index()->unsigned();
             $table->smallinteger('position')->default(1)->unsigned();
             $table->boolean('visible')->default(1);
             $table->timestamps();

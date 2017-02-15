@@ -15,12 +15,12 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('menu_id')->unsigned();
-            $table->integer('parent_id')->default(0);
             $table->string('slug')->unique();
-            $table->string('type', 64)->default('text');
-            $table->integer('type_id')->unsigned()->default(0);
-            $table->string('template', 64)->nullable();
             $table->integer('position')->default(1)->unsigned();
+            $table->integer('parent_id')->default(0)->unsigned();
+            $table->string('type', 64)->default('text');
+            $table->integer('type_id')->default(0)->unsigned();
+            $table->string('template', 64)->nullable();
             $table->boolean('visible')->default(1);
             $table->boolean('collapse')->default(0);
             $table->string('image')->nullable();

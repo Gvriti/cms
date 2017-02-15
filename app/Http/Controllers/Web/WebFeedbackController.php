@@ -39,7 +39,7 @@ class WebFeedbackController extends Controller
     {
         $data['current'] = $page;
 
-        $data['files'] = $page->getFiles($page->id);
+        $data['files'] = $page->getFiles();
 
         return view('web.' . $page->type, $data);
     }

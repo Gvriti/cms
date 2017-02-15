@@ -56,7 +56,7 @@ class WebCatalogController extends Controller
 
         $data['current'] = $this->model->bySlug($slug)->firstOrFail();
 
-        $data['files'] = $this->model->getFiles($data['current']->id);
+        $data['files'] = $data['current']->getFiles();
 
         return view('web.catalog_item', $data);
     }

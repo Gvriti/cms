@@ -9,7 +9,7 @@
         @if ($error)
         <span>{{$error}}</span>
         @endif
-        <span class="description">The name is the identifier for the "value" (it's not changeable after creation!)</span>
+        <div class="desc">The name is the identifier for the "value" (it's not changeable after creation!)</div>
     </div>
 </div>
 
@@ -26,7 +26,7 @@
         @if ($error)
         <span>{{$error}}</span>
         @endif
-        <span class="description">The title for the "value". It's visible only for CMS Users</span>
+        <div class="desc">The title for the "value". It's visible only for CMS Users</div>
     </div>
 </div>
 
@@ -42,7 +42,7 @@
         @if ($error)
         <span>{{$error}}</span>
         @endif
-        <span class="description">The value contains the translated text that will be displayed on the website</span>
+        <div class="desc">The value contains the translated text that will be displayed on the website</div>
     </div>
 </div>
 
@@ -56,7 +56,7 @@
             'class' => 'form-control',
             'data-lang' => 1
         ]) !!}
-        <span class="description">The type that will separate translations.</span>
+        <div class="desc">The type that will separate translations.</div>
     </div>
 </div>
 

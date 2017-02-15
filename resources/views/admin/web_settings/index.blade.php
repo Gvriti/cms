@@ -38,7 +38,7 @@
                     {!! Form::text('email', $webSettings->email, [
                         'class' => 'form-control',
                     ]) !!}
-                    <span class="description">Messages from users will be sent to this email address.</span>
+                    <div class="desc">Messages from users will be sent to this email address.</div>
                 </div>
             </div>
             <div class="form-group">
@@ -47,7 +47,7 @@
                     {!! Form::text('phone', $webSettings->phone, [
                         'class' => 'form-control',
                     ]) !!}
-                    <span class="description">Phone number that will be displayed on the website.</span>
+                    <div class="desc">Phone number that will be displayed on the website.</div>
                 </div>
             </div>
             <div class="form-group">
@@ -56,7 +56,7 @@
                     {!! Form::text('facebook', $webSettings->facebook, [
                         'class' => 'form-control',
                     ]) !!}
-                    <span class="description">Facebook page url.</span>
+                    <div class="desc">Facebook page url.</div>
                 </div>
             </div>
             <div class="form-group">
@@ -65,7 +65,7 @@
                     {!! Form::text('twitter', $webSettings->twitter, [
                         'class' => 'form-control',
                     ]) !!}
-                    <span class="description">Twitter page url.</span>
+                    <div class="desc">Twitter page url.</div>
                 </div>
             </div>
             <div class="form-group">
@@ -74,7 +74,7 @@
                     {!! Form::text('google_plus', $webSettings->google_plus, [
                         'class' => 'form-control',
                     ]) !!}
-                    <span class="description">Google Plus page url.</span>
+                    <div class="desc">Google Plus page url.</div>
                 </div>
             </div>
             <div class="form-group">
@@ -83,7 +83,7 @@
                     {!! Form::text('map', $webSettings->map, [
                         'class' => 'form-control',
                     ]) !!}
-                    <span class="description">Map url.</span>
+                    <div class="desc">Map url.</div>
                 </div>
             </div>
         </div>

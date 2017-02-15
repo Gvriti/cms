@@ -15,9 +15,9 @@ class CreateGalleriesTable extends Migration
         Schema::create('galleries', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('collection_id')->unsigned();
-            $table->string('type', 32);
             $table->string('slug')->unique();
             $table->integer('position')->default(1)->unsigned();
+            $table->string('type', 32);
             $table->boolean('visible')->default(1);
             $table->string('admin_order_by', 32)->default('id');
             $table->string('admin_sort', 16)->default('desc');

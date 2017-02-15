@@ -165,27 +165,28 @@ class File extends Model
     /**
      * Get the files by route.
      *
+     * @param  int $perPage
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getByRoute()
+    public function getByRoute($perPage = 20)
     {
         return $this->joinLanguages()
                     ->byRoute()
                     ->orderBy('position', 'desc')
-                    ->paginate(20);
+                    ->paginate($perPage);
     }
 
     /**
      * Add a where "model_id, model_name" clause to the query.
      *
-     * @param  null|int     $modelId
      * @param  null|string  $modelName
+     * @param  null|int     $modelId
      * @return \Models\Builder\Builder
      */
-    public function byRoute($modelId = null, $modelName = null)
+    public function byRoute($modelName = null, $modelId = null)
     {
-        return $this->where('model_id', $modelId ?: $this->model_id)
-                    ->where('model_name', $modelName ?: $this->model_name);
+        return $this->where('model_name', $modelName ?: $this->model_name)
+            ->where('model_id', $modelId ?: $this->model_id);
     }
 
     /**

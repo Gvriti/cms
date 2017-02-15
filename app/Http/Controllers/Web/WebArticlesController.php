@@ -56,7 +56,7 @@ class WebArticlesController extends Controller
 
         $data['current'] = $this->model->bySlug($slug)->firstOrFail();
 
-        $data['files'] = $this->model->getFiles($data['current']->id);
+        $data['files'] = $data['current']->getFiles();
 
         return view('web.article', $data);
     }

@@ -101,7 +101,7 @@ class AdminDestroy extends Job
     protected function performDelete()
     {
         if ($this->fileable) {
-            (new File)->byRoute($this->id, $this->model->getTable())->delete();
+            (new File)->byRoute($this->model->getTable(), $this->id)->delete();
         }
 
         if (is_array($this->id)) {

@@ -14,7 +14,7 @@
 <div class="form-group-separator"></div>
 
 <div class="form-group{{($error = $errors->first('slug')) ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label">Slug:</label>
+    <label class="col-sm-2 control-label required">Slug:</label>
     <div class="col-sm-10">
         {!! Form::text('slug', null, [
             'id' => 'slug' . $current->language,
@@ -24,6 +24,7 @@
         @if ($error)
         <span>{{$error}}</span>
         @endif
+        <div class="desc">Slug must be as short as possible for SEO purposes.</div>
     </div>
 </div>
 
@@ -62,7 +63,7 @@
             'id' => 'meta_desc' . $current->language,
             'class' => 'form-control',
         ]) !!}
-        <span class="description">Description for search engines. It is best to keep meta descriptions less then 150 or 160 characters.</span>
+        <div class="desc">Description for search engines. It is best to keep meta descriptions less then 150 or 160 characters.</div>
     </div>
 </div>
 
