@@ -85,9 +85,9 @@ class Page extends Model
         $query = ! is_null($id) ? $this->menuId($id) : $this;
 
         return $query->joinLanguages()
-                    ->joinCollectionType()
-                    ->filesCount()
-                    ->positionAsc();
+            ->joinCollectionType()
+            ->filesCount()
+            ->positionAsc();
     }
 
     /**
@@ -189,9 +189,9 @@ class Page extends Model
         }
 
         $pages = $pages->parentId($this->parent_id)
-                        ->menuId($this->menu_id)
-                        ->positionAsc()
-                        ->get($columns);
+            ->menuId($this->menu_id)
+            ->positionAsc()
+            ->get($columns);
 
         if ($self && $pages->count() > 1) {
             return $recursive ? $pages->each(function ($item) use ($columns, $recursive) {
@@ -309,7 +309,7 @@ class Page extends Model
         ];
 
         return $this->leftJoin($table, 'type_id', '=', $table . '.id')
-                    ->addSelect($columns);
+            ->addSelect($columns);
     }
 
     /**
@@ -319,7 +319,7 @@ class Page extends Model
     {
         if (isset($attributes['menu_id'])) {
             $attributes['position'] = (int) parent::menuId($attributes['menu_id'])
-                                            ->max('position') + 1;
+                    ->max('position') + 1;
         } else {
             $attributes['position'] = (int) parent::max('position') + 1;
         }

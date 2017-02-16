@@ -50,7 +50,7 @@
     <div class="col-sm-3">
         <div class="xe-widget xe-counter xe-counter-blue" data-count=".num" data-from="0" data-to="{{$usersTotal}}" data-duration="2" data-easing="true">
             <a href="{{cms_route('cmsUsers.index')}}" class="xe-icon">
-                <i class="{{icon_type('cms_users')}}"></i>
+                <i class="{{icon_type('cmsUsers')}}"></i>
             </a>
             <div class="xe-label">
                 <strong class="num">{{$usersTotal}}</strong>

@@ -171,9 +171,9 @@ class File extends Model
     public function getByRoute($perPage = 20)
     {
         return $this->joinLanguages()
-                    ->byRoute()
-                    ->orderBy('position', 'desc')
-                    ->paginate($perPage);
+            ->byRoute()
+            ->orderBy('position', 'desc')
+            ->paginate($perPage);
     }
 
     /**
