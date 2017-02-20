@@ -123,15 +123,18 @@ abstract class Model extends BaseModel
     }
 
     /**
-     * Execute the query and get the specified attribute.
+     * Execute the query and get the first result attribute.
      *
      * @param  string  $attribute
+     * @param  int|null  $id
      * @param  mixed  $default
      * @return mixed
      */
-    public function getAttr($attribute, $default = null)
+    public function firstAttr($attribute, $id = null, $default = null)
     {
-        if (! is_null($model = $this->first([$attribute]))) {
+        $query = is_null($id) ? $this : $this->where('id', $id);
+
+        if (! is_null($model = $query->first([$attribute]))) {
             return $model->{$attribute} ?: $default;
         }
 

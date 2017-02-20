@@ -40,7 +40,7 @@ class TranslationCollection
 
         return (new Translation)->where('name', $key)
             ->joinLanguages()
-            ->getAttr('value', $default);
+            ->firstAttr('value', null, $default);
     }
 
     /**
