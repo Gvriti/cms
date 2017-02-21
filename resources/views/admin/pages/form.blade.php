@@ -67,7 +67,7 @@
                 <div class="form-group{{$error ? ' validate-has-error' : '' }}">
                     <label class="col-lg-3 col-sm-2 control-label required">{{$current->type_id ? $current->type : 'Type id'}}:</label>
                     <div class="col-lg-9 col-sm-10">
-                        {!! Form::select('type_id', ['' => ''] + $collections, null, [
+                        {!! Form::select('type_id', ['' => ''] + $attachedTypes, null, [
                             'id' => 'type_id' . $current->language,
                             'class' => 'form-control select',
                             'data-lang' => 1

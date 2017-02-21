@@ -45,8 +45,8 @@ return [
             'collections'
         ],
         'implicit' => [
-            'collections',
-            'galleries'
+            'collections' => Models\Collection::class,
+            'galleries' => Models\Gallery::class
         ],
         'explicit' => []
     ],

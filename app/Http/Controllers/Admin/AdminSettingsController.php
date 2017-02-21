@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Schema;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Schema;
 
 class AdminSettingsController extends Controller
 {
     /**
-     * Display a settings list.
+     * Display the specified resource.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

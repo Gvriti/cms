@@ -204,7 +204,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             if (is_null($page)) {
                 if (count($this->pages) < 1
                     || (! in_array($type = $this->pages[$i - 1]->type, $this->attachedTypes)
-                        && ! in_array($type, $this->explicitTypes)
+                        && ! array_key_exists($type, $this->explicitTypes)
                         && ! array_key_exists($type, $this->tabs)
                     )
                 ) {
@@ -249,7 +249,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             $this->app->abort(404);
         }
 
-        if (! in_array($page->type, $this->implicitTypes)) {
+        if (! array_key_exists($page->type, $this->implicitTypes)) {
             $this->setCurrentRoute($page->type, [$page], 'index');
 
             return;
@@ -274,27 +274,23 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             return;
         }
 
-        $implicitModel = model_path($page->type);
-
-        $implicitModel = (new $implicitModel)->findOrFail($page->type_id);
+        $model = (new $this->implicitTypes[$page->type])->findOrFail($page->type_id);
 
         if (! $slug) {
-            $this->setCurrentRoute($implicitModel->type, [
-                $page, $implicitModel
+            $this->setCurrentRoute($model->type, [
+                $page, $model
             ], 'index', $this->pagesCount);
 
             return;
         }
 
-        if (! in_array($implicitModel->type, $this->implicitTypes)) {
-            $this->setCurrentRoute($implicitModel->type, [$page, $slug], 'show');
+        if (! array_key_exists($model->type, $this->implicitTypes)) {
+            $this->setCurrentRoute($model->type, [$page, $slug], 'show');
 
             return;
         }
 
-        $this->setInnerAttachedTypeRoute(
-            $implicitModel->type, $implicitModel->id, $slug
-        );
+        $this->setInnerAttachedTypeRoute($model->type, $model->id, $slug);
     }
 
     /**
@@ -307,9 +303,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
      */
     protected function setInnerAttachedTypeRoute($type, $id, $slug)
     {
-        $model = model_path($type);
-
-        $model = (new $model);
+        $model = (new $this->implicitTypes[$type]);
 
         if (! method_exists($model, 'bySlug')) {
             $this->app->abort(404);

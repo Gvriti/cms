@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Models\Menu;
 use Models\Page;
-use Models\Collection;
 use Illuminate\Http\Request;
 use App\Jobs\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
@@ -73,7 +72,7 @@ class AdminPagesController extends Controller
 
         $data['types'] = cms_pages('types');
 
-        $data['collections'] = (new Collection)->get()->pluck('title', 'id')->toArray();
+        $data['attachedTypes'] = [];
 
         return view('admin.pages.create', $data);
     }
@@ -121,7 +120,7 @@ class AdminPagesController extends Controller
 
         $data['types'] = cms_pages('types');
 
-        $data['collections'] = (new Collection)->get()->pluck('title', 'id')->toArray();
+        $data['attachedTypes'] = $this->getAttachedTypes($data['items']->first()->type);
 
         return view('admin.pages.edit', $data);
     }
@@ -172,7 +171,34 @@ class AdminPagesController extends Controller
     }
 
     /**
-     * Get the templates list.
+     * Get the attached types.
+     *
+     * @param  string|null
+     * @return array
+     */
+    public function getAttachedTypes($type = null)
+    {
+        if (! $type && ! ($type = $this->request->get('type'))) {
+            return [];
+        }
+
+        $model = cms_pages('implicit.' . $type) ?: cms_pages('explicit.' . $type);
+
+        if (! $model) {
+            return [];
+        }
+
+        $model = new $model;
+
+        if ($model->hasLanguages()) {
+            $model = $model->joinLanguages();
+        }
+
+        return $model->pluck('title', 'id')->toArray();
+    }
+
+    /**
+     * Get the templates.
      *
      * @return \Illuminate\Http\JsonResponse
      */

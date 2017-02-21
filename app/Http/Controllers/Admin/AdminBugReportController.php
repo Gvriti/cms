@@ -11,7 +11,7 @@ use Illuminate\Contracts\Mail\Mailer;
 class AdminBugReportController extends Controller
 {
     /**
-     * Display a settings list.
+     * Display the specified resource.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
