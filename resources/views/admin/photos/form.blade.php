@@ -1,19 +1,21 @@
 <div class="col-md-12">
     <div class="form-group">
-        <label class="control-label required">Title:</label>
+        <label class="control-label">Title:</label>
         {!! Form::text('title', null, [
             'id' => 'title' . $current->language,
             'class' => 'form-control',
+            'autofocus'
         ]) !!}
     </div>
 </div>
 <div class="col-md-12">
     <div class="form-group">
-        <label class="control-label required">File:</label>
+        <label class="control-label">Image:</label>
         <div class="input-group">
             {!! Form::text('file', null, [
                 'id' => 'file' . $current->language,
                 'class' => 'form-control',
+                'data-lang' => 1,
             ]) !!}
             <div class="input-group-btn popup" data-browse="file{{$current->language}}">
                 <span class="btn btn-info">Browse</span>
@@ -26,7 +28,8 @@
         <label class="control-label">Visible:</label>
         {!! Form::checkbox('visible', null, null, [
             'id' => 'visible' . $current->language,
-            'class' => 'iswitch iswitch-secondary'
+            'class' => 'iswitch iswitch-secondary',
+            'data-lang' => 1
         ]) !!}
     </div>
 </div>

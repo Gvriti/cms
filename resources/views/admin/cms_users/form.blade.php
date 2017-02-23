@@ -117,7 +117,7 @@
                     'class' => 'form-control'
                 ]) !!}
                 <div class="input-group-btn popup" data-browse="photo">
-                    <span class="btn btn-info">არჩევა</span>
+                    <span class="btn btn-info">Browse</span>
                 </div>
             </div>
         </div>

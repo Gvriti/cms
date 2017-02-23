@@ -9,58 +9,25 @@
                 'url'   => cms_route('photos.store', [$current->gallery_id]),
                 'class' => 'form-create form-horizontal'
             ]) !!}
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Title:</label>
-                                {!! Form::text('title', null, [
-                                    'id' => 'title',
-                                    'class' => 'form-control',
-                                ]) !!}
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Image:</label>
-                                <div class="input-group">
-                                    {!! Form::text('file', null, [
-                                        'id' => 'file',
-                                        'class' => 'form-control',
-                                    ]) !!}
-                                    <div class="input-group-btn popup" data-browse="file">
-                                        <span class="btn btn-info">არჩევა</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Visible:</label>
-                                {!! Form::checkbox('visible', null, null, [
-                                    'id' => 'visible',
-                                    'class' => 'iswitch iswitch-secondary'
-                                ]) !!}
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-md btn-white" data-dismiss="modal">{{trans('general.close')}}</button>
-                        <button type="submit" class="btn btn-md btn-secondary">{{trans('general.save')}}</button>
-                    </div>
+            <div class="modal-body">
+                <div class="row">
+                    @include('admin.photos.form')
                 </div>
+            </div>
             {!!Form::close()!!}
         </div>
     </div>
 </div>
 <script type="text/javascript">
     var sort = '{{request('sort', 'desc')}}';
-    var currentPage = {{request('page', 1)}};
-    var creationPage = sort == 'desc' ? 1 : {{request('lastPage', 1)}};
-    var formSelector = '#form-modal .form-create';
+    var currentPage = '{{request('page', 1)}}';
+    var creationPage = sort == 'desc' ? 1 : '{{request('lastPage', 1)}}';
+    var formSelector = $('#form-modal').find('.form-create');
 
-    $(formSelector).on('submit', function(e) {
+    formSelector.on('submit', function(e) {
         e.preventDefault();
 
-        form = $(this);
+        var form = $(this);
         $('.form-group', form).find('.text-danger').remove();
         var url = form.attr('action');
         var input = form.serialize();
@@ -78,7 +45,7 @@
             if (currentPage != creationPage) {
                 window.location.href = '{{cms_route('photos.index', [$current->gallery_id])}}?page=' + creationPage;
             } else {
-                $('#form-modal [data-dismiss]').trigger('click');
+                $('#form-modal').find('[data-dismiss]').trigger('click');
             }
         }, 'json').fail(function(xhr) {
             if (xhr.status == 422) {
@@ -95,7 +62,7 @@
         });
     });
 
-    $(formSelector + ' #file').on('fileSet', function(e) {
+    $('#file', formSelector).on('fileSet', function() {
         $('.modal-gallery-image img').attr('src', $(this).val());
     });
 </script>

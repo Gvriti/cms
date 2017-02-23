@@ -145,7 +145,7 @@
                 'data-lang' => 1
             ]) !!}
             <div class="input-group-btn popup" data-browse="image{{$current->language}}">
-                <span class="btn btn-info">არჩევა</span>
+                <span class="btn btn-info">Browse</span>
             </div>
         </div>
     </div>
