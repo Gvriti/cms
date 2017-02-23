@@ -1,13 +1,12 @@
 <?php
 
-namespace Models\Abstracts;
+namespace Models\Traits;
 
 use Models\Collection;
-use Models\Traits\PageableTrait;
 
-abstract class HasCollection extends Model
+trait HasCollectionTrait
 {
-    use PageableTrait;
+    use PageableTrait, PositionableTrait;
 
     /**
      * Get the data based on the admin collection.
@@ -19,7 +18,7 @@ abstract class HasCollection extends Model
     public function getAdminCollection(Collection $collection, $columns = ['*'])
     {
         return $this->adminCollection($collection)
-                    ->paginate($collection->admin_per_page, $columns);
+            ->paginate($collection->admin_per_page, $columns);
     }
 
     /**
@@ -32,7 +31,7 @@ abstract class HasCollection extends Model
     public function getPublicCollection(Collection $collection, $columns = ['*'])
     {
         return $this->publicCollection($collection)
-                    ->paginate($collection->web_per_page, $columns);
+            ->paginate($collection->web_per_page, $columns);
     }
 
     /**
@@ -44,7 +43,7 @@ abstract class HasCollection extends Model
     public function adminCollection(Collection $collection)
     {
         return $this->forAdmin($collection->id)
-                    ->orderBy($collection->admin_order_by, $collection->admin_sort);
+            ->orderBy($collection->admin_order_by, $collection->admin_sort);
     }
 
     /**
@@ -56,7 +55,7 @@ abstract class HasCollection extends Model
     public function publicCollection(Collection $collection)
     {
         return $this->forPublic($collection->id)
-                    ->orderBy($collection->web_order_by, $collection->web_sort);
+            ->orderBy($collection->web_order_by, $collection->web_sort);
     }
 
     /**
@@ -139,7 +138,7 @@ abstract class HasCollection extends Model
     {
         if (isset($attributes['collection_id'])) {
             $attributes['position'] = (int) parent::collectionId($attributes['collection_id'])
-                                            ->max('position') + 1;
+                    ->max('position') + 1;
         } else {
             $attributes['position'] = (int) parent::max('position') + 1;
         }

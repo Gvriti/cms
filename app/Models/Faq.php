@@ -2,13 +2,13 @@
 
 namespace Models;
 
+use Models\Abstracts\Model;
 use Models\Traits\LanguageTrait;
-use Models\Traits\PositionableTrait;
-use Models\Abstracts\HasCollection as Model;
+use Models\Traits\HasCollectionTrait;
 
 class Faq extends Model
 {
-    use LanguageTrait, PositionableTrait;
+    use HasCollectionTrait, LanguageTrait;
 
     /**
      * Type of the collection.

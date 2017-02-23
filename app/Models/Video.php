@@ -2,13 +2,13 @@
 
 namespace Models;
 
+use Models\Abstracts\Model;
 use Models\Traits\LanguageTrait;
-use Models\Traits\PositionableTrait;
-use Models\Abstracts\HasGallery as Model;
+use Models\Traits\HasGalleryTrait;
 
 class Video extends Model
 {
-    use LanguageTrait, PositionableTrait;
+    use HasGalleryTrait, LanguageTrait;
 
     /**
      * Type of the gallery.

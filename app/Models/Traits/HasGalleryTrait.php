@@ -1,11 +1,13 @@
 <?php
 
-namespace Models\Abstracts;
+namespace Models\Traits;
 
 use Models\Gallery;
 
-abstract class HasGallery extends Model
+trait HasGalleryTrait
 {
+    use PositionableTrait;
+
     /**
      * Get the data based on the admin gallery.
      *
@@ -16,7 +18,7 @@ abstract class HasGallery extends Model
     public function getAdminGallery(Gallery $gallery, $columns = ['*'])
     {
         return $this->adminGallery($gallery)
-                    ->paginate($gallery->admin_per_page, $columns);
+            ->paginate($gallery->admin_per_page, $columns);
     }
 
     /**
@@ -29,7 +31,7 @@ abstract class HasGallery extends Model
     public function getPublicGallery(Gallery $gallery, $columns = ['*'])
     {
         return $this->publicGallery($gallery)
-                    ->paginate($gallery->web_per_page, $columns);
+            ->paginate($gallery->web_per_page, $columns);
     }
 
     /**
@@ -41,7 +43,7 @@ abstract class HasGallery extends Model
     public function adminGallery(Gallery $gallery)
     {
         return $this->byGallery($gallery->id)
-                    ->orderBy($gallery->admin_order_by, $gallery->admin_sort);
+            ->orderBy($gallery->admin_order_by, $gallery->admin_sort);
     }
 
     /**
@@ -53,9 +55,9 @@ abstract class HasGallery extends Model
     public function publicGallery(Gallery $gallery)
     {
         return $this->byGallery($gallery->id)
-                    ->hasFile()
-                    ->visible()
-                    ->orderBy($gallery->web_order_by, $gallery->web_sort);
+            ->hasFile()
+            ->visible()
+            ->orderBy($gallery->web_order_by, $gallery->web_sort);
     }
 
     /**
@@ -121,7 +123,7 @@ abstract class HasGallery extends Model
     {
         if (isset($attributes['gallery_id'])) {
             $attributes['position'] = (int) parent::galleryId($attributes['gallery_id'])
-                                            ->max('position') + 1;
+                    ->max('position') + 1;
         } else {
             $attributes['position'] = (int) parent::max('position') + 1;
         }
