@@ -11,7 +11,7 @@ use App\Http\Requests\Admin\PhotoRequest;
 
 class AdminPhotosController extends Controller
 {
-    use VisibilityTrait, PositionableTrait;
+    use PositionableTrait, VisibilityTrait;
 
     /**
      * The Photo instance.

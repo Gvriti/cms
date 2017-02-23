@@ -11,7 +11,7 @@ use App\Http\Requests\Admin\VideoRequest;
 
 class AdminVideosController extends Controller
 {
-    use VisibilityTrait, PositionableTrait;
+    use PositionableTrait, VisibilityTrait;
 
     /**
      * The Video instance.

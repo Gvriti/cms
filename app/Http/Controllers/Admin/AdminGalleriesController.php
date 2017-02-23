@@ -11,7 +11,7 @@ use App\Http\Requests\Admin\GalleryRequest;
 
 class AdminGalleriesController extends Controller
 {
-    use VisibilityTrait, PositionableTrait, MovableTrait;
+    use PositionableTrait, VisibilityTrait, MovableTrait;
 
     /**
      * The Gallery instance.
@@ -129,7 +129,9 @@ class AdminGalleriesController extends Controller
             ));
         }
 
-        return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
+        return redirect()->back()->with('alert', fill_data(
+            'success', trans('general.updated')
+        ));
     }
 
     /**

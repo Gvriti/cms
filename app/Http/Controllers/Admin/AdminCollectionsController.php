@@ -110,7 +110,9 @@ class AdminCollectionsController extends Controller
             ));
         }
 
-        return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
+        return redirect()->back()->with('alert', fill_data(
+            'success', trans('general.updated')
+        ));
     }
 
     /**

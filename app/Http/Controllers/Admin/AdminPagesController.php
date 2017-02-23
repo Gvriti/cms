@@ -11,7 +11,7 @@ use App\Http\Requests\Admin\PageRequest;
 
 class AdminPagesController extends Controller
 {
-    use VisibilityTrait, PositionableTrait, MovableTrait;
+    use PositionableTrait, VisibilityTrait, MovableTrait;
 
     /**
      * The Page instance.
@@ -149,7 +149,9 @@ class AdminPagesController extends Controller
             ));
         }
 
-        return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
+        return redirect()->back()->with('alert', fill_data(
+            'success', trans('general.updated')
+        ));
     }
 
     /**

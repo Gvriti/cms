@@ -10,7 +10,7 @@ use App\Http\Requests\Admin\FileRequest;
 
 class AdminFilesController extends Controller
 {
-    use VisibilityTrait, PositionableTrait;
+    use PositionableTrait, VisibilityTrait;
 
     /**
      * The File instance.

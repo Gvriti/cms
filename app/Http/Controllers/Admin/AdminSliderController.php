@@ -10,7 +10,7 @@ use App\Http\Requests\Admin\SliderRequest;
 
 class AdminSliderController extends Controller
 {
-    use VisibilityTrait, PositionableTrait;
+    use PositionableTrait, VisibilityTrait;
 
     /**
      * The Slider instance.

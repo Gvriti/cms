@@ -62,11 +62,7 @@ class CmsUser extends Model
      */
     public function getPhotoAttribute($value)
     {
-        if (! $value) {
-            $value = asset('assets/images/user-2.png');
-        }
-
-        return $value;
+        return $value ?: asset('assets/images/user-2.png');
     }
 
     /**
@@ -120,7 +116,7 @@ class CmsUser extends Model
      * Filter a query by specific parameters.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return mixed
+     * @return \Models\Builder\Builder|static
      */
     public function adminFilter(Request $request)
     {

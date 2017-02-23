@@ -10,7 +10,7 @@ use App\Http\Requests\Admin\ArticleRequest;
 
 class AdminArticlesController extends Controller
 {
-    use VisibilityTrait, PositionableTrait, MovableTrait;
+    use PositionableTrait, VisibilityTrait, MovableTrait;
 
     /**
      * The Article instance.
@@ -124,7 +124,9 @@ class AdminArticlesController extends Controller
             ));
         }
 
-        return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
+        return redirect()->back()->with('alert', fill_data(
+            'success', trans('general.updated')
+        ));
     }
 
     /**

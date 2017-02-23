@@ -11,7 +11,7 @@ use App\Http\Requests\Admin\FaqRequest;
 
 class AdminFaqController extends Controller
 {
-    use VisibilityTrait, PositionableTrait, MovableTrait;
+    use PositionableTrait, VisibilityTrait, MovableTrait;
 
     /**
      * The Faq instance.
@@ -136,7 +136,9 @@ class AdminFaqController extends Controller
             ));
         }
 
-        return redirect()->back()->with('alert', fill_data('success', trans('general.updated')));
+        return redirect()->back()->with('alert', fill_data(
+            'success', trans('general.updated')
+        ));
     }
 
     /**
