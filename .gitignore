@@ -10,7 +10,7 @@ Homestead.json
 .env
 /bower_components
 /public/files/*
-/!public/files/test.txt
+!/public/files/sample.txt
 /public/sitemap.xml
 *sftp-config.json
 # Ignore directories and files starting with "!" symbol
