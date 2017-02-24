@@ -69,7 +69,7 @@
                             <a href="{{ cms_route('files.index', ['pages', $item->id]) }}" class="btn btn-{{$item->files_cnt ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
                                 <span class="{{icon_type('files')}}"></span>
                             </a>
-                            <a href="{{$cmsUrl = $item->collection_type ? cms_route($item->collection_type . '.index', [$item->type_id], null, true, false) : cms_route($item->type . '.index', [], null, true, false)}}" class="btn btn-{{$cmsUrl == '/#not_found' ? 'white disabled' : 'info'}}" title="{{$item->collection_title ?: ucfirst($item->type)}}">
+                            <a href="{{$cmsUrl = $item->collection_type ? cms_route($item->collection_type . '.index', [$item->type_id], null, true, false) : cms_route($item->type . '.edit', [$item->type_id], null, true, false)}}" class="btn btn-{{$cmsUrl == '/#not_found' ? 'white disabled' : 'info'}}" title="{{$item->collection_title ?: ucfirst($item->type)}}">
                                 <span class="{{icon_type($item->collection_type ?: $item->type, 'fa fa-file-text-o')}}"></span>
                             </a>
                             <a href="{{ cms_route('pages.create', [$menu->id, 'id' => $item->id]) }}" class="btn btn-secondary" title="{{trans('general.create')}}">
@@ -103,14 +103,14 @@ $(function() {
 
     // Update pages URL recursively, after position update
     $('#save-tree').on('positionSaved', function() {
-        updateUrl($('#nestable-list > li'), '{{$url}}');
+        updateUrl($('#nestable-list').find('> li'), '{{$url}}');
     });
 
     // Collapse parent pages
     $('#items').on('click', '[data-nestable-action]', function() {
         var id = $(this).closest('li').data('id');
         var input = {'id':id, '_method':'put', '_token':csrf_token()};
-        $.post("{{cms_route('pages.collapse')}}", input, function(data) {}, 'json')
+        $.post("{{cms_route('pages.collapse')}}", input, function() {}, 'json')
         .fail(function(xhr) {
             alert(xhr.responseText);
         });

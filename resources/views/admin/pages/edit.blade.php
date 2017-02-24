@@ -53,7 +53,7 @@
             <a href="{{cms_route($current->type.'.edit', [$current->type_id])}}">
                 <span class="visible-xs"><i class="{{$iconType = icon_type($current->type)}}"></i></span>
                 <div class="hidden-xs btn-icon-standalone">
-                    <i class="{{$iconType}}"></i> {{cms_pages('types.' . $current->type)}}
+                    <i class="{{$iconType}}"></i> {{str_singular(cms_pages('types.' . $current->type))}}
                 </div>
             </a>
         </li>

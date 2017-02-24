@@ -26,15 +26,17 @@ trait PositionableTrait
         $position = 0;
 
         foreach($data as $key => $item) {
-            if (! isset($item['id']) || ! isset($item['pos'])) {
+            if (! isset($item['id'])) {
                 return false;
             }
 
             if ($nestable) {
                 $position++;
                 $attributes['parent_id'] = $parentId;
-            } else {
+            } elseif (isset($item['pos'])) {
                 $position = $item['pos'];
+            } else {
+                return false;
             }
 
             $attributes['position'] = $position;

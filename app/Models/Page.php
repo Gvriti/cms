@@ -85,7 +85,7 @@ class Page extends Model
         $query = ! is_null($id) ? $this->menuId($id) : $this;
 
         return $query->joinLanguages()
-            ->joinCollectionType()
+            ->joinCollection()
             ->filesCount()
             ->positionAsc();
     }
@@ -299,7 +299,7 @@ class Page extends Model
      *
      * @return \Models\Builder\Builder
      */
-    public function joinCollectionType()
+    public function joinCollection()
     {
         $table = (new Collection)->getTable();
 
