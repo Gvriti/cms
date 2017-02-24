@@ -22,7 +22,9 @@ $router->group(['middleware' => 'cms.data', 'prefix' => cms_slug()], function ($
         // lockscreen
         $router->group(['middleware' => ['cms.lockscreen']], function ($router) {
             $router->get('lockscreen', ['as' => 'lockscreen', 'uses' => 'AdminLoginController@getLockscreen']);
-            $router->post('lockscreen', ['as' => 'lockscreen', 'uses' => 'AdminLoginController@postLockscreen']);
+            $router->post('lockscreen', [
+                'middleware' => 'throttle:3,2', 'as' => 'lockscreen', 'uses' => 'AdminLoginController@postLockscreen'
+            ]);
             $router->put('lockscreen', ['as' => 'lockscreen', 'uses' => 'AdminLoginController@setLockscreen']);
         });
     });

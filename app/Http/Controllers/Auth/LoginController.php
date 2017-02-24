@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -49,9 +50,21 @@ class LoginController extends Controller
     protected $maxLoginAttempts = 3;
 
     /**
-     * The number of seconds to delay further login attempts.
+     * The number of minutes to delay further login attempts.
      *
      * @return int
      */
-    protected $lockoutTime = 120;
+    protected $lockoutTime = 2;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function hasTooManyLoginAttempts(Request $request)
+    {
+        return $this->limiter()->tooManyAttempts(
+            $this->throttleKey($request),
+            $this->maxLoginAttempts,
+            $this->lockoutTime
+        );
+    }
 }

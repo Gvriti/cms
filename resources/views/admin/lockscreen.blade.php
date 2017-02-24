@@ -40,7 +40,7 @@
 
                 var input = $(this).serializeArray();
                 var password = $('#password', this);
-                password.val('').siblings('label').remove()
+                password.val('').siblings('label').remove();
 
                 $.ajax({
                     url: '{{cms_route('lockscreen')}}',
@@ -50,7 +50,7 @@
                     success: function(data) {
                         if (data.result) {
                         @if ($cmsSettings->get('lockscreen'))
-                            lockscreen({{$cmsSettings->get('lockscreen')}}, '{{cms_route('lockscreen')}}', true);
+                            lockscreen('{{$cmsSettings->get('lockscreen')}}', '{{cms_route('lockscreen')}}', true);
                         @endif
 
                             $('body > #lockscreen').fadeOut(400, function() {
@@ -62,7 +62,11 @@
                         }
                     },
                     error: function(xhr) {
-                        alert(xhr.responseText);
+                        if (xhr.status != 429) {
+                            alert(xhr.responseText);
+                        } else {
+                            alert(xhr.responseText + ' Retry after ' + xhr.getResponseHeader('Retry-after') + ' seconds.');
+                        }
                     }
                 });
             });
