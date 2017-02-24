@@ -55,7 +55,7 @@
                         <div class="list-label"><a href="{{ $editUrl = cms_route('pages.edit', [$menu->id, $item->id]) }}">{{ $item->short_title }}</a></div>
                         <div class="btn-action togglable pull-right">
                             <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
-                            <a href="{{$newUrl = $url . '/' . $item->slug}}" class="link btn btn-white" title="Go to page" data-slug="{{$item->slug}}" target="_blank">
+                            <a href="{{$webUrl = $url . '/' . $item->slug}}" class="link btn btn-white" title="Go to page" data-slug="{{$item->slug}}" target="_blank">
                                 <span class="fa fa-link"></span>
                             </a>
                             <a href="#" class="movable btn btn-white" title="Move to menu" data-id="{{$item->id}}">
@@ -88,7 +88,7 @@
                             <span class="fa fa-toggle-left"></span>
                         </a>
                     </div>
-                    @include('admin.pages.pages_tree', ['url' => $newUrl])
+                    @include('admin.pages.sub_items', ['url' => $webUrl])
                 </li>
             @endforeach
             </ul>

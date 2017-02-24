@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Collection;
 use Illuminate\Database\Events\QueryExecuted;
 
 /**
@@ -294,38 +295,44 @@ function home_text()
 /**
  * Make a nestable items tree.
  *
- * @param  array  $items
+ * @param  \Illuminate\Support\Collection|array  $items
  * @param  string|null  $slug
  * @param  int  $parentId
  * @param  string  $parentKey
  * @param  string  $key
- * @return array
+ * @return \Illuminate\Support\Collection|array
  */
 function make_tree($items, $slug = null, $parentId = 0, $parentKey = 'parent_id', $key = 'id')
 {
-    if (! $items) return [];
+    if (! $items instanceof Collection && ! is_array($items)) {
+        throw new InvalidArgumentException(
+            'Argument 1 must be of the type array or an instance of ' . Collection::class
+        );
+    }
 
     $tree = [];
 
     $prevSlug = $slug;
 
     foreach($items as $item) {
-        if (isset($item->{$parentKey}) && $item->{$parentKey} == $parentId) {
-            if (! is_null($slug)) {
-                $slug = $prevSlug ? $prevSlug . '/' . $item->slug : $item->slug;
-
-                $item->original_slug = $item->slug;
-
-                $item->slug = $slug;
-            }
-
-            $item->subPages = make_tree($items, $slug, $item->{$key}, $parentKey, $key);
-
-            $tree[] = $item;
+        if (! method_exists($item, '__get') || $item->{$parentKey} != $parentId) {
+            continue;
         }
+
+        if (! is_null($slug)) {
+            $slug = $prevSlug ? $prevSlug . '/' . $item->slug : $item->slug;
+
+            $item->original_slug = $item->slug;
+
+            $item->slug = $slug;
+        }
+
+        $item->subItems = make_tree($items, $slug, $item->{$key}, $parentKey, $key);
+
+        $tree[] = $item;
     }
 
-    return $tree;
+    return new Collection($tree);
 }
 
 /**
