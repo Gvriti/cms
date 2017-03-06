@@ -144,7 +144,7 @@ class File extends Model
         $this->foreignModel = new $model;
 
         if ($this->foreignModel->hasLanguage()) {
-            $this->foreignModel = $this->foreignModel->joinLanguages();
+            $this->foreignModel = $this->foreignModel->joinLanguage();
         }
 
         $this->foreignModel = $this->foreignModel->findOrFail($this->model_id);
@@ -170,7 +170,7 @@ class File extends Model
      */
     public function getByRoute($perPage = 20)
     {
-        return $this->joinLanguages()
+        return $this->joinLanguage()
             ->byRoute()
             ->orderBy('position', 'desc')
             ->paginate($perPage);

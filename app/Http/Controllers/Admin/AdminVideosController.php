@@ -50,7 +50,7 @@ class AdminVideosController extends Controller
     public function index($galleryId)
     {
         $data['parent'] = (new Gallery)->where('type', Video::TYPE)
-            ->joinLanguages()
+            ->joinLanguage()
             ->findOrFail($galleryId);
 
         $data['items'] = $this->model->getAdminGallery($data['parent']);
@@ -131,7 +131,7 @@ class AdminVideosController extends Controller
         if ($this->request->expectsJson()) {
             $model = $this->model;
 
-            $data['items'] = $model->joinLanguages(false)->where('id', $id)
+            $data['items'] = $model->joinLanguage(false)->where('id', $id)
                 ->getOrFail();
 
             $view = view('admin.videos.edit', $data)->render();

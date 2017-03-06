@@ -109,7 +109,7 @@ class AdminFaqController extends Controller
      */
     public function edit($collectionId, $id)
     {
-        $data['items'] = $this->model->joinLanguages(false)
+        $data['items'] = $this->model->joinLanguage(false)
             ->where('id', $id)
             ->getOrFail();
 

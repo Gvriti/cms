@@ -69,7 +69,7 @@ trait HasCollectionTrait
     {
         $query = ! is_null($id) ? $this->collectionId($id) : $this;
 
-        return $query->joinLanguages($language);
+        return $query->joinLanguage($language);
     }
 
     /**

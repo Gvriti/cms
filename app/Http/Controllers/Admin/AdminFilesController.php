@@ -128,7 +128,7 @@ class AdminFilesController extends Controller
     public function edit($modelName, $modelId, $id)
     {
         if ($this->request->expectsJson()) {
-            $data['items'] = $this->model->joinLanguages(false)
+            $data['items'] = $this->model->joinLanguage(false)
                                          ->where('id', $id)
                                          ->getOrFail();
 

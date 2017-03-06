@@ -50,7 +50,7 @@ class AdminPhotosController extends Controller
     public function index($galleryId)
     {
         $data['parent'] = (new Gallery)->where('type', Photo::TYPE)
-            ->joinLanguages()
+            ->joinLanguage()
             ->findOrFail($galleryId);
 
         $data['items'] = $this->model->getAdminGallery($data['parent']);
@@ -131,7 +131,7 @@ class AdminPhotosController extends Controller
         if ($this->request->expectsJson()) {
             $model = $this->model;
 
-            $data['items'] = $model->joinLanguages(false)->where('id', $id)
+            $data['items'] = $model->joinLanguage(false)->where('id', $id)
                 ->getOrFail();
 
             $view = view('admin.photos.edit', $data)->render();

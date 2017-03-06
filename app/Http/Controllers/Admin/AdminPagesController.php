@@ -114,7 +114,7 @@ class AdminPagesController extends Controller
      */
     public function edit($menuId, $id)
     {
-        $data['items'] = $this->model->joinLanguages(false)
+        $data['items'] = $this->model->joinLanguage(false)
             ->where('id', $id)
             ->getOrFail();
 
@@ -193,7 +193,7 @@ class AdminPagesController extends Controller
         $model = new $model;
 
         if ($model->hasLanguage()) {
-            $model = $model->joinLanguages();
+            $model = $model->joinLanguage();
         }
 
         return $model->pluck('title', 'id')->toArray();

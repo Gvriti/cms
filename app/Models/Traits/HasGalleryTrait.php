@@ -68,7 +68,7 @@ trait HasGalleryTrait
      */
     public function byGallery($id)
     {
-        return $this->joinLanguages()->galleryId($id);
+        return $this->joinLanguage()->galleryId($id);
     }
 
     /**
@@ -79,7 +79,7 @@ trait HasGalleryTrait
      */
     public function byType($type = null)
     {
-        return (new Gallery)->joinLanguages()->where(
+        return (new Gallery)->joinLanguage()->where(
             'type', is_null($type) ? static::TYPE : $type
         );
     }

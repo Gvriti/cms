@@ -24,7 +24,7 @@ trait VisibilityTrait
         }
 
         if ($this->model->hasLanguage()) {
-            $model = $this->model->joinLanguages()->findOrFail($id);
+            $model = $this->model->joinLanguage()->findOrFail($id);
         } else {
             $model = $this->model->findOrFail($id);
         }

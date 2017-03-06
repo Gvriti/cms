@@ -76,7 +76,7 @@ class Slider extends Model
      */
     public function forAdmin()
     {
-        return $this->joinLanguages()->positionDesc();
+        return $this->joinLanguage()->positionDesc();
     }
 
     /**
@@ -86,7 +86,7 @@ class Slider extends Model
      */
     public function forPublic()
     {
-        return $this->joinLanguages()->where('visible', 1)
+        return $this->joinLanguage()->where('visible', 1)
                                      ->whereNotNull('file')
                                      ->where('file', '!=', '')
                                      ->positionDesc();

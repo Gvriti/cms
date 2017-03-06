@@ -93,7 +93,7 @@ class WebMainData
 
         if ($trans->count() <= (int) $this->app['config']->get('cms.trans_limit')) {
             $transCollection->setCollection(
-                $trans->joinLanguages(true, false)->pluck('value', 'name')
+                $trans->joinLanguage(true, false)->pluck('value', 'name')
             );
         }
 

@@ -18,7 +18,7 @@ trait FileableTrait
     {
         $imageExt = ['png', 'jpg', 'jpeg', 'gif', 'bmp'];
 
-        $files = (new File)->joinLanguages()
+        $files = (new File)->joinLanguage()
             ->byRoute($name ?: $this->getTable(), $id ?: $this->id)
             ->visible()
             ->positionDesc()

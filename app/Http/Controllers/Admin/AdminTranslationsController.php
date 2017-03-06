@@ -35,7 +35,7 @@ class AdminTranslationsController extends Controller
      */
     public function index()
     {
-        $data['items'] = $this->model->joinLanguages()->get();
+        $data['items'] = $this->model->joinLanguage()->get();
 
         return view('admin.translations.index', $data);
     }
@@ -86,7 +86,7 @@ class AdminTranslationsController extends Controller
      */
     public function edit($id)
     {
-        $data['items'] = $this->model->joinLanguages(false)
+        $data['items'] = $this->model->joinLanguage(false)
             ->where('id', $id)
             ->getOrFail();
 
@@ -146,7 +146,7 @@ class AdminTranslationsController extends Controller
         }
 
         $data['items'] = $this->model->where('name', $name)
-            ->joinLanguages(false)
+            ->joinLanguage(false)
             ->get();
 
         if ($data['items']->isEmpty()) {
