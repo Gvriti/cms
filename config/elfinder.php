@@ -44,19 +44,59 @@ return [
 
     'roots_options' => [
         'uploadAllow' => [
-            // image
+            /*
+             * image
+             */
             'image/png', 'image/jpeg', 'image/gif', 'image/x-icon',
-            // application
+
+            /*
+             * application
+             */
             'application/zip', 'application/x-rar', 'application/x-gzip', 'application/x-bzip2', 'application/x-tar',
             'application/x-7z-compressed', 'application/pdf', 'application/xml',
-            'application/excel', 'application/mspowerpoint', 'application/msword',
-            // docx
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            // text
+            // Microsoft Office
+            'application/vnd.ms-office', // old documents
+            'application/msword', // doc, dot
+
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // docx
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.template', // dotx
+            'application/vnd.ms-word.document.macroEnabled.12', // docm
+            'application/vnd.ms-word.template.macroEnabled.12', // dotm
+
+            'application/vnd.ms-excel', // xls, xlt, xla
+
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // xlsx
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.template', // xltx
+            'application/vnd.ms-excel.sheet.macroEnabled.12', // xlsm
+            'application/vnd.ms-excel.template.macroEnabled.12', // xltm
+            'application/vnd.ms-excel.addin.macroEnabled.12', // xlam
+            'application/vnd.ms-excel.sheet.binary.macroEnabled.12', // xlsb
+
+            'application/vnd.ms-powerpoint', // ppt, pot, pps, ppa
+
+            'application/vnd.openxmlformats-officedocument.presentationml.presentation', // pptx
+            'application/vnd.openxmlformats-officedocument.presentationml.template', // potx
+            'application/vnd.openxmlformats-officedocument.presentationml.slideshow', // ppsx
+            'application/vnd.ms-powerpoint.addin.macroEnabled.12', // ppam
+            'application/vnd.ms-powerpoint.presentation.macroEnabled.12', // pptm
+            'application/vnd.ms-powerpoint.template.macroEnabled.12', // potm
+            'application/vnd.ms-powerpoint.slideshow.macroEnabled.12', // ppsm
+
+            'application/vnd.ms-access', // mdb
+
+            /*
+             * text
+             */
             'text/plain', 'text/html',
-            // video
+
+            /*
+             * video
+             */
             'video/mp4', 'video/mpeg', 'video/x-msvideo',
-            // audio
+
+            /*
+             * audio
+             */
             'audio/mpeg'
         ],
         'uploadDeny'  => ['all'],
