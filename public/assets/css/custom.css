@@ -7,21 +7,12 @@
 /*** CUSTOM ***/
 
 iframe {border:0;}
-.dn {display:none;}
-.dib {display:inline-block;}
 .ovh {overflow:hidden;}
-.vat {vertical-align:top;}
-.vam {vertical-align:middle;}
-.pad {padding:15px;}
-.padt {padding-top:15px;}
-.padr {padding-right:15px;}
-.padb {padding-bottom:15px;}
-.padl {padding-left:15px;}
-.mrg {margin:15px;}
-.mrgt {margin-top:15px;}
-.mrgr {margin-right:15px;}
-.mrgb {margin-bottom:15px;}
-.mrgl {margin-left:15px;}
+.dn {display:none;}.dib {display:inline-block;}
+.vat {vertical-align:top;}.vam {vertical-align:middle;}
+.pad {padding:15px;}.padt {padding-top:15px;}.padr {padding-right:15px;}.padb {padding-bottom:15px;}.padl {padding-left:15px;}
+.mrg {margin:15px;}.mrgt {margin-top:15px;}.mrgr {margin-right:15px;}.mrgb {margin-bottom:15px;}.mrgl {margin-left:15px;}
+.fs-16 {font-size:16px;}.fs-18 {font-size:18px;}.fs-20 {font-size:20px;}.fs-22 {font-size:22px;}.fs-24 {font-size:24px;}.fs-26 {font-size:26px;}.fs-28 {font-size:28px;}.fs-30 {font-size:30px;}.fs-32 {font-size:32px;}
 
 .pointer {cursor:pointer;}
 
@@ -35,6 +26,8 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .main-content .content-sidebar {padding-bottom:10px;}
 .main-content .content-sidebar ul.bg {background:#fdfdfd;}
 .main-content .content-sidebar ul.bg li {border-bottom:1px solid #ddd;color:#7d7f7f;}
+.main-content .content-sidebar ul.bg li ul li {padding-left:20px;border:0;border-top:1px solid #ddd;}
+.main-content .content-sidebar ul.bg li ul li:first-child {border:0;}
 .main-content .content-sidebar ul li {padding:5px 0;}
 .main-content .content-sidebar ul li a {display:block;padding:5px 15px;}
 .main-content .content-sidebar ul li a:hover {color:#575858;}
@@ -46,7 +39,7 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .gallery-env .album-images .album-image .name {float:none;width:auto;}
 .gallery-env .album-images .album-image .image-options {float:none;width:auto;text-align:left;}
 
-/* item id button in nestable list */
+/* nestable */
 .uk-nestable .item-id {margin-right:5px;}
 
 /* home page select */
@@ -59,6 +52,9 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 /* forms */
 .form-horizontal .control-label.text-left{text-align:left;}
 .required:after {content:" *";color:red;}
+
+select .has-sub {font-weight:bold;}
+select .sub-item {padding-left:20px;}
 
 /*** OVERRIDE BOOTSTRAP ***/
 
@@ -148,14 +144,14 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .members-table tbody tr td.action-links a+form {padding-top:5px;}
 .member-form-inputs .control-label {line-height:1.42857143;}
 .member-form-inputs .multi-check {font-size:12px;display:inline-block;}
+.member-form-add-header .user-name.selected {width:100%;}
 @media screen and (min-width:1200px) {
-    .member-form-add-header .user-name.create {width:500px;}
+    .member-form-add-header .user-name.selected {width:500px;}
 }
 @media screen and (max-width:768px) {
-    .member-form-add-header .user-name.create {padding-left:0;}
+    .member-form-add-header .user-name.selected {padding-left:0;}
 }
-.member-form-add-header .user-name.create {width:100%;}
-.member-form-add-header .user-name.create a {font-size:14px;}
+.member-form-add-header .user-name.selected a {font-size:14px;}
 
 /* user navbar dropdown icon colors */
 .user-info-navbar .user-info-menu>li .dropdown-menu.notifications .dropdown-menu-list>li>a>i.icon-color-red, .navbar.horizontal-menu .navbar-inner>.nav>li .dropdown-menu.notifications .dropdown-menu-list>li>a>i.icon-color-red {background-color:red;}
@@ -172,6 +168,11 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .notes-env .list-of-notes li .addon-buttons button {float:left;;background:0 0;outline:0;background:#f5f5f5;border:1px solid #e0e0e0;border-top:0;border-right:0;zoom:1;-moz-opacity:0;opacity:0;-ms-filter:alpha(Opacity=0);filter:alpha(opacity=0)}
 .notes-env .list-of-notes li:hover .addon-buttons button {zoom:1;-moz-opacity:1;opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(opacity=100)}
 
+/* icheck red checkbox */
+.permissions .icheckbox_square-red {background:url('../js/icheck/skins/square/red-x.png') no-repeat;}
+.permissions .icheckbox_square-red.checked {background-position:-48px 0;}
+
+.bootstrap-tagsinput .tag {font-size:12px;}
 /*** OVERRIDE ThirdPartyPlugins ***/
 
 /* datatables & yadcf-filter */

@@ -23,7 +23,7 @@ trait VisibilityTrait
             throw new RuntimeException('Model not found');
         }
 
-        if ($this->model->hasLanguages()) {
+        if ($this->model->hasLanguage()) {
             $model = $this->model->joinLanguages()->findOrFail($id);
         } else {
             $model = $this->model->findOrFail($id);

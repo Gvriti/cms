@@ -3,7 +3,6 @@
 namespace Models\Traits;
 
 use Models\_Language;
-use Models\Abstracts\Model;
 
 trait LanguageTrait
 {
@@ -17,12 +16,11 @@ trait LanguageTrait
     /**
      * Create a new language instance, related to this model.
      *
-     * @param  \Models\Abstracts\Model  $model
      * @return $this
      */
-    public function setLanguage(Model $model)
+    public function setLanguage()
     {
-        $this->languageModel = new _Language($model);
+        $this->languageModel = new _Language($this);
 
         return $this;
     }
@@ -32,7 +30,7 @@ trait LanguageTrait
      *
      * @return \Models\_Language
      */
-    public function getLanguage(Model $model)
+    public function getLanguage()
     {
         return $this->languageModel;
     }

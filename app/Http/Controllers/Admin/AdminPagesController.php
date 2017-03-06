@@ -192,7 +192,7 @@ class AdminPagesController extends Controller
 
         $model = new $model;
 
-        if ($model->hasLanguages()) {
+        if ($model->hasLanguage()) {
             $model = $model->joinLanguages();
         }
 

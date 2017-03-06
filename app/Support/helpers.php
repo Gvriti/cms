@@ -315,7 +315,9 @@ function make_tree($items, $slug = null, $parentId = 0, $parentKey = 'parent_id'
     $prevSlug = $slug;
 
     foreach($items as $item) {
-        if (! method_exists($item, '__get') || $item->{$parentKey} != $parentId) {
+        if (! method_exists($item, '__get') || ! method_exists($item, '__set')) {
+            return $items;
+        } elseif ($item->{$parentKey} != $parentId) {
             continue;
         }
 

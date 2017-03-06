@@ -106,7 +106,7 @@ class AdminSitemapXmlController extends Controller
                 : null
             )]];
 
-            if ($page->hasLanguages() && $this->hasManyLanguage) {
+            if ($page->hasLanguage() && $this->hasManyLanguage) {
                 foreach ($this->languages as $langKey => $langValue) {
                     $value['url'][] = $this->getLanguageLinks($page, null, $langKey);
                 }
@@ -114,7 +114,7 @@ class AdminSitemapXmlController extends Controller
 
             $this->data[] = $value;
 
-            $this->setImplicitModels($page, $this->attachedTypes);
+            $this->setImplicitModels($page);
         }
 
         $xml = new XmlService;
@@ -168,7 +168,7 @@ class AdminSitemapXmlController extends Controller
                     : null
                 )]];
 
-                if ($implicitItem->hasLanguages() && $this->hasManyLanguage) {
+                if ($implicitItem->hasLanguage() && $this->hasManyLanguage) {
                     foreach ($this->languages as $langKey => $langValue) {
                         $value['url'][] = $this->getLanguageLinks(
                             $page, $implicitItem->slug, $langKey

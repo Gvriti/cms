@@ -43,7 +43,6 @@
             </div>
         </div>
     </div>
-
     <div class="col-sm-6">
         <div class="form-group{{($error = $errors->first('web_order_by')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label required">Web order by:</label>
@@ -77,7 +76,6 @@
             </div>
         </div>
     </div>
-
     <div class="col-sm-6">
         <div class="form-group{{($error = $errors->first('web_sort')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label required">Web sort:</label>
@@ -119,7 +117,6 @@
             </div>
         </div>
     </div>
-
     <div class="col-sm-6">
         <div class="form-group{{($error = $errors->first('web_per_page')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label required">Web per page:</label>

@@ -143,7 +143,7 @@ class File extends Model
 
         $this->foreignModel = new $model;
 
-        if ($this->foreignModel->hasLanguages()) {
+        if ($this->foreignModel->hasLanguage()) {
             $this->foreignModel = $this->foreignModel->joinLanguages();
         }
 

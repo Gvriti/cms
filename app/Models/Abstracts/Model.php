@@ -3,6 +3,7 @@
 namespace Models\Abstracts;
 
 use Models\Builder\Builder;
+use Models\Traits\LanguageTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 use Illuminate\Http\Exception\HttpResponseException;
@@ -21,7 +22,7 @@ abstract class Model extends BaseModel
      *
      * @var bool
      */
-    protected $hasLanguages = false;
+    protected $hasLanguage = false;
 
     /**
      * Create a new Eloquent model instance.
@@ -34,10 +35,10 @@ abstract class Model extends BaseModel
         parent::__construct($attributes);
 
         // Set language model if it's used into the called model.
-        if (method_exists(get_called_class(), 'setLanguage')) {
-            $this->setLanguage($this);
+        if (in_array(LanguageTrait::class, trait_uses_recursive($this))) {
+            $this->setLanguage();
 
-            $this->hasLanguages = true;
+            $this->hasLanguage = true;
         }
     }
 
@@ -46,9 +47,9 @@ abstract class Model extends BaseModel
      *
      * @return bool
      */
-    public function hasLanguages()
+    public function hasLanguage()
     {
-        return $this->hasLanguages;
+        return $this->hasLanguage;
     }
 
     /**
@@ -208,8 +209,8 @@ abstract class Model extends BaseModel
             $response = response()->json(fill_db_data($e->errorInfo[1], $parameters));
         } else {
             $response = redirect()->back()
-                                  ->with('alert', fill_db_data($e->errorInfo[1], $parameters))
-                                  ->withInput();
+                ->with('alert', fill_db_data($e->errorInfo[1], $parameters))
+                ->withInput();
         }
 
         throw new HttpResponseException($response);
