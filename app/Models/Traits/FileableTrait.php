@@ -68,10 +68,12 @@ trait FileableTrait
      */
     public function hasFile($id)
     {
-        $file = (new File)->where([
-            'model_id' => $id, 'model_name' => $this->getTable()
-        ])->first();
+        if (! ($id = ($id ?: $this->id))) {
+            return false;
+        }
 
-        return ! is_null($file);
+        return (new File)->where([
+            'model_id' => $id, 'model_name' => $this->getTable()
+        ])->exists();
     }
 }

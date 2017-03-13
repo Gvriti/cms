@@ -557,40 +557,48 @@ function text_limit($string, $limit = 100, $break = '.', $end = '')
  * Get youtube video id from url.
  *
  * @param  string  $url
+ * @param  array  $allowQueryStrings
  * @return string
  */
-function get_youtube_id($url)
+function get_youtube_id($url, array $allowQueryStrings = [])
 {
     $parts = parse_url($url);
 
+    $queryString = [];
+
     if (isset($parts['query'])) {
         parse_str($parts['query'], $queryString);
+    }
 
-        if (isset($queryString['v'])) {
-            return $queryString['v'];
-        } elseif (isset($queryString['vi'])) {
-            return $queryString['vi'];
-        }
+    $allowQueryStrings = query_string(array_intersect_key(
+        $queryString, array_flip($allowQueryStrings)
+    ), '&');
+
+    if (isset($queryString['v'])) {
+        return $queryString['v'] . $allowQueryStrings;
+    } elseif (isset($queryString['vi'])) {
+        return $queryString['vi'] . $allowQueryStrings;
     }
 
     if (isset($parts['path'])) {
         $path = explode('/', trim($parts['path'], '/'));
 
-        return (string) end($path);
+        return (string) end($path) . $allowQueryStrings;
     }
 
-    return '/#not_found';
+    return '';
 }
 
 /**
  * Convert youtube video url to embed url.
  *
  * @param  string  $url
+ * @param  array  $allowQueryStrings
  * @return string
  */
-function get_youtube_embed($url)
+function get_youtube_embed($url, array $allowQueryStrings = [])
 {
-    return 'https://www.youtube.com/embed/' . get_youtube_id($url);
+    return 'https://www.youtube.com/embed/' . get_youtube_id($url, $allowQueryStrings);
 }
 
 /**

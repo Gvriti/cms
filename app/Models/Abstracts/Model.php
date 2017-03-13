@@ -96,12 +96,12 @@ abstract class Model extends BaseModel
     }
 
     /**
-     * Set the Eloquent builder instance.
+     * Set the Eloquent query builder instance.
      *
      * @param  \Models\Builder\Builder  $builder
      * @return $this
      */
-    public function setBuilder(Builder $builder)
+    public function setEloquentBuilder(Builder $builder)
     {
         $this->builder = $builder;
 
