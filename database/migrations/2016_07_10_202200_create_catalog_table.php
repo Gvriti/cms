@@ -29,8 +29,8 @@ class CreateCatalogTable extends Migration
             $table->integer('catalog_id')->unsigned();
             $table->string('language', 3);
             $table->string('title');
-            $table->text('description');
-            $table->mediumText('content');
+            $table->text('description')->nullable();
+            $table->mediumText('content')->nullable();
             $table->string('meta_desc')->nullable();
             $table->timestamps();
 

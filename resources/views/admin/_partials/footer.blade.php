@@ -154,9 +154,5 @@ $(function() {
     lockscreen('{{$cmsSettings->get('lockscreen')}}', '{{cms_route('lockscreen')}}');
 @endif
 });
-
-function csrf_token() {
-    return '{{csrf_token()}}';
-}
 </script>
 @stack('scripts.bottom')

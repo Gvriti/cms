@@ -74,7 +74,7 @@ galleryEnv.on('click', 'a[data-delete]', function(e) {
     }
 
     if (ids.length) {
-        var input = {'ids':ids, '_method':'delete', '_token':csrf_token()};
+        var input = {'ids':ids, '_method':'delete', '_token':"{{$csrfToken = csrf_token()}}"};
 
         $.post(routeIndex + '/' + ids, input, function(data) {
             // alert toastr message
@@ -97,7 +97,7 @@ galleryEnv.on('click', '.visibility', function(e) {
     var item = $(this);
     var url = item.data('url');
 
-    var input = {'_token':csrf_token()};
+    var input = {'_token':"{{$csrfToken}}"};
     $.post(url, input, function(data) {
         if (data) {
             value = 1;

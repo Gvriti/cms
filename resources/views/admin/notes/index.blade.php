@@ -69,8 +69,11 @@ $(function() {
         description = '',
         content     = '';
 
+    var listNotes = $('.list-of-notes');
+    var saveNote = $('#save-note');
+
     function updateNoteContent() {
-        id = $('.list-of-notes .current').data('id');
+        id = listNotes.find('.current').data('id');
 
         title       = xenonNotes.$currentNoteTitle.text();
         description = xenonNotes.$currentNoteDescription.text();
@@ -78,43 +81,43 @@ $(function() {
     }
 
     $('.write-pad').on('keyup', 'textarea', function() {
-        $('#save-note').show().prop('disabled', false);
-        $('#save-note .icon-var').removeClass('fa-spin fa-check').addClass('fa-save');
+        saveNote.show().prop('disabled', false);
+        saveNote.find('.icon-var').removeClass('fa-spin fa-check').addClass('fa-save');
 
         updateNoteContent();
     });
 
     // create/update note
-    $('#save-note').on('click', function() {
-        var input = {'id':id, 'title':title, 'description':description, 'content':content, '_method':'put', '_token':csrf_token()};
+    saveNote.on('click', function() {
+        var input = {'id':id, 'title':title, 'description':description, 'content':content, '_method':'put', '_token':"{{$csrfToken = csrf_token()}}"};
 
         $.post("{{cms_route('notes.save')}}", input, function(newId) {
             if (! id && newId) {
-                $('.list-of-notes .current').data('id', newId);
+                listNotes.find('.current').data('id', newId);
             }
 
-            $('#save-note .icon-var').removeClass('fa-spin fa-save').addClass('fa-check');
+            saveNote.find('.icon-var').removeClass('fa-spin fa-save').addClass('fa-check');
         }, 'json')
         .fail(function(xhr) {
-            $('#save-note .icon-var').removeClass('fa-spin fa-save').addClass('fa-remove');
+            saveNote.find('.icon-var').removeClass('fa-spin fa-save').addClass('fa-remove');
 
             alert(xhr.responseText);
         }).always(function() {
-            $('#save-note').delay(400).fadeOut(500);
+            saveNote.delay(400).fadeOut(500);
         });
     });
 
     // move note into the calendar
-    $('.list-of-notes').on('click', '.note-calendar', function() {
-        note = $(this).closest('li');
+    listNotes.on('click', '.note-calendar', function() {
+        var note = $(this).closest('li');
         note.addClass('current').siblings().removeClass('current');
         xenonNotes.checkCurrentNote();
 
         updateNoteContent();
 
-        var input = {'title':title, 'content':content, '_token':csrf_token()};
+        var input = {'title':title, 'content':content, '_token':"{{$csrfToken}}"};
 
-        $.post("{{cms_route('notes.calendar')}}", input, function(data) {
+        $.post("{{cms_route('notes.calendar')}}", input, function() {
             note.find('.note-close').trigger('click');
         }, 'json')
         .fail(function(xhr) {
@@ -123,12 +126,12 @@ $(function() {
     });
 
     // delete note
-    $('.list-of-notes').on('click', '.note-close', function() {
+    listNotes.on('click', '.note-close', function() {
         id = $(this).closest('li').data('id');
 
-        var input = {'id':id, '_token':csrf_token()};
+        var input = {'id':id, '_token':"{{$csrfToken}}"};
 
-        $.post("{{cms_route('notes.destroy')}}", input, function(data) {}, 'json')
+        $.post("{{cms_route('notes.destroy')}}", input, function() {}, 'json')
         .fail(function(xhr) {
             alert(xhr.responseText);
         })

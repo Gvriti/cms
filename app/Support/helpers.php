@@ -558,29 +558,30 @@ function text_limit($string, $limit = 100, $break = '.', $end = '')
  *
  * @param  string  $url
  * @param  array  $allowQueryStrings
+ * @param  bool  $strict
  * @return string
  */
-function get_youtube_id($url, array $allowQueryStrings = [])
+function get_youtube_id($url, array $allowQueryStrings = [], $strict = false)
 {
     $parts = parse_url($url);
 
-    $queryString = [];
-
     if (isset($parts['query'])) {
         parse_str($parts['query'], $queryString);
+
+        $allowQueryStrings = query_string(array_intersect_key(
+            $queryString, array_flip($allowQueryStrings)
+        ), '&');
+
+        if (isset($queryString['v'])) {
+            return $queryString['v'] . $allowQueryStrings;
+        } elseif (isset($queryString['vi'])) {
+            return $queryString['vi'] . $allowQueryStrings;
+        }
+    } else {
+        $allowQueryStrings = '';
     }
 
-    $allowQueryStrings = query_string(array_intersect_key(
-        $queryString, array_flip($allowQueryStrings)
-    ), '&');
-
-    if (isset($queryString['v'])) {
-        return $queryString['v'] . $allowQueryStrings;
-    } elseif (isset($queryString['vi'])) {
-        return $queryString['vi'] . $allowQueryStrings;
-    }
-
-    if (isset($parts['path'])) {
+    if ((! $strict || isset($parts['scheme'])) && isset($parts['path'])) {
         $path = explode('/', trim($parts['path'], '/'));
 
         return (string) end($path) . $allowQueryStrings;

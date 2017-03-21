@@ -27,7 +27,7 @@ class CreateFaqTable extends Migration
             $table->integer('faq_id')->unsigned();
             $table->string('language', 3);
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
 
             $table->foreign('faq_id')->references('id')->on('faq')->onDelete('cascade');

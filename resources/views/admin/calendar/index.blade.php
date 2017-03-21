@@ -55,7 +55,7 @@
         <div class="modal-content">
             <form action="{{cms_route('calendar.save')}}" method="post" id="event-form" class="{{$cmsSettings->get('ajax_form')}}">
                 <input type="hidden" name="_method" value="put">
-                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                <input type="hidden" name="_token" value="{{$csrfToken = csrf_token()}}">
                 <input type="hidden" name="active" id="event-active" value="0">
                 <input type="hidden" name="id" id="event-id" value="">
                 <input type="hidden" name="color" id="color" value="">
@@ -78,8 +78,8 @@
                         <a href="#" id="event-delete" class="btn btn-black pull-right">{{trans('general.delete')}}</a>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 @push('styles.head')
@@ -92,6 +92,8 @@
 <script type="text/javascript">
 // Calendar Initialization
 $(document).ready(function($) {
+    var eventsList = $("#events-list");
+
     // Form to add new event
     $("#add-calendar-event").on('submit', function(e) {
         e.preventDefault();
@@ -100,11 +102,11 @@ $(document).ready(function($) {
             title = $event.val().trim();
 
         if (title.length >= 3) {
-            var input = {'title':title, '_method':'put', '_token':csrf_token()};
+            var input = {'title':title, '_method':'put', '_token':"{{$csrfToken}}"};
 
             $.post("{{cms_route('calendar.save')}}", input, function(data) {
                 // Create Event Entry
-                $("#events-list").append(
+                eventsList.append(
                     '<li id="event' + data.input.id + '">\
                         <a href="#" data-event-class="event-color-' + data.input.color + '" data-color="' + data.input.color + '" data-id="' + data.input.id + '">\
                             <span class="title badge badge-' + data.input.color + ' badge-roundless">' + title + '</span>\
@@ -114,7 +116,7 @@ $(document).ready(function($) {
                 );
 
                 // Reset draggable
-                $("#events-list li").draggable({
+                eventsList.find("li").draggable({
                     cancel: '.list-header',
                     revert: true,
                     revertDuration: 50,
@@ -144,7 +146,7 @@ $(document).ready(function($) {
         },
         buttonIcons: {
             prev: 'prev fa-angle-left',
-            next: 'next fa-angle-right',
+            next: 'next fa-angle-right'
         },
         defaultView: 'month',
         // lazyFetching: false,
@@ -158,7 +160,7 @@ $(document).ready(function($) {
                 url: '{{cms_route('calendar.events')}}',
                 type: 'POST',
                 dataType: 'json',
-                data: {'start':start.format(), 'end':end.format(), '_token':csrf_token()},
+                data: {'start':start.format(), 'end':end.format(), '_token':"{{$csrfToken}}"},
                 success: function(data) {
                     var events = [];
                     $(data).each(function(index, element) {
@@ -178,10 +180,10 @@ $(document).ready(function($) {
                 }
             });
         },
-        eventResize: function(event, delta, revertFunc, jsEvent, ui, view) {
+        eventResize: function(event) {
             calendarChanges(event);
         },
-        eventDrop: function(event, delta, revertFunc) {
+        eventDrop: function(event) {
             calendarChanges(event);
         },
         eventClick: function(event, jsEvent, view) {
@@ -200,7 +202,7 @@ $(document).ready(function($) {
                 updatedEvent = event;
             }
         },
-        drop: function(date, jsEvent, ui) {
+        drop: function(date) {
             var target = $(this),
                 $event = target.find('a'),
                 eventObject = {
@@ -211,10 +213,10 @@ $(document).ready(function($) {
                     start: date.format(),
                     className: $event.data('event-class'),
                     '_method':'put',
-                    '_token':csrf_token()
+                    '_token':"{{$csrfToken}}"
                 };
 
-            $.post("{{cms_route('calendar.save')}}", eventObject, function(data) {
+            $.post("{{cms_route('calendar.save')}}", eventObject, function() {
                 calendar.fullCalendar('renderEvent', eventObject);
 
                 // Remove event from list
@@ -232,7 +234,7 @@ $(document).ready(function($) {
 @endif
 
     // Draggable Events
-    $("#events-list li").draggable({
+    eventsList.find("li").draggable({
         cancel: '.list-header',
         revert: true,
         revertDuration: 50,
@@ -242,7 +244,7 @@ $(document).ready(function($) {
     var modal = $('#event-modal');
 
     // Load event edit modal
-    $('#events-list').on('click', 'a', function(e) {
+    eventsList.on('click', 'a', function(e) {
         e.preventDefault();
 
         $('#event-active', modal).val(0);
@@ -281,14 +283,14 @@ $(document).ready(function($) {
         var active = form.find('#event-active').val();
         var id     = form.find('#event-id').val();
 
-        var input = {'id':id, '_token':csrf_token()};
-        $.post("{{cms_route('calendar.destroy')}}", input, function(data) {
+        var input = {'id':id, '_token':"{{$csrfToken}}"};
+        $.post("{{cms_route('calendar.destroy')}}", input, function() {
             modal.modal('hide');
 
             if (active == 1) {
                 calendar.fullCalendar('removeEvents', id);
             } else {
-                $('#events-list #event' + id).remove();
+                $('#events-list').find('#event' + id).remove();
             }
         }, 'json').fail(function(xhr) {
             alert(xhr.responseText);
@@ -303,14 +305,14 @@ $(document).ready(function($) {
             color: event.color,
             start: event.start.format(),
             '_method':'put',
-            '_token':csrf_token()
+            '_token':"{{$csrfToken}}"
         };
 
         if (event.end) {
             $.extend(eventObject, {end: event.end.format()});
         }
 
-        $.post("{{cms_route('calendar.save')}}", eventObject, function(data) {}, 'json')
+        $.post("{{cms_route('calendar.save')}}", eventObject, function() {}, 'json')
         .fail(function(xhr) {
             alert(xhr.responseText);
         });

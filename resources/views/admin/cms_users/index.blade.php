@@ -43,7 +43,7 @@
             <input type="hidden" name="role" value="{{$role}}">
         @endif
             <div class="dib padr">
-                <input type="text" name="name" class="form-control" placeholder="სახელი და/ან გვარი" value="{{request('name')}}">
+                <input type="text" name="name" class="form-control" placeholder="სახელი ან/და გვარი" value="{{request('name')}}">
             </div>
             <div class="dib padr">
                 <input type="text" name="email" class="form-control" placeholder="ელ.ფოსტა" value="{{request('email')}}">

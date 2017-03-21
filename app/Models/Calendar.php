@@ -121,7 +121,7 @@ class Calendar extends Model
      * Update the specified calendar event.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return $this
+     * @return bool|int
      */
     public function updateEvent(Request $request)
     {
