@@ -14,7 +14,7 @@ class CreateSliderTable extends Migration
     {
         Schema::create('slider', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('position')->default(1)->unsigned();
+            $table->unsignedInteger('position')->default(1);
             $table->boolean('visible')->default(1);
             $table->string('file', 800)->nullable();
             $table->string('link', 800)->nullable();
@@ -23,7 +23,7 @@ class CreateSliderTable extends Migration
 
         Schema::create('slider_languages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('slider_id')->unsigned();
+            $table->unsignedInteger('slider_id');
             $table->string('language', 3);
             $table->string('title');
             $table->string('description', 800);

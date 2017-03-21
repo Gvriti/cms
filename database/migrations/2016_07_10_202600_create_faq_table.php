@@ -14,8 +14,8 @@ class CreateFaqTable extends Migration
     {
         Schema::create('faq', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('collection_id')->unsigned();
-            $table->integer('position')->unsigned()->default(1);
+            $table->unsignedInteger('collection_id');
+            $table->unsignedInteger('position')->default(1);
             $table->boolean('visible')->default(1);
             $table->timestamps();
 
@@ -24,7 +24,7 @@ class CreateFaqTable extends Migration
 
         Schema::create('faq_languages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('faq_id')->unsigned();
+            $table->unsignedInteger('faq_id');
             $table->string('language', 3);
             $table->string('title');
             $table->text('description')->nullable();

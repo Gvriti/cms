@@ -15,15 +15,15 @@ class CreateFilesTable extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
             $table->string('model_name', 64)->index();
-            $table->integer('model_id')->index()->unsigned();
-            $table->smallinteger('position')->default(1)->unsigned();
+            $table->unsignedInteger('model_id')->index();
+            $table->unsignedSmallInteger('position')->default(1);
             $table->boolean('visible')->default(1);
             $table->timestamps();
         });
 
         Schema::create('file_languages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('file_id')->unsigned();
+            $table->unsignedInteger('file_id');
             $table->string('language', 3);
             $table->string('title');
             $table->string('file', 800)->nullable();

@@ -14,8 +14,8 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('gallery_id')->unsigned();
-            $table->integer('position')->default(1)->unsigned();
+            $table->unsignedInteger('gallery_id');
+            $table->unsignedInteger('position')->default(1);
             $table->boolean('visible')->default(1);
             $table->string('file', 800)->nullable();
             $table->timestamps();
@@ -25,7 +25,7 @@ class CreateVideosTable extends Migration
 
         Schema::create('video_languages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('video_id')->unsigned();
+            $table->unsignedInteger('video_id');
             $table->string('language', 3);
             $table->string('title');
             $table->timestamps();
