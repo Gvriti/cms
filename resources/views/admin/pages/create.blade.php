@@ -42,7 +42,5 @@
         {!! Form::close() !!}
     </div>
 </div>
-@push('scripts.bottom')
 @include('admin.pages.scripts')
-@endpush
 @endsection

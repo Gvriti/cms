@@ -111,6 +111,6 @@
         }
     });
 </script>
-@include('admin.pages.scripts')
 @endpush
+@include('admin.pages.scripts')
 @endsection

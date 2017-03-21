@@ -41,7 +41,5 @@
         {!! Form::close() !!}
     </div>
 </div>
-@push('scripts.bottom')
 @include('admin.galleries.scripts')
-@endpush
 @endsection
