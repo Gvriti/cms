@@ -59,7 +59,7 @@ class CmsUserRequest extends Request
         if (! $this->has('password')) {
             unset($input['password']);
         } else {
-            $this->offsetSet('password', bcrypt($input['password']));
+            $input['password'] = bcrypt($input['password']);
         }
 
         $input['active'] = $this->has('active') ? 1 : 0;
