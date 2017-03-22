@@ -342,7 +342,7 @@ function make_tree($items, $slug = null, $parentId = 0, $parentKey = 'parent_id'
  *
  * @param  string  $instance
  * @param  mixed   $default
- * @return array
+ * @return mixed
  */
 function app_instance($instance, $default = null)
 {

@@ -83,7 +83,7 @@
                 </div>
                 <div class="album-sorting-info">
                     <div class="album-sorting-info-inner clearfix">
-                        <a href="#" id="save-tree" class="btn btn-secondary btn-xs btn-single btn-icon btn-icon-standalone pull-right" data-action="sort">
+                        <a href="#" id="save-tree" data-token="{{csrf_token()}}" class="btn btn-secondary btn-xs btn-single btn-icon btn-icon-standalone pull-right" data-action="sort">
                             <i class="fa fa-save"></i>
                             <span>Save Current Order</span>
                         </a>

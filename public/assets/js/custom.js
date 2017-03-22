@@ -204,13 +204,11 @@ $('form#set-lockscreen').on('submit', function (e) {
     clearTimeout(timer);
     timerIsActive = false;
 
-    setLockscreen($(this).attr('action'));
+    setLockscreen($(this));
 });
 
-function setLockscreen(url) {
-    var input = {'_method':'put', '_token':csrf_token()};
-
-    $.post(url, input, function (data) {
+function setLockscreen(form) {
+    $.post(form.attr('action'), form.serialize(), function (data) {
         if (data) {
             var body = $('body');
             body.append(data.view);
@@ -221,7 +219,7 @@ function setLockscreen(url) {
     });
 }
 
-function lockscreen(time, url, reActive) {
+function lockscreen(time, form, reActive) {
     if (reActive) {
         timerIsActive = true;
     }
@@ -231,7 +229,7 @@ function lockscreen(time, url, reActive) {
             clearTimeout(timer);
 
             timer = setTimeout(function () {
-                setLockscreen(url);
+                setLockscreen(form);
 
                 timerIsActive = false;
             }, time);
@@ -272,7 +270,7 @@ function disableParentDeletion() {
 function positionable(url, orderBy, page, hasMorePages) {
     var saveBtn = $('#save-tree');
     var saveBtnIcon = $('.icon-var', saveBtn);
-    var postHiddens = {'_token':csrf_token()};
+    var postHiddens = {'_method':'put', '_token':saveBtn.data('token')};
     var nestable = $('#nestable-list');
 
     if (page) {
