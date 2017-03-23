@@ -1,4 +1,4 @@
-@if ($item->subItems instanceof \Illuminate\Support\Collection && $item->subItems->isNotEmpty())
+@if (isset($item) && has_model_tree($item))
 <ul class="dropdown-menu">
     @foreach ($item->subItems as $item)
     <li{!!$current->slug == $item->slug ? ' class="active"' : ''!!}>

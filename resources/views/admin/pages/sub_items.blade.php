@@ -1,4 +1,4 @@
-@if (isset($item->subItems) && ! $item->subItems->isEmpty())
+@if (isset($item) && has_model_tree($item))
 <ul>
 @foreach ($item->subItems as $item)
     <li id="item{{ $item->id }}" class="item{{$item->collapse ? ' uk-collapsed' : ''}}" data-id="{{ $item->id }}" data-parent="1">

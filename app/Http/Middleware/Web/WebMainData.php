@@ -77,7 +77,7 @@ class WebMainData
             $pages = (new Page)->forPublic($menu->id)->positionAsc()->get();
         }
 
-        $this->app->instance('pagesTree', make_tree($pages, ''));
+        $this->app->instance('pagesTree', make_model_tree($pages, ''));
     }
 
     /**

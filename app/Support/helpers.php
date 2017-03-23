@@ -1,5 +1,6 @@
 <?php
 
+use Models\Abstracts\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Events\QueryExecuted;
 
@@ -293,7 +294,7 @@ function home_text()
 }
 
 /**
- * Make a nestable items tree.
+ * Make a nestable eloquent models tree.
  *
  * @param  \Illuminate\Support\Collection|array  $items
  * @param  string|null  $slug
@@ -302,7 +303,7 @@ function home_text()
  * @param  string  $key
  * @return \Illuminate\Support\Collection|array
  */
-function make_tree($items, $slug = null, $parentId = 0, $parentKey = 'parent_id', $key = 'id')
+function make_model_tree($items, $slug = null, $parentId = 0, $parentKey = 'parent_id', $key = 'id')
 {
     if (! $items instanceof Collection && ! is_array($items)) {
         throw new InvalidArgumentException(
@@ -315,9 +316,11 @@ function make_tree($items, $slug = null, $parentId = 0, $parentKey = 'parent_id'
     $prevSlug = $slug;
 
     foreach($items as $item) {
-        if (! method_exists($item, '__get') || ! method_exists($item, '__set')) {
+        if (! $item instanceof Model) {
             return $items;
-        } elseif ($item->{$parentKey} != $parentId) {
+        }
+
+        if ($item->{$parentKey} != $parentId) {
             continue;
         }
 
@@ -329,12 +332,25 @@ function make_tree($items, $slug = null, $parentId = 0, $parentKey = 'parent_id'
             $item->slug = $slug;
         }
 
-        $item->subItems = make_tree($items, $slug, $item->{$key}, $parentKey, $key);
+        $item->subItems = make_model_tree($items, $slug, $item->{$key}, $parentKey, $key);
 
         $tree[] = $item;
     }
 
     return new Collection($tree);
+}
+
+/**
+ * Determine if the item has a nestable eloquent model items.
+ *
+ * @param  mixed $item
+ * @return bool
+ */
+function has_model_tree($item)
+{
+    return $item instanceof Model
+        && $item->subItems instanceof Collection
+        && $item->subItems->isNotEmpty();
 }
 
 /**
