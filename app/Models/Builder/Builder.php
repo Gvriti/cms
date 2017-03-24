@@ -200,7 +200,7 @@ class Builder extends EloquentBuilder
      */
     protected function prefixColumnsOnJoin($columns = ['*'])
     {
-        if (is_null($this->query->joins)) {
+        if (! isset($this->query->joins)) {
             return;
         }
 
@@ -227,7 +227,7 @@ class Builder extends EloquentBuilder
                             continue;
                         }
 
-                        if (is_null($clause['operator'])) {
+                        if (empty($clause['operator'])) {
                             $value->wheres[$key]['operator'] = "=";
                         }
 

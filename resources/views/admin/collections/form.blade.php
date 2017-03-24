@@ -145,7 +145,6 @@
 
 <div class="form-group">
     <label class="col-sm-2 control-label">Description:</label>
-
     <div class="col-sm-10">
         {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'Short description']) !!}
     </div>

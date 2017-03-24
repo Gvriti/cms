@@ -244,12 +244,6 @@ return [
         'photos' => 'fa fa-photo',
         'videos' => 'fa fa-video-camera',
 
-        'taxis' => 'fa fa-taxi',
-        'categories' => 'fa fa-list-alt',
-        'objects' => 'fa fa-map-o',
-        'branches' => 'fa fa-map-marker',
-        'workingHours' => 'fa fa-clock-o',
-
         'permissions' => 'fa fa-lock',
         'cmsUsers' => 'fa fa-user-secret',
         'users' => 'fa fa-user',
