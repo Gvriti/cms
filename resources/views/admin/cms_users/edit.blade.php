@@ -75,7 +75,7 @@ $(function() {
         $('.user-name a', this).text(firstname + ' ' + lastname);
         $('.user-name span', this).text(roles[role]);
         $('.user-img img', this).attr('src', photo);
-        if (role != 'admin') {
+        if (role !== 'admin') {
             $('.permissions', this).removeClass('hidden');
         } else {
             $('.permissions', this).addClass('hidden');

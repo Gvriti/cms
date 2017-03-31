@@ -89,7 +89,15 @@ class AdminCmsUsersController extends Controller
             throw new AccessDeniedHttpException;
         }
 
-        $model = $this->model->create($request->all());
+        $input = $request->all();
+
+        if (! $request->has('password')) {
+            unset($input['password']);
+        } else {
+            $input['password'] = bcrypt($input['password']);
+        }
+
+        $model = $this->model->create($input);
 
         app('db')->table('cms_settings')->insert(['cms_user_id' => $model->id]);
 
@@ -140,15 +148,21 @@ class AdminCmsUsersController extends Controller
      */
     public function update(CmsUserRequest $request, $id)
     {
-        $input = $request->all();
-
         if (! $this->user()->isAdmin() && $this->user()->id != $id) {
             throw new AccessDeniedHttpException;
-        } elseif ($this->user()->id == $id) {
-            $input['active'] = 1;
+        }
+
+        $input = $request->all();
+
+        if (! $request->has('password')) {
+            unset($input['password']);
+        } else {
+            $input['password'] = bcrypt($input['password']);
         }
 
         $this->model->findOrFail($id)->update($input);
+
+        unset($input['password'], $input['password_confirmation']);
 
         if ($request->expectsJson()) {
             return response()->json(fill_data(

@@ -28,12 +28,12 @@ class CmsUserRequest extends Request
         $passwordRequired = $this->method() == 'POST' ? 'required|' : '';
 
         return [
-            'email'     => 'required|email|unique:cms_users,email,'.$id,
+            'email' => 'required|email|unique:cms_users,email,'.$id,
             'firstname' => 'required|min:2',
-            'lastname'  => 'required|min:2',
-            'phone'     => 'digits_between:3,32',
-            'role'      => 'required',
-            'password'  => $passwordRequired . 'min:6|confirmed'
+            'lastname' => 'required|min:2',
+            'phone' => 'digits_between:3,32',
+            'role' => 'required',
+            'password' => $passwordRequired . 'min:6|confirmed'
         ];
     }
 
@@ -48,21 +48,14 @@ class CmsUserRequest extends Request
 
         $user = $this->user('cms');
 
+        $input['active'] = $this->has('active') ? 1 : 0;
+
         if ($user->id == $id) {
             $input['role'] = $user->role;
-        } elseif (! $user->isAdmin()
-            || ! in_array($this->get('role'), array_keys(user_roles()))
-        ) {
+            $input['active'] = 1;
+        } elseif (! in_array($this->get('role'), array_keys(user_roles()))) {
             $input['role'] = null;
         }
-
-        if (! $this->has('password')) {
-            unset($input['password']);
-        } else {
-            $input['password'] = bcrypt($input['password']);
-        }
-
-        $input['active'] = $this->has('active') ? 1 : 0;
 
         return $input;
     }
