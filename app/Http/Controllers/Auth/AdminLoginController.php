@@ -61,10 +61,6 @@ class AdminLoginController extends Controller
      */
     public function redirectPath()
     {
-        if ($this->redirectNamed) {
-            return cms_route($this->redirectTo);
-        }
-
         return cms_url($this->redirectTo);
     }
 
