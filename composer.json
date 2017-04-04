@@ -6,21 +6,20 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "laravel/framework": "5.3.*",
-        "laravelcollective/html": "5.3.*",
+        "laravel/framework": "5.4.*",
+        "laravel/tinker": "~1.0",
+        "laravelcollective/html": "5.4.*",
         "barryvdh/laravel-elfinder": "0.3.*",
-        "cocur/slugify": "2.3.*",
+        "cocur/slugify": "2.5.*",
         "league/glide": "1.2.*",
         "mews/captcha": "2.1.*",
-        "php-curl-class/php-curl-class": "7.1.*",
-        "sabre/xml": "1.5.*"
+        "php-curl-class/php-curl-class": "7.2.*",
+        "sabre/xml": "2.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.0",
-        "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "phpunit/phpunit": "~5.7"
     },
     "autoload": {
         "classmap": [
@@ -35,9 +34,9 @@
         ]
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/TestCase.php"
-        ]
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "scripts": {
         "post-root-package-install": [
@@ -57,6 +56,7 @@
     },
     "config": {
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "optimize-autoloader": true
     }
 }

@@ -132,7 +132,7 @@ trait PositionableTrait
     /**
      * {@inheritdoc}
      */
-    public static function create(array $attributes = [])
+    public function create(array $attributes = [])
     {
         $attributes['position'] = (int) parent::max('position') + 1;
 

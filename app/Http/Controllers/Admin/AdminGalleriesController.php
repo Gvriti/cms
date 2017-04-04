@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Models\Gallery;
 use Models\Collection;
 use Illuminate\Http\Request;
-use App\Jobs\Admin\AdminDestroy;
+use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\GalleryRequest;
 
@@ -143,8 +143,6 @@ class AdminGalleriesController extends Controller
      */
     public function destroy($collectionId, $id)
     {
-        return $this->dispatch(
-            new AdminDestroy($this->model, $id, false)
-        );
+        return (new AdminDestroy($this->model, $id, false))->handle();
     }
 }

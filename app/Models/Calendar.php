@@ -103,8 +103,8 @@ class Calendar extends Model
         }
 
         return $this->whereNotNull('start')
-                    ->whereBetween('start', [$start, $end])
-                    ->get();
+            ->whereBetween('start', [$start, $end])
+            ->get();
     }
 
     /**

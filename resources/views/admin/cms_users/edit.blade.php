@@ -70,7 +70,7 @@ $(function() {
         var lastname = $('#lastname', this).val();
         var photo = $('#photo', this).val();
         var role = $('[name="role"]', this).val();
-        var roles = ['{!!implode("', '", $roles)!!}'];
+        var roles = ['{!!implode('\', \'', $roles)!!}'];
 
         $('.user-name a', this).text(firstname + ' ' + lastname);
         $('.user-name span', this).text(roles[role]);

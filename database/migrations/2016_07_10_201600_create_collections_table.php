@@ -23,7 +23,7 @@ class CreateCollectionsTable extends Migration
             $table->string('web_order_by', 32)->default('id');
             $table->string('web_sort', 16)->default('desc');
             $table->tinyInteger('web_per_page')->default(10);
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

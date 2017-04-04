@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Models\File;
 use Illuminate\Http\Request;
-use App\Jobs\Admin\AdminDestroy;
+use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FileRequest;
 
@@ -178,8 +178,6 @@ class AdminFilesController extends Controller
             $id = $id[0];
         }
 
-        return $this->dispatch(
-            new AdminDestroy($this->model, $id, false)
-        );
+        return (new AdminDestroy($this->model, $id, false))->handle();
     }
 }

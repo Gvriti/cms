@@ -315,7 +315,7 @@ class Page extends Model
     /**
      * {@inheritdoc}
      */
-    public static function create(array $attributes = [])
+    public function create(array $attributes = [])
     {
         if (isset($attributes['menu_id'])) {
             $attributes['position'] = (int) parent::menuId($attributes['menu_id'])

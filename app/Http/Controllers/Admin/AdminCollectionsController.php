@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Models\Collection;
 use Illuminate\Http\Request;
-use App\Jobs\Admin\AdminDestroy;
+use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CollectionRequest;
 
@@ -123,8 +123,6 @@ class AdminCollectionsController extends Controller
      */
     public function destroy($id)
     {
-        return $this->dispatch(
-            new AdminDestroy($this->model, $id, false)
-        );
+        return (new AdminDestroy($this->model, $id, false))->handle();
     }
 }

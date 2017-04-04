@@ -42,7 +42,7 @@ return [
     'email'                => ':attribute შეყვანილია არასწორი ფორმატით.',
     'exists'               => 'The selected :attribute is invalid.',
     'file'                 => ':attribute უნდა იყოს ფაილი.',
-    'filled'               => ':attribute შევსება აუცილებელია.',
+    'filled'               => ':attribute უნდა შეიცავდეს მნიშვნელობას.',
     'image'                => 'The :attribute must be an image.',
     'in'                   => 'The selected :attribute is invalid.',
     'in_array'             => 'The :attribute field does not exist in :other.',

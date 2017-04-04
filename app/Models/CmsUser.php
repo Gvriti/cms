@@ -4,7 +4,7 @@ namespace Models;
 
 use Illuminate\Http\Request;
 use Models\Abstracts\User as Model;
-use Illuminate\Http\Exception\HttpResponseException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CmsUser extends Model
 {

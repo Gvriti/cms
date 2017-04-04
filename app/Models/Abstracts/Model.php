@@ -6,7 +6,7 @@ use Models\Builder\Builder;
 use Models\Traits\LanguageTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Model as BaseModel;
-use Illuminate\Http\Exception\HttpResponseException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 abstract class Model extends BaseModel
 {
@@ -145,7 +145,7 @@ abstract class Model extends BaseModel
     /**
      * {@inheritdoc}
      */
-    public static function create(array $attributes = [])
+    public function create(array $attributes = [])
     {
         $model = parent::create($attributes);
 
@@ -178,7 +178,7 @@ abstract class Model extends BaseModel
      * @param  int|null  $id
      * @return bool|null
      *
-     * @throws \Illuminate\Http\Exception\HttpResponseException
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
      */
     public function delete($id = null)
     {
@@ -197,7 +197,7 @@ abstract class Model extends BaseModel
      * @param  \Illuminate\Database\QueryException  $e
      * @return void
      *
-     * @throws \Illuminate\Http\Exception\HttpResponseException
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
      */
     protected function queryExceptionResponse(QueryException $e)
     {

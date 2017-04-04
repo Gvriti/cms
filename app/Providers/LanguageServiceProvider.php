@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Contracts\Config\Repository;
+use Illuminate\Contracts\Config\Repository as Config;
 
 class LanguageServiceProvider extends ServiceProvider
 {
@@ -43,7 +43,7 @@ class LanguageServiceProvider extends ServiceProvider
      * @param  \Illuminate\Contracts\Config\Repository  $config
      * @return void
      */
-    public function boot(Request $request, Repository $config)
+    public function boot(Request $request, Config $config)
     {
         $this->setLanguageConfig($request, $config);
 
@@ -57,7 +57,7 @@ class LanguageServiceProvider extends ServiceProvider
      * @param  \Illuminate\Contracts\Config\Repository  $config
      * @return void
      */
-    protected function setLanguageConfig(Request $request, Repository $config)
+    protected function setLanguageConfig(Request $request, Config $config)
     {
         $this->segmentsCount = count($this->segments = $request->segments());
 
@@ -97,7 +97,7 @@ class LanguageServiceProvider extends ServiceProvider
      * @param  \Illuminate\Contracts\Config\Repository  $config
      * @return void
      */
-    protected function makeLanguageUrls(Request $request, Repository $config)
+    protected function makeLanguageUrls(Request $request, Config $config)
     {
         if ($this->languagesCount > 1
             && (! isset($this->segments[0])

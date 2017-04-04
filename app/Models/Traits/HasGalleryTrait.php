@@ -119,7 +119,7 @@ trait HasGalleryTrait
     /**
      * {@inheritdoc}
      */
-    public static function create(array $attributes = [])
+    public function create(array $attributes = [])
     {
         if (isset($attributes['gallery_id'])) {
             $attributes['position'] = (int) parent::galleryId($attributes['gallery_id'])

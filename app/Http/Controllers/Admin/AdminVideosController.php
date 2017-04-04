@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Models\Video;
 use Models\Gallery;
 use Illuminate\Http\Request;
-use App\Jobs\Admin\AdminDestroy;
+use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\VideoRequest;
 
@@ -174,8 +174,10 @@ class AdminVideosController extends Controller
      */
     public function destroy($galleryId, $id)
     {
-        return $this->dispatch(
-            new AdminDestroy($this->model, $this->request->get('ids'), false)
-        );
+        return (new AdminDestroy(
+            $this->model,
+            $this->request->get('ids'),
+            false)
+        )->handle();
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Models\CmsUser;
 use Illuminate\Http\Request;
-use App\Jobs\Admin\AdminDestroy;
+use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use App\Http\Requests\Admin\CmsUserRequest;
@@ -191,9 +191,7 @@ class AdminCmsUsersController extends Controller
             $this->model = null;
         }
 
-        return $this->dispatch(
-            new AdminDestroy($this->model, $id, false)
-        );
+        return (new AdminDestroy($this->model, $id, false))->handle();
     }
 
     /**

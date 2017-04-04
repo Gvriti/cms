@@ -87,8 +87,8 @@ class Slider extends Model
     public function forPublic()
     {
         return $this->joinLanguage()->where('visible', 1)
-                                     ->whereNotNull('file')
-                                     ->where('file', '!=', '')
-                                     ->positionDesc();
+            ->whereNotNull('file')
+            ->where('file', '!=', '')
+            ->positionDesc();
     }
 }

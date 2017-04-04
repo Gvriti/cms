@@ -14,7 +14,7 @@
                     <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="{{ cms_route($routeName . '.edit', $parent->routeParams) }}"><i class="{{icon_type($routeName)}}"></i>{{$parent->title}}</a>
+                    <a href="{{ cms_route($routeName . '.edit', $parent->routeParams) }}"><i class="{{icon_type($routeName)}}"></i>General</a>
                 </li>
                 <li class="active">
                     <i class="{{$icon}}"></i>
@@ -29,7 +29,7 @@
                 <a href="{{ cms_route($routeName . '.edit', $parent->routeParams) }}">
                     <span class="visible-xs"><i class="fa fa-home"></i></span>
                     <span class="hidden-xs">
-                    <i class="{{icon_type($parent->getTable())}}"></i> {{$parent->title}}
+                    <i class="{{icon_type($parent->getTable())}}"></i> General
                 </span>
                 </a>
             </li>

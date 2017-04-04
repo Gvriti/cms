@@ -31,7 +31,6 @@ class CmsUserRequest extends Request
             'email' => 'required|email|unique:cms_users,email,'.$id,
             'firstname' => 'required|min:2',
             'lastname' => 'required|min:2',
-            'phone' => 'digits_between:3,32',
             'role' => 'required',
             'password' => $passwordRequired . 'min:6|confirmed'
         ];

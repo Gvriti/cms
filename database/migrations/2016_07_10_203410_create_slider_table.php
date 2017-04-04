@@ -27,7 +27,7 @@ class CreateSliderTable extends Migration
             $table->unsignedInteger('slider_id');
             $table->string('language', 3);
             $table->string('title');
-            $table->string('description', 800);
+            $table->string('description', 800)->nullable();
             $table->timestamps();
 
             $table->foreign('slider_id')->references('id')->on('slider')->onDelete('cascade');

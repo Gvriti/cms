@@ -203,7 +203,7 @@ class File extends Model
     /**
      * {@inheritdoc}
      */
-    public static function create(array $attributes = [])
+    public function create(array $attributes = [])
     {
         $attributes['position'] = (int) parent::byRoute()->max('position') + 1;
 

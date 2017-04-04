@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Models\Photo;
 use Models\Gallery;
 use Illuminate\Http\Request;
-use App\Jobs\Admin\AdminDestroy;
+use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PhotoRequest;
 
@@ -174,8 +174,6 @@ class AdminPhotosController extends Controller
     {
         $id = $this->request->get('ids');
 
-        return $this->dispatch(
-            new AdminDestroy($this->model, $id, false)
-        );
+        return (new AdminDestroy($this->model, $id, false))->handle();
     }
 }

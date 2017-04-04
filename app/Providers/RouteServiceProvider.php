@@ -37,13 +37,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
-//        $this->mapApiRoutes($router);
+        $this->mapApiRoutes($router);
 
         $this->mapWebRoutes($router);
 
         $this->app->booted(function ($app) use ($router) {
             $this->filterRoutes($router, $app['config']);
         });
+
+        //
     }
 
     /**
@@ -56,14 +58,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes(Router $router)
     {
-        $router->group([
-            'middleware' => 'web',
-            'namespace' => $this->namespace,
-        ], function ($router) {
-            require base_path('routes/web.php');
-
-            require base_path('routes/cms.php');
-        });
+        $router->middleware('web')
+            ->namespace($this->namespace)
+            ->group(function ($router) {
+                require base_path('routes/web.php');
+                require base_path('routes/cms.php');
+            });
     }
 
     /**
@@ -76,13 +76,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes(Router $router)
     {
-        $router->group([
-            'middleware' => 'api',
-            'namespace' => $this->namespace,
-            'prefix' => 'api',
-        ], function ($router) {
-            require base_path('routes/api.php');
-        });
+        $router->prefix('api')
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/api.php'));
     }
 
     /**

@@ -13,7 +13,8 @@
 
 $router->group(['namespace' => 'Web'], function ($router) {
     // glide server
-    $router->get($this->app['config']->get('web.glide_base_url', '!img') . '/{path}', [
-        'as' => 'glide', 'uses' => 'WebGlideServerController@show'
-    ])->where('path', '.+');
+    $router->get(
+        $this->app['config']->get('web.glide_base_url', '!img') . '/{path}',
+        ['as' => 'glide', 'uses' => 'WebGlideServerController@show']
+    )->where('path', '.+');
 });

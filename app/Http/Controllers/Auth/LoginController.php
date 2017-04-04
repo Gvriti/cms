@@ -22,25 +22,11 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * The login username.
-     *
-     * @return string
-     */
-    protected $username = 'email';
-
-    /**
      * Where to redirect users after login.
      *
      * @var string
      */
     protected $redirectTo = '/';
-
-    /**
-     * Indicates if the redirect path is named route.
-     *
-     * @var bool
-     */
-    protected $redirectNamed = false;
 
     /**
      * The maximum number of login attempts for delaying further attempts.

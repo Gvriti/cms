@@ -134,7 +134,7 @@ trait HasCollectionTrait
     /**
      * {@inheritdoc}
      */
-    public static function create(array $attributes = [])
+    public function create(array $attributes = [])
     {
         if (isset($attributes['collection_id'])) {
             $attributes['position'] = (int) parent::collectionId($attributes['collection_id'])

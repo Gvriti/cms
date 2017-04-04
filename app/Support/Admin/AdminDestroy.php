@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Jobs\Admin;
+namespace App\Support\Admin;
 
 use Models\File;
-use App\Jobs\Job;
 use Models\Abstracts\Model;
 use Illuminate\Filesystem\Filesystem;
 
-class AdminDestroy extends Job
+class AdminDestroy
 {
     /**
      * The Model instance.

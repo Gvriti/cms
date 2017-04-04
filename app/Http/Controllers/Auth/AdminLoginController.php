@@ -9,20 +9,6 @@ use App\Http\Controllers\Auth\LoginController as Controller;
 class AdminLoginController extends Controller
 {
     /**
-     * The guard name.
-     *
-     * @var string
-     */
-    protected $guard = 'cms';
-
-    /**
-     * The path to the login view.
-     *
-     * @return string
-     */
-    protected $loginView = 'admin.auth.login';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -37,7 +23,7 @@ class AdminLoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view($this->loginView);
+        return view('admin.auth.login');
     }
 
     /**
@@ -67,7 +53,7 @@ class AdminLoginController extends Controller
      */
     protected function guard()
     {
-        return Auth::guard($this->guard);
+        return Auth::guard('cms');
     }
 
     /**

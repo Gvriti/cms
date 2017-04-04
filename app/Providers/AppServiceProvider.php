@@ -19,8 +19,8 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app['view']->getEngineResolver()->resolve('blade')->getCompiler()
             ->directive('php', function ($expression) {
-            return "<?php {$expression}; ?>";
-        });
+                return "<?php {$expression}; ?>";
+            });
     }
 
     /**

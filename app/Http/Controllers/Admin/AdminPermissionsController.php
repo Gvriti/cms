@@ -6,7 +6,7 @@ use Models\CmsUser;
 use Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Exception\HttpResponseException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class AdminPermissionsController extends Controller
@@ -110,7 +110,7 @@ class AdminPermissionsController extends Controller
      * @param  int  $id
      * @return void
      *
-     * @throws \Illuminate\Http\Exception\HttpResponseException|
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException|
      *         Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
      */
     protected function checkAccess($id)
