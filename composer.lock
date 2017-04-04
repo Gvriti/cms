@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "47aee254e83e6bb184e5fd594755203a",
+    "content-hash": "d63c85fbbf45b44ab21a98bf27c5cbbe",
     "packages": [
         {
             "name": "barryvdh/elfinder-flysystem-driver",
@@ -536,16 +536,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.4.16",
+            "version": "v5.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "6cf379ec34d08bcdc9c7183e369a8fdf04ade80d"
+                "reference": "f7675d59e3863a58ecdff1a5ee1dcd0cff788f4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/6cf379ec34d08bcdc9c7183e369a8fdf04ade80d",
-                "reference": "6cf379ec34d08bcdc9c7183e369a8fdf04ade80d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f7675d59e3863a58ecdff1a5ee1dcd0cff788f4b",
+                "reference": "f7675d59e3863a58ecdff1a5ee1dcd0cff788f4b",
                 "shasum": ""
             },
             "require": {
@@ -661,7 +661,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-03-21T19:34:41+00:00"
+            "time": "2017-04-03T13:07:39+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1706,16 +1706,16 @@
         },
         {
             "name": "sabre/xml",
-            "version": "1.5.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fruux/sabre-xml.git",
-                "reference": "59b20e5bbace9912607481634f97d05a776ffca7"
+                "reference": "054292959a1f2b64c10c9c7a03a816ba1872b8a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fruux/sabre-xml/zipball/59b20e5bbace9912607481634f97d05a776ffca7",
-                "reference": "59b20e5bbace9912607481634f97d05a776ffca7",
+                "url": "https://api.github.com/repos/fruux/sabre-xml/zipball/054292959a1f2b64c10c9c7a03a816ba1872b8a3",
+                "reference": "054292959a1f2b64c10c9c7a03a816ba1872b8a3",
                 "shasum": ""
             },
             "require": {
@@ -1723,7 +1723,7 @@
                 "ext-xmlreader": "*",
                 "ext-xmlwriter": "*",
                 "lib-libxml": ">=2.6.20",
-                "php": ">=5.5.5",
+                "php": ">=7.0",
                 "sabre/uri": ">=1.0,<3.0.0"
             },
             "require-dev": {
@@ -1765,20 +1765,20 @@
                 "dom",
                 "xml"
             ],
-            "time": "2016-10-09T22:57:52+00:00"
+            "time": "2016-11-16T00:41:01+00:00"
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.22",
+            "version": "2.1.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "a41ea2f9640b6a7415d438568c708e9bcfc2e653"
+                "reference": "c02d75b37ee904117346646d19a85ef9b9defbcb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Studio-42/elFinder/zipball/a41ea2f9640b6a7415d438568c708e9bcfc2e653",
-                "reference": "a41ea2f9640b6a7415d438568c708e9bcfc2e653",
+                "url": "https://api.github.com/repos/Studio-42/elFinder/zipball/c02d75b37ee904117346646d19a85ef9b9defbcb",
+                "reference": "c02d75b37ee904117346646d19a85ef9b9defbcb",
                 "shasum": ""
             },
             "require": {
@@ -1786,9 +1786,9 @@
             },
             "suggest": {
                 "barryvdh/elfinder-flysystem-driver": "VolumeDriver for elFinder to use Flysystem as a root.",
-                "dropbox-php/dropbox-php": "elFinder Volume driver `Dropbox` require `dropbox-php/dropbox-php`.",
-                "nao-pon/flysystem-google-drive": "require in GoogleDrive network volume mounting.",
-                "pear/http_oauth": "dropbox-php require `pear/http_oauth` or `PHP OAuth extension`."
+                "google/apiclient": "VolumeDriver GoogleDrive require `google/apiclient:^2.0.",
+                "kunalvarma05/dropbox-php-sdk": "VolumeDriver `Dropbox`2 require `kunalvarma05/dropbox-php-sdk.",
+                "nao-pon/flysystem-google-drive": "require in GoogleDrive network volume mounting with Flysystem."
             },
             "type": "library",
             "autoload": {
@@ -1823,7 +1823,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2017-02-24T15:28:23+00:00"
+            "time": "2017-03-31T08:05:06+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3173,16 +3173,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "4.0.7",
+            "version": "4.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "09e2277d14ea467e5a984010f501343ef29ffc69"
+                "reference": "ef7b2f56815df854e66ceaee8ebe9393ae36a40d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/09e2277d14ea467e5a984010f501343ef29ffc69",
-                "reference": "09e2277d14ea467e5a984010f501343ef29ffc69",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ef7b2f56815df854e66ceaee8ebe9393ae36a40d",
+                "reference": "ef7b2f56815df854e66ceaee8ebe9393ae36a40d",
                 "shasum": ""
             },
             "require": {
@@ -3232,7 +3232,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-01T09:12:17+00:00"
+            "time": "2017-04-02T07:44:40+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3422,16 +3422,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.17",
+            "version": "5.7.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf"
+                "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/68752b665d3875f9a38a357e3ecb35c79f8673bf",
-                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/69c4f49ff376af2692bad9cebd883d17ebaa98a1",
+                "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1",
                 "shasum": ""
             },
             "require": {
@@ -3500,7 +3500,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-19T16:52:12+00:00"
+            "time": "2017-04-03T02:22:27+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
