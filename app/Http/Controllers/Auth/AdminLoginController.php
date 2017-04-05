@@ -29,14 +29,6 @@ class AdminLoginController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function username()
-    {
-        return $this->username ?: 'email';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function logout(Request $request)
     {
         $this->guard()->logout();
