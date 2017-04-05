@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 class NotesTableSeeder extends DatabaseSeeder
 {
     /**
@@ -9,8 +11,6 @@ class NotesTableSeeder extends DatabaseSeeder
      */
     public function run()
     {
-        $currentDate = date('Y-m-d H:i:s');
-
         DB::table('notes')->truncate();
 
         DB::table('notes')->insert([
@@ -18,7 +18,7 @@ class NotesTableSeeder extends DatabaseSeeder
                 'title'       => 'სათაური',
                 'description' => 'მოკლე აღწერა',
                 'content'     => "სათაური\nმოკლე აღწერა\nვრცელი ტექსტი...",
-                'created_at'  => $currentDate
+                'created_at'  => date('Y-m-d H:i:s')
             ]
         ]);
     }

@@ -13,7 +13,7 @@
       <ul class="dropdown-menu notifications">
         <li class="top">
           <p class="small">
-            Update the sitemap once a day, only when you change or add some page(s).
+            Update the sitemap once a day, only when you change or add some data.
           </p>
         </li>
         <li>

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 class CmsUsersTableSeeder extends DatabaseSeeder
 {
     /**

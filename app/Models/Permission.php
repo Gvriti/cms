@@ -19,7 +19,7 @@ class Permission extends Model
      * @var array
      */
     protected $fillable = [
-        'cms_user_id', 'route_name'
+        'role', 'route_name'
     ];
 
     /**
@@ -46,12 +46,12 @@ class Permission extends Model
     /**
      * Get the list of permissions by user id.
      *
-     * @param  int  $id
+     * @param  string  $value
      * @return \Models\Builder\Builder
      */
-    public function userId($id)
+    public function role($value)
     {
-        return $this->where('cms_user_id', $id);
+        return $this->where('role', $value);
     }
 
     /**
@@ -62,17 +62,17 @@ class Permission extends Model
      */
     public function hasAccess($routeName)
     {
-        return ! is_null($this->where('route_name', $routeName)->first());
+        return $this->where('route_name', $routeName)->exists();
     }
 
     /**
      * Clear permissions from the database.
      *
-     * @param  int  $id
+     * @param  int  $value
      * @return bool|null
      */
-    public function clear($id)
+    public function clear($value)
     {
-        return $this->userId($id)->delete();
+        return $this->role($value)->delete();
     }
 }

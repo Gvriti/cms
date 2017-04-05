@@ -76,7 +76,17 @@ $router->group(['middleware' => 'cms.data', 'prefix' => cms_slug()], function ($
             }
         }
 
-        // attached files
+        // permissions
+        $router->get('permissions', ['as' => 'permissions.index', 'uses' => 'AdminPermissionsController@index']);
+        $router->post('permissions', ['as' => 'permissions.store', 'uses' => 'AdminPermissionsController@store']);
+
+        // cms users
+        $router->resource('cms-users', 'AdminCmsUsersController', ['names' => resource_names('cmsUsers')]);
+
+        // file manager
+        $router->get('filemanager', ['as' => 'filemanager', 'uses' => 'AdminFilemanagerController@index']);
+
+        // files
         $router->post('files/{id}/visibility', ['as' => 'files.visibility', 'uses' => 'AdminFilesController@visibility']);
         $router->put('files/position', ['as' => 'files.updatePosition', 'uses' => 'AdminFilesController@updatePosition']);
         $router->resource('{modelName}/{modelId}/files', 'AdminFilesController', ['names' => resource_names('files'),
@@ -109,20 +119,11 @@ $router->group(['middleware' => 'cms.data', 'prefix' => cms_slug()], function ($
         $router->put('calendar', ['as' => 'calendar.save', 'uses' => 'AdminCalendarController@save']);
         $router->post('calendar', ['as' => 'calendar.destroy', 'uses' => 'AdminCalendarController@destroy']);
 
-        // admin Settings
+        // settings
         $router->get('settings', ['as' => 'settings.index', 'uses' => 'AdminSettingsController@index']);
         $router->put('settings', ['as' => 'settings.update', 'uses' => 'AdminSettingsController@update']);
         $router->get('web-settings', ['as' => 'webSettings.index', 'uses' => 'AdminWebSettingsController@index']);
         $router->put('web-settings', ['as' => 'webSettings.update', 'uses' => 'AdminWebSettingsController@update']);
-
-        // file manager
-        $router->get('filemanager', ['as' => 'filemanager', 'uses' => 'AdminFilemanagerController@index']);
-
-        // cms users
-        $router->resource('cms-users', 'AdminCmsUsersController', ['names' => resource_names('cmsUsers')]);
-        // cms user permissions
-        $router->get('cms-users/{id}/permissions', ['as' => 'permissions.index', 'uses' => 'AdminPermissionsController@index']);
-        $router->post('cms-users/{id}/permissions', ['as' => 'permissions.store', 'uses' => 'AdminPermissionsController@store']);
 
         // sitemap xml
         $router->get('sitemap/xml/store', ['as' => 'sitemap.xml.store', 'uses' => 'AdminSitemapXmlController@store']);

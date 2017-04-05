@@ -34,11 +34,6 @@
                             <div class="profile">
                                 <a href="{{$routeShow = cms_route('cmsUsers.show', [$current->id])}}" class="btn btn-block btn-turquoise">Profile</a>
                             </div>
-                        @if (Auth::guard('cms')->user()->isAdmin())
-                            <div class="permissions{{$current->role == 'admin' ? ' hidden' : ''}}">
-                                <a href="{{cms_route('permissions.index', [$current->id])}}" class="btn btn-block btn-orange">Permissions</a>
-                            </div>
-                        @endif
                         </div>
                     </div>
                     <div class="col-md-10 col-sm-8">

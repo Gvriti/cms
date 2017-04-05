@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\CmsUser;
 use Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class AdminPermissionsController extends Controller
@@ -42,20 +40,29 @@ class AdminPermissionsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \Models\CmsUser  $user
-     * @param  int  $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(CmsUser $user, $id)
+    public function index()
     {
-        $this->checkAccess($id);
+        $this->checkAccess();
 
-        $data['user'] = $user->findOrFail($id);
+        $data['roles'] = [];
 
-        $data['current'] = $this->model->userId($id)
-            ->get()
-            ->pluck('route_name')
-            ->toArray();
+        foreach ((array) user_roles() as $key => $value) {
+            if ($key == 'admin') {
+                continue;
+            }
+
+            $data['roles'][$key] = $value;
+        }
+
+        $data['current'] = [];
+
+        if ($role = $this->request->get('role', key($data['roles']))) {
+            $data['current'] = $this->model->role($role)
+                ->pluck('route_name')
+                ->toArray();
+        }
 
         $routeNames = array_diff_key(
             $this->getAllRouteNames(),
@@ -74,52 +81,43 @@ class AdminPermissionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store($id)
+    public function store()
     {
-        $this->checkAccess($id);
+        $this->checkAccess();
+
+        $this->model->clear($role = $this->request->get('role'));
 
         $input = $this->request->get('permissions', []);
 
-        app('db')->transaction(function() use ($input, $id) {
-            $this->model->clear($id);
+        $attributes = [];
 
-            $attributes = [];
-
-            foreach ($input as $key => $value) {
-                if (in_array(key($value), Permission::$routeGroupsHidden)){
-                    continue;
-                }
-
-                $attributes['cms_user_id'] = $id;
-                $attributes['route_name'] = current($value);
-
-                $this->model->create($attributes);
+        foreach ((array) $input as $key => $value) {
+            if (in_array(key($value), Permission::$routeGroupsHidden)){
+                continue;
             }
-        });
 
-        return redirect(cms_route('permissions.index', [$id]))
+            $attributes['role'] = $role;
+            $attributes['route_name'] = current($value);
+
+            $this->model->create($attributes);
+        }
+
+        return redirect(cms_route('permissions.index', ['role' => $role]))
             ->with('alert', fill_data('success', trans('general.saved')));
     }
 
     /**
      * Determine if the user has access to the given route
      *
-     * @param  int  $id
      * @return void
      *
-     * @throws \Illuminate\Http\Exceptions\HttpResponseException|
-     *         Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
+     * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
      */
-    protected function checkAccess($id)
+    protected function checkAccess()
     {
         $user = $this->request->user('cms');
-
-        if ($user->id == $id) {
-            throw new HttpResponseException(redirect()->back());
-        }
 
         if (! $user->isAdmin()) {
             throw new AccessDeniedHttpException;

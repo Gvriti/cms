@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 class MenusTableSeeder extends DatabaseSeeder
 {
     /**
@@ -9,8 +11,6 @@ class MenusTableSeeder extends DatabaseSeeder
      */
     public function run()
     {
-        $currentDate = date('Y-m-d H:i:s');
-
         DB::table('menus')->truncate();
 
         DB::table('menus')->insert([
@@ -18,7 +18,7 @@ class MenusTableSeeder extends DatabaseSeeder
                 'main'        => 1,
                 'title'       => 'მთავარი მენიუ',
                 'description' => 'საიტის მთავარი გვერდების სია',
-                'created_at'  => $currentDate
+                'created_at'  => date('Y-m-d H:i:s')
             ]
         ]);
     }

@@ -42,19 +42,22 @@
         @if ($role)
             <input type="hidden" name="role" value="{{$role}}">
         @endif
-            <div class="dib padr">
+            <div class="dib vam padr">
                 <input type="text" name="name" class="form-control" placeholder="სახელი ან/და გვარი" value="{{request('name')}}">
             </div>
-            <div class="dib padr">
+            <div class="dib vam padr">
                 <input type="text" name="email" class="form-control" placeholder="ელ.ფოსტა" value="{{request('email')}}">
             </div>
-            <div class="dib padr">
+            <div class="dib vam padr">
                 Active: <input type="checkbox" name="active" value="1" class="cbr cbr-success"{{request('active') ? ' checked' : ''}}>
             </div>
             <button type="submit" class="btn btn-secondary vat">Search</button>
             <a href="{{cms_route('cmsUsers.index', request()->only(['role']))}}" class="btn btn-black vat">Reset</a>
         </form>
     </div>
+    @if (Auth::guard('cms')->user()->isAdmin())
+        <a href="{{cms_route('permissions.index')}}" class="btn btn-orange pull-right">Permissions</a>
+    @endif
     <table class="table stacktable table-hover members-table middle-align">
         <thead>
             <tr>
@@ -92,12 +95,6 @@
                     <a href="{{cms_route('cmsUsers.edit', [$item->id])}}" class="edit">
                         <i class="fa fa-pencil"></i>
                         Edit Profile
-                    </a>
-                @endif
-                @if (Auth::guard('cms')->user()->isAdmin() && $item->role != 'admin')
-                    <a href="{{cms_route('permissions.index', [$item->id])}}" class="text-warning">
-                        <i class="{{icon_type('permissions')}}"></i>
-                        Permissions
                     </a>
                 @endif
                 @if (Auth::guard('cms')->user()->isAdmin() && Auth::guard('cms')->id() != $item->id)

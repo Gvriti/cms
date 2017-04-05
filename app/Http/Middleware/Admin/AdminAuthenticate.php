@@ -77,7 +77,7 @@ class AdminAuthenticate
             $routeGroup = substr($routeName, 0, strpos($routeName, '.'));
 
             if (! in_array($routeGroup, Permission::$routeGroupsHidden)
-                && ! (new Permission)->userId($this->guard->id())->hasAccess($routeName)
+                && ! (new Permission)->role($this->guard->user()->role)->hasAccess($routeName)
             ) {
                 throw new AccessDeniedHttpException;
             }
