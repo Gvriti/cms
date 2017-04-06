@@ -45,7 +45,9 @@ $(function () {
     $(document).on('submit', '.form-delete', function (e) {
         e.preventDefault();
         var perform = confirm('Are you sure you want to delete?');
-        if (perform != true) return;
+        if (perform !== true) {
+            return;
+        }
         var form = $(this);
         var formId = $(this).data('id');
         var btn = form.find('[type="submit"]').prop('disabled', true);
@@ -60,13 +62,13 @@ $(function () {
 
                 if (data) {
                     // toastr alert message
-                    if (typeof toastr == 'object') {
+                    if (typeof toastr === 'object') {
                         toastr[data.result](data.message);
                     }
                     // delete action
-                    if (data.result == 'success') {
+                    if (data.result === 'success') {
                         form.closest('#item' + formId).fadeOut(600, function () {
-                            if ($(this).data('parent') == 1) {
+                            if ($(this).data('parent') === 1) {
                                 $(this).closest('.uk-parent').removeClass('uk-parent');
                                 disableParentDeletion(formId);
                             }
@@ -105,25 +107,22 @@ $(function () {
                 form.trigger('ajaxFormSuccess', [data]);
 
                 // toastr alert message
-                if (typeof toastr == 'object') {
+                if (typeof toastr === 'object') {
                     toastr[data.result](data.message);
                 }
                 // fill form inputs
                 if (data.input && typeof data.input === 'object') {
                     $.each(data.input, function (index, element) {
                         var item = $('#' + index + lang, form);
-                        if (item.val() != element) {
-                            item.val(element);
-                        }
 
                         if (item.data('lang')) {
                             var inputGeneral = $(ajaxFormSelector + ' [name="' + index + '"]');
                             $(inputGeneral).each(function (i, e) {
                                 item = $(e);
-                                if (item.val() != element) {
+                                if (item.val() !== element) {
                                     item.val(element);
                                     if (item.is(':checkbox')) {
-                                        var bool = element == 1;
+                                        var bool = element === 1;
                                         item.prop('checked', bool);
                                     }
                                     if (item.is('select')) {
@@ -131,6 +130,8 @@ $(function () {
                                     }
                                 }
                             });
+                        } else if (item.val() !== element) {
+                            item.val(element);
                         }
                     });
                 }
@@ -301,7 +302,7 @@ function positionable(url, orderBy, page, hasMorePages) {
         var input = [{'id':item.data('id'), 'pos':item.data('pos')}];
         var items;
 
-        if (move == 'next') {
+        if (move === 'next') {
             items = item.nextAll();
         } else {
             items = item.prevAll();
@@ -314,7 +315,7 @@ function positionable(url, orderBy, page, hasMorePages) {
         input = $.extend({'data':input, 'move':move, 'orderBy':orderBy}, postHiddens);
 
         $.post(url, input, function () {
-            page = move == 'next' ? page + 1 : page - 1;
+            page = move === 'next' ? page + 1 : page - 1;
             var href = window.location.href;
             var hrefQueryStart = href.indexOf('?');
             if (hrefQueryStart > 1) {
@@ -349,7 +350,7 @@ function positionable(url, orderBy, page, hasMorePages) {
             $(input).each(function (i, e) {
                 posArr[i] = e.pos;
             });
-            if (orderBy == 'desc') {
+            if (orderBy === 'desc') {
                 posArr.sort(function (a, b) {return b-a});
             } else {
                 posArr.sort(function (a, b) {return a-b});
@@ -360,8 +361,8 @@ function positionable(url, orderBy, page, hasMorePages) {
         }
 
         input = {'data':input};
-
         input = $.extend(input, postHiddens);
+
         $.post(url, input, function () {
             saveBtnIcon.removeClass('fa-spin fa-save').addClass('fa-check');
 
