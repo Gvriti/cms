@@ -11,50 +11,7 @@
             ]) !!}
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Title:</label>
-                                {!! Form::text('title', null, [
-                                    'id' => 'title',
-                                    'class' => 'form-control',
-                                ]) !!}
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Short description:</label>
-                                {!! Form::textarea('description', null, [
-                                    'id' => 'description',
-                                    'class' => 'form-control',
-                                    'rows' => '2'
-                                ]) !!}
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Image:</label>
-                                <div class="input-group">
-                                    {!! Form::text('file', null, [
-                                        'id' => 'file',
-                                        'class' => 'form-control',
-                                    ]) !!}
-                                    <div class="input-group-btn popup" data-browse="file">
-                                        <span class="btn btn-info">Browse</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label">Visible:</label>
-                                {!! Form::checkbox('visible', null, null, [
-                                    'id' => 'visible',
-                                    'class' => 'iswitch iswitch-secondary'
-                                ]) !!}
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-md btn-white" data-dismiss="modal">{{trans('general.close')}}</button>
-                        <button type="submit" class="btn btn-md btn-secondary">{{trans('general.save')}}</button>
+                        @include('admin.slider.form')
                     </div>
                 </div>
             {!!Form::close()!!}
@@ -67,7 +24,7 @@
     $(formSelector).on('submit', function(e) {
         e.preventDefault();
 
-        form = $(this);
+        var form = $(this);
         $('.form-group', form).find('.text-danger').remove();
         var url = form.attr('action');
         var input = form.serialize();
@@ -82,9 +39,9 @@
 
             cbr_replace();
 
-            $('#form-modal [data-dismiss]').trigger('click');
+            $('#form-modal').find('[data-dismiss]').trigger('click');
         }, 'json').fail(function(xhr) {
-            if (xhr.status == 422) {
+            if (xhr.status === 422) {
                 var data = xhr.responseJSON;
 
                 $.each(data, function(index, element) {
@@ -98,7 +55,7 @@
         });
     });
 
-    $(formSelector + ' #file').on('fileSet', function(e) {
+    $(formSelector + ' #file').on('fileSet', function() {
         $('.modal-gallery-image img').attr('src', $(this).val());
     });
 </script>

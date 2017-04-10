@@ -49,7 +49,7 @@
         var formSelector = '#form-modal .ajax-form';
         $(formSelector).on('ajaxFormSuccess', function() {
             var lang = $(this).data('lang');
-            if (lang == currentLang) {
+            if (lang === currentLang) {
                 var item = $(formSelector + '[data-lang="'+lang+'"]');
 
                 var title   = $('[name="title"]', item).val();

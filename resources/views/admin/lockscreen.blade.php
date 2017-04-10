@@ -62,7 +62,7 @@
                         }
                     },
                     error: function(xhr) {
-                        if (xhr.status != 429) {
+                        if (xhr.status !== 429) {
                             alert(xhr.responseText);
                         } else {
                             alert(xhr.responseText + ' Retry after ' + xhr.getResponseHeader('Retry-after') + ' seconds.');
