@@ -17,7 +17,7 @@
     <script type="text/javascript">
         var sort = '{{request('sort', 'desc')}}';
         var currentPage = '{{request('page', 1)}}';
-        var creationPage = sort == 'desc' ? 1 : '{{request('lastPage', 1)}}';
+        var creationPage = sort === 'desc' ? 1 : '{{request('lastPage', 1)}}';
         var formSelector = '#form-modal .form-create';
 
         $(formSelector).on('submit', function(e) {
@@ -38,13 +38,13 @@
 
                 cbr_replace();
 
-                if (currentPage != creationPage) {
+                if (currentPage !== creationPage) {
                     window.location.href = '{{cms_route('files.index', [$current->model_name, $current->model_id])}}?page=' + creationPage;
                 } else {
                     $('#form-modal').find('[data-dismiss]').trigger('click');
                 }
             }, 'json').fail(function(xhr) {
-                if (xhr.status == 422) {
+                if (xhr.status === 422) {
                     var data = xhr.responseJSON;
 
                     $.each(data, function(index, element) {
