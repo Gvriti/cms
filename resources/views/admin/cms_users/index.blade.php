@@ -49,7 +49,13 @@
                 <input type="text" name="email" class="form-control" placeholder="ელ.ფოსტა" value="{{request('email')}}">
             </div>
             <div class="dib vam padr">
-                Active: <input type="checkbox" name="active" value="1" class="cbr cbr-success"{{request('active') ? ' checked' : ''}}>
+                {!! Form::select('active', [
+                    '' => '-- active --',
+                    '1' => 'active',
+                    '0' => 'non active'
+                ], request('active'), [
+                    'class' => 'form-control',
+                ]) !!}
             </div>
             <button type="submit" class="btn btn-secondary vat">Search</button>
             <a href="{{cms_route('cmsUsers.index', request()->only(['role']))}}" class="btn btn-black vat">Reset</a>

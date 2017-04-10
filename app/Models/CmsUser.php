@@ -134,6 +134,12 @@ class CmsUser extends Model
             $query = $query->where('role', $value);
         }
 
+        if (($value = $request->get('active'))) {
+            $query = $query->where('active', 1);
+        } elseif ($value == '0') {
+            $query = $query->where('active', 0);
+        }
+
         return $query;
     }
 }
