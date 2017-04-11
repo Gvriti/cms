@@ -1,4 +1,4 @@
-@push('styles.head')
+@push('assets.head')
 <link rel="stylesheet" href="{{ asset('assets/js/select2/select2.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/js/select2/select2-bootstrap.css') }}">
 @endpush
@@ -25,13 +25,13 @@ $(function() {
 
     typeSelect.on('change', function() {
         // Get the attached types list
-        if (typeValue != this.value) {
+        if (typeValue !== this.value) {
             getAttachedTypes(this.value);
         }
 
         typeValue = this.value;
 
-        if (templateValue != this.value) {
+        if (templateValue !== this.value) {
             getTemplates(this.value)
         }
 

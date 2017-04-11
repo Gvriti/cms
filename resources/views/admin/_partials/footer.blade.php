@@ -67,7 +67,7 @@ $(function() {
                 $(this.contentAreaContainer.parentElement).find("div.mce-toolbar-grp").hide();
             });
             ed.on('focus blur', function(e) {
-                if (e.type == 'focus') {
+                if (e.type === 'focus') {
                     $(this.contentAreaContainer.parentElement).find("div.mce-toolbar-grp").show();
                 }
                 // Add "table" class to all table tags
@@ -98,7 +98,7 @@ $(function() {
     // Fancybox click event handler
     $(document).on('click', '.popup', function(e){
         e.preventDefault();
-        id = $(this).data('browse');
+        var id = $(this).data('browse');
         $.fancybox({
             width    : 900,
             height   : 600,

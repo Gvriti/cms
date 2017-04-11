@@ -84,7 +84,7 @@
         </div>
     </div>
 </form>
-@push('styles.head')
+@push('assets.head')
 <link rel="stylesheet" href="{{ asset('assets/js/icheck/skins/all.css') }}">
 @endpush
 @push('scripts.bottom')

@@ -82,7 +82,7 @@
         </div>
     </div>
 </div>
-@push('styles.head')
+@push('assets.head')
 <link rel="stylesheet" href="{{asset('assets/js/fullcalendar/fullcalendar.min.css')}}">
 @endpush
 @push('scripts.bottom')

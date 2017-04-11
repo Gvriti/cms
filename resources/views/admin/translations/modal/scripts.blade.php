@@ -21,7 +21,7 @@ $(function () {
                     })
                 ).fadeIn(300);
 
-                if (! lang || lang == '{{$currentLang = language()}}') {
+                if (! lang || lang === '{{$currentLang = language()}}') {
                     var trans = $('[data-trans="'+data.name+'"]');
                     var attrName = trans.data('trans-attr');
                     if (! attrName) {
@@ -48,7 +48,7 @@ $(function () {
                 }
             },
             error: function (xhr) {
-                if (xhr.status == 422) {
+                if (xhr.status === 422) {
                     var data = xhr.responseJSON;
 
                     $.each(data, function (index, element) {
@@ -63,10 +63,10 @@ $(function () {
         });
     });
 
-    $('form [name="value"]', modalSelector).on('keyup', function (e) {
+    $('form [name="value"]', modalSelector).on('keyup', function () {
         var lang = $(this).closest('form').data('lang');
 
-        if (! lang || lang == '{{$currentLang}}') {
+        if (! lang || lang === '{{$currentLang}}') {
             var trans = $('[data-trans="{{$current->name}}"]');
             var attrName = trans.data('trans-attr');
             if (! attrName) {

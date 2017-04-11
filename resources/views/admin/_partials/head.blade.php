@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/xenon-forms.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/xenon-components.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/xenon-skins.css') }}">
-@stack('styles.head')
+@stack('assets.head')
 <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 <script src="{{ asset('assets/js/jquery-1.11.1.min.js') }}"></script>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

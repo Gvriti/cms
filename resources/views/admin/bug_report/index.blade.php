@@ -67,7 +67,7 @@
         </div>
     {!! Form::close() !!}
 </div>
-@push('styles.head')
+@push('assets.head')
 <link rel="stylesheet" href="{{ asset('assets/js/select2/select2.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/js/select2/select2-bootstrap.css') }}">
 @endpush
