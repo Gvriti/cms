@@ -16,18 +16,17 @@ trait PageableTrait
     public function joinPage($type = 'right', $foreignKey = 'collection_id')
     {
         return $this->join('pages', $foreignKey, '=', 'type_id', $type)
-                    ->leftJoin('page_languages', function ($q) {
-                        $q->on('page_languages.page_id', '=', 'pages.id')
-                            ->where(function ($q) {
-                                return $q->where('page_languages.language', '=', language())
-                                        ->orWhereNull('page_languages.language');
-                            });
-                    })->where('pages.visible', '=', 1)
-                    ->addSelect([
-                        'pages.parent_id',
-                        'pages.slug as parent_slug',
-                        'page_languages.title as parent_title'
-                    ]);
+            ->leftJoin('page_languages', function ($q) {
+                return $q->on('page_languages.page_id', '=', 'pages.id')
+                    ->where(function ($q) {
+                        return $q->where('page_languages.language', '=', language())
+                            ->orWhereNull('page_languages.language');
+                    });
+            })->where('pages.visible', '=', 1)->addSelect([
+                'pages.parent_id',
+                'pages.slug as parent_slug',
+                'page_languages.title as parent_title'
+            ]);
     }
 
     /**
@@ -42,13 +41,13 @@ trait PageableTrait
             return $this;
         }
 
-        if (is_null($page = (new Page)->find($id, ['slug', 'parent_id']))) {
+        if (is_null($model = (new Page)->find($id, ['slug', 'parent_id']))) {
             return $this;
         }
 
-        $page->fullSlug();
+        $model->fullSlug();
 
-        $this->parent_slug = trim($page->slug . '/' . $this->parent_slug, '/');
+        $this->parent_slug = trim($model->slug . '/' . $this->parent_slug, '/');
 
         return $this;
     }

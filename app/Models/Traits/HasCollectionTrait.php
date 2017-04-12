@@ -97,7 +97,7 @@ trait HasCollectionTrait
     }
 
     /**
-     * Get the collection instance and add a where "type" clause to the query.
+     * Get the same type collection instance.
      *
      * @param  string|null  $type
      * @return \Models\Builder\Builder
@@ -123,12 +123,12 @@ trait HasCollectionTrait
     /**
      * Add a where "visible" clause to the query.
      *
-     * @param  int  $visible
+     * @param  int  $value
      * @return \Models\Builder\Builder
      */
-    public function visible($visible = 1)
+    public function visible($value = 1)
     {
-        return $this->where('visible', (int) $visible);
+        return $this->where('visible', (int) $value);
     }
 
     /**

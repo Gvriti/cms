@@ -41,21 +41,17 @@ class CmsUser extends Model
     protected $notUpdatable = [];
 
     /**
-     * Get the mutated "role" attribute.
+     * Get the mutated attribute.
      *
      * @return string
      */
     public function getRoleTextAttribute()
     {
-        if (! is_null($this->role)) {
-            return user_roles($this->role);
-        }
-
-        return $this->role;
+        return (! is_null($this->role)) ? user_roles($this->role) : $this->role;
     }
 
     /**
-     * Get the mutated "photo" attribute.
+     * Get the mutated attribute.
      *
      * @param  string  $value
      * @return string
