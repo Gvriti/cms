@@ -38,7 +38,7 @@
 </ul>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">CMS settings form</h3>
+        <h2 class="panel-title">CMS settings form</h2>
         <div class="panel-options">
             <a href="#" data-toggle="panel">
                 <span class="collapse-icon">&ndash;</span>

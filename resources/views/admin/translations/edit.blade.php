@@ -47,7 +47,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading clearfix">
-        <h3 class="panel-title">Edit translation</h3>
+        <h2 class="panel-title">Edit translation</h2>
         <a href="{{cms_route('translations.create')}}" class="pull-right">Add more</a>
     </div>
     <div class="panel-body">

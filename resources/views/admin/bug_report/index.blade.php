@@ -22,7 +22,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Bug report form</h3>
+        <h2 class="panel-title">Bug report form</h2>
     </div>
     {!! Form::open([
         'url'    => cms_route('bugReport.send'),

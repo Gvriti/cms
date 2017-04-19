@@ -22,7 +22,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Web settings form</h3>
+        <h2 class="panel-title">Web settings form</h2>
     </div>
 @if (! empty($webSettings))
     {!! Form::open([

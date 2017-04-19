@@ -25,7 +25,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Create an album</h3>
+        <h2 class="panel-title">Create an album</h2>
     </div>
     <div class="panel-body">
         {!! Form::model($current, [

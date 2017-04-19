@@ -79,7 +79,7 @@ class CmsUser extends Model
      */
     public function lockScreen($forceLock = false)
     {
-        $lockscreen = session()->set('lockscreen', 1);
+        $lockscreen = session()->put('lockscreen', 1);
 
         if ($forceLock) {
             throw new HttpResponseException(redirect(cms_route('lockscreen')));

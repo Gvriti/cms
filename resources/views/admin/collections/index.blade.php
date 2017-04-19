@@ -22,7 +22,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">List of all collections</h3>
+        <h2 class="panel-title">List of all collections</h2>
         <div class="panel-options">
             <a href="#">
                 <i class="fa fa-gear"></i>

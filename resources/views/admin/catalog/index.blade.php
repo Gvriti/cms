@@ -27,7 +27,7 @@
     <div class="col-md-9 pull-right has-sidebar">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title ttc">{{ $parent->title }}</h3>
+                <h2 class="panel-title">{{ $parent->title }}</h2>
                 <div class="panel-options">
                     <a href="{{cms_route('collections.edit', [$parent->id])}}">
                         <i class="fa fa-gear"></i>
