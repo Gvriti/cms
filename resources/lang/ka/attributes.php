@@ -19,6 +19,8 @@ return [
     'content' => 'შიგთავსი',
 
     'name' => 'სახელი',
+    'username' => 'მომხმარებელი',
+    'fullname' => 'სრული სახელი',
     'firstname' => 'სახელი',
     'lastname' => 'გვარი',
     'email' => 'ელ.ფოსტა',

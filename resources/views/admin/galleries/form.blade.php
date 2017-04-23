@@ -196,14 +196,18 @@
 
 <div class="form-group-separator"></div>
 
-<div class="form-group">
-    <label class="col-sm-2 control-label">Visible:</label>
-    <div class="col-sm-10">
-        {!! Form::checkbox('visible', null, null, [
-            'id' => 'visible' . $current->language,
-            'class' => 'iswitch iswitch-secondary',
-            'data-lang' => 1
-        ]) !!}
+<div class="row">
+    <div class="col-xs-4">
+        <div class="form-group">
+            <label class="col-sm-6 control-label">Visible:</label>
+            <div class="col-sm-6">
+                {!! Form::checkbox('visible', null, null, [
+                    'id' => 'visible' . $current->language,
+                    'class' => 'iswitch iswitch-secondary',
+                    'data-lang' => 1
+                ]) !!}
+            </div>
+        </div>
     </div>
 </div>
 

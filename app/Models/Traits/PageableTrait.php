@@ -32,16 +32,23 @@ trait PageableTrait
     /**
      * Concatenate current model slug to its parent pages slug recursively.
      *
-     * @param  int|null  $id
+     * @param  int|null  $value
+     * @param  string|null  $column
      * @return $this
      */
-    public function fullSlug($id = null)
+    public function fullSlug($value = null, $column = null)
     {
-        if (! ($id = (is_null($id) ? $this->parent_id : $id))) {
+        if (is_null($column)) {
+            $column = $this->getKeyName();
+        }
+
+        if (! ($value = (is_null($value) ? $this->parent_id : $value))) {
             return $this;
         }
 
-        if (is_null($model = (new Page)->find($id, ['slug', 'parent_id']))) {
+        $model = (new Page)->where($column, $value)->first(['slug', 'parent_id']);
+
+        if (is_null($model)) {
             return $this;
         }
 

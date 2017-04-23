@@ -12,6 +12,19 @@ return [
     */
 
     // attributes
-    '' => ''
+    'title' => 'Title',
+    'value' => 'Value',
+    'text' => 'Text',
+    'description' => 'Description',
+    'content' => 'Content',
+
+    'name' => 'Name',
+    'username' => 'Username',
+    'fullname' => 'Fullname',
+    'firstname' => 'Firstname',
+    'lastname' => 'Lastname',
+    'email' => 'Email',
+    'phone' => 'Phone',
+    'password' => 'Password',
 
 ];

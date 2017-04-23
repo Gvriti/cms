@@ -276,16 +276,23 @@ class Page extends Model
     /**
      * Concatenate current model slug to its parent pages slug recursively.
      *
-     * @param  int|null  $id
+     * @param  int|null  $value
+     * @param  string|null  $column
      * @return $this
      */
-    public function fullSlug($id = null)
+    public function fullSlug($value = null, $column = null)
     {
-        if (! ($id = (is_null($id) ? $this->parent_id : $id))) {
+        if (is_null($column)) {
+            $column = $this->getKeyName();
+        }
+
+        if (! ($value = (is_null($value) ? $this->parent_id : $value))) {
             return $this;
         }
 
-        if (is_null($page = (new static)->find($id, ['slug', 'parent_id']))) {
+        $page = (new static)->where($column, $value)->first(['slug', 'parent_id']);
+
+        if (is_null($page)) {
             return $this;
         }
 

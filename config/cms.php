@@ -38,7 +38,7 @@ return [
             'text' => 'Text',
             'collections' => 'Collections',
             'feedback' => 'Feedback',
-            'search' => 'Search',
+            'search' => 'Search'
         ],
         'templates' => [],
         'attached' => [

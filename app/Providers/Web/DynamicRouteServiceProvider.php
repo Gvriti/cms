@@ -204,7 +204,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             if (is_null($page)) {
                 if (count($this->pages) < 1
                     || (! in_array($type = $this->pages[$i - 1]->type, $this->attachedTypes)
-                        && ! array_key_exists($type, $this->explicitTypes)
+                        && ! in_array($type, $this->explicitTypes)
                         && ! array_key_exists($type, $this->tabs)
                     )
                 ) {
@@ -249,7 +249,9 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             $this->app->abort(404);
         }
 
-        if (! array_key_exists($page->type, $this->implicitTypes)) {
+        if (! array_key_exists($page->type, $this->implicitTypes)
+            && $this->segmentsCount == 1
+        ) {
             $this->setCurrentRoute($page->type, [$page], 'index');
 
             return;
