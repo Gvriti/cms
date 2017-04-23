@@ -15,7 +15,7 @@ class AdminLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('cms.guest', ['except' => ['logout', 'setLockscreen']]);
+        $this->middleware('cms.guest')->except(['logout', 'setLockscreen']);
     }
 
     /**

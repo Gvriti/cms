@@ -9,12 +9,13 @@
 /.vagrant
 Homestead.yaml
 Homestead.json
+npm-debug.log
 .env
 /bower_components
 /public/files/*
 !/public/files/sample.txt
 /public/sitemap.xml
-*sftp-config.json
+sftp-config.json
 # Ignore directories and files starting with "!" symbol
 /\!*
 
