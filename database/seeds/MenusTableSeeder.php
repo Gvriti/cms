@@ -16,8 +16,8 @@ class MenusTableSeeder extends DatabaseSeeder
         DB::table('menus')->insert([
             [
                 'main'        => 1,
-                'title'       => 'მთავარი მენიუ',
-                'description' => 'საიტის მთავარი გვერდების სია',
+                'title'       => 'მთავარი გვერდები',
+                'description' => 'მთავარი გვერდების სია',
                 'created_at'  => date('Y-m-d H:i:s')
             ]
         ]);
