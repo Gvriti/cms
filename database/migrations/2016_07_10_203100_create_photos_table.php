@@ -27,7 +27,7 @@ class CreatePhotosTable extends Migration
         Schema::create('photo_languages', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('photo_id');
-            $table->string('language', 3);
+            $table->char('language', 2);
             $table->string('title');
             $table->timestamps();
 

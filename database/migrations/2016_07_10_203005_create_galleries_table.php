@@ -35,7 +35,7 @@ class CreateGalleriesTable extends Migration
         Schema::create('gallery_languages', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('gallery_id');
-            $table->string('language', 3);
+            $table->char('language', 2);
             $table->string('title');
             $table->string('meta_desc')->nullable();
             $table->timestamps();

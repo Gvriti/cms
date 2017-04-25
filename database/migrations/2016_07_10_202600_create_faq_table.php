@@ -26,7 +26,7 @@ class CreateFaqTable extends Migration
         Schema::create('faq_languages', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('faq_id');
-            $table->string('language', 3);
+            $table->char('language', 2);
             $table->string('title');
             $table->text('description')->nullable();
             $table->timestamps();

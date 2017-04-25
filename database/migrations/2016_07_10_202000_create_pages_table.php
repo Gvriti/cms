@@ -33,7 +33,7 @@ class CreatePagesTable extends Migration
         Schema::create('page_languages', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('page_id');
-            $table->string('language', 3);
+            $table->char('language', 2);
             $table->string('title');
             $table->string('short_title');
             $table->text('description')->nullable();

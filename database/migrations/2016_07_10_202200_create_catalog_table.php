@@ -28,7 +28,7 @@ class CreateCatalogTable extends Migration
         Schema::create('catalog_languages', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('catalog_id');
-            $table->string('language', 3);
+            $table->char('language', 2);
             $table->string('title');
             $table->text('description')->nullable();
             $table->mediumText('content')->nullable();

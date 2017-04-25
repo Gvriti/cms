@@ -28,7 +28,7 @@ class CreateArticlesTable extends Migration
         Schema::create('article_languages', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('article_id');
-            $table->string('language', 3);
+            $table->char('language', 2);
             $table->string('title');
             $table->text('description')->nullable();
             $table->mediumText('content')->nullable();
