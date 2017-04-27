@@ -16,7 +16,7 @@ trait HasCompositeKey
         }
 
         foreach ((array) $this->compositePrimaryKey as $key) {
-            $query->where($key, '=', $this->{$key});
+            $query->where($key, $this->{$key});
         }
 
         return $query;

@@ -257,17 +257,6 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             return;
         }
 
-        $this->setAttachedTypeRoute($page);
-    }
-
-    /**
-     * Set the route by the attached type.
-     *
-     * @param  \Models\Page  $page
-     * @return void
-     */
-    protected function setAttachedTypeRoute(Page $page)
-    {
         $slug = current($this->segmentsLeft);
 
         if ($slug && in_array($page->type, $this->explicitTypes)) {
@@ -276,6 +265,18 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             return;
         }
 
+        $this->setAttachedTypeRoute($page, $slug);
+    }
+
+    /**
+     * Set the route by the attached type.
+     *
+     * @param  \Models\Page  $page
+     * @param  string  $slug
+     * @return void
+     */
+    protected function setAttachedTypeRoute(Page $page, $slug)
+    {
         $model = (new $this->implicitTypes[$page->type])->findOrFail($page->type_id);
 
         if (! $slug) {
@@ -292,26 +293,13 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             return;
         }
 
-        $this->setInnerAttachedTypeRoute($model->type, $model->id, $slug);
-    }
-
-    /**
-     * Set the route by the inner attached type.
-     *
-     * @param  string  $type
-     * @param  int     $id
-     * @param  string  $slug
-     * @return void
-     */
-    protected function setInnerAttachedTypeRoute($type, $id, $slug)
-    {
         $model = (new $this->implicitTypes[$type]);
 
         if (! method_exists($model, 'bySlug')) {
             $this->app->abort(404);
         }
 
-        $model = $model->bySlug($slug, $id)->firstOrFail();
+        $model = $model->bySlug($slug, $model->id)->firstOrFail();
 
         $this->setCurrentRoute($model->type, [$model], 'index');
     }

@@ -15,14 +15,14 @@ trait PageableTrait
      */
     public function joinPage($type = 'right', $foreignKey = 'collection_id')
     {
-        return $this->join('pages', $foreignKey, '=', 'type_id', $type)
+        return $this->join('pages', $foreignKey, 'type_id', $type)
             ->leftJoin('page_languages', function ($q) {
-                return $q->on('page_languages.page_id', '=', 'pages.id')
+                return $q->on('page_languages.page_id', 'pages.id')
                     ->where(function ($q) {
-                        return $q->where('page_languages.language', '=', language())
+                        return $q->where('page_languages.language', language())
                             ->orWhereNull('page_languages.language');
                     });
-            })->where('pages.visible', '=', 1)->addSelect([
+            })->where('pages.visible', 1)->addSelect([
                 'pages.parent_id',
                 'pages.slug as parent_slug',
                 'page_languages.title as parent_title'

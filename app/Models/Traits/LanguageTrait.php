@@ -100,7 +100,7 @@ trait LanguageTrait
         $languageTable = $this->getLanguageTable();
 
         $query = $this->leftJoin(
-            $languageTable, "{$table}.id", '=', "{$languageTable}.{$this->getForeignKey()}"
+            $languageTable, "{$table}.id", "{$languageTable}.{$this->getForeignKey()}"
         );
 
         if ($addColumns) {

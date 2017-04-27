@@ -315,7 +315,7 @@ class Page extends Model
             $table . '.type as collection_type',
         ];
 
-        return $this->leftJoin($table, 'type_id', '=', $table . '.id')
+        return $this->leftJoin($table, 'type_id', $table . '.id')
             ->addSelect($columns);
     }
 

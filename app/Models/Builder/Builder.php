@@ -320,6 +320,17 @@ class Builder extends EloquentBuilder
     }
 
     /**
+     * Dynamically retrieve attributes on the model.
+     *
+     * @param  string  $key
+     * @return mixed
+     */
+    public function __get($key)
+    {
+        return $this->query->{$key};
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function __call($method, $parameters)
