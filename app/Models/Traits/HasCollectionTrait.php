@@ -59,7 +59,7 @@ trait HasCollectionTrait
     }
 
     /**
-     * Build a admin query.
+     * Build an admin query.
      *
      * @param  int|null  $id
      * @param  mixed  $language

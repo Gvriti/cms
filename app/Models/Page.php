@@ -75,7 +75,7 @@ class Page extends Model
     }
 
     /**
-     * Build a admin query.
+     * Build an admin query.
      *
      * @param  int  $id
      * @return \Models\Builder\Builder

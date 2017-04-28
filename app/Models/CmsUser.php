@@ -123,7 +123,7 @@ class CmsUser extends Model
         }
 
         if ($value = $request->get('email')) {
-            $query = $query->whereRaw('email like ?', ["%{$value}%"]);
+            $query = $query->where('email', 'like', "%{$value}%");
         }
 
         if ($value = $request->get('role')) {
