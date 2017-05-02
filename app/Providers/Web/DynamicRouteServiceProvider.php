@@ -191,7 +191,9 @@ final class DynamicRouteServiceProvider extends ServiceProvider
     protected function setRoutes()
     {
         if (! $this->segmentsCount) {
-            $this->router->get($this->uriPrefix, 'WebHomeController@index');
+            $this->router->get($this->uriPrefix, [
+                'as' => 'home', 'uses' => 'WebHomeController@index'
+            ]);
 
             return;
         }
@@ -204,7 +206,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             if (is_null($page)) {
                 if (count($this->pages) < 1
                     || (! in_array($type = $this->pages[$i - 1]->type, $this->attachedTypes)
-                        && ! in_array($type, $this->explicitTypes)
+                        && ! array_key_exists($type, $this->explicitTypes)
                         && ! array_key_exists($type, $this->tabs)
                     )
                 ) {
@@ -250,7 +252,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
         }
 
         if (! array_key_exists($page->type, $this->implicitTypes)
-            && $this->segmentsCount == 1
+            && ! $this->segmentsLeftCount
         ) {
             $this->setCurrentRoute($page->type, [$page], 'index');
 
@@ -259,7 +261,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
 
         $slug = current($this->segmentsLeft);
 
-        if ($slug && in_array($page->type, $this->explicitTypes)) {
+        if ($slug && array_key_exists($page->type, $this->explicitTypes)) {
             $this->setCurrentRoute($page->type, [$page, $slug], 'show');
 
             return;
@@ -293,7 +295,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             return;
         }
 
-        $model = (new $this->implicitTypes[$type]);
+        $model = (new $this->implicitTypes[$model->type]);
 
         if (! method_exists($model, 'bySlug')) {
             $this->app->abort(404);
@@ -378,7 +380,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
         }
 
         $this->router->{$route}($this->uriPrefix . $segments, [
-            'uses' => $controller . '@' . $method
+            'as' => 'current', 'uses' => $controller . '@' . $method
         ]);
     }
 
