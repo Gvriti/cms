@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use RuntimeException;
 use Models\Abstracts\Model;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 trait PositionableTrait
 {
@@ -18,7 +18,7 @@ trait PositionableTrait
     public function updatePosition()
     {
         if (! isset($this->model) || ! $this->model instanceof Model) {
-            throw new RuntimeException('Model not found');
+            throw new ModelNotFoundException;
         }
 
         if (isset($this->request) && $this->request instanceof Request) {
@@ -33,10 +33,10 @@ trait PositionableTrait
 
         $nestable = in_array('parent_id', $this->model->getFillable());
 
+        $result = $this->model->updatePosition($data, 0, $params, $nestable);
+
         if ($request->expectsJson()) {
-            return response()->json(
-                $this->model->updatePosition($data, 0, $params, $nestable)
-            );
+            return response()->json($result);
         }
 
         return redirect()->back();

@@ -6,10 +6,10 @@
                     <img src="{{$current->file ?: $current->file_default}}" class="img-responsive" />
                 </div>
                 {!! Form::model($current, [
-                    'url' => cms_route('files.store', [$current->model_name, $current->model_id]),
+                    'url' => cms_route('files.store', [$current->table_name, $current->table_id]),
                     'class' => 'form-create form-horizontal'
                 ]) !!}
-                    @include('admin.files.form')
+                @include('admin.files.form')
                 {!!Form::close()!!}
             </div>
         </div>
@@ -17,7 +17,7 @@
     <script type="text/javascript">
         var sort = '{{request('sort', 'desc')}}';
         var currentPage = '{{request('page', 1)}}';
-        var creationPage = sort === 'desc' ? 1 : '{{request('lastPage', 1)}}';
+        var creationPage = sort === 'desc' ? '1' : '{{request('lastPage', 1)}}';
         var formSelector = '#form-modal .form-create';
 
         $(formSelector).on('submit', function(e) {
@@ -39,7 +39,7 @@
                 cbr_replace();
 
                 if (currentPage !== creationPage) {
-                    window.location.href = '{{cms_route('files.index', [$current->model_name, $current->model_id])}}?page=' + creationPage;
+                    window.location.href = '{{cms_route('files.index', [$current->table_name, $current->table_id])}}?page=' + creationPage;
                 } else {
                     $('#form-modal').find('[data-dismiss]').trigger('click');
                 }

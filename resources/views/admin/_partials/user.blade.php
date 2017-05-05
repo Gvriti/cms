@@ -130,7 +130,7 @@
       <ul class="dropdown-menu user-profile-menu list-unstyled">
         <li>
           <a href="{{cms_route('cmsUsers.show', [$userId = Auth::guard('cms')->id()])}}">
-            <i class="{{icon_type('cms_users')}}"></i>
+            <i class="{{icon_type('cmsUsers')}}"></i>
             Profile
           </a>
         </li>

@@ -16,7 +16,7 @@
                             </div>
                             {!! Form::model($current, [
                                 'method' => 'put',
-                                'url' => cms_route('files.update', [$current->model_name, $current->model_id, $current->id], is_multilanguage() ? $current->language : null),
+                                'url' => cms_route('files.update', [$current->table_name, $current->table_id, $current->id], is_multilanguage() ? $current->language : null),
                                 'class' => 'form-horizontal '.$cmsSettings->get('ajax_form'),
                                 'data-lang' => $current->language
                             ]) !!}
@@ -52,8 +52,8 @@
             if (lang === currentLang) {
                 var item = $(formSelector + '[data-lang="'+lang+'"]');
 
-                var title   = $('[name="title"]', item).val();
-                var file    = $('[name="file"]', item).val();
+                var title = $('[name="title"]', item).val();
+                var file = $('[name="file"]', item).val();
                 var visible = $('[name="visible"]', item).prop('checked');
 
                 item = $('.gallery-env #item{{$current->id}}');
@@ -66,7 +66,7 @@
         });
 
         $(formSelector + ' [name="file"]').on('fileSet', function() {
-            var fileId    = $(this).attr('id');
+            var fileId = $(this).attr('id');
             var fileValue = $(this).val();
             var result = getFileImage(fileValue);
 
@@ -76,7 +76,6 @@
                 photoSelector.addClass('not-photo');
             }
             photoSelector.attr('src', result.file);
-
         });
     </script>
     @include('admin.files.scripts')

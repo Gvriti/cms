@@ -15,8 +15,8 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('model_name', 64)->index();
-            $table->unsignedInteger('model_id')->index();
+            $table->string('table_name', 64)->index();
+            $table->unsignedInteger('table_id')->index();
             $table->unsignedSmallInteger('position')->default(1);
             $table->boolean('visible')->default(1);
             $table->timestamps();
@@ -27,7 +27,7 @@ class CreateFilesTable extends Migration
             $table->unsignedInteger('file_id');
             $table->char('language', 2);
             $table->string('title');
-            $table->string('file', 800)->nullable();
+            $table->string('file', 255)->nullable();
             $table->timestamps();
 
             $table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');

@@ -170,15 +170,15 @@ return [
 
     'files' => [
         'pages' => [
-            'route_name' => 'pages',
+            'model' => \Models\Page::class,
             'foreign_key' => 'menu_id'
         ],
         'catalog' => [
-            'route_name' => 'catalog',
+            'model' => \Models\Catalog::class,
             'foreign_key' => 'collection_id'
         ],
         'articles' => [
-            'route_name' => 'articles',
+            'model' => \Models\Article::class,
             'foreign_key' => 'collection_id'
         ]
     ],

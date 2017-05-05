@@ -51,7 +51,7 @@ class AdminDashboardController extends Controller
 
         // files
         $data['filesTotal'] = $db->table('files')->count();
-        $data['filesTotalDistinct'] = $db->table('files')->count($db->raw('DISTINCT model_name'));
+        $data['filesTotalDistinct'] = $db->table('files')->count($db->raw('DISTINCT table_name'));
 
         // notes
         $data['notes'] = $db->table('notes')->orderBy('id', 'desc')->take(5)->get();

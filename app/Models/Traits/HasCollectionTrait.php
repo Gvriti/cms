@@ -137,10 +137,10 @@ trait HasCollectionTrait
     public function create(array $attributes = [])
     {
         if (isset($attributes['collection_id'])) {
-            $attributes['position'] = (int) parent::collectionId($attributes['collection_id'])
+            $attributes['position'] = (int) $this->collectionId($attributes['collection_id'])
                     ->max('position') + 1;
         } else {
-            $attributes['position'] = (int) parent::max('position') + 1;
+            $attributes['position'] = (int) $this->max('position') + 1;
         }
 
         return parent::create($attributes);

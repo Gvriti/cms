@@ -89,7 +89,7 @@ $router->group(['middleware' => 'cms.data', 'prefix' => cms_slug()], function ($
         // files
         $router->post('files/{id}/visibility', ['as' => 'files.visibility', 'uses' => 'AdminFilesController@visibility']);
         $router->put('files/position', ['as' => 'files.updatePosition', 'uses' => 'AdminFilesController@updatePosition']);
-        $router->resource('{modelName}/{modelId}/files', 'AdminFilesController', ['names' => resource_names('files'),
+        $router->resource('{routeName}/{routeId}/files', 'AdminFilesController', ['names' => resource_names('files'),
             'except' => ['show']
         ]);
 

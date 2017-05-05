@@ -51,13 +51,14 @@ trait FileableTrait
      */
     public function filesCount()
     {
-        $table = $this->getTable();
+        return $this->selectSub(function ($q) {
+            $tableId = ($table = $this->getTable()).'.'.$this->getKeyName();
 
-        $keyName = $this->getKeyName();
-
-        $fileTable = (new File)->getTable();
-
-        return $this->selectRaw("(select count(*) from {$fileTable} where {$table}.{$keyName} = model_id and model_name = ?) as files_cnt", [$table]);
+            return $q->from((new File)->getTable())
+                ->whereColumn('table_id', $tableId)
+                ->where('table_name',  $table)
+                ->selectRaw('count(*)');
+        }, 'files_count');
     }
 
     /**
@@ -72,8 +73,6 @@ trait FileableTrait
             return false;
         }
 
-        return (new File)->where([
-            'model_id' => $id, 'model_name' => $this->getTable()
-        ])->exists();
+        return (new File)->byForeign($this->getTable(), $id)->exists();
     }
 }

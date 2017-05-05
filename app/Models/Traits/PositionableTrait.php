@@ -134,7 +134,7 @@ trait PositionableTrait
      */
     public function create(array $attributes = [])
     {
-        $attributes['position'] = (int) parent::max('position') + 1;
+        $attributes['position'] = (int) $this->max('position') + 1;
 
         return parent::create($attributes);
     }

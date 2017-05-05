@@ -4,7 +4,7 @@
         <div class="title-env">
             <h1 class="title">
                 <i class="{{$icon = icon_type('files')}}"></i>
-                {{ $parent->title }}
+                {{ str_limit($foreignModel->title, 50, '...') }}
             </h1>
             <p class="description">List of the files</p>
         </div>
@@ -14,7 +14,7 @@
                     <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="{{ cms_route($routeName . '.edit', $parent->routeParams) }}"><i class="{{icon_type($routeName)}}"></i>General</a>
+                    <a href="{{ cms_route($routeName . '.edit', $foreignModel->routeParams) }}"><i class="{{icon_type($routeName)}}"></i>General</a>
                 </li>
                 <li class="active">
                     <i class="{{$icon}}"></i>
@@ -26,10 +26,10 @@
     <div class="clearfix">
         <ul class="nav nav-tabs col-xs-8">
             <li>
-                <a href="{{ cms_route($routeName . '.edit', $parent->routeParams) }}">
+                <a href="{{ cms_route($routeName . '.edit', $foreignModel->routeParams) }}">
                     <span class="visible-xs"><i class="fa fa-home"></i></span>
                     <span class="hidden-xs">
-                    <i class="{{icon_type($parent->getTable())}}"></i> General
+                    <i class="{{icon_type($foreignModel->getTable())}}"></i> General
                 </span>
                 </a>
             </li>
@@ -93,7 +93,7 @@
                 </div>
                 <ul id="nestable-list" class="album-images list-unstyled row" data-insert="prepend" data-uk-nestable="{maxDepth:1}" id="items">
                     @foreach($items as $item)
-                        <li id="item{{$item->id}}" data-id="{{$item->id}}" data-pos="{{$item->position}}" data-url="{{cms_route('files.edit', [$routeName, $item->model_id, $item->id])}}" class="item col-md-2 col-sm-4 col-xs-6">
+                        <li id="item{{$item->id}}" data-id="{{$item->id}}" data-pos="{{$item->position}}" data-url="{{cms_route('files.edit', [$routeName, $item->table_id, $item->id])}}" class="item col-md-2 col-sm-4 col-xs-6">
                             <div class="album-image">
                                 <a href="#" class="thumb" data-modal="edit">
                                     @if (in_array($ext = pathinfo($item->file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif']))
@@ -130,8 +130,8 @@
     @push('scripts.bottom')
     <script type="text/javascript">
         $(function() {
-            var routeCreate = '{!!cms_route('files.create', [$modelName, $parent->id, 'sort' => 'desc', 'page' => $items->currentPage(), 'lastPage' => $items->lastPage()])!!}';
-            var routeIndex = '{{cms_route('files.index', [$modelName, $parent->id])}}';
+            var routeCreate = '{!!cms_route('files.create', [$routeName, $foreignModel->id, 'sort' => 'desc', 'page' => $items->currentPage(), 'lastPage' => $items->lastPage()])!!}';
+            var routeIndex = '{{cms_route('files.index', [$routeName, $foreignModel->id])}}';
             var routePosition = '{{cms_route('files.updatePosition')}}';
             var sort = 'desc';
             var page = '{{request('page', 1)}}';

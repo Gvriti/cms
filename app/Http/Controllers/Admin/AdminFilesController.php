@@ -43,19 +43,17 @@ class AdminFilesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  string $modelName
-     * @param  int    $modelId
+     * @param  string  $routeName
+     * @param  int  $routeId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index($modelName, $modelId)
+    public function index($routeName, $routeId)
     {
-        $data['parent'] = $this->model->makeForeign();
+        $data['foreignModel'] = $this->model->getForeignModel();
 
-        $data['items'] = $this->model->getByRoute();
+        $data['items'] = $this->model->getByForeign();
 
-        $data['modelName'] = $modelName;
-
-        $data['routeName'] = config("cms.files.{$modelName}.route_name");
+        $data['routeName'] = $routeName;
 
         return view('admin.files.index', $data);
     }
@@ -63,11 +61,11 @@ class AdminFilesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param  string $modelName
-     * @param  int    $modelId
+     * @param  string  $routeName
+     * @param  int  $routeId
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function create($modelName, $modelId)
+    public function create($routeName, $routeId)
     {
         if ($this->request->expectsJson()) {
             $data['current'] = $this->model;
@@ -77,18 +75,18 @@ class AdminFilesController extends Controller
             return response()->json(['result' => true, 'view' => $view]);
         }
 
-        return redirect(cms_route('files.index', [$modelName, $modelId]));
+        return redirect(cms_route('files.index', [$routeName, $routeId]));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\Admin\FileRequest  $request
-     * @param  string  $modelName
-     * @param  int     $modelId
+     * @param  string  $routeName
+     * @param  int  $routeId
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(FileRequest $request, $modelName, $modelId)
+    public function store(FileRequest $request, $routeName, $routeId)
     {
         $model = $this->model->create($input = $request->all());
 
@@ -104,7 +102,7 @@ class AdminFilesController extends Controller
             );
         }
 
-        return redirect(cms_route('files.index', [$modelName, $modelId]));
+        return redirect(cms_route('files.index', [$routeName, $routeId]));
     }
 
     /**
@@ -120,36 +118,36 @@ class AdminFilesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  string  $modelName
-     * @param  int     $modelId
-     * @param  int     $id
+     * @param  string  $routeName
+     * @param  int  $routeId
+     * @param  int  $id
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function edit($modelName, $modelId, $id)
+    public function edit($routeName, $routeId, $id)
     {
         if ($this->request->expectsJson()) {
             $data['items'] = $this->model->joinLanguage(false)
-                                         ->where('id', $id)
-                                         ->getOrFail();
+                ->where('id', $id)
+                ->getOrFail();
 
             $view = view('admin.files.edit', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }
 
-        return redirect(cms_route('files.index', [$modelName, $modelId]));
+        return redirect(cms_route('files.index', [$routeName, $routeId]));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\Admin\FileRequest  $request
-     * @param  string  $modelName
-     * @param  int     $modelId
-     * @param  int     $id
+     * @param  string  $routeName
+     * @param  int  $routeId
+     * @param  int  $id
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(FileRequest $request, $modelName, $modelId, $id)
+    public function update(FileRequest $request, $routeName, $routeId, $id)
     {
         $this->model->findOrFail($id)->update($input = $request->all());
 
@@ -159,18 +157,18 @@ class AdminFilesController extends Controller
             ));
         }
 
-        return redirect(cms_route('files.index', [$modelName, $modelId]));
+        return redirect(cms_route('files.index', [$routeName, $routeId]));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  string  $modelName
-     * @param  int     $modelId
-     * @param  int     $id
+     * @param  string  $routeName
+     * @param  int  $routeId
+     * @param  int  $id
      * @return mixed
      */
-    public function destroy($modelName, $modelId, $id)
+    public function destroy($routeName, $routeId, $id)
     {
         $id = $this->request->get('ids');
 

@@ -4,6 +4,7 @@ namespace Models;
 
 use Exception;
 use Models\Abstracts\Model;
+use InvalidArgumentException;
 use Models\Traits\LanguageTrait;
 use Models\Traits\PositionableTrait;
 use Illuminate\Filesystem\Filesystem;
@@ -25,7 +26,7 @@ class File extends Model
      * @var array
      */
     protected $fillable = [
-        'model_name', 'model_id', 'position', 'visible'
+        'table_name', 'table_id', 'position', 'visible'
     ];
 
     /**
@@ -34,7 +35,7 @@ class File extends Model
      * @var array
      */
     protected $notUpdatable = [
-        'model_name', 'model_id'
+        'table_name', 'table_id'
     ];
 
     /**
@@ -74,7 +75,7 @@ class File extends Model
     }
 
     /**
-     * The eloquent model instance.
+     * The foreign eloquent model instance.
      *
      * @var \Models\Abstracts\Model
      */
@@ -84,109 +85,100 @@ class File extends Model
      * Create a new Eloquent model instance.
      *
      * @param  array  $attributes
+     * @param  string|null  $routeName
+     * @param  int|null  $routeId
      * @return void
      */
-    public function __construct(array $attributes = [])
+    public function __construct(array $attributes = [], $routeName = null, $routeId = null)
     {
         parent::__construct($attributes);
 
         if (! is_null($route = request()->route())) {
-            if (is_null($this->model_name)
-                && ! is_null($modelName = $route->parameter('modelName'))
-            ) {
-                $this->setAttribute('model_name', snake_case($modelName));
-            }
-
-            if (is_null($this->model_id)
-                && ! is_null($modelId = $route->parameter('modelId'))
-            ) {
-                $this->setAttribute('model_id', $modelId);
-            }
+            $this->setForeign(
+                $route->parameter('routeName'),
+                $route->parameter('routeId')
+            );
+        } else {
+            $this->setForeign($routeName, $routeId);
         }
     }
 
     /**
-     * Get the specified Eloquent model instance.
+     * Set the foreign Eloquent model instance.
      *
-     * @return \Models\Abstracts\Model
+     * @param  string|null  $routeName
+     * @param  int|null  $routeId
+     * @return void
      */
-    public function makeForeign()
+    public function setForeign($routeName = null, $routeId = null)
     {
-        if (! is_null($this->foreignModel)) {
-            return $this->foreignModel;
+        if (! is_null($this->foreignModel) || is_null($routeName) || is_null($routeId)) {
+            return;
         }
 
-        $namespace = __NAMESPACE__ . '\\';
-        $model = $namespace . ($name = str_singular(studly_case($this->model_name)));
+        $foreignRoute = (array) cms_files($routeName);
 
-        if (! class_exists($model)) {
-            $modelExists = false;
-
-            if (! empty($dirs = (new Filesystem)->directories(app_path('Models')))) {
-                foreach ($dirs as $dir) {
-                    if (($baseName = basename($dir)) == 'Abstracts') {
-                        continue;
-                    }
-
-                    $model = $namespace . $baseName . '\\' . $name;
-
-                    if (class_exists($model)) {
-                        $modelExists = true;
-
-                        break;
-                    }
-                }
-            }
-
-            if (! $modelExists) abort(404);
+        if (! isset($foreignRoute['model'])) {
+            throw new InvalidArgumentException('Model not provided.');
         }
 
-        $this->foreignModel = new $model;
+        $this->foreignModel = new $foreignRoute['model'];
 
-        if ($this->foreignModel->hasLanguage()) {
-            $this->foreignModel = $this->foreignModel->joinLanguage();
-        }
+        $this->foreignModel = $this->foreignModel
+            ->when($this->foreignModel->hasLanguage(), function ($q) {
+                return $q->joinLanguage();
+            })->findOrFail($routeId);
 
-        $this->foreignModel = $this->foreignModel->findOrFail($this->model_id);
-
-        $type = (array) cms_files($this->model_name);
-
-        if (isset($type['foreign_key'])) {
-            $routeParams[] = $this->foreignModel->{$type['foreign_key']};
+        if (isset($foreignRoute['foreign_key'])) {
+            $routeParams[] = $this->foreignModel->{$foreignRoute['foreign_key']};
         }
 
         $routeParams[] = $this->foreignModel->id;
 
         $this->foreignModel['routeParams'] = $routeParams;
 
+        $this->setAttribute('table_name', $this->foreignModel->getTable());
+
+        $this->setAttribute('table_id', $this->foreignModel->id);
+    }
+
+    /**
+     * Get the foreign Eloquent model instance.
+     *
+     * @return  \Models\Abstracts\Model
+     */
+    public function getForeignModel()
+    {
         return $this->foreignModel;
     }
 
     /**
-     * Get the files by route.
+     * Get the data based on the foreign model
      *
+     * @param  string|null  $tableName
+     * @param  int|null  $tableId
      * @param  int $perPage
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getByRoute($perPage = 20)
+    public function getByForeign($tableName = null, $tableId = null, $perPage = 20)
     {
         return $this->joinLanguage()
-            ->byRoute()
+            ->byForeign($tableName, $tableId)
             ->orderBy('position', 'desc')
             ->paginate($perPage);
     }
 
     /**
-     * Add a where "model_id, model_name" clause to the query.
+     * Build a query by the foreign model.
      *
-     * @param  null|string  $modelName
-     * @param  null|int     $modelId
+     * @param  string|null  $tableName
+     * @param  int|null  $tableId
      * @return \Models\Builder\Builder
      */
-    public function byRoute($modelName = null, $modelId = null)
+    public function byForeign($tableName = null, $tableId = null)
     {
-        return $this->where('model_name', $modelName ?: $this->model_name)
-            ->where('model_id', $modelId ?: $this->model_id);
+        return $this->where('table_name', $tableName ?: $this->table_name)
+            ->where('table_id', $tableId ?: $this->table_id);
     }
 
     /**
@@ -205,7 +197,7 @@ class File extends Model
      */
     public function create(array $attributes = [])
     {
-        $attributes['position'] = (int) parent::byRoute()->max('position') + 1;
+        $attributes['position'] = (int) $this->byForeign()->max('position') + 1;
 
         return parent::create($attributes);
     }
