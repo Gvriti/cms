@@ -1,8 +1,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="index, follow">
 <meta name="description" content="{{$current->meta_desc}}">
+<meta name="robots" content="index, follow">
 <meta property="og:url" content="{{$url = web_url($current->slug, [], true)}}">
 <meta property="og:type" content="Website">
 <meta property="og:site_name" content="{{$trans->get('title')}}">

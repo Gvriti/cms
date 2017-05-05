@@ -3,6 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Content Management System">
 <meta name="author" content="David Gvritishvili <gvritishvili.david@gmail.com>">
+<meta name="robots" content="noindex, nofollow">
 <meta name="version" content="{{config('cms.version')}}">
 <title>CMS</title>
 <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
