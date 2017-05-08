@@ -100,7 +100,7 @@ class AdminDestroy
     protected function performDelete()
     {
         if ($this->hasFiles) {
-            (new File)->byRoute($this->model->getTable(), $this->id)->delete();
+            (new File)->byForeign($this->model->getTable(), $this->id)->delete();
         }
 
         if (is_array($this->id)) {
