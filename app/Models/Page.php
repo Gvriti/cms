@@ -223,7 +223,7 @@ class Page extends Model
      * @param  int     $parentId
      * @return \Models\Builder\Builder
      */
-    public function route($slug, $parentId)
+    public function byRoute($slug, $parentId)
     {
         return $this->forPublic()->where('slug', $slug)->parentId($parentId);
     }

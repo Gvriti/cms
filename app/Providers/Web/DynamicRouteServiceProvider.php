@@ -201,7 +201,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
         $parentId = 0;
 
         for ($i = 0; $i < $this->segmentsCount; $i++) {
-            $page = (new Page)->route($this->segments[$i], $parentId)->first();
+            $page = (new Page)->byRoute($this->segments[$i], $parentId)->first();
 
             if (is_null($page)) {
                 if (count($this->pages) < 1
