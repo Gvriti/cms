@@ -16,11 +16,6 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app['config']->get('app.debug')) {
             log_executed_db_queries();
         }
-
-        $this->app['view']->getEngineResolver()->resolve('blade')->getCompiler()
-            ->directive('php', function ($expression) {
-                return "<?php {$expression}; ?>";
-            });
     }
 
     /**
