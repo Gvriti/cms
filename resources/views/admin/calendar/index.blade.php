@@ -82,10 +82,10 @@
         </div>
     </div>
 </div>
-@push('assets.head')
+@push('head')
 <link rel="stylesheet" href="{{asset('assets/js/fullcalendar/fullcalendar.min.css')}}">
 @endpush
-@push('scripts.bottom')
+@push('body.bottom')
 <script src="{{asset('assets/js/moment.min.js')}}"></script>
 <script src="{{asset('assets/js/fullcalendar/fullcalendar.min.js')}}"></script>
 <script src="{{asset('assets/js/jquery-ui/jquery-ui.min.js')}}"></script>

@@ -72,7 +72,7 @@
         </table>
     </div>
 </div>
-@push('scripts.bottom')
+@push('body.bottom')
 <script type="text/javascript">
 $(function() {
     $('#items').dataTable({

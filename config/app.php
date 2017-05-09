@@ -195,6 +195,11 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * LanguageServiceProvider must be on top of other packages.
+         */
+        App\Providers\LanguageServiceProvider::class,
+
+        /*
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
@@ -205,8 +210,6 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\LanguageServiceProvider::class,
-
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

@@ -60,7 +60,7 @@
         </div>
     </div>
 </div>
-@push('scripts.bottom')
+@push('body.bottom')
 <script src="{{ asset('assets/js/min/xenon-notes-min.js') }}"></script>
 <script type="text/javascript">
 $(function() {

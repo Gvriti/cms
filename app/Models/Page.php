@@ -93,15 +93,12 @@ class Page extends Model
     /**
      * Build a public query.
      *
-     * @param  int|null  $id
      * @param  mixed  $language
      * @return \Models\Builder\Builder
      */
-    public function forPublic($id = null, $language = true)
+    public function forPublic($language = true)
     {
-        $query = ! is_null($id) ? $this->menuId($id) : $this;
-
-        return $query->joinLanguage($language)->visible();
+        return $this->joinLanguage($language)->visible();
     }
 
     /**

@@ -95,7 +95,7 @@
         </div>
     </div>
 </div>
-@push('scripts.bottom')
+@push('body.bottom')
 @include('admin._scripts.move', ['route' => cms_route('pages.move', [$menu->id]), 'column' => 'menu_id', 'list' => $menus, 'id' => $menu->id, 'recursive' => true])
 <script type="text/javascript">
 $(function() {

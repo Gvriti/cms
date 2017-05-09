@@ -94,7 +94,7 @@
         </div>
     </div>
 </section>
-@push('scripts.bottom')
+@push('body.bottom')
 <script type="text/javascript">
 $(function() {
     var routeCreate = '{{cms_route('slider.create')}}';

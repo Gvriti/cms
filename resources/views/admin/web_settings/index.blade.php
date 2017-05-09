@@ -100,11 +100,11 @@
     {!! Form::close() !!}
 @endif
 </div>
-@push('assets.head')
+@push('head')
 <link rel="stylesheet" href="{{ asset('assets/js/select2/select2.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/js/select2/select2-bootstrap.css') }}">
 @endpush
-@push('scripts.bottom')
+@push('body.bottom')
 <script src="{{ asset('assets/js/select2/select2.min.js') }}"></script>
 <script type="text/javascript">
 $(function() {

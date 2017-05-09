@@ -126,7 +126,7 @@
         {!! $items->appends(request()->all())->links() !!}
     </div>
 </div>
-@push('scripts.bottom')
+@push('body.bottom')
 <script type="text/javascript">
 $(function() {
     $('.members-table a.delete').on('click', function(e) {

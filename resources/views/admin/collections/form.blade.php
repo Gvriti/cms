@@ -167,7 +167,7 @@
         </a>
     </div>
 </div>
-@push('scripts.bottom')
+@push('body.bottom')
 <script type="text/javascript">
 $(function() {
     $('.select').select2({

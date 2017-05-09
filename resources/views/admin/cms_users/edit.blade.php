@@ -57,7 +57,7 @@
         {!! Form::close() !!}
     </div>
 </div>
-@push('scripts.bottom')
+@push('body.bottom')
 <script type="text/javascript">
 $(function() {
     $('form.ajax-form').on('ajaxFormSuccess', function() {

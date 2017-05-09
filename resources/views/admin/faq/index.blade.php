@@ -104,7 +104,7 @@
         </ul>
     </div>
 </div>
-@push('scripts.bottom')
+@push('body.bottom')
 @include('admin._scripts.move', ['route' => cms_route('faq.move', [$parent->id]), 'column' => 'collection_id', 'list' => $parentSimilar, 'parentId' => $parent->id])
 <script type="text/javascript">
 $(function() {

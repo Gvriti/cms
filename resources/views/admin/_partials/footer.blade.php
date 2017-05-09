@@ -155,4 +155,4 @@ $(function() {
 @endif
 });
 </script>
-@stack('scripts.bottom')
+@stack('body.bottom')

@@ -125,7 +125,7 @@
         </div>
     </div>
 </section>
-@push('scripts.bottom')
+@push('body.bottom')
 <script type="text/javascript">
 $(function() {
     var routeCreate = '{!!cms_route('photos.create', [$parent->id, 'sort' => $parent->admin_sort, 'page' => $items->currentPage(), 'lastPage' => $items->lastPage()])!!}';

@@ -84,10 +84,10 @@
         </div>
     </div>
 </form>
-@push('assets.head')
+@push('head')
 <link rel="stylesheet" href="{{ asset('assets/js/icheck/skins/all.css') }}">
 @endpush
-@push('scripts.bottom')
+@push('body.bottom')
 <script src="{{ asset('assets/js/icheck/icheck.min.js') }}"></script>
 <script type="text/javascript">
     $(function() {

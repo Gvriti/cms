@@ -18,7 +18,7 @@
     @include('web._partials.footer')
     <script src="{{asset('assets/site/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/site/js/custom.js')}}"></script>
-    @stack('scripts.bottom')
+    @stack('body.bottom')
 @if (Auth::guard('cms')->check())
     <script src="{{ asset('assets/js/trans.js') }}"></script>
     <div id="translations" data-trans-url="{{cms_route('translations.popup')}}" data-token="{{csrf_token()}}"></div>

@@ -100,7 +100,7 @@
         </div>
     </div>
 </div>
-@push('scripts.bottom')
+@push('body.bottom')
 <script type="text/javascript">
     $('form.ajax-form').on('ajaxFormSuccess', function (form, data) {
         var attachedTypes = $('#attached-types');
