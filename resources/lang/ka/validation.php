@@ -48,6 +48,8 @@ return [
     'in_array'             => 'The :attribute field does not exist in :other.',
     'integer'              => ':attribute უნდა იყოს მთელი რიცხვი.',
     'ip'                   => 'The :attribute must be a valid IP address.',
+    'ipv4'                 => 'The :attribute must be a valid IPv4 address.',
+    'ipv6'                 => 'The :attribute must be a valid IPv6 address.',
     'json'                 => 'The :attribute must be a valid JSON string.',
     'max'                  => [
         'numeric' => ':attribute არ უნდა აღემატებოდეს :max-ს.',
@@ -115,6 +117,24 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'title' => 'სათაური',
+        'value' => 'მნიშვნელობა',
+        'text' => 'ტექსტი',
+        'description' => 'აღწერა',
+        'content' => 'შიგთავსი',
+
+        'name' => 'სახელი',
+        'user' => 'მომხმარებელი',
+        'username' => 'მომხმარებელის სახელი',
+        'fullname' => 'სრული სახელი',
+        'firstname' => 'სახელი',
+        'lastname' => 'გვარი',
+        'email' => 'ელ.ფოსტა',
+        'phone' => 'ტელეფონი',
+        'password' => 'პაროლი',
+
+        'personal_id' => 'პირადი ნომერი'
+    ],
 
 ];

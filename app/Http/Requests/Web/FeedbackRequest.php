@@ -30,14 +30,4 @@ class FeedbackRequest extends Request
             'captcha' => 'required|captcha'
         ];
     }
-
-    /**
-     * Set custom attributes for validator errors.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return (array) trans('attributes');
-    }
 }

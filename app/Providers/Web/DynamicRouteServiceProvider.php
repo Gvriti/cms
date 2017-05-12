@@ -192,7 +192,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
     {
         if (! $this->segmentsCount) {
             $this->router->get($this->uriPrefix, [
-                'as' => 'home', 'uses' => 'WebHomeController@index'
+                'uses' => 'WebHomeController@index'
             ]);
 
             return;
@@ -380,7 +380,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
         }
 
         $this->router->{$route}($this->uriPrefix . $segments, [
-            'as' => 'current', 'uses' => $controller . '@' . $method
+            'uses' => $controller . '@' . $method
         ]);
     }
 

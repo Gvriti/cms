@@ -40,14 +40,4 @@ class SliderRequest extends Request
 
         return $input;
     }
-
-    /**
-     * Set custom attributes for validator errors.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return (array) trans('attributes');
-    }
 }
