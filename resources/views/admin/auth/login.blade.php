@@ -38,11 +38,11 @@
                         <p>{{trans('auth.login_msg')}}</p>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">{{trans('attributes.email')}}</label>
+                        <label class="control-label">E-Mail</label>
                         <input type="text" class="form-control input-dark" name="email" id="email" autocomplete="off" tabindex="1" autofocus>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">{{trans('attributes.password')}}</label>
+                        <label class="control-label">Password</label>
                         <input type="password" class="form-control input-dark" name="password" id="password" autocomplete="off" tabindex="2">
                     </div>
                     <div class="form-group">

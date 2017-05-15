@@ -3,7 +3,7 @@
         <label class="col-sm-2 control-label text-left required">Email:</label>
         <div class="col-sm-10">
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <span class="input-group-addon"><i class="fa fa-at"></i></span>
                 {!! Form::text('email', null, [
                     'id' => 'email',
                     'class' => 'form-control',
