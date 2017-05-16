@@ -7,7 +7,7 @@ return [
     | Mail Language Lines
     |--------------------------------------------------------------------------
     |
-    | Language lines are used to general languages.
+    | Language lines are used for mail messages.
     |
     */
 

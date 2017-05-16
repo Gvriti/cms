@@ -7,7 +7,7 @@ return [
     | General Language Lines
     |--------------------------------------------------------------------------
     |
-    | The following language lines are used to general languages.
+    | The following language lines are used for general messages.
     |
     */
 

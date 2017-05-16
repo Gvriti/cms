@@ -4,10 +4,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Http Requests
+    | Http Status Codes Messages
     |--------------------------------------------------------------------------
     |
-    | Language lines to respond on Http requests.
+    | Http status code language lines to respond on http requests.
     |
     */
 

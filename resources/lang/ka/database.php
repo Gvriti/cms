@@ -4,10 +4,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Database Interaction Language Lines
+    | Database Language Lines
     |--------------------------------------------------------------------------
     |
-    | The following language lines are used to interact with the database.
+    | The following language lines are used for database messages.
     |
     */
 
