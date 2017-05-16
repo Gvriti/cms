@@ -18,10 +18,10 @@ class AdminLockscreen
     {
         if (Auth::guard('cms')->guest()) {
             if ($request->expectsJson()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest(cms_route('login'));
+                return response()->json('Unauthorized.', 401);
             }
+
+            return redirect()->guest(cms_route('login'));
         }
 
         return $next($request);

@@ -20,7 +20,7 @@ class AdminRedirectIfAuthenticated
 
         if ($guard->check() && ! $guard->user()->hasLockScreen()) {
             if ($request->expectsJson()) {
-                return response()->json(fill_data(true));
+                return response()->json('Forbidden', 403);
             }
 
             return redirect(cms_route('dashboard'));

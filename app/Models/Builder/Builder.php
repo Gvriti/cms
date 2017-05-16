@@ -187,7 +187,7 @@ class Builder extends EloquentBuilder
      */
     public function update(array $attributes = [], $exclude = null)
     {
-        $attributes = $this->model->getUpdatable($attributes, $exclude);
+        $this->model->setFillableByUpdatable($exclude);
 
         return parent::update($attributes);
     }

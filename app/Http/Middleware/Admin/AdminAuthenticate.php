@@ -33,16 +33,16 @@ class AdminAuthenticate
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|
+     * @return \Illuminate\Http\JsonResponse|
      *          \Illuminate\Http\RedirectResponse|
      *          \Illuminate\Routing\Redirector|
-     *          \Symfony\Component\HttpFoundation\Response
+     *          mixed
      */
     public function handle($request, Closure $next)
     {
         if ($this->guard->guest()) {
             if ($request->expectsJson()) {
-                return response('Unauthorized.', 401);
+                return response()->json('Unauthorized.', 401);
             }
 
             return redirect()->guest(cms_route('login'));

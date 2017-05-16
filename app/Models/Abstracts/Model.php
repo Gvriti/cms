@@ -53,30 +53,29 @@ abstract class Model extends BaseModel
     }
 
     /**
-     * Get the updatable attributes for the model.
+     * Set the updatable attributes for the model.
      *
-     * @param  array  $attributes
      * @param  string|null  $exclude
-     * @return array
+     * @return void
      */
-    public function getUpdatable(array $attributes = [], $exclude = null)
+    public function setFillableByUpdatable($exclude = null)
     {
         if (! ($hasUpdatable = ! empty($this->updatable)) && empty($this->notUpdatable)) {
-            return $attributes;
+            return;
         }
 
         $property = is_null($exclude) ? 'updatable' : 'updatable' . ucfirst($exclude);
 
         if ($hasUpdatable) {
-            $fillable = array_flip(array_intersect($this->fillable, (array) $this->{$property}));
+            $fillable = array_intersect($this->fillable, (array) $this->{$property});
         } else {
-            $fillable = array_flip(array_diff(
+            $fillable = array_diff(
                 $this->fillable,
                 (array) $this->{'not' . ucfirst($property)}
-            ));
+            );
         }
 
-        return array_intersect_key($attributes, $fillable);
+        $this->fillable($fillable);
     }
 
     /**
@@ -167,7 +166,7 @@ abstract class Model extends BaseModel
      */
     public function update(array $attributes = [], array $options = [], $exclude = null)
     {
-        $attributes = $this->getUpdatable($attributes, $exclude);
+        $this->setFillableByUpdatable($exclude);
 
         return parent::update($attributes, $options);
     }
