@@ -14,7 +14,7 @@
                     <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="{{ cms_route($routeName . '.edit', $foreignModel->routeParams) }}"><i class="{{icon_type($routeName)}}"></i>General</a>
+                    <a href="{{ cms_route($routeName . '.edit', $foreignModel->routeParams) }}"><i class="{{icon_type($routeName)}}"></i>{{$type = str_singular($name = $foreignModel->getTable())}}</a>
                 </li>
                 <li class="active">
                     <i class="{{$icon}}"></i>
@@ -29,8 +29,8 @@
                 <a href="{{ cms_route($routeName . '.edit', $foreignModel->routeParams) }}">
                     <span class="visible-xs"><i class="fa fa-home"></i></span>
                     <span class="hidden-xs">
-                    <i class="{{icon_type($foreignModel->getTable())}}"></i> General
-                </span>
+                        <i class="{{icon_type($name)}}"></i> Back to {{$type}}
+                    </span>
                 </a>
             </li>
         </ul>
