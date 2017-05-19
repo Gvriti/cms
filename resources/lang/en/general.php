@@ -12,6 +12,7 @@ return [
     */
 
     // common
+    'home' => 'Home',
     'profile' => 'Profile',
     'info' => 'Information',
 

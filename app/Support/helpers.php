@@ -284,16 +284,6 @@ function model_path($name)
 }
 
 /**
- * Get the home text, translated for the current language.
- *
- * @return string
- */
-function home_text()
-{
-    return config('web.home.' . language());
-}
-
-/**
  * Make a nestable eloquent models tree.
  *
  * @param  \Illuminate\Support\Collection|array  $items

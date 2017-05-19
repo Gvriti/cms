@@ -122,9 +122,9 @@ class AdminCmsUsersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\View\Factory|
-     *         \Illuminate\Http\RedirectResponse|
-     *         \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
      */
     public function edit($id)
     {
@@ -145,6 +145,8 @@ class AdminCmsUsersController extends Controller
      * @param  \App\Http\Requests\Admin\CmsUserRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
      */
     public function update(CmsUserRequest $request, $id)
     {
