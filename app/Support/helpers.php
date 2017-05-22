@@ -536,7 +536,7 @@ function format_bytes($bytes, $precision = 2)
  * Cut the text after the limit and breakpoint.
  *
  * @param  string  $string
- * @param  int     $limit
+ * @param  int  $limit
  * @param  string  $break
  * @param  string  $end
  * @return string
@@ -546,14 +546,14 @@ function text_limit($string, $limit = 100, $break = '.', $end = '')
     $string = str_replace('&nbsp;', ' ', strip_tags($string));
     $string = preg_replace('/\s\s+/', ' ', $string);
 
-    if (mb_strlen($string, 'utf-8') <= $limit) {
+    if (($stringLength = mb_strlen($string, 'UTF-8')) <= $limit) {
         return $string;
     }
 
-    $breakpoint = $break ? mb_strpos($string, $break, $limit, 'utf-8') : $limit;
+    $breakpoint = (int) ($break ? mb_strpos($string, $break, $limit, 'UTF-8') : $limit);
 
-    if ($breakpoint !== false && $breakpoint < mb_strlen($string, 'utf-8') - 1) {
-        $string = mb_substr($string, 0, $breakpoint, 'utf-8') . $end;
+    if ($breakpoint < (mb_strlen($string, 'UTF-8') - 1)) {
+        $string = mb_substr($string, 0, $breakpoint, 'UTF-8') . $end;
     }
 
     return $string;

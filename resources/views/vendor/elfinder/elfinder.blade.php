@@ -4,17 +4,15 @@
     <meta charset="utf-8">
     <title>elFinder 2.1</title>
     <link rel="stylesheet" href="{{ asset('assets/js/jquery-ui/jquery-ui.css') }}" />
+    <link rel="stylesheet" href="{{ asset($dir.'/css/elfinder.min.css') }}">
+    <link rel="stylesheet" href="{{ asset($dir.'/css/theme.css') }}">
     <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
-
-    <link rel="stylesheet" type="text/css" href="{{ asset($dir.'/css/elfinder.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset($dir.'/css/theme.css') }}">
-
     <script src="{{ asset($dir.'/js/elfinder.min.js') }}"></script>
     <script type="text/javascript">
         // Documentation for client options:
         // https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
-        $().ready(function() {
+        $(function() {
             // Initialize elFinder
             $('#elfinder').elfinder({
                 customData: {
@@ -28,7 +26,7 @@
                     } else {
                         instance.exec('quicklook');
                     }
-                },
+                }
             });
         });
     </script>

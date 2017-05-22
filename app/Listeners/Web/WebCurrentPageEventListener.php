@@ -27,10 +27,11 @@ class WebCurrentPageEventListener
             }
 
             $current = (object) [
-                'id'        => 0,
-                'title'     => $title,
-                'slug'      => $this->getPath(),
-                'image'     => asset('assets/site/images/logo.png'),
+                'id' => 0,
+                'title' => $title,
+                'slug' => $this->getPath(),
+                'type' => null,
+                'image' => asset('assets/site/images/logo.png'),
                 'meta_desc' => $trans->get('meta_desc') ?: $title,
             ];
         } else {

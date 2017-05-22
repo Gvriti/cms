@@ -4,17 +4,14 @@
     <meta charset="utf-8">
     <title>elFinder 2.1</title>
     <link rel="stylesheet" href="{{ asset('assets/js/jquery-ui/jquery-ui.css') }}" />
-    <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
-
     <link rel="stylesheet" type="text/css" href="{{ asset($dir.'/css/elfinder.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset($dir.'/css/theme.css') }}">
-
+    <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset($dir.'/js/elfinder.min.js') }}"></script>
-
     <script type="text/javascript">
-        $().ready(function () {
-            var elf = $('#elfinder').elfinder({
+        $(function () {
+            $('#elfinder').elfinder({
                 // set your elFinder options here
                 customData: { 
                     _token: '{{ csrf_token() }}'
@@ -31,7 +28,7 @@
                 },
                 width: 880,
                 height: 580,
-                resizable: false,
+                resizable: false
             }).elfinder('instance');
         });
     </script>
