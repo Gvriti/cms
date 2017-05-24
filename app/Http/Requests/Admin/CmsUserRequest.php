@@ -25,14 +25,14 @@ class CmsUserRequest extends Request
     {
         $id = $this->route('cms_user');
 
-        $passwordRequired = ($this->method() == 'POST' ? 'required|' : 'nullable|');
-
         return [
             'email' => 'required|email|unique:cms_users,email,'.$id,
             'firstname' => 'required|min:2',
             'lastname' => 'required|min:2',
             'role' => 'required',
-            'password' => $passwordRequired . 'min:6|confirmed'
+            'password' => [
+                    'min:6', 'confirmed'
+                ] + ($this->isMethod('POST') ? ['required'] : ['nullable'])
         ];
     }
 
