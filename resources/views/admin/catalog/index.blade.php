@@ -52,35 +52,41 @@
                     @foreach ($items as $item)
                         <li id="item{{ $item->id }}" class="item" data-id="{{ $item->id }}" data-pos="{{$item->position}}">
                             <div class="uk-nestable-item clearfix">
-                            @if ($parent->admin_order_by == 'position')
-                                <div class="uk-nestable-handle"></div>
-                            @endif
-                                <div class="list-label"><a href="{{ $editUrl = cms_route('catalog.edit', [$parent->id, $item->id]) }}">{{ $item->title }}</a></div>
-                                <div class="btn-action togglable pull-right">
-                                    <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
-                                    <a href="#" class="movable btn btn-white" title="Move to collection" data-id="{{$item->id}}">
-                                        <span class="{{$iconParent}}"></span>
-                                    </a>
-                                    {!! Form::open(['method' => 'post', 'url' => cms_route('catalog.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
-                                    <button type="submit" class="btn btn-{{$item->visible ? 'white' : 'gray'}}" title="{{trans('general.visibility')}}">
-                                        <span class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></span>
-                                    </button>
-                                    {!! Form::close() !!}
-                                    <a href="{{ cms_route('files.index', ['catalog', $item->id]) }}" class="btn btn-{{$item->files_count ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
-                                        <span class="{{icon_type('files')}}"></span>
-                                    </a>
-                                    <a href="{{ $editUrl }}" class="btn btn-orange" title="{{trans('general.edit')}}">
-                                        <span class="fa fa-edit"></span>
-                                    </a>
-                                    {!! Form::open(['method' => 'delete', 'url' => cms_route('catalog.destroy', [$parent->id, $item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
-                                    <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}">
-                                        <span class="fa fa-trash"></span>
-                                    </button>
-                                    {!! Form::close() !!}
+                                <div class="row">
+                                    <div class="col-sm-7 col-xs-10">
+                                    @if ($parent->admin_order_by == 'position')
+                                        <div class="uk-nestable-handle pull-left"></div>
+                                    @endif
+                                        <div class="list-label"><a href="{{ $editUrl = cms_route('catalog.edit', [$parent->id, $item->id]) }}">{{ $item->title }}</a></div>
+                                    </div>
+                                    <div class="col-sm-5 col-xs-2">
+                                        <div class="btn-action togglable pull-right">
+                                            <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
+                                            <a href="#" class="movable btn btn-white" title="Move to collection" data-id="{{$item->id}}">
+                                                <span class="{{$iconParent}}"></span>
+                                            </a>
+                                            {!! Form::open(['method' => 'post', 'url' => cms_route('catalog.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
+                                            <button type="submit" class="btn btn-{{$item->visible ? 'white' : 'gray'}}" title="{{trans('general.visibility')}}">
+                                                <span class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></span>
+                                            </button>
+                                            {!! Form::close() !!}
+                                            <a href="{{ cms_route('files.index', ['catalog', $item->id]) }}" class="btn btn-{{$item->files_count ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
+                                                <span class="{{icon_type('files')}}"></span>
+                                            </a>
+                                            <a href="{{ $editUrl }}" class="btn btn-orange" title="{{trans('general.edit')}}">
+                                                <span class="fa fa-edit"></span>
+                                            </a>
+                                            {!! Form::open(['method' => 'delete', 'url' => cms_route('catalog.destroy', [$parent->id, $item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
+                                            <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}">
+                                                <span class="fa fa-trash"></span>
+                                            </button>
+                                            {!! Form::close() !!}
+                                        </div>
+                                        <a href="#" class="btn btn-primary btn-toggle pull-right">
+                                            <span class="fa fa-toggle-left"></span>
+                                        </a>
+                                    </div>
                                 </div>
-                                <a href="#" class="btn btn-primary btn-toggle pull-right visible-xs">
-                                    <span class="fa fa-toggle-left"></span>
-                                </a>
                             </div>
                         </li>
                     @endforeach

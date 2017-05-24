@@ -312,8 +312,10 @@ class Page extends Model
             $table . '.type as collection_type',
         ];
 
-        return $this->leftJoin($table, 'type_id', $table . '.id')
-            ->addSelect($columns);
+        return $this->leftJoin($table, function ($q) use ($table) {
+            return $q->where($this->getTable() . '.type', 'collections')
+                ->on('type_id', $table . '.id');
+        })->addSelect($columns);
     }
 
     /**
