@@ -23,7 +23,9 @@
                     }
                 },
                 getFileCallback: function(file) {
-                    parent.$('#{{ $input_id }}').val(file.url).trigger('fileSet');
+                    parent.$('#{{ $input_id }}')
+                        .val(decodeURIComponent(file.url))
+                        .trigger('fileSet');
                     parent.jQuery.fancybox.close();
                 },
                 width: 880,
