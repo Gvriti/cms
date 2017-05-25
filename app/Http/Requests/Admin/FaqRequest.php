@@ -21,9 +21,9 @@ class FaqRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function validationData()
+    public function all()
     {
-        $input = parent::validationData();
+        $input = parent::all();
 
         $input['visible'] = $this->has('visible') ? 1 : 0;
 

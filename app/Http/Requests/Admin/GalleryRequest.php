@@ -32,9 +32,9 @@ class GalleryRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function validationData()
+    public function all()
     {
-        $input = parent::validationData();
+        $input = parent::all();
 
         if ($this->has('slug')) {
             $input['slug'] = (new Slugify)->slugify($input['slug']);

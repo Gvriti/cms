@@ -28,9 +28,9 @@ class PageRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function validationData()
+    public function all()
     {
-        $input = parent::validationData();
+        $input = parent::all();
 
         if (! $this->has('short_title')) {
             $input['short_title'] = $this->get('title');

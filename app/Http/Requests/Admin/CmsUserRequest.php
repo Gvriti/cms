@@ -30,9 +30,9 @@ class CmsUserRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function validationData()
+    public function all()
     {
-        $input = parent::validationData();
+        $input = parent::all();
 
         $id = $this->route('cms_user');
 

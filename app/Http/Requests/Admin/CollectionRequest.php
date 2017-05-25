@@ -28,9 +28,9 @@ class CollectionRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function validationData()
+    public function all()
     {
-        $input = parent::validationData();
+        $input = parent::all();
 
         if (! array_key_exists($this->get('type'), cms_collections('types'))) {
             $input['type'] = null;
