@@ -3,42 +3,28 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 abstract class Request extends FormRequest
 {
     /**
-     * The array of custom errors.
+     * Determine if the user is authorized to make request.
      *
-     * @var array
+     * @return bool
      */
-    protected $customErrors = [];
-
-    /**
-     * {@inheritdoc}
-     */
-    public function validate()
+    public function authorize()
     {
-        parent::validate();
-
-        if (! empty($this->customErrors)) {
-            throw new HttpResponseException($this->response([]));
-        }
+        return true;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function response(array $errors)
+    protected function getValidatorInstance()
     {
-        foreach ((array) $this->customErrors as $key => $value) {
-            if (is_array($value)) {
-                $errors[$key] = array_merge($errors[$key], $value);
-            } else {
-                $errors[$key][] = $value;
+        return parent::getValidatorInstance()->after(function ($validator) {
+            if (method_exists($this, 'after')) {
+                $this->after($validator);
             }
-        }
-
-        return parent::response($errors);
+        });
     }
 }

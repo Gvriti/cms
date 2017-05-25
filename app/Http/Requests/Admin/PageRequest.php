@@ -8,16 +8,6 @@ use App\Http\Requests\Request;
 class PageRequest extends Request
 {
     /**
-     * Determine if the user is authorized to make request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -38,9 +28,9 @@ class PageRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function all()
+    public function validationData()
     {
-        $input = parent::all();
+        $input = parent::validationData();
 
         if (! $this->has('short_title')) {
             $input['short_title'] = $this->get('title');

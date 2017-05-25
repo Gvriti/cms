@@ -7,16 +7,6 @@ use App\Http\Requests\Request;
 class CmsUserRequest extends Request
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -30,18 +20,19 @@ class CmsUserRequest extends Request
             'firstname' => 'required|min:2',
             'lastname' => 'required|min:2',
             'role' => 'required',
-            'password' => [
-                    'min:6', 'confirmed'
-                ] + ($this->isMethod('POST') ? ['required'] : ['nullable'])
+            'password' => array_merge(
+                $this->isMethod('POST') ? ['required'] : ['nullable'],
+                ['min:6', 'confirmed']
+            )
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function all()
+    public function validationData()
     {
-        $input = parent::all();
+        $input = parent::validationData();
 
         $id = $this->route('cms_user');
 
@@ -57,5 +48,17 @@ class CmsUserRequest extends Request
         }
 
         return $input;
+    }
+
+    /**
+     * Run after validation is completed.
+     *
+     * @return void
+     */
+    protected function after()
+    {
+        if (! $this->has('password')) {
+            $this->offsetUnset('password');
+        }
     }
 }

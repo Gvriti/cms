@@ -7,16 +7,6 @@ use App\Http\Requests\Request;
 class PhotoRequest extends Request
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -32,9 +22,9 @@ class PhotoRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function all()
+    public function validationData()
     {
-        $input = parent::all();
+        $input = parent::validationData();
 
         $input['visible'] = $this->has('visible') ? 1 : 0;
 
