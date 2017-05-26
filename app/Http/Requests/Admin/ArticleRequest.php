@@ -18,7 +18,7 @@ class ArticleRequest extends Request
 
         return [
             'title' => 'required|min:2',
-            'slug'  => 'required|min:2|unique:articles,slug,'.$id,
+            'slug' => 'required|min:2|unique:articles,slug,'.$id,
         ];
     }
 

@@ -18,7 +18,7 @@ class CatalogRequest extends Request
 
         return [
             'title' => 'required|min:2',
-            'slug'  => 'required|min:2|unique:catalog,slug,'.$id,
+            'slug' => 'required|min:2|unique:catalog,slug,'.$id,
         ];
     }
 

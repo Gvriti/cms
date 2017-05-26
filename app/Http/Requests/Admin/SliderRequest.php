@@ -15,7 +15,7 @@ class SliderRequest extends Request
     {
         return [
             'title' => 'required|min:2|max:250',
-            'file'  => 'required'
+            'file' => 'required'
         ];
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Cocur\Slugify\Slugify;
 use App\Http\Requests\Request;
+use Illuminate\Contracts\Validation\Validator;
 
 class PageRequest extends Request
 {
@@ -17,12 +18,25 @@ class PageRequest extends Request
         $id = $this->route('page');
 
         return [
-            'title'       => 'required|min:2',
+            'title' => 'required|min:2',
             'short_title' => 'required|min:2',
-            'slug'        => 'required|min:2|unique:pages,slug,'.$id,
-            'type'        => 'required',
-            'type_id'     => 'required_if:type,' . $this->get('type') . '|integer'
+            'slug' => 'required|min:2|unique:pages,slug,'.$id,
+            'type' => 'required',
+            'type_id' => 'nullable|integer'
         ];
+    }
+
+    /**
+     * Run before validation is completed.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return void
+     */
+    protected function before(Validator $validator)
+    {
+        $validator->sometimes('type_id', 'required', function ($input) {
+            return in_array($input->type, cms_pages('attached'));
+        });
     }
 
     /**
@@ -40,10 +54,6 @@ class PageRequest extends Request
             $input['slug'] = (new Slugify)->slugify($input['slug']);
         } else {
             $input['slug'] = (new Slugify)->slugify($this->get('title'));
-        }
-
-        if (! in_array($this->get('type'), cms_pages('attached'))) {
-            $input['type_id'] = 0;
         }
 
         $input['visible'] = $this->has('visible') ? 1 : 0;
