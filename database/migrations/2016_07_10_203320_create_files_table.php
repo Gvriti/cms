@@ -27,7 +27,7 @@ class CreateFilesTable extends Migration
             $table->unsignedInteger('file_id');
             $table->char('language', 2);
             $table->string('title');
-            $table->string('file', 255)->nullable();
+            $table->string('file');
             $table->timestamps();
 
             $table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');

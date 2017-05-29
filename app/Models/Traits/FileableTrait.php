@@ -9,20 +9,23 @@ trait FileableTrait
     /**
      * Get the model files.
      *
+     * @param  bool  $separated
      * @param  array|mixed  $columns
-     * @param  int|null  $id
-     * @param  string|null  $name
      * @return \Illuminate\Support\Collection
      */
-    public function getFiles($columns = ['*'], $id = null, $name = null)
+    public function getFiles($separated = true, $columns = ['*'])
     {
         $imageExt = ['png', 'jpg', 'jpeg', 'gif', 'bmp'];
 
         $files = (new File)->joinLanguage()
-            ->byForeign($name ?: $this->getTable(), $id ?: $this->id)
+            ->byForeign($this->getTable(), $this->id)
             ->visible()
             ->positionDesc()
             ->get($columns);
+
+        if (! $separated) {
+            return $files;
+        }
 
         $images = $mixed = [];
 
