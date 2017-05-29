@@ -10,7 +10,7 @@
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
             <li>
-                <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
+                <a href="{{ cms_url('/') }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li class="active">
                 <i class="{{$icon}}"></i>

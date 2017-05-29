@@ -6,7 +6,7 @@
     <header class="logo-env">
       <!-- logo -->
       <div class="logo">
-        <a href="{{ cms_url() }}">
+        <a href="{{ cms_url('/') }}">
           <div class="logo-expanded">
             <div class="name">CMS</div>
           </div>
@@ -32,7 +32,7 @@
       <!-- add class "multiple-expanded" to allow multiple submenus to open -->
       <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
       <li>
-        <a href="{{ cms_url() }}">
+        <a href="{{ cms_url('/') }}">
           <i class="{{icon_type('dashboard')}}" title="Dashboard"></i>
           <span class="title">Home</span>
         </a>

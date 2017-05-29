@@ -76,7 +76,7 @@ function cms_slug($path = null)
         return config('cms.slug');
     }
 
-    return config('cms.slug') . '/' . $path;
+    return trim(config('cms.slug') . '/' . $path, '/');
 }
 
 /**
@@ -102,10 +102,10 @@ function resource_names($name)
  * Generate a CMS URL to a named route.
  *
  * @param  string  $name
- * @param  mixed   $parameters
- * @param  string  $language
- * @param  bool    $absolute
- * @param  bool    $throwException
+ * @param  mixed  $parameters
+ * @param  mixed  $language
+ * @param  bool  $absolute
+ * @param  bool  $throwException
  * @return string
  *
  * @throws \InvalidArgumentException
@@ -113,7 +113,7 @@ function resource_names($name)
 function cms_route($name, $parameters = [], $language = null, $absolute = true, $throwException = true)
 {
     try {
-        $route = route($name . '.' . cms_slug(), $parameters, $absolute);
+        $url = route($name . '.' . cms_slug(), $parameters, $absolute);
     } catch (InvalidArgumentException $e) {
         if ($throwException) {
             throw $e;
@@ -122,7 +122,7 @@ function cms_route($name, $parameters = [], $language = null, $absolute = true, 
         }
     }
 
-    return add_language($route, $language, $throwException);
+    return add_language($url, $language, true);
 }
 
 /**
@@ -130,23 +130,35 @@ function cms_route($name, $parameters = [], $language = null, $absolute = true, 
  *
  * @param  string  $path
  * @param  array  $parameters
- * @param  string|null  $language
+ * @param  mixed  $language
  * @param  bool  $secure
- * @return string
+ * @return \Illuminate\Contracts\Routing\UrlGenerator|string
  */
 function cms_url($path = null, array $parameters = [], $language = null, $secure = null)
 {
-    return url(prefix_language(cms_slug($path), $language), [], $secure) . query_string($parameters);
+    if (is_array($path)) {
+        $path = implode('/', array_filter($path));
+    }
+
+    $url = url(add_language(cms_slug($path), $language), [], $secure);
+
+    if (is_null($path)) {
+        return $url;
+    }
+
+    return trim($url, '?') . query_string(
+            $parameters, parse_url($url, PHP_URL_QUERY) ? '&' : '?'
+        );
 }
 
 /**
  * Generate a web URL to a named route.
  *
  * @param  string  $name
- * @param  mixed   $parameters
- * @param  string  $language
- * @param  bool    $absolute
- * @param  bool    $throwException
+ * @param  mixed  $parameters
+ * @param  mixed  $language
+ * @param  bool  $absolute
+ * @param  bool  $throwException
  * @return string
  *
  * @throws \InvalidArgumentException
@@ -154,7 +166,7 @@ function cms_url($path = null, array $parameters = [], $language = null, $secure
 function web_route($name, $parameters = [], $language = null, $absolute = true, $throwException = true)
 {
     try {
-        $route = route($name, $parameters, $absolute);
+        $url = route($name, $parameters, $absolute);
     } catch (InvalidArgumentException $e) {
         if ($throwException) {
             throw $e;
@@ -163,21 +175,33 @@ function web_route($name, $parameters = [], $language = null, $absolute = true, 
         }
     }
 
-    return add_language($route, $language, $throwException);
+    return add_language($url, $language, true);
 }
 
 /**
  * Generate a web URL.
  *
  * @param  string  $path
- * @param  array   $parameters
- * @param  string  $language
- * @param  bool    $secure
- * @return string
+ * @param  array  $parameters
+ * @param  mixed  $language
+ * @param  bool  $secure
+ * @return \Illuminate\Contracts\Routing\UrlGenerator|string
  */
 function web_url($path = null, array $parameters = [], $language = null, $secure = null)
 {
-    return url(prefix_language($path, $language), [], $secure) . query_string($parameters);
+    if (is_array($path)) {
+        $path = implode('/', array_filter($path));
+    }
+
+    $url = url(add_language($path, $language), [], $secure);
+
+    if (is_null($path)) {
+        return $url;
+    }
+
+    return trim($url, '?') . query_string(
+            $parameters, parse_url($url, PHP_URL_QUERY) ? '&' : '?'
+        );
 }
 
 /**
@@ -207,18 +231,14 @@ function query_string(array $parameters, $basePrefix = '?')
 }
 
 /**
- * Prefix language to the path.
+ * Prefix a language to the path.
  *
  * @param  string  $path
  * @param  string  $language
  * @return string
  */
-function prefix_language($path, $language)
+function language_prefix($path, $language = null)
 {
-    if (is_array($path)) {
-        $path = implode('/', array_filter($path));
-    }
-
     $path = trim($path, '/');
 
     if (is_string($language)) {
@@ -230,7 +250,7 @@ function prefix_language($path, $language)
         $path = language() . '/' . $path;
     }
 
-    return $path;
+    return trim($path, '/');
 }
 
 /**
@@ -238,38 +258,60 @@ function prefix_language($path, $language)
  *
  * @param  string  $url
  * @param  string  $language
- * @param  bool    $throwException
+ * @param  bool  $hasLanguage
  * @return string
  */
-function add_language($url, $language, $throwException = true)
+function add_language($url, $language = null, $hasLanguage = false)
 {
-    $languageList = languages();
+    if (is_null($url)) {
+        return $url;
+    }
 
-    if (! is_null($language) && array_key_exists($language, $languageList)) {
-        $segments = parse_url($url);
+    if (! ($withLanguage = ! empty($language))
+        && ($hasLanguage || ! language_isset())
+    ) {
+        return trim($url, '/');
+    }
 
-        if (! isset($segments['path'])) return $url;
+    $segments = parse_url($url);
 
-        $request = request();
+    if (isset($segments['path'])) {
+        $path = $segments['path'];
+    } else {
+        $path = '';
+    }
 
-        $path = substr($segments['path'], strlen($request->getBaseUrl()));
+    $query = isset($segments['query']) ? '?' . $segments['query'] : '';
+
+    if (! isset($segments['host'])) {
+        return language_prefix($path. $query, $language);
+    }
+
+    $baseUrl = $schemeAndHttpHost = '';
+
+    if (isset($segments['scheme']) && isset($segments['host'])) {
+        $schemeAndHttpHost = $segments['scheme'] . '://' . $segments['host'];
+    }
+
+    if (! empty($path) || $withLanguage) {
+        if (starts_with($path, $baseUrl = request()->getBaseUrl())
+            && $schemeAndHttpHost == request()->getSchemeAndHttpHost()
+        ) {
+            $path = substr($path, strlen($baseUrl));
+        } else {
+            $baseUrl = '';
+        }
 
         $path = array_filter(explode('/', $path));
 
-        if (array_key_exists(current($path), $languageList)) {
+        if (array_key_exists((string) current($path), languages())) {
             array_shift($path);
         }
 
-        array_unshift($path, $language);
-
-        $query = isset($segments['query']) ? '?' . $segments['query'] : '';
-
-        return $request->root() . '/' . implode('/', $path) . $query;
-    } elseif (! is_null($language) && $throwException) {
-        throw new InvalidArgumentException("Language [{$language}] not defined.");
+        $path = language_prefix(implode('/', $path) . $query, $language);
     }
 
-    return $url;
+    return trim($schemeAndHttpHost . $baseUrl . '/' . $path, '/');
 }
 
 /**

@@ -2,7 +2,7 @@
   <div class="navbar-inner">
     <!-- Navbar Brand -->
     <div class="navbar-brand">
-      <a href="{{ cms_url() }}" class="logo">
+      <a href="{{ cms_url('/') }}" class="logo">
         <span class="name">CMS</span>
       </a>
       <a href="#" data-toggle="settings-pane" data-animate="true">
@@ -29,7 +29,7 @@
     <!-- main menu -->
     <ul class="navbar-nav {{$cmsSettings->get('horizontal_menu_click')}}">
       <li>
-        <a href="{{ cms_url() }}">
+        <a href="{{ cms_url('/') }}">
           <i class="{{icon_type('dashboard')}}" title="Dashboard"></i>
           <span class="title">Home</span>
         </a>
@@ -218,7 +218,7 @@
         </form>
       </li>
       <li>
-        <a href="{{web_url()}}" target="_blank"><i class="fa fa-desktop"></i></a>
+        <a href="{{web_url('/')}}" target="_blank"><i class="fa fa-desktop"></i></a>
       </li>
       <li class="dropdown user-profile">
         <a href="#" data-toggle="dropdown">

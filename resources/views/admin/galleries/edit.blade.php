@@ -11,7 +11,7 @@
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
             <li>
-                <a href="{{ cms_url() }}"><i class="fa fa-dashboard"></i>Dashboard</a>
+                <a href="{{ cms_url('/') }}"><i class="fa fa-dashboard"></i>Dashboard</a>
             </li>
             <li>
                 <a href="{{ cms_route('collections.index') }}"><i class="{{icon_type('collections')}}"></i>Collections</a>

@@ -1,6 +1,6 @@
 <nav>
     <ul class="breadcrumb">
-	    <li><a href="{{$url = web_url()}}">{{trans('general.home')}}</a></li>
+	    <li><a href="{{$url = web_url('/')}}">{{trans('general.home')}}</a></li>
 	@if ($breadcrumb = app_instance('breadcrumb'))
 	    @foreach ($breadcrumb as $item)
 	    <li{!! ($isLast = $breadcrumb->last()->slug == $item->slug) ? ' class="active"' : '' !!}>

@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav">
     <li>
-        <a href="{{web_url()}}">{{trans('general.home')}}</a>
+        <a href="{{web_url('/')}}">{{trans('general.home')}}</a>
     </li>
 @if (($pages = app_instance('pagesTree')) instanceof \Illuminate\Support\Collection)
     @foreach ($pages as $item)
