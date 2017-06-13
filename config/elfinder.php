@@ -47,7 +47,7 @@ return [
             /*
              * image
              */
-            'image/png', 'image/jpeg', 'image/gif', 'image/x-icon',
+            'image/png', 'image/jpeg', 'image/gif', 'image/x-icon', 'image/svg+xml',
 
             /*
              * application

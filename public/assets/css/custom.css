@@ -30,7 +30,7 @@ body.lockscreen-page #container {display:none !important;visibility:hidden !impo
 .main-content .content-sidebar ul li {padding:5px 0;}
 .main-content .content-sidebar ul li a {display:block;padding:5px 15px;}
 .main-content .content-sidebar ul li a:hover {color:#575858;}
-.main-content .content-sidebar ul li.active a {color:#2c2e2f;font-weight:700;}
+.main-content .content-sidebar ul li.active > a {color:#2c2e2f;font-weight:700;}
 
 /* checkbox in files gallery */
 .gallery-env .select-item {margin-right:6px;}
