@@ -116,7 +116,7 @@ trait PositionableTrait
      */
     public function positionAsc()
     {
-        return $this->orderBy('position', 'asc');
+        return $this->orderBy('position');
     }
 
     /**
@@ -126,7 +126,7 @@ trait PositionableTrait
      */
     public function positionDesc()
     {
-        return $this->orderBy('position', 'desc');
+        return $this->orderByDesc('position');
     }
 
     /**

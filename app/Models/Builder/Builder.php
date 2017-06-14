@@ -46,11 +46,12 @@ class Builder extends EloquentBuilder
      *
      * @param  \Closure|\Illuminate\Database\Query\Builder|string $query
      * @param  string  $as
+     * @param  bool  $not
      * @return \Illuminate\Database\Query\Builder|static
      *
      * @throws \InvalidArgumentException
      */
-    public function selectExists($query, $as)
+    public function selectExists($query, $as, $not = false)
     {
         if ($query instanceof Closure) {
             $callback = $query;
@@ -68,10 +69,24 @@ class Builder extends EloquentBuilder
             throw new InvalidArgumentException;
         }
 
+        $not = $not ? 'not ' : '';
+
         return $this->selectRaw(
-            '(select exists('.$query.')) as '.$this->query->getGrammar()->wrap($as),
+            '(select '.$not.'exists('.$query.')) as '.$this->query->getGrammar()->wrap($as),
             $bindings
         );
+    }
+
+    /**
+     * Add a select not exists statement to the query.
+     *
+     * @param  \Closure|\Illuminate\Database\Query\Builder|string $query
+     * @param  string  $as
+     * @return \Illuminate\Database\Query\Builder|static
+     */
+    public function selectNotExists($query, $as)
+    {
+        return $this->selectExists($query, $as, true);
     }
 
     /**
@@ -208,13 +223,10 @@ class Builder extends EloquentBuilder
             $this->query->columns = (array) $columns;
         }
 
-        $bindings = ['column'] + array_diff(array_keys($this->query->getRawBindings()), [
-                // exclude from bindings
-                'select'
-            ]);
+        $bindings = ['column'] + array_keys($this->query->getRawBindings());
 
         foreach ($bindings as $i => $binding) {
-            if (! is_array($binding = $this->query->{$binding . 's'})) {
+            if (! is_array($binding = $this->query->{str_plural($binding)})) {
                 continue;
             }
 
@@ -247,7 +259,7 @@ class Builder extends EloquentBuilder
                         }
                     }
                 } elseif (is_string($value) && $value == 'id') {
-                    $this->query->{$bindings[$i] . 's'}[$bind] = $this->query->from . '.' . $value;
+                    $this->query->{str_plural($bindings[$i])}[$bind] = $this->query->from . '.' . $value;
                 } elseif (is_array($value)
                     && isset($value['column'])
                     && strpos($value['column'], '.') === false
@@ -260,23 +272,11 @@ class Builder extends EloquentBuilder
                     if ($value['column'] == 'id' || in_array($value['column'], $columns)) {
                         $table = $this->query->from . '.';
 
-                        $this->query->{$bindings[$i] . 's'}[$bind]['column'] = $table . $value['column'];
+                        $this->query->{str_plural($bindings[$i])}[$bind]['column'] = $table . $value['column'];
                     }
                 }
             }
         }
-    }
-
-    /**
-     * Determine if any rows exist for the current query or throw an exception.
-     *
-     * @return bool
-     *
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     */
-    public function existsOrFail()
-    {
-        return $this->exists() || abort(404);
     }
 
     /**
@@ -286,7 +286,7 @@ class Builder extends EloquentBuilder
      */
     public function orderAsc()
     {
-        return $this->orderBy($this->getKeyName(), 'asc');
+        return $this->orderBy($this->getKeyName());
     }
 
     /**
@@ -296,7 +296,7 @@ class Builder extends EloquentBuilder
      */
     public function orderDesc()
     {
-        return $this->orderBy($this->getKeyName(), 'desc');
+        return $this->orderByDesc($this->getKeyName());
     }
 
     /**
@@ -306,7 +306,7 @@ class Builder extends EloquentBuilder
      */
     public function createdAsc()
     {
-        return $this->orderBy('created_at', 'asc');
+        return $this->orderBy('created_at');
     }
 
     /**
@@ -316,7 +316,7 @@ class Builder extends EloquentBuilder
      */
     public function createdDesc()
     {
-        return $this->orderBy('created_at', 'desc');
+        return $this->orderByDesc('created_at');
     }
 
     /**
