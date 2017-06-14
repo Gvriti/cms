@@ -38,7 +38,7 @@
             <li class="active">
                 <a href="#" data-toggle="tab">
                     <span class="visible-xs"><i class="{{$icon}}"></i></span>
-                    <div class="hidden-xs btn-icon-standalone">
+                    <div class="hidden-xs">
                         <i class="{{$icon}}"></i> {{trans('general.files')}}
                     </div>
                 </a>

@@ -51,7 +51,7 @@
         <li>
             <a href="{{cms_route('files.index', ['catalog', $current->id])}}">
                 <span class="visible-xs"><i class="{{$iconFiles = icon_type('files')}}"></i></span>
-                <div class="hidden-xs btn-icon-standalone">
+                <div class="hidden-xs">
                     <i class="{{$iconFiles}}"></i> {{trans('general.files')}}
                 </div>
             </a>

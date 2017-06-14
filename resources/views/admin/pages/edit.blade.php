@@ -52,7 +52,7 @@
         <li class="attached">
             <a href="{{cms_route($current->type.'.edit', [$current->type_id])}}">
                 <span class="visible-xs"><i class="{{$iconType = icon_type($current->type)}}"></i></span>
-                <div class="hidden-xs btn-icon-standalone">
+                <div class="hidden-xs">
                     <i class="{{$iconType}}"></i> {{ucfirst($current->type)}}
                 </div>
             </a>
@@ -61,7 +61,7 @@
         <li>
             <a href="{{cms_route('files.index', ['pages', $current->id])}}">
                 <span class="visible-xs"><i class="{{$iconFiles = icon_type('files')}}"></i></span>
-                <div class="hidden-xs btn-icon-standalone">
+                <div class="hidden-xs">
                     <i class="{{$iconFiles}}"></i> {{trans('general.files')}}
                 </div>
             </a>
