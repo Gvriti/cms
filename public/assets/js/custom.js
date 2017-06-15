@@ -44,12 +44,10 @@ $(function () {
     // Delete form
     $(document).on('submit', '.form-delete', function (e) {
         e.preventDefault();
-        var perform = confirm('Are you sure you want to delete?');
-        if (perform !== true) {
+        if (! confirm('Are you sure you want to delete?')) {
             return;
         }
         var form = $(this);
-        var formId = $(this).data('id');
         var btn = form.find('[type="submit"]').prop('disabled', true);
 
         $.ajax({
@@ -67,10 +65,10 @@ $(function () {
                     }
                     // delete action
                     if (data.result === 'success') {
-                        form.closest('#item' + formId).fadeOut(600, function () {
+                        form.closest('.item').fadeOut(600, function () {
                             if ($(this).data('parent') === 1) {
                                 $(this).closest('.uk-parent').removeClass('uk-parent');
-                                disableParentDeletion(formId);
+                                disableParentDeletion();
                             }
 
                             $(this).remove();
@@ -82,8 +80,6 @@ $(function () {
                 alert(xhr.responseText);
             },
             complete: function () {
-                form.trigger('deleteFormComplete');
-
                 btn.prop('disabled', false);
             }
         });
@@ -263,8 +259,7 @@ function disableParentDeletion() {
     $('.form-delete [type="submit"]', nestable).prop('disabled', false);
 
     $('.uk-parent', nestable).each(function () {
-        var id = $(this).data('id');
-        $('.form-delete[data-id="' + id + '"] [type="submit"]', this).prop('disabled', true);
+        $('.form-delete [type="submit"]', this).first().prop('disabled', true);
     });
 }
 

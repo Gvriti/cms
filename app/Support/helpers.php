@@ -347,7 +347,7 @@ function make_model_tree($items, $slug = null, $parentId = 0, $parentKey = 'pare
 
     $prevSlug = $slug;
 
-    foreach($items as $item) {
+    foreach ($items as $item) {
         if (! $item instanceof Model) {
             return $items;
         }

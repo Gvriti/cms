@@ -82,8 +82,8 @@
                                     <a href="{{ $editUrl }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                                         <span class="fa fa-edit"></span>
                                     </a>
-                                    {!! Form::open(['method' => 'delete', 'url' => cms_route('pages.destroy', [$menu->id, $item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
-                                        <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}"{{$item->subPages ? ' disabled' : ''}}>
+                                    {!! Form::open(['method' => 'delete', 'url' => cms_route('pages.destroy', [$menu->id, $item->id]), 'class' => 'form-delete']) !!}
+                                        <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}"{{has_model_tree($item) ? ' disabled' : ''}}>
                                             <span class="fa fa-trash"></span>
                                         </button>
                                     {!! Form::close() !!}

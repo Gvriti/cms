@@ -104,7 +104,7 @@
                     </a>
                 @endif
                 @if (Auth::guard('cms')->user()->isAdmin() && Auth::guard('cms')->id() != $item->id)
-                    {!! Form::open(['method' => 'delete', 'url' => cms_route('cmsUsers.destroy', [$item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
+                    {!! Form::open(['method' => 'delete', 'url' => cms_route('cmsUsers.destroy', [$item->id]), 'class' => 'form-delete']) !!}
                         <a href="#" class="delete">
                             <i class="fa fa-user-times"></i>
                             Delete

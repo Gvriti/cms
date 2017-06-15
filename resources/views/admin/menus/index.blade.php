@@ -62,7 +62,7 @@
                             <a href="{{ cms_route('menus.edit', [$item->id]) }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                                 <span class="fa fa-edit"></span>
                             </a>
-                            {!! Form::open(['method' => 'delete', 'url' => cms_route('menus.destroy', [$item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
+                            {!! Form::open(['method' => 'delete', 'url' => cms_route('menus.destroy', [$item->id]), 'class' => 'form-delete']) !!}
                             <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}">
                                 <span class="fa fa-trash"></span>
                             </button>

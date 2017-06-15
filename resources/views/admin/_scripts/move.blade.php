@@ -51,7 +51,7 @@ $(function() {
 
         movableModal.modal('hide');
 
-        if (target != '{{isset($parentId) ? $parentId : 0}}') {
+        if (target !== '{{isset($parentId) ? $parentId : 0}}') {
             $('#item'+id).remove();
         }
     });
