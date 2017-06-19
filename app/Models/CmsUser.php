@@ -116,26 +116,18 @@ class CmsUser extends Model
      */
     public function adminFilter(Request $request)
     {
-        $query = $this;
-
-        if ($value = $request->get('name')) {
-            $query = $query->whereRaw("CONCAT(firstname, ' ', lastname) like ?", ["%{$value}%"]);
-        }
-
-        if ($value = $request->get('email')) {
-            $query = $query->where('email', 'like', "%{$value}%");
-        }
-
-        if ($value = $request->get('role')) {
-            $query = $query->where('role', $value);
-        }
-
-        if (($value = $request->get('active'))) {
-            $query = $query->where('active', 1);
-        } elseif ($value == '0') {
-            $query = $query->where('active', 0);
-        }
-
-        return $query;
+        return $this->when($request->get('name'), function ($q, $value) {
+            return $q->whereRaw("CONCAT(firstname, ' ', lastname) like ?", ["%{$value}%"]);
+        })->when($request->get('email'), function ($q, $value) {
+            return $q->where('email', 'like', "%{$value}%");
+        })->when($request->get('role'), function ($q, $value) {
+            return $q->where('role', $value);
+        })->when(! is_null($value = $request->get('active')), function ($q) use ($value) {
+            return $q->when($value, function ($q) {
+                return $q->where('active', 1);
+            }, function ($q) {
+                return $q->where('active', 0);
+            });
+        });
     }
 }

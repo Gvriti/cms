@@ -42,17 +42,17 @@
         @if ($role)
             <input type="hidden" name="role" value="{{$role}}">
         @endif
-            <div class="dib vam padr">
+            <div class="dib vam padr mrgb">
                 <input type="text" name="name" class="form-control" placeholder="სახელი ან/და გვარი" value="{{request('name')}}">
             </div>
-            <div class="dib vam padr">
+            <div class="dib vam padr mrgb">
                 <input type="text" name="email" class="form-control" placeholder="ელ.ფოსტა" value="{{request('email')}}">
             </div>
-            <div class="dib vam padr">
+            <div class="dib vam padr mrgb">
                 {!! Form::select('active', [
-                    '' => '-- active --',
-                    '1' => 'active',
-                    '0' => 'non active'
+                    '' => '-- Active --',
+                    '1' => 'Active',
+                    '0' => 'Non Active'
                 ], request('active'), [
                     'class' => 'form-control',
                 ]) !!}
@@ -104,7 +104,7 @@
                     </a>
                 @endif
                 @if (Auth::guard('cms')->user()->isAdmin() && Auth::guard('cms')->id() != $item->id)
-                    {!! Form::open(['method' => 'delete', 'url' => cms_route('cmsUsers.destroy', [$item->id]), 'class' => 'form-delete']) !!}
+                    {!! Form::open(['method' => 'delete', 'url' => cms_route('cmsUsers.destroy', [$item->id]), 'class' => 'form-delete', 'data-id' => $item->id]) !!}
                         <a href="#" class="delete">
                             <i class="fa fa-user-times"></i>
                             Delete
