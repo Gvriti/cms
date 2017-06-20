@@ -133,7 +133,7 @@ class Builder extends EloquentBuilder
 
         foreach ((array) $this->columnsPaginate as $method => $selects) {
             foreach ((array) $selects as $select) {
-                $query->{$method}($select);
+                $query = $query->{$method}($select);
             }
         }
 

@@ -67,9 +67,9 @@ trait HasCollectionTrait
      */
     public function forAdmin($id = null, $language = true)
     {
-        $query = ! is_null($id) ? $this->collectionId($id) : $this;
-
-        return $query->joinLanguage($language);
+        return $this->when(! is_null($id), function ($q) use ($id) {
+            return $q->collectionId($id);
+        })->joinLanguage($language);
     }
 
     /**

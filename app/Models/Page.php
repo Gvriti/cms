@@ -82,9 +82,9 @@ class Page extends Model
      */
     public function forAdmin($id = null)
     {
-        $query = ! is_null($id) ? $this->menuId($id) : $this;
-
-        return $query->joinLanguage()
+        return $this->when(! is_null($id), function ($q) use ($id) {
+            return $q->menuId($id);
+        })->joinLanguage()
             ->joinCollection()
             ->filesCount()
             ->positionAsc();

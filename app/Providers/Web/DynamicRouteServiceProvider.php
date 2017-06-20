@@ -399,8 +399,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
         if (($pathCount = count($path)) > 1) {
             for ($i = 1; $i <= $pathCount; $i++) {
                 if ($i == $pathCount) {
-                    $namespace .= '\\' . studly_case($path[$i - 2])
-                        . studly_case($path[$i - 1]);
+                    $namespace .= '\\Web' . studly_case($path[$i - 1]);
                 } else {
                     $namespace .= '\\' . studly_case($path[$i - 1]);
                 }

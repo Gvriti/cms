@@ -132,9 +132,11 @@ abstract class Model extends BaseModel
      */
     public function firstAttr($attribute, $id = null, $default = null)
     {
-        $query = is_null($id) ? $this : $this->where('id', $id);
+        $model = $this->when(! is_null($id), function ($q) use ($id) {
+            return $q->where('id', $id);
+        })->first([$attribute]);
 
-        if (! is_null($model = $query->first([$attribute]))) {
+        if (! is_null($model)) {
             return $model->{$attribute} ?: $default;
         }
 

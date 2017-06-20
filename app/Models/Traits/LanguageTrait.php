@@ -99,7 +99,7 @@ trait LanguageTrait
         $table = $this->getTable();
         $languageTable = $this->getLanguageTable();
 
-        $query = $this->leftJoin($languageTable,
+        return $this->leftJoin($languageTable,
             function ($q) use ($table, $languageTable, $language) {
                 return $q->on("{$table}.id", "{$languageTable}.{$this->getForeignKey()}")
                     ->when($language === true, function ($q) use ($languageTable) {
@@ -111,17 +111,14 @@ trait LanguageTrait
 
                         return $q;
                     });
+            })
+            ->when($addColumns, function ($q) use ($table, $languageTable) {
+                $languageKey = str_singular($languageTable) . '_id';
+
+                return $q->addSelect([
+                    "{$languageTable}.*", "{$languageTable}.id as {$languageKey}", "{$table}.*"
+                ]);
             });
-
-        if ($addColumns) {
-            $languageKey = str_singular($languageTable) . '_id';
-
-            $query->addSelect([
-                "{$languageTable}.*", "{$languageTable}.id as {$languageKey}", "{$table}.*"
-            ]);
-        }
-
-        return $query;
     }
 
     /**
