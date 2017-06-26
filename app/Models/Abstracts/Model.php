@@ -136,11 +136,7 @@ abstract class Model extends BaseModel
             return $q->where('id', $id);
         })->first([$attribute]);
 
-        if (! is_null($model)) {
-            return $model->{$attribute} ?: $default;
-        }
-
-        return $default;
+        return ! is_null($model) ? $model->{$attribute} : $default;
     }
 
     /**

@@ -90,9 +90,9 @@ $(function () {
     $(document).on('submit', ajaxFormSelector, function (e) {
         e.preventDefault();
         var form = $(this);
+        form.find('.text-danger').remove();
         var lang = form.data('lang');
         lang = lang ? lang : '';
-        $('.form-group', form).find('.text-danger').remove();
 
         $.ajax({
             type: 'POST',
@@ -137,10 +137,14 @@ $(function () {
             },
             error: function (xhr) {
                 if (xhr.responseJSON !== undefined) {
-                    var data = xhr.responseJSON;
-
-                    $.each(data, function (index, element) {
-                        var field = $('#' + index + lang, form);
+                    $.each(xhr.responseJSON, function (index, element) {
+                        var field;
+                        var arrayField = index.substr(0, index.indexOf('.'));
+                        if (arrayField) {
+                            field = $('.' + arrayField + lang, form).first();
+                        } else {
+                            field = $('#' + index + lang, form);
+                        }
                         field.closest('.form-group').addClass('validate-has-error');
 
                         var errorMsg = '<div class="text-danger">'+element+'</div>';
@@ -151,10 +155,14 @@ $(function () {
                         }
                     });
 
-                    if (form.hasClass('.validate-has-error')) {
-                        $('html, body').animate({
-                            scrollTop: $('.validate-has-error').offset().top - 100
-                        }, 400);
+                    var errorField = form.find('.validate-has-error').first();
+                    if (errorField) {
+                        var errorOffset = errorField.offset();
+                        if (errorOffset) {
+                            $('html, body').animate({
+                                scrollTop: errorField.offset().top - 100
+                            }, 400);
+                        }
                     }
                 } else {
                     alert(xhr.responseText);
