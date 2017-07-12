@@ -99,30 +99,30 @@ function resource_names($name)
 }
 
 /**
+ * Get a full CMS route name.
+ *
+ * @param  string  $name
+ * @return string
+ *
+ * @throws \InvalidArgumentException
+ */
+function cms_route_name($name)
+{
+    return $name . '.' . cms_slug();
+}
+
+/**
  * Generate a CMS URL to a named route.
  *
  * @param  string  $name
  * @param  mixed  $parameters
  * @param  mixed  $language
  * @param  bool  $absolute
- * @param  bool  $throwException
  * @return string
- *
- * @throws \InvalidArgumentException
  */
-function cms_route($name, $parameters = [], $language = null, $absolute = true, $throwException = true)
+function cms_route($name, $parameters = [], $language = null, $absolute = true)
 {
-    try {
-        $url = route($name . '.' . cms_slug(), $parameters, $absolute);
-    } catch (InvalidArgumentException $e) {
-        if ($throwException) {
-            throw $e;
-        } else {
-            return '/#not_found';
-        }
-    }
-
-    return add_language($url, $language, true);
+    return add_language(route(cms_route_name($name), $parameters, $absolute), $language, true);
 }
 
 /**
@@ -158,24 +158,13 @@ function cms_url($path = null, array $parameters = [], $language = null, $secure
  * @param  mixed  $parameters
  * @param  mixed  $language
  * @param  bool  $absolute
- * @param  bool  $throwException
  * @return string
  *
  * @throws \InvalidArgumentException
  */
-function web_route($name, $parameters = [], $language = null, $absolute = true, $throwException = true)
+function web_route($name, $parameters = [], $language = null, $absolute = true)
 {
-    try {
-        $url = route($name, $parameters, $absolute);
-    } catch (InvalidArgumentException $e) {
-        if ($throwException) {
-            throw $e;
-        } else {
-            return '/#not_found';
-        }
-    }
-
-    return add_language($url, $language, true);
+    return add_language(route($name, $parameters, $absolute), $language);
 }
 
 /**
