@@ -7,15 +7,17 @@
 /vendor
 /.idea
 /.vagrant
-Homestead.yaml
 Homestead.json
+Homestead.yaml
 npm-debug.log
+yarn-error.log
 .env
 /bower_components
 /public/files/*
 !/public/files/sample.txt
 /public/sitemap.xml
-sftp-config.json
+/public/phpmyadmin
+*sftp-config.json
 # Ignore directories and files starting with "!" symbol
 /\!*
 
