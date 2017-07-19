@@ -3,6 +3,7 @@
 namespace Models\Builder;
 
 use Closure;
+use ReflectionMethod;
 use Models\Abstracts\Model;
 use InvalidArgumentException;
 use Illuminate\Pagination\Paginator;
@@ -337,12 +338,14 @@ class Builder extends EloquentBuilder
     {
         $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5);
 
-        $isLoop = in_array($method, [
+        $possibleLoop = in_array($method, [
             $backtrace[2]['function'], $backtrace[3]['function'], $backtrace[4]['function']
         ]);
 
-        if (method_exists($this->model, $method) && ! $isLoop) {
-
+        if (! $possibleLoop
+            && method_exists($this->model, $method)
+            && (new ReflectionMethod($this->model, $method))->isPublic()
+        ) {
             $this->model->setEloquentBuilder($this);
 
             return call_user_func_array([$this->model, $method], $parameters);
