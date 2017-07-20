@@ -103,8 +103,6 @@ function resource_names($name)
  *
  * @param  string  $name
  * @return string
- *
- * @throws \InvalidArgumentException
  */
 function cms_route_name($name)
 {
@@ -159,8 +157,6 @@ function cms_url($path = null, array $parameters = [], $language = null, $secure
  * @param  mixed  $language
  * @param  bool  $absolute
  * @return string
- *
- * @throws \InvalidArgumentException
  */
 function web_route($name, $parameters = [], $language = null, $absolute = true)
 {
@@ -323,6 +319,8 @@ function model_path($name)
  * @param  string  $parentKey
  * @param  string  $key
  * @return \Illuminate\Support\Collection|array
+ *
+ * @throws \InvalidArgumentException
  */
 function make_model_tree($items, $slug = null, $parentId = 0, $parentKey = 'parent_id', $key = 'id')
 {
