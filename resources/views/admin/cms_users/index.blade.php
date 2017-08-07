@@ -76,7 +76,7 @@
         </thead>
         <tbody>
         @foreach($items as $item)
-            <tr id="item{{$item->id}}">
+            <tr id="item{{$item->id}}" class="item">
                 <td class="user-image">
                 @if ($item->photo)
                     <img src="{{$item->photo}}" width="40" height="40" class="img-circle" alt="{{$item->firstname}} {{$item->lastname}}" />
