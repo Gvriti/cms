@@ -277,6 +277,7 @@ function positionable(url, orderBy, page, hasMorePages) {
     var saveBtnIcon = $('.icon-var', saveBtn);
     var postHiddens = {'_method':'put', '_token':saveBtn.data('token')};
     var nestable = $('#nestable-list');
+    page = parseInt(page);
 
     if (page) {
         var aTagStart = '<a href="#" class="move btn btn-gray fa-long-arrow-';
