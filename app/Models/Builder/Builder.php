@@ -93,25 +93,24 @@ class Builder extends EloquentBuilder
     /**
      * Add a new select to the paginate count query.
      *
-     * @param  array|mixed  $columns
+     * @param  string  $expression
      * @param  string  $method
+     * @param  string  $parameter
      * @return \Models\Builder\Builder
      */
-    public function selectPaginate($columns, $method = 'selectRaw')
+    public function selectPaginate($expression, $method = 'selectRaw', $parameter = null)
     {
-        $columns = (array) $columns;
-
         if (! isset($this->columnsPaginate[$method])) {
             $this->columnsPaginate[$method] = [];
         }
 
-        $this->columnsPaginate[$method] = array_unique(array_merge(
-            $this->columnsPaginate[$method], array_filter($columns, function ($value) {
-                return is_string($value);
-            })
-        ));
+        $this->columnsPaginate[$method] = array_merge(
+            $this->columnsPaginate[$method], $parameter
+            ? [$parameter => $expression]
+            : [$expression]
+        );
 
-        return call_user_func_array([$this, $method], $columns);
+        return call_user_func_array([$this, $method], array_filter([$expression, $parameter]));
     }
 
 
@@ -127,14 +126,20 @@ class Builder extends EloquentBuilder
         }
 
         $columnsBackup = $this->query->columns;
-
         $this->query->columns = null;
+
+        $selectBindingsBackup = $this->query->bindings['select'];
+        $this->query->bindings['select'] = [];
 
         $query = $this->query->selectRaw('count(*) as aggregate');
 
         foreach ((array) $this->columnsPaginate as $method => $selects) {
-            foreach ((array) $selects as $select) {
-                $query = $query->{$method}($select);
+            foreach ((array) $selects as $parameter => $select) {
+                if (is_int($parameter)) {
+                    $query = $query->{$method}($select);
+                } else {
+                    $query = $query->{$method}($select, $parameter);
+                }
             }
         }
 
@@ -151,6 +156,7 @@ class Builder extends EloquentBuilder
         }
 
         $this->query->columns = $columnsBackup;
+        $this->query->bindings['select'] = $selectBindingsBackup;
 
         if ($total) {
             $results = $this->forPage(
