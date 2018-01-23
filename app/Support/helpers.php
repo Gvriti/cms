@@ -516,10 +516,9 @@ function icon_type($key, $default = null)
  *
  * @param  string  $path
  * @param  string  $type
- * @param  string|null  $crop
  * @return string
  */
-function glide($path, $type, $crop = null)
+function glide($path, $type)
 {
     $config = config();
 
@@ -530,10 +529,6 @@ function glide($path, $type, $crop = null)
         $baseUrl = '/' . $config['web.glide_base_url'] . '/';
 
         $query = '?type=' . $type;
-
-        if (! is_null($crop)) {
-            $query .= '&crop=' . $crop;
-        }
 
         return substr_replace($path, $baseUrl, $pos, strlen($files)) . $query;
     }
