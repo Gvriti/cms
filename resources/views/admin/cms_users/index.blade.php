@@ -62,7 +62,7 @@
         </form>
     </div>
     @if (Auth::guard('cms')->user()->isAdmin())
-        <a href="{{cms_route('permissions.index')}}" class="btn btn-orange pull-right">Permissions</a>
+        <a href="{{cms_route('permissions.index', ['role' => $role])}}" class="btn btn-orange pull-right">Permissions</a>
     @endif
     <table class="table stacktable table-hover members-table middle-align">
         <thead>
