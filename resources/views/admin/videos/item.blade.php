@@ -18,9 +18,6 @@
             <a href="#" data-modal="edit"><i class="fa fa-pencil"></i></a>
             <a href="#" data-delete="this" data-id="{{$item->id}}"><i class="fa fa-trash"></i></a>
         </div>
-        <div class="image-checkbox select-item">
-            <input type="checkbox" data-id="{{$item->id}}" class="cbr" />
-        </div>
     </div>
 </li>
 @endif
