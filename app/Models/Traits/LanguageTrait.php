@@ -91,13 +91,14 @@ trait LanguageTrait
      * Add a "*_languages" join to the query.
      *
      * @param  mixed  $language
-     * @param  bool  $addColumns
+     * @param  array  $columns
      * @return \Models\Builder\Builder
      */
-    public function joinLanguage($language = true, $addColumns = true)
+    public function joinLanguage($language = true, $columns = [])
     {
         $table = $this->getTable();
         $languageTable = $this->getLanguageTable();
+        $languageKey = str_singular($languageTable) . '_id';
 
         return $this->leftJoin($languageTable,
             function ($q) use ($table, $languageTable, $language) {
@@ -111,14 +112,9 @@ trait LanguageTrait
 
                         return $q;
                     });
-            })
-            ->when($addColumns, function ($q) use ($table, $languageTable) {
-                $languageKey = str_singular($languageTable) . '_id';
-
-                return $q->addSelect([
-                    "{$languageTable}.*", "{$languageTable}.id as {$languageKey}", "{$table}.*"
-                ]);
-            });
+            })->addSelect(array_merge($columns ?: ["{$languageTable}.*"], [
+            "{$languageTable}.id as {$languageKey}", "{$table}.*"
+        ]));
     }
 
     /**
