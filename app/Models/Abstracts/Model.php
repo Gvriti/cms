@@ -140,6 +140,20 @@ abstract class Model extends BaseModel
     }
 
     /**
+     * Execute the query and get the first result attribute or throw an exception.
+     *
+     * @param  string  $attribute
+     * @param  int|null  $id
+     * @return mixed
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function firstAttrOrFail($attribute, $id = null)
+    {
+        return $this->firstAttr($attribute, $id) or abort(404);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function create(array $attributes = [])
