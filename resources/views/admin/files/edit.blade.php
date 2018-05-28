@@ -60,7 +60,7 @@
                 $('.title', item).text(title);
                 $('.thumb img', item).attr('src', getFileImage(file).file);
 
-                var icon = visible ? 'fa-eye' : 'fa-eye-slash';
+                var icon = (visible ? 'fa fa-eye' : 'fa fa-eye-slash');
                 $('.visibility i', item).attr('class', icon);
             }
         });

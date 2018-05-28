@@ -101,10 +101,10 @@ galleryEnv.on('click', '.visibility', function(e) {
     $.post(url, input, function(data) {
         if (data) {
             value = 1;
-            var icon = 'fa-eye';
+            var icon = 'fa fa-eye';
         } else {
             value = 0;
-            var icon = 'fa-eye-slash';
+            var icon = 'fa fa-eye-slash';
         }
         item.find('i').attr('class', icon);
     }, 'json').fail(function(xhr) {

@@ -3,7 +3,7 @@
         <label class="control-label">Title:</label>
         {!! Form::text('title', null, [
             'id' => 'title' . $current->language,
-            'class' => 'title form-control',
+            'class' => 'form-control',
             'autofocus'
         ]) !!}
     </div>
@@ -24,7 +24,7 @@
         <div class="input-group">
             {!! Form::text('file', null, [
                 'id' => 'file' . $current->language,
-                'class' => 'file form-control',
+                'class' => 'form-control',
                 'data-lang' => 1,
             ]) !!}
             <div class="input-group-btn popup" data-browse="file{{$current->language}}">

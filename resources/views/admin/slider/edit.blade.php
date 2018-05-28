@@ -46,15 +46,15 @@
         if (lang === currentLang) {
             var item = $(formSelector + '[data-lang="'+lang+'"]');
 
-            var title   = $('.title', item).val();
-            var file    = $('.file', item).val();
-            var visible = $('.visible', item).prop('checked');
+            var title   = $('[name="title"]', item).val();
+            var file    = $('[name="file"]', item).val();
+            var visible = $('[name="visible"]', item).prop('checked');
 
             item = $('.gallery-env #item{{$current->id}}');
             $('.title', item).text(title);
             $('.thumb img', item).attr('src', file);
 
-            var icon = visible ? 'fa-eye' : 'fa-eye-slash';
+            var icon = (visible ? 'fa fa-eye' : 'fa fa-eye-slash');
             $('.visibility i', item).attr('class', icon);
         }
     });

@@ -43,7 +43,7 @@
     var formSelector = '#form-modal .ajax-form';
     $(formSelector).on('ajaxFormSuccess', function() {
         var lang = $(this).data('lang');
-        if (lang == currentLang) {
+        if (lang === currentLang) {
             var item = $(formSelector + '[data-lang="'+lang+'"]');
 
             var title   = $('[name="title"]', item).val();
@@ -54,7 +54,7 @@
             $('.title', item).text(title);
             $('.thumb img', item).attr('src', file);
 
-            var icon = visible ? 'fa-eye' : 'fa-eye-slash';
+            var icon = (visible ? 'fa fa-eye' : 'fa fa-eye-slash');
             $('.visibility i', item).attr('class', icon);
         }
     });

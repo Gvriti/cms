@@ -112,8 +112,7 @@ $(function () {
                         var item = $('#' + index + lang, form);
 
                         if (item.data('lang')) {
-                            var type = (typeof element === 'object') ? '[]' : '';
-                            var inputGeneral = $(ajaxFormSelector + ' [name="' + index + type + '"]');
+                            var inputGeneral = $(ajaxFormSelector + ' [name="' + index + '"]');
                             $(inputGeneral).each(function (i, e) {
                                 item = $(e);
                                 if (item.val() !== element) {

@@ -47,7 +47,7 @@
             var item = $(formSelector + '[data-lang="'+lang+'"]');
 
             var title   = $('[name="title"]', item).val();
-            var file    = $('[name="file"]', item).val();
+            // var file    = $('[name="file"]', item).val();
             var visible = $('[name="visible"]', item).prop('checked');
 
             item = $('.gallery-env #item{{$current->id}}');
@@ -55,7 +55,7 @@
             $('.thumb iframe', item).attr('src', data.youtube);
             $('#form-modal').find('iframe').attr('src', data.youtube);
 
-            var icon = visible ? 'fa-eye' : 'fa-eye-slash';
+            var icon = (visible ? 'fa fa-eye' : 'fa fa-eye-slash');
             $('.visibility i', item).attr('class', icon);
         }
     });
