@@ -67,15 +67,16 @@ trait FileableTrait
     /**
      * Determine if the model has a file(s).
      *
-     * @param  int  $id
      * @return bool
      */
-    public function hasFile($id)
+    public function hasFile()
     {
-        if (! ($id = ($id ?: $this->id))) {
-            return false;
-        }
+        return $this->selectExists(function ($q) {
+            $tableId = ($table = $this->getTable()).'.'.$this->getKeyName();
 
-        return (new File)->byForeign($this->getTable(), $id)->exists();
+            return $q->from((new File)->getTable())
+                ->whereColumn('table_id', $tableId)
+                ->where('table_name', $table);
+        }, 'has_file');
     }
 }

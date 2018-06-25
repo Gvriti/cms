@@ -86,7 +86,7 @@ class Page extends Model
             return $q->menuId($id);
         })->joinLanguage()
             ->joinCollection()
-            ->filesCount()
+            ->hasFile()
             ->positionAsc();
     }
 

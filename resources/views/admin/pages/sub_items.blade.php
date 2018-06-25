@@ -23,7 +23,7 @@
                             <span class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></span>
                         </button>
                         {!! Form::close() !!}
-                        <a href="{{ cms_route('files.index', ['pages', $item->id]) }}" class="btn btn-{{$item->files_count ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
+                        <a href="{{ cms_route('files.index', ['pages', $item->id]) }}" class="btn btn-{{$item->has_file ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
                             <span class="{{icon_type('files')}}"></span>
                         </a>
                         <a href="{{$cmsUrl = ($item->collection_type ? cms_route($item->collection_type . '.index', [$item->type_id], null, true) : array_key_exists($item->type, config('cms.pages.explicit')) ? cms_route($item->type . '.'.($item->type_id ? 'edit' : 'index'), array_filter([$item->type_id]), null, true) : '#')}}" class="btn btn-{{$cmsUrl == '#' ? 'white disabled' : 'info'}}" title="{{$item->collection_title ?: ucfirst($item->type)}}">
