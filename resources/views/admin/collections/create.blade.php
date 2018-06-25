@@ -27,7 +27,7 @@
     <div class="panel-body">
         {!! Form::model($current, [
             'method' => 'post',
-            'url'    => cms_route('collections.index'),
+            'url'    => cms_route('collections.store'),
             'class'  => 'form-horizontal'
         ]) !!}
             @include('admin.collections.form', [

@@ -36,7 +36,7 @@
     <div class="panel-body">
         {!! Form::model($current, [
             'method' => 'post',
-            'url'    => cms_route('menus.index'),
+            'url'    => cms_route('menus.store'),
             'class'  => 'form-horizontal'
         ]) !!}
             @include('admin.menus.form', [

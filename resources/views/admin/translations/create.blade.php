@@ -27,7 +27,7 @@
     <div class="panel-body">
         {!! Form::model($current, [
             'method' => 'post',
-            'url'    => cms_route('translations.index'),
+            'url'    => cms_route('translations.store'),
             'class'  => 'form-horizontal'
         ]) !!}
             @include('admin.translations.form', [

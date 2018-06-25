@@ -30,7 +30,7 @@
     <div class="panel-body">
         {!! Form::model($current, [
             'method' => 'post',
-            'url'    => cms_route('galleries.index', [$current->collection_id]),
+            'url'    => cms_route('galleries.store', [$current->collection_id]),
             'class'  => 'form-horizontal'
         ]) !!}
             @include('admin.galleries.form', [

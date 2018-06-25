@@ -30,7 +30,7 @@
     <div class="panel-body">
         {!! Form::model($current, [
             'method' => 'post',
-            'url'    => cms_route('pages.index', [$current->menu_id]),
+            'url'    => cms_route('pages.store', [$current->menu_id]),
             'class'  => 'form-horizontal'
         ]) !!}
             {!! Form::hidden('parent_id', null) !!}
