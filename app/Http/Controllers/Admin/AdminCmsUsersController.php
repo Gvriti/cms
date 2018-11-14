@@ -91,7 +91,7 @@ class AdminCmsUsersController extends Controller
 
         $input = $request->all();
 
-        if (! $request->has('password')) {
+        if (! $request->filled('password')) {
             unset($input['password']);
         } else {
             $input['password'] = bcrypt($input['password']);
@@ -156,7 +156,7 @@ class AdminCmsUsersController extends Controller
 
         $input = $request->all();
 
-        if ($request->has('password')) {
+        if ($request->filled('password')) {
             $input['password'] = bcrypt($input['password']);
         }
 

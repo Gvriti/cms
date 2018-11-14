@@ -108,7 +108,7 @@
 <div class="row">
     <div class="col-xs-4">
         <div class="form-group">
-            <label class="col-sm-6 control-label">Visible:</label>
+            <label class="col-sm-6 control-label">visible:</label>
             <div class="col-sm-6">
                 {!! Form::checkbox('visible', null, null, [
                     'id' => 'visible' . $current->language,

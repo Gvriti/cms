@@ -98,10 +98,10 @@ class AdminLoginController extends Controller
     {
         $isValid = false;
 
-        if ($request->has('password')) {
+        if ($request->filled('password')) {
             $isValid = $this->guard()->getProvider()->validateCredentials(
                 $this->guard()->user(),
-                $request->only('password')
+                $request->all('password')
             );
         }
 

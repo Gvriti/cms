@@ -379,7 +379,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             $route = 'get';
         }
 
-        $this->router->{$route}($this->uriPrefix . $segments, [
+        $this->router->$route($this->uriPrefix . $segments, [
             'uses' => $controller . '@' . $method
         ]);
     }

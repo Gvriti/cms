@@ -22,7 +22,7 @@
             <h2><span>The requested method is not allowed!</span></h2>
         </div>
         <!-- #message -->
-    @if (! request()->has('iframe'))
+    @if (! request()->filled('iframe'))
         <div id="btn" class="text-center">
             <a href="{{redirect()->intended()->getTargetUrl()}}" class="text-uppercase">Go Back</a>
         </div>

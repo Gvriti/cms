@@ -30,7 +30,7 @@ class CmsUserRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function all()
+    public function all($keys = null)
     {
         $input = parent::all();
 
@@ -38,7 +38,7 @@ class CmsUserRequest extends Request
 
         $user = $this->user('cms');
 
-        $input['active'] = $this->has('active') ? 1 : 0;
+        $input['active'] = $this->filled('active') ? 1 : 0;
 
         if ($user->id == $id) {
             $input['role'] = $user->role;
@@ -57,7 +57,7 @@ class CmsUserRequest extends Request
      */
     protected function after()
     {
-        if (! $this->has('password')) {
+        if (! $this->filled('password')) {
             $this->offsetUnset('password');
         }
     }

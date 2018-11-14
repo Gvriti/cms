@@ -227,7 +227,7 @@ $(document).ready(function($) {
         }
     });
 
-@if (request()->has('gotoDate'))
+@if (request()->filled('gotoDate'))
     // go to specified date
     calendar.fullCalendar('gotoDate', '{{request('gotoDate')}}');
     calendar.fullCalendar('changeView', 'agendaDay');

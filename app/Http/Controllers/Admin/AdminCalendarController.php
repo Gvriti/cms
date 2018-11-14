@@ -55,7 +55,7 @@ class AdminCalendarController extends Controller
      */
     public function events()
     {
-        $date = $this->request->only(['start', 'end']);
+        $date = $this->request->all(['start', 'end']);
 
         $data = $this->model->getActive($date['start'], $date['end']);
 
@@ -73,7 +73,7 @@ class AdminCalendarController extends Controller
             'title' => 'required|min:3'
         ]);
 
-        if ($this->request->has('id')) {
+        if ($this->request->filled('id')) {
             $id = $this->request->get('id');
 
             $this->model->findOrFail($id)->updateEvent($this->request);

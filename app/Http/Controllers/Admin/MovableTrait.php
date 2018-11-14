@@ -16,7 +16,7 @@ trait MovableTrait
      */
     public function move(Request $request, $id)
     {
-        $input = $request->only(['id', 'column', 'column_value', 'recursive']);
+        $input = $request->all(['id', 'column', 'column_value', 'recursive']);
 
         if (! $this->model instanceof Model) {
             return $this->getMovableResponse($request, 'error', 'Model not found');

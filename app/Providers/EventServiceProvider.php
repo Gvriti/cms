@@ -21,10 +21,10 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $subscribe = [
-        'App\Listeners\Admin\AdminUserPanelEventListener',
-        'App\Listeners\Web\WebViewEventListener',
-        'App\Listeners\Web\WebBreadcrumbEventListener',
-        'App\Listeners\Web\WebCurrentPageEventListener',
+        \App\Listeners\Admin\AdminUserPanelEventListener::class,
+        \App\Listeners\Web\WebViewEventListener::class,
+        \App\Listeners\Web\WebBreadcrumbEventListener::class,
+        \App\Listeners\Web\WebCurrentPageEventListener::class,
     ];
 
     /**

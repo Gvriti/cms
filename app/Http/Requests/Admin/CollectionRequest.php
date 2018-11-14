@@ -28,7 +28,7 @@ class CollectionRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function all()
+    public function all($keys = null)
     {
         $input = parent::all();
 

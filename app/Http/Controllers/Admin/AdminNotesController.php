@@ -58,7 +58,7 @@ class AdminNotesController extends Controller
     {
         $input = $this->request->only(['title', 'description', 'content']);
 
-        if ($this->request->has('id')) {
+        if ($this->request->filled('id')) {
             $id = $this->request->get('id');
 
             $this->model->findOrFail($id)->update($input);

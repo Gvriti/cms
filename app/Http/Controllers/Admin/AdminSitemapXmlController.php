@@ -97,7 +97,7 @@ class AdminSitemapXmlController extends Controller
      */
     public function store(Request $request)
     {
-        $pages = (new Page)->visible()->orderBy('menu_id')->positionAsc()->get();
+        $pages = (new Page)->whereVisible()->orderBy('menu_id')->positionAsc()->get();
 
         foreach ($pages as $page) {
             $value = ['url' => ['loc' => web_url(
@@ -155,7 +155,7 @@ class AdminSitemapXmlController extends Controller
             $items = (new $model)->where(
                 str_singular($implicitModel->getTable()) . '_id',
                 $implicitModel->id
-            )->visible()->orderDesc()->get();
+            )->whereVisible()->orderDesc()->get();
 
             foreach ($items as $implicitItem) {
                 if (empty($implicitItem->slug)) {

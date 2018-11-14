@@ -127,7 +127,7 @@ class Calendar extends Model
     {
         $input = $request->only(['title', 'description', 'color']);
 
-        if ($request->has('start') || $request->has('end')) {
+        if ($request->filled('start') || $request->filled('end')) {
             $dates = $this->filterDates($request->only(['start', 'end']));
 
             $input = array_merge($input, $dates);

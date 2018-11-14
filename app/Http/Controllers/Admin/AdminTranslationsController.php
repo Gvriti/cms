@@ -167,7 +167,7 @@ class AdminTranslationsController extends Controller
      * @param  \App\Http\Requests\Admin\TranslationRequest  $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function postModal(TranslationRequest $request)
+    public function postData(TranslationRequest $request)
     {
         $input = $request->only('id', 'name', 'title', 'value', 'type');
 

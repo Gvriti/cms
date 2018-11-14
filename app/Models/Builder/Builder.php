@@ -29,6 +29,13 @@ class Builder extends EloquentBuilder
     public $columnsPaginate = [];
 
     /**
+     * The current query value binding properties.
+     *
+     * @var array
+     */
+    protected $bindingProperties = ['columns', 'from', 'joins', 'wheres'];
+
+    /**
      * Create a new Eloquent query builder instance.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
@@ -136,9 +143,9 @@ class Builder extends EloquentBuilder
         foreach ((array) $this->columnsPaginate as $method => $selects) {
             foreach ((array) $selects as $parameter => $select) {
                 if (is_int($parameter)) {
-                    $query = $query->{$method}($select);
+                    $query = $query->$method($select);
                 } else {
-                    $query = $query->{$method}($select, $parameter);
+                    $query = $query->$method($select, $parameter);
                 }
             }
         }
@@ -230,10 +237,10 @@ class Builder extends EloquentBuilder
             $this->query->columns = (array) $columns;
         }
 
-        $bindings = ['column'] + array_keys($this->query->getRawBindings());
+        $bindings = $this->bindingProperties;
 
         foreach ($bindings as $i => $binding) {
-            if (! is_array($binding = $this->query->{str_plural($binding)})) {
+            if (! is_array($binding = $this->query->$binding)) {
                 continue;
             }
 
@@ -266,7 +273,7 @@ class Builder extends EloquentBuilder
                         }
                     }
                 } elseif (is_string($value) && $value == 'id') {
-                    $this->query->{str_plural($bindings[$i])}[$bind] = $this->query->from . '.' . $value;
+                    $this->query->{$bindings[$i]}[$bind] = $this->query->from . '.' . $value;
                 } elseif (is_array($value)
                     && isset($value['column'])
                     && strpos($value['column'], '.') === false
@@ -279,7 +286,7 @@ class Builder extends EloquentBuilder
                     if ($value['column'] == 'id' || in_array($value['column'], $columns)) {
                         $table = $this->query->from . '.';
 
-                        $this->query->{str_plural($bindings[$i])}[$bind]['column'] = $table . $value['column'];
+                        $this->query->{$bindings[$i]}[$bind]['column'] = $table . $value['column'];
                     }
                 }
             }
@@ -334,7 +341,7 @@ class Builder extends EloquentBuilder
      */
     public function __get($key)
     {
-        return $this->query->{$key};
+        return $this->query->$key;
     }
 
     /**

@@ -187,7 +187,7 @@ class File extends Model
      * @param  int  $value
      * @return \Models\Builder\Builder
      */
-    public function visible($value = 1)
+    public function whereVisible($value = 1)
     {
         return $this->where('visible', (int) $value);
     }

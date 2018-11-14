@@ -55,7 +55,7 @@ class WebFeedbackController extends Controller
     {
         $webSettings = app('db')->table('web_settings')->first();
 
-        $data = $request->only(['name', 'email', 'phone', 'text']);
+        $data = $request->all(['name', 'email', 'phone', 'text']);
 
         $email = $webSettings->email;
 

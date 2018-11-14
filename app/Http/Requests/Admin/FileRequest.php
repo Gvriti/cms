@@ -22,11 +22,11 @@ class FileRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function all()
+    public function all($keys = null)
     {
         $input = parent::all();
 
-        $input['visible'] = $this->has('visible') ? 1 : 0;
+        $input['visible'] = $this->filled('visible') ? 1 : 0;
 
         return $input;
     }

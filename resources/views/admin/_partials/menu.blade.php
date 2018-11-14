@@ -104,11 +104,5 @@
         <span class="title">Notes</span>
       </a>
     </li>
-    <li>
-      <a href="{{cms_route('bugReport.index')}}">
-        <i class="fa fa-bug" title="Bug report"></i>
-        <span class="title">Bug Report</span>
-      </a>
-    </li>
   </ul>
 </li>

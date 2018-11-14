@@ -339,7 +339,7 @@ function make_model_tree($items, $slug = null, $parentId = 0, $parentKey = 'pare
             return $items;
         }
 
-        if ($item->{$parentKey} != $parentId) {
+        if ($item->$parentKey != $parentId) {
             continue;
         }
 
@@ -351,7 +351,7 @@ function make_model_tree($items, $slug = null, $parentId = 0, $parentKey = 'pare
             $item->slug = $slug;
         }
 
-        $item->subItems = make_model_tree($items, $slug, $item->{$key}, $parentKey, $key);
+        $item->subItems = make_model_tree($items, $slug, $item->$key, $parentKey, $key);
 
         $tree[] = $item;
     }

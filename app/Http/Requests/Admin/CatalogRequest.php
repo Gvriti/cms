@@ -25,17 +25,17 @@ class CatalogRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function all()
+    public function all($keys = null)
     {
         $input = parent::all();
 
-        if ($this->has('slug')) {
+        if ($this->filled('slug')) {
             $input['slug'] = (new Slugify)->slugify($input['slug']);
         } else {
             $input['slug'] = (new Slugify)->slugify($this->get('title'));
         }
 
-        $input['visible'] = $this->has('visible') ? 1 : 0;
+        $input['visible'] = $this->filled('visible') ? 1 : 0;
 
         return $input;
     }

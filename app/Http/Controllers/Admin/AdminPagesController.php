@@ -214,7 +214,7 @@ class AdminPagesController extends Controller
      */
     public function collapse()
     {
-        if ($this->request->has('id')) {
+        if ($this->request->filled('id')) {
             $id = (int) $this->request->get('id', 0);
 
             $model = $this->model->findOrFail($id);

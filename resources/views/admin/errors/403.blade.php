@@ -30,7 +30,7 @@
                 </h2>
                 <p>You don't have permission to perform this action.</p>
             </div>
-        @if (! request()->has('iframe'))
+        @if (! request()->filled('iframe'))
             <div class="page-error-search centered">
                 <a href="{{redirect()->intended()->getTargetUrl()}}" class="go-back">
                     <i class="fa fa-angle-left"></i>

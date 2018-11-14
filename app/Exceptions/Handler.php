@@ -4,21 +4,13 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
     /**
-     * The Request instance.
-     *
-     * @var \Illuminate\Http\Request|null
-     */
-    protected $request;
-
-    /**
-     * A list of the exception types that should not be reported.
+     * A list of the exception types that are not reported.
      *
      * @var array
      */
@@ -28,23 +20,27 @@ class Handler extends ExceptionHandler
         \Symfony\Component\HttpKernel\Exception\HttpException::class,
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
-        ModelNotFoundException::class,
+        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
+    ];
+
+    /**
+     * A list of the inputs that are never flashed for validation exceptions.
+     *
+     * @var array
+     */
+    protected $dontFlash = [
+        'password',
+        'password_confirmation',
     ];
 
     /**
      * Report or log an exception.
-     *
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
      * @param  \Exception  $exception
      * @return void
      */
     public function report(Exception $exception)
     {
-        if ($exception instanceof ModelNotFoundException) {
-            abort(404);
-        }
-
         parent::report($exception);
     }
 
@@ -53,13 +49,11 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
-        $this->request = $request;
-
-        return parent::render($request, $this->prepareException($exception));
+        return parent::render($request, $exception);
     }
 
     /**
@@ -111,7 +105,7 @@ class Handler extends ExceptionHandler
 
         $debug = config('app.debug');
 
-        if ($this->request->expectsJson()) {
+        if (request()->expectsJson()) {
             if ($debug) {
                 return response()->make(
                     $exception->getMessage() . ' in ' . $exception->getFile() . ' line ' . $exception->getLine(), $status

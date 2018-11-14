@@ -217,7 +217,7 @@ trait SettingsFileTrait
 
         $name = strtolower(class_basename($this));
 
-        $content = json_encode($request->only(array_keys(
+        $content = json_encode($request->all(array_keys(
             $this->getSettingOptions()->toArray()))
         );
 

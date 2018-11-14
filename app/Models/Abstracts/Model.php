@@ -67,7 +67,7 @@ abstract class Model extends BaseModel
         $property = is_null($exclude) ? 'updatable' : 'updatable' . ucfirst($exclude);
 
         if ($hasUpdatable) {
-            $fillable = array_intersect($this->fillable, (array) $this->{$property});
+            $fillable = array_intersect($this->fillable, (array) $this->$property);
         } else {
             $fillable = array_diff(
                 $this->fillable,
@@ -136,7 +136,7 @@ abstract class Model extends BaseModel
             return $q->where($this->getKeyName(), $id);
         })->first([$attribute]);
 
-        return ! is_null($model) ? $model->{$attribute} : $default;
+        return ! is_null($model) ? $model->$attribute : $default;
     }
 
     /**

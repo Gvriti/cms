@@ -73,7 +73,7 @@ class AdminSettingsController extends Controller
             }
         }
 
-        $attributes['horizontal_menu'] = $request->has('horizontal_menu') ? 1 : 0;
+        $attributes['horizontal_menu'] = $request->filled('horizontal_menu') ? 1 : 0;
         $attributes['cms_user_id'] = $guard->id();
 
         $attributes = array_intersect_key($attributes, $columns);

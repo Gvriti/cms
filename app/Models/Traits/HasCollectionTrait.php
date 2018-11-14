@@ -81,7 +81,7 @@ trait HasCollectionTrait
      */
     public function forPublic($id = null, $language = true)
     {
-        return $this->forAdmin($id, $language)->visible();
+        return $this->forAdmin($id, $language)->whereVisible();
     }
 
     /**
@@ -126,7 +126,7 @@ trait HasCollectionTrait
      * @param  int  $value
      * @return \Models\Builder\Builder
      */
-    public function visible($value = 1)
+    public function whereVisible($value = 1)
     {
         return $this->where('visible', (int) $value);
     }

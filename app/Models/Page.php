@@ -98,7 +98,7 @@ class Page extends Model
      */
     public function forPublic($language = true)
     {
-        return $this->joinLanguage($language)->visible();
+        return $this->joinLanguage($language)->whereVisible();
     }
 
     /**
@@ -265,7 +265,7 @@ class Page extends Model
      * @param  int  $value
      * @return \Models\Builder\Builder
      */
-    public function visible($value = 1)
+    public function whereVisible($value = 1)
     {
         return $this->where('visible', (int) $value);
     }

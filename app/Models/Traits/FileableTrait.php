@@ -19,7 +19,7 @@ trait FileableTrait
 
         $files = (new File)->joinLanguage()
             ->byForeign($this->getTable(), $this->id)
-            ->visible()
+            ->whereVisible()
             ->positionDesc()
             ->get($columns);
 

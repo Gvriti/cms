@@ -102,7 +102,7 @@ $router->group(['middleware' => 'cms.data', 'prefix' => cms_slug()], function ($
 
         // translations
         $router->get('translations/form', ['as' => 'translations.popup', 'uses' => 'AdminTranslationsController@getModal']);
-        $router->post('translations/form', ['as' => 'translations.popup', 'uses' => 'AdminTranslationsController@postModal']);
+        $router->post('translations/form', ['as' => 'translations.popup', 'uses' => 'AdminTranslationsController@postData']);
         $router->resource('translations', 'AdminTranslationsController', ['names' => resource_names('translations'),
             'except' => ['show']
         ]);
@@ -127,9 +127,5 @@ $router->group(['middleware' => 'cms.data', 'prefix' => cms_slug()], function ($
 
         // sitemap xml
         $router->get('sitemap/xml/store', ['as' => 'sitemap.xml.store', 'uses' => 'AdminSitemapXmlController@store']);
-
-        // bug report
-        $router->get('bug-report', ['as' => 'bugReport.index', 'uses' => 'AdminBugReportController@index']);
-        $router->post('bug-report', ['as' => 'bugReport.send', 'uses' => 'AdminBugReportController@send']);
     });
 });

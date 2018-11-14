@@ -41,7 +41,7 @@ class ElfinderController extends Elfinder
                 $roots[] = array_merge($defaults, $root, $globalOptions);
             }
 
-            if (! $this->app->request->has('hide_disks')) {
+            if (! $this->app->request->filled('hide_disks')) {
                 $disks = (array) $this->app['config']->get('elfinder.disks', []);
                 foreach ($disks as $key => $root) {
                     if (is_string($root)) {
