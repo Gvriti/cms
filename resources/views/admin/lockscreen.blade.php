@@ -9,7 +9,7 @@
                         <img src="{{Auth::guard('cms')->user()->photo}}" width="128" class="img-circle" />
                     </div>
                     <div class="form-group">
-                        <h3>Welcome back, {{Auth::guard('cms')->user()->firstname}}!</h3>
+                        <h3>Welcome back, {{Auth::guard('cms')->user()->first_name}}!</h3>
                         <p>Enter your password to access the admin.</p>
                         <div class="input-group">
                             <input type="password" class="form-control input-dark{{! $errors->isEmpty() ? ' error' : ''}}" name="password" id="password" placeholder="Password" />

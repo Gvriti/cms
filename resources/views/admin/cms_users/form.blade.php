@@ -17,11 +17,11 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <div class="form-group{{($error = $errors->first('firstname')) ? ' validate-has-error' : '' }}">
-                <label class="col-sm-4 control-label text-left required">Firstname:</label>
+            <div class="form-group{{($error = $errors->first('first_name')) ? ' validate-has-error' : '' }}">
+                <label class="col-sm-4 control-label text-left required">first_name:</label>
                 <div class="col-sm-8">
-                    {!! Form::text('firstname', null, [
-                        'id' => 'firstname',
+                    {!! Form::text('first_name', null, [
+                        'id' => 'first_name',
                         'class' => 'form-control',
                     ]) !!}
                     @if ($error)
@@ -31,11 +31,11 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="form-group{{($error = $errors->first('lastname')) ? ' validate-has-error' : '' }}">
-                <label class="col-sm-4 control-label required">Lastname:</label>
+            <div class="form-group{{($error = $errors->first('last_name')) ? ' validate-has-error' : '' }}">
+                <label class="col-sm-4 control-label required">last_name:</label>
                 <div class="col-sm-8">
-                    {!! Form::text('lastname', null, [
-                        'id' => 'lastname',
+                    {!! Form::text('last_name', null, [
+                        'id' => 'last_name',
                         'class' => 'form-control',
                     ]) !!}
                     @if ($error)

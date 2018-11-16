@@ -43,7 +43,7 @@
                         </div>
                     @endif
                         <div class="user-name">
-                            <a href="{{$routeShow}}">{{$current->firstname}} {{$current->lastname}}</a>
+                            <a href="{{$routeShow}}">{{$current->first_name}} {{$current->last_name}}</a>
                             <span>{{$current->role_text}}</span>
                         </div>
                     </div>
@@ -61,13 +61,13 @@
 <script type="text/javascript">
 $(function() {
     $('form.ajax-form').on('ajaxFormSuccess', function() {
-        var firstname = $('#firstname', this).val();
-        var lastname = $('#lastname', this).val();
+        var first_name = $('#first_name', this).val();
+        var last_name = $('#last_name', this).val();
         var photo = $('#photo', this).val();
         var role = $('[name="role"]', this).val();
         var roles = ['{!!implode("', '", $roles)!!}'];
 
-        $('.user-name a', this).text(firstname + ' ' + lastname);
+        $('.user-name a', this).text(first_name + ' ' + last_name);
         $('.user-name span', this).text(roles[role]);
         $('.user-img img', this).attr('src', photo);
         if (role !== 'admin') {

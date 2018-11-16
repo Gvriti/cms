@@ -17,7 +17,7 @@
                 <a href="{{ cms_route('cmsUsers.index') }}"><i class="{{$icon}}"></i>CMS Users</a>
             </li>
             <li class="active">
-                <strong>{{$current->firstname}} {{$current->lastname}}</strong>
+                <strong>{{$current->first_name}} {{$current->last_name}}</strong>
             </li>
         </ol>
     </div>
@@ -32,7 +32,7 @@
                 </div>
             @endif
                 <div class="user-name">
-                    {{$current->firstname}} {{$current->lastname}}
+                    {{$current->first_name}} {{$current->last_name}}
                     <span class="user-status is-online"></span>
                 </div>
                 <span class="btn-block text-center">

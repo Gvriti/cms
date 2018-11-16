@@ -13,7 +13,7 @@
           </div>
           <div class="user-details">
             <h3>
-              <a href="{{cms_route('cmsUsers.show', [Auth::guard('cms')->id()])}}">{{Auth::guard('cms')->user()->firstname}} {{Auth::guard('cms')->user()->lastname}}</a>
+              <a href="{{cms_route('cmsUsers.show', [Auth::guard('cms')->id()])}}">{{Auth::guard('cms')->user()->first_name}} {{Auth::guard('cms')->user()->last_name}}</a>
               <!-- Available statuses: is-online, is-idle, is-busy and is-offline -->
               <span class="user-status is-online"></span>
             </h3>

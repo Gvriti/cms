@@ -123,7 +123,7 @@
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <img src="{{ Auth::guard('cms')->user()->photo }}" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
         <span>
-          {{Auth::guard('cms')->user()->firstname}} {{Auth::guard('cms')->user()->lastname}}
+          {{Auth::guard('cms')->user()->first_name}} {{Auth::guard('cms')->user()->last_name}}
           <i class="fa fa-angle-down"></i>
         </span>
       </a>

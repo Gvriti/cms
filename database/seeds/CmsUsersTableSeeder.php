@@ -18,8 +18,8 @@ class CmsUsersTableSeeder extends DatabaseSeeder
         DB::table('cms_users')->insert([
             [
                 'email'      => 'gvritishvili.david@gmail.com',
-                'firstname'  => 'David',
-                'lastname'   => 'Gvritishvili',
+                'first_name'  => 'David',
+                'last_name'   => 'Gvritishvili',
                 'role'       => 'admin',
                 'active'     => 1,
                 'password'   => '$2y$10$104nOCAkMAcIQGmqpd7fN.I0/7De6VAsBdYgjEBaoevZLYpn2xelu',

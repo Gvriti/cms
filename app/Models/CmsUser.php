@@ -21,7 +21,7 @@ class CmsUser extends Model
      * @var array
      */
     protected $fillable = [
-        'email', 'firstname', 'lastname', 'phone', 'address', 'role', 'active', 'photo', 'password'
+        'email', 'first_name', 'last_name', 'phone', 'address', 'role', 'active', 'photo', 'password'
     ];
 
     /**
@@ -117,7 +117,7 @@ class CmsUser extends Model
     public function adminFilter(Request $request)
     {
         return $this->when($request->get('name'), function ($q, $value) {
-            return $q->whereRaw("CONCAT(firstname, ' ', lastname) like ?", ["%{$value}%"]);
+            return $q->whereRaw("CONCAT(first_name, ' ', last_name) like ?", ["%{$value}%"]);
         })->when($request->get('email'), function ($q, $value) {
             return $q->where('email', 'like', "%{$value}%");
         })->when($request->get('role'), function ($q, $value) {
