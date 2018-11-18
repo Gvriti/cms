@@ -79,7 +79,7 @@ class Handler extends ExceptionHandler
     {
         $status = $exception->getStatusCode();
 
-        if ($this->request->expectsJson()) {
+        if (request()->expectsJson()) {
             if (($trans = trans('http.' . $status)) !== 'http.' . $status) {
                 return response($trans, $status);
             } else {
