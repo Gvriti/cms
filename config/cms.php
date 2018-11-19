@@ -252,16 +252,4 @@ return [
         'files' => 'fa fa-paperclip',
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | CMS Bug Mail
-    |--------------------------------------------------------------------------
-    |
-    | Here you can specify an e-mail address, where the user can send
-    | bug reports.
-    |
-    */
-
-    'bug_mail' => env('BUG_MAIL', null)
-
 ];
