@@ -18,7 +18,7 @@ trait FileableTrait
         $imageExt = ['png', 'jpg', 'jpeg', 'gif', 'bmp'];
 
         $files = (new File)->joinLanguage()
-            ->byForeign($this->getTable(), $this->id)
+            ->byForeign($this->getTable(), $this->getAttribute('id'))
             ->whereVisible()
             ->positionDesc()
             ->get($columns);
