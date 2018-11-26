@@ -135,8 +135,8 @@ $(function () {
                 $('.form-group', form).removeClass('validate-has-error');
             },
             error: function (xhr) {
-                if (xhr.responseJSON !== undefined) {
-                    $.each(xhr.responseJSON, function (index, element) {
+                if (xhr.responseJSON.errors !== undefined) {
+                    $.each(xhr.responseJSON.errors, function (index, element) {
                         var field;
                         var arrayField = index.substr(0, index.indexOf('.'));
                         if (arrayField) {
