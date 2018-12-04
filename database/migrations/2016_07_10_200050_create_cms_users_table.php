@@ -23,8 +23,8 @@ class CreateCmsUsersTable extends Migration
             $table->string('address')->nullable();
             $table->boolean('active')->default(1);
             $table->string('photo')->nullable();
-            $table->string('password', 128);
-            $table->string('remember_token', 128)->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
