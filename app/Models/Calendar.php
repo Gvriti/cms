@@ -125,10 +125,10 @@ class Calendar extends Model
      */
     public function updateEvent(Request $request)
     {
-        $input = $request->only(['title', 'description', 'color']);
+        $input = $request->all(['title', 'description', 'color']);
 
         if ($request->filled('start') || $request->filled('end')) {
-            $dates = $this->filterDates($request->only(['start', 'end']));
+            $dates = $this->filterDates($request->all(['start', 'end']));
 
             $input = array_merge($input, $dates);
         }

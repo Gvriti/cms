@@ -169,7 +169,7 @@ class AdminTranslationsController extends Controller
      */
     public function postData(TranslationRequest $request)
     {
-        $input = $request->only('id', 'name', 'title', 'value', 'type');
+        $input = $request->all('id', 'name', 'title', 'value', 'type');
 
         if (is_null($input['id'])) {
             unset($input['id']);

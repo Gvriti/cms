@@ -56,7 +56,7 @@ class AdminNotesController extends Controller
      */
     public function save()
     {
-        $input = $this->request->only(['title', 'description', 'content']);
+        $input = $this->request->all(['title', 'description', 'content']);
 
         if ($this->request->filled('id')) {
             $id = $this->request->get('id');
