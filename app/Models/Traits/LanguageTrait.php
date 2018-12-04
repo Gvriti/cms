@@ -141,7 +141,7 @@ trait LanguageTrait
 
         $attributes = $this->getLanguageUpdatable($attributes, $exclude);
 
-        return $this->languageModel->where($this->getForeignKey(), $this->getAttribute('id'))
+        return $this->languageModel->where($this->getForeignKey(), $this->getKey())
             ->where('language', language())
             ->update($attributes);
     }
@@ -158,7 +158,7 @@ trait LanguageTrait
 
         $languages = languages();
 
-        $attributes[$this->getForeignKey()] = $this->getAttribute('id');
+        $attributes[$this->getForeignKey()] = $this->getKey();
 
         foreach($languages as $key => $value) {
             $this->setLanguage($this);

@@ -144,7 +144,7 @@ class Page extends Model
         $columns = current($columns) == '*' ? $columns : array_merge($columns, ['id']);
 
         $pages = $this->forPublic()->where(
-            $key, $value ?: $this->getAttribute('id')
+            $key, $value ?: $this->getKey()
         )->positionAsc()->get($columns);
 
         if (is_int($recursive) && $recursive > 0) {
@@ -163,7 +163,7 @@ class Page extends Model
      */
     public function hasSubPage()
     {
-        return $this->parentId($this->getAttribute('id'))->exists();
+        return $this->parentId($this->getKey())->exists();
     }
 
     /**
@@ -184,7 +184,7 @@ class Page extends Model
         $pages = $this->forPublic();
 
         if (! $self) {
-            $pages->where('id', '<>', (int) $this->getAttribute('id'));
+            $pages->where('id', '<>', (int) $this->getKey());
         }
 
         $pages = $pages->parentId($this->parent_id)
