@@ -17,9 +17,9 @@ class CreateCmsUsersTable extends Migration
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('role', 32);
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('phone', 32)->nullable();
+            $table->string('first_name', 35);
+            $table->string('last_name', 35);
+            $table->string('phone', 30)->nullable();
             $table->string('address')->nullable();
             $table->boolean('active')->default(1);
             $table->string('photo')->nullable();

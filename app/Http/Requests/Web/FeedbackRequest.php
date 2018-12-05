@@ -15,7 +15,7 @@ class FeedbackRequest extends Request
     {
         return [
             'name' => 'required|min:2',
-            'email' => 'required|email',
+            'email' => 'required|string|email',
             'text' => 'required',
             'captcha' => 'required|captcha'
         ];
