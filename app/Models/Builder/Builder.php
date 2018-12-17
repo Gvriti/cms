@@ -296,41 +296,56 @@ class Builder extends EloquentBuilder
     /**
      * Add an "order by" primary key asc clause to the query.
      *
+     * @param  mixed  $table
      * @return \Models\Builder\Builder
      */
-    public function orderAsc()
+    public function orderAsc($table = null)
     {
-        return $this->orderBy($this->getKeyName());
+        return $this->orderBy(($this->getTableNameWithDot($table) ?: '') . $this->getKeyName());
     }
 
     /**
      * Add an "order by" primary key desc clause to the query.
      *
+     * @param  string|null  $table
      * @return \Models\Builder\Builder
      */
-    public function orderDesc()
+    public function orderDesc($table = null)
     {
-        return $this->orderByDesc($this->getKeyName());
+        return $this->orderByDesc(($this->getTableNameWithDot($table) ?: '') . $this->getKeyName());
     }
 
     /**
      * Add an "order by" created at asc clause to the query.
      *
+     * @param  string|null  $table
      * @return \Models\Builder\Builder
      */
-    public function createdAsc()
+    public function createdAsc($table = null)
     {
-        return $this->orderBy('created_at');
+        return $this->orderBy(($this->getTableNameWithDot($table) ?: '') . 'created_at');
     }
 
     /**
      * Add an "order by" created at desc clause to the query.
      *
+     * @param  string|null  $table
      * @return \Models\Builder\Builder
      */
-    public function createdDesc()
+    public function createdDesc($table = null)
     {
-        return $this->orderByDesc('created_at');
+        return $this->orderByDesc(($this->getTableNameWithDot($table) ?: '') . 'created_at');
+    }
+
+    /**
+     * Get the name of the table with the added dot.
+     *
+     * @param  string  $table
+     * @return string
+     */
+    protected function getTableNameWithDot($table)
+    {
+        return (($table === true) ? $this->model->getTable() : $table) . '.';
     }
 
     /**
@@ -346,6 +361,7 @@ class Builder extends EloquentBuilder
 
     /**
      * {@inheritdoc}
+     * @throws \ReflectionException
      */
     public function __call($method, $parameters)
     {
