@@ -150,7 +150,11 @@ abstract class Model extends BaseModel
      */
     public function firstAttrOrFail($attribute, $id = null)
     {
-        return $this->firstAttr($attribute, $id) or abort(404);
+        if (is_null($data = $this->firstAttr($attribute, $id))) {
+            abort(404);
+        }
+
+        return $data;
     }
 
     /**
