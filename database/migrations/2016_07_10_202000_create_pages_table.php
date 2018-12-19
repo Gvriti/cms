@@ -18,11 +18,11 @@ class CreatePagesTable extends Migration
             $table->unsignedInteger('menu_id');
             $table->string('slug')->unique();
             $table->unsignedInteger('position')->default(1);
+            $table->boolean('visible')->default(1);
             $table->unsignedInteger('parent_id')->default(0);
             $table->string('type', 64)->default('text');
             $table->unsignedInteger('type_id')->nullable();
             $table->string('template', 64)->nullable();
-            $table->boolean('visible')->default(1);
             $table->boolean('collapse')->default(0);
             $table->string('image')->nullable();
             $table->timestamps();

@@ -18,8 +18,8 @@ class CreateGalleriesTable extends Migration
             $table->unsignedInteger('collection_id');
             $table->string('slug')->unique();
             $table->unsignedInteger('position')->default(1);
-            $table->string('type', 32);
             $table->boolean('visible')->default(1);
+            $table->string('type', 32);
             $table->string('admin_order_by', 32)->default('id');
             $table->string('admin_sort', 16)->default('desc');
             $table->boolean('admin_per_page')->default(20);
