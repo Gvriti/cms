@@ -22,11 +22,11 @@ class Builder extends EloquentBuilder
     protected $model;
 
     /**
-     * The columns that should be added to the paginate count query.
+     * The columns callbacks that must also be added to the pagination count query.
      *
      * @var array
      */
-    public $columnsPaginate = [];
+    protected $paginationColumnCallbacks = [];
 
     /**
      * The current query value binding properties.
@@ -100,26 +100,15 @@ class Builder extends EloquentBuilder
     /**
      * Add a new select to the paginate count query.
      *
-     * @param  string  $expression
-     * @param  string  $method
-     * @param  string  $parameter
-     * @return \Models\Builder\Builder
+     * @param  \Closure  $callback
+     * @return $this
      */
-    public function selectPaginate($expression, $method = 'selectRaw', $parameter = null)
+    public function selectPaginate(Closure $callback)
     {
-        if (! isset($this->columnsPaginate[$method])) {
-            $this->columnsPaginate[$method] = [];
-        }
+        $this->paginationColumnCallbacks[] = $callback;
 
-        $this->columnsPaginate[$method] = array_merge(
-            $this->columnsPaginate[$method], $parameter
-            ? [$parameter => $expression]
-            : [$expression]
-        );
-
-        return call_user_func_array([$this, $method], array_filter([$expression, $parameter]));
+        return $this;
     }
-
 
     /**
      * {@inheritdoc}
@@ -128,7 +117,7 @@ class Builder extends EloquentBuilder
     {
         $this->prefixColumnsOnJoin($columns);
 
-        if (! $this->columnsPaginate) {
+        if (! $this->paginationColumnCallbacks) {
             return parent::paginate($perPage, $columns, $pageName, $page);
         }
 
@@ -138,19 +127,14 @@ class Builder extends EloquentBuilder
         $selectBindingsBackup = $this->query->bindings['select'];
         $this->query->bindings['select'] = [];
 
-        $query = $this->query->selectRaw('count(*) as aggregate');
-
-        foreach ((array) $this->columnsPaginate as $method => $selects) {
-            foreach ((array) $selects as $parameter => $select) {
-                if (is_int($parameter)) {
-                    $query = $query->$method($select);
-                } else {
-                    $query = $query->$method($select, $parameter);
+        $results = $this->query->selectRaw('count(*) as aggregate')
+            ->when((array) $this->paginationColumnCallbacks, function ($q, $values) {
+                foreach ($values as $callback) {
+                    $callback($q);
                 }
-            }
-        }
 
-        $results = $query->get()->all();
+                return $q;
+            })->get()->all();
 
         if (isset($this->query->groups)) {
             $total = count($results);
@@ -169,7 +153,13 @@ class Builder extends EloquentBuilder
             $results = $this->forPage(
                 $page = $page ?: Paginator::resolveCurrentPage($pageName),
                 $perPage = $perPage ?: $this->model->getPerPage()
-            )->get($columns);
+            )->when((array) $this->paginationColumnCallbacks, function ($q, $values) {
+                foreach ($values as $callback) {
+                    $callback($q);
+                }
+
+                return $q;
+            })->get($columns);
         } else {
             $results = $this->model->newCollection();
         }
