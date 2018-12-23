@@ -77,9 +77,10 @@
                 <button type="submit" class="btn btn-secondary" title="{{ trans('general.update') }}">
                     <i class="fa fa-save"></i>
                 </button>
-                <a href="{{ cms_route('cmsUsers.index') }}" class="btn btn-blue" title="{{ trans('general.back') }}">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
+                <a href="{{ cms_route('cmsUsers.index') }}" class="btn btn-blue btn-icon-standalone" title="{{ trans('general.back') }}">
+            <i class="fa fa-arrow-left"></i>
+            <span>{{ trans('general.back') }}</span>
+        </a>
             </div>
         </div>
     </div>

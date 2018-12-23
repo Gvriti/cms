@@ -215,16 +215,19 @@
 
 <div class="form-group">
     <div class="col-sm-10 btn-action pull-right">
-        <button type="submit" class="btn btn-secondary" title="{{ $submit }}">
+        <button type="submit" class="btn btn-secondary btn-icon-standalone" title="{{ $submit }}">
             <i class="fa fa-{{ $icon }}"></i>
+            <span>{{ trans('general.save') }}</span>
         </button>
     @if ($current->id)
         <a href="{{ cms_route($current->type . '.index', [$current->id]) }}" class="btn btn-info" title="{{ trans('general.'.$current->type) }}">
-            <span class="{{icon_type($current->type)}}"></span>
+            <i class="{{icon_type($current->type)}}"></i>
+            <span>{{ucfirst($current->type)}}</span>
         </a>
     @endif
-        <a href="{{ cms_route('galleries.index', [$current->collection_id]) }}" class="btn btn-blue" title="{{ trans('general.back') }}">
+        <a href="{{ cms_route('galleries.index', [$current->collection_id]) }}" class="btn btn-blue btn-icon-standalone" title="{{ trans('general.back') }}">
             <i class="fa fa-arrow-left"></i>
+            <span>{{ trans('general.back') }}</span>
         </a>
     </div>
 </div>

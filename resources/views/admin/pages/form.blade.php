@@ -172,11 +172,13 @@
 
 <div class="form-group">
     <div class="col-sm-10 btn-action pull-right">
-        <button type="submit" class="btn btn-secondary" title="{{ $submit }}">
+        <button type="submit" class="btn btn-secondary btn-icon-standalone" title="{{ $submit }}">
             <i class="fa fa-{{ $icon }}"></i>
+            <span>{{ trans('general.save') }}</span>
         </button>
-        <a href="{{ cms_route('pages.index', [$current->menu_id]) }}" class="btn btn-blue" title="{{ trans('general.back') }}">
+        <a href="{{ cms_route('pages.index', [$current->menu_id]) }}" class="btn btn-blue btn-icon-standalone" title="{{ trans('general.back') }}">
             <i class="fa fa-arrow-left"></i>
+            <span>{{ trans('general.back') }}</span>
         </a>
     </div>
 </div>
