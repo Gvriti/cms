@@ -425,8 +425,8 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-10 btn-action pull-right">
-                    <button type="submit" class="btn btn-secondary btn-icon-standalone" title="{{ $submit }}">
-                        <i class="fa fa-{{ $icon }}"></i>
+                    <button type="submit" class="btn btn-secondary btn-icon-standalone" title="{{ trans('general.update') }}">
+                        <i class="fa fa-save"></i>
                         <span>{{ trans('general.save') }}</span>
                     </button>
                 </div>
