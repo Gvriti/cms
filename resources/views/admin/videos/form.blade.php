@@ -1,6 +1,6 @@
 <div class="col-md-12">
     <div class="form-group">
-        <label class="control-label">Title:</label>
+        <label class="control-label required">Title:</label>
         {!! Form::text('title', null, [
             'id' => 'title' . $current->language,
             'class' => 'form-control',
@@ -10,7 +10,7 @@
 </div>
 <div class="col-md-12">
     <div class="form-group">
-        <label class="control-label">Video URL:</label>
+        <label class="control-label required">Video URL:</label>
         {!! Form::text('file', null, [
             'id' => 'file' . $current->language,
             'class' => 'form-control',

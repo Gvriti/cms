@@ -42,7 +42,7 @@
             $('#form-modal').find('[data-dismiss]').trigger('click');
         }, 'json').fail(function(xhr) {
             if (xhr.status === 422) {
-                var data = xhr.responseJSON;
+                var data = xhr.responseJSON.errors;
 
                 $.each(data, function(index, element) {
                     var input = $('#' + index, form);
