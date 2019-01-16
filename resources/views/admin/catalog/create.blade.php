@@ -18,7 +18,7 @@
             </li>
             <li class="active">
                 <i class="{{$icon}}"></i>
-                <strong>catalog</strong>
+                <strong>Catalog</strong>
             </li>
         </ol>
     </div>
