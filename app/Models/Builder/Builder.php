@@ -291,7 +291,7 @@ class Builder extends EloquentBuilder
      */
     public function orderAsc($table = null)
     {
-        return $this->orderBy(($this->getTableNameWithDot($table) ?: '') . $this->getKeyName());
+        return $this->orderBy($this->getTableNameWithDot($table) . $this->getKeyName());
     }
 
     /**
@@ -302,7 +302,7 @@ class Builder extends EloquentBuilder
      */
     public function orderDesc($table = null)
     {
-        return $this->orderByDesc(($this->getTableNameWithDot($table) ?: '') . $this->getKeyName());
+        return $this->orderByDesc($this->getTableNameWithDot($table) . $this->getKeyName());
     }
 
     /**
@@ -313,7 +313,7 @@ class Builder extends EloquentBuilder
      */
     public function createdAsc($table = null)
     {
-        return $this->orderBy(($this->getTableNameWithDot($table) ?: '') . 'created_at');
+        return $this->orderBy($this->getTableNameWithDot($table) . 'created_at');
     }
 
     /**
@@ -324,7 +324,7 @@ class Builder extends EloquentBuilder
      */
     public function createdDesc($table = null)
     {
-        return $this->orderByDesc(($this->getTableNameWithDot($table) ?: '') . 'created_at');
+        return $this->orderByDesc($this->getTableNameWithDot($table) . 'created_at');
     }
 
     /**
@@ -335,7 +335,11 @@ class Builder extends EloquentBuilder
      */
     protected function getTableNameWithDot($table)
     {
-        return (($table === true) ? $this->model->getTable() : $table) . '.';
+        if ($table = (($table === true) ? $this->model->getTable() : $table)) {
+            return $table . '.';
+        }
+
+        return '';
     }
 
     /**
