@@ -126,35 +126,36 @@ abstract class Model extends BaseModel
      * Execute the query and get the first result attribute.
      *
      * @param  string  $attribute
-     * @param  int|null  $id
-     * @param  mixed  $default
+     * @param  int|null  $value
+     * @param  string|null  $column
      * @return mixed
      */
-    public function firstAttr($attribute, $id = null, $default = null)
+    public function firstAttr($attribute, $value = null, $column = null)
     {
-        $model = $this->when(! is_null($id), function ($q) use ($id) {
-            return $q->where($this->getKeyName(), $id);
+        $model = $this->when(! is_null($value), function ($q) use ($value, $column) {
+            return $q->where($column ?: $this->getKeyName(), $value);
         })->first([$attribute]);
 
-        return ! is_null($model) ? $model->$attribute : $default;
+        return ! is_null($model) ? $model->$attribute : null;
     }
 
     /**
      * Execute the query and get the first result attribute or throw an exception.
      *
      * @param  string  $attribute
-     * @param  int|null  $id
+     * @param  int|null  $value
+     * @param  string|null  $column
      * @return mixed
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function firstAttrOrFail($attribute, $id = null)
+    public function firstAttrOrFail($attribute, $value = null, $column = null)
     {
-        if (is_null($data = $this->firstAttr($attribute, $id))) {
+        if (is_null($attribute = $this->firstAttr($attribute, $value, $column))) {
             abort(404);
         }
 
-        return $data;
+        return $attribute;
     }
 
     /**
