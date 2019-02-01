@@ -62,8 +62,8 @@ return [
 
     'routes' => [
         'collections' => [
-            'catalog' => 'AdminCatalogController',
             'articles' => 'AdminArticlesController',
+            'catalog' => 'AdminCatalogController',
             'galleries' => 'AdminGalleriesController',
             'faq' => 'AdminFaqController'
         ],
@@ -84,8 +84,8 @@ return [
 
     'collections' => [
         'types' => [
-            'catalog' => 'Catalog',
             'articles' => 'Articles',
+            'catalog' => 'Catalog',
             'galleries' => 'Galleries',
             'faq' => 'FAQ'
         ],
