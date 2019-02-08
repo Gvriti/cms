@@ -74,8 +74,9 @@
         @endforeach
         <div class="panel panel-default">
             <div class="btn-action text-center">
-                <button type="submit" class="btn btn-secondary" title="{{ trans('general.update') }}">
+                <button type="submit" class="btn btn-secondary btn-icon-standalone" title="{{ trans('general.update') }}">
                     <i class="fa fa-save"></i>
+                    <span>{{ trans('general.save') }}</span>
                 </button>
                 <a href="{{ cms_route('cmsUsers.index') }}" class="btn btn-blue btn-icon-standalone" title="{{ trans('general.back') }}">
             <i class="fa fa-arrow-left"></i>
