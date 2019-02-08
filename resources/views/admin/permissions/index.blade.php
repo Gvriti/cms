@@ -92,6 +92,10 @@
 <script src="{{ asset('assets/js/icheck/icheck.min.js') }}"></script>
 <script type="text/javascript">
     $(function() {
+        $('select#role-select').on('change', function() {
+            window.location = window.location.pathname + '?role=' + $(this).val();
+        });
+
         // Style Checkbox
         $('input.icheck').iCheck({
             checkboxClass: 'icheckbox_square-red'
