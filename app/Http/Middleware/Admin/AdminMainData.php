@@ -5,6 +5,7 @@ namespace App\Http\Middleware\Admin;
 use Closure;
 use Models\Menu;
 use Models\Calendar;
+use Models\Permission;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
@@ -82,6 +83,45 @@ class AdminMainData
             'admin.dashboard.index'
         ], function($view) use ($calendar) {
             $view->with('calendarEvents', $calendar);
+        });
+    }
+
+    /**
+     * Share user access routes.
+     *
+     * @return void
+     */
+    protected function shareUserAccessRoutes()
+    {
+        if (is_null($user = Auth::guard('cms')->user())) {
+            return;
+        }
+
+        $cmsSlug = cms_slug();
+
+        $routeNamesAllowed = array_merge(
+            (new Permission)->role($user->role)->pluck('route_name')->toArray(),
+            array_map(function($value) use ($cmsSlug) {
+                return $value . '.' . $cmsSlug;
+            }, Permission::$routeNamesAllowed)
+        );
+
+        $isAdmin = $user->isAdmin();
+
+        view()->composer(['admin.*',], function($view) use ($routeNamesAllowed, $isAdmin, $cmsSlug) {
+            $view->with('hasRouteAccess', function ($routeNames) use ($routeNamesAllowed, $isAdmin, $cmsSlug) {
+                if ($isAdmin) {
+                    return true;
+                }
+
+                foreach ((array) $routeNames as $routeName) {
+                    if (in_array($routeName.'.'.$cmsSlug, $routeNamesAllowed)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            });
         });
     }
 }

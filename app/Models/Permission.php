@@ -30,18 +30,25 @@ class Permission extends Model
     protected $notUpdatable = [];
 
     /**
-     * Route group names that are hidden for list.
+     * Route group names that are hidden from list.
      *
      * @var array
      */
     public static $routeGroupsHidden = ['cmsUsers', 'permissions', 'login', 'logout', 'lockscreen'];
 
     /**
-     * Route names that are hidden for list.
+     * Route names that are hidden from list.
      *
      * @var array
      */
     public static $routeNamesHidden = [];
+
+    /**
+     * Route names that are not allowed.
+     *
+     * @var array
+     */
+    public static $routeNamesAllowed = ['cmsUsers.index', 'cmsUsers.edit', 'cmsUsers.show', 'cmsUsers.update'];
 
     /**
      * Get the list of permissions by user id.
