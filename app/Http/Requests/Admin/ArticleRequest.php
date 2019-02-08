@@ -35,7 +35,7 @@ class ArticleRequest extends Request
             $input['slug'] = (new Slugify)->slugify($this->get('title'));
         }
 
-        $input['visible'] = $this->filled('visible') ? 1 : 0;
+        $input['visible'] = (int) $this->filled('visible');
 
         if (! $this->filled('created_at')) {
             unset($input['created_at']);

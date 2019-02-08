@@ -26,7 +26,7 @@ class VideoRequest extends Request
     {
         $input = parent::all();
 
-        $input['visible'] = $this->filled('visible') ? 1 : 0;
+        $input['visible'] = (int) $this->filled('visible');
 
         return $input;
     }

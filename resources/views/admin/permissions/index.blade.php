@@ -79,9 +79,9 @@
                     <span>{{ trans('general.save') }}</span>
                 </button>
                 <a href="{{ cms_route('cmsUsers.index') }}" class="btn btn-blue btn-icon-standalone" title="{{ trans('general.back') }}">
-            <i class="fa fa-arrow-left"></i>
-            <span>{{ trans('general.back') }}</span>
-        </a>
+                    <i class="fa fa-arrow-left"></i>
+                    <span>{{ trans('general.back') }}</span>
+                </a>
             </div>
         </div>
     </div>

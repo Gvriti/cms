@@ -35,7 +35,7 @@ class CatalogRequest extends Request
             $input['slug'] = (new Slugify)->slugify($this->get('title'));
         }
 
-        $input['visible'] = $this->filled('visible') ? 1 : 0;
+        $input['visible'] = (int) $this->filled('visible');
 
         return $input;
     }
