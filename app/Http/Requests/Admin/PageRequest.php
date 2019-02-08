@@ -27,7 +27,7 @@ class PageRequest extends Request
     }
 
     /**
-     * Run before validation is completed.
+     * Perform action before validation.
      *
      * @param  \Illuminate\Contracts\Validation\Validator  $validator
      * @return void
