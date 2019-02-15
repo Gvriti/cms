@@ -158,12 +158,12 @@
             <i class="fa fa-{{ $icon }}"></i>
             <span>{{ trans('general.save') }}</span>
         </button>
-    @if ($current->id)
-        <a href="{{ cms_route($current->type . '.index', [$current->id]) }}" class="btn btn-info" title="{{ trans('general.'.$current->type) }}">
-            <i class="{{icon_type($current->type)}}"></i>
-            <span>{{ucfirst($current->type)}}</span>
-        </a>
-    @endif
+        @if ($current->id)
+            <a href="{{ cms_route($current->type . '.index', [$current->id]) }}" class="btn btn-info btn-icon-standalone" title="{{ trans('general.'.$current->type) }}">
+                <i class="{{icon_type($current->type)}}"></i>
+                <span>{{ucfirst($current->type)}}</span>
+            </a>
+        @endif
         <a href="{{ cms_route('collections.index') }}" class="btn btn-blue btn-icon-standalone" title="{{ trans('general.back') }}">
             <i class="fa fa-arrow-left"></i>
             <span>{{ trans('general.back') }}</span>
