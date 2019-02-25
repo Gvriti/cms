@@ -105,6 +105,7 @@
     $('form.ajax-form').on('ajaxFormSuccess', function (form, data) {
         var attachedTypes = $('#attached-types');
         $('.attached', attachedTypes).remove();
+        $('.modules', attachedTypes).remove();
 
         if (data.input.typeHtml !== undefined) {
             attachedTypes.prepend(data.input.typeHtml);
