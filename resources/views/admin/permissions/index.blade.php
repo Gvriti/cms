@@ -87,10 +87,10 @@
     </div>
 </form>
 @push('head')
-<link rel="stylesheet" href="{{ asset('assets/js/icheck/skins/all.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/libs/js/icheck/skins/all.css') }}">
 @endpush
 @push('body.bottom')
-<script src="{{ asset('assets/js/icheck/icheck.min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/icheck/icheck.min.js') }}"></script>
 <script type="text/javascript">
     $(function() {
         $('select#role-select').on('change', function() {

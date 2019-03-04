@@ -17,32 +17,32 @@
     </div>
 </footer>
 <!-- Basic Scripts -->
-<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/js/TweenMax.min.js') }}"></script>
-<script src="{{ asset('assets/js/resizeable.js') }}"></script>
-<script src="{{ asset('assets/js/joinable.js') }}"></script>
-<script src="{{ asset('assets/js/xenon-api.js') }}"></script>
-<script src="{{ asset('assets/js/xenon-toggles.js') }}"></script>
+<script src="{{ asset('assets/libs/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/TweenMax.min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/resizeable.js') }}"></script>
+<script src="{{ asset('assets/libs/js/joinable.js') }}"></script>
+<script src="{{ asset('assets/libs/js/xenon-api.js') }}"></script>
+<script src="{{ asset('assets/libs/js/xenon-toggles.js') }}"></script>
 
 <!-- tinymce scripts -->
-<script src="{{ asset('assets/js/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/tinymce/tinymce.min.js') }}"></script>
 
 <!-- datatables scripts -->
-<script src="{{ asset('assets/js/datatables/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/js/datatables/dataTables.bootstrap.js') }}"></script>
+<script src="{{ asset('assets/libs/js/datatables/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/datatables/dataTables.bootstrap.js') }}"></script>
 
 <!-- fancybox scripts -->
-<script src="{{ asset('assets/js/fancybox/jquery.fancybox.pack.js') }}"></script>
+<script src="{{ asset('assets/libs/js/fancybox/jquery.fancybox.pack.js') }}"></script>
 
 <!-- stacktable scripts -->
-<script src="{{ asset('assets/js/stacktable/stacktable.js') }}"></script>
+<script src="{{ asset('assets/libs/js/stacktable/stacktable.js') }}"></script>
 
 <!-- toast notifications -->
-<script src="{{ asset('assets/js/toastr/toastr.min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/toastr/toastr.min.js') }}"></script>
 
 <!-- custom scripts -->
-<script src="{{ asset('assets/js/xenon-custom.js') }}"></script>
-<script src="{{ asset('assets/js/custom.js') }}"></script>
+<script src="{{ asset('assets/libs/js/xenon-custom.js') }}"></script>
+<script src="{{ asset('assets/libs/js/custom.js') }}"></script>
 <script type="text/javascript">
 $(function() {
     // Initialize tinymce

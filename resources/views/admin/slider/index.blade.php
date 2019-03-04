@@ -106,8 +106,8 @@ $(function() {
     @include('admin._scripts.album')
 });
 </script>
-<script src="{{ asset('assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
-<script src="{{ asset('assets/js/uikit/js/uikit.min.js') }}"></script>
-<script src="{{ asset('assets/js/uikit/js/addons/nestable.min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/uikit/js/uikit.min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/uikit/js/addons/nestable.min.js') }}"></script>
 @endpush
 @endsection

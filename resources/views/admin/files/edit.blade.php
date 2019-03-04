@@ -9,9 +9,9 @@
                                 @if (in_array($ext = pathinfo($current->file, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif']))
                                     <img src="{{$current->file}}" class="file{{$current->language}} img-responsive" />
                                 @elseif( ! empty($ext))
-                                    <img src="{{asset('assets/images/file-ext-icons/'.$ext.'.png')}}" class="file{{$current->language}} not-photo img-responsive" alt="{{$current->title}}" />
+                                    <img src="{{asset('assets/libs/images/file-ext-icons/'.$ext.'.png')}}" class="file{{$current->language}} not-photo img-responsive" alt="{{$current->title}}" />
                                 @else
-                                    <img src="{{asset('assets/images/file-ext-icons/www.png')}}" class="file{{$current->language}} not-photo img-responsive" alt="{{$current->title}}" />
+                                    <img src="{{asset('assets/libs/images/file-ext-icons/www.png')}}" class="file{{$current->language}} not-photo img-responsive" alt="{{$current->title}}" />
                                 @endif
                             </div>
                             {!! Form::model($current, [

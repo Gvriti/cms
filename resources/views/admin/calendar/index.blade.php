@@ -83,12 +83,12 @@
     </div>
 </div>
 @push('head')
-<link rel="stylesheet" href="{{asset('assets/js/fullcalendar/fullcalendar.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/libs/js/fullcalendar/fullcalendar.min.css')}}">
 @endpush
 @push('body.bottom')
-<script src="{{asset('assets/js/moment.min.js')}}"></script>
-<script src="{{asset('assets/js/fullcalendar/fullcalendar.min.js')}}"></script>
-<script src="{{asset('assets/js/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="{{asset('assets/libs/js/moment.min.js')}}"></script>
+<script src="{{asset('assets/libs/js/fullcalendar/fullcalendar.min.js')}}"></script>
+<script src="{{asset('assets/libs/js/jquery-ui/jquery-ui.min.js')}}"></script>
 <script type="text/javascript">
 // Calendar Initialization
 $(document).ready(function($) {

@@ -82,7 +82,7 @@
                                 </div>
                                 <img src="{{captcha_src('flat')}}" height="40" id="captcha-img" alt="captcha">
                                 <a href="#" id="captcha-reload">
-                                    <img src="{{asset('assets/images/reload.png')}}" width="20" height="20" alt="reload">
+                                    <img src="{{asset('assets/libs/images/reload.png')}}" width="20" height="20" alt="reload">
                                 </a>
                             </div>
                         </div>

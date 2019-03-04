@@ -9,14 +9,14 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="version" content="{{config('cms.version')}}">
     <title>CMS - Login</title>
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/xenon-core.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/xenon-forms.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/xenon-components.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/xenon-skins.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/js/icheck/skins/all.css') }}">
-    <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
+    <link rel="shortcut icon" href="{{ asset('assets/libs/images/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/css/xenon-core.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/css/xenon-forms.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/css/xenon-components.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/css/xenon-skins.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/js/icheck/skins/all.css') }}">
+    <script src="{{ asset('assets/libs/js/jquery-1.11.3.min.js') }}"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -62,8 +62,8 @@
             </div>
         </div>
     </div>
-<script src="{{ asset('assets/js/jquery-validate/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('assets/js/icheck/icheck.min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/jquery-validate/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/icheck/icheck.min.js') }}"></script>
 <script type="text/javascript">
 $(function() {
     // Reveal Login form

@@ -58,7 +58,7 @@ class CmsUser extends Model
      */
     public function getPhotoAttribute($value)
     {
-        return $value ?: asset('assets/images/user-2.png');
+        return $value ?: asset('assets/libs/images/user-2.png');
     }
 
     /**

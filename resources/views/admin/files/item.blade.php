@@ -5,9 +5,9 @@
                 @if (in_array($ext = pathinfo($itemInput['file'], PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif']))
                     <img src="{{$itemInput['file']}}" class="img-responsive" alt="{{$itemInput['title']}}" />
                 @elseif( ! empty($ext))
-                    <img src="{{asset('assets/images/file-ext-icons/'.$ext.'.png')}}" class="img-responsive" alt="{{$itemInput['title']}}" />
+                    <img src="{{asset('assets/libs/images/file-ext-icons/'.$ext.'.png')}}" class="img-responsive" alt="{{$itemInput['title']}}" />
                 @else
-                    <img src="{{asset('assets/images/file-ext-icons/www.png')}}" class="img-responsive" alt="{{$itemInput['title']}}" />
+                    <img src="{{asset('assets/libs/images/file-ext-icons/www.png')}}" class="img-responsive" alt="{{$itemInput['title']}}" />
                 @endif
             </a>
             <a href="#" class="name">

@@ -88,6 +88,6 @@ $(function() {
 });
 </script>
 <!-- Imported scripts on this page -->
-<script src="{{ asset('assets/js/datatables/yadcf/jquery.dataTables.yadcf.js') }}"></script>
+<script src="{{ asset('assets/libs/js/datatables/yadcf/jquery.dataTables.yadcf.js') }}"></script>
 @endpush
 @endsection

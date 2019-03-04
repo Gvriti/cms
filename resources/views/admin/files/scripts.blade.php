@@ -6,10 +6,10 @@ function getFileImage(file) {
         && ['jpg', 'jpeg', 'png', 'gif'].indexOf(fileExt) < 0
         && fileExt.indexOf('/') < 0
     ) {
-        result.file = '{{asset('assets/images/file-ext-icons')}}/' + fileExt + '.png';
+        result.file = '{{asset('assets/libs/images/file-ext-icons')}}/' + fileExt + '.png';
         result.isPhoto = false;
     } else if (! fileExt.length || fileExt.indexOf('/') >= 0) {
-        result.file = '{{asset('assets/images/file-ext-icons/www.png')}}';
+        result.file = '{{asset('assets/libs/images/file-ext-icons/www.png')}}';
         result.isPhoto = false;
     }
 

@@ -7,8 +7,8 @@
     <meta name="description" content="403 Method Not Allowed" />
     <title>405 Method Not Allowed</title>
     <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Ubuntu:400,300'>
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/error.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/css/error.css') }}">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

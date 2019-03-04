@@ -216,6 +216,6 @@
     @endif
 </div>
 @push('body.bottom')
-<script src="{{asset('assets/js/xenon-widgets.js')}}"></script>
+<script src="{{asset('assets/libs/js/xenon-widgets.js')}}"></script>
 @endpush
 @endsection

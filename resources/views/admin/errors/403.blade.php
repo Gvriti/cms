@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="cms" />
     <title>403 Forbidden</title>
-    <link rel="shortcut icon" href="{{ asset('assets/images/admin/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/libs/images/admin/favicon.ico') }}">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
-    <link rel="stylesheet" href="{{ asset('assets/css/fonts/font-awesome-4.6.3/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/xenon-core.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/xenon-components.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/css/fonts/font-awesome-4.6.3/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/css/xenon-core.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/css/xenon-components.css') }}">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

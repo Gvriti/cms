@@ -71,7 +71,7 @@ class File extends Model
      */
     public function getFileDefaultAttribute($value)
     {
-        return $value ?: asset('assets/images/album-img-1.png');
+        return $value ?: asset('assets/libs/images/album-img-1.png');
     }
 
     /**

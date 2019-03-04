@@ -31,7 +31,7 @@ class WebCurrentPageEventListener
                 'title' => $title,
                 'slug' => $this->getPath(),
                 'type' => null,
-                'image' => asset('assets/site/images/logo.png'),
+                'image' => asset('assets/images/logo.png'),
                 'meta_desc' => $trans->get('meta_desc') ?: $title,
             ];
         } else {
@@ -57,7 +57,7 @@ class WebCurrentPageEventListener
             }
 
             if (empty($current->image)) {
-                $current->image = asset('assets/site/images/logo.png');
+                $current->image = asset('assets/images/logo.png');
             }
         }
 

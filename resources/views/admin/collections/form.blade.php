@@ -182,7 +182,7 @@ $(function() {
     });
 });
 </script>
-<link rel="stylesheet" href="{{ asset('assets/js/select2/select2.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/js/select2/select2-bootstrap.css') }}">
-<script src="{{ asset('assets/js/select2/select2.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('assets/libs/js/select2/select2.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/libs/js/select2/select2-bootstrap.css') }}">
+<script src="{{ asset('assets/libs/js/select2/select2.min.js') }}"></script>
 @endpush

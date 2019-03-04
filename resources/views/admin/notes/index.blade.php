@@ -61,7 +61,7 @@
     </div>
 </div>
 @push('body.bottom')
-<script src="{{ asset('assets/js/min/xenon-notes-min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/min/xenon-notes-min.js') }}"></script>
 <script type="text/javascript">
 $(function() {
     var id,

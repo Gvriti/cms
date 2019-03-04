@@ -1,6 +1,6 @@
 @push('head')
-    <link rel="stylesheet" href="{{ asset('assets/js/select2/select2.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/js/select2/select2-bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/js/select2/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/libs/js/select2/select2-bootstrap.css') }}">
 @endpush
 @push('body.bottom')
     <script type="text/javascript">
@@ -87,5 +87,5 @@
             }
         });
     </script>
-    <script src="{{ asset('assets/js/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/js/select2/select2.min.js') }}"></script>
 @endpush

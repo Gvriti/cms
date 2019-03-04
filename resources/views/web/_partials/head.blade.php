@@ -16,10 +16,10 @@
 <link rel="alternate" hreflang="{{$key}}" href="{{web_url($current->slug, [], $key)}}">
 @endforeach
 @endif
-<link rel="stylesheet" href="{{ asset('assets/site/css/bootstrap.min.css') }}">
-<link rel="stylesheet" media="all" href="{{asset('assets/site/css/main.css')}}">
-<link rel="stylesheet" media="all" href="{{asset('assets/site/css/' . language() . '.css')}}">
-<script src="{{asset('assets/js/jquery-1.11.3.min.js')}}"></script>
+<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+<link rel="stylesheet" media="all" href="{{asset('assets/css/main.css')}}">
+<link rel="stylesheet" media="all" href="{{asset('assets/css/' . language() . '.css')}}">
+<script src="{{asset('assets/libs/js/jquery-1.11.3.min.js')}}"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
