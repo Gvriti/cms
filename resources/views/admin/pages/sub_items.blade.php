@@ -26,7 +26,7 @@
                         <a href="{{ cms_route('files.index', ['pages', $item->id]) }}" class="btn btn-{{$item->has_file ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
                             <span class="{{icon_type('files')}}"></span>
                         </a>
-                        <a href="{{$cmsUrl = ($item->collection_type ? cms_route($item->collection_type . '.index', [$item->type_id], null, true) : array_key_exists($item->type, config('cms.pages.explicit')) ? cms_route($item->type . '.'.($item->type_id ? 'edit' : 'index'), array_filter([$item->type_id]), null, true) : '#')}}" class="btn btn-{{$cmsUrl == '#' ? 'white disabled' : 'info'}}" title="{{$item->collection_title ?: ucfirst($item->type)}}">
+                        <a href="{{$cmsUrl = ($item->collection_type ? cms_route($item->collection_type . '.index', [$item->type_id]) : (array_key_exists($item->type, config('cms.pages.explicit')) ? cms_route($item->type . '.'.($item->type_id ? 'edit' : 'index'), array_filter([$item->type_id])) : '#'))}}" class="btn btn-{{$cmsUrl == '#' ? 'white disabled' : 'info'}}" title="{{$item->collection_title ?: ucfirst($item->type)}}">
                             <span class="{{icon_type($item->collection_type ?: $item->type, 'fa fa-file-text-o')}}"></span>
                         </a>
                         <a href="{{ cms_route('pages.create', [$item->menu_id, 'id' => $item->id]) }}" class="btn btn-secondary" title="{{trans('general.create')}}">
