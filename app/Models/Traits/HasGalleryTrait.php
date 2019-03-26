@@ -43,7 +43,7 @@ trait HasGalleryTrait
     public function adminGallery(Gallery $gallery)
     {
         return $this->byGallery($gallery->id)
-            ->orderBy($gallery->admin_order_by, $gallery->admin_sort);
+            ->orderBy($this->getTable() . '.' . $gallery->admin_order_by, $gallery->admin_sort);
     }
 
     /**
@@ -57,7 +57,7 @@ trait HasGalleryTrait
         return $this->byGallery($gallery->id)
             ->hasFile()
             ->whereVisible()
-            ->orderBy($gallery->web_order_by, $gallery->web_sort);
+            ->orderBy($this->getTable() . '.' . $gallery->web_order_by, $gallery->web_sort);
     }
 
     /**

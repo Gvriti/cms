@@ -43,7 +43,7 @@ trait HasCollectionTrait
     public function adminCollection(Collection $collection)
     {
         return $this->forAdmin($collection->id)
-            ->orderBy($collection->admin_order_by, $collection->admin_sort);
+            ->orderBy($this->getTable() . '.' . $collection->admin_order_by, $collection->admin_sort);
     }
 
     /**
@@ -55,7 +55,7 @@ trait HasCollectionTrait
     public function publicCollection(Collection $collection)
     {
         return $this->forPublic($collection->id)
-            ->orderBy($collection->web_order_by, $collection->web_sort);
+            ->orderBy($this->getTable() . '.' . $collection->web_order_by, $collection->web_sort);
     }
 
     /**
