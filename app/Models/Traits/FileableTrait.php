@@ -52,7 +52,7 @@ trait FileableTrait
      *
      * @return \Models\Builder\Builder
      */
-    public function filesCount()
+    public function countFiles()
     {
         return $this->selectSub(function ($q) {
             $tableId = ($table = $this->getTable()).'.'.$this->getKeyName();
@@ -67,7 +67,7 @@ trait FileableTrait
     /**
      * Determine if the model has a file(s).
      *
-     * @return bool
+    * @return \Models\Builder\Builder
      */
     public function hasFile()
     {
@@ -78,5 +78,22 @@ trait FileableTrait
                 ->whereColumn('table_id', $tableId)
                 ->where('table_name', $table);
         }, 'has_file');
+    }
+
+    /**
+     * Add query where file exists or not.
+     *
+     * @param  bool  $not
+     * @return \Models\Builder\Builder
+     */
+    public function whereFileExists($not = false)
+    {
+        return $this->whereExists(function ($q) {
+            $tableId = ($table = $this->getTable()).'.'.$this->getKeyName();
+
+            return $q->from((new File)->getTable())
+                ->whereColumn('table_id', $tableId)
+                ->where('table_name', $table);
+        }, 'and', $not);
     }
 }
