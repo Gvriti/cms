@@ -98,6 +98,16 @@ class Builder extends EloquentBuilder
     }
 
     /**
+     * Determine if any rows exist for the current query or fail.
+     *
+     * @return bool
+     */
+    public function existsOrFail()
+    {
+        return $this->exists() or abort(404);
+    }
+
+    /**
      * Add a new select to the paginate count query.
      *
      * @param  \Closure  $callback
