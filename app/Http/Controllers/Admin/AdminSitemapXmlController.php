@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use DOMDocument;
 use Models\Page;
+use Illuminate\Support\Str;
 use Models\Abstracts\Model;
 use Illuminate\Http\Request;
 use Sabre\Xml\Service as XmlService;
@@ -153,7 +154,7 @@ class AdminSitemapXmlController extends Controller
             $model = model_path($implicitModel->type);
 
             $items = (new $model)->where(
-                str_singular($implicitModel->getTable()) . '_id',
+                Str::singular($implicitModel->getTable()) . '_id',
                 $implicitModel->id
             )->whereVisible()->orderDesc()->get();
 

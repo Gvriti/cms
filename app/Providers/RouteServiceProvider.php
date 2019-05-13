@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Str;
 use Illuminate\Routing\Router;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -116,7 +117,7 @@ class RouteServiceProvider extends ServiceProvider
                 $route->prefix($language);
             }
 
-            if (str_contains($route->getPrefix(), $cmsSlug)) {
+            if (Str::contains($route->getPrefix(), $cmsSlug)) {
                 $route->name('.' . $cmsSlug);
             }
         }

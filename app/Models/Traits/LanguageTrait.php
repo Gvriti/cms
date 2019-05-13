@@ -3,6 +3,7 @@
 namespace Models\Traits;
 
 use Models\_Language;
+use Illuminate\Support\Str;
 
 trait LanguageTrait
 {
@@ -98,7 +99,7 @@ trait LanguageTrait
     {
         $table = $this->getTable();
         $languageTable = $this->getLanguageTable();
-        $languageKey = str_singular($languageTable) . '_id';
+        $languageKey = Str::singular($languageTable) . '_id';
 
         return $this->leftJoin($languageTable,
             function ($q) use ($table, $languageTable, $language) {

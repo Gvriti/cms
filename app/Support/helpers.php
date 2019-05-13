@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use Models\Abstracts\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Events\QueryExecuted;
@@ -307,7 +308,7 @@ function add_language($url, $language = null, $hasLanguage = false)
  */
 function model_path($name)
 {
-    return 'Models\\' . ucfirst(str_singular($name));
+    return 'Models\\' . ucfirst(Str::singular($name));
 }
 
 /**

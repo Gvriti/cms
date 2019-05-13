@@ -4,7 +4,7 @@
         <div class="title-env">
             <h1 class="title">
                 <i class="{{$icon = icon_type('files')}}"></i>
-                {{ str_limit($foreignModel->title, 50, '...') }}
+                {{ Str::limit($foreignModel->title, 50, '...') }}
             </h1>
             <p class="description">List of the files</p>
         </div>
@@ -14,7 +14,7 @@
                     <a href="{{ cms_url('/') }}"><i class="fa fa-dashboard"></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="{{ cms_route($routeName . '.edit', $foreignModel->routeParams) }}"><i class="{{icon_type($routeName)}}"></i>{{$type = str_singular($name = $foreignModel->getTable())}}</a>
+                    <a href="{{ cms_route($routeName . '.edit', $foreignModel->routeParams) }}"><i class="{{icon_type($routeName)}}"></i>{{$type = Str::singular($name = $foreignModel->getTable())}}</a>
                 </li>
                 <li class="active">
                     <i class="{{$icon}}"></i>
