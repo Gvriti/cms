@@ -14,10 +14,10 @@ class CreateCatalogTable extends Migration
     public function up()
     {
         Schema::create('catalog', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('collection_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('collection_id');
             $table->string('slug')->unique();
-            $table->unsignedInteger('position')->default(1);
+            $table->unsignedBigInteger('position')->default(1);
             $table->boolean('visible')->default(1);
             $table->string('image')->nullable();
             $table->timestamps();
@@ -26,8 +26,8 @@ class CreateCatalogTable extends Migration
         });
 
         Schema::create('catalog_languages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('catalog_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('catalog_id');
             $table->char('language', 2);
             $table->string('title');
             $table->text('description')->nullable();

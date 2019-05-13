@@ -14,9 +14,9 @@ class CreateVideosTable extends Migration
     public function up()
     {
         Schema::create('videos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('gallery_id');
-            $table->unsignedInteger('position')->default(1);
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('gallery_id');
+            $table->unsignedBigInteger('position')->default(1);
             $table->boolean('visible')->default(1);
             $table->string('file', 800)->nullable();
             $table->timestamps();
@@ -25,8 +25,8 @@ class CreateVideosTable extends Migration
         });
 
         Schema::create('video_languages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('video_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('video_id');
             $table->char('language', 2);
             $table->string('title');
             $table->timestamps();

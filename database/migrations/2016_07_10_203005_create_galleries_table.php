@@ -14,10 +14,10 @@ class CreateGalleriesTable extends Migration
     public function up()
     {
         Schema::create('galleries', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('collection_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('collection_id');
             $table->string('slug')->unique();
-            $table->unsignedInteger('position')->default(1);
+            $table->unsignedBigInteger('position')->default(1);
             $table->boolean('visible')->default(1);
             $table->string('type', 32);
             $table->string('admin_order_by', 32)->default('id');
@@ -33,8 +33,8 @@ class CreateGalleriesTable extends Migration
         });
 
         Schema::create('gallery_languages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('gallery_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('gallery_id');
             $table->char('language', 2);
             $table->string('title');
             $table->string('meta_desc')->nullable();

@@ -14,7 +14,7 @@ class CreateCmsUsersTable extends Migration
     public function up()
     {
         Schema::create('cms_users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('email')->unique();
             $table->string('role', 32);
             $table->string('first_name', 35);
@@ -23,6 +23,7 @@ class CreateCmsUsersTable extends Migration
             $table->string('address')->nullable();
             $table->boolean('active')->default(1);
             $table->string('photo')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

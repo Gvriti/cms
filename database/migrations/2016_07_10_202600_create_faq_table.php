@@ -14,9 +14,9 @@ class CreateFaqTable extends Migration
     public function up()
     {
         Schema::create('faq', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('collection_id');
-            $table->unsignedInteger('position')->default(1);
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('collection_id');
+            $table->unsignedBigInteger('position')->default(1);
             $table->boolean('visible')->default(1);
             $table->timestamps();
 
@@ -24,8 +24,8 @@ class CreateFaqTable extends Migration
         });
 
         Schema::create('faq_languages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('faq_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('faq_id');
             $table->char('language', 2);
             $table->string('title');
             $table->text('description')->nullable();

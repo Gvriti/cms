@@ -6,16 +6,10 @@ use League\Glide\Server;
 use League\Glide\ServerFactory;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Contracts\Support\DeferrableProvider;
 
-class GlideServiceProvider extends ServiceProvider
+class GlideServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
     /**
      * Bootstrap the application services.
      *

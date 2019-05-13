@@ -14,9 +14,9 @@ class CreatePhotosTable extends Migration
     public function up()
     {
         Schema::create('photos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('gallery_id');
-            $table->unsignedInteger('position')->default(1);
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('gallery_id');
+            $table->unsignedBigInteger('position')->default(1);
             $table->boolean('visible')->default(1);
             $table->string('file', 800)->nullable();
             $table->timestamps();
@@ -25,8 +25,8 @@ class CreatePhotosTable extends Migration
         });
 
         Schema::create('photo_languages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('photo_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('photo_id');
             $table->char('language', 2);
             $table->string('title');
             $table->timestamps();

@@ -15,7 +15,7 @@ class CreateCmsSettingsTable extends Migration
     {
         Schema::create('cms_settings', function (Blueprint $table) {
             $table->tinyInteger('id', true);
-            $table->unsignedInteger('cms_user_id');
+            $table->unsignedBigInteger('cms_user_id');
             $table->string('sidebar_position', 64)->default('fixed');
             $table->string('sidebar_direction', 64)->default('left-sidebar');
             $table->boolean('horizontal_menu')->default(1);

@@ -14,17 +14,17 @@ class CreateFilesTable extends Migration
     public function up()
     {
         Schema::create('files', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('table_name', 64)->index();
-            $table->unsignedInteger('table_id')->index();
+            $table->unsignedBigInteger('table_id')->index();
             $table->unsignedSmallInteger('position')->default(1);
             $table->boolean('visible')->default(1);
             $table->timestamps();
         });
 
         Schema::create('file_languages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('file_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('file_id');
             $table->char('language', 2);
             $table->string('title');
             $table->string('file');

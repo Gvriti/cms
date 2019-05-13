@@ -14,14 +14,14 @@ class CreatePagesTable extends Migration
     public function up()
     {
         Schema::create('pages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('menu_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('menu_id');
             $table->string('slug')->unique();
-            $table->unsignedInteger('position')->default(1);
+            $table->unsignedBigInteger('position')->default(1);
             $table->boolean('visible')->default(1);
-            $table->unsignedInteger('parent_id')->default(0);
+            $table->unsignedBigInteger('parent_id')->default(0);
             $table->string('type', 64)->default('text');
-            $table->unsignedInteger('type_id')->nullable();
+            $table->unsignedBigInteger('type_id')->nullable();
             $table->string('template', 64)->nullable();
             $table->boolean('collapse')->default(0);
             $table->string('image')->nullable();
@@ -31,8 +31,8 @@ class CreatePagesTable extends Migration
         });
 
         Schema::create('page_languages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('page_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('page_id');
             $table->char('language', 2);
             $table->string('title');
             $table->string('short_title');

@@ -68,7 +68,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group{{($error = $errors->first('phone')) ? ' validate-has-error' : '' }}">
-                <label class="col-sm-4 control-label text-left required">Phone:</label>
+                <label class="col-sm-4 control-label text-left">Phone:</label>
                 <div class="col-sm-8">
                     {!! Form::text('phone', null, [
                         'id' => 'phone',
@@ -82,7 +82,7 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group{{($error = $errors->first('address')) ? ' validate-has-error' : '' }}">
-                <label class="col-sm-4 control-label required">Address:</label>
+                <label class="col-sm-4 control-label">Address:</label>
                 <div class="col-sm-8">
                     {!! Form::text('address', null, [
                         'id' => 'address',

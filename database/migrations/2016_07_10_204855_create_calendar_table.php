@@ -14,7 +14,7 @@ class CreateCalendarTable extends Migration
     public function up()
     {
         Schema::create('calendar', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('color', 16)->nullable();

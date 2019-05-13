@@ -22,7 +22,7 @@ class CmsUserRequest extends Request
             'role' => 'required',
             'password' => array_merge(
                 $this->isMethod('POST') ? ['required'] : ['nullable'],
-                ['min:6', 'confirmed']
+                ['min:8', 'confirmed']
             )
         ];
     }

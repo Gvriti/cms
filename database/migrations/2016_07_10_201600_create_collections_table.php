@@ -14,7 +14,7 @@ class CreateCollectionsTable extends Migration
     public function up()
     {
         Schema::create('collections', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('title');
             $table->string('type', 32);
             $table->string('admin_order_by', 32)->default('id');
