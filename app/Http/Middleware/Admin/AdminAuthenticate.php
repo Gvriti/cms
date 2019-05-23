@@ -48,7 +48,7 @@ class AdminAuthenticate
             return redirect()->guest(cms_route('login'));
         }
 
-        if (! $this->guard->user()->active) {
+        if ($this->guard->user()->blocked) {
             throw new AccessDeniedHttpException;
         }
 

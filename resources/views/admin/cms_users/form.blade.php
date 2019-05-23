@@ -100,10 +100,10 @@
 
 @if (Auth::guard('cms')->id() != $current->id)
     <div class="form-group">
-        <label class="col-sm-2 control-label text-left">Active:</label>
+        <label class="col-sm-2 control-label text-left">Block:</label>
         <div class="col-sm-10">
-            {!! Form::checkbox('active', null, null, [
-                'id' => 'active',
+            {!! Form::checkbox('blocked', null, null, [
+                'id' => 'blocked',
                 'class' => 'iswitch iswitch-secondary'
             ]) !!}
         </div>

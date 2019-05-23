@@ -21,7 +21,7 @@ class CmsUser extends Model
      * @var array
      */
     protected $fillable = [
-        'email', 'first_name', 'last_name', 'phone', 'address', 'role', 'active', 'photo', 'password'
+        'email', 'first_name', 'last_name', 'phone', 'address', 'role', 'blocked', 'photo', 'password'
     ];
 
     /**
@@ -131,11 +131,11 @@ class CmsUser extends Model
             return $q->where('email', 'like', "%{$value}%");
         })->when($request->get('role'), function ($q, $value) {
             return $q->where('role', $value);
-        })->when(! is_null($value = $request->get('active')), function ($q) use ($value) {
+        })->when(! is_null($value = $request->get('blocked')), function ($q) use ($value) {
             return $q->when($value, function ($q) {
-                return $q->where('active', 1);
+                return $q->where('blocked', 1);
             }, function ($q) {
-                return $q->where('active', 0);
+                return $q->where('blocked', 0);
             });
         });
     }

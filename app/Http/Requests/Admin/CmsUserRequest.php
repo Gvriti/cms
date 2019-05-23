@@ -38,11 +38,11 @@ class CmsUserRequest extends Request
 
         $user = $this->user('cms');
 
-        $input['active'] = $this->filled('active') ? 1 : 0;
+        $input['blocked'] = $this->filled('blocked') ? 1 : 0;
 
         if ($user->id == $id) {
             $input['role'] = $user->role;
-            $input['active'] = 1;
+            $input['blocked'] = 0;
         } elseif (! in_array($this->get('role'), array_keys(user_roles()))) {
             $input['role'] = null;
         }

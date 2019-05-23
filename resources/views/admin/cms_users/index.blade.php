@@ -49,11 +49,11 @@
                 <input type="text" name="email" class="form-control" placeholder="ელ.ფოსტა" value="{{request('email')}}">
             </div>
             <div class="dib vam padr mrgb">
-                {!! Form::select('active', [
-                    '' => '-- Active --',
-                    '1' => 'Active',
-                    '0' => 'Non Active'
-                ], request('active'), [
+                {!! Form::select('blocked', [
+                    '' => '-- Block --',
+                    '1' => 'Blocked',
+                    '0' => 'Non-Blocked'
+                ], request('blocked'), [
                     'class' => 'form-control',
                 ]) !!}
             </div>
