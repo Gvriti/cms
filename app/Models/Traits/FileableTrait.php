@@ -83,10 +83,10 @@ trait FileableTrait
     /**
      * Add query where file exists or not.
      *
-     * @param  bool  $not
+     * @param  bool  $exists
      * @return \Models\Builder\Builder
      */
-    public function whereFileExists($not = false)
+    public function whereFileExists($exists = true)
     {
         return $this->whereExists(function ($q) {
             $tableId = ($table = $this->getTable()).'.'.$this->getKeyName();
@@ -94,6 +94,6 @@ trait FileableTrait
             return $q->from((new File)->getTable())
                 ->whereColumn('table_id', $tableId)
                 ->where('table_name', $table);
-        }, 'and', $not);
+        }, 'and', ! $exists);
     }
 }
