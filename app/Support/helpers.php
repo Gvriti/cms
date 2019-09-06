@@ -352,7 +352,7 @@ function make_model_tree($items, $slug = null, $parentId = 0, $parentKey = 'pare
             $item->slug = $slug;
         }
 
-        $item->subItems = make_model_tree($items, $slug, $item->$key, $parentKey, $key);
+        $item->sub_items = make_model_tree($items, $slug, $item->$key, $parentKey, $key);
 
         $tree[] = $item;
     }
@@ -369,8 +369,8 @@ function make_model_tree($items, $slug = null, $parentId = 0, $parentKey = 'pare
 function has_model_tree($item)
 {
     return $item instanceof Model
-        && $item->subItems instanceof Collection
-        && $item->subItems->isNotEmpty();
+        && $item->sub_items instanceof Collection
+        && $item->sub_items->isNotEmpty();
 }
 
 /**

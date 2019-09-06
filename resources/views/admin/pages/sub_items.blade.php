@@ -1,13 +1,13 @@
 @if (isset($item) && has_model_tree($item))
 <ul>
-@foreach ($item->subItems as $item)
+@foreach ($item->sub_items as $item)
     <li id="item{{ $item->id }}" class="item{{$item->collapse ? ' uk-collapsed' : ''}}" data-id="{{ $item->id }}" data-parent="1">
-        <div class="uk-nestable-item">        
+        <div class="uk-nestable-item">
             <div class="row">
                 <div class="col-sm-7 col-xs-10">
                     <div class="uk-nestable-handle pull-left"></div>
                     <div data-nestable-action="toggle"></div>
-                    <div class="list-label"><a href="{{ $editUrl = cms_route('pages.edit', [$item->menu_id, $item->id]) }}">{{ $item->short_title }}</a></div>    
+                    <div class="list-label"><a href="{{ $editUrl = cms_route('pages.edit', [$item->menu_id, $item->id]) }}">{{ $item->short_title }}</a></div>
                 </div>
                 <div class="col-sm-5 col-xs-2">
                     <div class="btn-action togglable pull-right">
