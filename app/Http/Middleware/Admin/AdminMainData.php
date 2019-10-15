@@ -3,11 +3,11 @@
 namespace App\Http\Middleware\Admin;
 
 use Closure;
-use Models\Menu;
-use Models\Calendar;
-use Models\Permission;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Models\Calendar;
+use Models\Menu;
+use Models\Permission;
 
 class AdminMainData
 {

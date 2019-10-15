@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\Article;
-use Models\Collection;
-use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ArticleRequest;
+use App\Support\Admin\AdminDestroy;
+use Models\Article;
+use Models\Collection;
 
 class AdminArticlesController extends Controller
 {

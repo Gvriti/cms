@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Web;
 
-use Models\Page;
+use App\Http\Controllers\Controller;
 use Models\Article;
 use Models\Collection;
-use App\Http\Controllers\Controller;
+use Models\Page;
 
 class WebArticlesController extends Controller
 {

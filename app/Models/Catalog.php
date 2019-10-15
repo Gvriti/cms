@@ -4,8 +4,8 @@ namespace Models;
 
 use Models\Abstracts\Model;
 use Models\Traits\FileableTrait;
-use Models\Traits\LanguageTrait;
 use Models\Traits\HasCollectionTrait;
+use Models\Traits\LanguageTrait;
 
 class Catalog extends Model
 {

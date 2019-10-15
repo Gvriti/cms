@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\Permission;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Models\Permission;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class AdminPermissionsController extends Controller

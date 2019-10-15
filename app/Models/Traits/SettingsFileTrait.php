@@ -2,10 +2,10 @@
 
 namespace Models\Traits;
 
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 trait SettingsFileTrait
 {

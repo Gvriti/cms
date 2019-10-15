@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Web;
 
-use Exception;
-use Models\Page;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Mail\Mailer;
 use App\Http\Requests\Web\FeedbackRequest;
+use Exception;
+use Illuminate\Contracts\Mail\Mailer;
+use Illuminate\Http\Request;
+use Models\Page;
 
 class WebFeedbackController extends Controller
 {

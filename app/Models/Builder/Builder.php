@@ -3,14 +3,14 @@
 namespace Models\Builder;
 
 use Closure;
-use ReflectionMethod;
-use Models\Abstracts\Model;
-use InvalidArgumentException;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Query\Builder as QueryBuilder;
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Pagination\Paginator;
+use InvalidArgumentException;
+use Models\Abstracts\Model;
+use ReflectionMethod;
 
 class Builder extends EloquentBuilder
 {

@@ -2,8 +2,8 @@
 
 namespace App\Support;
 
-use Models\Translation;
 use Illuminate\Support\Collection;
+use Models\Translation;
 
 class TranslationCollection
 {

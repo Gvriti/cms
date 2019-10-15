@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\Translation;
-use Illuminate\Http\Request;
-use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TranslationRequest;
+use App\Support\Admin\AdminDestroy;
+use Illuminate\Http\Request;
+use Models\Translation;
 
 class AdminTranslationsController extends Controller
 {

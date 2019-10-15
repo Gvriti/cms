@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Contracts\Config\Repository as Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Contracts\Config\Repository as Config;
 
 class LanguageServiceProvider extends ServiceProvider
 {

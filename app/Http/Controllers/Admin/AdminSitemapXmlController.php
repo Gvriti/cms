@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use DOMDocument;
-use Models\Page;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Models\Abstracts\Model;
-use Illuminate\Http\Request;
+use Models\Page;
 use Sabre\Xml\Service as XmlService;
-use App\Http\Controllers\Controller;
 
 class AdminSitemapXmlController extends Controller
 {

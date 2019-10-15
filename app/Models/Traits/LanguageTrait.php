@@ -2,8 +2,8 @@
 
 namespace Models\Traits;
 
-use Models\_Language;
 use Illuminate\Support\Str;
+use Models\_Language;
 
 trait LanguageTrait
 {

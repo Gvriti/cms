@@ -2,8 +2,8 @@
 
 namespace Models;
 
-use Models\Abstracts\Model;
 use Illuminate\Http\Request;
+use Models\Abstracts\Model;
 
 class Calendar extends Model
 {

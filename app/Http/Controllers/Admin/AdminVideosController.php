@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\Video;
-use Models\Gallery;
-use Illuminate\Http\Request;
-use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\VideoRequest;
+use App\Support\Admin\AdminDestroy;
+use Illuminate\Http\Request;
+use Models\Gallery;
+use Models\Video;
 
 class AdminVideosController extends Controller
 {

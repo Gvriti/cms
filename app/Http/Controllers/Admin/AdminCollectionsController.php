@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\Collection;
-use Illuminate\Http\Request;
-use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CollectionRequest;
+use App\Support\Admin\AdminDestroy;
+use Illuminate\Http\Request;
+use Models\Collection;
 
 class AdminCollectionsController extends Controller
 {

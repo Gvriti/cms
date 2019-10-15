@@ -3,8 +3,8 @@
 namespace Models;
 
 use Models\Abstracts\Model;
-use Models\Traits\LanguageTrait;
 use Models\Traits\HasGalleryTrait;
+use Models\Traits\LanguageTrait;
 
 class Video extends Model
 {

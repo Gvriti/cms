@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\Faq;
-use Models\Collection;
-use Illuminate\Http\Request;
-use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FaqRequest;
+use App\Support\Admin\AdminDestroy;
+use Illuminate\Http\Request;
+use Models\Collection;
+use Models\Faq;
 
 class AdminFaqController extends Controller
 {

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\Calendar;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Models\Calendar;
 
 class AdminCalendarController extends Controller
 {

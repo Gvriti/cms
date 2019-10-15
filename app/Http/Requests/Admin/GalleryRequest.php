@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
-use Cocur\Slugify\Slugify;
 use App\Http\Requests\Request;
+use Cocur\Slugify\Slugify;
 
 class GalleryRequest extends Request
 {

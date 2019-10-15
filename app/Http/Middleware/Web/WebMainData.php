@@ -2,13 +2,13 @@
 
 namespace App\Http\Middleware\Web;
 
+use App\Support\TranslationCollection;
 use Closure;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Collection;
 use Models\Menu;
 use Models\Page;
 use Models\Translation;
-use Illuminate\Support\Collection;
-use App\Support\TranslationCollection;
-use Illuminate\Contracts\Foundation\Application;
 
 class WebMainData
 {

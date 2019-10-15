@@ -3,8 +3,8 @@
 namespace Models;
 
 use Models\Abstracts\Model;
-use Models\Traits\LanguageTrait;
 use Models\Traits\HasCollectionTrait;
+use Models\Traits\LanguageTrait;
 
 class Faq extends Model
 {

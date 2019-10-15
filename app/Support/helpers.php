@@ -1,9 +1,9 @@
 <?php
 
+use Illuminate\Database\Events\QueryExecuted;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Models\Abstracts\Model;
-use Illuminate\Support\Collection;
-use Illuminate\Database\Events\QueryExecuted;
 
 /**
  * Get the application default language.

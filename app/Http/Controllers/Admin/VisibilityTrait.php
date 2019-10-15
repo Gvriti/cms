@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use RuntimeException;
-use Models\Abstracts\Model;
 use Illuminate\Http\Request;
+use Models\Abstracts\Model;
+use RuntimeException;
 
 trait VisibilityTrait
 {

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\Gallery;
-use Models\Collection;
-use Illuminate\Http\Request;
-use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\GalleryRequest;
+use App\Support\Admin\AdminDestroy;
+use Illuminate\Http\Request;
+use Models\Collection;
+use Models\Gallery;
 
 class AdminGalleriesController extends Controller
 {

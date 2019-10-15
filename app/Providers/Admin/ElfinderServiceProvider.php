@@ -2,9 +2,9 @@
 
 namespace App\Providers\Admin;
 
-use ReflectionClass;
-use Illuminate\Routing\Router;
 use Barryvdh\Elfinder\ElfinderServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
+use ReflectionClass;
 
 class ElfinderServiceProvider extends ServiceProvider
 {

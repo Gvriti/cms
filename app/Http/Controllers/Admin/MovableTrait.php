@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\Abstracts\Model;
 use Illuminate\Http\Request;
+use Models\Abstracts\Model;
 
 trait MovableTrait
 {

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Web;
 
-use Models\Page;
-use Models\Gallery;
-use Models\Collection;
 use App\Http\Controllers\Controller;
+use Models\Collection;
+use Models\Gallery;
+use Models\Page;
 
 class WebGalleriesController extends Controller
 {

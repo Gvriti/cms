@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
-use Models\Photo;
-use Models\Gallery;
 use App\Http\Controllers\Controller;
+use Models\Gallery;
+use Models\Photo;
 
 class WebPhotosController extends Controller
 {

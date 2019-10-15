@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\Menu;
-use Illuminate\Http\Request;
-use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MenuRequest;
+use App\Support\Admin\AdminDestroy;
+use Illuminate\Http\Request;
+use Models\Menu;
 
 class AdminMenusController extends Controller
 {

@@ -2,9 +2,9 @@
 
 namespace App\Support\Admin;
 
-use Models\File;
-use Models\Abstracts\Model;
 use Illuminate\Filesystem\Filesystem;
+use Models\Abstracts\Model;
+use Models\File;
 
 class AdminDestroy
 {

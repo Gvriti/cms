@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
-use Exception;
-use League\Glide\Server;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Contracts\Config\Repository as Config;
+use Illuminate\Http\Request;
+use League\Glide\Server;
 
 class WebGlideServerController extends Controller
 {

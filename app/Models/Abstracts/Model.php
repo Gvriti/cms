@@ -2,11 +2,11 @@
 
 namespace Models\Abstracts;
 
+use Illuminate\Database\Eloquent\Model as BaseModel;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Models\Builder\Builder;
 use Models\Traits\LanguageTrait;
-use Illuminate\Database\QueryException;
-use Illuminate\Database\Eloquent\Model as BaseModel;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 abstract class Model extends BaseModel
 {

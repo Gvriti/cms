@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Str;
-use Illuminate\Routing\Router;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
+use Illuminate\Support\Str;
 
 class RouteServiceProvider extends ServiceProvider
 {

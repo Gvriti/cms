@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
-use Models\Video;
-use Models\Gallery;
 use App\Http\Controllers\Controller;
+use Models\Gallery;
+use Models\Video;
 
 class WebVideosController extends Controller
 {

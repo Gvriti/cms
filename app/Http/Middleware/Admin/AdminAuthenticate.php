@@ -3,9 +3,9 @@
 namespace App\Http\Middleware\Admin;
 
 use Closure;
-use Models\Permission;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Request;
+use Models\Permission;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class AdminAuthenticate

@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use League\Glide\Server;
-use League\Glide\ServerFactory;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\ServiceProvider;
+use League\Glide\Server;
+use League\Glide\ServerFactory;
 
 class GlideServiceProvider extends ServiceProvider implements DeferrableProvider
 {

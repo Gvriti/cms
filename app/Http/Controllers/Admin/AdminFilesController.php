@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Models\File;
-use Illuminate\Http\Request;
-use App\Support\Admin\AdminDestroy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FileRequest;
+use App\Support\Admin\AdminDestroy;
+use Illuminate\Http\Request;
+use Models\File;
 
 class AdminFilesController extends Controller
 {

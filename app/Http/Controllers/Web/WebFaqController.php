@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
+use Models\Collection;
 use Models\Faq;
 use Models\Page;
-use Models\Collection;
-use App\Http\Controllers\Controller;
 
 class WebFaqController extends Controller
 {

@@ -2,8 +2,8 @@
 
 namespace App\Listeners\Web;
 
-use Models\Abstracts\Model;
 use App\Support\TranslationCollection;
+use Models\Abstracts\Model;
 
 class WebCurrentPageEventListener
 {

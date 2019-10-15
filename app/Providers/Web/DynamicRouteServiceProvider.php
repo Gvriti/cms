@@ -2,9 +2,9 @@
 
 namespace App\Providers\Web;
 
-use Models\Page;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
+use Models\Page;
 
 final class DynamicRouteServiceProvider extends ServiceProvider
 {

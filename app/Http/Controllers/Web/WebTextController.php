@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Web;
 
-use Models\Page;
 use App\Http\Controllers\Controller;
+use Models\Page;
 
 class WebTextController extends Controller
 {

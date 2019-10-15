@@ -12,8 +12,8 @@
 namespace App\Http\Controllers;
 
 use Barryvdh\Elfinder\Connector;
-use Illuminate\Filesystem\FilesystemAdapter;
 use Barryvdh\Elfinder\ElfinderController as Elfinder;
+use Illuminate\Filesystem\FilesystemAdapter;
 
 class ElfinderController extends Elfinder
 {
