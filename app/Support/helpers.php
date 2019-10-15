@@ -280,7 +280,7 @@ function add_language($url, $language = null, $hasLanguage = false)
     }
 
     if (! empty($path) || $withLanguage) {
-        if (starts_with($path, $baseUrl = request()->getBaseUrl())
+        if (Str::startsWith($path, $baseUrl = request()->getBaseUrl())
             && $schemeAndHttpHost == request()->getSchemeAndHttpHost()
         ) {
             $path = substr($path, strlen($baseUrl));
