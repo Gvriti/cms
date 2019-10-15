@@ -1,9 +1,9 @@
 <?php
 
+use Illuminate\Database\Events\QueryExecuted;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Models\Abstracts\Model;
-use Illuminate\Support\Collection;
-use Illuminate\Database\Events\QueryExecuted;
 
 /**
  * Get the application default language.
@@ -280,7 +280,7 @@ function add_language($url, $language = null, $hasLanguage = false)
     }
 
     if (! empty($path) || $withLanguage) {
-        if (starts_with($path, $baseUrl = request()->getBaseUrl())
+        if (Str::startsWith($path, $baseUrl = request()->getBaseUrl())
             && $schemeAndHttpHost == request()->getSchemeAndHttpHost()
         ) {
             $path = substr($path, strlen($baseUrl));
