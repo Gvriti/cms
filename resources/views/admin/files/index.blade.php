@@ -6,7 +6,7 @@
                 <i class="{{$icon = icon_type('files')}}"></i>
                 {{ str_limit($foreignModel->title, 50, '...') }}
             </h1>
-            <p class="description">List of the files</p>
+            <p class="description">Management of the files</p>
         </div>
         <div class="breadcrumb-env">
             <ol class="breadcrumb bc-1">

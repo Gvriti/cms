@@ -6,7 +6,7 @@
             <i class="fa fa-file-text-o"></i>
             Notes
         </h1>
-        <p class="description">List of all notes</p>
+        <p class="description">Management of the notes</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">

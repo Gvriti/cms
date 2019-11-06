@@ -6,7 +6,7 @@
             <i class="{{$icon = icon_type('menus')}}"></i>
             Menus
         </h1>
-        <p class="description">Creation of the menu</p>
+        <p class="description">Management of the menu</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
@@ -22,7 +22,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2 class="panel-title">Create a menu</h2>
+        <h2 class="panel-title">Create a new menu</h2>
         <div class="panel-options">
             <a href="#" data-toggle="panel">
                 <span class="collapse-icon">&ndash;</span>

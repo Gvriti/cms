@@ -6,7 +6,7 @@
             <i class="{{$icon = icon_type('collections')}}"></i>
             Collections
         </h1>
-        <p class="description">List of all collections</p>
+        <p class="description">Management of the collections</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
