@@ -6,7 +6,7 @@
             <i class="{{$icon = icon_type('faq')}}"></i>
             FAQ
         </h1>
-        <p class="description">Edit FAQ</p>
+        <p class="description">Management of the FAQ</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
