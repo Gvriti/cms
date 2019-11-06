@@ -20,10 +20,13 @@
             <div class="form-group{{($error = $errors->first('firstname')) ? ' validate-has-error' : '' }}">
                 <label class="col-sm-4 control-label text-left required">Firstname:</label>
                 <div class="col-sm-8">
-                    {!! Form::text('firstname', null, [
-                        'id' => 'firstname',
-                        'class' => 'form-control',
-                    ]) !!}
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-secret"></i></span>
+                        {!! Form::text('first_name', null, [
+                            'id' => 'first_name',
+                            'class' => 'form-control',
+                        ]) !!}
+                    </div>
                     @if ($error)
                     <span>{{$error}}</span>
                     @endif
@@ -34,10 +37,13 @@
             <div class="form-group{{($error = $errors->first('lastname')) ? ' validate-has-error' : '' }}">
                 <label class="col-sm-4 control-label required">Lastname:</label>
                 <div class="col-sm-8">
-                    {!! Form::text('lastname', null, [
-                        'id' => 'lastname',
-                        'class' => 'form-control',
-                    ]) !!}
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-secret"></i></span>
+                        {!! Form::text('last_name', null, [
+                            'id' => 'last_name',
+                            'class' => 'form-control',
+                        ]) !!}
+                    </div>
                     @if ($error)
                     <span>{{$error}}</span>
                     @endif
@@ -70,10 +76,13 @@
             <div class="form-group{{($error = $errors->first('phone')) ? ' validate-has-error' : '' }}">
                 <label class="col-sm-4 control-label text-left required">Phone:</label>
                 <div class="col-sm-8">
-                    {!! Form::text('phone', null, [
-                        'id' => 'phone',
-                        'class' => 'form-control',
-                    ]) !!}
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                        {!! Form::text('phone', null, [
+                            'id' => 'phone',
+                            'class' => 'form-control',
+                        ]) !!}
+                    </div>
                     @if ($error)
                         <span>{{$error}}</span>
                     @endif
@@ -84,10 +93,13 @@
             <div class="form-group{{($error = $errors->first('address')) ? ' validate-has-error' : '' }}">
                 <label class="col-sm-4 control-label required">Address:</label>
                 <div class="col-sm-8">
-                    {!! Form::text('address', null, [
-                        'id' => 'address',
-                        'class' => 'form-control',
-                    ]) !!}
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+                        {!! Form::text('address', null, [
+                            'id' => 'address',
+                            'class' => 'form-control',
+                        ]) !!}
+                    </div>
                     @if ($error)
                         <span>{{$error}}</span>
                     @endif
@@ -116,6 +128,7 @@
         <label class="col-sm-2 control-label text-left">Photo:</label>
         <div class="col-sm-6">
             <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-image"></i></span>
                 {!! Form::text('photo', null, [
                     'id' => 'photo',
                     'class' => 'form-control'
@@ -134,7 +147,10 @@
             <div class="form-group{{($error = $errors->first('password')) ? ' validate-has-error' : '' }}">
                 <label class="col-sm-4 control-label text-left{{$current->id ? '' : ' required'}}">Password:</label>
                 <div class="col-sm-8">
-                    <input type="password" name="password" id="password" class="form-control">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                        <input type="password" name="password" id="password" class="form-control">
+                    </div>
                     @if ($error)
                     <span>{{$error}}</span>
                     @endif
@@ -145,7 +161,10 @@
             <div class="form-group">
                 <label class="col-sm-4 control-label{{$current->id ? '' : ' required'}}">Repeat Password:</label>
                 <div class="col-sm-8">
-                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+                    </div>
                 </div>
             </div>
         </div>

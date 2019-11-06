@@ -1,11 +1,30 @@
 <div class="col-md-12">
     <div class="form-group">
-        <label class="control-label">Title:</label>
-        {!! Form::text('title', null, [
-            'id' => 'title' . $current->language,
-            'class' => 'form-control',
-            'autofocus'
-        ]) !!}
+        <label class="control-label required">Title:</label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-header"></i></span>
+            {!! Form::text('title', null, [
+                'id' => 'title' . $current->language,
+                'class' => 'form-control',
+                'autofocus'
+            ]) !!}
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="form-group">
+        <label class="control-label">Image:</label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-image"></i></span>
+            {!! Form::text('file', null, [
+                'id' => 'file' . $current->language,
+                'class' => 'form-control',
+                'data-lang' => 1
+            ]) !!}
+            <div class="input-group-btn popup" data-browse="file{{$current->language}}">
+                <span class="btn btn-info">Browse</span>
+            </div>
+        </div>
     </div>
 </div>
 <div class="col-md-12">
@@ -16,21 +35,6 @@
             'class' => 'form-control',
             'rows' => '2'
         ]) !!}
-    </div>
-</div>
-<div class="col-md-12">
-    <div class="form-group">
-        <label class="control-label">Image:</label>
-        <div class="input-group">
-            {!! Form::text('file', null, [
-                'id' => 'file' . $current->language,
-                'class' => 'form-control',
-                'data-lang' => 1,
-            ]) !!}
-            <div class="input-group-btn popup" data-browse="file{{$current->language}}">
-                <span class="btn btn-info">Browse</span>
-            </div>
-        </div>
     </div>
 </div>
 <div class="col-md-12">

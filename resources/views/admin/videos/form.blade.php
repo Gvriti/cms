@@ -1,21 +1,27 @@
 <div class="col-md-12">
     <div class="form-group">
-        <label class="control-label">Title:</label>
-        {!! Form::text('title', null, [
-            'id' => 'title' . $current->language,
-            'class' => 'form-control',
-            'autofocus'
-        ]) !!}
+        <label class="control-label required">Title:</label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-header"></i></span>
+            {!! Form::text('title', null, [
+                'id' => 'title' . $current->language,
+                'class' => 'form-control',
+                'autofocus'
+            ]) !!}
+        </div>
     </div>
-</div>
+</div>>
 <div class="col-md-12">
     <div class="form-group">
-        <label class="control-label">Video URL:</label>
-        {!! Form::text('file', null, [
-            'id' => 'file' . $current->language,
-            'class' => 'form-control',
-            'data-lang' => 1
-        ]) !!}
+        <label class="control-label required">Video URL:</label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-youtube-play"></i></span>
+            {!! Form::text('file', null, [
+                'id' => 'file' . $current->language,
+                'class' => 'form-control',
+                'data-lang' => 1
+            ]) !!}
+        </div>
     </div>
 </div>
 <div class="col-md-12">
