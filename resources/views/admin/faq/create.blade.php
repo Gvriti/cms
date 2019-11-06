@@ -4,9 +4,9 @@
     <div class="title-env">
         <h1 class="title">
             <i class="{{$icon = icon_type('faq')}}"></i>
-            Faq
+            FAQ
         </h1>
-        <p class="description">Creation of the faq</p>
+        <p class="description">Management of the FAQ</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
@@ -18,14 +18,14 @@
             </li>
             <li class="active">
                 <i class="{{$icon}}"></i>
-                <strong>Faq</strong>
+                <strong>FAQ</strong>
             </li>
         </ol>
     </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2 class="panel-title">Create a faq</h2>
+        <h2 class="panel-title">Create a new FAQ</h2>
     </div>
     <div class="panel-body">
         {!! Form::model($current, [

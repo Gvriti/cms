@@ -6,7 +6,7 @@
             <i class="{{$icon = icon_type('translations')}}"></i>
             Translations
         </h1>
-        <p class="description">List of all translation</p>
+        <p class="description">Management of the translation</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">

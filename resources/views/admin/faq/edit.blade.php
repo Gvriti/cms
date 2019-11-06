@@ -4,9 +4,9 @@
     <div class="title-env">
         <h1 class="title">
             <i class="{{$icon = icon_type('faq')}}"></i>
-            Faq
+            FAQ
         </h1>
-        <p class="description">Edit faq</p>
+        <p class="description">Edit FAQ</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
@@ -18,7 +18,7 @@
             </li>
             <li class="active">
                 <i class="{{$icon}}"></i>
-                <strong>Faq</strong>
+                <strong>FAQ</strong>
             </li>
         </ol>
     </div>
@@ -50,7 +50,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2 class="panel-title">Edit faq</h2>
+        <h2 class="panel-title">Edit FAQ</h2>
         <div class="panel-options">
             <a href="#" data-toggle="panel">
                 <span class="collapse-icon">&ndash;</span>
