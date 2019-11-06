@@ -6,7 +6,7 @@
             <i class="{{$icon = icon_type('articles')}}"></i>
             Articles
         </h1>
-        <p class="description">Edit article</p>
+        <p class="description">Management of the articles</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">

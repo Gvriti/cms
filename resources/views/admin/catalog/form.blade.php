@@ -1,12 +1,15 @@
 <div class="form-group{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label required">Title:</label>
     <div class="col-sm-10">
-        {!! Form::text('title', null, [
-            'id' => 'title' . $current->language,
-            'class' => 'form-control',
-        ]) !!}
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-header"></i></span>
+            {!! Form::text('title', null, [
+                'id' => 'title' . $current->language,
+                'class' => 'form-control',
+            ]) !!}
+        </div>
         @if ($error)
-        <span>{{$error}}</span>
+            <span>{{$error}}</span>
         @endif
     </div>
 </div>
@@ -16,15 +19,37 @@
 <div class="form-group{{($error = $errors->first('slug')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label required">Slug:</label>
     <div class="col-sm-10">
-        {!! Form::text('slug', null, [
-            'id' => 'slug' . $current->language,
-            'class' => 'form-control',
-            'data-lang' => 1,
-        ]) !!}
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-link"></i></span>
+            {!! Form::text('slug', null, [
+                'id' => 'slug' . $current->language,
+                'class' => 'form-control',
+                'data-lang' => 1
+            ]) !!}
+        </div>
         @if ($error)
-        <span>{{$error}}</span>
+            <span>{{$error}}</span>
         @endif
         <div class="desc">Slug must be as short as possible for SEO purposes.</div>
+    </div>
+</div>
+
+<div class="form-group-separator"></div>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">Image:</label>
+    <div class="col-lg-6 col-sm-10">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-image"></i></span>
+            {!! Form::text('image', null, [
+                'id' => 'image' . $current->language,
+                'class' => 'form-control',
+                'data-lang' => 1
+            ]) !!}
+            <div class="input-group-btn popup" data-browse="image{{$current->language}}">
+                <span class="btn btn-info">Browse</span>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -64,24 +89,6 @@
             'class' => 'form-control',
         ]) !!}
         <div class="desc">Description for search engines. It is best to keep meta descriptions less then 150 or 160 characters.</div>
-    </div>
-</div>
-
-<div class="form-group-separator"></div>
-
-<div class="form-group">
-    <label class="col-sm-2 control-label">Image:</label>
-    <div class="col-lg-6 col-sm-10">
-        <div class="input-group">
-            {!! Form::text('image', null, [
-                'id' => 'image' . $current->language,
-                'class' => 'form-control',
-                'data-lang' => 1
-            ]) !!}
-            <div class="input-group-btn popup" data-browse="image{{$current->language}}">
-                <span class="btn btn-info">Browse</span>
-            </div>
-        </div>
     </div>
 </div>
 

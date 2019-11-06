@@ -1,28 +1,34 @@
-<div class="form-group{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label required">Title:</label>
-    <div class="col-sm-10">
-        {!! Form::text('title', null, [
-            'id' => 'title' . $current->language,
-            'class' => 'form-control',
-        ]) !!}
-        @if ($error)
-        <span>{{$error}}</span>
-        @endif
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
+            <label class="col-lg-4 col-sm-2 control-label required">Title:</label>
+            <div class="col-lg-8 col-sm-10">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-header"></i></span>
+                    {!! Form::text('title', null, [
+                        'id' => 'title' . $current->language,
+                        'class' => 'form-control',
+                    ]) !!}
+                </div>
+                @if ($error)
+                    <span>{{$error}}</span>
+                @endif
+            </div>
+        </div>
     </div>
-</div>
-
-<div class="form-group-separator"></div>
-
-<div class="form-group{{($error = $errors->first('short_title')) ? ' validate-has-error' : '' }}">
-    <label class="col-sm-2 control-label">Short title:</label>
-    <div class="col-sm-10">
-        {!! Form::text('short_title', null, [
-            'id' => 'short_title' . $current->language,
-            'class' => 'form-control',
-        ]) !!}
-        @if ($error)
-        <span>{{$error}}</span>
-        @endif
+    <div class="col-lg-6">
+        <div class="form-group{{($error = $errors->first('short_title')) ? ' validate-has-error' : '' }}">
+            <label class="col-lg-4 col-sm-2 control-label required">Short Title:</label>
+            <div class="col-lg-8 col-sm-10">
+                {!! Form::text('short_title', null, [
+                    'id' => 'short_title' . $current->language,
+                    'class' => 'form-control',
+                ]) !!}
+                @if ($error)
+                    <span>{{$error}}</span>
+                @endif
+            </div>
+        </div>
     </div>
 </div>
 
@@ -31,11 +37,14 @@
 <div class="form-group{{($error = $errors->first('slug')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label required">Slug:</label>
     <div class="col-sm-10">
-        {!! Form::text('slug', null, [
-            'id' => 'slug' . $current->language,
-            'class' => 'form-control',
-            'data-lang' => 1
-        ]) !!}
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-link"></i></span>
+            {!! Form::text('slug', null, [
+                'id' => 'slug' . $current->language,
+                'class' => 'form-control',
+                'data-lang' => 1
+            ]) !!}
+        </div>
         @if ($error)
         <span>{{$error}}</span>
         @endif
@@ -49,12 +58,15 @@
     <div class="col-lg-6">
         <div class="form-group{{($error = $errors->first('type')) ? ' validate-has-error' : '' }}">
             <label class="col-lg-4 col-sm-2 control-label required">Type:</label>
-            <div class="col-lg-6 col-sm-10">
-                {!! Form::select('type', $types, null, [
-                    'id' => 'type' . $current->language,
-                    'class' => 'form-control select',
-                    'data-lang' => 1
-                ]) !!}
+            <div class="col-lg-8 col-sm-10">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-ellipsis-h"></i></span>
+                    {!! Form::select('type', $types, null, [
+                        'id' => 'type' . $current->language,
+                        'class' => 'form-control select',
+                        'data-lang' => 1
+                    ]) !!}
+                </div>
                 @if ($error)
                 <span>{{$error}}</span>
                 @endif
@@ -65,13 +77,16 @@
         <div class="row">
             <div class="col-lg-12 type-id{{(($error = $errors->first('type_id')) || $current->type_id) ? '' : ' hidden'}}">
                 <div class="form-group{{$error ? ' validate-has-error' : '' }}">
-                    <label class="col-lg-3 col-sm-2 control-label required">{{$current->type_id ? $current->type : 'Type id'}}:</label>
-                    <div class="col-lg-9 col-sm-10">
-                        {!! Form::select('type_id', ['' => ''] + $attachedTypes, null, [
-                            'id' => 'type_id' . $current->language,
-                            'class' => 'form-control select',
-                            'data-lang' => 1
-                        ]) !!}
+                    <label class="col-lg-4 col-sm-2 control-label required">{{$current->type_id ? ucfirst($current->type) : 'Type id'}}:</label>
+                    <div class="col-lg-8 col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-ellipsis-v"></i></span>
+                            {!! Form::select('type_id', ['' => ''] + $attachedTypes, null, [
+                                'id' => 'type_id' . $current->language,
+                                'class' => 'form-control select',
+                                'data-lang' => 1
+                            ]) !!}
+                        </div>
                         @if ($error)
                         <span>{{$error}}</span>
                         @endif
@@ -82,13 +97,37 @@
                 <div class="form-group">
                     <label class="col-lg-3 col-sm-2 control-label">Template:</label>
                     <div class="col-lg-9 col-sm-10">
-                        {!! Form::select('template', ['' => ''] + $templates, null, [
-                            'id' => 'template' . $current->language,
-                            'class' => 'form-control select',
-                            'data-lang' => 1
-                        ]) !!}
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-text-width"></i></span>
+                            {!! Form::select('template', ['' => ''] + $templates, null, [
+                                'id' => 'template' . $current->language,
+                                'class' => 'form-control select',
+                                'data-lang' => 1
+                            ]) !!}
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group-separator"></div>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">Image:</label>
+    <div class="col-lg-6 col-sm-10">
+        <div class="input-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-image"></i></span>
+                {!! Form::text('image', null, [
+                    'id' => 'image' . $current->language,
+                    'class' => 'form-control',
+                    'data-lang' => 1
+                ]) !!}
+            </div>
+            <div class="input-group-btn popup" data-browse="image{{$current->language}}">
+                <span class="btn btn-info">Browse</span>
             </div>
         </div>
     </div>
@@ -130,24 +169,6 @@
             'class' => 'form-control',
         ]) !!}
         <div class="desc">Description for search engines. It is best to keep meta descriptions less then 150 or 160 characters.</div>
-    </div>
-</div>
-
-<div class="form-group-separator"></div>
-
-<div class="form-group">
-    <label class="col-sm-2 control-label">Image:</label>
-    <div class="col-lg-6 col-sm-10">
-        <div class="input-group">
-            {!! Form::text('image', null, [
-                'id' => 'image' . $current->language,
-                'class' => 'form-control',
-                'data-lang' => 1
-            ]) !!}
-            <div class="input-group-btn popup" data-browse="image{{$current->language}}">
-                <span class="btn btn-info">Browse</span>
-            </div>
-        </div>
     </div>
 </div>
 
