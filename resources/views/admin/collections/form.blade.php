@@ -1,12 +1,15 @@
 <div class="form-group{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label required">Title:</label>
     <div class="col-sm-10">
-        {!! Form::text('title', null, [
-            'id' => 'title',
-            'class' => 'form-control',
-        ]) !!}
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-header"></i></span>
+            {!! Form::text('title', null, [
+                'id' => 'title' . $current->language,
+                'class' => 'form-control',
+            ]) !!}
+        </div>
         @if ($error)
-        <span>{{$error}}</span>
+            <span>{{$error}}</span>
         @endif
     </div>
 </div>
@@ -16,10 +19,13 @@
 <div class="form-group{{($error = $errors->first('type')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label required">Type:</label>
     <div class="col-sm-10">
-        {!! Form::select('type', cms_collections('types'), null, [
-            'id' => 'type',
-            'class' => 'form-control select',
-        ] + ($current->id ? ['disabled' => 'disabled'] : [])) !!}
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-ellipsis-h"></i></span>
+            {!! Form::select('type', cms_collections('types'), null, [
+                'id' => 'type',
+                'class' => 'form-control select',
+            ] + ($current->id ? ['disabled' => 'disabled'] : [])) !!}
+        </div>
         @if ($error)
         <span>{{$error}}</span>
         @endif
@@ -33,10 +39,13 @@
         <div class="form-group{{($error = $errors->first('admin_order_by')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label required">Admin order by:</label>
             <div class="col-sm-8">
-                {!! Form::select('admin_order_by', $orderBy = cms_collections('order_by'), null, [
-                    'id' => 'admin_order_by',
-                    'class' => 'form-control select',
-                ]) !!}
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-list-ol"></i></span>
+                    {!! Form::select('admin_order_by', $orderBy = cms_collections('order_by'), null, [
+                        'id' => 'admin_order_by',
+                        'class' => 'form-control select',
+                    ]) !!}
+                </div>
                 @if ($error)
                 <span>{{$error}}</span>
                 @endif
@@ -47,10 +56,13 @@
         <div class="form-group{{($error = $errors->first('web_order_by')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label required">Web order by:</label>
             <div class="col-sm-8">
-                {!! Form::select('web_order_by', $orderBy, null, [
-                    'id' => 'web_order_by',
-                    'class' => 'form-control select',
-                ]) !!}
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-list-ol"></i></span>
+                    {!! Form::select('web_order_by', $orderBy, null, [
+                        'id' => 'web_order_by',
+                        'class' => 'form-control select',
+                    ]) !!}
+                </div>
                 @if ($error)
                 <span>{{$error}}</span>
                 @endif
@@ -66,10 +78,13 @@
         <div class="form-group{{($error = $errors->first('admin_sort')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label required">Admin sort:</label>
             <div class="col-sm-8">
-                {!! Form::select('admin_sort', cms_collections('sort'), null, [
-                    'id' => 'admin_sort',
-                    'class' => 'form-control select',
-                ]) !!}
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-sort"></i></span>
+                    {!! Form::select('admin_sort', cms_collections('sort'), null, [
+                        'id' => 'admin_sort',
+                        'class' => 'form-control select',
+                    ]) !!}
+                </div>
                 @if ($error)
                 <span>{{$error}}</span>
                 @endif
@@ -80,10 +95,13 @@
         <div class="form-group{{($error = $errors->first('web_sort')) ? ' validate-has-error' : '' }}">
             <label class="col-sm-4 control-label required">Web sort:</label>
             <div class="col-sm-8">
-                {!! Form::select('web_sort', cms_collections('sort'), null, [
-                    'id' => 'web_sort',
-                    'class' => 'form-control select',
-                ]) !!}
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-sort"></i></span>
+                    {!! Form::select('web_sort', cms_collections('sort'), null, [
+                        'id' => 'web_sort',
+                        'class' => 'form-control select',
+                    ]) !!}
+                </div>
                 @if ($error)
                 <span>{{$error}}</span>
                 @endif

@@ -1,15 +1,18 @@
 <div class="form-group{{($error = $errors->first('title')) ? ' validate-has-error' : '' }}">
     <label class="col-sm-2 control-label required">Title:</label>
-    <div class="col-lg-6 col-sm-10">
-        {!! Form::text('title', null, [
-            'id' => 'title',
-            'class' => 'form-control',
-        ]) !!}
+    <div class="col-sm-10">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-header"></i></span>
+            {!! Form::text('title', null, [
+                'id' => 'title' . $current->language,
+                'class' => 'form-control',
+            ]) !!}
+        </div>
         @if ($error)
-        <span>{{$error}}</span>
+            <span>{{$error}}</span>
         @endif
     </div>
-</div>
+</div
 
 <div class="form-group-separator"></div>
 

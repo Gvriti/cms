@@ -6,7 +6,7 @@
             <i class="{{$icon = icon_type('menus')}}"></i>
             Menus
         </h1>
-        <p class="description">Edit menu</p>
+        <p class="description">Management of the menus</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">

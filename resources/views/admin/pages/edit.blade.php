@@ -6,7 +6,7 @@
             <i class="{{$iconCurrent = icon_type('pages')}}"></i>
             Pages
         </h1>
-        <p class="description">Edit page</p>
+        <p class="description">Management of the pages</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">

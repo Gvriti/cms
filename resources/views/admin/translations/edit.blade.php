@@ -6,7 +6,7 @@
             <i class="fa fa-language"></i>
             Translations
         </h1>
-        <p class="description">Edit translations</p>
+        <p class="description">Management of the translations</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
