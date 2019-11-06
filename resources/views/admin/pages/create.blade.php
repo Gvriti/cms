@@ -6,7 +6,7 @@
             <i class="{{$icon = icon_type('pages')}}"></i>
             Pages
         </h1>
-        <p class="description">Creation of the page</p>
+        <p class="description">Management of the pages</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
@@ -25,7 +25,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2 class="panel-title">Create a page</h2>
+        <h2 class="panel-title">Create a new page</h2>
     </div>
     <div class="panel-body">
         {!! Form::model($current, [

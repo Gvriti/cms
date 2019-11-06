@@ -6,7 +6,7 @@
             <i class="fa fa-gear"></i>
             CMS Settings
         </h1>
-        <p class="description">List of the CMS settings</p>
+        <p class="description">Management of the CMS settings</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">

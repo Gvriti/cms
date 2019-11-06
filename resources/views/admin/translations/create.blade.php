@@ -6,7 +6,7 @@
             <i class="fa fa-language"></i>
             Translations
         </h1>
-        <p class="description">Creation of the translation</p>
+        <p class="description">Management of the translations</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
@@ -22,7 +22,7 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2 class="panel-title">Create a translation</h2>
+        <h2 class="panel-title">Create a new translation</h2>
     </div>
     <div class="panel-body">
         {!! Form::model($current, [
