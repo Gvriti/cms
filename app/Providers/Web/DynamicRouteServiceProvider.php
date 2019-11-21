@@ -4,6 +4,7 @@ namespace App\Providers\Web;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use Models\Page;
 
 final class DynamicRouteServiceProvider extends ServiceProvider
@@ -399,13 +400,13 @@ final class DynamicRouteServiceProvider extends ServiceProvider
         if (($pathCount = count($path)) > 1) {
             for ($i = 1; $i <= $pathCount; $i++) {
                 if ($i == $pathCount) {
-                    $namespace .= '\\Web' . studly_case($path[$i - 1]);
+                    $namespace .= '\\Web' . Str::studly($path[$i - 1]);
                 } else {
-                    $namespace .= '\\' . studly_case($path[$i - 1]);
+                    $namespace .= '\\' . Str::studly($path[$i - 1]);
                 }
             }
         } else {
-            $namespace .= 'Web' . studly_case($path[0]);
+            $namespace .= 'Web' . Str::studly($path[0]);
         }
 
         return ltrim($namespace . 'Controller', '\\');
