@@ -23,17 +23,11 @@ trait VisibilityTrait
             throw new RuntimeException('Model not found');
         }
 
-        if ($this->model->hasLanguage()) {
-            $model = $this->model->joinLanguage()->findOrFail($id);
-        } else {
-            $model = $this->model->findOrFail($id);
-        }
+        $model = $this->model->when($this->model->hasLanguage(), function ($q) {
+            return $q->joinLanguage();
+        })->findOrFail($id);
 
-        if ($model->visible) {
-            $model->update(['visible' => $visible = 0]);
-        } else {
-            $model->update(['visible' => $visible = 1]);
-        }
+        $model->update(['visible' => $visible = (int) ! $model->visible]);
 
         if ($request->expectsJson()) {
             return response()->json($visible);
