@@ -121,11 +121,13 @@ trait HasGalleryTrait
      */
     public function create(array $attributes = [])
     {
-        if (isset($attributes['gallery_id'])) {
-            $attributes['position'] = (int) $this->galleryId($attributes['gallery_id'])
-                    ->max('position') + 1;
-        } else {
-            $attributes['position'] = (int) $this->max('position') + 1;
+        if (empty($attributes['position'])) {
+            if (isset($attributes['gallery_id'])) {
+                $attributes['position'] = $this->galleryId($attributes['gallery_id'])
+                        ->max('position') + 1;
+            } else {
+                $attributes['position'] = $this->max('position') + 1;
+            }
         }
 
         return parent::create($attributes);
