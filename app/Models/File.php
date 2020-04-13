@@ -195,9 +195,12 @@ class File extends Model
     /**
      * {@inheritdoc}
      */
-    public function create(array $attributes = [])
+    public function create(array $attributes = [], $tableName = null, $tableId = null)
     {
-        $attributes['position'] = (int) $this->byForeign()->max('position') + 1;
+        if (empty($attributes['position'])) {
+            $attributes['position'] = $this->byForeign($tableName, $tableId)
+                    ->max('position') + 1;
+        }
 
         return parent::create($attributes);
     }
