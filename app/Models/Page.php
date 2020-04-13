@@ -325,11 +325,13 @@ class Page extends Model
      */
     public function create(array $attributes = [])
     {
-        if (isset($attributes['menu_id'])) {
-            $attributes['position'] = (int) $this->menuId($attributes['menu_id'])
-                    ->max('position') + 1;
-        } else {
-            $attributes['position'] = (int) $this->max('position') + 1;
+        if (empty($attributes['position'])) {
+            if (isset($attributes['menu_id'])) {
+                $attributes['position'] = $this->menuId($attributes['menu_id'])
+                        ->max('position') + 1;
+            } else {
+                $attributes['position'] = $this->max('position') + 1;
+            }
         }
 
         return parent::create($attributes);
