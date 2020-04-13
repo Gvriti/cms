@@ -43,6 +43,18 @@ class Builder extends EloquentBuilder
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function addSelect($column)
+    {
+        parent::addSelect($column);
+
+        $this->getQuery()->columns = array_unique($this->getQuery()->columns, SORT_REGULAR);
+
+        return $this;
+    }
+
+    /**
      * Add a select exists statement to the query.
      *
      * @param  \Closure|\Illuminate\Database\Query\Builder|string $query
