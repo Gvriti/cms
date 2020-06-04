@@ -117,7 +117,9 @@ class RouteServiceProvider extends ServiceProvider
                 $route->prefix($language);
             }
 
-            if (Str::contains($route->getPrefix(), $cmsSlug)) {
+            $prefix = $route->getPrefix();
+
+            if (! is_null($prefix) && Str::contains($prefix, $cmsSlug)) {
                 $route->name('.' . $cmsSlug);
             }
         }
