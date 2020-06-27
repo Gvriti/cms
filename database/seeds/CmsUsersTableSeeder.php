@@ -17,12 +17,12 @@ class CmsUsersTableSeeder extends DatabaseSeeder
 
         DB::table('cms_users')->insert([
             [
-                'email' => 'gvritishvili.david@gmail.com',
-                'first_name' => 'David',
-                'last_name' => 'Gvritishvili',
+                'email' => 'admin@sample.com',
+                'first_name' => 'admin',
+                'last_name' => 'Admin',
                 'role' => 'admin',
                 'blocked' => 0,
-                'password' => '$2y$10$104nOCAkMAcIQGmqpd7fN.I0/7De6VAsBdYgjEBaoevZLYpn2xelu',
+                'password' => '$2y$10$SGapfDy0uRJPxGD/KV0BaeW5YiP4tNN2kSFkEtvSA1P1t0AUX51oq', // 123456
                 'created_at' => $currentDate
             ]
         ]);

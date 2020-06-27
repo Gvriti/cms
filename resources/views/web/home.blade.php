@@ -1,10 +1,10 @@
 @extends('web.app')
 @section('content')
-<div class="container">
-    <div class="jumbotron text-center">
-        <h1>{{trans('general.home')}}</h1>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Home Page</h1>
+        </div>
+        <!-- .jumbotron -->
     </div>
-    <!-- .jumbotron -->
-</div>
-<!-- .container -->
+    <!-- .container -->
 @endsection
