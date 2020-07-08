@@ -17,8 +17,8 @@ class CreateGalleriesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('collection_id');
             $table->string('slug')->unique();
-            $table->unsignedBigInteger('position')->default(1);
             $table->boolean('visible')->default(1);
+            $table->unsignedBigInteger('position')->default(1);
             $table->string('type', 32);
             $table->string('admin_order_by', 32)->default('id');
             $table->string('admin_sort', 16)->default('desc');

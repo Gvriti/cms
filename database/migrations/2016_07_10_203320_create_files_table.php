@@ -17,8 +17,8 @@ class CreateFilesTable extends Migration
             $table->bigIncrements('id');
             $table->string('table_name', 64)->index();
             $table->unsignedBigInteger('table_id')->index();
-            $table->unsignedSmallInteger('position')->default(1);
             $table->boolean('visible')->default(1);
+            $table->unsignedSmallInteger('position')->default(1);
             $table->timestamps();
         });
 

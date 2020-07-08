@@ -17,8 +17,8 @@ class CreatePagesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('menu_id');
             $table->string('slug')->unique();
-            $table->unsignedBigInteger('position')->default(1);
             $table->boolean('visible')->default(1);
+            $table->unsignedBigInteger('position')->default(1);
             $table->unsignedBigInteger('parent_id')->default(0);
             $table->string('type', 64)->default('text');
             $table->unsignedBigInteger('type_id')->nullable();

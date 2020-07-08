@@ -16,8 +16,8 @@ class CreateFaqTable extends Migration
         Schema::create('faq', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('collection_id');
-            $table->unsignedBigInteger('position')->default(1);
             $table->boolean('visible')->default(1);
+            $table->unsignedBigInteger('position')->default(1);
             $table->timestamps();
 
             $table->foreign('collection_id')->references('id')->on('collections');

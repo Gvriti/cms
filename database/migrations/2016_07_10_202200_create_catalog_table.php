@@ -17,8 +17,8 @@ class CreateCatalogTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('collection_id');
             $table->string('slug')->unique();
-            $table->unsignedBigInteger('position')->default(1);
             $table->boolean('visible')->default(1);
+            $table->unsignedBigInteger('position')->default(1);
             $table->string('image')->nullable();
             $table->timestamps();
 
