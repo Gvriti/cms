@@ -1,7 +1,7 @@
 @if (isset($item) && has_model_tree($item))
 <ul>
 @foreach ($item->sub_items as $item)
-    <li id="item{{ $item->id }}" class="item{{$item->collapse ? ' uk-collapsed' : ''}}" data-id="{{ $item->id }}" data-parent="1">
+    <li id="item{{ $item->id }}" class="item{{$item->collapse ? ' uk-collapsed' : ''}}" data-id="{{ $item->id }}" data-pos="{{$item->position}}">
         <div class="uk-nestable-item">
             <div class="row">
                 <div class="col-sm-7 col-xs-10">
