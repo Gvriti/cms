@@ -9,7 +9,7 @@
             ]) !!}
         </div>
         @if ($error)
-            <span>{{$error}}</span>
+            <span class="text-danger">{{$error}}</span>
         @endif
     </div>
 </div>
@@ -28,7 +28,7 @@
             ]) !!}
         </div>
         @if ($error)
-        <span>{{$error}}</span>
+        <span class="text-danger">{{$error}}</span>
         @endif
         <div class="desc">Slug must be as short as possible for SEO purposes.</div>
     </div>
@@ -47,7 +47,7 @@
             ] + ($current->id ? ['disabled' => 'disabled'] : [])) !!}
         </div>
         @if ($error)
-        <span>{{$error}}</span>
+        <span class="text-danger">{{$error}}</span>
         @endif
     </div>
 </div>
@@ -67,7 +67,7 @@
                     ]) !!}
                 </div>
                 @if ($error)
-                <span>{{$error}}</span>
+                <span class="text-danger">{{$error}}</span>
                 @endif
             </div>
         </div>
@@ -85,7 +85,7 @@
                     ]) !!}
                 </div>
                 @if ($error)
-                <span>{{$error}}</span>
+                <span class="text-danger">{{$error}}</span>
                 @endif
             </div>
         </div>
@@ -108,7 +108,7 @@
                     ]) !!}
                 </div>
                 @if ($error)
-                <span>{{$error}}</span>
+                <span class="text-danger">{{$error}}</span>
                 @endif
             </div>
         </div>
@@ -127,7 +127,7 @@
                     ]) !!}
                 </div>
                 @if ($error)
-                <span>{{$error}}</span>
+                <span class="text-danger">{{$error}}</span>
                 @endif
             </div>
         </div>

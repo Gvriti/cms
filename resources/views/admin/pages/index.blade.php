@@ -76,7 +76,7 @@
                                     <a href="{{$cmsUrl = ($item->collection_type ? cms_route($item->collection_type . '.index', [$item->type_id]) : (array_key_exists($item->type, config('cms.pages.explicit')) ? cms_route($item->type . '.'.($item->type_id ? 'edit' : 'index'), array_filter([$item->type_id])) : '#'))}}" class="btn btn-{{$cmsUrl == '#' ? 'white disabled' : 'info'}}" title="{{$item->collection_title ?: ucfirst($item->type)}}">
                                         <span class="{{icon_type($item->collection_type ?: $item->type, 'fa fa-file-text-o')}}"></span>
                                     </a>
-                                    <a href="{{ cms_route('pages.create', [$menu->id, 'id' => $item->id]) }}" class="btn btn-secondary" title="{{trans('general.create')}}">
+                                    <a href="{{ cms_route('pages.create', [$menu->id, 'parent_id' => $item->id]) }}" class="btn btn-secondary" title="{{trans('general.create')}}">
                                         <span class="fa fa-plus"></span>
                                     </a>
                                     <a href="{{ $editUrl }}" class="btn btn-orange" title="{{trans('general.edit')}}">

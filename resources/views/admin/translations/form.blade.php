@@ -7,7 +7,7 @@
             'data-lang' => 1
         ] + ($current->name ? ['readonly'] : [])) !!}
         @if ($error)
-        <span>{{$error}}</span>
+        <span class="text-danger">{{$error}}</span>
         @endif
         <div class="desc">The name is the identifier for the "value" (it's not changeable after creation!)</div>
     </div>
@@ -24,7 +24,7 @@
             'data-lang' => 1
         ]) !!}
         @if ($error)
-        <span>{{$error}}</span>
+        <span class="text-danger">{{$error}}</span>
         @endif
         <div class="desc">The title for the "value". It's visible only for CMS Users</div>
     </div>
@@ -40,7 +40,7 @@
             'class' => 'form-control',
         ]) !!}
         @if ($error)
-        <span>{{$error}}</span>
+        <span class="text-danger">{{$error}}</span>
         @endif
         <div class="desc">The value contains the translated text that will be displayed on the website</div>
     </div>

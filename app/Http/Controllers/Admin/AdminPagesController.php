@@ -68,7 +68,7 @@ class AdminPagesController extends Controller
     {
         $data['current'] = $this->model;
         $data['current']->menu_id = $menuId;
-        $data['current']->parent_id = (int) $this->request->get('id', 0);
+        $data['current']->parent_id = $this->request->get('parent_id', 0);
 
         $data['types'] = cms_pages('types');
 

@@ -28,7 +28,7 @@
                         ]) !!}
                     </div>
                     @if ($error)
-                    <span>{{$error}}</span>
+                    <span class="text-danger">{{$error}}</span>
                     @endif
                 </div>
             </div>
@@ -45,7 +45,7 @@
                         ]) !!}
                     </div>
                     @if ($error)
-                    <span>{{$error}}</span>
+                    <span class="text-danger">{{$error}}</span>
                     @endif
                 </div>
             </div>
@@ -63,7 +63,7 @@
                     'class' => 'form-control',
                 ]) !!}
                 @if ($error)
-                    <span>{{$error}}</span>
+                    <span class="text-danger">{{$error}}</span>
                 @endif
             </div>
         </div>
@@ -84,7 +84,7 @@
                         ]) !!}
                     </div>
                     @if ($error)
-                        <span>{{$error}}</span>
+                        <span class="text-danger">{{$error}}</span>
                     @endif
                 </div>
             </div>
@@ -101,7 +101,7 @@
                         ]) !!}
                     </div>
                     @if ($error)
-                        <span>{{$error}}</span>
+                        <span class="text-danger">{{$error}}</span>
                     @endif
                 </div>
             </div>
@@ -152,7 +152,7 @@
                         <input type="password" name="password" id="password" class="form-control">
                     </div>
                     @if ($error)
-                    <span>{{$error}}</span>
+                    <span class="text-danger">{{$error}}</span>
                     @endif
                 </div>
             </div>

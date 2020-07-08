@@ -9,7 +9,7 @@
             ]) !!}
         </div>
         @if ($error)
-            <span>{{$error}}</span>
+            <span class="text-danger">{{$error}}</span>
         @endif
     </div>
 </div
