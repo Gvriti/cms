@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{$iconCurrent = icon_type('pages')}}"></i>
+            <i class="{{$icon = icon_type('pages')}}"></i>
             {{$menu->title}}
         </h1>
         <p class="description">{{ $menu->description }}</p>
@@ -17,7 +17,7 @@
                 <a href="{{ cms_route('menus.index') }}"><i class="{{$iconMenus = icon_type('menus')}}"></i>Menus</a>
             </li>
             <li class="active">
-                <i class="{{$iconCurrent}}"></i>
+                <i class="{{$icon}}"></i>
                 <strong>{{$menu->title}}</strong>
             </li>
         </ol>
@@ -38,7 +38,7 @@
     </div>
     <div class="panel-body">
         <a href="{{ cms_route('pages.create', [$menu->id]) }}" class="btn btn-secondary btn-icon-standalone">
-            <i class="{{$iconCurrent}}"></i>
+            <i class="{{$icon}}"></i>
             <span>{{ trans('general.create') }}</span>
         </a>
         <button id="save-tree" data-token="{{csrf_token()}}" class="btn btn-secondary btn-icon-standalone dn" disabled>
