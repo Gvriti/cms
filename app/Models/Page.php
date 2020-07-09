@@ -78,13 +78,15 @@ class Page extends Model
      * Build an admin query.
      *
      * @param  int  $id
+     * @param  mixed  $language
+     * @param  array  $columns
      * @return \Models\Builder\Builder
      */
-    public function forAdmin($id = null)
+    public function forAdmin($id = null, $language = true, array $columns = [])
     {
         return $this->when(! is_null($id), function ($q) use ($id) {
             return $q->menuId($id);
-        })->joinLanguage()
+        })->joinLanguage($language, $columns)
             ->joinCollection()
             ->hasFile()
             ->positionAsc();
@@ -94,11 +96,12 @@ class Page extends Model
      * Build a public query.
      *
      * @param  mixed  $language
+     * @param  array  $columns
      * @return \Models\Builder\Builder
      */
-    public function forPublic($language = true)
+    public function forPublic($language = true, array $columns = [])
     {
-        return $this->joinLanguage($language)->whereVisible();
+        return $this->joinLanguage($language, $columns)->whereVisible();
     }
 
     /**

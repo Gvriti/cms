@@ -95,7 +95,7 @@ trait LanguageTrait
      * @param  array  $columns
      * @return \Models\Builder\Builder
      */
-    public function joinLanguage($language = true, $columns = [])
+    public function joinLanguage($language = true, array $columns = [])
     {
         $table = $this->getTable();
         $languageTable = $this->getLanguageTable();

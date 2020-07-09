@@ -72,21 +72,26 @@ class Slider extends Model
     /**
      * Build a query for admin.
      *
+     * @param  mixed  $language
+     * @param  array  $columns
      * @return \Models\Builder\Builder
      */
-    public function forAdmin()
+    public function forAdmin($language = true, array $columns = [])
     {
-        return $this->joinLanguage()->positionDesc();
+        return $this->joinLanguage($language, $columns)->positionDesc();
     }
 
     /**
      * Build a public query.
      *
+     * @param  mixed  $language
+     * @param  array  $columns
      * @return \Models\Builder\Builder
      */
-    public function forPublic()
+    public function forPublic($language = true, array $columns = [])
     {
-        return $this->joinLanguage()->where('visible', 1)
+        return $this->joinLanguage($language, $columns)
+            ->where('visible', 1)
             ->whereNotNull('file')
             ->where('file', '!=', '')
             ->positionDesc();

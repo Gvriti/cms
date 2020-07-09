@@ -63,13 +63,14 @@ trait HasCollectionTrait
      *
      * @param  int|null  $id
      * @param  mixed  $language
+     * @param  array  $columns
      * @return \Models\Builder\Builder
      */
-    public function forAdmin($id = null, $language = true)
+    public function forAdmin($id = null, $language = true, array $columns = [])
     {
         return $this->when(! is_null($id), function ($q) use ($id) {
             return $q->collectionId($id);
-        })->joinLanguage($language);
+        })->joinLanguage($language, $columns);
     }
 
     /**
@@ -77,13 +78,14 @@ trait HasCollectionTrait
      *
      * @param  int|null  $id
      * @param  mixed  $language
+     * @param  array  $columns
      * @return \Models\Builder\Builder
      */
-    public function forPublic($id = null, $language = true)
+    public function forPublic($id = null, $language = true, array $columns = [])
     {
         return $this->when(! is_null($id), function ($q) use ($id) {
             return $q->collectionId($id);
-        })->joinLanguage($language)->whereVisible();
+        })->joinLanguage($language, $columns)->whereVisible();
     }
 
     /**
