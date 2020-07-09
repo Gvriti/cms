@@ -128,9 +128,7 @@ class AdminMenusController extends Controller
      */
     public function setMain(Request $request)
     {
-        if ($request->filled('id')) {
-            $id = (int) $request->get('id');
-
+        if ($id = $request->get('id')) {
             $this->model->where('main', 1)->update(['main' => 0]);
 
             return response()->json(

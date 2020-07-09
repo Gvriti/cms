@@ -575,7 +575,7 @@ function text_limit($string, $limit = 100, $break = '.', $end = '')
         return $string;
     }
 
-    $breakpoint = (int) ($break ? mb_strpos($string, $break, $limit, 'UTF-8') : $limit);
+    $breakpoint = ($break ? mb_strpos($string, $break, $limit, 'UTF-8') : $limit);
 
     if ($breakpoint < (mb_strlen($string, 'UTF-8') - 1)) {
         $string = mb_substr($string, 0, $breakpoint, 'UTF-8') . $end;

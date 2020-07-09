@@ -184,7 +184,7 @@ class Page extends Model
         $pages = $this->forPublic();
 
         if (! $self) {
-            $pages->where('id', '<>', (int) $this->getKey());
+            $pages->where('id', '<>', $this->getKey());
         }
 
         $pages = $pages->parentId($this->parent_id)
@@ -269,7 +269,7 @@ class Page extends Model
      */
     public function whereVisible($value = 1)
     {
-        return $this->where('visible', (int) $value);
+        return $this->where('visible', $value);
     }
 
     /**

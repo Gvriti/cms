@@ -128,7 +128,7 @@ trait HasCollectionTrait
      */
     public function whereVisible($value = 1)
     {
-        return $this->where('visible', (int) $value);
+        return $this->where('visible', $value);
     }
 
     /**
