@@ -12,7 +12,7 @@
             <span class="text-danger">{{$error}}</span>
         @endif
     </div>
-</div
+</div>
 
 <div class="form-group-separator"></div>
 
