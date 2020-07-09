@@ -81,7 +81,9 @@ trait HasCollectionTrait
      */
     public function forPublic($id = null, $language = true)
     {
-        return $this->forAdmin($id, $language)->whereVisible();
+        return $this->when(! is_null($id), function ($q) use ($id) {
+            return $q->collectionId($id);
+        })->joinLanguage($language)->whereVisible();
     }
 
     /**
