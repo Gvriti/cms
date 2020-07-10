@@ -26,7 +26,7 @@
 </div>
 <div class="col-md-12">
     <div class="form-group">
-        <label class="control-label">visible:</label>
+        <label class="control-label">Visible:</label>
         {!! Form::checkbox('visible', null, null, [
             'id' => 'visible' . $current->language,
             'class' => 'iswitch iswitch-secondary',
