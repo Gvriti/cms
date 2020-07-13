@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
-use Cocur\Slugify\Slugify;
 use Illuminate\Contracts\Validation\Validator;
 
 class PageRequest extends Request
@@ -50,11 +49,7 @@ class PageRequest extends Request
             $input['short_title'] = $this->get('title');
         }
 
-        if ($this->filled('slug')) {
-            $input['slug'] = (new Slugify)->slugify($input['slug']);
-        } else {
-            $input['slug'] = (new Slugify)->slugify($this->get('title'));
-        }
+        $this->slugifyInput($input, 'slug', 'short_title');
 
         $input['visible'] = (int) $this->filled('visible');
 

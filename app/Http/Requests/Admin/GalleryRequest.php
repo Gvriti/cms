@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
-use Cocur\Slugify\Slugify;
 
 class GalleryRequest extends Request
 {
@@ -36,11 +35,7 @@ class GalleryRequest extends Request
     {
         $input = parent::all();
 
-        if ($this->filled('slug')) {
-            $input['slug'] = (new Slugify)->slugify($input['slug']);
-        } else {
-            $input['slug'] = (new Slugify)->slugify($this->get('title'));
-        }
+        $this->slugifyInput($input, 'slug', 'title');
 
         if (! array_key_exists($this->get('type'), inner_collection('galleries.types'))) {
             $input['type'] = null;

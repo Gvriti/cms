@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
-use Cocur\Slugify\Slugify;
 
 class ArticleRequest extends Request
 {
@@ -29,11 +28,7 @@ class ArticleRequest extends Request
     {
         $input = parent::all();
 
-        if ($this->filled('slug')) {
-            $input['slug'] = (new Slugify)->slugify($input['slug']);
-        } else {
-            $input['slug'] = (new Slugify)->slugify($this->get('title'));
-        }
+        $this->slugifyInput($input, 'slug', 'title');
 
         $input['visible'] = (int) $this->filled('visible');
 
