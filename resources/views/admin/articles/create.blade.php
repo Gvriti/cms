@@ -41,5 +41,5 @@
         {!! Form::close() !!}
     </div>
 </div>
-@include('admin.articles.scripts')
+@include('admin._scripts.datetimepicker')
 @endsection
