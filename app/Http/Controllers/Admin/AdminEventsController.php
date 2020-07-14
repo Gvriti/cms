@@ -3,29 +3,29 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CatalogRequest;
+use App\Http\Requests\Admin\EventRequest;
 use App\Support\Admin\AdminDestroy;
-use Models\Catalog;
+use Models\Event;
 use Models\Collection;
 
-class AdminCatalogController extends Controller
+class AdminEventsController extends Controller
 {
     use Positionable, VisibilityTrait, Transferable;
 
     /**
-     * The Catalog instance.
+     * The Event instance.
      *
-     * @var \Models\Catalog
+     * @var \Models\Event
      */
     protected $model;
 
     /**
      * Create a new controller instance.
      *
-     * @param  \Models\Catalog  $model
+     * @param  \Models\Event  $model
      * @return void
      */
-    public function __construct(Catalog $model)
+    public function __construct(Event $model)
     {
         $this->model = $model;
     }
@@ -38,14 +38,14 @@ class AdminCatalogController extends Controller
      */
     public function index($collectionId)
     {
-        $data['parent'] = (new Collection)->where('type', Catalog::TYPE)
+        $data['parent'] = (new Collection)->where('type', Event::TYPE)
             ->findOrFail($collectionId);
 
         $data['items'] = $this->model->hasFile()->getAdminCollection($data['parent']);
 
         $data['parentSimilar'] = $this->model->byType()->get();
 
-        return view('admin.catalog.index', $data);
+        return view('admin.events.index', $data);
     }
 
     /**
@@ -59,24 +59,24 @@ class AdminCatalogController extends Controller
         $data['current'] = $this->model;
         $data['current']->collection_id = $collectionId;
 
-        return view('admin.catalog.create', $data);
+        return view('admin.events.create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\CatalogRequest $request
+     * @param  \App\Http\Requests\Admin\EventRequest $request
      * @param  int  $collectionId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CatalogRequest $request, $collectionId)
+    public function store(EventRequest $request, $collectionId)
     {
         $input = $request->all();
         $input['collection_id'] = $collectionId;
 
         $model = $this->model->create($input);
 
-        return redirect(cms_route('catalog.edit', [$collectionId, $model->id]))
+        return redirect(cms_route('events.edit', [$collectionId, $model->id]))
             ->with('alert', fill_data('success', trans('general.created')));
     }
 
@@ -103,18 +103,18 @@ class AdminCatalogController extends Controller
             ->where('id', $id)
             ->getOrFail();
 
-        return view('admin.catalog.edit', $data);
+        return view('admin.events.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Admin\CatalogRequest  $request
+     * @param  \App\Http\Requests\Admin\EventRequest  $request
      * @param  int  $collectionId
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function update(CatalogRequest $request, $collectionId, $id)
+    public function update(EventRequest $request, $collectionId, $id)
     {
         $this->model->findOrFail($id)->update($input = $request->all());
 

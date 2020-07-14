@@ -61,20 +61,20 @@
 </div>
 <div class="row">
     <div class="col-sm-3">
-        <div class="xe-widget xe-counter-block"  data-count=".num" data-from="0" data-to="{{$catalogTotal}}" data-duration="3">
+        <div class="xe-widget xe-counter-block"  data-count=".num" data-from="0" data-to="{{$eventsTotal}}" data-duration="3">
             <div class="xe-upper">
-                <a href="{{cms_route('collections.index', ['type' => 'catalog'])}}" class="xe-icon">
-                    <i class="{{icon_type('catalog')}}"></i>
+                <a href="{{cms_route('collections.index', ['type' => 'events'])}}" class="xe-icon">
+                    <i class="{{icon_type('events')}}"></i>
                 </a>
                 <div class="xe-label">
-                    <strong class="num">{{$catalogTotal}}</strong>
-                    <span>Total catalog</span>
+                    <strong class="num">{{$eventsTotal}}</strong>
+                    <span>Total events</span>
                 </div>
             </div>
             <div class="xe-lower">
                 <div class="border"></div>
                 <span>Details</span>
-                <strong>{{$catalogTotalDistinct}} Catalog by category</strong>
+                <strong>{{$eventsTotalDistinct}} Events by category</strong>
             </div>
         </div>
     </div>

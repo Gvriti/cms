@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCatalogTable extends Migration
+class CreateEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCatalogTable extends Migration
      */
     public function up()
     {
-        Schema::create('catalog', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('collection_id');
             $table->string('slug')->unique();
@@ -25,9 +25,9 @@ class CreateCatalogTable extends Migration
             $table->foreign('collection_id')->references('id')->on('collections');
         });
 
-        Schema::create('catalog_languages', function (Blueprint $table) {
+        Schema::create('event_languages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('catalog_id');
+            $table->unsignedBigInteger('event_id');
             $table->char('language', 2);
             $table->string('title');
             $table->text('description')->nullable();
@@ -35,7 +35,7 @@ class CreateCatalogTable extends Migration
             $table->string('meta_desc')->nullable();
             $table->timestamps();
 
-            $table->foreign('catalog_id')->references('id')->on('catalog')->onDelete('cascade');
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
 
@@ -46,8 +46,8 @@ class CreateCatalogTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('catalog_languages');
+        Schema::dropIfExists('event_languages');
 
-        Schema::dropIfExists('catalog');
+        Schema::dropIfExists('events');
     }
 }

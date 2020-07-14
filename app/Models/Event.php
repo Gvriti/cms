@@ -7,7 +7,7 @@ use Models\Traits\FileableTrait;
 use Models\Traits\HasCollection;
 use Models\Traits\LanguageTrait;
 
-class Catalog extends Model
+class Event extends Model
 {
     use HasCollection, LanguageTrait, FileableTrait;
 
@@ -16,14 +16,14 @@ class Catalog extends Model
      *
      * @var string
      */
-    const TYPE = 'catalog';
+    const TYPE = 'events';
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'catalog';
+    protected $table = 'events';
 
     /**
      * The attributes that are mass assignable.
@@ -46,7 +46,7 @@ class Catalog extends Model
      *
      * @var string
      */
-    protected $languageTable = 'catalog_languages';
+    protected $languageTable = 'event_languages';
 
     /**
      * The attributes that are mass assignable for the Language model.
@@ -54,7 +54,7 @@ class Catalog extends Model
      * @var array
      */
     protected $languageFillable = [
-        'catalog_id', 'language', 'title', 'description', 'content', 'meta_desc'
+        'event_id', 'language', 'title', 'description', 'content', 'meta_desc'
     ];
 
     /**
@@ -63,6 +63,6 @@ class Catalog extends Model
      * @var array
      */
     protected $languageNotUpdatable = [
-        'catalog_id', 'language'
+        'event_id', 'language'
     ];
 }

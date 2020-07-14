@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
 
-class CatalogRequest extends Request
+class EventRequest extends Request
 {
     /**
      * Get the validation rules that apply to the request.
@@ -13,11 +13,11 @@ class CatalogRequest extends Request
      */
     public function rules()
     {
-        $id = $this->route('catalog');
+        $id = $this->route('event');
 
         return [
+            'slug' => 'required|min:2|unique:events,slug,'.$id,
             'title' => 'required|min:2',
-            'slug' => 'required|min:2|unique:catalog,slug,'.$id,
         ];
     }
 

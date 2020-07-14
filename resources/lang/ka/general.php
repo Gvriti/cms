@@ -52,7 +52,7 @@ return [
     'pages' => 'გვერდები',
     'collections' => 'კოლექცია',
     'galleries' => 'გალერეა',
-    'catalog' => 'კატალოგი',
+    'events' => 'შემთხვევები',
     'articles' => 'სტატიები',
     'photos' => 'ფოტოები',
     'videos' => 'ვიდეოები',

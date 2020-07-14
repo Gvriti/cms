@@ -3,26 +3,26 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use Models\Catalog;
+use Models\Event;
 use Models\Collection;
 use Models\Page;
 
-class WebCatalogController extends Controller
+class WebEventsController extends Controller
 {
     /**
-     * The Catalog instance.
+     * The Event instance.
      *
-     * @var \Models\Catalog
+     * @var \Models\Event
      */
     protected $model;
 
     /**
      * Create a new controller instance.
      *
-     * @param  \Models\Catalog  $model
+     * @param  \Models\Event  $model
      * @return void
      */
-    public function __construct(Catalog $model)
+    public function __construct(Event $model)
     {
         $this->model = $model;
     }
@@ -40,7 +40,7 @@ class WebCatalogController extends Controller
 
         $data['items'] = $this->model->getPublicCollection($collection);
 
-        return view('web.catalog', $data);
+        return view('web.events', $data);
     }
 
     /**
@@ -58,6 +58,6 @@ class WebCatalogController extends Controller
 
         $data['files'] = $data['current']->getFiles();
 
-        return view('web.catalog_item', $data);
+        return view('web.event', $data);
     }
 }

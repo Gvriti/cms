@@ -27,9 +27,9 @@ class AdminDashboardController extends Controller
         $data['collectionsTotal'] = $db->table('collections')->count();
         $data['usersTotal'] = $db->table('cms_users')->count();
 
-        // catalog
-        $data['catalogTotalDistinct'] = $db->table('catalog')->count($db->raw('DISTINCT collection_id'));
-        $data['catalogTotal'] = $db->table('catalog')->count();
+        // events
+        $data['eventsTotalDistinct'] = $db->table('events')->count($db->raw('DISTINCT collection_id'));
+        $data['eventsTotal'] = $db->table('events')->count();
 
         // articles
         $data['articlesTotalDistinct'] = $db->table('articles')->count($db->raw('DISTINCT collection_id'));

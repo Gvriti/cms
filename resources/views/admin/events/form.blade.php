@@ -117,7 +117,7 @@
             <i class="fa fa-{{ $icon }}"></i>
             <span>{{ trans('general.save') }}</span>
         </button>
-        <a href="{{ cms_route('catalog.index', [$current->collection_id]) }}" class="btn btn-blue btn-icon-standalone" title="{{ trans('general.back') }}">
+        <a href="{{ cms_route('events.index', [$current->collection_id]) }}" class="btn btn-blue btn-icon-standalone" title="{{ trans('general.back') }}">
             <i class="fa fa-arrow-left"></i>
             <span>{{ trans('general.back') }}</span>
         </a>

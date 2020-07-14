@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{$icon = icon_type('catalog')}}"></i>
+            <i class="{{$icon = icon_type('events')}}"></i>
             {{ $parent->type }}
         </h1>
         <p class="description">{{ $parent->description }}</p>
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="panel-body">
-                <a href="{{ cms_route('catalog.create', [$parent->id]) }}" class="btn btn-secondary btn-icon-standalone">
+                <a href="{{ cms_route('events.create', [$parent->id]) }}" class="btn btn-secondary btn-icon-standalone">
                     <i class="{{$icon}}"></i>
                     <span>{{ trans('general.create') }}</span>
                 </a>
@@ -57,7 +57,7 @@
                                     @if ($parent->admin_order_by == 'position')
                                         <div class="uk-nestable-handle pull-left"></div>
                                     @endif
-                                        <div class="list-label"><a href="{{ $editUrl = cms_route('catalog.edit', [$parent->id, $item->id]) }}">{{ $item->title }}</a></div>
+                                        <div class="list-label"><a href="{{ $editUrl = cms_route('events.edit', [$parent->id, $item->id]) }}">{{ $item->title }}</a></div>
                                     </div>
                                     <div class="col-sm-5 col-xs-2">
                                         <div class="btn-action togglable pull-right">
@@ -65,18 +65,18 @@
                                             <a href="#" class="transfer btn btn-white" title="Transfer to another collection" data-id="{{$item->id}}">
                                                 <span class="{{$iconParent}}"></span>
                                             </a>
-                                            {!! Form::open(['method' => 'post', 'url' => cms_route('catalog.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
+                                            {!! Form::open(['method' => 'post', 'url' => cms_route('events.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
                                             <button type="submit" class="btn btn-{{$item->visible ? 'white' : 'gray'}}" title="{{trans('general.visibility')}}">
                                                 <span class="fa fa-eye{{$item->visible ? '' : '-slash'}}"></span>
                                             </button>
                                             {!! Form::close() !!}
-                                            <a href="{{ cms_route('files.index', ['catalog', $item->id]) }}" class="btn btn-{{$item->has_file ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
+                                            <a href="{{ cms_route('files.index', ['events', $item->id]) }}" class="btn btn-{{$item->has_file ? 'turquoise' : 'white'}}" title="{{trans('general.files')}}">
                                                 <span class="{{icon_type('files')}}"></span>
                                             </a>
                                             <a href="{{ $editUrl }}" class="btn btn-orange" title="{{trans('general.edit')}}">
                                                 <span class="fa fa-edit"></span>
                                             </a>
-                                            {!! Form::open(['method' => 'delete', 'url' => cms_route('catalog.destroy', [$parent->id, $item->id]), 'class' => 'form-delete']) !!}
+                                            {!! Form::open(['method' => 'delete', 'url' => cms_route('events.destroy', [$parent->id, $item->id]), 'class' => 'form-delete']) !!}
                                             <button type="submit" class="btn btn-danger" title="{{trans('general.delete')}}">
                                                 <span class="fa fa-trash"></span>
                                             </button>
@@ -114,11 +114,11 @@
     </div>
 </div>
 @push('body.bottom')
-@include('admin._scripts.transfer', ['route' => cms_route('catalog.transfer', [$parent->id]), 'column' => 'collection_id', 'list' => $parentSimilar, 'parentId' => $parent->id])
+@include('admin._scripts.transfer', ['route' => cms_route('events.transfer', [$parent->id]), 'column' => 'collection_id', 'list' => $parentSimilar, 'parentId' => $parent->id])
 <script type="text/javascript">
 $(function() {
 @if ($parent->admin_order_by == 'position')
-    positionable('{{ cms_route('catalog.updatePosition') }}', '{{$parent->admin_sort}}', '{{request('page', 1)}}', '{{$items->hasMorePages()}}');
+    positionable('{{ cms_route('events.updatePosition') }}', '{{$parent->admin_sort}}', '{{request('page', 1)}}', '{{$items->hasMorePages()}}');
 @endif
 });
 </script>

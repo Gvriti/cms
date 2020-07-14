@@ -17,9 +17,9 @@ class PageRequest extends Request
         $id = $this->route('page');
 
         return [
+            'slug' => 'required|min:2|unique:pages,slug,'.$id,
             'title' => 'required|min:2',
             'short_title' => 'required|min:2',
-            'slug' => 'required|min:2|unique:pages,slug,'.$id,
             'type' => 'required',
             'type_id' => 'nullable|integer'
         ];

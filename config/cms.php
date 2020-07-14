@@ -63,7 +63,7 @@ return [
     'routes' => [
         'collections' => [
             'articles' => 'AdminArticlesController',
-            'catalog' => 'AdminCatalogController',
+            'events' => 'AdminEventsController',
             'galleries' => 'AdminGalleriesController',
             'faq' => 'AdminFaqController'
         ],
@@ -85,7 +85,7 @@ return [
     'collections' => [
         'types' => [
             'articles' => 'Articles',
-            'catalog' => 'Catalog',
+            'events' => 'Events',
             'galleries' => 'Galleries',
             'faq' => 'FAQ'
         ],
@@ -173,12 +173,12 @@ return [
             'model' => \Models\Page::class,
             'foreign_key' => 'menu_id'
         ],
-        'catalog' => [
-            'model' => \Models\Catalog::class,
-            'foreign_key' => 'collection_id'
-        ],
         'articles' => [
             'model' => \Models\Article::class,
+            'foreign_key' => 'collection_id'
+        ],
+        'events' => [
+            'model' => \Models\Event::class,
             'foreign_key' => 'collection_id'
         ]
     ],
@@ -236,8 +236,8 @@ return [
         'pages' => 'fa fa-indent',
 
         'collections' => 'fa fa-list-alt',
-        'catalog' => 'fa fa-briefcase',
         'articles' => 'fa fa-newspaper-o',
+        'events' => 'fa fa-globe',
         'faq' => 'fa fa-question-circle',
 
         'galleries' => 'fa fa-th',

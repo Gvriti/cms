@@ -52,7 +52,7 @@ return [
     'pages' => 'Pages',
     'collections' => 'Collections',
     'galleries' => 'Galleries',
-    'catalog' => 'Catalog',
+    'events' => 'Events',
     'articles' => 'Articles',
     'photos' => 'Photos',
     'videos' => 'Videos',
