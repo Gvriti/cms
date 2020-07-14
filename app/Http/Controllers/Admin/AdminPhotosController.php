@@ -11,7 +11,7 @@ use Models\Photo;
 
 class AdminPhotosController extends Controller
 {
-    use PositionableTrait, VisibilityTrait;
+    use Positionable, VisibilityTrait;
 
     /**
      * The Photo instance.

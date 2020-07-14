@@ -4,12 +4,12 @@ namespace Models;
 
 use Models\Abstracts\Model;
 use Models\Traits\FileableTrait;
-use Models\Traits\HasCollectionTrait;
+use Models\Traits\HasCollection;
 use Models\Traits\LanguageTrait;
 
 class Catalog extends Model
 {
-    use HasCollectionTrait, LanguageTrait, FileableTrait;
+    use HasCollection, LanguageTrait, FileableTrait;
 
     /**
      * Type of the collection.

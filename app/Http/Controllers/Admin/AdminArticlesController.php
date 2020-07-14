@@ -10,7 +10,7 @@ use Models\Collection;
 
 class AdminArticlesController extends Controller
 {
-    use PositionableTrait, VisibilityTrait, MovableTrait;
+    use Positionable, VisibilityTrait, Transferable;
 
     /**
      * The Article instance.

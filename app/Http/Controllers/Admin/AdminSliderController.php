@@ -10,7 +10,7 @@ use Models\Slider;
 
 class AdminSliderController extends Controller
 {
-    use PositionableTrait, VisibilityTrait;
+    use Positionable, VisibilityTrait;
 
     /**
      * The Slider instance.

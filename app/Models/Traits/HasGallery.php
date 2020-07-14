@@ -4,7 +4,7 @@ namespace Models\Traits;
 
 use Models\Gallery;
 
-trait HasGalleryTrait
+trait HasGallery
 {
     use PositionableTrait;
 

@@ -62,7 +62,7 @@
                                     <div class="col-sm-5 col-xs-2">
                                         <div class="btn-action togglable pull-right">
                                             <div class="btn btn-gray item-id disabled">#{{$item->id}}</div>
-                                            <a href="#" class="movable btn btn-white" title="Move to collection" data-id="{{$item->id}}">
+                                            <a href="#" class="transfer btn btn-white" title="Transfer to another collection" data-id="{{$item->id}}">
                                                 <span class="{{$iconParent}}"></span>
                                             </a>
                                             {!! Form::open(['method' => 'post', 'url' => cms_route('articles.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
@@ -99,7 +99,7 @@
     <div class="col-md-3 content-sidebar pull-left">
         <a href="{{cms_route('collections.create', ['type' => $parent->type])}}" class="btn btn-block btn-secondary btn-icon btn-icon-standalone btn-icon-standalone-right">
             <i class="{{$iconParent}}"></i>
-            <span>კოლექციის დამატება</span>
+            <span>Add Collection</span>
         </a>
         <ul class="list-unstyled bg">
         @foreach ($parentSimilar as $item)
@@ -114,7 +114,7 @@
     </div>
 </div>
 @push('body.bottom')
-@include('admin._scripts.move', ['route' => cms_route('articles.move', [$parent->id]), 'column' => 'collection_id', 'list' => $parentSimilar, 'parentId' => $parent->id])
+@include('admin._scripts.transfer', ['route' => cms_route('articles.transfer', [$parent->id]), 'column' => 'collection_id', 'list' => $parentSimilar, 'parentId' => $parent->id])
 <script type="text/javascript">
 $(function() {
 @if ($parent->admin_order_by == 'position')

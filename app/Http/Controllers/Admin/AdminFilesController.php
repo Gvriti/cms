@@ -10,7 +10,7 @@ use Models\File;
 
 class AdminFilesController extends Controller
 {
-    use PositionableTrait, VisibilityTrait;
+    use Positionable, VisibilityTrait;
 
     /**
      * The File instance.

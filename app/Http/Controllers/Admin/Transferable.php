@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Models\Abstracts\Model;
 
-trait MovableTrait
+trait Transferable
 {
     /**
-     * Move item to the specified direction.
+     * Transfer model by changing the specified foreign key value.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function move(Request $request, $id)
+    public function transfer(Request $request, $id)
     {
         $input = $request->all(['id', 'column', 'column_value', 'recursive']);
 
@@ -24,7 +24,7 @@ trait MovableTrait
 
         if ($id != $input['column_value']) {
             app('db')->transaction(function () use ($input) {
-                $model = $this->model->findOrFail($input['id']);
+                $model = $this->model->findOrFail($input['id'], ['id']);
 
                 $position = $this->model->where($input['column'], $input['column_value'])->max('position');
 
@@ -37,7 +37,7 @@ trait MovableTrait
                 $model->update($attributes);
 
                 if ($recursive) {
-                    $this->updateMenu($model, $input['column'], $input['column_value']);
+                    $this->transferRecursively($model, $input['column'], $input['column_value']);
                 }
             });
         }
@@ -46,22 +46,22 @@ trait MovableTrait
     }
 
     /**
-     * Move item recursively with its child item(s).
+     * Transfer model recursively with its child item(s).
      *
      * @param  \Models\Abstracts\Model  $model
      * @param  string  $column
      * @param  int     $columnValue
      * @return void
      */
-    protected function updateMenu(Model $model, $column, $columnValue)
+    protected function transferRecursively(Model $model, $column, $columnValue)
     {
-        $items = $this->model->where('parent_id', $model->id)->get();
+        $items = $this->model->where('parent_id', $model->id)->get(['id']);
 
         if (! $items->isEmpty()) {
             foreach ($items as $item) {
                 $item->update([$column => $columnValue]);
 
-                $this->updateMenu($item, $column, $columnValue);
+                $this->transferRecursively($item, $column, $columnValue);
             }
         }
     }

@@ -45,7 +45,7 @@ $router->group(['middleware' => 'cms.data', 'prefix' => cms_slug()], function ($
         $router->put('pages/position', ['as' => 'pages.updatePosition', 'uses' => 'AdminPagesController@updatePosition']);
         $router->get('pages/templates', ['as' => 'pages.templates', 'uses' => 'AdminPagesController@getTemplates']);
         $router->get('pages/attached-types', ['as' => 'pages.attachedTypes', 'uses' => 'AdminPagesController@getAttachedTypes']);
-        $router->put('pages/move/{menuId}', ['as' => 'pages.move', 'uses' => 'AdminPagesController@move']);
+        $router->put('pages/transfer/{menuId}', ['as' => 'pages.transfer', 'uses' => 'AdminPagesController@transfer']);
         $router->put('pages/collapse', ['as' => 'pages.collapse', 'uses' => 'AdminPagesController@collapse']);
         $router->resource('menus.pages', 'AdminPagesController', ['names' => resource_names('pages'),
             'except' => ['show']
@@ -66,9 +66,9 @@ $router->group(['middleware' => 'cms.data', 'prefix' => cms_slug()], function ($
                     'as' => $route . '.updatePosition',
                     'uses' => $controller . '@updatePosition'
                 ]);
-                $router->put($route . '/move/{id}', [
-                    'as' => $route . '.move',
-                    'uses' => $controller . '@move'
+                $router->put($route . '/transfer/{id}', [
+                    'as' => $route . '.transfer',
+                    'uses' => $controller . '@transfer'
                 ]);
                 $router->resource($prefix . '.' . $route, $controller, ['names' => resource_names($route),
                     'except' => ['show']

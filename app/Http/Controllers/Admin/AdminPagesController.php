@@ -11,7 +11,7 @@ use Models\Page;
 
 class AdminPagesController extends Controller
 {
-    use PositionableTrait, VisibilityTrait, MovableTrait;
+    use Positionable, VisibilityTrait, Transferable;
 
     /**
      * The Page instance.

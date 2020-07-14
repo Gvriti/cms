@@ -11,7 +11,7 @@ use Models\Video;
 
 class AdminVideosController extends Controller
 {
-    use PositionableTrait, VisibilityTrait;
+    use Positionable, VisibilityTrait;
 
     /**
      * The Video instance.

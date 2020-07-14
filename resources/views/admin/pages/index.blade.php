@@ -62,7 +62,7 @@
                                     <a href="{{$webUrl = $url . '/' . $item->slug}}" class="link btn btn-white" title="Go to page" data-slug="{{$item->slug}}" target="_blank">
                                         <span class="fa fa-link"></span>
                                     </a>
-                                    <a href="#" class="movable btn btn-white" title="Move to menu" data-id="{{$item->id}}">
+                                    <a href="#" class="transfer btn btn-white" title="Transfer to another menu" data-id="{{$item->id}}">
                                         <span class="{{$iconMenus}}"></span>
                                     </a>
                                     {!! Form::open(['method' => 'post', 'url' => cms_route('pages.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}
@@ -102,7 +102,7 @@
     </div>
 </div>
 @push('body.bottom')
-@include('admin._scripts.move', ['route' => cms_route('pages.move', [$menu->id]), 'column' => 'menu_id', 'list' => $menus, 'id' => $menu->id, 'recursive' => true])
+@include('admin._scripts.transfer', ['route' => cms_route('pages.transfer', [$menu->id]), 'column' => 'menu_id', 'list' => $menus, 'id' => $menu->id, 'recursive' => true])
 <script type="text/javascript">
 $(function() {
     positionable('{{ cms_route('pages.updatePosition') }}');

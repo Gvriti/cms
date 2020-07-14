@@ -4,7 +4,7 @@ namespace Models\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 
-trait HasCompositeKey
+trait CompositeKeyTrait
 {
     /**
      * {@inheritdoc}

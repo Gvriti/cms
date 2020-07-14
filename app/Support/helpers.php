@@ -670,7 +670,7 @@ function log_executed_db_queries()
         $conn     = 'Connection: ' . $query->connectionName . PHP_EOL;
         $sql      = 'SQL: ' . $query->sql . PHP_EOL;
         $bindings = 'Bindings: ' . implode(', ', (array) $query->bindings) . PHP_EOL;
-        $time     = 'Time: ' . $query->time . PHP_EOL;
+        $time     = 'Time: ' . $query->time .' ms' . PHP_EOL;
         $data     = $conn . $sql . $bindings . $time . $separator;
 
         $flags = FILE_APPEND | LOCK_EX;

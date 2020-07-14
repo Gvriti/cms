@@ -11,7 +11,7 @@ use Models\Gallery;
 
 class AdminGalleriesController extends Controller
 {
-    use PositionableTrait, VisibilityTrait, MovableTrait;
+    use Positionable, VisibilityTrait, Transferable;
 
     /**
      * The Gallery instance.

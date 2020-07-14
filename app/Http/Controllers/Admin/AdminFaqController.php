@@ -11,7 +11,7 @@ use Models\Faq;
 
 class AdminFaqController extends Controller
 {
-    use PositionableTrait, VisibilityTrait, MovableTrait;
+    use Positionable, VisibilityTrait, Transferable;
 
     /**
      * The Faq instance.

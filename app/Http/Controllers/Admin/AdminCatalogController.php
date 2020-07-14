@@ -10,7 +10,7 @@ use Models\Collection;
 
 class AdminCatalogController extends Controller
 {
-    use PositionableTrait, VisibilityTrait, MovableTrait;
+    use Positionable, VisibilityTrait, Transferable;
 
     /**
      * The Catalog instance.

@@ -3,12 +3,12 @@
 namespace Models;
 
 use Models\Abstracts\Model;
-use Models\Traits\HasCollectionTrait;
+use Models\Traits\HasCollection;
 use Models\Traits\LanguageTrait;
 
 class Faq extends Model
 {
-    use HasCollectionTrait, LanguageTrait;
+    use HasCollection, LanguageTrait;
 
     /**
      * Type of the collection.

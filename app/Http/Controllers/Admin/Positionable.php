@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Models\Abstracts\Model;
 
-trait PositionableTrait
+trait Positionable
 {
     /**
-     * Update the position of the resource.
+     * Update model position.
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      *

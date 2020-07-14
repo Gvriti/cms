@@ -15,7 +15,7 @@
                         <a href="{{$webUrl = $url . '/' . $item->slug}}" class="link btn btn-white" title="Go to page" data-slug="{{$item->slug}}" target="_blank">
                             <span class="fa fa-link"></span>
                         </a>
-                        <a href="#" class="movable btn btn-white" title="Move to menu" data-id="{{$item->id}}">
+                        <a href="#" class="transfer btn btn-white" title="Transfer to another menu" data-id="{{$item->id}}">
                             <span class="{{icon_type('menus')}}"></span>
                         </a>
                         {!! Form::open(['method' => 'post', 'url' => cms_route('pages.visibility', [$item->id]), 'class' => 'visibility', 'id' => 'visibility' . $item->id]) !!}

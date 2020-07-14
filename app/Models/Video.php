@@ -3,12 +3,12 @@
 namespace Models;
 
 use Models\Abstracts\Model;
-use Models\Traits\HasGalleryTrait;
+use Models\Traits\HasGallery;
 use Models\Traits\LanguageTrait;
 
 class Video extends Model
 {
-    use HasGalleryTrait, LanguageTrait;
+    use HasGallery, LanguageTrait;
 
     /**
      * Type of the gallery.

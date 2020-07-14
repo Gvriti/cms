@@ -4,7 +4,7 @@ namespace Models\Traits;
 
 use Models\Collection;
 
-trait HasCollectionTrait
+trait HasCollection
 {
     use PageableTrait, PositionableTrait;
 
