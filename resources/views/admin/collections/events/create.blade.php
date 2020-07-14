@@ -3,10 +3,10 @@
 <div class="page-title">
     <div class="title-env">
         <h1 class="title">
-            <i class="{{$icon = icon_type('articles')}}"></i>
-            Articles
+            <i class="{{$icon = icon_type('events')}}"></i>
+            Events
         </h1>
-        <p class="description">Management of the articles</p>
+        <p class="description">Management of the events</p>
     </div>
     <div class="breadcrumb-env">
         <ol class="breadcrumb bc-1">
@@ -18,22 +18,22 @@
             </li>
             <li class="active">
                 <i class="{{$icon}}"></i>
-                <strong>Articles</strong>
+                Events
             </li>
         </ol>
     </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2 class="panel-title">Create a new article</h2>
+        <h2 class="panel-title">Create a new event</h2>
     </div>
     <div class="panel-body">
         {!! Form::model($current, [
             'method' => 'post',
-            'url'  => cms_route('articles.store', [$current->collection_id]),
+            'url'    => cms_route('events.store', [$current->collection_id]),
             'class'  => 'form-horizontal'
         ]) !!}
-            @include('admin.articles.form', [
+            @include('admin.collections.events.form', [
                 'submit'        => trans('general.create'),
                 'submitAndBack' => trans('general.create_n_close'),
                 'icon'          => 'save'
@@ -41,5 +41,4 @@
         {!! Form::close() !!}
     </div>
 </div>
-@include('admin._scripts.datetimepicker')
 @endsection

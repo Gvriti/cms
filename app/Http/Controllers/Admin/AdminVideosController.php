@@ -57,7 +57,7 @@ class AdminVideosController extends Controller
 
         $data['parentSimilar'] = $this->model->byType()->get();
 
-        return view('admin.videos.index', $data);
+        return view('admin.galleries.videos.index', $data);
     }
 
     /**
@@ -72,7 +72,7 @@ class AdminVideosController extends Controller
             $data['current'] = $this->model;
             $data['current']['gallery_id'] = $galleryId;
 
-            $view = view('admin.videos.create', $data)->render();
+            $view = view('admin.galleries.videos.create', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }
@@ -95,7 +95,7 @@ class AdminVideosController extends Controller
         $model = $this->model->create($input);
 
         if ($request->expectsJson()) {
-            $view = view('admin.videos.item', [
+            $view = view('admin.galleries.videos.item', [
                 'item' => $model,
                 'itemInput' => $input
             ])->render();
@@ -134,7 +134,7 @@ class AdminVideosController extends Controller
             $data['items'] = $model->joinLanguage(false)->where('id', $id)
                 ->getOrFail();
 
-            $view = view('admin.videos.edit', $data)->render();
+            $view = view('admin.galleries.videos.edit', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }

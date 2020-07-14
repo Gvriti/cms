@@ -45,7 +45,7 @@ class AdminEventsController extends Controller
 
         $data['parentSimilar'] = $this->model->byType()->get();
 
-        return view('admin.events.index', $data);
+        return view('admin.collections.events.index', $data);
     }
 
     /**
@@ -59,7 +59,7 @@ class AdminEventsController extends Controller
         $data['current'] = $this->model;
         $data['current']->collection_id = $collectionId;
 
-        return view('admin.events.create', $data);
+        return view('admin.collections.events.create', $data);
     }
 
     /**
@@ -103,7 +103,7 @@ class AdminEventsController extends Controller
             ->where('id', $id)
             ->getOrFail();
 
-        return view('admin.events.edit', $data);
+        return view('admin.collections.events.edit', $data);
     }
 
     /**

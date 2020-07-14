@@ -45,7 +45,7 @@ class AdminArticlesController extends Controller
 
         $data['parentSimilar'] = $this->model->byType()->get();
 
-        return view('admin.articles.index', $data);
+        return view('admin.collections.articles.index', $data);
     }
 
     /**
@@ -59,7 +59,7 @@ class AdminArticlesController extends Controller
         $data['current'] = $this->model;
         $data['current']->collection_id = $collectionId;
 
-        return view('admin.articles.create', $data);
+        return view('admin.collections.articles.create', $data);
     }
 
     /**
@@ -103,7 +103,7 @@ class AdminArticlesController extends Controller
             ->where('id', $id)
             ->getOrFail();
 
-        return view('admin.articles.edit', $data);
+        return view('admin.collections.articles.edit', $data);
     }
 
     /**

@@ -57,7 +57,7 @@ class AdminPhotosController extends Controller
 
         $data['parentSimilar'] = $this->model->byType()->get();
 
-        return view('admin.photos.index', $data);
+        return view('admin.galleries.photos.index', $data);
     }
 
     /**
@@ -72,7 +72,7 @@ class AdminPhotosController extends Controller
             $data['current'] = $this->model;
             $data['current']['gallery_id'] = $galleryId;
 
-            $view = view('admin.photos.create', $data)->render();
+            $view = view('admin.galleries.photos.create', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }
@@ -95,7 +95,7 @@ class AdminPhotosController extends Controller
         $model = $this->model->create($input);
 
         if ($request->expectsJson()) {
-            $view = view('admin.photos.item', [
+            $view = view('admin.galleries.photos.item', [
                 'item' => $model,
                 'itemInput' => $input
             ])->render();
@@ -134,7 +134,7 @@ class AdminPhotosController extends Controller
             $data['items'] = $model->joinLanguage(false)->where('id', $id)
                 ->getOrFail();
 
-            $view = view('admin.photos.edit', $data)->render();
+            $view = view('admin.galleries.photos.edit', $data)->render();
 
             return response()->json(['result' => true, 'view' => $view]);
         }

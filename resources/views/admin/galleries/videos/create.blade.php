@@ -11,7 +11,7 @@
             ]) !!}
             <div class="modal-body">
                 <div class="row">
-                    @include('admin.videos.form')
+                    @include('admin.galleries.videos.form')
                 </div>
             </div>
             {!!Form::close()!!}
