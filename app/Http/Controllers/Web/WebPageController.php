@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Models\Page;
 
-class WebTextController extends Controller
+class WebPageController extends Controller
 {
     /**
      * Display the specified resource.
@@ -19,6 +19,6 @@ class WebTextController extends Controller
 
         $data['files'] = $page->getFiles();
 
-        return view('web.text', $data);
+        return view('web.page', $data);
     }
 }

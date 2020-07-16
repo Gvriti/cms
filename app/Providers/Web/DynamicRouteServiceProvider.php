@@ -17,6 +17,13 @@ final class DynamicRouteServiceProvider extends ServiceProvider
     protected $namespace = 'App\Http\Controllers\Web';
 
     /**
+     * The controller for home page.
+     *
+     * @var string
+     */
+    protected $homeController = 'WebHomeController@index';
+
+    /**
      * The Request instance.
      *
      * @var \Illuminate\Http\Request
@@ -193,7 +200,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
     {
         if (! $this->segmentsCount) {
             $this->router->get($this->uriPrefix, [
-                'uses' => 'WebHomeController@index'
+                'uses' => $this->homeController
             ]);
 
             return;

@@ -35,7 +35,7 @@ return [
 
     'pages' => [
         'types' => [
-            'text' => 'Text',
+            'page' => 'Page',
             'collections' => 'Collections',
             'feedback' => 'Feedback',
             'search' => 'Search'
