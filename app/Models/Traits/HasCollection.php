@@ -91,7 +91,7 @@ trait HasCollection
     /**
      * Build a query based on the slug.
      *
-     * @param  string    $slug
+     * @param  string  $slug
      * @param  int|null  $id
      * @return \Models\Builder\Builder
      */

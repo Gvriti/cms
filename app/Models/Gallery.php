@@ -56,7 +56,7 @@ class Gallery extends Model
      * @var array
      */
     protected $languageFillable = [
-        'gallery_id', 'language', 'title', 'description', 'meta_desc'
+        'gallery_id', 'language', 'title', 'description', 'meta_title', 'meta_desc'
     ];
 
     /**

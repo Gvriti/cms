@@ -38,6 +38,7 @@ class CreateGalleriesTable extends Migration
             $table->char('language', 2);
             $table->string('title');
             $table->string('description', 800)->nullable();
+            $table->string('meta_title')->nullable();
             $table->string('meta_desc')->nullable();
             $table->timestamps();
 

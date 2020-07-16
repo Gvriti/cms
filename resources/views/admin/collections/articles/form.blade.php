@@ -103,7 +103,20 @@
 <div class="form-group-separator"></div>
 
 <div class="form-group">
-    <label class="col-sm-2 control-label">Meta description:</label>
+    <label class="col-sm-2 control-label">Meta Title:</label>
+    <div class="col-sm-10">
+        {!! Form::text('meta_title', null, [
+            'id' => 'meta_title' . $current->language,
+            'class' => 'form-control',
+        ]) !!}
+        <div class="desc">Title for search engines. It is best to keep meta title less then 150 or 160 characters.</div>
+    </div>
+</div>
+
+<div class="form-group-separator"></div>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">Meta Description:</label>
     <div class="col-sm-10">
         {!! Form::text('meta_desc', null, [
             'id' => 'meta_desc' . $current->language,

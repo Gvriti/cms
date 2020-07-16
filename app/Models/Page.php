@@ -48,7 +48,7 @@ class Page extends Model
      * @var array
      */
     protected $languageFillable = [
-        'page_id', 'language', 'title', 'short_title', 'description', 'content', 'meta_desc'
+        'page_id', 'language', 'title', 'short_title', 'description', 'content', 'meta_title', 'meta_desc'
     ];
 
     /**

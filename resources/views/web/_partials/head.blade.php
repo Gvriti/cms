@@ -6,10 +6,10 @@
 <meta property="og:url" content="{{$url = web_url($current->slug, [], true)}}">
 <meta property="og:type" content="Website">
 <meta property="og:site_name" content="{{$trans->get('title')}}">
-<meta property="og:title" content="{{$current->title}}">
+<meta property="og:title" content="{{$current->meta_title ?: $current->title}}">
 <meta property="og:description" content="{{$current->meta_desc}}"/>
 <meta property="og:image" content="{{$current->image}}">
-<title>{{$current->title}}</title>
+<title>{{$current->meta_title ?: $current->title}}</title>
 <link rel="canonical" href="{{$url}}">
 @if (count($languages = languages()) > 1)
 @foreach ($languages as $key => $value)

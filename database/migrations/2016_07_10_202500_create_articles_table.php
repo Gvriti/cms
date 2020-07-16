@@ -32,6 +32,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->mediumText('content')->nullable();
+            $table->string('meta_title')->nullable();
             $table->string('meta_desc')->nullable();
             $table->timestamps();
 

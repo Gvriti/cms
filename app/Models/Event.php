@@ -54,7 +54,7 @@ class Event extends Model
      * @var array
      */
     protected $languageFillable = [
-        'event_id', 'language', 'title', 'description', 'content', 'meta_desc'
+        'event_id', 'language', 'title', 'description', 'content', 'meta_title', 'meta_desc'
     ];
 
     /**

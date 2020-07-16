@@ -54,7 +54,7 @@ class Article extends Model
      * @var array
      */
     protected $languageFillable = [
-        'article_id', 'language', 'title', 'description', 'content', 'meta_desc'
+        'article_id', 'language', 'title', 'description', 'content', 'meta_title', 'meta_desc'
     ];
 
     /**
