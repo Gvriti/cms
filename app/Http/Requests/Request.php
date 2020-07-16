@@ -40,14 +40,20 @@ abstract class Request extends FormRequest
      *
      * @param array $input
      * @param string $key
-     * @param string|null $altKey
+     * @param array $altKeys
      */
-    protected function slugifyInput(array &$input, $key, $altKey = null)
+    protected function slugifyInput(array &$input, $key, array $altKeys = [])
     {
         if (! empty($input[$key])) {
             $input[$key] = (new Slugify)->slugify($input[$key]);
-        } elseif (! empty($input[$altKey])) {
-            $input[$key] = (new Slugify)->slugify($input[$altKey]);
+        } elseif (! empty($altKeys)) {
+            $keys = [];
+
+            foreach ($altKeys as $value) {
+                $keys[] = $input[$value];
+            }
+
+            $input[$key] = (new Slugify)->slugify(implode('-', $keys));
         }
     }
 }

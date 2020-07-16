@@ -35,7 +35,7 @@ class GalleryRequest extends Request
     {
         $input = parent::all();
 
-        $this->slugifyInput($input, 'slug', 'title');
+        $this->slugifyInput($input, 'slug', ['title']);
 
         if (! array_key_exists($this->get('type'), inner_collection('galleries.types'))) {
             $input['type'] = null;

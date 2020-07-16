@@ -28,7 +28,7 @@ class EventRequest extends Request
     {
         $input = parent::all();
 
-        $this->slugifyInput($input, 'slug', 'title');
+        $this->slugifyInput($input, 'slug', ['title']);
 
         $input['visible'] = (int) $this->filled('visible');
 

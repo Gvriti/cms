@@ -49,7 +49,7 @@ class PageRequest extends Request
             $input['short_title'] = $this->get('title');
         }
 
-        $this->slugifyInput($input, 'slug', 'short_title');
+        $this->slugifyInput($input, 'slug', ['short_title']);
 
         $input['visible'] = (int) $this->filled('visible');
 
