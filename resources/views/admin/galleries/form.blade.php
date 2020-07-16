@@ -206,6 +206,19 @@
 <div class="form-group-separator"></div>
 
 <div class="form-group">
+    <label class="col-sm-2 control-label">Description:</label>
+    <div class="col-sm-10">
+        {!! Form::textarea('description', null, [
+            'id' => 'description' . $current->language,
+            'class' => 'form-control',
+            'rows' => '5'
+        ]) !!}
+    </div>
+</div>
+
+<div class="form-group-separator"></div>
+
+<div class="form-group">
     <label class="col-sm-2 control-label">Meta description:</label>
     <div class="col-sm-10">
         {!! Form::text('meta_desc', null, [

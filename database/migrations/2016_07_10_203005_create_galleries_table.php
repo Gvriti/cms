@@ -37,6 +37,7 @@ class CreateGalleriesTable extends Migration
             $table->unsignedBigInteger('gallery_id');
             $table->char('language', 2);
             $table->string('title');
+            $table->string('description', 800)->nullable();
             $table->string('meta_desc')->nullable();
             $table->timestamps();
 
