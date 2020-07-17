@@ -19,23 +19,26 @@ class WebCurrentPageEventListener
 
         $trans = app_instance('trans', new TranslationCollection);
 
+        $slug = $this->getPath($event);
+
         if (! $current instanceof Model) {
             if (is_object($current) && isset($current->title)) {
                 $title = $current->title;
             } else {
-                $title = $trans->get('title');
+                $title = ($trans->get('title') ?: $event->app->request->getHost());
             }
 
             $current = (object) [
                 'id' => 0,
                 'title' => $title,
-                'slug' => $this->getPath(),
+                'meta_title' => $title,
+                'slug' => $slug,
                 'type' => null,
                 'image' => asset('assets/images/logo.png'),
                 'meta_desc' => $trans->get('meta_desc') ?: $title,
             ];
         } else {
-            $current->slug = $this->getPath();
+            $current->slug = $slug;
             $current->original_slug = basename($current->slug);
 
             if (! is_null($current->tab_title)) {
@@ -67,11 +70,12 @@ class WebCurrentPageEventListener
     /**
      * Get the current path without language prefix.
      *
+     * @param  \Illuminate\Contracts\View\View  $event
      * @return string
      */
-    protected function getPath()
+    protected function getPath($event)
     {
-        $path = trim(request()->getPathInfo(), '/');
+        $path = trim($event->app->request->getPathInfo(), '/');
 
         if (strpos($path, $language = language()) === 0) {
             $path = substr($path, strlen($language) + 1);
@@ -89,8 +93,8 @@ class WebCurrentPageEventListener
     public function subscribe($events)
     {
         $events->listen([
-                'composing: web.app',
-            ],
+            'composing: web.app',
+        ],
             'App\Listeners\Web\WebCurrentPageEventListener@onCurrentPageComposer'
         );
     }
