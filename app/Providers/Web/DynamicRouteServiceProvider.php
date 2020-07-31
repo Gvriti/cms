@@ -185,7 +185,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             'middleware' => ['web', 'web.data'],
             'namespace' => $this->namespace
         ], function () {
-            $this->setRoutes();
+            $this->setRoute();
         });
     }
 
@@ -196,7 +196,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    protected function setRoutes()
+    protected function setRoute()
     {
         if (! $this->segmentsCount) {
             $this->router->get($this->uriPrefix, [
@@ -218,7 +218,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
                         && ! array_key_exists($type, $this->tabs)
                     )
                 ) {
-                    $this->app->abort(404);
+                    return;
                 }
 
                 break;
@@ -237,7 +237,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             $this->pages[$i] = $page;
         }
 
-        $this->detectRoutes();
+        $this->detectRoute();
     }
 
     /**
@@ -247,71 +247,108 @@ final class DynamicRouteServiceProvider extends ServiceProvider
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    protected function detectRoutes()
+    protected function detectRoute()
     {
-        $page = end($this->pages) or $this->app->abort(404);
+        if (empty($page = end($this->pages))) {
+            return;
+        }
 
         $this->segmentsLeft = array_slice(
             $this->segments, $this->pagesCount = count($this->pages)
         );
 
         if (($this->segmentsLeftCount = count($this->segmentsLeft)) > 2) {
-            $this->app->abort(404);
+            return;
         }
 
-        if (! array_key_exists($page->type, $this->implicitTypes)
-            && ! $this->segmentsLeftCount
-        ) {
-            $this->setCurrentRoute($page->type, [$page], 'index');
-
+        if ($this->setPageRoute($page)) {
             return;
         }
 
         $slug = current($this->segmentsLeft);
 
-        if ($slug && array_key_exists($page->type, $this->explicitTypes)) {
-            $this->setCurrentRoute($page->type, [$page, $slug], 'show');
-
+        if ($this->setExplicitRoute($page, $slug)) {
             return;
         }
 
-        $this->setAttachedTypeRoute($page, $slug);
+        $this->setImplicitRoute($page, $slug);
     }
 
     /**
-     * Set the route by the attached type.
+     * Set the page route.
+     *
+     * @param  \Models\Page  $page
+     * @return bool
+     */
+    protected function setPageRoute(Page $page)
+    {
+        if (! array_key_exists($page->type, $this->implicitTypes)
+            && ! $this->segmentsLeftCount
+        ) {
+            return $this->setCurrentRoute($page->type, [$page], 'index');
+        }
+
+        return false;
+    }
+
+    /**
+     * Set the explicit route.
      *
      * @param  \Models\Page  $page
      * @param  string  $slug
-     * @return void
+     * @return bool
      */
-    protected function setAttachedTypeRoute(Page $page, $slug)
+    protected function setExplicitRoute(Page $page, $slug)
+    {
+        if ($slug && array_key_exists($page->type, $this->explicitTypes)) {
+            return $this->setCurrentRoute($page->type, [$page, $slug], 'show');
+        }
+
+        return false;
+    }
+
+    /**
+     * Set the implicit route.
+     *
+     * @param  \Models\Page  $page
+     * @param  string  $slug
+     * @return bool
+     */
+    protected function setImplicitRoute(Page $page, $slug)
     {
         $model = (new $this->implicitTypes[$page->type])->findOrFail($page->type_id);
 
         if (! $slug) {
-            $this->setCurrentRoute($model->type, [
+            return $this->setCurrentRoute($model->type, [
                 $page, $model
             ], 'index', $this->pagesCount);
-
-            return;
         }
 
         if (! array_key_exists($model->type, $this->implicitTypes)) {
-            $this->setCurrentRoute($model->type, [$page, $slug], 'show');
-
-            return;
+            return $this->setCurrentRoute($model->type, [$page, $slug], 'show');
         }
 
-        $model = (new $this->implicitTypes[$model->type]);
+        return $this->setInnerImplicitRoute($model, $slug);
+    }
+
+    /**
+     * Set the inner implicit route.
+     *
+     * @param  \Models\Abstracts\Model  $model
+     * @param  string  $slug
+     * @return bool
+     */
+    protected function setInnerImplicitRoute($model, $slug)
+    {
+        $model = new $this->implicitTypes[$model->type];
 
         if (! method_exists($model, 'bySlug')) {
-            $this->app->abort(404);
+            return false;
         }
 
         $model = $model->bySlug($slug, $model->id)->firstOrFail();
 
-        $this->setCurrentRoute($model->type, [$model], 'index');
+        return $this->setCurrentRoute($model->type, [$model], 'index');
     }
 
     /**
@@ -321,7 +358,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
      * @param  array  $parameters
      * @param  string|null  $defaultMethod
      * @param  int  $fakeBind
-     * @return void
+     * @return bool
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
@@ -346,7 +383,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
 
                 $parameters[] = $tab;
             } else {
-                $this->app->abort(404);
+                return false;
             }
         }
 
@@ -390,6 +427,8 @@ final class DynamicRouteServiceProvider extends ServiceProvider
         $this->router->$route($this->uriPrefix . $segments, [
             'uses' => $controller . '@' . $method
         ]);
+
+        return true;
     }
 
     /**
