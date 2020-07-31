@@ -22,7 +22,7 @@ class Translation extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'title', 'type'
+        'code', 'title', 'type'
     ];
 
     /**
@@ -31,7 +31,7 @@ class Translation extends Model
      * @var array
      */
     protected $notUpdatable = [
-        'name'
+        'code'
     ];
 
     /**
@@ -60,13 +60,14 @@ class Translation extends Model
     ];
 
     /**
-     * Build a query by name.
+     * Build a query by code.
      *
-     * @param  string  $name
+     * @param  string  $code
+     * @param  mixed  $language
      * @return \Models\Builder\Builder
      */
-    public function byName($name)
+    public function byCode($code, $language = true)
     {
-        return $this->joinLanguage()->where('name', $name);
+        return $this->joinLanguage($language)->where('code', $code);
     }
 }

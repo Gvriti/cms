@@ -1,22 +1,5 @@
 <div class="modal-body">
     <div class="form-group">
-        <label class="col-sm-2 control-label required">Name:</label>
-        <div class="col-sm-10">
-            {!! Form::text('name', null, [
-                'id' => 'name' . $current->language,
-                'class' => 'form-control',
-                'data-lang' => 1
-            ] + ($current->name ? ['readonly'] : [])) !!}
-            @if ($error = $errors->first('name'))
-            <div class="text-danger">{{$error}}</div>
-            @endif
-            <div class="desc">The name is the identifier for the "value" (it's not changeable after creation!)</div>
-        </div>
-    </div>
-
-    <div class="form-group-separator"></div>
-
-    <div class="form-group">
         <label class="col-sm-2 control-label required">Title:</label>
         <div class="col-sm-10">
             {!! Form::text('title', null, [
@@ -28,6 +11,23 @@
             <div class="text-danger">{{$error}}</div>
             @endif
             <div class="desc">The title for the "value". It's visible only for CMS Users</div>
+        </div>
+    </div>
+
+    <div class="form-group-separator"></div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label required">Code:</label>
+        <div class="col-sm-10">
+            {!! Form::text('code', null, [
+                'id' => 'code' . $current->language,
+                'class' => 'form-control',
+                'data-lang' => 1
+            ] + ($current->code ? ['readonly'] : [])) !!}
+            @if ($error = $errors->first('code'))
+                <div class="text-danger">{{$error}}</div>
+            @endif
+            <div class="desc">The code is the identifier for the "value" (it's not changeable after creation!)</div>
         </div>
     </div>
 

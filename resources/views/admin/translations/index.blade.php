@@ -38,7 +38,7 @@
         <table id="items" class="table stacktable table-striped table-bordered">
             <thead>
                 <tr class="replace-inputs">
-                    <th>Name</th>
+                    <th>Code</th>
                     <th>Title</th>
                     <th>Value</th>
                     <th>Type</th>
@@ -49,7 +49,7 @@
             <tbody>
             @foreach ($items as $item)
                 <tr id="item{{$item->id}}" class="item">
-                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->code }}</td>
                     <td>{{ $item->title }}</td>
                     <td>{{ $item->value }}</td>
                     <td>{{ $item->type ?: 'global' }}</td>
@@ -79,7 +79,7 @@ $(function() {
         pageLength: 50,
         // 'order': [0, 'desc']
     }).yadcf([
-        {column_number : 0, filter_type: 'text', filter_default_label : 'Type a name'},
+        {column_number : 0, filter_type: 'text', filter_default_label : 'Type a code'},
         {column_number : 1, filter_type: 'text', filter_default_label : 'Type a title'},
         {column_number : 2, filter_type: 'text', filter_default_label : 'Type a value'},
         {column_number : 3, filter_type: 'select', filter_default_label : 'Select type'},

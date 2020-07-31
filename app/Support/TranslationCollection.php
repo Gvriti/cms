@@ -38,9 +38,7 @@ class TranslationCollection
             return $this->collection->get($key, $default);
         }
 
-        return (new Translation)->where('name', $key)
-            ->joinLanguage()
-            ->firstAttr('value', null, $default);
+        return (new Translation)->byCode($key)->firstAttr('value', null, $default);
     }
 
     /**

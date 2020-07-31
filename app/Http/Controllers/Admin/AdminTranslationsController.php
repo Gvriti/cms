@@ -105,7 +105,7 @@ class AdminTranslationsController extends Controller
     public function update(TranslationRequest $request, $id)
     {
         $input = $request->all();
-        unset($input['name']);
+        unset($input['code']);
 
         $this->model->findOrFail($id)->update($input);
 
@@ -132,24 +132,22 @@ class AdminTranslationsController extends Controller
     }
 
     /**
-     * Get the translation modal form by speicific name.
+     * Get the translation modal form by speicific code.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function getModal(Request $request)
     {
-        if (! ($name = $request->get('name'))) {
-            return response('Invalid name.', 422);
+        if (! ($name = $request->get('code'))) {
+            return response('Invalid code.', 422);
         }
 
-        $data['items'] = $this->model->where('name', $name)
-            ->joinLanguage(false)
-            ->get();
+        $data['items'] = $this->model->byCode($name, false)->get();
 
         if ($data['items']->isEmpty()) {
             $data['current'] = $this->model;
-            $data['current']->name = $name;
+            $data['current']->code = $name;
 
             $form = 'create';
         } else {
@@ -165,24 +163,24 @@ class AdminTranslationsController extends Controller
      * Create/Update a translation model.
      *
      * @param  \App\Http\Requests\Admin\TranslationRequest  $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\JsonResponse
      */
     public function postData(TranslationRequest $request)
     {
-        $input = $request->all('id', 'name', 'title', 'value', 'type');
+        $input = $request->all('id', 'code', 'title', 'value', 'type');
 
         if (is_null($input['id'])) {
             unset($input['id']);
 
             $this->model->create($input);
         } else {
-            unset($input['name']);
+            unset($input['code']);
 
             $model = $this->model->findOrFail($input['id']);
 
             $model->update($input);
 
-            $input['name'] = $model->name;
+            $input['code'] = $model->code;
         }
 
         return response()->json($input);
