@@ -108,7 +108,7 @@ return [
     |
     */
 
-    'inner_collections' => [
+    'deep_collections' => [
         'galleries' => [
             'types' => [
                 'photos' => 'Photos',

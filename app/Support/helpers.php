@@ -68,7 +68,7 @@ function cms_is_booted()
 /**
  * Get the cms slug
  *
- * @param  string  $path
+ * @param  string|null  $path
  * @return string
  */
 function cms_slug($path = null)
@@ -127,10 +127,10 @@ function cms_route($name, $parameters = [], $language = null, $absolute = true)
 /**
  * Generate a CMS URL.
  *
- * @param  string  $path
+ * @param  string|null  $path
  * @param  array  $parameters
  * @param  mixed  $language
- * @param  bool  $secure
+ * @param  bool|null  $secure
  * @return \Illuminate\Contracts\Routing\UrlGenerator|string
  */
 function cms_url($path = null, array $parameters = [], $language = null, $secure = null)
@@ -167,10 +167,10 @@ function web_route($name, $parameters = [], $language = null, $absolute = true)
 /**
  * Generate a web URL.
  *
- * @param  string  $path
+ * @param  string|null  $path
  * @param  array  $parameters
  * @param  mixed  $language
- * @param  bool  $secure
+ * @param  bool|null  $secure
  * @return \Illuminate\Contracts\Routing\UrlGenerator|string
  */
 function web_url($path = null, array $parameters = [], $language = null, $secure = null)
@@ -220,7 +220,7 @@ function query_string(array $parameters, $basePrefix = '?')
  * Prefix a language to the path.
  *
  * @param  string  $path
- * @param  string  $language
+ * @param  string|null  $language
  * @return string
  */
 function language_prefix($path, $language = null)
@@ -243,7 +243,7 @@ function language_prefix($path, $language = null)
  * Add language to the url.
  *
  * @param  string  $url
- * @param  string  $language
+ * @param  string|null  $language
  * @param  bool  $hasLanguage
  * @return string
  */
@@ -363,7 +363,7 @@ function make_model_tree($items, $slug = null, $parentId = 0, $parentKey = 'pare
 /**
  * Determine if the item has a nestable eloquent model items.
  *
- * @param  mixed $item
+ * @param  mixed  $item
  * @return bool
  */
 function has_model_tree($item)
@@ -377,7 +377,7 @@ function has_model_tree($item)
  * Get the instance from the container.
  *
  * @param  string  $instance
- * @param  mixed   $default
+ * @param  mixed  $default
  * @return mixed
  */
 function app_instance($instance, $default = null)
@@ -395,8 +395,8 @@ function app_instance($instance, $default = null)
  * Fill array with data.
  *
  * @param  string  $result
- * @param  string  $message
- * @param  mixed   $input
+ * @param  string|null  $message
+ * @param  mixed  $input
  * @return array
  */
 function fill_data($result, $message = null, $input = null)
@@ -423,8 +423,8 @@ function fill_db_data($key, array $parameters = [])
 /**
  * Get the CMS User role(s).
  *
- * @param  string  $key
- * @param  mixed   $default
+ * @param  string|null  $key
+ * @param  mixed  $default
  * @return string|array
  */
 function user_roles($key = null, $default = null)
@@ -439,8 +439,8 @@ function user_roles($key = null, $default = null)
 /**
  * Get the pages config.
  *
- * @param  string  $key
- * @param  mixed   $default
+ * @param  string|null  $key
+ * @param  mixed  $default
  * @return string|array
  */
 function cms_pages($key = null, $default = [])
@@ -455,8 +455,8 @@ function cms_pages($key = null, $default = [])
 /**
  * Get the collections config.
  *
- * @param  string  $key
- * @param  mixed   $default
+ * @param  string|null  $key
+ * @param  mixed  $default
  * @return string|array
  */
 function cms_collections($key = null, $default = [])
@@ -469,26 +469,26 @@ function cms_collections($key = null, $default = [])
 }
 
 /**
- * Get the inner collection config.
+ * Get the deep collection config.
  *
- * @param  string  $key
- * @param  mixed   $default
+ * @param  string|null  $key
+ * @param  mixed  $default
  * @return array
  */
-function inner_collection($key = null, $default = [])
+function deep_collection($key = null, $default = [])
 {
     if (! is_null($key)) {
-        return config('cms.inner_collections.' . $key, $default);
+        return config('cms.deep_collections.' . $key, $default);
     }
 
-    return config('cms.inner_collections', $default);
+    return config('cms.deep_collections', $default);
 }
 
 /**
  * Get the files config.
  *
- * @param  string  $key
- * @param  mixed   $default
+ * @param  string|null  $key
+ * @param  mixed  $default
  * @return string|array
  */
 function cms_files($key = null, $default = [])
@@ -504,7 +504,7 @@ function cms_files($key = null, $default = [])
  * Get the icon name.
  *
  * @param  string  $key
- * @param  mixed   $default
+ * @param  mixed  $default
  * @return string|array
  */
 function icon_type($key, $default = null)
@@ -658,7 +658,7 @@ function get_age($dob)
 function log_executed_db_queries()
 {
     $filename = storage_path('logs/queries.log');
-    $separator = '--------------------------------------------------------' . PHP_EOL;
+    $separator = '------------------------------' . PHP_EOL;
 
     if (file_exists($filename)) {
         @unlink($filename);
@@ -670,7 +670,7 @@ function log_executed_db_queries()
         $conn     = 'Connection: ' . $query->connectionName . PHP_EOL;
         $sql      = 'SQL: ' . $query->sql . PHP_EOL;
         $bindings = 'Bindings: ' . implode(', ', (array) $query->bindings) . PHP_EOL;
-        $time     = 'Time: ' . $query->time .' ms' . PHP_EOL;
+        $time     = 'Time: ' . $query->time . ' ms' . PHP_EOL;
         $data     = $conn . $sql . $bindings . $time . $separator;
 
         $flags = FILE_APPEND | LOCK_EX;

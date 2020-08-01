@@ -41,7 +41,7 @@
     <div class="col-sm-10">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-ellipsis-h"></i></span>
-            {!! Form::select('type', inner_collection('galleries.types'), null, [
+            {!! Form::select('type', deep_collection('galleries.types'), null, [
                 'id' => 'type' . $current->language,
                 'class' => 'form-control select',
             ] + ($current->id ? ['disabled' => 'disabled'] : [])) !!}
@@ -61,7 +61,7 @@
             <div class="col-sm-8">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-list-ol"></i></span>
-                    {!! Form::select('admin_order_by', inner_collection('galleries.order_by'), null, [
+                    {!! Form::select('admin_order_by', deep_collection('galleries.order_by'), null, [
                         'id' => 'admin_order_by',
                         'class' => 'form-control select',
                     ]) !!}
@@ -79,7 +79,7 @@
             <div class="col-sm-8">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-list-ol"></i></span>
-                    {!! Form::select('web_order_by', inner_collection('galleries.order_by'), null, [
+                    {!! Form::select('web_order_by', deep_collection('galleries.order_by'), null, [
                         'id' => 'web_order_by',
                         'class' => 'form-control select',
                     ]) !!}
@@ -101,7 +101,7 @@
             <div class="col-sm-8">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-sort"></i></span>
-                    {!! Form::select('admin_sort', inner_collection('galleries.sort'), null, [
+                    {!! Form::select('admin_sort', deep_collection('galleries.sort'), null, [
                         'id' => 'admin_sort' . $current->language,
                         'class' => 'form-control select',
                         'data-lang' => 1
@@ -120,7 +120,7 @@
             <div class="col-sm-8">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-sort"></i></span>
-                    {!! Form::select('web_sort', inner_collection('galleries.sort'), null, [
+                    {!! Form::select('web_sort', deep_collection('galleries.sort'), null, [
                         'id' => 'web_sort' . $current->language,
                         'class' => 'form-control select',
                         'data-lang' => 1

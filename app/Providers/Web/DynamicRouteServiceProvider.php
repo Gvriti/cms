@@ -328,17 +328,17 @@ final class DynamicRouteServiceProvider extends ServiceProvider
             return $this->setCurrentRoute($model->type, [$page, $slug], 'show');
         }
 
-        return $this->setInnerImplicitRoute($model, $slug);
+        return $this->setDeepImplicitRoute($model, $slug);
     }
 
     /**
-     * Set the inner implicit route.
+     * Set the deep implicit route.
      *
      * @param  \Models\Abstracts\Model  $model
      * @param  string  $slug
      * @return bool
      */
-    protected function setInnerImplicitRoute($model, $slug)
+    protected function setDeepImplicitRoute($model, $slug)
     {
         $model = new $this->implicitTypes[$model->type];
 

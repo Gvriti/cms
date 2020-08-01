@@ -37,11 +37,11 @@ class GalleryRequest extends Request
 
         $this->slugifyInput($input, 'slug', ['title']);
 
-        if (! array_key_exists($this->get('type'), inner_collection('galleries.types'))) {
+        if (! array_key_exists($this->get('type'), deep_collection('galleries.types'))) {
             $input['type'] = null;
         }
 
-        $orderList = inner_collection('galleries.order_by');
+        $orderList = deep_collection('galleries.order_by');
 
         if (! array_key_exists($this->get('admin_order_by'), $orderList)) {
             $input['admin_order_by'] = null;
@@ -51,7 +51,7 @@ class GalleryRequest extends Request
             $input['web_order_by'] = null;
         }
 
-        $sortList = inner_collection('galleries.sort');
+        $sortList = deep_collection('galleries.sort');
 
         if (! array_key_exists($this->get('admin_sort'), $sortList)) {
             $input['admin_sort'] = null;
