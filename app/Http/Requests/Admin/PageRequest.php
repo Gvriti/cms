@@ -51,7 +51,7 @@ class PageRequest extends Request
 
         $this->slugifyInput($input, 'slug', ['short_title']);
 
-        $input['visible'] = (int) $this->filled('visible');
+        $this->boolifyInput($input, ['visible']);
 
         return $input;
     }

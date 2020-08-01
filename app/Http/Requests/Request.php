@@ -41,6 +41,7 @@ abstract class Request extends FormRequest
      * @param array $input
      * @param string $key
      * @param array $altKeys
+     * @return void
      */
     protected function slugifyInput(array &$input, $key, array $altKeys = [])
     {
@@ -54,6 +55,20 @@ abstract class Request extends FormRequest
             }
 
             $input[$key] = (new Slugify)->slugify(implode('-', $keys));
+        }
+    }
+
+    /**
+     * Boolify specified input values.
+     *
+     * @param array $input
+     * @param array $params
+     * @return void
+     */
+    protected function boolifyInput(array &$input, array $params)
+    {
+        foreach ($params as $param) {
+            $input[$param] = (int) $this->filled($param);
         }
     }
 }
