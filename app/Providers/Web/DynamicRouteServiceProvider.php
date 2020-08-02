@@ -316,6 +316,10 @@ final class DynamicRouteServiceProvider extends ServiceProvider
      */
     protected function setImplicitRoute(Page $page, $slug)
     {
+        if (! array_key_exists($page->type, $this->implicitTypes)) {
+            return false;
+        }
+
         $model = (new $this->implicitTypes[$page->type])->findOrFail($page->type_id);
 
         if (! $slug) {
