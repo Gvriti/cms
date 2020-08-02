@@ -26,7 +26,7 @@
             typeSelect.on('change', function() {
                 // Get the attached types list
                 if (typeValue !== this.value) {
-                    getAttachedTypes(this.value);
+                    getListableTypes(this.value);
                 }
 
                 typeValue = this.value;
@@ -39,14 +39,14 @@
             });
 
             // Get the attached types list
-            function getAttachedTypes(value) {
+            function getListableTypes(value) {
                 typeId.addClass('hidden');
                 typeIdSelect.html('<option value=""></option>');
 
-                if (["{!!implode('","', (array) cms_pages('attached'))!!}"].indexOf(value) >= 0) {
+                if (["{!!implode('","', (array) cms_pages('listable'))!!}"].indexOf(value) >= 0) {
                     $('label', typeId).text(value);
 
-                    $.get('{{cms_route('pages.attachedTypes')}}', {"type": value}, function (data) {
+                    $.get('{{cms_route('pages.listableTypes')}}', {"type": value}, function (data) {
                         typeIdSelect.html('<option value=""></option>');
                         typeId.removeClass('hidden');
 

@@ -55,11 +55,11 @@ class AdminSitemapXmlController extends Controller
     protected $hasManyLanguage = false;
 
     /**
-     * List of the attached types.
+     * List of the listable types.
      *
      * @var array
      */
-    protected $attachedTypes = [];
+    protected $listableTypes = [];
 
     /**
      * List of the implicit types.
@@ -85,7 +85,7 @@ class AdminSitemapXmlController extends Controller
             ];
         }
 
-        $this->attachedTypes = cms_pages('attached');
+        $this->listableTypes = cms_pages('listable');
 
         $this->implicitTypes = cms_pages('implicit');
     }
@@ -141,7 +141,7 @@ class AdminSitemapXmlController extends Controller
      */
     protected function setImplicitModels(Model $page)
     {
-        if (! in_array($page->type, $this->attachedTypes)
+        if (! in_array($page->type, $this->listableTypes)
             && ! in_array($page->type, $this->implicitTypes)
         ) {
             return;

@@ -72,7 +72,7 @@ class AdminPagesController extends Controller
 
         $data['types'] = cms_pages('types');
 
-        $data['attachedTypes'] = [];
+        $data['listableTypes'] = [];
 
         return view('admin.pages.create', $data);
     }
@@ -121,7 +121,7 @@ class AdminPagesController extends Controller
 
         $data['types'] = cms_pages('types');
 
-        $data['attachedTypes'] = $this->getAttachedTypes($data['items']->first()->type);
+        $data['listableTypes'] = $this->getListableTypes($data['items']->first()->type);
 
         return view('admin.pages.edit', $data);
     }
@@ -141,9 +141,9 @@ class AdminPagesController extends Controller
         $this->model->findOrFail($id)->update($input = $request->all());
 
         if ($request->expectsJson()) {
-            if (in_array($request->get('type'), (array) cms_pages('attached'))) {
+            if (in_array($request->get('type'), (array) cms_pages('listable'))) {
                 $input['typeHtml'] = view(
-                    'admin.pages.attached_type', ['input' => $input]
+                    'admin.pages.listable_type', ['input' => $input]
                 )->render();
             } elseif (
             array_key_exists(
@@ -183,12 +183,12 @@ class AdminPagesController extends Controller
     }
 
     /**
-     * Get the attached types.
+     * Get the listable types.
      *
      * @param  string|null
      * @return array
      */
-    public function getAttachedTypes($type = null)
+    public function getListableTypes($type = null)
     {
         if (! $type && ! ($type = $this->request->get('type'))) {
             return [];

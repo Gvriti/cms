@@ -81,7 +81,7 @@
                     <div class="col-lg-8 col-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-ellipsis-v"></i></span>
-                            {!! Form::select('type_id', ['' => ''] + $attachedTypes, null, [
+                            {!! Form::select('type_id', ['' => ''] + $listableTypes, null, [
                                 'id' => 'type_id' . $current->language,
                                 'class' => 'form-control select',
                                 'data-lang' => 1

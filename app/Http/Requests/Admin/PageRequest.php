@@ -34,7 +34,7 @@ class PageRequest extends Request
     protected function before(Validator $validator)
     {
         $validator->sometimes('type_id', 'required', function ($input) {
-            return in_array($input->type, cms_pages('attached'));
+            return in_array($input->type, cms_pages('listable'));
         });
     }
 

@@ -41,7 +41,7 @@ return [
             'search' => 'Search'
         ],
         'templates' => [],
-        'attached' => [
+        'listable' => [
             'collections'
         ],
         'implicit' => [

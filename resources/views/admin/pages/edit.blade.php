@@ -47,9 +47,9 @@
     @endforeach
 @endif
     </ul>
-    <ul id="attached-types" class="nav nav-tabs col-xs-4 right-aligned">
+    <ul id="listable-types" class="nav nav-tabs col-xs-4 right-aligned">
         @if ($current->collection_type)
-            <li class="attached">
+            <li class="listable">
                 <a href="{{cms_route($current->collection_type.'.index', [$current->type_id])}}">
                     <span class="visible-xs"><i class="{{$iconType = icon_type($current->collection_type)}}"></i></span>
                     <div class="hidden-xs">
@@ -113,12 +113,12 @@
 @push('body.bottom')
 <script type="text/javascript">
     $('form.ajax-form').on('ajaxFormSuccess', function (form, data) {
-        var attachedTypes = $('#attached-types');
-        $('.attached', attachedTypes).remove();
-        $('.modules', attachedTypes).remove();
+        var listableTypes = $('#listable-types');
+        $('.listable', listableTypes).remove();
+        $('.modules', listableTypes).remove();
 
         if (data.input.typeHtml !== undefined) {
-            attachedTypes.prepend(data.input.typeHtml);
+            listableTypes.prepend(data.input.typeHtml);
         }
     });
 </script>

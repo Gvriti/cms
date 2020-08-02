@@ -80,11 +80,11 @@ final class DynamicRouteServiceProvider extends ServiceProvider
     protected $pagesCount = 0;
 
     /**
-     * The array of the attached types of the Page.
+     * The array of the listable types of the Page.
      *
      * @var array
      */
-    protected $attachedTypes = [];
+    protected $listableTypes = [];
 
     /**
      * The array of the implicit types of the Page.
@@ -161,7 +161,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
 
         $this->segmentsCount = $this->config->get('url_path_segments_count', 0);
 
-        $this->attachedTypes = (array) $this->config->get('cms.pages.attached', []);
+        $this->listableTypes = (array) $this->config->get('cms.pages.listable', []);
 
         $this->implicitTypes = (array) $this->config->get('cms.pages.implicit', []);
 
@@ -213,7 +213,7 @@ final class DynamicRouteServiceProvider extends ServiceProvider
 
             if (is_null($page)) {
                 if (count($this->pages) < 1
-                    || (! in_array($type = $this->pages[$i - 1]->type, $this->attachedTypes)
+                    || (! in_array($type = $this->pages[$i - 1]->type, $this->listableTypes)
                         && ! array_key_exists($type, $this->explicitTypes)
                         && ! array_key_exists($type, $this->tabs)
                     )
