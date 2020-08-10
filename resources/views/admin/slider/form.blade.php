@@ -26,6 +26,18 @@
             </div>
         </div>
     </div>
+</div><div class="col-md-12">
+    <div class="form-group">
+        <label class="control-label">Link:</label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-link"></i></span>
+            {!! Form::text('link', null, [
+                'id' => 'link' . $current->language,
+                'class' => 'form-control',
+                'autofocus'
+            ]) !!}
+        </div>
+    </div>
 </div>
 <div class="col-md-12">
     <div class="form-group">
