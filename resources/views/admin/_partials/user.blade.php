@@ -7,42 +7,6 @@
       </a>
     </li>
     <li class="dropdown hover-line">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Sitemap">
-        <i class="fa fa-sitemap"></i>
-      </a>
-      <ul class="dropdown-menu notifications">
-        <li class="top">
-          <p class="small">
-            Update the sitemap once a day, only when you change or add some data.
-          </p>
-        </li>
-        <li>
-          <ul class="dropdown-menu-list list-unstyled ps-scrollbar">
-            <li class="active">
-              <a href="{{asset('sitemap.xml')}}" target="_blank">
-                <i class="fa fa-sitemap icon-color-green"></i>
-                <span class="line">
-                  <strong>Last update</strong>
-                </span>
-                <span class="line small time">
-                  Date: <span class="sm-date">{{$sitemapXmlTime ? date('d F Y', $sitemapXmlTime) : 'N/A'}}</span>
-                </span>
-                <span class="line small time">
-                  Time: <span class="sm-time">{{$sitemapXmlTime ? date('H:i', $sitemapXmlTime) : 'N/A'}}</span>
-                </span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="external">
-          <a href="{{cms_route('sitemap.xml.store')}}">
-            <span class="fa fa-sitemap padr"></span>
-            <span class="sm-status">{{$sitemapXmlTime ? 'Update' : 'Create'}} now!</span>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="dropdown hover-line">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-calendar"></i>
       @if ($countCalendarEvents = count($calendarEvents))
