@@ -36,6 +36,8 @@ class WebBreadcrumbEventListener
 
                     $breadcrumb->push($current);
                 }
+            } else {
+                app()->instance('breadcrumb', new Collection([$event->current]));
             }
         }
     }
@@ -49,8 +51,8 @@ class WebBreadcrumbEventListener
     public function subscribe($events)
     {
         $events->listen([
-                'composing: web._partials.breadcrumb',
-            ],
+            'composing: web._partials.breadcrumb',
+        ],
             'App\Listeners\Web\WebBreadcrumbEventListener@onBreadcrumbComposer'
         );
     }

@@ -19,6 +19,8 @@
             @endif
                 @yield('content')
                 @include('admin._partials.footer')
+                @include('admin._partials.scripts')
+                @stack('body.bottom')
             </div>
         </div>
     </div>

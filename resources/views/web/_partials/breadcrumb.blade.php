@@ -5,7 +5,7 @@
             @foreach ($breadcrumb as $item)
                 <li{!! $loop->last ? ' class="active"' : '' !!}>
                     @if (! $loop->last)
-                        <a href="{{$url . '/' . $item->slug}}">
+                        <a href="{{$url . '/' . $item->slug ?? $item->id}}">
                             @endif
                             {{$item->short_title ?: $item->title}}
                             @if (! $loop->last)
