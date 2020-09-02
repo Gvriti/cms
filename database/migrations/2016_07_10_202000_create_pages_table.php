@@ -20,7 +20,7 @@ class CreatePagesTable extends Migration
             $table->boolean('visible')->default(1);
             $table->unsignedBigInteger('position')->default(1);
             $table->unsignedBigInteger('parent_id')->default(0);
-            $table->string('type', 64)->default('text');
+            $table->string('type', 64)->default('page');
             $table->unsignedBigInteger('type_id')->nullable();
             $table->string('template', 64)->nullable();
             $table->boolean('collapse')->default(0);
