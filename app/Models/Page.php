@@ -2,15 +2,15 @@
 
 namespace Models;
 
-use Closure;
 use Models\Abstracts\Model;
 use Models\Traits\FileableTrait;
 use Models\Traits\LanguageTrait;
+use Models\Traits\NestableTrait;
 use Models\Traits\PositionableTrait;
 
 class Page extends Model
 {
-    use LanguageTrait, PositionableTrait, FileableTrait;
+    use LanguageTrait, PositionableTrait, FileableTrait, NestableTrait;
 
     /**
      * The database table used by the model.
@@ -78,15 +78,13 @@ class Page extends Model
      * Build an admin query.
      *
      * @param  int  $id
-     * @param  mixed  $language
-     * @param  array  $columns
      * @return \Models\Builder\Builder
      */
-    public function forAdmin($id = null, $language = true, array $columns = [])
+    public function forAdmin($id = null)
     {
         return $this->when(! is_null($id), function ($q) use ($id) {
             return $q->menuId($id);
-        })->joinLanguage($language, $columns)
+        })->joinLanguage()
             ->joinCollection()
             ->hasFile()
             ->positionAsc();
@@ -96,126 +94,11 @@ class Page extends Model
      * Build a public query.
      *
      * @param  mixed  $language
-     * @param  array  $columns
      * @return \Models\Builder\Builder
      */
-    public function forPublic($language = true, array $columns = [])
+    public function forPublic($language = true)
     {
-        return $this->joinLanguage($language, $columns)->whereVisible();
-    }
-
-    /**
-     * Get the base page.
-     *
-     * @param  array  $columns
-     * @param  int|null  $id
-     * @param  \Closure|null  $callback
-     * @return static
-     */
-    public function getBasePage($columns = ['*'], $id = null, Closure $callback = null)
-    {
-        if (! ($id = ($id ?: $this->parent_id))) {
-            return $this;
-        }
-
-        if (is_null($page = $this->where('id', $id)->forPublic()->first($columns))) {
-            return $this;
-        }
-
-        if (! $page->parent_id || (! is_null($callback) && $callback($page))) {
-            return $page;
-        }
-
-        return $this->getBasePage($columns, $page->parent_id, $callback);
-    }
-
-    /**
-     * Get sub pages.
-     *
-     * @param  array  $columns
-     * @param  bool|int  $recursive
-     * @param  int|null  $value
-     * @param  string  $key
-     * @return \Illuminate\Support\Collection
-     */
-    public function getSubPages($columns = ['*'], $recursive = false, $value = null, $key = 'parent_id')
-    {
-        if (! is_array($columns)) {
-            $columns = [$columns];
-        }
-
-        $columns = current($columns) == '*' ? $columns : array_merge($columns, ['id']);
-
-        $pages = $this->forPublic()->where(
-            $key, $value ?: $this->getKey()
-        )->positionAsc()->get($columns);
-
-        if (is_int($recursive) && $recursive > 0) {
-            $recursive -= 1;
-        }
-
-        return $recursive ? $pages->each(function ($item) use ($columns, $recursive) {
-            $item->subPages = $this->getSubPages($columns, $recursive, $item->id);
-        }) : $pages;
-    }
-
-    /**
-     * Determine if the model has a sub page.
-     *
-     * @return bool
-     */
-    public function hasSubPage()
-    {
-        return $this->parentId($this->getKey())->exists();
-    }
-
-    /**
-     * Get sibling pages if the model has a parent page.
-     *
-     * @param  array  $columns
-     * @param  bool|int  $recursive
-     * @param  bool  $self
-     * @param  bool  $firstLevel
-     * @return \Illuminate\Support\Collection
-     */
-    public function getSiblingPages($columns = ['*'], $recursive = false, $self = true, $firstLevel = false)
-    {
-        if (! $firstLevel && ! $this->parent_id) {
-            return $this->newCollection();
-        }
-
-        $pages = $this->forPublic();
-
-        if (! $self) {
-            $pages->where('id', '<>', $this->getKey());
-        }
-
-        $pages = $pages->parentId($this->parent_id)
-            ->menuId($this->menu_id)
-            ->positionAsc()
-            ->get($columns);
-
-        if ($self && $pages->count() > 1) {
-            return $recursive ? $pages->each(function ($item) use ($columns, $recursive) {
-                $item->subPages = $this->getSubPages($columns, $recursive, $item->id);
-            }) : $pages;
-        } else {
-            return $pages->make();
-        }
-    }
-
-    /**
-     * Determine if the model has a parent page.
-     *
-     * @return bool
-     */
-    public function hasSiblingPage()
-    {
-        if (! $this->parent_id) {
-            return false;
-        }
-
-        return $this->parentId($this->parent_id)->exists();
+        return $this->joinLanguage($language)->whereVisible();
     }
 
     /**
@@ -242,17 +125,6 @@ class Page extends Model
     }
 
     /**
-     * Add a where "parent_id" clause to the query.
-     *
-     * @param  int  $id
-     * @return \Models\Builder\Builder
-     */
-    public function parentId($id)
-    {
-        return $this->where('parent_id', $id);
-    }
-
-    /**
      * Add a where "type_id" clause to the query.
      *
      * @param  int     $id
@@ -273,34 +145,6 @@ class Page extends Model
     public function whereVisible($value = 1)
     {
         return $this->where('visible', $value);
-    }
-
-    /**
-     * Concatenate current model slug to its parent pages slug recursively.
-     *
-     * @param  int|null  $value
-     * @param  string|null  $column
-     * @return $this
-     */
-    public function fullSlug($value = null, $column = null)
-    {
-        if (is_null($column)) {
-            $column = $this->getKeyName();
-        }
-
-        if (! ($value = (is_null($value) ? $this->parent_id : $value))) {
-            return $this;
-        }
-
-        $page = (new static)->where($column, $value)->first(['slug', 'parent_id']);
-
-        if (is_null($page)) {
-            return $this;
-        }
-
-        $this->slug = trim($page->slug . '/' . $this->slug, '/');
-
-        return $this->fullSlug($page->parent_id);
     }
 
     /**
